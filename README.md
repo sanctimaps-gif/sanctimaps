@@ -8,15 +8,19 @@ lire les lieux de naissance des saints.
 ## Démarrer
 
 ```bash
-npm start       # http://localhost:8080
+npm start                                   # http://127.0.0.1:8080
+ANTHROPIC_API_KEY=sk-… npm start            # avec l'assistant intelligent
+HOST=0.0.0.0 npm start                      # ouvre l'accès au réseau local
 ```
 
 Aucune installation n'est nécessaire pour lancer l'application : le serveur
 fourni n'utilise que Node. `npm install` ne sert qu'à régénérer les données
 (voir plus bas).
 
-L'application est un site statique : aucun outil de compilation, aucune
-bibliothèque chargée depuis un CDN, aucune requête réseau à l'exécution.
+La carte est un site statique : aucun outil de compilation, aucune bibliothèque
+chargée depuis un CDN, aucune requête réseau pour l'afficher. Le serveur ne
+sert qu'à deux choses : distribuer les fichiers, et — si une clé est présente —
+porter les appels au modèle sans jamais confier cette clé au navigateur.
 
 ## Comment on navigue
 
@@ -72,11 +76,12 @@ Le rôle se choisit dans l'onglet **Compte**. Le code administrateur au premier
 lancement est `sanctimaps` ; l'application signale tant qu'il n'a pas été
 changé, ce qui se fait depuis le même onglet.
 
-> **Ce n'est pas un dispositif de sécurité, et cela ne peut pas l'être.**
-> SanctiMaps est un site statique, sans serveur : le contrôle des rôles
-> s'exécute dans le navigateur du visiteur, qui peut toujours le contourner.
-> Il sépare les usages et évite les fausses manœuvres ; il ne protège pas des
-> données. Une véritable autorisation demanderait un serveur.
+> **Ce n'est pas un dispositif de sécurité.** Le contrôle des rôles s'exécute
+> dans le navigateur du visiteur, qui peut toujours le contourner par la
+> console ; le serveur fourni distribue les fichiers et porte les appels au
+> modèle, mais ne vérifie aucun rôle. Ce partage sépare les usages et évite les
+> fausses manœuvres ; il ne protège pas des données. Une véritable autorisation
+> demanderait que le serveur tienne les comptes et arbitre chaque écriture.
 
 Une fiche proposée par un utilisateur part **en attente** : elle apparaît
 marquée comme telle, reste invisible aux visiteurs, et l'onglet **Modération**
@@ -86,8 +91,26 @@ alors publiée — ou la refuse.
 ## L'assistant de propositions
 
 L'onglet **Assistant**, réservé à l'administrateur, sert à verser des saints
-plus vite. Il puise dans un réservoir de fiches préparées, livré avec
-l'application, et soumet chacune à six contrôles :
+plus vite. Il a deux sources et un seul circuit.
+
+**Le réservoir** puise dans des fiches préparées et livrées avec l'application.
+Il fonctionne hors ligne et sans rien configurer.
+
+**L'IA** demande au modèle Claude des fiches complètes — noms en trois langues,
+dates, lieu de naissance, coordonnées, fête, qualités, notice — pour une région
+et un siècle que vous choisissez. Elle s'active en lançant le serveur avec une
+clé :
+
+```bash
+ANTHROPIC_API_KEY=sk-… npm start
+```
+
+La clé reste sur votre machine : c'est le serveur qui parle à l'API, jamais la
+page. Sans clé, l'onglet le dit et le réservoir reste disponible. Chaque appel
+est facturé par Anthropic.
+
+**Les deux sources passent par la même vérification**, et c'est elle qui fait le
+travail de fond :
 
 - un saint du même nom figure-t-il déjà au corpus ?
 - une fiche occupe-t-elle déjà ce lieu à la même date de fête, sous un nom qui
@@ -104,12 +127,11 @@ leur mise à l'écart** — c'est ce qui rend la vérification vérifiable. Le
 réservoir contient d'ailleurs quatre fiches volontairement fautives, une par
 type d'erreur, pour que ce tri se voie à l'usage.
 
-> **L'assistant n'est pas un modèle de langage.** Il ne devine ni n'invente
-> rien : il confronte des fiches préparées au corpus et à la géométrie de la
-> carte. Brancher un vrai modèle demanderait un petit serveur pour porter la
-> clé d'API — dans une page statique, cette clé serait lisible par n'importe
-> quel visiteur. C'est la seule raison pour laquelle l'assistant fonctionne
-> ainsi, et c'est aussi ce qui lui permet de tourner hors ligne et sans coût.
+> **Ce que le modèle affirme n'est pas une garantie.** Il indique lui-même sa
+> certitude sur chaque fiche, et la vérification arrête les erreurs
+> mécaniques — pays inventé, point tombé sur un autre continent, doublon,
+> dates impossibles. Elle n'arrête pas une erreur historique plausible : c'est
+> à l'administrateur de lire avant d'accepter. Rien n'est publié sans lui.
 
 ## Langues
 
@@ -172,6 +194,7 @@ src/js/data.js           corpus, couche locale, index, siècles
 src/js/auth.js           rôles et permissions
 src/js/query.js          analyse de la barre de recherche unique
 src/js/verify.js         contrôles de l'assistant
+src/js/ai.js             appels à l'assistant intelligent, côté navigateur
 src/js/i18n.js           langues, dates, nombres, accords en genre
 src/js/locales/*.js      douze paquets de traductions
 src/js/map/projection.js projection Mercator, partagée avec la génération
@@ -181,9 +204,10 @@ src/js/ui/*.js           panneau, recherche, fiche, formulaire, modération,
 data/saints/*.json       corpus, écrit à la main
 data/candidats/*.json    réservoir de l'assistant
 data/generated/          données produites par build:data (versionnées)
+tools/ai.mjs             appel au modèle, côté serveur (porte la clé)
 tools/build-data.mjs     génération des données
 tools/check-data.mjs     contrôles de cohérence
-tools/serve.mjs          serveur statique de développement
+tools/serve.mjs          serveur : fichiers statiques et endpoint de l'IA
 ```
 
 ### Ce que fait la génération

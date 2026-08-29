@@ -1,0 +1,59 @@
+/**
+ * Accès à l'assistant intelligent, côté navigateur.
+ *
+ * Aucune clé d'API n'existe ici : la page interroge le serveur fourni avec
+ * l'application (`npm start`), qui détient la clé et parle seul à l'API. Si ce
+ * serveur n'est pas là — hébergement purement statique — ou si la clé n'est
+ * pas configurée, `checkAvailability` le dit et l'assistant s'en tient à son
+ * réservoir hors ligne.
+ */
+
+/** Nombre de fiches demandées par défaut à chaque appel. */
+export const DEFAULT_COUNT = 5;
+
+let availability = null;
+
+/** Le serveur peut-il appeler le modèle ? Réponse mémorisée pour la session. */
+export async function checkAvailability() {
+  if (availability) return availability;
+  try {
+    const res = await fetch('api/ai/status');
+    availability = res.ok ? await res.json() : { available: false };
+  } catch {
+    availability = { available: false };
+  }
+  return availability;
+}
+
+/**
+ * Demande des fiches au modèle.
+ *
+ * @param {object} options
+ * @param {string[]} options.countries codes ISO3 dans lesquels puiser
+ * @param {number|null} options.century siècle visé, ou null
+ * @param {string[]} options.exclude noms déjà présents, à ne pas reprendre
+ * @param {string} options.regionLabel région lisible, pour la consigne
+ * @param {number} options.count nombre de fiches souhaitées
+ * @returns {Promise<{saints: Array, usage: object}>}
+ * @throws {Error} avec `reason` : « no-key », « network » ou le message de l'API
+ */
+export async function requestSaints({ countries, century, exclude, regionLabel, count }) {
+  let res;
+  try {
+    res = await fetch('api/ai/propose', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ countries, century, exclude, regionLabel, count }),
+    });
+  } catch {
+    throw Object.assign(new Error('serveur injoignable'), { reason: 'network' });
+  }
+
+  const body = await res.json().catch(() => null);
+  if (!res.ok) {
+    throw Object.assign(new Error(body?.message || `HTTP ${res.status}`), {
+      reason: body?.error === 'no-key' ? 'no-key' : 'upstream',
+    });
+  }
+  return body;
+}

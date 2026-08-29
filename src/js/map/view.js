@@ -285,7 +285,9 @@ export class MapView {
     const detail = await this.atlas.countryDetail(id);
     if (detail && this.countryId === id) {
       const path = el('path', {
-        class: 'country-detail',
+        // Le contour fin reprend la couleur du pays : ouvrir un pays ne doit
+        // pas lui faire perdre le signal « compte des saints ».
+        class: `country-detail${this.atlas.countryHasSaints(id) ? ' has-saints' : ''}`,
         d: detail.d,
         'fill-rule': 'evenodd',
         'vector-effect': 'non-scaling-stroke',
@@ -303,6 +305,12 @@ export class MapView {
   }
 
   syncCountryClasses() {
+    // Le contour fin est posé une fois à l'ouverture du pays ; si le corpus
+    // bouge ensuite — un premier saint y est publié — sa couleur doit suivre.
+    const outline = this.detailLayer.firstChild;
+    if (outline && this.countryId) {
+      outline.classList.toggle('has-saints', this.atlas.countryHasSaints(this.countryId));
+    }
     for (const country of this.atlas.countries) {
       const path = this.paths.get(country.id);
       const has = this.atlas.countryHasSaints(country.id);
