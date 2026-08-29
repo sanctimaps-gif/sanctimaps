@@ -1,11 +1,15 @@
 /**
  * Accès à l'assistant intelligent, côté navigateur.
  *
- * Aucune clé d'API n'existe ici : la page interroge le serveur fourni avec
- * l'application (`npm start`), qui détient la clé et parle seul à l'API. Si ce
- * serveur n'est pas là — hébergement purement statique — ou si la clé n'est
- * pas configurée, `checkAvailability` le dit et l'assistant s'en tient à son
+ * Aucune clé d'API n'existe ici, et la page ignore à qui elle parle : elle
+ * interroge le serveur fourni avec l'application (`npm start`), qui détient la
+ * configuration et s'adresse seul au modèle — local ou distant. Si ce serveur
+ * n'est pas là — hébergement purement statique — ou si aucun fournisseur n'est
+ * configuré, `checkAvailability` le dit et l'assistant s'en tient à son
  * réservoir hors ligne.
+ *
+ * Le nom du service en fonction remonte tout de même jusqu'ici, pour que
+ * l'administrateur sache ce qu'il interroge et si cela lui coûte quelque chose.
  */
 
 /** Nombre de fiches demandées par défaut à chaque appel. */
@@ -35,7 +39,7 @@ export async function checkAvailability() {
  * @param {string} options.regionLabel région lisible, pour la consigne
  * @param {number} options.count nombre de fiches souhaitées
  * @returns {Promise<{saints: Array, usage: object}>}
- * @throws {Error} avec `reason` : « no-key », « network » ou le message de l'API
+ * @throws {Error} avec `reason` : « no-provider », « network » ou le message du service
  */
 export async function requestSaints({ countries, century, exclude, regionLabel, count }) {
   let res;
@@ -52,7 +56,7 @@ export async function requestSaints({ countries, century, exclude, regionLabel, 
   const body = await res.json().catch(() => null);
   if (!res.ok) {
     throw Object.assign(new Error(body?.message || `HTTP ${res.status}`), {
-      reason: body?.error === 'no-key' ? 'no-key' : 'upstream',
+      reason: body?.error === 'no-provider' ? 'no-provider' : 'upstream',
     });
   }
   return body;

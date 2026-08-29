@@ -203,7 +203,8 @@ export class AssistantPanel {
       this.review = { proposals, discarded, total: proposals.length + discarded.length };
       this.ai.usage = result.usage;
     } catch (error) {
-      this.ai.error = error.reason === 'no-key' ? t('assistant.aiUnavailable') : error.message;
+      this.ai.error = error.reason === 'no-provider'
+        ? t('assistant.aiUnavailable') : error.message;
       this.review = null;
     } finally {
       this.ai.busy = false;
@@ -230,8 +231,16 @@ export class AssistantPanel {
     const continents = this.atlas.continents
       .map((c) => ({ value: c.id, label: t(`continent.${c.id}`) }));
 
+    const info = this.availability;
     return h('div', {},
       h('p', { class: 'add__intro', text: t('assistant.aiIntro') }),
+      // Dire quel service est en fonction : « local » et « distant » ne se
+      // valent pas, ni pour la confidentialité ni pour la facture.
+      available && info?.provider
+        ? h('p', { class: 'chip chip--provider',
+          text: t(info.local ? 'assistant.aiLocal' : 'assistant.aiRemote',
+            { provider: info.provider, model: info.model }) })
+        : null,
       h('p', { class: 'field__hint', text: t('assistant.aiNote') }),
       available === false
         ? h('p', { class: 'notice notice--error', text: t('assistant.aiUnavailable') })

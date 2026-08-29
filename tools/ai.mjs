@@ -1,21 +1,26 @@
 /**
- * Génération de fiches de saints par l'API Claude.
+ * Génération de fiches de saints par un modèle de langue.
  *
- * Ce module tourne **côté serveur**, jamais dans le navigateur : c'est ce qui
- * permet à la clé d'API de rester sur la machine qui lance l'application. Une
- * page statique ne peut pas porter cette clé sans l'exposer à tous ses
- * visiteurs, et c'est la seule raison pour laquelle l'assistant a besoin d'un
- * serveur pour cette fonction-là.
+ * Ce module dit **quoi demander** — la consigne, le schéma de la réponse, les
+ * règles que les fiches doivent respecter. À **qui** le demander ne le regarde
+ * pas : c'est `providers.mjs` qui parle au service choisi, qu'il tourne sur la
+ * machine ou chez un fournisseur. L'assistant n'est lié à aucune maison.
+ *
+ * Il tourne côté serveur, jamais dans le navigateur : c'est ce qui permet à la
+ * clé — quand il en faut une — de rester sur la machine qui lance
+ * l'application. Une page statique ne peut pas porter une clé sans l'exposer à
+ * tous ses visiteurs, et c'est la seule raison pour laquelle l'assistant a
+ * besoin d'un serveur pour cette fonction-là.
  *
  * Ce que le modèle renvoie n'est pas publié tel quel : l'application le fait
  * repasser par les mêmes contrôles que le réservoir hors ligne — pays connu,
  * point tombant dans ce pays, dates cohérentes, fête possible, absence de
- * doublon — avant de le proposer à l'administrateur, qui tranche.
+ * doublon — avant de le proposer à l'administrateur, qui tranche. Cette
+ * vérification vaut d'autant plus qu'un petit modèle local se trompe plus
+ * souvent qu'un grand modèle distant.
  */
 
-const ENDPOINT = 'https://api.anthropic.com/v1/messages';
-const MODEL = 'claude-opus-5';
-const API_VERSION = '2023-06-01';
+import { ask } from './providers.mjs';
 
 /** Plafond de fiches par appel : au-delà, la qualité se dégrade. */
 export const MAX_COUNT = 8;
@@ -28,16 +33,29 @@ const TITLES = [
   'religious', 'soldier', 'virgin', 'widow', 'youth',
 ];
 
+// Le mode strict des services compatibles OpenAI exige que chaque objet
+// interdise les propriétés surnuméraires et énumère tout ce qu'il requiert.
+// Les autres fournisseurs l'acceptent sans y voir malice.
+const text2 = (a, b) => ({
+  type: 'object',
+  additionalProperties: false,
+  properties: { [a]: { type: 'string' }, [b]: { type: 'string' } },
+  required: [a, b],
+});
+
 const SCHEMA = {
   type: 'object',
+  additionalProperties: false,
   properties: {
     saints: {
       type: 'array',
       items: {
         type: 'object',
+        additionalProperties: false,
         properties: {
           name: {
             type: 'object',
+            additionalProperties: false,
             properties: {
               fr: { type: 'string' },
               en: { type: 'string' },
@@ -55,21 +73,9 @@ const SCHEMA = {
           lng: { type: 'number' },
           feast: { type: 'string' },
           titles: { type: 'array', items: { type: 'string', enum: TITLES } },
-          desc: {
-            type: 'object',
-            properties: { fr: { type: 'string' }, en: { type: 'string' } },
-            required: ['fr', 'en'],
-          },
-          patronage: {
-            type: 'object',
-            properties: { fr: { type: 'string' }, en: { type: 'string' } },
-            required: ['fr', 'en'],
-          },
-          bio: {
-            type: 'object',
-            properties: { fr: { type: 'string' }, en: { type: 'string' } },
-            required: ['fr', 'en'],
-          },
+          desc: text2('fr', 'en'),
+          patronage: text2('fr', 'en'),
+          bio: text2('fr', 'en'),
           confidence: { type: 'string', enum: ['high', 'medium', 'low'] },
         },
         required: ['name', 'sex', 'born', 'died', 'circa', 'city', 'country',
@@ -123,67 +129,29 @@ function buildPrompt({ count, countries, century, exclude, regionLabel }) {
   return lines.join('\n');
 }
 
-/** Extrait le JSON de la réponse, que l'API le pré-analyse ou non. */
-function extractPayload(body) {
-  if (body.parsed_output) return body.parsed_output;
-  const text = (body.content || [])
-    .filter((block) => block.type === 'text')
-    .map((block) => block.text)
-    .join('');
-  if (!text.trim()) return null;
-  try {
-    return JSON.parse(text);
-  } catch {
-    return null;
-  }
-}
-
 /**
- * Demande des fiches au modèle.
+ * Demande des fiches au modèle en service.
  *
+ * @param {object} config fournisseur résolu, tel que rendu par resolveConfig
  * @returns {Promise<{saints: Array, usage: object}>}
- * @throws {Error} avec `status` quand l'API refuse la requête.
+ * @throws {Error} avec `status`, que le serveur relaie.
  */
-export async function proposeSaints({ count, countries, century, exclude, regionLabel, apiKey }) {
-  const response = await fetch(ENDPOINT, {
-    method: 'POST',
-    headers: {
-      'content-type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': API_VERSION,
-    },
-    body: JSON.stringify({
-      model: MODEL,
-      max_tokens: 16000,
-      system: SYSTEM,
-      output_config: { format: { type: 'json_schema', schema: SCHEMA } },
-      messages: [{
-        role: 'user',
-        content: buildPrompt({ count, countries, century, exclude, regionLabel }),
-      }],
-    }),
+export async function proposeSaints(config, { count, countries, century, exclude, regionLabel }) {
+  const { parsed, usage } = await ask(config, {
+    system: SYSTEM,
+    prompt: buildPrompt({ count, countries, century, exclude, regionLabel }),
+    schema: SCHEMA,
   });
 
-  const body = await response.json().catch(() => null);
-  if (!response.ok) {
-    const error = new Error(body?.error?.message || `HTTP ${response.status}`);
-    error.status = response.status;
-    throw error;
-  }
-
-  // Un refus de sécurité renvoie 200 : il faut lire stop_reason avant content.
-  if (body.stop_reason === 'refusal') {
-    const error = new Error('refus du modèle');
-    error.status = 422;
-    throw error;
-  }
-
-  const payload = extractPayload(body);
-  if (!payload || !Array.isArray(payload.saints)) {
+  if (!Array.isArray(parsed.saints)) {
     const error = new Error('réponse illisible');
     error.status = 502;
     throw error;
   }
 
-  return { saints: payload.saints, usage: body.usage || {} };
+  // Un modèle peut rendre des fiches à moitié remplies. Celles qui n'ont pas
+  // de quoi être vérifiées sont écartées ici, avant même les contrôles :
+  // sans nom ni pays, il n'y a rien à contrôler.
+  const saints = parsed.saints.filter((s) => s && (s.name?.fr || s.name?.en) && s.country);
+  return { saints, usage };
 }

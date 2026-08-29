@@ -9,7 +9,7 @@ lire les lieux de naissance des saints.
 
 ```bash
 npm start                                   # http://127.0.0.1:8080
-ANTHROPIC_API_KEY=sk-… npm start            # avec l'assistant intelligent
+AI_PROVIDER=ollama npm start                # avec l'assistant, modèle local
 HOST=0.0.0.0 npm start                      # ouvre l'accès au réseau local
 ```
 
@@ -19,8 +19,9 @@ fourni n'utilise que Node. `npm install` ne sert qu'à régénérer les données
 
 La carte est un site statique : aucun outil de compilation, aucune bibliothèque
 chargée depuis un CDN, aucune requête réseau pour l'afficher. Le serveur ne
-sert qu'à deux choses : distribuer les fichiers, et — si une clé est présente —
-porter les appels au modèle sans jamais confier cette clé au navigateur.
+sert qu'à deux choses : distribuer les fichiers, et — si un fournisseur de
+modèle est configuré — porter les appels sans jamais confier de clé au
+navigateur.
 
 ## Comment on navigue
 
@@ -65,10 +66,12 @@ au sol, celle où les villages se nomment.
 ### Le grain de la vue pays
 
 Plus on zoome, plus la carte descend dans la hiérarchie des localités : une
-soixantaine de villes au cadrage d'arrivée, puis les bourgs, puis les villages,
-jusqu'à deux ou trois cents noms lisibles à la fois vers cinq à sept fois le
-cadrage — c'est là que la carte est la plus dense. Au-delà la fenêtre se
-referme sur quelques hameaux, précisément situés.
+quarantaine de villes au cadrage d'arrivée, puis les bourgs, puis les villages.
+Le nombre de noms à l'écran reste à peu près **constant** — de quarante à
+soixante-quinze —, et c'est précisément ce qui rend la révélation progressive :
+la fenêtre se resserrant, les mêmes places reviennent à des lieux de plus en
+plus petits, les préfectures cèdent aux bourgs et les bourgs aux villages.
+Laisser ce nombre croître avec le zoom noierait la carte sous les noms.
 
 Le tri se fait **dans le cadre visible**, pas dans le pays entier : zoomé sur
 la Bretagne on veut les bourgs bretons, non Marseille et Lyon au motif qu'elles
@@ -79,6 +82,20 @@ Le corpus compte 113 584 localités, jusqu'aux villages d'un millier
 d'habitants, réparties en un fichier par pays chargé seulement à l'ouverture de
 celui-ci. En deçà, la source n'a plus rien : c'est la limite de la carte, et
 elle se voit — au zoom maximal, la campagne est vide parce qu'elle l'est.
+
+## Le tiroir
+
+Le panneau de gauche s'ouvre sur un **sommaire** : la liste de ce qu'on peut
+faire, une ligne chacun, et rien d'autre. On choisit une partie — Rechercher,
+Ajouter, Modération, Assistant, Compte, Paramètres — et elle prend toute la
+place, avec un « ‹ Sommaire » pour revenir. Une rangée d'onglets aurait montré
+les six parties à la fois en n'en laissant lire aucune ; ici chaque écran ne
+dit qu'une chose.
+
+Refermer le tiroir ramène au sommaire : le rouvrir repose la question « que
+voulez-vous faire », plutôt que de reprendre là où l'on en était trois clics
+plus tôt. « Retour à la carte », en bas du sommaire, referme sans naviguer
+ailleurs — la carte reste maîtresse.
 
 ## La recherche
 
@@ -118,7 +135,7 @@ quel agenda, sans compte ni service tiers.
 | **Utilisateur** | En plus : proposer des saints, soumis à validation. |
 | **Administrateur** | En plus : ajouter, modifier, supprimer, et approuver ou refuser les propositions. |
 
-Le rôle se choisit dans l'onglet **Compte**. Le code administrateur au premier
+Le rôle se choisit dans la partie **Compte** du tiroir. Le code administrateur au premier
 lancement est `sanctimaps` ; l'application signale tant qu'il n'a pas été
 changé, ce qui se fait depuis le même onglet.
 
@@ -130,31 +147,61 @@ changé, ce qui se fait depuis le même onglet.
 > demanderait que le serveur tienne les comptes et arbitre chaque écriture.
 
 Une fiche proposée par un utilisateur part **en attente** : elle apparaît
-marquée comme telle, reste invisible aux visiteurs, et l'onglet **Modération**
+marquée comme telle, reste invisible aux visiteurs, et la partie **Modération**
 la signale à l'administrateur par un compteur. Celui-ci l'approuve — elle est
 alors publiée — ou la refuse.
 
 ## L'assistant de propositions
 
-L'onglet **Assistant**, réservé à l'administrateur, sert à verser des saints
-plus vite. Il a deux sources et un seul circuit.
+La partie **Assistant**, réservée à l'administrateur, sert à verser des saints
+plus vite. Elle a deux sources et un seul circuit.
 
 **Le réservoir** puise dans des fiches préparées et livrées avec l'application.
 Il fonctionne hors ligne et sans rien configurer.
 
-**L'IA** demande au modèle Claude des fiches complètes — noms en trois langues,
+**L'IA** demande à un modèle des fiches complètes — noms en trois langues,
 dates, lieu de naissance, coordonnées, fête, qualités, notice, patronage et
 biographie — pour une région et un siècle que vous choisissez. Une fiche
 acceptée est publiable telle quelle : c'est tout l'intérêt, l'administrateur
-relit au lieu de saisir. Elle s'active en lançant le serveur avec une clé :
+relit au lieu de saisir.
+
+### Choisir son modèle
+
+**L'assistant n'est lié à aucun fournisseur.** Trois façons de parler à un
+modèle sont prévues, et elles couvrent à peu près tout ce qui existe :
+
+| `AI_PROVIDER` | Ce que c'est | Clé |
+| --- | --- | --- |
+| `ollama` | Un modèle sur **votre machine**. Rien ne sort, rien n'est facturé. | aucune |
+| `openai` | Tout service parlant le dialecte « chat completions » : OpenAI, Mistral, Groq, Together, DeepSeek, OpenRouter — ou votre propre serveur : vLLM, LM Studio, llama.cpp, LocalAI. | selon le service |
+| `anthropic` | L'API de Claude. | oui |
 
 ```bash
-ANTHROPIC_API_KEY=sk-… npm start
+# Sur votre machine, sans compte ni clé
+AI_PROVIDER=ollama AI_MODEL=llama3.1 npm start
+
+# Un service compatible OpenAI, ici Mistral
+AI_PROVIDER=openai AI_BASE_URL=https://api.mistral.ai/v1 \
+  AI_API_KEY=… AI_MODEL=mistral-large-latest npm start
+
+# Un serveur que vous hébergez, LM Studio par exemple
+AI_PROVIDER=openai AI_BASE_URL=http://127.0.0.1:1234/v1 AI_API_KEY=x npm start
 ```
 
-La clé reste sur votre machine : c'est le serveur qui parle à l'API, jamais la
-page. Sans clé, l'onglet le dit et le réservoir reste disponible. Chaque appel
-est facturé par Anthropic.
+`AI_BASE_URL` et `AI_MODEL` ont un défaut par fournisseur ; `AI_API_KEY` n'est
+lue que si le service en réclame une. Sans `AI_PROVIDER`, l'application déduit
+du reste de l'environnement — `OPENAI_API_KEY`, `ANTHROPIC_API_KEY`,
+`OLLAMA_HOST` — et se tait si elle ne trouve rien.
+
+L'assistant affiche le service en fonction avant chaque appel, et dit s'il est
+**sur votre machine** ou **distant** : la différence compte, pour ce que vous
+envoyez comme pour ce que vous payez. La clé, quand il en faut une, reste sur
+la machine qui lance le serveur ; c'est lui qui parle au service, jamais la
+page. Sans fournisseur, l'assistant le dit et le réservoir reste disponible.
+
+Ajouter un quatrième fournisseur tient en une trentaine de lignes dans
+`tools/providers.mjs` : une adresse, un en-tête, la façon de réclamer du JSON
+structuré, et l'endroit où lire la réponse.
 
 **Les deux sources passent par la même vérification**, et c'est elle qui fait le
 travail de fond :
@@ -172,7 +219,9 @@ Seules les fiches qui passent tout sont proposées ; l'administrateur les
 accepte ou les passe. Les autres sont montrées à part **avec le motif exact de
 leur mise à l'écart** — c'est ce qui rend la vérification vérifiable. Le
 réservoir contient d'ailleurs quatre fiches volontairement fautives, une par
-type d'erreur, pour que ce tri se voie à l'usage.
+type d'erreur, pour que ce tri se voie à l'usage. Elle vaut d'autant plus
+qu'un petit modèle local se trompe plus souvent qu'un grand modèle distant :
+c'est le prix de l'indépendance, et le filet est fait pour ça.
 
 > **Ce que le modèle affirme n'est pas une garantie.** Il indique lui-même sa
 > certitude sur chaque fiche, et la vérification arrête les erreurs
@@ -222,8 +271,8 @@ collecte.
 Le corpus livré est en lecture seule. Tout ce que l'utilisateur ou
 l'administrateur fait — ajouts, retouches, suppressions — vit dans une couche
 locale (`localStorage`) posée par-dessus, et n'existe que dans ce navigateur.
-L'onglet **Modération** en donne le décompte et permet de tout réinitialiser
-d'un geste ; les fiches ajoutées s'exportent en JSON depuis l'onglet
+La partie **Modération** en donne le décompte et permet de tout réinitialiser
+d'un geste ; les fiches ajoutées s'exportent en JSON depuis la partie
 **Ajouter**.
 
 ### Modifier ou enrichir le corpus
@@ -267,7 +316,8 @@ data/saints/*.json       corpus, écrit à la main
 data/saints/patronages.json  patronages, indexés par identifiant
 data/candidats/*.json    réservoir de l'assistant
 data/generated/          données produites par build:data (versionnées)
-tools/ai.mjs             appel au modèle, côté serveur (porte la clé)
+tools/ai.mjs             consigne et schéma des fiches, côté serveur
+tools/providers.mjs      adaptateurs de fournisseur (openai, ollama, anthropic)
 tools/build-data.mjs     génération des données
 tools/check-data.mjs     contrôles de cohérence
 tools/serve.mjs          serveur : fichiers statiques et endpoint de l'IA

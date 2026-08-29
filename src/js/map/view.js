@@ -28,11 +28,20 @@ const GROUND_LIMIT = 40;
 /** Pas d'un appui sur « + » ou « − ». */
 const ZOOM_STEP = 1.6;
 
-/** Nombre de localités affichées au cadrage d'arrivée, avant tout zoom. */
-const PLACES_AT_FIT = 70;
+/**
+ * Combien de localités on retient dans le cadre visible.
+ *
+ * Un nombre à peu près constant, et non croissant : c'est ce qui rend la
+ * révélation progressive. La fenêtre se resserrant à mesure qu'on zoome, les
+ * mêmes deux cents places reviennent à des lieux de plus en plus petits — les
+ * préfectures cèdent aux bourgs, les bourgs aux villages. Laisser le nombre
+ * croître, au contraire, empile les noms jusqu'à noyer la carte.
+ */
+const PLACES_AT_FIT = 190;
+const PLACES_MAX = 300;
 
-/** Plafond de localités simultanées : au-delà, la carte devient illisible. */
-const PLACES_MAX = 1600;
+/** Croissance très lente du budget avec le zoom : une inflexion, pas une rampe. */
+const PLACES_GROWTH = 0.28;
 
 /** Marge de déplacement autorisée autour d'un pays, en fraction de sa taille. */
 const COUNTRY_SLACK = 0.35;
@@ -43,8 +52,10 @@ const OVERLAY_MARGIN = 0.35;
 /** Déplacement, dans la même unité, au-delà duquel le calque est recalculé. */
 const OVERLAY_REDRAW = 0.25;
 
-/** Air réservé de part et d'autre d'un nom, en pixels. */
-const LABEL_GAP = 4;
+/** Air réservé autour d'un nom, en pixels. Généreux : c'est le blanc entre les
+ *  noms qui rend une carte lisible, bien plus que leur nombre. */
+const LABEL_GAP = 8;
+const LABEL_GAP_Y = 3;
 
 /**
  * Rangs de localité, du chef-lieu au hameau.
@@ -574,7 +585,7 @@ export class MapView {
   placeBudget() {
     if (!this.fitScale) return PLACES_AT_FIT;
     const ratio = Math.max(1, this.transform.k / this.fitScale);
-    return Math.min(PLACES_MAX, Math.round(PLACES_AT_FIT * ratio ** 1.7));
+    return Math.min(PLACES_MAX, Math.round(PLACES_AT_FIT * ratio ** PLACES_GROWTH));
   }
 
   /**
@@ -812,8 +823,8 @@ export class MapView {
       // Un peu d'air autour de chaque nom : deux étiquettes qui se frôlent se
       // lisent presque aussi mal que deux qui se recouvrent.
       const box = [
-        item.sx - w / 2 - LABEL_GAP, item.sy - h / 2 + dy - 1,
-        item.sx + w / 2 + LABEL_GAP, item.sy + h / 2 + dy + 1,
+        item.sx - w / 2 - LABEL_GAP, item.sy - h / 2 + dy - LABEL_GAP_Y,
+        item.sx + w / 2 + LABEL_GAP, item.sy + h / 2 + dy + LABEL_GAP_Y,
       ];
       const keys = cells(box);
       const clash = keys.some((key) => grid.get(key)?.some(

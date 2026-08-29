@@ -5,13 +5,21 @@
  *   PORT=3000 npm start
  *   HOST=0.0.0.0 npm start        → ouvre l'accès au réseau local
  *
- * Il sert les fichiers statiques et, si une clé d'API est présente dans
- * l'environnement, expose « POST /api/ai/propose », par lequel l'assistant de
- * l'administrateur demande des fiches de saints au modèle. La clé reste ici :
- * elle n'est jamais transmise au navigateur.
+ * Il sert les fichiers statiques et, si un fournisseur de modèle est configuré
+ * dans l'environnement, expose « POST /api/ai/propose », par lequel l'assistant
+ * de l'administrateur demande des fiches de saints. La clé — quand le
+ * fournisseur en demande une — reste ici : elle n'est jamais transmise au
+ * navigateur.
  *
- * Sans clé, l'application fonctionne entièrement : l'assistant se rabat alors
- * sur son réservoir hors ligne.
+ * Le fournisseur se choisit par AI_PROVIDER (openai | ollama | anthropic) ;
+ * voir providers.mjs pour les variables reconnues. Un modèle local via Ollama
+ * ne demande ni clé ni compte :
+ *
+ *   AI_PROVIDER=ollama AI_MODEL=llama3.1 npm start
+ *   AI_PROVIDER=openai AI_BASE_URL=http://127.0.0.1:1234/v1 AI_API_KEY=x npm start
+ *
+ * Sans fournisseur, l'application fonctionne entièrement : l'assistant se
+ * rabat alors sur son réservoir hors ligne.
  */
 
 import { createServer } from 'node:http';
@@ -20,13 +28,16 @@ import { extname, join, normalize, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { MAX_COUNT, proposeSaints } from './ai.mjs';
+import { providerNames, resolveConfig } from './providers.mjs';
 
 const ROOT = resolve(fileURLToPath(new URL('..', import.meta.url)));
 const PORT = Number(process.env.PORT) || 8080;
 // Localhost par défaut : l'endpoint d'IA dépense la clé de qui lance le
 // serveur, il n'a rien à faire sur le réseau local sans un choix explicite.
 const HOST = process.env.HOST || '127.0.0.1';
-const API_KEY = process.env.ANTHROPIC_API_KEY || '';
+
+// Résolu une fois au démarrage : changer de fournisseur, c'est relancer.
+const AI = resolveConfig();
 
 /** Taille maximale d'un corps de requête, pour ne pas se laisser inonder. */
 const MAX_BODY = 512 * 1024;
@@ -73,11 +84,18 @@ function readBody(req) {
   });
 }
 
+/** Ce que le navigateur a besoin de savoir : pas la clé, seulement le service. */
+function aiStatus() {
+  return AI.ok
+    ? { available: true, maxCount: MAX_COUNT, provider: AI.label, model: AI.model, local: AI.id === 'ollama' }
+    : { available: false, maxCount: MAX_COUNT, reason: AI.reason };
+}
+
 async function handleProposal(req, res) {
-  if (!API_KEY) {
+  if (!AI.ok) {
     sendJSON(res, 503, {
-      error: 'no-key',
-      message: 'ANTHROPIC_API_KEY absente : lancez le serveur avec la clé pour activer l’IA.',
+      error: 'no-provider',
+      message: `aucun fournisseur configuré : posez AI_PROVIDER (${providerNames().join(' | ')})`,
     });
     return;
   }
@@ -101,13 +119,12 @@ async function handleProposal(req, res) {
   }
 
   try {
-    const result = await proposeSaints({
+    const result = await proposeSaints(AI, {
       count,
       countries,
       century,
       exclude,
       regionLabel: typeof body.regionLabel === 'string' ? body.regionLabel.slice(0, 80) : '',
-      apiKey: API_KEY,
     });
     sendJSON(res, 200, result);
   } catch (error) {
@@ -154,7 +171,7 @@ createServer((req, res) => {
   const path = new URL(req.url, 'http://localhost').pathname;
 
   if (path === '/api/ai/status') {
-    sendJSON(res, 200, { available: Boolean(API_KEY), maxCount: MAX_COUNT });
+    sendJSON(res, 200, aiStatus());
     return;
   }
   if (path === '/api/ai/propose') {
@@ -168,7 +185,13 @@ createServer((req, res) => {
   serveFile(req, res);
 }).listen(PORT, HOST, () => {
   console.log(`SanctiMaps → http://${HOST}:${PORT}`);
-  console.log(API_KEY
-    ? '  IA : activée (clé lue dans ANTHROPIC_API_KEY, jamais transmise au navigateur)'
-    : '  IA : inactive (définissez ANTHROPIC_API_KEY pour l’activer ; le réservoir hors ligne fonctionne sans)');
+  if (AI.ok) {
+    console.log(`  IA : ${AI.label} — ${AI.model} sur ${AI.baseUrl}`);
+    if (AI.apiKey) console.log('        la clé reste ici, elle n’est jamais transmise au navigateur');
+  } else {
+    const raison = { nokey: 'clé absente pour ce fournisseur', unknown: `fournisseur inconnu : ${AI.id}` };
+    console.log(`  IA : inactive — ${raison[AI.reason] || 'aucun fournisseur configuré'}`);
+    console.log(`        posez AI_PROVIDER parmi ${providerNames().join(' | ')} ;`
+      + ' le réservoir hors ligne fonctionne sans');
+  }
 });
