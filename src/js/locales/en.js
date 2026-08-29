@@ -48,6 +48,7 @@ export default {
     rejected: 'Rejected',
   },
   detail: {
+    patronage: 'Patron saint of',
     birth: 'Born',
     death: 'Died',
     birthplace: 'Birthplace',
@@ -64,6 +65,12 @@ export default {
     back: 'Back to results',
   },
   add: {
+    namePlaceholder: 'Francis of Assisi',
+    cityPlaceholder: 'Assisi',
+    patronage: 'Patron saint of',
+    patronagePlaceholder: 'Animals, ecology, Italy',
+    bio: 'Biography',
+    bioPlaceholder: 'The story of a life, a conversion, a work…',
     intro: 'Add a saint missing from the map.',
     introUser: 'Your proposal goes to the administrator before it is published.',
     introAdmin: 'Your entry will be published immediately.',
@@ -195,6 +202,7 @@ export default {
     birthplace: 'Birthplace of a saint',
   },
   misc: {
+    counted: '{n} saints recorded in {c} countries',
     circa: 'c.',
     unknown: 'unknown',
     bc: 'BC',
@@ -202,6 +210,17 @@ export default {
     saintHere: '1 saint recorded',
     noneHere: 'No saint recorded here',
     close: 'Close',
+  },
+  calendar: {
+    title: 'Saints — calendar of feasts',
+    exportAll: 'Add all {n} saints to the calendar',
+    exportFiltered: 'Add these {n} saints to the calendar',
+  },
+  theme: {
+    label: 'Theme',
+    system: 'System',
+    light: 'Light',
+    dark: 'Dark',
   },
   title: {
     abbess: 'Abbess',

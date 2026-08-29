@@ -60,10 +60,20 @@ const SCHEMA = {
             properties: { fr: { type: 'string' }, en: { type: 'string' } },
             required: ['fr', 'en'],
           },
+          patronage: {
+            type: 'object',
+            properties: { fr: { type: 'string' }, en: { type: 'string' } },
+            required: ['fr', 'en'],
+          },
+          bio: {
+            type: 'object',
+            properties: { fr: { type: 'string' }, en: { type: 'string' } },
+            required: ['fr', 'en'],
+          },
           confidence: { type: 'string', enum: ['high', 'medium', 'low'] },
         },
         required: ['name', 'sex', 'born', 'died', 'circa', 'city', 'country',
-          'lat', 'lng', 'feast', 'titles', 'desc', 'confidence'],
+          'lat', 'lng', 'feast', 'titles', 'desc', 'patronage', 'bio', 'confidence'],
       },
     },
   },
@@ -86,6 +96,12 @@ Règles impératives :
   qu'établie. Une date inconnue vaut null, mais jamais les deux à la fois.
 - « desc » tient en une phrase, en français et en anglais, qui apprend quelque
   chose de précis sur la personne.
+- « patronage » énumère ce dont le saint est patron, en français et en anglais,
+  séparé par des virgules — et seulement si le patronage est bien attesté. Une
+  chaîne vide vaut mieux qu'un patronage inventé.
+- « bio » raconte la vie en trois à six phrases, en français et en anglais :
+  l'origine, le tournant, l'œuvre, la mort et le culte. Des faits, pas des
+  formules pieuses.
 - « confidence » dit ta propre certitude sur l'exactitude de la fiche :
   high, medium ou low.
 - N'invente jamais pour remplir : mieux vaut rendre moins de fiches que le

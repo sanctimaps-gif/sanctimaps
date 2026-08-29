@@ -48,6 +48,7 @@ export default {
     rejected: 'Reiecta',
   },
   detail: {
+    patronage: 'Patronus',
     birth: 'Natus',
     death: 'Mortuus',
     birthplace: 'Locus nativitatis',
@@ -64,6 +65,12 @@ export default {
     back: 'Ad inventa redire',
   },
   add: {
+    namePlaceholder: 'Franciscus Assisiensis',
+    cityPlaceholder: 'Assisium',
+    patronage: 'Patronus',
+    patronagePlaceholder: 'Animalia, oecologia, Italia',
+    bio: 'Vita',
+    bioPlaceholder: 'Narratio vitae, conversionis, operis…',
     intro: 'Sanctum in mappa deficientem adde.',
     introUser: 'Propositio tua ad moderatorem prius mittetur.',
     introAdmin: 'Scheda tua statim publicabitur.',
@@ -195,6 +202,7 @@ export default {
     birthplace: 'Nativitas sancti',
   },
   misc: {
+    counted: 'Sancti {n} in {c} regionibus descripti',
     circa: 'circa',
     unknown: 'ignotus',
     bc: 'a.C.n.',
@@ -202,6 +210,17 @@ export default {
     saintHere: 'Unus sanctus notatus',
     noneHere: 'Nullus sanctus hic notatus',
     close: 'Claudere',
+  },
+  calendar: {
+    title: 'Sancti — calendarium festorum',
+    exportAll: 'Sanctos {n} calendario addere',
+    exportFiltered: 'Hos sanctos {n} calendario addere',
+  },
+  theme: {
+    label: 'Species',
+    system: 'Ex systemate',
+    light: 'Lucida',
+    dark: 'Obscura',
   },
   title: {
     abbess: 'Abbatissa',

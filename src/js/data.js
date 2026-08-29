@@ -242,7 +242,13 @@ export class Atlas {
   searchIndex(saint, lang) {
     const n = saint.name;
     const names = typeof n === 'string' ? [n] : Object.values(n);
-    return fold([...names, saint.city, this.countryName(saint.country, lang)].join(' '));
+    // Le patronage entre dans l'index : « animaux » doit ramener François
+    // d'Assise, « aveugles » Lucie de Syracuse.
+    const patronage = typeof saint.patronage === 'string'
+      ? [saint.patronage]
+      : Object.values(saint.patronage || {});
+    return fold([...names, ...patronage, saint.city,
+      this.countryName(saint.country, lang)].join(' '));
   }
 
   /** Contour haute définition d'un pays, chargé puis mémorisé. */

@@ -7,6 +7,7 @@ import { AddPanel } from './ui/addForm.js';
 import { AssistantPanel, ModerationPanel } from './ui/admin.js';
 import { DetailPanel } from './ui/detail.js';
 import { SearchPanel } from './ui/search.js';
+import { apply as applyTheme } from './theme.js';
 import { Sidebar } from './ui/sidebar.js';
 import { TopBar } from './ui/topbar.js';
 
@@ -16,6 +17,7 @@ const stage = document.getElementById('stage');
 const mapHost = document.getElementById('map-host');
 const app = document.getElementById('app');
 
+applyTheme();
 document.documentElement.lang = getLanguage();
 document.documentElement.dir = getDirection();
 loaderText.textContent = t('app.loading');

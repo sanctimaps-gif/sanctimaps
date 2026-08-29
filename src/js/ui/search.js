@@ -1,5 +1,6 @@
 import { PENDING, REJECTED, saintCentury } from '../data.js';
 import { collator, formatFeast, formatYear, getLanguage, monthNames, t } from '../i18n.js';
+import { buildCalendar, downloadCalendar } from '../calendar.js';
 import { buildCountryIndex, parseQuery, removeToken, stringifyQuery } from '../query.js';
 import { fill, h } from './dom.js';
 
@@ -57,12 +58,18 @@ export class SearchPanel {
     this.tokenBar = h('div', { class: 'tokens' });
     this.summary = h('p', { class: 'results__summary', 'aria-live': 'polite' });
     this.results = h('div', { class: 'results', role: 'list' });
+    this.calendarButton = h('button', {
+      class: 'btn btn--ghost btn--calendar',
+      type: 'button',
+      onclick: () => this.exportCalendar(),
+    });
 
     fill(this.root, [
       h('div', { class: 'search__bar' }, this.input),
       h('p', { class: 'search__help', text: t('search.help') }),
       this.tokenBar,
       this.summary,
+      this.calendarButton,
       this.results,
     ]);
     this.renderResults();
@@ -95,6 +102,20 @@ export class SearchPanel {
       title: t('search.removeToken'),
       onclick: () => this.dropToken(parsed, token.kind),
     }, h('span', { text: label(token) }), h('span', { class: 'chip__x', text: '×' }))));
+  }
+
+  /** Écrit un fichier .ics des fêtes actuellement listées. */
+  exportCalendar() {
+    const lang = getLanguage();
+    const list = this.lastResults || [];
+    if (!list.length) return;
+    const content = buildCalendar(list, {
+      lang,
+      title: t('calendar.title'),
+      name: (saint, code) => this.atlas.saintName(saint, code),
+      country: (id, code) => this.atlas.countryName(id, code),
+    });
+    downloadCalendar(content, 'saints.ics');
   }
 
   matches(parsed) {
@@ -137,6 +158,15 @@ export class SearchPanel {
     this.summary.textContent = list.length === 1
       ? t('search.resultsOne')
       : t('search.results', { n: list.length });
+
+    // L'export porte sur ce qui est affiché : filtrer puis exporter donne un
+    // calendrier de circonstance — les saints d'un pays, d'un siècle, d'un mois.
+    this.lastResults = list;
+    const filtered = parsed.tokens.length > 0 || parsed.terms.length > 0;
+    this.calendarButton.textContent = filtered
+      ? t('calendar.exportFiltered', { n: list.length })
+      : t('calendar.exportAll', { n: list.length });
+    this.calendarButton.disabled = list.length === 0;
 
     if (!list.length) {
       fill(this.results, [h('p', { class: 'results__empty', text: t('search.none') })]);

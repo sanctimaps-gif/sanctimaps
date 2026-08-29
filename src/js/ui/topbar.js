@@ -12,10 +12,11 @@ export class TopBar {
     this.trail = h('nav', { class: 'trail', 'aria-label': 'fil d’Ariane' });
     this.hint = h('p', { class: 'hint' });
     this.chips = h('div', { class: 'continents' });
+    this.tally = h('p', { class: 'tally' });
     this.legend = h('div', { class: 'legend' });
 
     host.append(
-      h('header', { class: 'topbar' }, this.trail, this.hint, this.chips),
+      h('header', { class: 'topbar' }, this.trail, this.hint, this.tally, this.chips),
       this.legend,
     );
     this.render();
@@ -59,6 +60,15 @@ export class TopBar {
     } else {
       this.hint.textContent = mode === 'world' ? t('nav.hintWorld') : t('nav.hintContinent');
     }
+
+    // Compteur d'ensemble, à la manière d'un cartouche de carte : il dit d'un
+    // coup d'œil ce que le corpus couvre, avant même d'avoir cliqué.
+    const total = this.atlas.saints.length;
+    const countries = new Set(this.atlas.saints.map((s) => s.country)).size;
+    this.tally.textContent = t('misc.counted', {
+      n: formatNumber(total), c: formatNumber(countries),
+    });
+    this.tally.hidden = mode !== 'world';
 
     this.chips.replaceChildren(...this.atlas.continents.map((continent) => h('button', {
       class: `chip chip--action${continent.id === continentId ? ' is-active' : ''}`,

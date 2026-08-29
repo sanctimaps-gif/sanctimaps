@@ -12,7 +12,7 @@ const TITLE_KEYS = [
 
 const BLANK = {
   name: '', sex: 'm', born: '', died: '', city: '', country: '',
-  lat: '', lng: '', month: '', day: '', desc: '', titles: [],
+  lat: '', lng: '', month: '', day: '', desc: '', bio: '', patronage: '', titles: [],
 };
 
 /**
@@ -67,6 +67,9 @@ export class AddPanel {
       month: month ? String(Number(month)) : '',
       day: day ? String(Number(day)) : '',
       desc: typeof saint.desc === 'string' ? saint.desc : saint.desc?.[lang] || '',
+      bio: typeof saint.bio === 'string' ? saint.bio : saint.bio?.[lang] || '',
+      patronage: typeof saint.patronage === 'string'
+        ? saint.patronage : saint.patronage?.[lang] || '',
       titles: [...(saint.titles || [])],
     };
     this.render();
@@ -129,7 +132,8 @@ export class AddPanel {
         : null,
 
       field(t('add.name'), h('input', {
-        class: 'control', type: 'text', value: this.values.name, oninput: this.bind('name'),
+        class: 'control', type: 'text', value: this.values.name,
+        placeholder: t('add.namePlaceholder'), oninput: this.bind('name'),
       })),
       field(t('add.sex'), select(
         [{ value: 'm', label: t('add.male') }, { value: 'f', label: t('add.female') }],
@@ -141,15 +145,18 @@ export class AddPanel {
 
       h('div', { class: 'filters__row' },
         field(t('add.born'), h('input', {
-          class: 'control', type: 'number', value: this.values.born, oninput: this.bind('born'),
+          class: 'control', type: 'number', placeholder: '1182',
+          value: this.values.born, oninput: this.bind('born'),
         })),
         field(t('add.died'), h('input', {
-          class: 'control', type: 'number', value: this.values.died, oninput: this.bind('died'),
+          class: 'control', type: 'number', placeholder: '1226',
+          value: this.values.died, oninput: this.bind('died'),
         }))),
       h('p', { class: 'field__hint', text: t('add.yearHint') }),
 
       field(t('add.city'), h('input', {
-        class: 'control', type: 'text', value: this.values.city, oninput: this.bind('city'),
+        class: 'control', type: 'text', value: this.values.city,
+        placeholder: t('add.cityPlaceholder'), oninput: this.bind('city'),
       })),
       field(t('add.country'), select(
         [{ value: '', label: '—' }, ...countries],
@@ -160,12 +167,12 @@ export class AddPanel {
         h('legend', { class: 'group__legend', text: t('add.coords') }),
         h('div', { class: 'filters__row' },
           field(t('add.lat'), h('input', {
-            class: 'control', type: 'number', step: 'any', value: this.values.lat,
-            oninput: this.bind('lat'),
+            class: 'control', type: 'number', step: 'any', placeholder: '43.0707',
+            value: this.values.lat, oninput: this.bind('lat'),
           })),
           field(t('add.lng'), h('input', {
-            class: 'control', type: 'number', step: 'any', value: this.values.lng,
-            oninput: this.bind('lng'),
+            class: 'control', type: 'number', step: 'any', placeholder: '12.6196',
+            value: this.values.lng, oninput: this.bind('lng'),
           }))),
         h('button', {
           class: `btn btn--ghost${this.picking ? ' is-active' : ''}`,
@@ -198,12 +205,24 @@ export class AddPanel {
         h('legend', { class: 'group__legend', text: t('add.titles') }),
         titleBox),
 
+      field(t('add.patronage'), h('input', {
+        class: 'control', type: 'text', value: this.values.patronage,
+        placeholder: t('add.patronagePlaceholder'), oninput: this.bind('patronage'),
+      })),
+
       field(t('add.desc'), h('textarea', {
         class: 'control control--area',
-        rows: '3',
+        rows: '2',
         placeholder: t('add.descPlaceholder'),
         oninput: this.bind('desc'),
       }, this.values.desc)),
+
+      field(t('add.bio'), h('textarea', {
+        class: 'control control--area',
+        rows: '5',
+        placeholder: t('add.bioPlaceholder'),
+        oninput: this.bind('bio'),
+      }, this.values.bio)),
 
       h('button', {
         class: 'btn btn--primary',
@@ -276,6 +295,8 @@ export class AddPanel {
       feast: `${pad(Number(v.month))}-${pad(Number(v.day))}`,
       titles: [...v.titles],
       desc: v.desc.trim() ? { [lang]: v.desc.trim() } : undefined,
+      bio: v.bio.trim() ? { [lang]: v.bio.trim() } : undefined,
+      patronage: v.patronage.trim() ? { [lang]: v.patronage.trim() } : undefined,
     };
 
     const editing = this.editing;

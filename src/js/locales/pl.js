@@ -48,6 +48,7 @@ export default {
     rejected: 'Odrzucona',
   },
   detail: {
+    patronage: 'Patron',
     birth: 'Narodziny',
     death: 'Śmierć',
     birthplace: 'Miejsce urodzenia',
@@ -64,6 +65,12 @@ export default {
     back: 'Powrót do wyników',
   },
   add: {
+    namePlaceholder: 'Franciszek z Asyżu',
+    cityPlaceholder: 'Asyż',
+    patronage: 'Patron',
+    patronagePlaceholder: 'Zwierzęta, ekologia, Włochy',
+    bio: 'Życiorys',
+    bioPlaceholder: 'Opowieść o życiu, nawróceniu, dziele…',
     intro: 'Dodaj świętego, którego brakuje na mapie.',
     introUser: 'Twoja propozycja trafi najpierw do administratora.',
     introAdmin: 'Twoja karta zostanie opublikowana natychmiast.',
@@ -195,6 +202,7 @@ export default {
     birthplace: 'Narodziny świętego',
   },
   misc: {
+    counted: 'Świętych: {n}, w {c} krajach',
     circa: 'ok.',
     unknown: 'nieznana',
     bc: 'p.n.e.',
@@ -202,6 +210,17 @@ export default {
     saintHere: '1 zapisany święty',
     noneHere: 'Nie zapisano tu żadnego świętego',
     close: 'Zamknij',
+  },
+  calendar: {
+    title: 'Święci — kalendarz wspomnień',
+    exportAll: 'Dodaj wszystkich {n} świętych do kalendarza',
+    exportFiltered: 'Dodaj tych {n} świętych do kalendarza',
+  },
+  theme: {
+    label: 'Motyw',
+    system: 'Systemowy',
+    light: 'Jasny',
+    dark: 'Ciemny',
   },
   title: {
     abbess: 'Ksieni',

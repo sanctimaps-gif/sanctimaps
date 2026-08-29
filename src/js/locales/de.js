@@ -48,6 +48,7 @@ export default {
     rejected: 'Abgelehnt',
   },
   detail: {
+    patronage: 'Schutzpatron von',
     birth: 'Geburt',
     death: 'Tod',
     birthplace: 'Geburtsort',
@@ -64,6 +65,12 @@ export default {
     back: 'Zurück zu den Ergebnissen',
   },
   add: {
+    namePlaceholder: 'Franz von Assisi',
+    cityPlaceholder: 'Assisi',
+    patronage: 'Schutzpatron von',
+    patronagePlaceholder: 'Die Tiere, die Ökologie, Italien',
+    bio: 'Lebensbeschreibung',
+    bioPlaceholder: 'Der Bericht über sein Leben, seine Bekehrung, sein Werk…',
     intro: 'Fügen Sie einen fehlenden Heiligen hinzu.',
     introUser: 'Ihr Vorschlag geht vor der Veröffentlichung an die Verwaltung.',
     introAdmin: 'Ihr Eintrag wird sofort veröffentlicht.',
@@ -195,6 +202,7 @@ export default {
     birthplace: 'Geburt eines Heiligen',
   },
   misc: {
+    counted: '{n} Heilige in {c} Ländern verzeichnet',
     circa: 'um',
     unknown: 'unbekannt',
     bc: 'v. Chr.',
@@ -202,6 +210,17 @@ export default {
     saintHere: '1 Heiliger verzeichnet',
     noneHere: 'Hier ist kein Heiliger verzeichnet',
     close: 'Schließen',
+  },
+  calendar: {
+    title: 'Heilige — Kalender der Feste',
+    exportAll: 'Alle {n} Heiligen in den Kalender übernehmen',
+    exportFiltered: 'Diese {n} Heiligen in den Kalender übernehmen',
+  },
+  theme: {
+    label: 'Erscheinungsbild',
+    system: 'System',
+    light: 'Hell',
+    dark: 'Dunkel',
   },
   title: {
     abbess: 'Äbtissin',

@@ -48,6 +48,7 @@ export default {
     rejected: 'Recusada',
   },
   detail: {
+    patronage: 'Padroeiro de',
     birth: 'Nascimento',
     death: 'Morte',
     birthplace: 'Local de nascimento',
@@ -64,6 +65,12 @@ export default {
     back: 'Voltar aos resultados',
   },
   add: {
+    namePlaceholder: 'Francisco de Assis',
+    cityPlaceholder: 'Assis',
+    patronage: 'Padroeiro de',
+    patronagePlaceholder: 'Os animais, a ecologia, a Itália',
+    bio: 'Biografia',
+    bioPlaceholder: 'O relato da sua vida, da sua conversão, da sua obra…',
     intro: 'Adicione um santo que falte no mapa.',
     introUser: 'A sua proposta passará pelo administrador antes de ser publicada.',
     introAdmin: 'A sua ficha será publicada de imediato.',
@@ -195,6 +202,7 @@ export default {
     birthplace: 'Nascimento de um santo',
   },
   misc: {
+    counted: '{n} santos registados em {c} países',
     circa: 'c.',
     unknown: 'desconhecida',
     bc: 'a.C.',
@@ -202,6 +210,17 @@ export default {
     saintHere: '1 santo registado',
     noneHere: 'Nenhum santo registado aqui',
     close: 'Fechar',
+  },
+  calendar: {
+    title: 'Santos — calendário das festas',
+    exportAll: 'Adicionar os {n} santos ao calendário',
+    exportFiltered: 'Adicionar estes {n} santos ao calendário',
+  },
+  theme: {
+    label: 'Tema',
+    system: 'Sistema',
+    light: 'Claro',
+    dark: 'Escuro',
   },
   title: {
     abbess: 'Abadessa',

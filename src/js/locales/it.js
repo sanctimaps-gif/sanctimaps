@@ -48,6 +48,7 @@ export default {
     rejected: 'Respinta',
   },
   detail: {
+    patronage: 'Patrono di',
     birth: 'Nascita',
     death: 'Morte',
     birthplace: 'Luogo di nascita',
@@ -64,6 +65,12 @@ export default {
     back: 'Torna ai risultati',
   },
   add: {
+    namePlaceholder: 'Francesco d’Assisi',
+    cityPlaceholder: 'Assisi',
+    patronage: 'Patrono di',
+    patronagePlaceholder: 'Gli animali, l’ecologia, l’Italia',
+    bio: 'Biografia',
+    bioPlaceholder: 'Il racconto della sua vita, della sua conversione, della sua opera…',
     intro: 'Aggiungi un santo assente dalla mappa.',
     introUser: 'La tua proposta passerà dall’amministratore prima di essere pubblicata.',
     introAdmin: 'La tua scheda sarà pubblicata subito.',
@@ -195,6 +202,7 @@ export default {
     birthplace: 'Nascita di un santo',
   },
   misc: {
+    counted: '{n} santi censiti in {c} paesi',
     circa: 'ca.',
     unknown: 'sconosciuta',
     bc: 'a.C.',
@@ -202,6 +210,17 @@ export default {
     saintHere: '1 santo registrato',
     noneHere: 'Nessun santo registrato qui',
     close: 'Chiudi',
+  },
+  calendar: {
+    title: 'Santi — calendario delle feste',
+    exportAll: 'Aggiungi i {n} santi al calendario',
+    exportFiltered: 'Aggiungi questi {n} santi al calendario',
+  },
+  theme: {
+    label: 'Tema',
+    system: 'Sistema',
+    light: 'Chiaro',
+    dark: 'Scuro',
   },
   title: {
     abbess: 'Badessa',

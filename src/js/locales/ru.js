@@ -48,6 +48,7 @@ export default {
     rejected: 'Отклонена',
   },
   detail: {
+    patronage: 'Покровитель',
     birth: 'Рождение',
     death: 'Смерть',
     birthplace: 'Место рождения',
@@ -64,6 +65,12 @@ export default {
     back: 'Назад к результатам',
   },
   add: {
+    namePlaceholder: 'Франциск Ассизский',
+    cityPlaceholder: 'Ассизи',
+    patronage: 'Покровитель',
+    patronagePlaceholder: 'Животные, экология, Италия',
+    bio: 'Жизнеописание',
+    bioPlaceholder: 'Рассказ о жизни, об обращении, о трудах…',
     intro: 'Добавьте святого, которого нет на карте.',
     introUser: 'Ваше предложение сначала попадёт к администратору.',
     introAdmin: 'Ваша запись будет опубликована сразу.',
@@ -195,6 +202,7 @@ export default {
     birthplace: 'Место рождения святого',
   },
   misc: {
+    counted: 'Святых: {n}, в {c} странах',
     circa: 'ок.',
     unknown: 'неизвестно',
     bc: 'до н. э.',
@@ -202,6 +210,17 @@ export default {
     saintHere: 'Записан 1 святой',
     noneHere: 'Здесь святых не записано',
     close: 'Закрыть',
+  },
+  calendar: {
+    title: 'Святые — календарь памятей',
+    exportAll: 'Добавить всех святых ({n}) в календарь',
+    exportFiltered: 'Добавить этих святых ({n}) в календарь',
+  },
+  theme: {
+    label: 'Оформление',
+    system: 'Системное',
+    light: 'Светлое',
+    dark: 'Тёмное',
   },
   title: {
     abbess: 'Аббатиса',

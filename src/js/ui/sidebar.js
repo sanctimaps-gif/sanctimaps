@@ -1,5 +1,6 @@
 import { can, getSession } from '../auth.js';
 import { LANGUAGES, getLanguage, setLanguage, t } from '../i18n.js';
+import { THEMES, getTheme, setTheme } from '../theme.js';
 import { fill, h, select } from './dom.js';
 
 /**
@@ -34,6 +35,14 @@ export class Sidebar {
     );
     this.languageLabel = h('span', { class: 'field__label' });
 
+    // Trois états plutôt que deux : « système » laisse la main au navigateur,
+    // ce qui reste le bon réglage tant que le lecteur n'a rien demandé.
+    this.themeSelect = select(
+      THEMES.map((code) => ({ value: code, label: '' })),
+      { value: getTheme(), onchange: (e) => setTheme(e.target.value), class: 'control' },
+    );
+    this.themeLabel = h('span', { class: 'field__label' });
+
     this.closeButton = h('button', {
       class: 'icon-btn panel__close',
       type: 'button',
@@ -49,7 +58,8 @@ export class Sidebar {
       this.tabBar,
       this.body,
       h('footer', { class: 'panel__footer' },
-        h('label', { class: 'field field--inline' }, this.languageLabel, this.languageSelect)));
+        h('label', { class: 'field field--inline' }, this.languageLabel, this.languageSelect),
+        h('label', { class: 'field field--inline' }, this.themeLabel, this.themeSelect)));
 
     this.toggleButton = h('button', {
       class: 'icon-btn panel-toggle',
@@ -121,6 +131,9 @@ export class Sidebar {
     this.tagline.textContent = t('app.tagline');
     this.languageLabel.textContent = t('ui.language');
     this.languageSelect.value = getLanguage();
+    this.themeLabel.textContent = t('theme.label');
+    for (const option of this.themeSelect.options) option.textContent = t(`theme.${option.value}`);
+    this.themeSelect.value = getTheme();
     this.panel.dataset.role = getSession().role;
 
     const view = this.viewFor(this.tab);

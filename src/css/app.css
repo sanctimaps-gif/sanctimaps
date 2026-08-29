@@ -26,8 +26,10 @@
   --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 }
 
+/* Le thème suit le navigateur par défaut ; un choix explicite l'emporte, dans
+   les deux sens, d'où les deux blocs qui suivent. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --ink: #ece5da;
     --ink-soft: #a79c8c;
     --paper: #161c23;
@@ -48,6 +50,28 @@
     --pending: #d9a441;
     --shadow: 0 10px 30px rgb(0 0 0 / 45%);
   }
+}
+
+:root[data-theme="dark"] {
+  --ink: #ece5da;
+  --ink-soft: #a79c8c;
+  --paper: #161c23;
+  --panel: #1d242c;
+  --line: #333d48;
+  --sea: #101820;
+  --sea-deep: #0a0f15;
+  --land: #2a333d;
+  --land-hover: #35404c;
+  --land-saints: #8a6b23;
+  --land-saints-hover: #a5811f;
+  --selected: #d8b45c;
+  --accent: #c9505f;
+  --accent-soft: #33222a;
+  --city: #9fb2c2;
+  --birth: #e2685c;
+  --user: #63b58c;
+  --pending: #d9a441;
+  --shadow: 0 10px 30px rgb(0 0 0 / 45%);
 }
 
 * { box-sizing: border-box; }
@@ -256,6 +280,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-radius: 999px;
 }
 
+/* Cartouche de couverture : combien de saints, dans combien de pays. */
+.tally {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--panel);
+  background: rgb(36 32 27 / 82%);
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-variant-numeric: tabular-nums;
+}
+
 .continents {
   display: flex;
   flex-wrap: wrap;
@@ -386,6 +421,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .panel__footer {
   border-top: 1px solid var(--line);
   padding: 0.6rem 1rem;
+  display: grid;
+  gap: 0.45rem;
 }
 
 .panel-toggle {
@@ -577,6 +614,19 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--ink-soft);
 }
 
+/* L'export suit la recherche : il porte sur la liste affichée, et se tait
+   quand elle est vide. */
+.btn--calendar {
+  width: 100%;
+  margin-bottom: 0.6rem;
+  font-size: 0.8rem;
+}
+
+.btn--calendar:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
 .results {
   display: grid;
   gap: 0.35rem;
@@ -636,6 +686,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-family: var(--font);
   font-size: 1rem;
   margin: 0.6rem 0;
+}
+
+/* La notice tient en une phrase ; la biographie est un texte suivi, qu'on lit
+   plutôt qu'on ne parcourt : elle mérite des lignes plus aérées. */
+.detail__bio {
+  margin: 0.6rem 0;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--ink);
+  white-space: pre-line;
 }
 
 .sheet {

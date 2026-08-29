@@ -41,9 +41,12 @@ export class DetailPanel {
       return;
     }
     const lang = getLanguage();
-    const description = typeof saint.desc === 'string'
-      ? saint.desc
-      : saint.desc?.[lang] || saint.desc?.fr || saint.desc?.en || '';
+    const pick = (value) => (typeof value === 'string'
+      ? value
+      : value?.[lang] || value?.fr || value?.en || '');
+    const description = pick(saint.desc);
+    const patronage = pick(saint.patronage);
+    const biography = pick(saint.bio);
 
     const otherNames = typeof saint.name === 'object'
       ? Object.entries(saint.name)
@@ -71,7 +74,9 @@ export class DetailPanel {
         })))
         : null,
       description ? h('p', { class: 'detail__desc', text: description }) : null,
+      biography ? h('p', { class: 'detail__bio', text: biography }) : null,
       h('dl', { class: 'sheet' },
+        row(t('detail.patronage'), patronage),
         row(t('detail.birth'), saint.born != null
           ? formatYear(saint.born, { circa: saint.circa }) : t('misc.unknown')),
         row(t('detail.death'), saint.died != null

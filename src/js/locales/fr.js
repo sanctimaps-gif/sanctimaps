@@ -50,6 +50,7 @@ export default {
     rejected: 'Refusée',
   },
   detail: {
+    patronage: 'Saint patron de',
     birth: 'Naissance',
     death: 'Mort',
     birthplace: 'Lieu de naissance',
@@ -66,6 +67,12 @@ export default {
     back: 'Retour aux résultats',
   },
   add: {
+    namePlaceholder: 'François d’Assise',
+    cityPlaceholder: 'Assise',
+    patronage: 'Saint patron de',
+    patronagePlaceholder: 'Les animaux, l’écologie, l’Italie',
+    bio: 'Biographie',
+    bioPlaceholder: 'Le récit de sa vie, de sa conversion, de son œuvre…',
     intro: 'Ajoutez un saint absent de la carte.',
     introUser: 'Votre proposition sera soumise à l’administrateur avant publication.',
     introAdmin: 'Votre fiche sera publiée immédiatement.',
@@ -197,6 +204,7 @@ export default {
     birthplace: 'Naissance d’un saint',
   },
   misc: {
+    counted: '{n} saints recensés dans {c} pays',
     circa: 'vers',
     unknown: 'inconnue',
     bc: 'av. J.-C.',
@@ -204,6 +212,17 @@ export default {
     saintHere: '1 saint recensé',
     noneHere: 'Aucun saint recensé ici',
     close: 'Fermer',
+  },
+  calendar: {
+    title: 'Saints — calendrier des fêtes',
+    exportAll: 'Ajouter les {n} saints au calendrier',
+    exportFiltered: 'Ajouter ces {n} saints au calendrier',
+  },
+  theme: {
+    label: 'Thème',
+    system: 'Système',
+    light: 'Clair',
+    dark: 'Sombre',
   },
   title: {
     abbess: 'Abbesse',

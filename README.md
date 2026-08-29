@@ -32,6 +32,10 @@ Les trois échelles de lecture s'enchaînent, et chacune fixe ce qui est possibl
 | **Continent** | Les pays du continent, nommés et comptés. | Choisir un pays — le zoom reste verrouillé. |
 | **Pays** | Le pays entier à l'écran, ses villes et un point par saint. | Zoomer jusqu'aux villages, se déplacer, ouvrir une fiche. |
 
+Au monde, un cartouche annonce l'étendue du corpus — « 285 saints recensés
+dans 57 pays » — avant même le premier clic. Il s'efface dès qu'on descend
+d'une échelle, où le compte devient celui du pays ouvert.
+
 Le déplacement est borné à chaque échelle : on ne peut pas dériver
 indéfiniment hors de la carte. Un clic sur la mer, ou la touche `Échap`,
 remonte d'un niveau ; le fil d'Ariane et les puces de continents permettent
@@ -62,7 +66,16 @@ mots sert de recherche libre sur le nom, la ville et le pays.
 
 Siècles acceptés en chiffres romains (`XIII`, `XIIIe`) comme en chiffres arabes
 (`13e`, `13 siècle`), et les mois sont reconnus dans la langue affichée comme
-en anglais.
+en anglais. Le patronage entre dans l'index : `animaux` ramène François
+d'Assise, `aveugles` Lucie de Syracuse.
+
+### Exporter les fêtes vers un agenda
+
+Sous le compte des résultats, un bouton verse la liste affichée dans un
+fichier `.ics` — un événement annuel par fête, avec le lieu et la notice.
+Il porte sur ce qui est à l'écran : sans filtre, les 285 saints ; après
+« Italie XIIIe », ces cinq-là seulement. Le fichier s'ouvre dans n'importe
+quel agenda, sans compte ni service tiers.
 
 ## Comptes et permissions
 
@@ -97,9 +110,10 @@ plus vite. Il a deux sources et un seul circuit.
 Il fonctionne hors ligne et sans rien configurer.
 
 **L'IA** demande au modèle Claude des fiches complètes — noms en trois langues,
-dates, lieu de naissance, coordonnées, fête, qualités, notice — pour une région
-et un siècle que vous choisissez. Elle s'active en lançant le serveur avec une
-clé :
+dates, lieu de naissance, coordonnées, fête, qualités, notice, patronage et
+biographie — pour une région et un siècle que vous choisissez. Une fiche
+acceptée est publiable telle quelle : c'est tout l'intérêt, l'administrateur
+relit au lieu de saisir. Elle s'active en lançant le serveur avec une clé :
 
 ```bash
 ANTHROPIC_API_KEY=sk-… npm start
@@ -141,12 +155,25 @@ gauche), chinois et latin. Les noms de pays, les mois et les nombres suivent
 la langue choisie ; les qualités des saints s'accordent au genre lorsque la
 langue le demande.
 
+## Thème
+
+Trois états, en bas du panneau : **système** suit le réglage du navigateur,
+**clair** et **sombre** l'emportent dessus. Le choix est retenu sur l'appareil
+et posé avant le premier rendu, pour qu'un écran clair ne vire pas au sombre
+sous les yeux du lecteur.
+
 ## Les données
 
 285 saints répartis sur 57 pays et les six continents, avec pour chacun ses
 noms (français, anglais, latin), ses dates, son lieu de naissance rapporté au
 pays d'aujourd'hui, sa fête et une notice d'une phrase. S'y ajoutent 93 fiches
 candidates en réserve pour l'assistant.
+
+153 de ces saints portent en plus un patronage — ce dont ils sont patrons —
+tenu à part dans `data/saints/patronages.json` et fusionné à la génération.
+Seuls les patronages bien attestés y figurent : un saint sans entrée n'affiche
+simplement pas la ligne « Saint patron de », ce qui vaut mieux qu'un patronage
+inventé pour remplir la case.
 
 Le lieu retenu est celui de la **naissance**, situé dans le pays actuel : Édith
 Stein est née à Breslau, donc en Pologne ; Ambroise de Milan à Trèves, donc en
@@ -195,6 +222,8 @@ src/js/auth.js           rôles et permissions
 src/js/query.js          analyse de la barre de recherche unique
 src/js/verify.js         contrôles de l'assistant
 src/js/ai.js             appels à l'assistant intelligent, côté navigateur
+src/js/calendar.js       export des fêtes au format iCalendar
+src/js/theme.js          thème système, clair ou sombre
 src/js/i18n.js           langues, dates, nombres, accords en genre
 src/js/locales/*.js      douze paquets de traductions
 src/js/map/projection.js projection Mercator, partagée avec la génération
@@ -202,6 +231,7 @@ src/js/map/view.js       rendu SVG, cadrages, zoom et déplacement bornés
 src/js/ui/*.js           panneau, recherche, fiche, formulaire, modération,
                          assistant, compte, bandeau
 data/saints/*.json       corpus, écrit à la main
+data/saints/patronages.json  patronages, indexés par identifiant
 data/candidats/*.json    réservoir de l'assistant
 data/generated/          données produites par build:data (versionnées)
 tools/ai.mjs             appel au modèle, côté serveur (porte la clé)

@@ -48,6 +48,7 @@ export default {
     rejected: 'Geweigerd',
   },
   detail: {
+    patronage: 'Beschermheilige van',
     birth: 'Geboorte',
     death: 'Overlijden',
     birthplace: 'Geboorteplaats',
@@ -64,6 +65,12 @@ export default {
     back: 'Terug naar de resultaten',
   },
   add: {
+    namePlaceholder: 'Franciscus van Assisi',
+    cityPlaceholder: 'Assisi',
+    patronage: 'Beschermheilige van',
+    patronagePlaceholder: 'De dieren, de ecologie, Italië',
+    bio: 'Levensbeschrijving',
+    bioPlaceholder: 'Het verhaal van zijn leven, zijn bekering, zijn werk…',
     intro: 'Voeg een heilige toe die op de kaart ontbreekt.',
     introUser: 'Uw voorstel gaat eerst naar de beheerder.',
     introAdmin: 'Uw fiche wordt meteen gepubliceerd.',
@@ -195,6 +202,7 @@ export default {
     birthplace: 'Geboorte van een heilige',
   },
   misc: {
+    counted: '{n} heiligen opgetekend in {c} landen',
     circa: 'ca.',
     unknown: 'onbekend',
     bc: 'v.Chr.',
@@ -202,6 +210,17 @@ export default {
     saintHere: '1 heilige opgetekend',
     noneHere: 'Hier is geen heilige opgetekend',
     close: 'Sluiten',
+  },
+  calendar: {
+    title: 'Heiligen — kalender van de feesten',
+    exportAll: 'Alle {n} heiligen aan de kalender toevoegen',
+    exportFiltered: 'Deze {n} heiligen aan de kalender toevoegen',
+  },
+  theme: {
+    label: 'Thema',
+    system: 'Systeem',
+    light: 'Licht',
+    dark: 'Donker',
   },
   title: {
     abbess: 'Abdis',

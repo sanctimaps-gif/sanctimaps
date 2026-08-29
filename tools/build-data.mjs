@@ -478,7 +478,13 @@ const saints = [];
 const ids = new Set();
 const errors = [];
 
-for (const file of readdirSync(SAINTS_DIR).filter((f) => f.endsWith('.json')).sort()) {
+// Les patronages vivent dans leur propre fichier : ils s'ajoutent à des
+// centaines de fiches sans qu'il faille rouvrir chacune d'elles.
+const PATRONAGE_FILE = 'patronages.json';
+const patronages = JSON.parse(readFileSync(join(SAINTS_DIR, PATRONAGE_FILE), 'utf8')).patronage;
+
+for (const file of readdirSync(SAINTS_DIR)
+  .filter((f) => f.endsWith('.json') && f !== PATRONAGE_FILE).sort()) {
   const raw = JSON.parse(readFileSync(join(SAINTS_DIR, file), 'utf8'));
   for (const s of raw.saints) {
     const where = `${file}:${s.id ?? '?'}`;
@@ -495,8 +501,14 @@ for (const file of readdirSync(SAINTS_DIR).filter((f) => f.endsWith('.json')).so
 
     const [x, y] = project(s.lng, s.lat);
     const shift = shiftById.get(s.country) || 0;
-    saints.push({ ...s, x: Math.round(x) + shift, y: Math.round(y) });
+    const record = { ...s, x: Math.round(x) + shift, y: Math.round(y) };
+    if (patronages[s.id]) record.patronage = patronages[s.id];
+    saints.push(record);
   }
+}
+
+for (const id of Object.keys(patronages)) {
+  if (!ids.has(id)) errors.push(`${PATRONAGE_FILE} — identifiant inconnu : ${id}`);
 }
 
 if (errors.length) {

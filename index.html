@@ -8,6 +8,14 @@
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>✝</text></svg>">
 <link rel="stylesheet" href="src/css/app.css">
+<script>
+// Le thème est posé avant le premier rendu : un module est différé, et un
+// écran clair qui vire au sombre après coup se voit. Voir src/js/theme.js.
+try {
+  var saved = localStorage.getItem('sanctimaps.theme.v1');
+  if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+} catch (e) { /* sans stockage, on suit le navigateur */ }
+</script>
 </head>
 <body>
 <div class="app" id="app">

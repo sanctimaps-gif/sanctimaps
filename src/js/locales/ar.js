@@ -48,6 +48,7 @@ export default {
     rejected: 'مرفوضة',
   },
   detail: {
+    patronage: 'شفيع',
     birth: 'الولادة',
     death: 'الوفاة',
     birthplace: 'مكان الولادة',
@@ -64,6 +65,12 @@ export default {
     back: 'العودة إلى النتائج',
   },
   add: {
+    namePlaceholder: 'فرنسيس الأسيزي',
+    cityPlaceholder: 'أسيزي',
+    patronage: 'شفيع',
+    patronagePlaceholder: 'الحيوانات، البيئة، إيطاليا',
+    bio: 'سيرة',
+    bioPlaceholder: 'حكاية حياته وارتداده وعمله…',
     intro: 'أضف قدّيسًا غير موجود على الخريطة.',
     introUser: 'سيمرّ اقتراحك على المسؤول قبل النشر.',
     introAdmin: 'ستُنشر بطاقتك فورًا.',
@@ -195,6 +202,7 @@ export default {
     birthplace: 'مولد قدّيس',
   },
   misc: {
+    counted: '{n} قدّيسًا في {c} بلدًا',
     circa: 'نحو',
     unknown: 'غير معروف',
     bc: 'ق.م.',
@@ -202,6 +210,17 @@ export default {
     saintHere: 'قدّيس واحد مسجّل',
     noneHere: 'لا قدّيس مسجّل هنا',
     close: 'إغلاق',
+  },
+  calendar: {
+    title: 'القدّيسون — روزنامة الأعياد',
+    exportAll: 'إضافة القدّيسين {n} إلى الروزنامة',
+    exportFiltered: 'إضافة هؤلاء القدّيسين {n} إلى الروزنامة',
+  },
+  theme: {
+    label: 'السمة',
+    system: 'النظام',
+    light: 'فاتحة',
+    dark: 'داكنة',
   },
   title: {
     abbess: 'رئيسة دير',

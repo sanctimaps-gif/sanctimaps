@@ -48,6 +48,7 @@ export default {
     rejected: '已退回',
   },
   detail: {
+    patronage: '主保',
     birth: '出生',
     death: '逝世',
     birthplace: '出生地',
@@ -64,6 +65,12 @@ export default {
     back: '返回搜索结果',
   },
   add: {
+    namePlaceholder: '亚西西的方济各',
+    cityPlaceholder: '亚西西',
+    patronage: '主保',
+    patronagePlaceholder: '动物、生态、意大利',
+    bio: '生平',
+    bioPlaceholder: '记述他的一生、皈依与事业……',
     intro: '添加地图上缺少的圣人。',
     introUser: '您的提议将先交由管理员审核。',
     introAdmin: '您的条目将立即发布。',
@@ -195,6 +202,7 @@ export default {
     birthplace: '圣人出生地',
   },
   misc: {
+    counted: '已收录 {c} 个国家的 {n} 位圣人',
     circa: '约',
     unknown: '不详',
     bc: '公元前',
@@ -202,6 +210,17 @@ export default {
     saintHere: '已收录 1 位圣人',
     noneHere: '此处暂无收录圣人',
     close: '关闭',
+  },
+  calendar: {
+    title: '圣人——庆节历',
+    exportAll: '把这 {n} 位圣人加入日历',
+    exportFiltered: '把这 {n} 位圣人加入日历',
+  },
+  theme: {
+    label: '主题',
+    system: '跟随系统',
+    light: '浅色',
+    dark: '深色',
   },
   title: {
     abbess: '女隐修院院长',
