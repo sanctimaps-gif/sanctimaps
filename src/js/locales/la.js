@@ -212,6 +212,12 @@ export default {
     zoomOut: 'Longius',
     zoomFit: 'Totam regionem ostendere',
   },
+  basemap: {
+    label: 'Tabula subiecta accurata',
+    auto: 'Cum propius accedis',
+    off: 'Numquam',
+    hint: 'Ultra quendam gradum viae et itinera apparent. Hoc solum rete requirit; sine eo tabula integra manet.',
+  },
   legend: {
     title: 'Index signorum',
     withSaints: 'Regiones cum sanctis',

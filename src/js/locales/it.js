@@ -212,6 +212,12 @@ export default {
     zoomOut: 'Riduci',
     zoomFit: 'Rivedere tutto il paese',
   },
+  basemap: {
+    label: 'Sfondo cartografico dettagliato',
+    auto: 'Con lo zoom ravvicinato',
+    off: 'Mai',
+    hint: 'Oltre un certo ingrandimento compaiono strade e vie. È l’unica cosa che richieda la rete; senza, la mappa resta intera.',
+  },
   legend: {
     title: 'Legenda',
     withSaints: 'Paesi con santi',

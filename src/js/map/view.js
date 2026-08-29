@@ -1,3 +1,4 @@
+import { TILE_ATTRIBUTION, TILE_URL, getBasemap, onBasemapChange } from '../basemap.js';
 import { t } from '../i18n.js';
 import { WORLD_SIZE, unproject } from './projection.js';
 
@@ -8,6 +9,9 @@ const TRANSITION = 720;
 
 /** Au-delà de ce rapport, remplir l'écran rognerait trop le cadre visé. */
 const COVER_LIMIT = 1.35;
+
+/** Le planisphère, lui, peut être rogné franchement pour emplir la hauteur. */
+const WORLD_COVER = 3.2;
 
 /**
  * Bornes de zoom en vue « pays ».
@@ -21,9 +25,13 @@ const COUNTRY_ZOOM = [1, 40];
 
 /** Rapport au-delà duquel on ne va pas, même pour un très grand pays. */
 const COUNTRY_ZOOM_MAX = 200;
+const COUNTRY_ZOOM_MAX_TILED = 12000;
 
 /** Échelle au sol visée au zoom maximal, en mètres par pixel. */
 const GROUND_LIMIT = 40;
+
+/** La même, quand un fond de tuiles prend le relais : on descend dans la rue. */
+const GROUND_LIMIT_TILED = 1.2;
 
 /** Pas d'un appui sur « + » ou « − ». */
 const ZOOM_STEP = 1.6;
@@ -48,6 +56,10 @@ const COUNTRY_SLACK = 0.35;
 
 /** Marge de localités calculées hors écran, en fraction de la plus grande dimension. */
 const OVERLAY_MARGIN = 0.35;
+
+/** La même, pour les tuiles. Plus étroite : une tuile hors champ est une
+ *  requête pour rien, et le fournisseur n'a pas à la servir. */
+const TILE_MARGIN = 0.1;
 
 /** Déplacement, dans la même unité, au-delà duquel le calque est recalculé. */
 const OVERLAY_REDRAW = 0.25;
@@ -98,6 +110,31 @@ const SCALE_STEPS = [
 /** Circonférence de la Terre à l'équateur, en mètres. */
 const EQUATOR = 40075017;
 
+/** Côté d'une tuile, en pixels. Universel depuis Google Maps. */
+const TILE_SIZE = 256;
+
+/**
+ * Échelle au sol à partir de laquelle le fond de tuiles se lève, en mètres
+ * par pixel. Au-dessus, nos contours suffisent ; en dessous, ils n'ont plus
+ * rien à montrer et ce sont les rues qui font la carte.
+ */
+const TILE_FROM = 60;
+
+/** Zoom de tuile le plus fin qu'on demande : au-delà, le fournisseur peine. */
+const TILE_MAX_Z = 18;
+
+/** Après tant d'échecs de suite, on cesse de demander : le fond est coupé. */
+const TILE_GIVE_UP = 8;
+
+/**
+ * Débord de chaque tuile, en fraction de son côté.
+ *
+ * Deux tuiles jointives laissent un cheveu de fond entre elles, l'arrondi du
+ * rendu ne tombant pas au même endroit de part et d'autre. Les faire déborder
+ * d'un poil supprime ces coutures.
+ */
+const TILE_BLEED = 0.004;
+
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
 function el(name, attrs = {}) {
@@ -140,6 +177,14 @@ export class MapView {
     this.bindPointer();
     this.bindKeys();
 
+    // Couper ou rallumer le fond de carte change aussi jusqu'où l'on peut
+    // zoomer : il faut donc recadrer, et non seulement redessiner.
+    this.offBasemap = onBasemapChange(() => {
+      this.clearTiles();
+      if (this.mode === 'country') this.apply(this.clamp(this.transform));
+      this.refreshOverlay();
+    });
+
     this.resizeObserver = new ResizeObserver(() => this.onResize());
     this.resizeObserver.observe(this.root);
   }
@@ -168,6 +213,7 @@ export class MapView {
     defs.append(clip);
 
     this.countryLayer = el('g', { class: 'countries' });
+    this.tileLayer = el('g', { class: 'tiles' });
     this.detailLayer = el('g', { class: 'outline' });
     this.paths = new Map();
     for (const country of this.atlas.countries) {
@@ -183,7 +229,9 @@ export class MapView {
     }
 
     const clipped = el('g', { 'clip-path': 'url(#sanctimaps-sheet)' });
-    clipped.append(this.sheet, this.countryLayer, this.detailLayer);
+    // Les tuiles se posent sur le fond vectoriel et sous le contour du pays :
+    // le trait qui dit « vous êtes ici » doit rester lisible par-dessus.
+    clipped.append(this.sheet, this.countryLayer, this.tileLayer, this.detailLayer);
     this.scene.append(defs, clipped);
     this.svg.append(this.scene, this.overlay);
     this.root.append(this.svg);
@@ -191,6 +239,9 @@ export class MapView {
     this.labels = [];
     this.markers = [];
     this.fonts = new Map();
+    this.tiles = new Map();
+    this.tileRange = null;
+    this.tileFailures = 0;
   }
 
   /**
@@ -231,7 +282,17 @@ export class MapView {
     this.scaleBar.hidden = true;
     this.scaleBar.append(this.scaleText, this.scaleRule);
 
-    this.root.append(this.zoomBox, this.scaleBar);
+    // La mention de source n'est pas une politesse : la licence du fond de
+    // carte l'exige dès qu'une tuile est affichée.
+    this.attribution = document.createElement('a');
+    this.attribution.className = 'attribution';
+    this.attribution.href = 'https://www.openstreetmap.org/copyright';
+    this.attribution.target = '_blank';
+    this.attribution.rel = 'noopener noreferrer';
+    this.attribution.textContent = TILE_ATTRIBUTION;
+    this.attribution.hidden = true;
+
+    this.root.append(this.zoomBox, this.scaleBar, this.attribution);
     this.retranslateControls();
   }
 
@@ -281,9 +342,7 @@ export class MapView {
    */
   drawScale() {
     const vp = this.viewport();
-    const { k, y } = this.transform;
-    const [, lat] = unproject(0, (vp.h / 2 - y) / k);
-    const metresPerPixel = (EQUATOR * Math.cos(lat * Math.PI / 180)) / (WORLD_SIZE * k);
+    const metresPerPixel = this.groundScale();
     const budget = Math.min(150, vp.w * 0.22);
 
     let metres = SCALE_STEPS[0];
@@ -294,6 +353,151 @@ export class MapView {
     this.scaleText.textContent = metres >= 1000
       ? formatDistance(metres / 1000, 'kilometer', this.lang)
       : formatDistance(metres, 'meter', this.lang);
+  }
+
+  // -------------------------------------------------------------------------
+  // Fond de tuiles
+  // -------------------------------------------------------------------------
+
+  /**
+   * Mètres au sol par pixel d'écran, à la latitude du milieu de la vue.
+   *
+   * En Mercator un pixel ne vaut pas la même distance partout : c'est cette
+   * grandeur, et non le facteur de zoom, qui dit à quelle échelle on regarde.
+   */
+  groundScale() {
+    const vp = this.viewport();
+    const { k, y } = this.transform;
+    const [, lat] = unproject(0, (vp.h / 2 - y) / k);
+    return (EQUATOR * Math.cos(lat * Math.PI / 180)) / (WORLD_SIZE * k);
+  }
+
+  /**
+   * Peut-on compter sur un fond de tuiles ?
+   *
+   * Non seulement s'il est demandé, mais s'il répond : un fournisseur coupé,
+   * un réseau absent, et l'application doit se retrouver exactement dans
+   * l'état où elle serait sans lui — mêmes limites de zoom, mêmes villages
+   * dessinés. Sans quoi elle offrirait un zoom qui ne montre plus rien.
+   */
+  tilesAvailable() {
+    return getBasemap() === 'auto' && this.tileFailures < TILE_GIVE_UP;
+  }
+
+  /** Le fond de tuiles a-t-il lieu d'être, ici et maintenant ? */
+  tilesWanted() {
+    return this.mode === 'country'
+      && this.tilesAvailable()
+      && this.groundScale() < TILE_FROM;
+  }
+
+  /**
+   * Niveau de tuile dont la résolution colle à celle de l'écran.
+   *
+   * Une tuile de zoom z couvre WORLD_SIZE / 2^z unités monde ; on cherche le z
+   * pour lequel elle occupe environ 256 pixels, sans quoi l'image serait
+   * étirée ou inutilement fine.
+   */
+  tileZoom() {
+    const ideal = Math.log2((WORLD_SIZE * this.transform.k) / TILE_SIZE);
+    return Math.max(0, Math.min(TILE_MAX_Z, Math.round(ideal)));
+  }
+
+  /** Pose, déplace et retire les tuiles selon le cadre visible. */
+  syncTiles() {
+    if (!this.tilesWanted()) {
+      if (this.tiles.size) this.clearTiles();
+      this.root.classList.remove('has-tiles');
+      if (this.attribution) this.attribution.hidden = true;
+      return;
+    }
+
+    const z = this.tileZoom();
+    const count = 2 ** z;
+    const span = WORLD_SIZE / count;
+    const [x0, y0, x1, y1] = this.window(TILE_MARGIN);
+    const range = {
+      z,
+      i0: Math.max(0, Math.floor(x0 / span)),
+      i1: Math.min(count - 1, Math.floor(x1 / span)),
+      j0: Math.max(0, Math.floor(y0 / span)),
+      j1: Math.min(count - 1, Math.floor(y1 / span)),
+    };
+
+    // Rien n'a bougé d'une tuile entière : le calque est déjà juste.
+    const before = this.tileRange;
+    if (before && before.z === z && before.i0 === range.i0 && before.i1 === range.i1
+      && before.j0 === range.j0 && before.j1 === range.j1) return;
+    this.tileRange = range;
+
+    const wanted = new Set();
+    const bleed = span * TILE_BLEED;
+    for (let i = range.i0; i <= range.i1; i += 1) {
+      for (let j = range.j0; j <= range.j1; j += 1) {
+        const key = `${z}/${i}/${j}`;
+        wanted.add(key);
+        if (this.tiles.has(key)) continue;
+        const node = el('image', {
+          class: 'tile',
+          x: i * span - bleed,
+          y: j * span - bleed,
+          width: span + bleed * 2,
+          height: span + bleed * 2,
+          preserveAspectRatio: 'none',
+        });
+        node.addEventListener('load', () => {
+          node.classList.add('is-loaded');
+          this.tileFailures = 0;
+        });
+        node.addEventListener('error', () => {
+          node.remove();
+          this.tiles.delete(key);
+          this.tileFailures += 1;
+          // Le fond a beau être coupé, la carte reste entière. Renoncer, c'est
+          // revenir en tout point à l'état sans tuiles : les villages
+          // reparaissent, et le zoom se resserre là où il a encore de quoi
+          // montrer quelque chose.
+          if (this.tileFailures === TILE_GIVE_UP) this.giveUpTiles();
+        });
+        node.setAttributeNS('http://www.w3.org/1999/xlink', 'href',
+          TILE_URL.replace('{z}', z).replace('{x}', i).replace('{y}', j));
+        this.tileLayer.append(node);
+        this.tiles.set(key, node);
+      }
+    }
+
+    // Les tuiles d'un autre niveau restent le temps que celles-ci arrivent :
+    // les retirer d'abord ferait clignoter le fond à chaque cran de zoom.
+    for (const [key, node] of this.tiles) {
+      if (wanted.has(key)) continue;
+      if (key.startsWith(`${z}/`) || node.classList.contains('is-stale')) {
+        node.remove();
+        this.tiles.delete(key);
+      } else {
+        node.classList.add('is-stale');
+      }
+    }
+
+    this.root.classList.add('has-tiles');
+    if (this.attribution) this.attribution.hidden = false;
+  }
+
+  /** Repli complet vers la carte vectorielle. */
+  giveUpTiles() {
+    this.clearTiles();
+    this.root.classList.remove('has-tiles');
+    if (this.attribution) this.attribution.hidden = true;
+    this.refreshOverlay();
+    if (this.mode === 'country') {
+      const [, hi] = this.zoomLimits();
+      if (this.transform.k > hi) this.zoomBy(hi / this.transform.k);
+    }
+  }
+
+  clearTiles() {
+    this.tileLayer.replaceChildren();
+    this.tiles.clear();
+    this.tileRange = null;
   }
 
   setLanguage(lang) {
@@ -336,7 +540,7 @@ export class MapView {
     if (this.reserved) return this.reserved;
     const vp = this.viewport();
     this.reserved = [];
-    for (const el of document.querySelectorAll('.trail, .hint, .tally, .continents, .legend, .zoom, .scale')) {
+    for (const el of document.querySelectorAll('.trail, .hint, .tally, .continents, .legend, .zoom, .scale, .attribution')) {
       if (el.hidden || !el.offsetParent) continue;
       const r = el.getBoundingClientRect();
       if (!r.width) continue;
@@ -403,6 +607,7 @@ export class MapView {
     this.scene.setAttribute('transform', `translate(${x} ${y}) scale(${k})`);
     // Zoomer fait apparaître des localités plus petites : on ne reconstruit le
     // calque que lorsque leur nombre change réellement.
+    this.syncTiles();
     if (this.overlayStale()) this.refreshOverlay();
     else this.positionOverlay();
     this.syncControls();
@@ -473,6 +678,7 @@ export class MapView {
 
   showWorld({ animate = true } = {}) {
     this.mode = 'world';
+    this.clearTiles();
     this.continentId = null;
     this.countryId = null;
     this.highlightId = null;
@@ -483,20 +689,22 @@ export class MapView {
   }
 
   /**
-   * Le planisphère est deux fois plus large que haut : sur un écran en
-   * hauteur, tout montrer le réduirait à un timbre-poste. On l'agrandit donc,
-   * quitte à en cacher les bords — que le déplacement, toujours borné, révèle.
+   * Le planisphère occupe toute la hauteur, quitte à sortir par les côtés.
+   *
+   * Le montrer en entier le réduisait à un bandeau au milieu de l'écran, avec
+   * deux larges bandes de mer au-dessus et au-dessous : on ouvrait
+   * l'application sur du vide. Mieux vaut arriver dans la carte, et laisser le
+   * déplacement — toujours borné — découvrir ce qui dépasse.
    */
   worldFrame() {
-    const vp = this.viewport();
-    const portrait = vp.h > vp.w;
-    return this.frame(this.atlas.bounds, { padding: 0.01, cover: portrait, limit: 1.6 });
+    return this.frame(this.atlas.bounds, { padding: 0, cover: true, limit: WORLD_COVER });
   }
 
   showContinent(id, { animate = true } = {}) {
     const continent = this.atlas.continentById.get(id);
     if (!continent) return;
     this.mode = 'continent';
+    this.clearTiles();
     this.continentId = id;
     this.countryId = null;
     this.highlightId = null;
@@ -510,6 +718,7 @@ export class MapView {
   async showCountry(id, { animate = true } = {}) {
     const country = this.atlas.countryById.get(id);
     if (!country) return;
+    if (this.countryId !== id) this.clearTiles();
     this.mode = 'country';
     this.continentId = country.continent;
     this.countryId = id;
@@ -555,6 +764,10 @@ export class MapView {
   }
 
   syncCountryClasses() {
+    // L'échelle courante est portée sur l'hôte : la feuille de style en a
+    // besoin pour traiter les pays voisins autrement selon qu'on choisit
+    // parmi eux ou qu'on est déjà entré dans l'un d'eux.
+    this.root.dataset.mode = this.mode;
     // Le contour fin est posé une fois à l'ouverture du pays ; si le corpus
     // bouge ensuite — un premier saint y est publié — sa couleur doit suivre.
     const outline = this.detailLayer.firstChild;
@@ -598,9 +811,9 @@ export class MapView {
    * avant le prochain calcul du calque, sinon on tirerait derrière soi une
    * bande vide de noms.
    */
-  window() {
+  window(fraction = OVERLAY_MARGIN) {
     const vp = this.viewport();
-    const margin = Math.max(vp.w, vp.h) * OVERLAY_MARGIN;
+    const margin = Math.max(vp.w, vp.h) * fraction;
     const { k, x, y } = this.transform;
     return [
       (-margin - x) / k, (-margin - y) / k,
@@ -618,6 +831,10 @@ export class MapView {
    * qu'elles pèsent plus lourd à l'échelle du pays.
    */
   visiblePlaces() {
+    // Sous un fond de tuiles, le fournisseur écrit déjà chaque bourg et chaque
+    // rue : redoubler ses noms des nôtres ne ferait que les brouiller. La
+    // carte porte la géographie, nous portons les saints.
+    if (this.tilesWanted()) return [];
     const all = this.atlas.loadedPlaces(this.countryId);
     const budget = this.placeBudget();
     if (!this.fitScale || this.transform.k <= this.fitScale * 1.02) return all.slice(0, budget);
@@ -939,12 +1156,16 @@ export class MapView {
 
   /** Bornes absolues du zoom pour le pays ouvert. */
   zoomLimits() {
+    // Sans fond de tuiles, descendre plus bas que la quarantaine de mètres par
+    // pixel ne montrerait qu'un aplat : nos données s'arrêtent là. Avec, il y a
+    // des rues à voir, et l'on peut aller jusqu'au niveau du pâté de maisons.
+    const limit = this.tilesAvailable() ? GROUND_LIMIT_TILED : GROUND_LIMIT;
     const ground = (EQUATOR * Math.cos((this.countryLat || 0) * Math.PI / 180))
-      / (WORLD_SIZE * GROUND_LIMIT);
+      / (WORLD_SIZE * limit);
     return [
       this.fitScale * COUNTRY_ZOOM[0],
       Math.min(
-        this.fitScale * COUNTRY_ZOOM_MAX,
+        this.fitScale * (this.tilesAvailable() ? COUNTRY_ZOOM_MAX_TILED : COUNTRY_ZOOM_MAX),
         Math.max(this.fitScale * COUNTRY_ZOOM[1], ground),
       ),
     ];
@@ -1006,6 +1227,7 @@ export class MapView {
 
   destroy() {
     this.resizeObserver.disconnect();
+    this.offBasemap?.();
     window.removeEventListener('keydown', this.onKey);
     if (this.animation) cancelAnimationFrame(this.animation);
   }

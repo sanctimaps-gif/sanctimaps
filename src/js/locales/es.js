@@ -212,6 +212,12 @@ export default {
     zoomOut: 'Alejar',
     zoomFit: 'Ver todo el país',
   },
+  basemap: {
+    label: 'Fondo de mapa detallado',
+    auto: 'Al acercar',
+    off: 'Nunca',
+    hint: 'Más allá de cierto zoom aparecen las calles y las carreteras. Es lo único que necesita la red; sin ella el mapa sigue completo.',
+  },
   legend: {
     title: 'Leyenda',
     withSaints: 'Países con santos',

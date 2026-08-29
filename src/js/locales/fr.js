@@ -214,6 +214,12 @@ export default {
     zoomOut: 'Dézoomer',
     zoomFit: 'Revoir tout le pays',
   },
+  basemap: {
+    label: 'Fond de carte détaillé',
+    auto: 'Au zoom rapproché',
+    off: 'Jamais',
+    hint: 'Au-delà d’un certain zoom, les rues et les routes apparaissent. C’est la seule chose qui demande le réseau ; sans lui, la carte reste entière.',
+  },
   legend: {
     title: 'Légende',
     withSaints: 'Pays comptant des saints',

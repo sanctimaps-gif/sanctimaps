@@ -212,6 +212,12 @@ export default {
     zoomOut: 'Verkleinern',
     zoomFit: 'Ganzes Land zeigen',
   },
+  basemap: {
+    label: 'Detaillierte Kartengrundlage',
+    auto: 'Bei starkem Zoom',
+    off: 'Nie',
+    hint: 'Ab einer gewissen Vergrößerung erscheinen Straßen und Wege. Nur dafür wird das Netz gebraucht; ohne es bleibt die Karte vollständig.',
+  },
   legend: {
     title: 'Legende',
     withSaints: 'Länder mit Heiligen',

@@ -18,8 +18,9 @@ fourni n'utilise que Node. `npm install` ne sert qu'à régénérer les données
 (voir plus bas).
 
 La carte est un site statique : aucun outil de compilation, aucune bibliothèque
-chargée depuis un CDN, aucune requête réseau pour l'afficher. Le serveur ne
-sert qu'à deux choses : distribuer les fichiers, et — si un fournisseur de
+chargée depuis un CDN, aucune requête réseau pour l'afficher — hormis le fond
+de tuiles au zoom rapproché, qui se coupe d'un réglage et dont l'absence
+n'empêche rien. Le serveur ne sert qu'à deux choses : distribuer les fichiers, et — si un fournisseur de
 modèle est configuré — porter les appels sans jamais confier de clé au
 navigateur.
 
@@ -32,6 +33,11 @@ Les trois échelles de lecture s'enchaînent, et chacune fixe ce qui est possibl
 | **Monde** | Les continents. Les pays comptant des saints sont d'une autre couleur. | Choisir un continent — le zoom est verrouillé. |
 | **Continent** | Les pays du continent, nommés et comptés. | Choisir un pays — le zoom reste verrouillé. |
 | **Pays** | Le pays entier à l'écran, ses villes et un point par saint. | Zoomer jusqu'aux villages, se déplacer, ouvrir une fiche. Commandes de zoom et barre d'échelle apparaissent ici. |
+
+Le planisphère occupe toute la hauteur de l'écran, quitte à sortir par les
+côtés : le montrer en entier le réduisait à un bandeau au milieu, entre deux
+larges bandes de mer. On arrive donc dans la carte, et le déplacement — borné,
+comme toujours — découvre ce qui dépasse.
 
 Au monde, un cartouche annonce l'étendue du corpus — « 285 saints recensés
 dans 57 pays » — avant même le premier clic. Il s'efface dès qu'on descend
@@ -54,14 +60,39 @@ Quatre gestes pour la même chose, parce qu'aucun n'est donné à tout le monde 
 | **Clavier** | `+`, `−`, et `0` pour revenir au pays entier. |
 
 Une **barre d'échelle** en bas à gauche dit à quelle distance on regarde
-vraiment — « 100 km » à l'arrivée sur la France, « 2 km » au plus près. Elle
+vraiment — « 100 km » à l'arrivée sur la France, « 100 m » au plus près. Elle
 est calculée à la latitude du milieu de l'écran, seul endroit où elle est
 exacte en projection Mercator.
 
 La borne du zoom ne se compte pas en « fois » mais en mètres par pixel : à
 quarante fois le cadrage, la Belgique serait dans la rue et la Russie encore à
 deux cents kilomètres du sol. Chaque pays descend donc jusqu'à la même échelle
-au sol, celle où les villages se nomment.
+au sol — celle où les villages se nomment sans fond de tuiles, celle de la rue
+avec.
+
+### Au zoom rapproché : le fond de carte
+
+Passé une échelle d'une soixantaine de mètres par pixel, nos contours n'ont
+plus rien à montrer — ils s'arrêtent aux frontières et aux villages d'un
+millier d'habitants. Un fond de tuiles OpenStreetMap prend alors le relais et
+apporte les rues, les routes et les cours d'eau : la carte descend jusqu'au
+pâté de maisons, échelle « 100 m », et l'on voit la rue où le saint est né.
+
+Le passage de relais est net : sous les tuiles, nos propres noms de localités
+s'effacent — le fond écrit déjà chaque bourg, les redoubler ne ferait que les
+brouiller. **La carte porte la géographie, nous portons les saints**, qui
+restent seuls posés dessus.
+
+C'est la seule chose de l'application qui sorte sur le réseau, et elle est
+faite pour pouvoir manquer. Fournisseur coupé, réseau absent, réglage sur
+« jamais » : après quelques essais infructueux l'application renonce, les
+villages reparaissent, le zoom se resserre là où il a encore de quoi montrer
+quelque chose, et rien d'autre ne change. Le réglage se trouve dans
+**Paramètres → Fond de carte détaillé**.
+
+La mention « © OpenStreetMap » s'affiche dès qu'une tuile est visible : c'est
+une condition de la licence du fond, pas une politesse. Changer de fournisseur
+tient en deux lignes dans `src/js/basemap.js`.
 
 ### Le grain de la vue pays
 
@@ -306,6 +337,7 @@ src/js/verify.js         contrôles de l'assistant
 src/js/ai.js             appels à l'assistant intelligent, côté navigateur
 src/js/calendar.js       export des fêtes au format iCalendar
 src/js/theme.js          thème système, clair ou sombre
+src/js/basemap.js        fond de tuiles : adresse, mention de source, réglage
 src/js/i18n.js           langues, dates, nombres, accords en genre
 src/js/locales/*.js      douze paquets de traductions
 src/js/map/projection.js projection Mercator, partagée avec la génération

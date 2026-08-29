@@ -145,6 +145,21 @@ button, input, select, textarea { font: inherit; color: inherit; }
   pointer-events: auto;
 }
 
+/* Une fois entré dans un pays, les voisins redeviennent de la terre pleine.
+   Délavés, ils se confondaient avec la mer : la France flottait comme une
+   découpe posée sur une table, au lieu de tenir dans un continent. On garde
+   la teinte neutre du sol — la couleur qui compte les saints reste au pays
+   ouvert, et c'est elle qui doit ressortir.
+
+   Quatre classes dans le sélecteur, contre deux à « .country.has-saints » :
+   c'est ce qu'il faut pour l'emporter sur la teinte thématique. */
+.map-host[data-mode="country"] .country.is-muted {
+  opacity: 1;
+  fill: var(--land);
+}
+
+.map-host[data-mode="country"] .country.is-muted:hover { fill: var(--land-hover); }
+
 /* Le pays ouvert garde la couleur qui dit s'il compte des saints : seul son
    contour s'épaissit. Lui donner une teinte propre effacerait, au moment même
    où on l'ouvre, l'information que la carte venait de donner. */
@@ -315,6 +330,45 @@ button, input, select, textarea { font: inherit; color: inherit; }
   gap: 0.35rem;
   margin-inline-start: auto;
 }
+
+/* ------------------------------------------------------ Fond de tuiles */
+
+/* Chaque tuile paraît en fondu : sans cela, la carte clignoterait à chaque
+   cran de zoom, les images n'arrivant pas toutes en même temps. */
+.tile {
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.tile.is-loaded { opacity: 1; }
+
+/* Les tuiles du niveau précédent restent dessous le temps que les nouvelles
+   arrivent : mieux vaut un fond un peu flou qu'un trou blanc. */
+.tile.is-stale { opacity: 0.75; }
+
+/* Sous les tuiles, l'aplat du pays s'efface : il cacherait les rues. Seul son
+   contour demeure, pour qu'on sache toujours où l'on est. La couleur qui dit
+   « ce pays compte des saints » a déjà été lue aux échelles précédentes. */
+.map-host.has-tiles .country-detail { fill: none; }
+.map-host.has-tiles .country { opacity: 0; }
+
+.attribution {
+  position: absolute;
+  inset-block-end: 4.3rem;
+  inset-inline-start: 1rem;
+  z-index: 20;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.15rem 0.5rem;
+  font-size: 0.68rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  box-shadow: var(--shadow);
+}
+
+.attribution:hover { color: var(--accent); }
+.attribution[hidden] { display: none; }
 
 /* ------------------------------------------------- Commandes de zoom */
 

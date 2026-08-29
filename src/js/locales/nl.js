@@ -212,6 +212,12 @@ export default {
     zoomOut: 'Uitzoomen',
     zoomFit: 'Het hele land tonen',
   },
+  basemap: {
+    label: 'Gedetailleerde ondergrond',
+    auto: 'Bij sterk inzoomen',
+    off: 'Nooit',
+    hint: 'Vanaf een bepaalde zoom verschijnen straten en wegen. Alleen daarvoor is het netwerk nodig; zonder blijft de kaart volledig.',
+  },
   legend: {
     title: 'Legende',
     withSaints: 'Landen met heiligen',

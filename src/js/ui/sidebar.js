@@ -1,5 +1,6 @@
 import { can, getSession } from '../auth.js';
 import { LANGUAGES, getLanguage, setLanguage, t } from '../i18n.js';
+import { MODES, getBasemap, setBasemap } from '../basemap.js';
 import { THEMES, getTheme, setTheme } from '../theme.js';
 import { fill, h, select } from './dom.js';
 
@@ -58,9 +59,22 @@ export class Sidebar {
       { value: getTheme(), onchange: (e) => setTheme(e.target.value), class: 'control' },
     );
     this.themeLabel = h('span', { class: 'field__label' });
+
+    // Le fond de tuiles est la seule chose qui sorte sur le réseau : le
+    // réglage se doit d'être visible, et de dire ce qu'il implique.
+    this.basemapSelect = select(
+      MODES.map((code) => ({ value: code, label: '' })),
+      { value: getBasemap(), onchange: (e) => setBasemap(e.target.value), class: 'control' },
+    );
+    this.basemapLabel = h('span', { class: 'field__label' });
+    this.basemapHint = h('p', { class: 'field__hint' });
+
     this.settings = h('div', { class: 'settings' },
       h('label', { class: 'field' }, this.languageLabel, this.languageSelect),
-      h('label', { class: 'field' }, this.themeLabel, this.themeSelect));
+      h('label', { class: 'field' }, this.themeLabel, this.themeSelect),
+      h('div', {},
+        h('label', { class: 'field' }, this.basemapLabel, this.basemapSelect),
+        this.basemapHint));
 
     this.closeButton = h('button', {
       class: 'icon-btn panel__close',
@@ -184,6 +198,12 @@ export class Sidebar {
     this.themeLabel.textContent = t('theme.label');
     for (const option of this.themeSelect.options) option.textContent = t(`theme.${option.value}`);
     this.themeSelect.value = getTheme();
+    this.basemapLabel.textContent = t('basemap.label');
+    for (const option of this.basemapSelect.options) {
+      option.textContent = t(`basemap.${option.value}`);
+    }
+    this.basemapSelect.value = getBasemap();
+    this.basemapHint.textContent = t('basemap.hint');
     this.panel.dataset.role = getSession().role;
 
     // Le fil de retour ne s'affiche que dans une partie : au sommaire, il n'y

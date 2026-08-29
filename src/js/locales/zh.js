@@ -212,6 +212,12 @@ export default {
     zoomOut: '缩小',
     zoomFit: '显示整个国家',
   },
+  basemap: {
+    label: '详细底图',
+    auto: '放大到一定程度时',
+    off: '从不',
+    hint: '放大到一定程度后会显示街道与道路。这是唯一需要联网的部分；没有它，地图依然完整。',
+  },
   legend: {
     title: '图例',
     withSaints: '有圣人的国家',

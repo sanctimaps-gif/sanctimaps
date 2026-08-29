@@ -212,6 +212,12 @@ export default {
     zoomOut: 'Zoom out',
     zoomFit: 'Fit the whole country',
   },
+  basemap: {
+    label: 'Detailed base map',
+    auto: 'When zoomed in',
+    off: 'Never',
+    hint: 'Past a certain zoom, streets and roads appear. It is the only thing that needs the network; without it the map stays whole.',
+  },
   legend: {
     title: 'Legend',
     withSaints: 'Countries with saints',

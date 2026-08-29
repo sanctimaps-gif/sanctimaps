@@ -212,6 +212,12 @@ export default {
     zoomOut: 'Pomniejsz',
     zoomFit: 'Pokaż cały kraj',
   },
+  basemap: {
+    label: 'Szczegółowe podkład mapowe',
+    auto: 'Przy dużym powiększeniu',
+    off: 'Nigdy',
+    hint: 'Powyżej pewnego powiększenia pojawiają się ulice i drogi. To jedyna rzecz wymagająca sieci; bez niej mapa pozostaje kompletna.',
+  },
   legend: {
     title: 'Legenda',
     withSaints: 'Kraje ze świętymi',
