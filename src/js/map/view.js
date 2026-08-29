@@ -57,6 +57,9 @@ const OVERLAY_REDRAW = 0.25;
 const LABEL_GAP = 8;
 const LABEL_GAP_Y = 3;
 
+/** Descente du nom sous son point, en cadratins. Doit suivre la feuille de style. */
+const LABEL_DROP = 1.55;
+
 /**
  * Rangs de localité, du chef-lieu au hameau.
  *
@@ -733,9 +736,14 @@ export class MapView {
     let entry = this.fonts.get(key);
     if (!entry) {
       const style = getComputedStyle(item.label);
+      const size = parseFloat(style.fontSize);
       entry = {
         font: `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`,
-        h: parseFloat(style.fontSize) * 1.25,
+        h: size * 1.25,
+        // Le nom est posé sous le point, à 1,55 em : le décalage suit donc la
+        // taille du rang. Un décalage fixe désalignerait la boîte de collision
+        // du texte qu'elle est censée protéger.
+        dy: size * LABEL_DROP,
       };
       this.fonts.set(key, entry);
     }
@@ -757,9 +765,9 @@ export class MapView {
     // continent — où le zoom est verrouillé — et portent une pastille de
     // compte sous le nom : pour elles, la mesure exacte du tracé reste juste.
     if (item.kind !== 'label') {
-      const { font, h } = this.fontOf(item);
+      const { font, h, dy } = this.fontOf(item);
       // Le halo d'un saint déborde son nom quand celui-ci est très court.
-      item.metrics = { w: Math.max(this.textWidth(item.text, font), 18), h };
+      item.metrics = { w: Math.max(this.textWidth(item.text, font), 18), h, dy };
       return item.metrics;
     }
     try {
@@ -814,9 +822,7 @@ export class MapView {
 
     const ordered = items.filter((i) => i.visible).sort((a, b) => b.priority - a.priority);
     for (const item of ordered) {
-      const isLabel = item.kind === 'label';
-      const { w, h } = this.measure(item);
-      const dy = isLabel ? 0 : 16; // Les repères portent leur texte en dessous.
+      const { w, h, dy = 0 } = this.measure(item);
 
       item.node.setAttribute('transform', `translate(${item.sx} ${item.sy})`);
 

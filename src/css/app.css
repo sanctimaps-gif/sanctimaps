@@ -16,6 +16,7 @@
   --accent: #8c2230;
   --accent-soft: #f3e2e4;
   --city: #4a5a68;
+  --city-soft: #6d7f8e;
   --birth: #a3162a;
   --user: #2f6b4f;
   --pending: #b4741d;
@@ -45,6 +46,7 @@
     --accent: #c9505f;
     --accent-soft: #33222a;
     --city: #9fb2c2;
+    --city-soft: #7d8fa0;
     --birth: #e2685c;
     --user: #63b58c;
     --pending: #d9a441;
@@ -68,6 +70,7 @@
   --accent: #c9505f;
   --accent-soft: #33222a;
   --city: #9fb2c2;
+  --city-soft: #7d8fa0;
   --birth: #e2685c;
   --user: #63b58c;
   --pending: #d9a441;
@@ -207,13 +210,20 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .marker--city .marker__dot { fill: var(--city); }
 .marker--city .marker__label { fill: var(--city); font-style: italic; }
 
-/* Le rang de la localité se lit à la taille du nom, comme sur une carte
-   d'état-major : une préfecture ne s'écrit pas comme un hameau. */
+/* Le rang de la localité se lit à la taille et à la teinte du nom, comme sur
+   une carte d'état-major : une préfecture ne s'écrit pas comme un hameau.
+
+   Surtout pas à l'opacité : « .marker--city.marker--village .marker__label »
+   pèse exactement autant que « .marker.is-crowded .marker__label », et venant
+   après elle l'emportait — les villages et les hameaux ne se masquaient donc
+   jamais quand ils se gênaient, et la carte se couvrait de noms superposés
+   dès que le zoom les faisait apparaître. L'opacité d'une étiquette ne se
+   règle plus qu'à un seul endroit : l'encombrement. */
 .marker--city.marker--town .marker__label { font-size: 0.64rem; }
-.marker--city.marker--village .marker__label { font-size: 0.58rem; opacity: 0.92; }
-.marker--city.marker--hamlet .marker__label { font-size: 0.54rem; opacity: 0.82; }
+.marker--city.marker--village .marker__label { font-size: 0.58rem; fill: var(--city-soft); }
+.marker--city.marker--hamlet .marker__label { font-size: 0.54rem; fill: var(--city-soft); }
 .marker--city.marker--village .marker__dot,
-.marker--city.marker--hamlet .marker__dot { opacity: 0.8; }
+.marker--city.marker--hamlet .marker__dot { fill: var(--city-soft); }
 
 .marker--saint .marker__dot {
   fill: var(--birth);
