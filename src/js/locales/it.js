@@ -194,6 +194,11 @@ export default {
     medium: 'media',
     low: 'bassa',
   },
+  map: {
+    zoomIn: 'Ingrandisci',
+    zoomOut: 'Riduci',
+    zoomFit: 'Rivedere tutto il paese',
+  },
   legend: {
     title: 'Legenda',
     withSaints: 'Paesi con santi',

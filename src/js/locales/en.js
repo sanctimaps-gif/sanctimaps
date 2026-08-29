@@ -194,6 +194,11 @@ export default {
     medium: 'medium',
     low: 'low',
   },
+  map: {
+    zoomIn: 'Zoom in',
+    zoomOut: 'Zoom out',
+    zoomFit: 'Fit the whole country',
+  },
   legend: {
     title: 'Legend',
     withSaints: 'Countries with saints',

@@ -194,6 +194,11 @@ export default {
     medium: 'متوسطة',
     low: 'منخفضة',
   },
+  map: {
+    zoomIn: 'تكبير',
+    zoomOut: 'تصغير',
+    zoomFit: 'عرض البلد كاملًا',
+  },
   legend: {
     title: 'مفتاح الخريطة',
     withSaints: 'بلدان فيها قدّيسون',

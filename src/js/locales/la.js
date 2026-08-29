@@ -194,6 +194,11 @@ export default {
     medium: 'media',
     low: 'humilis',
   },
+  map: {
+    zoomIn: 'Propius',
+    zoomOut: 'Longius',
+    zoomFit: 'Totam regionem ostendere',
+  },
   legend: {
     title: 'Index signorum',
     withSaints: 'Regiones cum sanctis',

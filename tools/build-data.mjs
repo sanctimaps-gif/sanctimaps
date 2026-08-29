@@ -405,11 +405,21 @@ console.log(`  countries/ : ${countries.length} contours détaillés`);
 /**
  * Nombre de localités retenues par pays.
  *
- * Généreux à dessein : en vue pays on peut zoomer jusqu'aux villages, et la
- * carte n'en révèle qu'une poignée à la fois, du plus peuplé au plus petit.
- * Chaque pays a son fichier, chargé seulement quand on l'ouvre.
+ * Assez haut pour épuiser la source : en vue pays on descend jusqu'aux
+ * villages de mille habitants, et c'est ce qui donne à la carte son grain de
+ * carte d'état-major. La carte n'en révèle qu'une part à la fois, du plus
+ * peuplé au plus petit ; chaque pays a son fichier, chargé à son ouverture.
  */
-const PLACES_PER_COUNTRY = 2500;
+const PLACES_PER_COUNTRY = 9000;
+
+/**
+ * Deux fiches du même nom si proches l'une de l'autre décrivent le même
+ * endroit ; au-delà, ce sont deux villages homonymes, et la France en compte
+ * assez pour qu'il serait faux de n'en garder qu'un. Seuil en unités monde,
+ * soit une vingtaine de kilomètres sous nos latitudes.
+ */
+const SAME_PLACE = 600;
+
 const cca2ToCca3 = new Map(worldCountries.map((c) => [c.cca2, c.cca3]));
 const known = new Set(countries.map((c) => c.id));
 
@@ -417,21 +427,27 @@ const byCountry = new Map();
 for (const city of cities) {
   const iso3 = cca2ToCca3.get(city.country);
   if (!iso3 || !known.has(iso3)) continue;
+  // Seules les localités habitées : la source charrie aussi des entités
+  // administratives sans population, qui n'ont rien à faire sur la carte.
+  if (!city.featureCode?.startsWith('PPL') || !(city.population > 0)) continue;
   if (!byCountry.has(iso3)) byCountry.set(iso3, []);
   byCountry.get(iso3).push(city);
 }
 
 mkdirSync(join(OUT, 'cities'), { recursive: true });
 let cityCount = 0;
+let smallest = Infinity;
 for (const [iso3, list] of byCountry) {
   list.sort((a, b) => b.population - a.population);
   const picked = [];
-  const names = new Set();
+  const byName = new Map();
   const shift = shiftById.get(iso3) || 0;
   const push = (c) => {
-    if (names.has(c.name) || picked.length >= PLACES_PER_COUNTRY) return;
-    names.add(c.name);
+    if (picked.length >= PLACES_PER_COUNTRY) return;
     const [x, y] = project(c.loc.coordinates[0], c.loc.coordinates[1]);
+    const twins = byName.get(c.name);
+    if (twins?.some((t) => Math.hypot(t[0] - x, t[1] - y) < SAME_PLACE)) return;
+    if (twins) twins.push([x, y]); else byName.set(c.name, [[x, y]]);
     const place = { n: c.name, x: Math.round(x) + shift, y: Math.round(y), p: c.population };
     if (c.featureCode === 'PPLC') place.c = 1;
     picked.push(place);
@@ -441,8 +457,10 @@ for (const [iso3, list] of byCountry) {
   picked.sort((a, b) => (b.c || 0) - (a.c || 0) || b.p - a.p);
   writeFileSync(join(OUT, 'cities', `${iso3}.json`), JSON.stringify(picked));
   cityCount += picked.length;
+  if (picked.length > 200) smallest = Math.min(smallest, picked[picked.length - 1].p);
 }
 console.log(`  cities/ : ${cityCount} localités réparties sur ${byCountry.size} pays`);
+console.log(`    jusqu'aux villages de ${smallest} habitants`);
 
 // ---------------------------------------------------------------------------
 // Noms de pays traduits

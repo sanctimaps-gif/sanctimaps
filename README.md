@@ -30,7 +30,7 @@ Les trois échelles de lecture s'enchaînent, et chacune fixe ce qui est possibl
 | --- | --- | --- |
 | **Monde** | Les continents. Les pays comptant des saints sont d'une autre couleur. | Choisir un continent — le zoom est verrouillé. |
 | **Continent** | Les pays du continent, nommés et comptés. | Choisir un pays — le zoom reste verrouillé. |
-| **Pays** | Le pays entier à l'écran, ses villes et un point par saint. | Zoomer jusqu'aux villages, se déplacer, ouvrir une fiche. |
+| **Pays** | Le pays entier à l'écran, ses villes et un point par saint. | Zoomer jusqu'aux villages, se déplacer, ouvrir une fiche. Commandes de zoom et barre d'échelle apparaissent ici. |
 
 Au monde, un cartouche annonce l'étendue du corpus — « 285 saints recensés
 dans 57 pays » — avant même le premier clic. Il s'efface dès qu'on descend
@@ -41,11 +41,44 @@ indéfiniment hors de la carte. Un clic sur la mer, ou la touche `Échap`,
 remonte d'un niveau ; le fil d'Ariane et les puces de continents permettent
 d'aller directement où l'on veut.
 
-En vue pays, plus on zoome, plus la carte descend dans la hiérarchie des
-localités : une douzaine de grandes villes au cadrage d'arrivée, puis les
-bourgs, puis les villages, jusqu'à environ 450 noms simultanés. Le corpus
-compte près de 79 000 localités, réparties en un fichier par pays chargé
-seulement à l'ouverture de celui-ci.
+### Zoomer, une fois un pays ouvert
+
+Quatre gestes pour la même chose, parce qu'aucun n'est donné à tout le monde :
+
+| | |
+| --- | --- |
+| **Boutons `+` `−`** | Sur le flanc de la carte. Le troisième, `⤢`, revient au pays entier. |
+| **Molette** | Zoome autour du curseur. |
+| **Pincement** | Deux doigts, sur écran tactile. |
+| **Clavier** | `+`, `−`, et `0` pour revenir au pays entier. |
+
+Une **barre d'échelle** en bas à gauche dit à quelle distance on regarde
+vraiment — « 100 km » à l'arrivée sur la France, « 2 km » au plus près. Elle
+est calculée à la latitude du milieu de l'écran, seul endroit où elle est
+exacte en projection Mercator.
+
+La borne du zoom ne se compte pas en « fois » mais en mètres par pixel : à
+quarante fois le cadrage, la Belgique serait dans la rue et la Russie encore à
+deux cents kilomètres du sol. Chaque pays descend donc jusqu'à la même échelle
+au sol, celle où les villages se nomment.
+
+### Le grain de la vue pays
+
+Plus on zoome, plus la carte descend dans la hiérarchie des localités : une
+soixantaine de villes au cadrage d'arrivée, puis les bourgs, puis les villages,
+jusqu'à deux ou trois cents noms lisibles à la fois vers cinq à sept fois le
+cadrage — c'est là que la carte est la plus dense. Au-delà la fenêtre se
+referme sur quelques hameaux, précisément situés.
+
+Le tri se fait **dans le cadre visible**, pas dans le pays entier : zoomé sur
+la Bretagne on veut les bourgs bretons, non Marseille et Lyon au motif qu'elles
+pèsent plus lourd à l'échelle de la France. La taille du nom et du point dit le
+rang du lieu, du chef-lieu au hameau.
+
+Le corpus compte 113 584 localités, jusqu'aux villages d'un millier
+d'habitants, réparties en un fichier par pays chargé seulement à l'ouverture de
+celui-ci. En deçà, la source n'a plus rien : c'est la limite de la carte, et
+elle se voit — au zoom maximal, la campagne est vide parce qu'elle l'est.
 
 ## La recherche
 

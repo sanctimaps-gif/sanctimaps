@@ -207,6 +207,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .marker--city .marker__dot { fill: var(--city); }
 .marker--city .marker__label { fill: var(--city); font-style: italic; }
 
+/* Le rang de la localité se lit à la taille du nom, comme sur une carte
+   d'état-major : une préfecture ne s'écrit pas comme un hameau. */
+.marker--city.marker--town .marker__label { font-size: 0.64rem; }
+.marker--city.marker--village .marker__label { font-size: 0.58rem; opacity: 0.92; }
+.marker--city.marker--hamlet .marker__label { font-size: 0.54rem; opacity: 0.82; }
+.marker--city.marker--village .marker__dot,
+.marker--city.marker--hamlet .marker__dot { opacity: 0.8; }
+
 .marker--saint .marker__dot {
   fill: var(--birth);
   stroke: var(--paper);
@@ -296,6 +304,66 @@ button, input, select, textarea { font: inherit; color: inherit; }
   flex-wrap: wrap;
   gap: 0.35rem;
   margin-inline-start: auto;
+}
+
+/* ------------------------------------------------- Commandes de zoom */
+
+/* Sur le flanc de la carte, à hauteur de main, et seulement là où le zoom
+   existe : une fois un pays ouvert. */
+.zoom {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: 1rem;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.zoom__btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.zoom__fit { font-size: 1rem; }
+
+.zoom__btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.zoom__btn:disabled:hover { background: var(--panel); }
+
+/* Barre d'échelle : elle dit à quelle distance on regarde, ce qu'un niveau
+   de zoom en chiffres ne dirait pas. */
+.scale {
+  position: absolute;
+  inset-block-end: 1rem;
+  inset-inline-start: 1rem;
+  z-index: 20;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 0.3rem 0.55rem 0.4rem;
+  display: grid;
+  justify-items: start;
+  gap: 0.2rem;
+}
+
+.scale__text {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.scale__rule {
+  height: 0.4rem;
+  border: 1px solid var(--ink-soft);
+  border-block-start: 0;
+  transition: width 120ms ease;
 }
 
 .legend {
@@ -789,6 +857,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
   .topbar { padding-inline-start: 3.6rem; }
   .legend { display: none; }
+
+  /* Sur un téléphone, les boutons de zoom descendent au coin, à portée du
+     pouce, et l'échelle passe au-dessus d'eux plutôt que sous le panneau. */
+  .zoom {
+    inset-block-start: auto;
+    inset-block-end: 1rem;
+    transform: none;
+  }
+
+  .zoom__btn { width: 2.9rem; height: 2.9rem; }
+  .scale { inset-block-end: 0.6rem; }
 
   /* Les continents défilent sur une seule ligne plutôt que d'empiler
      trois rangées de puces au-dessus de la carte. */

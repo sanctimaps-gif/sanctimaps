@@ -196,6 +196,11 @@ export default {
     medium: 'moyenne',
     low: 'basse',
   },
+  map: {
+    zoomIn: 'Zoomer',
+    zoomOut: 'Dézoomer',
+    zoomFit: 'Revoir tout le pays',
+  },
   legend: {
     title: 'Légende',
     withSaints: 'Pays comptant des saints',

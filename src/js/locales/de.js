@@ -194,6 +194,11 @@ export default {
     medium: 'mittel',
     low: 'gering',
   },
+  map: {
+    zoomIn: 'Vergrößern',
+    zoomOut: 'Verkleinern',
+    zoomFit: 'Ganzes Land zeigen',
+  },
   legend: {
     title: 'Legende',
     withSaints: 'Länder mit Heiligen',

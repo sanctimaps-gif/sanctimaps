@@ -1,3 +1,4 @@
+import { t } from '../i18n.js';
 import { WORLD_SIZE, unproject } from './projection.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -8,17 +9,80 @@ const TRANSITION = 720;
 /** Au-delà de ce rapport, remplir l'écran rognerait trop le cadre visé. */
 const COVER_LIMIT = 1.35;
 
-/** Bornes de zoom en vue « pays », relatives au cadrage d'arrivée. */
+/**
+ * Bornes de zoom en vue « pays ».
+ *
+ * Un simple rapport au cadrage d'arrivée serait injuste : quarante fois la
+ * Belgique descend dans la rue, quarante fois la Russie reste à deux cents
+ * kilomètres du sol. La borne haute vise donc une échelle au sol — celle où
+ * les villages se nomment — et le rapport ne sert plus que de garde-fou.
+ */
 const COUNTRY_ZOOM = [1, 40];
 
+/** Rapport au-delà duquel on ne va pas, même pour un très grand pays. */
+const COUNTRY_ZOOM_MAX = 200;
+
+/** Échelle au sol visée au zoom maximal, en mètres par pixel. */
+const GROUND_LIMIT = 40;
+
+/** Pas d'un appui sur « + » ou « − ». */
+const ZOOM_STEP = 1.6;
+
 /** Nombre de localités affichées au cadrage d'arrivée, avant tout zoom. */
-const PLACES_AT_FIT = 12;
+const PLACES_AT_FIT = 70;
 
 /** Plafond de localités simultanées : au-delà, la carte devient illisible. */
-const PLACES_MAX = 450;
+const PLACES_MAX = 1600;
 
 /** Marge de déplacement autorisée autour d'un pays, en fraction de sa taille. */
 const COUNTRY_SLACK = 0.35;
+
+/** Marge de localités calculées hors écran, en fraction de la plus grande dimension. */
+const OVERLAY_MARGIN = 0.35;
+
+/** Déplacement, dans la même unité, au-delà duquel le calque est recalculé. */
+const OVERLAY_REDRAW = 0.25;
+
+/** Air réservé de part et d'autre d'un nom, en pixels. */
+const LABEL_GAP = 4;
+
+/**
+ * Rangs de localité, du chef-lieu au hameau.
+ *
+ * C'est ce qui donne à la vue pays son grain de carte d'état-major : la taille
+ * du point et du nom dit l'importance du lieu, et les petites communes ne
+ * s'écrivent pas comme une préfecture.
+ */
+const PLACE_RANKS = [
+  { max: Infinity, cls: 'city', dot: 3.4 },
+  { max: 100000, cls: 'town', dot: 2.7 },
+  { max: 20000, cls: 'village', dot: 2 },
+  { max: 5000, cls: 'hamlet', dot: 1.5 },
+];
+
+/** « 50 km », « ٥٠ كم », « 50公里 » — l'unité suit la langue affichée. */
+function formatDistance(value, unit, lang) {
+  try {
+    return new Intl.NumberFormat(lang, { style: 'unit', unit, unitDisplay: 'short' }).format(value);
+  } catch {
+    return `${value} ${unit === 'kilometer' ? 'km' : 'm'}`;
+  }
+}
+
+function placeRank(population) {
+  let rank = PLACE_RANKS[0];
+  for (const candidate of PLACE_RANKS) if (population < candidate.max) rank = candidate;
+  return rank;
+}
+
+/** Longueurs rondes pour l'échelle, en mètres. */
+const SCALE_STEPS = [
+  10, 25, 50, 100, 250, 500, 1000, 2000, 5000, 10000, 25000,
+  50000, 100000, 250000, 500000, 1000000, 2000000,
+];
+
+/** Circonférence de la Terre à l'équateur, en mètres. */
+const EQUATOR = 40075017;
 
 const easeInOut = (t) => (t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2);
 
@@ -58,7 +122,9 @@ export class MapView {
     this.animation = null;
 
     this.build();
+    this.buildControls();
     this.bindPointer();
+    this.bindKeys();
 
     this.resizeObserver = new ResizeObserver(() => this.onResize());
     this.resizeObserver.observe(this.root);
@@ -110,11 +176,117 @@ export class MapView {
 
     this.labels = [];
     this.markers = [];
+    this.fonts = new Map();
+  }
+
+  /**
+   * Commandes posées sur la carte : le zoom et l'échelle.
+   *
+   * La molette et le pincement ne sont pas donnés à tout le monde — souris
+   * sans roulette, pavé tactile capricieux, écran qui interprète le pincement
+   * pour son propre compte. Trois boutons rendent le zoom accessible partout,
+   * et l'échelle dit à quelle distance on est réellement en train de regarder.
+   */
+  buildControls() {
+    const button = (cls, glyph, action) => {
+      const node = document.createElement('button');
+      node.type = 'button';
+      node.className = `icon-btn zoom__btn ${cls}`;
+      node.append(Object.assign(document.createElement('span'), {
+        textContent: glyph, ariaHidden: 'true',
+      }));
+      node.addEventListener('click', action);
+      return node;
+    };
+
+    this.zoomIn = button('zoom__in', '+', () => this.zoomBy(ZOOM_STEP));
+    this.zoomOut = button('zoom__out', '−', () => this.zoomBy(1 / ZOOM_STEP));
+    this.zoomFit = button('zoom__fit', '⤢', () => this.refit());
+
+    this.zoomBox = document.createElement('div');
+    this.zoomBox.className = 'zoom';
+    this.zoomBox.hidden = true;
+    this.zoomBox.append(this.zoomIn, this.zoomOut, this.zoomFit);
+
+    this.scaleRule = document.createElement('div');
+    this.scaleRule.className = 'scale__rule';
+    this.scaleText = document.createElement('span');
+    this.scaleText.className = 'scale__text';
+    this.scaleBar = document.createElement('div');
+    this.scaleBar.className = 'scale';
+    this.scaleBar.hidden = true;
+    this.scaleBar.append(this.scaleText, this.scaleRule);
+
+    this.root.append(this.zoomBox, this.scaleBar);
+    this.retranslateControls();
+  }
+
+  retranslateControls() {
+    this.zoomIn.title = t('map.zoomIn');
+    this.zoomIn.setAttribute('aria-label', t('map.zoomIn'));
+    this.zoomOut.title = t('map.zoomOut');
+    this.zoomOut.setAttribute('aria-label', t('map.zoomOut'));
+    this.zoomFit.title = t('map.zoomFit');
+    this.zoomFit.setAttribute('aria-label', t('map.zoomFit'));
+  }
+
+  /** N'ouvrir les commandes qu'où le zoom existe : une fois un pays ouvert. */
+  syncControls() {
+    const open = this.mode === 'country';
+    this.zoomBox.hidden = !open;
+    this.scaleBar.hidden = !open;
+    if (!open) return;
+    const k = this.transform.k;
+    const [lo, hi] = this.zoomLimits();
+    this.zoomIn.disabled = k >= hi - 1e-9;
+    this.zoomOut.disabled = k <= lo + 1e-9;
+    this.zoomFit.disabled = this.zoomOut.disabled;
+    this.drawScale();
+  }
+
+  /** Zoom par palier, centré sur le milieu de l'écran. */
+  zoomBy(factor) {
+    const vp = this.viewport();
+    this.zoomAround({ x: vp.w / 2, y: vp.h / 2 }, factor, this.transform);
+  }
+
+  /** Revient au cadrage d'arrivée du pays ouvert. */
+  refit() {
+    const country = this.atlas.countryById.get(this.countryId);
+    if (!country) return;
+    this.animateTo(this.frame(country.focus, { padding: 0.07 }));
+  }
+
+  /**
+   * Barre d'échelle.
+   *
+   * En Mercator, un pixel ne vaut pas la même distance partout : l'échelle est
+   * calculée à la latitude du milieu de l'écran, seul endroit où elle est
+   * exacte. On cherche ensuite la plus grande longueur ronde qui tienne dans
+   * la largeur allouée.
+   */
+  drawScale() {
+    const vp = this.viewport();
+    const { k, y } = this.transform;
+    const [, lat] = unproject(0, (vp.h / 2 - y) / k);
+    const metresPerPixel = (EQUATOR * Math.cos(lat * Math.PI / 180)) / (WORLD_SIZE * k);
+    const budget = Math.min(150, vp.w * 0.22);
+
+    let metres = SCALE_STEPS[0];
+    for (const step of SCALE_STEPS) if (step / metresPerPixel <= budget) metres = step;
+    const width = Math.round(metres / metresPerPixel);
+
+    this.scaleRule.style.width = `${width}px`;
+    this.scaleText.textContent = metres >= 1000
+      ? formatDistance(metres / 1000, 'kilometer', this.lang)
+      : formatDistance(metres, 'meter', this.lang);
   }
 
   setLanguage(lang) {
     this.lang = lang;
+    this.retranslateControls();
     this.refreshOverlay();
+    this.syncControls();
   }
 
   // -------------------------------------------------------------------------
@@ -126,8 +298,40 @@ export class MapView {
    * la scène est déjà rétrécie d'autant, il n'y a donc rien à retrancher ici.
    */
   viewport() {
-    const rect = this.root.getBoundingClientRect();
-    return { w: rect.width, h: rect.height, x0: 0, y0: 0, x1: rect.width, y1: rect.height };
+    // Mesure conservée d'un redimensionnement à l'autre : la lire après avoir
+    // écrit un millier de transformations forcerait le navigateur à tout
+    // recalculer sur-le-champ, et le zoom se traînerait.
+    if (!this.vp) {
+      const rect = this.root.getBoundingClientRect();
+      this.vp = {
+        w: rect.width, h: rect.height, x0: 0, y0: 0, x1: rect.width, y1: rect.height,
+        left: rect.left, top: rect.top,
+      };
+    }
+    return this.vp;
+  }
+
+  /**
+   * Encombrement des éléments posés sur la carte.
+   *
+   * Un nom de village écrit sous le fil d'Ariane ou sous la légende est un nom
+   * perdu : autant laisser la place à un autre. Ces cadres sont donc semés
+   * dans la grille de collision avant les étiquettes.
+   */
+  chromeBoxes() {
+    if (this.reserved) return this.reserved;
+    const vp = this.viewport();
+    this.reserved = [];
+    for (const el of document.querySelectorAll('.trail, .hint, .tally, .continents, .legend, .zoom, .scale')) {
+      if (el.hidden || !el.offsetParent) continue;
+      const r = el.getBoundingClientRect();
+      if (!r.width) continue;
+      this.reserved.push([
+        r.left - vp.left - 4, r.top - vp.top - 4,
+        r.right - vp.left + 4, r.bottom - vp.top + 4,
+      ]);
+    }
+    return this.reserved;
   }
 
   /** Transformation amenant `bbox` dans la zone visible. */
@@ -185,8 +389,32 @@ export class MapView {
     this.scene.setAttribute('transform', `translate(${x} ${y}) scale(${k})`);
     // Zoomer fait apparaître des localités plus petites : on ne reconstruit le
     // calque que lorsque leur nombre change réellement.
-    if (this.mode === 'country' && this.placeBudget() !== this.placeCount) this.refreshOverlay();
+    if (this.overlayStale()) this.refreshOverlay();
     else this.positionOverlay();
+    this.syncControls();
+  }
+
+  /**
+   * Le calque doit-il être reconstruit, ou seulement repositionné ?
+   *
+   * Repositionner coûte une boucle ; reconstruire coûte quatorze cents nœuds.
+   * On ne reconstruit donc que lorsque la sélection a réellement pu changer :
+   * le budget a bougé, le zoom a franchi un cran, ou l'on s'est déplacé assez
+   * loin pour sortir de la marge calculée d'avance.
+   */
+  overlayStale() {
+    if (this.mode !== 'country') return false;
+    const at = this.overlayAt;
+    if (!at) return true;
+    // Le budget bouge à chaque fraction de zoom : sans marge, on reconstruirait
+    // mille nœuds à chaque cran de molette pour vingt noms de plus.
+    const budget = this.placeBudget();
+    if (budget > this.placeCount * 1.2 || budget < this.placeCount * 0.8) return true;
+    if (Math.abs(Math.log(this.transform.k / at.k)) > 0.3) return true;
+    const vp = this.viewport();
+    const span = Math.max(vp.w, vp.h) * OVERLAY_REDRAW;
+    return Math.abs(this.transform.x - at.x) > span
+      || Math.abs(this.transform.y - at.y) > span;
   }
 
   animateTo(target) {
@@ -209,6 +437,11 @@ export class MapView {
   }
 
   onResize() {
+    // Un changement de zoom du navigateur passe par ici : les tailles lues en
+    // pixels ne valent plus, la fonte est remesurée.
+    this.vp = null;
+    this.reserved = null;
+    this.fonts.clear();
     if (this.mode === 'world') this.apply(this.worldFrame());
     else if (this.mode === 'continent') {
       const bbox = this.atlas.continentById.get(this.continentId).bbox;
@@ -274,6 +507,9 @@ export class MapView {
     // à laisser de la mer autour d'un territoire très allongé.
     const target = this.frame(country.focus, { padding: 0.07 });
     this.fitScale = target.k;
+    // Latitude du milieu du pays : en Mercator, c'est elle qui dit combien de
+    // mètres vaut un pixel, donc jusqu'où il est utile de zoomer.
+    [, this.countryLat] = unproject(0, (country.focus[1] + country.focus[3]) / 2);
     if (animate) this.animateTo(target); else this.apply(target);
 
     // Villes et villages arrivent après coup : la transition ne les attend pas.
@@ -341,14 +577,53 @@ export class MapView {
     return Math.min(PLACES_MAX, Math.round(PLACES_AT_FIT * ratio ** 1.7));
   }
 
+  /**
+   * Fenêtre prise en compte, en coordonnées monde.
+   *
+   * Plus large que l'écran : la marge doit couvrir tout déplacement admis
+   * avant le prochain calcul du calque, sinon on tirerait derrière soi une
+   * bande vide de noms.
+   */
+  window() {
+    const vp = this.viewport();
+    const margin = Math.max(vp.w, vp.h) * OVERLAY_MARGIN;
+    const { k, x, y } = this.transform;
+    return [
+      (-margin - x) / k, (-margin - y) / k,
+      (vp.w + margin - x) / k, (vp.h + margin - y) / k,
+    ];
+  }
+
+  /**
+   * Quelles localités montrer.
+   *
+   * Le tri du fichier étant par population décroissante, prendre les premières
+   * *du cadre visible* revient à garder les plus importantes de ce qu'on
+   * regarde. C'est ce qui fait descendre la carte jusqu'aux villages : zoomé
+   * sur la Bretagne, on veut les bourgs bretons, pas Marseille et Lyon parce
+   * qu'elles pèsent plus lourd à l'échelle du pays.
+   */
   visiblePlaces() {
-    return this.atlas.loadedPlaces(this.countryId).slice(0, this.placeBudget());
+    const all = this.atlas.loadedPlaces(this.countryId);
+    const budget = this.placeBudget();
+    if (!this.fitScale || this.transform.k <= this.fitScale * 1.02) return all.slice(0, budget);
+
+    const [x0, y0, x1, y1] = this.window();
+    const out = [];
+    for (const place of all) {
+      if (place.x < x0 || place.x > x1 || place.y < y0 || place.y > y1) continue;
+      out.push(place);
+      if (out.length >= budget) break;
+    }
+    return out;
   }
 
   refreshOverlay() {
+    this.reserved = null;
     this.labels = [];
     this.markers = [];
     this.placeCount = this.mode === 'country' ? this.placeBudget() : 0;
+    this.overlayAt = { ...this.transform };
     const nodes = [];
 
     if (this.mode === 'continent') {
@@ -372,7 +647,7 @@ export class MapView {
       for (const place of this.visiblePlaces()) {
         nodes.push(this.makeMarker({
           x: place.x, y: place.y, kind: 'city', text: place.n,
-          small: place.p < 50000,
+          rank: place.c ? PLACE_RANKS[0] : placeRank(place.p),
           priority: place.c ? 1e12 : place.p,
         }));
       }
@@ -404,10 +679,10 @@ export class MapView {
     return group;
   }
 
-  makeMarker({ x, y, kind, text, saint, priority, small = false }) {
-    const group = el('g', { class: `marker marker--${kind}${small ? ' marker--small' : ''}` });
+  makeMarker({ x, y, kind, text, saint, priority, rank }) {
+    const group = el('g', { class: `marker marker--${kind}${rank ? ` marker--${rank.cls}` : ''}` });
     if (kind === 'city') {
-      group.append(el('circle', { class: 'marker__dot', r: small ? 2 : 3.2 }));
+      group.append(el('circle', { class: 'marker__dot', r: rank.dot }));
     } else {
       group.append(
         el('circle', { class: 'marker__halo', r: 9 }),
@@ -422,9 +697,38 @@ export class MapView {
     label.textContent = text;
     group.append(label);
 
-    const item = { node: group, x, y, text, priority, kind, saint, label };
+    const item = { node: group, x, y, text, priority, kind, saint, label, rank };
     this.markers.push(item);
     return group;
+  }
+
+  /**
+   * Largeur d'un texte sans passer par la mise en page.
+   *
+   * `getBBox()` est juste, mais il force un recalcul de la mise en page à
+   * chaque appel : sur un millier de noms, c'est une centaine de millisecondes
+   * par image, et le zoom devient poisseux. La mesure sur un contexte de
+   * dessin donne le même résultat pour du texte simple, sans rien recalculer.
+   */
+  textWidth(text, font) {
+    if (!this.gauge) this.gauge = document.createElement('canvas').getContext('2d');
+    if (this.gauge.font !== font) this.gauge.font = font;
+    return this.gauge.measureText(text).width;
+  }
+
+  /** Fonte effective d'un rang, lue une fois sur un élément réel. */
+  fontOf(item) {
+    const key = item.rank?.cls || item.kind;
+    let entry = this.fonts.get(key);
+    if (!entry) {
+      const style = getComputedStyle(item.label);
+      entry = {
+        font: `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`,
+        h: parseFloat(style.fontSize) * 1.25,
+      };
+      this.fonts.set(key, entry);
+    }
+    return entry;
   }
 
   /**
@@ -436,14 +740,23 @@ export class MapView {
    * qui ignorerait la casse, la graisse et l'interlettrage.
    */
   measure(item) {
-    if (!item.metrics) {
-      try {
-        const box = item.node.getBBox();
-        item.metrics = { w: box.width, h: box.height };
-      } catch {
-        const size = item.kind === 'label' ? 13 : 11;
-        item.metrics = { w: item.text.length * size * 0.6, h: size * 1.5 };
-      }
+    if (item.metrics) return item.metrics;
+    // Tout ce qui se compte par centaines passe par la mesure rapide. Les
+    // étiquettes de pays, elles, sont quelques dizaines, ne servent qu'en vue
+    // continent — où le zoom est verrouillé — et portent une pastille de
+    // compte sous le nom : pour elles, la mesure exacte du tracé reste juste.
+    if (item.kind !== 'label') {
+      const { font, h } = this.fontOf(item);
+      // Le halo d'un saint déborde son nom quand celui-ci est très court.
+      item.metrics = { w: Math.max(this.textWidth(item.text, font), 18), h };
+      return item.metrics;
+    }
+    try {
+      const box = item.node.getBBox();
+      item.metrics = { w: box.width, h: box.height };
+    } catch {
+      const size = item.kind === 'label' ? 13 : 11;
+      item.metrics = { w: item.text.length * size * 0.6, h: size * 1.5 };
     }
     return item.metrics;
   }
@@ -465,7 +778,29 @@ export class MapView {
       item.node.style.display = item.visible ? '' : 'none';
     }
 
-    const placed = [];
+    // Grille de collision plutôt que comparaison de chacun avec tous : à
+    // quatorze cents noms, le second coûterait un million de tests par image.
+    // Chaque étiquette n'est confrontée qu'à celles des cases qu'elle touche.
+    const CELL = 64;
+    const grid = new Map();
+    const cells = (box) => {
+      const out = [];
+      for (let cx = Math.floor(box[0] / CELL); cx <= Math.floor(box[2] / CELL); cx += 1) {
+        for (let cy = Math.floor(box[1] / CELL); cy <= Math.floor(box[3] / CELL); cy += 1) {
+          out.push(`${cx},${cy}`);
+        }
+      }
+      return out;
+    };
+
+    const occupy = (box) => {
+      for (const key of cells(box)) {
+        const bucket = grid.get(key);
+        if (bucket) bucket.push(box); else grid.set(key, [box]);
+      }
+    };
+    for (const box of this.chromeBoxes()) occupy(box);
+
     const ordered = items.filter((i) => i.visible).sort((a, b) => b.priority - a.priority);
     for (const item of ordered) {
       const isLabel = item.kind === 'label';
@@ -474,11 +809,19 @@ export class MapView {
 
       item.node.setAttribute('transform', `translate(${item.sx} ${item.sy})`);
 
-      const box = [item.sx - w / 2, item.sy - h / 2 + dy, item.sx + w / 2, item.sy + h / 2 + dy];
-      const clash = placed.some((p) => box[0] < p[2] && p[0] < box[2] && box[1] < p[3] && p[1] < box[3]);
+      // Un peu d'air autour de chaque nom : deux étiquettes qui se frôlent se
+      // lisent presque aussi mal que deux qui se recouvrent.
+      const box = [
+        item.sx - w / 2 - LABEL_GAP, item.sy - h / 2 + dy - 1,
+        item.sx + w / 2 + LABEL_GAP, item.sy + h / 2 + dy + 1,
+      ];
+      const keys = cells(box);
+      const clash = keys.some((key) => grid.get(key)?.some(
+        (p) => box[0] < p[2] && p[0] < box[2] && box[1] < p[3] && p[1] < box[3],
+      ));
       const show = !clash || item.saint?.id === this.highlightId;
       item.node.classList.toggle('is-crowded', !show);
-      if (show) placed.push(box);
+      if (show) occupy(box);
     }
   }
 
@@ -561,10 +904,39 @@ export class MapView {
     });
   }
 
+  /** Zoom au clavier, pour qui n'a ni molette ni pavé tactile. */
+  bindKeys() {
+    this.onKey = (event) => {
+      if (this.mode !== 'country') return;
+      if (event.ctrlKey || event.metaKey || event.altKey) return;
+      // Rien ne doit se déclencher pendant qu'on écrit dans la barre de recherche.
+      if (event.target.closest?.('input, textarea, select, [contenteditable]')) return;
+      if (event.key === '+' || event.key === '=') this.zoomBy(ZOOM_STEP);
+      else if (event.key === '-' || event.key === '_') this.zoomBy(1 / ZOOM_STEP);
+      else if (event.key === '0') this.refit();
+      else return;
+      event.preventDefault();
+    };
+    window.addEventListener('keydown', this.onKey);
+  }
+
+  /** Bornes absolues du zoom pour le pays ouvert. */
+  zoomLimits() {
+    const ground = (EQUATOR * Math.cos((this.countryLat || 0) * Math.PI / 180))
+      / (WORLD_SIZE * GROUND_LIMIT);
+    return [
+      this.fitScale * COUNTRY_ZOOM[0],
+      Math.min(
+        this.fitScale * COUNTRY_ZOOM_MAX,
+        Math.max(this.fitScale * COUNTRY_ZOOM[1], ground),
+      ),
+    ];
+  }
+
   zoomAround(point, factor, base) {
     if (this.mode !== 'country' || !this.fitScale) return;
-    const [lo, hi] = COUNTRY_ZOOM;
-    const k = Math.min(this.fitScale * hi, Math.max(this.fitScale * lo, base.k * factor));
+    const [lo, hi] = this.zoomLimits();
+    const k = Math.min(hi, Math.max(lo, base.k * factor));
     const ratio = k / base.k;
     this.apply({
       k,
@@ -617,6 +989,7 @@ export class MapView {
 
   destroy() {
     this.resizeObserver.disconnect();
+    window.removeEventListener('keydown', this.onKey);
     if (this.animation) cancelAnimationFrame(this.animation);
   }
 }

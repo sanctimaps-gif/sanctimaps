@@ -194,6 +194,11 @@ export default {
     medium: '中',
     low: '低',
   },
+  map: {
+    zoomIn: '放大',
+    zoomOut: '缩小',
+    zoomFit: '显示整个国家',
+  },
   legend: {
     title: '图例',
     withSaints: '有圣人的国家',

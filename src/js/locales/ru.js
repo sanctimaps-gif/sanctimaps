@@ -194,6 +194,11 @@ export default {
     medium: 'средняя',
     low: 'низкая',
   },
+  map: {
+    zoomIn: 'Приблизить',
+    zoomOut: 'Отдалить',
+    zoomFit: 'Показать страну целиком',
+  },
   legend: {
     title: 'Условные обозначения',
     withSaints: 'Страны со святыми',

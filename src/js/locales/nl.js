@@ -194,6 +194,11 @@ export default {
     medium: 'matig',
     low: 'laag',
   },
+  map: {
+    zoomIn: 'Inzoomen',
+    zoomOut: 'Uitzoomen',
+    zoomFit: 'Het hele land tonen',
+  },
   legend: {
     title: 'Legende',
     withSaints: 'Landen met heiligen',
