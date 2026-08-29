@@ -1,0 +1,510 @@
+/**
+ * Génère les données statiques consommées par l'application.
+ *
+ *   node tools/build-data.mjs
+ *
+ * Entrées (devDependencies, aucune requête réseau) :
+ *   - world-atlas      : géométries TopoJSON des pays (110m et 50m)
+ *   - world-countries  : métadonnées ISO, région, traductions des noms
+ *   - all-the-cities   : villes mondiales avec population
+ *
+ * Sorties (data/generated/) :
+ *   - world.json            carte basse définition + index des pays et continents
+ *   - countries/<ISO3>.json contour haute définition, chargé à la volée
+ *   - cities.json           principales villes par pays
+ *   - country-names.json    noms de pays traduits
+ */
+
+import { createRequire } from 'node:module';
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+import { feature } from 'topojson-client';
+
+import { WORLD_SIZE, project } from '../src/js/map/projection.js';
+
+const require = createRequire(import.meta.url);
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
+const OUT = join(ROOT, 'data', 'generated');
+
+const worldCountries = require('world-countries');
+const cities = require('all-the-cities');
+
+/** Langues pour lesquelles world-countries fournit une traduction. */
+const NAME_LOCALES = {
+  fr: 'fra', es: 'spa', it: 'ita', pt: 'por', de: 'deu', nl: 'nld',
+  pl: 'pol', ru: 'rus', ar: 'ara', zh: 'zho', ja: 'jpn', ko: 'kor',
+};
+
+/**
+ * Cadrages des continents, en degrés [ouest, sud, est, nord].
+ *
+ * Volontairement fixés à la main plutôt que déduits des pays membres : la
+ * Russie est rattachée à l'Europe par la norme ISO, et l'union brute des
+ * territoires étirerait la vue « Europe » jusqu'au Kamtchatka. L'Océanie
+ * dépasse 180° : elle est décrite dans un repère centré Pacifique, que la
+ * carte sait afficher.
+ */
+const CONTINENTS = {
+  europe: [-26, 33, 46, 72],
+  africa: [-20, -37, 53, 38],
+  asia: [25, -12, 150, 57],
+  'north-america': [-172, 5, -50, 73],
+  'south-america': [-83, -57, -33, 14],
+  oceania: [110, -49, 231, 22],
+};
+
+function continentOf(country) {
+  switch (country.region) {
+    case 'Europe': return 'europe';
+    case 'Africa': return 'africa';
+    case 'Asia': return 'asia';
+    case 'Oceania': return 'oceania';
+    case 'Americas':
+      return country.subregion === 'South America' ? 'south-america' : 'north-america';
+    default: return null; // Antarctique
+  }
+}
+
+/** Territoires présents dans Natural Earth mais sans code ISO numérique. */
+const UNMATCHED = {
+  Kosovo: { id: 'XKX', name: 'Kosovo', continent: 'europe' },
+  'N. Cyprus': { id: 'XNC', name: 'Northern Cyprus', continent: 'asia' },
+  Somaliland: { id: 'XSL', name: 'Somaliland', continent: 'africa' },
+  'Siachen Glacier': null,
+  'Indian Ocean Ter.': null,
+  'Ashmore and Cartier Is.': null,
+  'Fr. S. Antarctic Lands': null,
+  Antarctica: null,
+};
+
+const byCcn3 = new Map();
+const byCca3 = new Map();
+for (const c of worldCountries) {
+  if (c.ccn3) byCcn3.set(String(c.ccn3), c);
+  byCca3.set(c.cca3, c);
+}
+
+// ---------------------------------------------------------------------------
+// Géométrie
+// ---------------------------------------------------------------------------
+
+/**
+ * Ramène les longitudes d'un anneau dans un repère continu : sans cela, un
+ * polygone qui franchit l'antiméridien (Russie, Fidji) traverse toute la carte.
+ */
+function unwrap(ring) {
+  const out = [[ring[0][0], ring[0][1]]];
+  for (let i = 1; i < ring.length; i++) {
+    let lon = ring[i][0];
+    const prev = out[i - 1][0];
+    while (lon - prev > 180) lon -= 360;
+    while (prev - lon > 180) lon += 360;
+    out.push([lon, ring[i][1]]);
+  }
+  // Si l'anneau s'est retrouvé hors du monde, on le décale d'un tour complet.
+  let mean = 0;
+  for (const p of out) mean += p[0];
+  mean /= out.length;
+  const shift = mean > 180 ? -360 : mean < -180 ? 360 : 0;
+  if (shift) for (const p of out) p[0] += shift;
+  return out;
+}
+
+/** Anneau géographique -> points entiers dans l'espace monde. */
+function projectRing(ring) {
+  const pts = [];
+  let last = null;
+  for (const [lon, lat] of unwrap(ring)) {
+    const [x, y] = project(lon, lat);
+    const p = [Math.round(x), Math.round(y)];
+    if (last && p[0] === last[0] && p[1] === last[1]) continue;
+    pts.push(p);
+    last = p;
+  }
+  return pts;
+}
+
+/** Aire signée (repère écran : positive = sens horaire). */
+function ringArea(pts) {
+  let a = 0;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    a += (pts[j][0] - pts[i][0]) * (pts[j][1] + pts[i][1]);
+  }
+  return a / 2;
+}
+
+function ringBBox(pts) {
+  let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+  for (const [x, y] of pts) {
+    if (x < x0) x0 = x;
+    if (y < y0) y0 = y;
+    if (x > x1) x1 = x;
+    if (y > y1) y1 = y;
+  }
+  return [x0, y0, x1, y1];
+}
+
+function mergeBBox(a, b) {
+  if (!a) return b.slice();
+  return [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.max(a[2], b[2]), Math.max(a[3], b[3])];
+}
+
+function bboxContains(outer, inner) {
+  return inner[0] >= outer[0] && inner[1] >= outer[1] && inner[2] <= outer[2] && inner[3] <= outer[3];
+}
+
+function growBBox(b, factor) {
+  const w = (b[2] - b[0]) * factor;
+  const h = (b[3] - b[1]) * factor;
+  return [b[0] - w, b[1] - h, b[2] + w, b[3] + h];
+}
+
+/** Centroïde surfacique d'un anneau (repli sur la moyenne si aire nulle). */
+function ringCentroid(pts) {
+  let cx = 0, cy = 0, a = 0;
+  for (let i = 0, j = pts.length - 1; i < pts.length; j = i++) {
+    const f = pts[j][0] * pts[i][1] - pts[i][0] * pts[j][1];
+    a += f;
+    cx += (pts[j][0] + pts[i][0]) * f;
+    cy += (pts[j][1] + pts[i][1]) * f;
+  }
+  if (a === 0) {
+    for (const p of pts) { cx += p[0]; cy += p[1]; }
+    return [Math.round(cx / pts.length), Math.round(cy / pts.length)];
+  }
+  return [Math.round(cx / (3 * a)), Math.round(cy / (3 * a))];
+}
+
+function shiftRing(pts, dx) {
+  return pts.map(([x, y]) => [x + dx, y]);
+}
+
+/**
+ * Un anneau qui déborde le carré Mercator (Tchoukotka poussée au-delà de 180°)
+ * doit aussi apparaître sur le bord opposé, sans quoi il manque un morceau de
+ * la carte du monde.
+ */
+function wrapCopies(rings) {
+  const extra = [];
+  for (const r of rings) {
+    const b = ringBBox(r);
+    if (b[2] > WORLD_SIZE) extra.push(shiftRing(r, -WORLD_SIZE));
+    else if (b[0] < 0) extra.push(shiftRing(r, WORLD_SIZE));
+  }
+  return extra;
+}
+
+/** Chemin SVG en coordonnées relatives : nettement plus compact qu'en absolu. */
+function toPath(rings) {
+  let d = '';
+  for (const pts of rings) {
+    if (pts.length < 3) continue;
+    d += `M${pts[0][0]} ${pts[0][1]}`;
+    let [px, py] = pts[0];
+    for (let i = 1; i < pts.length; i++) {
+      const [x, y] = pts[i];
+      d += `l${x - px} ${y - py}`;
+      px = x; py = y;
+    }
+    d += 'Z';
+  }
+  return d;
+}
+
+/** Découpe une géométrie GeoJSON en liste de polygones (anneau externe + trous). */
+function polygonsOf(geometry) {
+  if (!geometry) return [];
+  if (geometry.type === 'Polygon') return [geometry.coordinates];
+  if (geometry.type === 'MultiPolygon') return geometry.coordinates;
+  return [];
+}
+
+/**
+ * Convertit une entité pays en chemin SVG.
+ *
+ * `bbox` couvre l'intégralité du territoire, `focus` seulement la masse
+ * principale et ce qui la borde : c'est ce cadrage-là qu'on utilise pour zoomer,
+ * sinon ouvrir la France afficherait surtout l'Atlantique (Guyane) et les
+ * États-Unis surtout le Pacifique (Alaska, Hawaï).
+ */
+function buildShape(geometry) {
+  const parts = [];
+  for (const poly of polygonsOf(geometry)) {
+    const rings = poly.map(projectRing).filter((r) => r.length >= 3);
+    if (!rings.length) continue;
+    const outer = rings[0];
+    parts.push({ rings, bbox: ringBBox(outer), area: Math.abs(ringArea(outer)) });
+  }
+  if (!parts.length) return null;
+
+  parts.sort((a, b) => b.area - a.area);
+  const main = parts[0];
+  const near = growBBox(main.bbox, 0.35);
+  let focus = main.bbox.slice();
+  let bbox = null;
+  for (const p of parts) {
+    bbox = mergeBBox(bbox, p.bbox);
+    if (p !== main && bboxContains(near, p.bbox)) focus = mergeBBox(focus, p.bbox);
+  }
+
+  return {
+    rings: parts.flatMap((p) => p.rings),
+    bbox,
+    focus,
+    label: ringCentroid(main.rings[0]),
+    area: parts.reduce((s, p) => s + p.area, 0),
+  };
+}
+
+/**
+ * Met une forme au format publié.
+ *
+ * `pacific` redouble le tracé un tour de globe plus loin (continent décrit
+ * au-delà de 180°) et `shift` replace les repères du pays dans ce repère-là.
+ */
+function finalizeShape(shape, { pacific = false, shift = 0 } = {}) {
+  const rings = shape.rings;
+  let all = rings.concat(wrapCopies(rings));
+  if (pacific) all = all.concat(rings.map((r) => shiftRing(r, WORLD_SIZE)));
+  const sx = (b) => [b[0] + shift, b[1], b[2] + shift, b[3]];
+  return {
+    d: toPath(all),
+    bbox: sx(shape.bbox),
+    focus: sx(shape.focus),
+    label: [shape.label[0] + shift, shape.label[1]],
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Construction
+// ---------------------------------------------------------------------------
+
+function loadFeatures(resolution) {
+  const topo = require(`world-atlas/countries-${resolution}.json`);
+  return feature(topo, topo.objects.countries).features;
+}
+
+function identify(f) {
+  const meta = byCcn3.get(String(f.id));
+  if (meta) {
+    const continent = continentOf(meta);
+    if (!continent) return null; // Antarctique et terres australes
+    return { id: meta.cca3, name: meta.name.common, continent };
+  }
+  const name = f.properties?.name;
+  if (name in UNMATCHED) return UNMATCHED[name];
+  console.warn(`  ! pays ignoré (aucune correspondance ISO) : ${name} [id=${f.id}]`);
+  return null;
+}
+
+console.log('Génération des données géographiques…');
+
+// Le 50m fait référence pour l'identité et le cadrage : le 110m écarte
+// purement et simplement les micro-États (Vatican, Malte, Monaco…), qui sont
+// justement parmi les plus chargés en saints. Le 110m ne sert qu'à alléger le
+// tracé de la vue mondiale, là où il existe.
+const coarse = new Map();
+for (const f of loadFeatures('110m')) {
+  const meta = identify(f);
+  if (meta && !coarse.has(meta.id)) coarse.set(meta.id, f);
+}
+
+/** Continents dont le cadrage franchit l'antiméridien. */
+const PACIFIC = new Set(
+  Object.entries(CONTINENTS)
+    .filter(([, frame]) => project(frame[2], 0)[0] > WORLD_SIZE)
+    .map(([key]) => key),
+);
+
+const countries = [];
+const detailFiles = new Map();
+const shiftById = new Map();
+const seen = new Set();
+for (const f of loadFeatures('50m')) {
+  const meta = identify(f);
+  if (!meta || seen.has(meta.id)) continue;
+  const detail = buildShape(f.geometry);
+  if (!detail) continue;
+  seen.add(meta.id);
+
+  const pacific = PACIFIC.has(meta.continent);
+  const shift = pacific && (detail.focus[0] + detail.focus[2]) / 2 < WORLD_SIZE / 2 ? WORLD_SIZE : 0;
+  const opts = { pacific, shift };
+  shiftById.set(meta.id, shift);
+
+  const fine = finalizeShape(detail, opts);
+  detailFiles.set(meta.id, { id: meta.id, ...fine });
+
+  const coarseFeature = coarse.get(meta.id);
+  const outline = coarseFeature ? finalizeShape(buildShape(coarseFeature.geometry), opts) : fine;
+  countries.push({
+    id: meta.id,
+    name: meta.name,
+    continent: meta.continent,
+    d: outline.d,
+    bbox: fine.bbox,
+    focus: fine.focus,
+    label: fine.label,
+    area: Math.round(detail.area),
+  });
+}
+countries.sort((a, b) => a.id.localeCompare(b.id));
+
+// Cadre du monde : union des pays, ce qui borne le déplacement de la carte.
+// Quelques territoires débordent l'antiméridien après recollage (Tchoukotka,
+// Fidji) ; on rogne au carré Mercator plutôt que d'étirer la carte.
+let worldBBox = null;
+for (const c of countries) worldBBox = mergeBBox(worldBBox, c.bbox);
+worldBBox = [
+  Math.max(0, worldBBox[0]), Math.max(0, worldBBox[1]),
+  Math.min(WORLD_SIZE, worldBBox[2]), Math.min(WORLD_SIZE, worldBBox[3]),
+];
+
+const continents = Object.entries(CONTINENTS).map(([key, [w, s, e, n]]) => {
+  const [x0, y0] = project(w, n);
+  const [x1, y1] = project(e, s);
+  const bbox = [x0, y0, x1, y1].map(Math.round);
+  return {
+    id: key,
+    bbox,
+    label: [Math.round((bbox[0] + bbox[2]) / 2), Math.round((bbox[1] + bbox[3]) / 2)],
+    countries: countries.filter((c) => c.continent === key).map((c) => c.id),
+  };
+});
+
+rmSync(OUT, { recursive: true, force: true });
+mkdirSync(join(OUT, 'countries'), { recursive: true });
+
+writeFileSync(
+  join(OUT, 'world.json'),
+  JSON.stringify({ worldSize: WORLD_SIZE, bounds: worldBBox, continents, countries }),
+);
+console.log(`  world.json : ${countries.length} pays, ${continents.length} continents`);
+
+// Contours haute définition, chargés uniquement à l'ouverture d'un pays.
+for (const c of countries) {
+  writeFileSync(join(OUT, 'countries', `${c.id}.json`), JSON.stringify(detailFiles.get(c.id)));
+}
+console.log(`  countries/ : ${countries.length} contours détaillés`);
+
+// ---------------------------------------------------------------------------
+// Villes
+// ---------------------------------------------------------------------------
+
+const CITIES_PER_COUNTRY = 14;
+const cca2ToCca3 = new Map(worldCountries.map((c) => [c.cca2, c.cca3]));
+const known = new Set(countries.map((c) => c.id));
+
+const byCountry = new Map();
+for (const city of cities) {
+  const iso3 = cca2ToCca3.get(city.country);
+  if (!iso3 || !known.has(iso3)) continue;
+  if (!byCountry.has(iso3)) byCountry.set(iso3, []);
+  byCountry.get(iso3).push(city);
+}
+
+const citiesOut = {};
+let cityCount = 0;
+for (const [iso3, list] of byCountry) {
+  list.sort((a, b) => b.population - a.population);
+  const picked = [];
+  const names = new Set();
+  const push = (c) => {
+    if (names.has(c.name) || picked.length >= CITIES_PER_COUNTRY) return;
+    names.add(c.name);
+    const [x, y] = project(c.loc.coordinates[0], c.loc.coordinates[1]);
+    picked.push({
+      n: c.name,
+      x: Math.round(x),
+      y: Math.round(y),
+      p: c.population,
+      c: c.featureCode === 'PPLC' ? 1 : 0,
+    });
+  };
+  const shift = shiftById.get(iso3) || 0;
+  for (const c of list) if (c.featureCode === 'PPLC') push(c);
+  for (const c of list) push(c);
+  if (shift) for (const c of picked) c.x += shift;
+  picked.sort((a, b) => b.c - a.c || b.p - a.p);
+  citiesOut[iso3] = picked;
+  cityCount += picked.length;
+}
+writeFileSync(join(OUT, 'cities.json'), JSON.stringify(citiesOut));
+console.log(`  cities.json : ${cityCount} villes réparties sur ${Object.keys(citiesOut).length} pays`);
+
+// ---------------------------------------------------------------------------
+// Noms de pays traduits
+// ---------------------------------------------------------------------------
+
+const names = {};
+for (const c of countries) {
+  const meta = byCca3.get(c.id);
+  const entry = { en: c.name };
+  if (meta) {
+    for (const [lang, key] of Object.entries(NAME_LOCALES)) {
+      const t = meta.translations?.[key]?.common;
+      if (t) entry[lang] = t;
+    }
+    if (meta.name?.nativeName) {
+      const native = Object.values(meta.name.nativeName)[0]?.common;
+      if (native) entry.native = native;
+    }
+  }
+  names[c.id] = entry;
+}
+writeFileSync(join(OUT, 'country-names.json'), JSON.stringify(names));
+console.log(`  country-names.json : ${Object.keys(names).length} pays, ${Object.keys(NAME_LOCALES).length} langues`);
+
+// ---------------------------------------------------------------------------
+// Saints
+// ---------------------------------------------------------------------------
+
+const SAINTS_DIR = join(ROOT, 'data', 'saints');
+const REQUIRED = ['id', 'name', 'sex', 'city', 'country', 'lat', 'lng', 'feast'];
+
+const saints = [];
+const ids = new Set();
+const errors = [];
+
+for (const file of readdirSync(SAINTS_DIR).filter((f) => f.endsWith('.json')).sort()) {
+  const raw = JSON.parse(readFileSync(join(SAINTS_DIR, file), 'utf8'));
+  for (const s of raw.saints) {
+    const where = `${file}:${s.id ?? '?'}`;
+    for (const field of REQUIRED) {
+      if (s[field] === undefined || s[field] === null) errors.push(`${where} — champ « ${field} » manquant`);
+    }
+    if (ids.has(s.id)) errors.push(`${where} — identifiant en double`);
+    ids.add(s.id);
+    if (!seen.has(s.country)) errors.push(`${where} — pays inconnu : ${s.country}`);
+    if (!/^\d{2}-\d{2}$/.test(s.feast || '')) errors.push(`${where} — fête mal formée : ${s.feast}`);
+    if (Math.abs(s.lat) > 85 || Math.abs(s.lng) > 180) errors.push(`${where} — coordonnées hors limites`);
+    if (s.born == null && s.died == null) errors.push(`${where} — ni naissance ni mort`);
+    if (s.born != null && s.died != null && s.died < s.born) errors.push(`${where} — mort avant la naissance`);
+
+    const [x, y] = project(s.lng, s.lat);
+    const shift = shiftById.get(s.country) || 0;
+    saints.push({ ...s, x: Math.round(x) + shift, y: Math.round(y) });
+  }
+}
+
+if (errors.length) {
+  console.error('\nErreurs dans les fiches de saints :');
+  for (const e of errors) console.error(`  - ${e}`);
+  process.exit(1);
+}
+
+saints.sort((a, b) => (a.born ?? a.died) - (b.born ?? b.died));
+writeFileSync(join(OUT, 'saints.json'), JSON.stringify({ saints }));
+
+const perCountry = new Set(saints.map((s) => s.country));
+const perContinent = new Map();
+for (const s of saints) {
+  const c = countries.find((x) => x.id === s.country).continent;
+  perContinent.set(c, (perContinent.get(c) || 0) + 1);
+}
+console.log(`  saints.json : ${saints.length} saints, ${perCountry.size} pays`);
+console.log(`    ${[...perContinent].map(([k, n]) => `${k} ${n}`).join(', ')}`);
+
+console.log('Terminé.');

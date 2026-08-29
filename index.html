@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SanctiMaps — carte mondiale des saints</title>
+<meta name="description" content="Carte mondiale interactive des saints de l’Église catholique : parcourez les continents, ouvrez un pays et découvrez les lieux de naissance des saints.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>✝</text></svg>">
+<link rel="stylesheet" href="src/css/app.css">
+</head>
+<body>
+<div class="app" id="app">
+  <main class="stage" id="stage">
+    <div class="map-host" id="map-host"></div>
+  </main>
+</div>
+
+<div class="loader" id="loader">
+  <div class="loader__mark" aria-hidden="true">✝</div>
+  <p class="loader__text" id="loader-text">Chargement de la carte…</p>
+</div>
+
+<noscript>
+  <p class="noscript">SanctiMaps est une carte interactive : activez JavaScript pour l’explorer.</p>
+</noscript>
+
+<script type="module" src="src/js/main.js"></script>
+</body>
+</html>

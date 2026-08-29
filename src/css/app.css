@@ -1,0 +1,743 @@
+/* SanctiMaps — feuille de style unique, sans dépendance externe. */
+
+:root {
+  --ink: #24201b;
+  --ink-soft: #6b6155;
+  --paper: #f7f2e8;
+  --panel: #fffdf8;
+  --line: #ded3c0;
+  --sea: #cddbe4;
+  --sea-deep: #b4c8d6;
+  --land: #ebe3d4;
+  --land-hover: #e0d5c0;
+  --land-saints: #d8b45c;
+  --land-saints-hover: #c9a03f;
+  --selected: #b9863a;
+  --accent: #8c2230;
+  --accent-soft: #f3e2e4;
+  --city: #4a5a68;
+  --birth: #a3162a;
+  --user: #2f6b4f;
+  --shadow: 0 10px 30px rgb(36 32 27 / 18%);
+  --radius: 10px;
+  --panel-width: 22.5rem;
+  --font: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #ece5da;
+    --ink-soft: #a79c8c;
+    --paper: #161c23;
+    --panel: #1d242c;
+    --line: #333d48;
+    --sea: #101820;
+    --sea-deep: #0a0f15;
+    --land: #2a333d;
+    --land-hover: #35404c;
+    --land-saints: #8a6b23;
+    --land-saints-hover: #a5811f;
+    --selected: #d8b45c;
+    --accent: #c9505f;
+    --accent-soft: #33222a;
+    --city: #9fb2c2;
+    --birth: #e2685c;
+    --user: #63b58c;
+    --shadow: 0 10px 30px rgb(0 0 0 / 45%);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--sea-deep);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 15px;
+  line-height: 1.5;
+  overflow: hidden;
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+.app {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------- La carte */
+
+.stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.map-host {
+  position: absolute;
+  inset: 0;
+  touch-action: none;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+
+.map-host.is-picking .map { cursor: crosshair; }
+.map:active { cursor: grabbing; }
+
+/* Le fond du monde se distingue légèrement du hors-carte. */
+.sheet { fill: var(--sea); }
+
+.country {
+  fill: var(--land);
+  stroke: var(--sea);
+  stroke-width: 0.6;
+  transition: fill 180ms ease, opacity 180ms ease;
+}
+
+.country.has-saints { fill: var(--land-saints); }
+.country:hover { fill: var(--land-hover); }
+.country.has-saints:hover { fill: var(--land-saints-hover); }
+
+.country.is-muted {
+  opacity: 0.42;
+  pointer-events: auto;
+}
+
+.country.is-selected,
+.country-detail {
+  fill: var(--selected);
+  stroke: var(--ink);
+  stroke-width: 0.9;
+  opacity: 1;
+}
+
+.country-detail { pointer-events: auto; }
+
+/* ------------------------------------------- Étiquettes et points, non zoomés */
+
+.overlay { pointer-events: none; }
+
+.label__text {
+  font-family: var(--font);
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 3.5;
+  stroke-linejoin: round;
+}
+
+.label--continent .label__text {
+  font-size: 1.3rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.label--country .label__text { font-size: 0.8rem; }
+.label--country.has-saints .label__text { font-weight: 700; }
+
+.label__count {
+  font-size: 0.68rem;
+  fill: var(--accent);
+  font-family: var(--font-ui);
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 3;
+}
+
+.label.is-crowded { opacity: 0; }
+
+.marker { pointer-events: auto; cursor: pointer; }
+
+.marker__label {
+  font-size: 0.7rem;
+  fill: var(--ink);
+  transform: translateY(1.55em);
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 3;
+  stroke-linejoin: round;
+  transition: opacity 150ms ease;
+}
+
+.marker.is-crowded .marker__label { opacity: 0; }
+.marker:hover .marker__label,
+.marker:focus-visible .marker__label { opacity: 1; }
+
+.marker--city { pointer-events: none; }
+.marker--city .marker__dot { fill: var(--city); }
+.marker--city .marker__label { fill: var(--city); font-style: italic; }
+
+.marker--saint .marker__dot {
+  fill: var(--birth);
+  stroke: var(--paper);
+  stroke-width: 1.6;
+}
+
+.marker--saint .marker__halo {
+  fill: var(--birth);
+  opacity: 0.16;
+  transition: opacity 150ms ease, r 150ms ease;
+}
+
+.marker--saint.is-user .marker__dot { fill: var(--user); }
+.marker--saint.is-user .marker__halo { fill: var(--user); }
+
+.marker--saint:hover .marker__halo,
+.marker--saint.is-active .marker__halo { opacity: 0.4; }
+.marker--saint.is-active .marker__dot { stroke: var(--ink); }
+.marker--saint.is-active .marker__label { opacity: 1; font-weight: 700; }
+.marker:focus-visible { outline: none; }
+.marker:focus-visible .marker__halo { opacity: 0.5; }
+
+/* ------------------------------------------------------ Bandeau et légende */
+
+.topbar {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  padding: 0.9rem 1rem 1.4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1rem;
+  background: linear-gradient(to bottom, rgb(0 0 0 / 12%), transparent);
+  pointer-events: none;
+}
+
+.topbar > * { pointer-events: auto; }
+
+.trail {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.25rem 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.crumb {
+  border: 0;
+  background: none;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.95rem;
+}
+
+.crumb:hover { background: var(--accent-soft); }
+.crumb.is-current { font-weight: 700; cursor: default; }
+.crumb__sep { color: var(--ink-soft); }
+
+.hint {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--panel);
+  background: rgb(36 32 27 / 72%);
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+}
+
+.continents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-inline-start: auto;
+}
+
+.legend {
+  position: absolute;
+  inset-block-end: 1rem;
+  inset-inline-end: 1rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.8rem;
+  box-shadow: var(--shadow);
+  font-size: 0.78rem;
+  max-width: 14rem;
+}
+
+.legend__title {
+  margin: 0 0 0.35rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
+}
+
+.legend__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.legend__list li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.swatch {
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  flex: none;
+}
+
+.swatch--saints { background: var(--land-saints); }
+.swatch--plain { background: var(--land); }
+.swatch--city { background: var(--city); border-radius: 50%; width: 0.55rem; height: 0.55rem; margin: 0 0.15rem; }
+.swatch--birth { background: var(--birth); border-radius: 50%; }
+
+/* -------------------------------------------------------- Panneau latéral */
+
+.panel {
+  order: -1;
+  flex: 0 0 var(--panel-width);
+  width: var(--panel-width);
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border-inline-end: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  z-index: 20;
+  transition: margin-inline-start 260ms ease;
+}
+
+.panel:not(.is-open) {
+  margin-inline-start: calc(-1 * var(--panel-width));
+  visibility: hidden;
+}
+
+.panel__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1rem 1rem 0.5rem;
+}
+
+.panel__title {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.35rem;
+  letter-spacing: 0.02em;
+}
+
+.panel__tagline {
+  margin: 0.1rem 0 0;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.panel__close { margin-inline-start: auto; }
+
+.panel__tabs {
+  display: flex;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.tab {
+  border: 0;
+  background: none;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius) var(--radius) 0 0;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.tab:hover { background: var(--accent-soft); }
+
+.tab.is-active {
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: inset 0 -2px 0 var(--accent);
+}
+
+.panel__body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 0.9rem 1rem 1.5rem;
+}
+
+.panel__footer {
+  border-top: 1px solid var(--line);
+  padding: 0.6rem 1rem;
+}
+
+.panel-toggle {
+  position: absolute;
+  inset-block-start: 0.9rem;
+  inset-inline-start: 0.9rem;
+  z-index: 30;
+}
+
+.panel-toggle.is-hidden { display: none; }
+
+.icon-btn {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: var(--radius);
+  width: 2.2rem;
+  height: 2.2rem;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  box-shadow: var(--shadow);
+}
+
+.icon-btn:hover { background: var(--accent-soft); }
+
+/* ------------------------------------------------------------ Formulaires */
+
+.field {
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.field--inline {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.field--inline .control { flex: 1 1 auto; }
+
+.field__label {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-bottom: 0.2rem;
+}
+
+.field__hint {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  margin-top: 0.15rem;
+}
+
+.control {
+  width: 100%;
+  padding: 0.42rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--paper);
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.control--area { resize: vertical; }
+
+.filters__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  align-items: end;
+}
+
+.filters__reset { margin-bottom: 0.7rem; }
+
+.group {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.7rem;
+  margin: 0 0 0.7rem;
+}
+
+.group__legend {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  padding: 0 0.3rem;
+}
+
+.checks {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr));
+  gap: 0.15rem 0.5rem;
+  max-height: 9rem;
+  overflow-y: auto;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+}
+
+.btn {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: var(--radius);
+  padding: 0.42rem 0.8rem;
+  cursor: pointer;
+}
+
+.btn:hover { background: var(--accent-soft); }
+
+.btn--primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  width: 100%;
+  font-weight: 600;
+}
+
+.btn--primary:hover { filter: brightness(1.1); }
+.btn--ghost { background: none; }
+.btn--ghost.is-active { border-color: var(--accent); color: var(--accent); }
+.btn--danger { border-color: var(--accent); color: var(--accent); background: none; }
+
+.chip {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.1rem 0.6rem;
+  font-size: 0.75rem;
+  background: var(--paper);
+}
+
+.chip--action {
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  background: var(--panel);
+}
+
+.chip--action:hover { background: var(--accent-soft); }
+
+.chip--action.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.chips {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.notice {
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  font-size: 0.85rem;
+  margin: 0 0 0.7rem;
+}
+
+.notice--error { background: var(--accent-soft); color: var(--accent); }
+.notice--ok { background: color-mix(in srgb, var(--user) 18%, transparent); }
+.notice--mine { background: color-mix(in srgb, var(--user) 18%, transparent); }
+
+/* --------------------------------------------------------------- Résultats */
+
+.results__summary {
+  margin: 0.4rem 0 0.5rem;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.results {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.result {
+  display: grid;
+  gap: 0.1rem;
+  text-align: start;
+  border: 1px solid transparent;
+  border-bottom-color: var(--line);
+  background: none;
+  padding: 0.5rem 0.4rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.result:hover { background: var(--accent-soft); border-color: var(--line); }
+
+.result__name {
+  font-family: var(--font);
+  font-size: 1.02rem;
+}
+
+.result--user .result__name::after {
+  content: " ●";
+  color: var(--user);
+  font-size: 0.7em;
+}
+
+.result__meta, .result__dates {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.result__dates { display: flex; gap: 0.6rem; }
+.result__feast { color: var(--accent); }
+.results__empty { color: var(--ink-soft); font-size: 0.88rem; }
+
+/* ------------------------------------------------------------ Fiche saint */
+
+.detail__back { margin-bottom: 0.6rem; }
+
+.detail__name {
+  font-family: var(--font);
+  font-size: 1.5rem;
+  margin: 0 0 0.2rem;
+}
+
+.detail__aka {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
+.detail__desc {
+  font-family: var(--font);
+  font-size: 1rem;
+  margin: 0.6rem 0;
+}
+
+.sheet {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0.8rem 0;
+}
+
+.sheet__row {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  gap: 0.5rem;
+  border-bottom: 1px dotted var(--line);
+  padding-bottom: 0.2rem;
+}
+
+.sheet__key {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+
+.sheet__value { margin: 0; }
+
+.detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+/* ------------------------------------------------------ Chargement, divers */
+
+.loader {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 0.6rem;
+  background: var(--paper);
+  color: var(--ink);
+  z-index: 100;
+}
+
+.loader__mark {
+  font-size: 2.4rem;
+  color: var(--accent);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.loader.is-error .loader__mark { animation: none; }
+.loader__text { margin: 0; }
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+.noscript {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  margin: 0;
+  padding: 1rem;
+  background: var(--accent);
+  color: #fff;
+  text-align: center;
+  z-index: 200;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ------------------------------------------------------------ Petits écrans */
+
+@media (max-width: 899px) {
+  :root { --panel-width: min(90vw, 22.5rem); }
+
+  .panel {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    height: 100%;
+  }
+
+  .panel:not(.is-open) { margin-inline-start: 0; transform: translateX(-100%); }
+  .panel:not(.is-open):dir(rtl) { transform: translateX(100%); }
+
+  .topbar { padding-inline-start: 3.6rem; }
+  .legend { display: none; }
+
+  /* Les continents défilent sur une seule ligne plutôt que d'empiler
+     trois rangées de puces au-dessus de la carte. */
+  .continents {
+    margin-inline-start: 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    max-width: 100%;
+    padding-bottom: 0.2rem;
+  }
+
+  .continents::-webkit-scrollbar { display: none; }
+  .chip--action { white-space: nowrap; }
+
+  /* Sur une carte réduite, un nom de continent en grandes capitales
+     déborderait de son continent. */
+  .label--continent .label__text { font-size: 0.92rem; letter-spacing: 0.12em; }
+  .label--country .label__text { font-size: 0.72rem; }
+}
