@@ -1,3 +1,5 @@
+import { can, getSession } from '../auth.js';
+import { PENDING, PUBLISHED } from '../data.js';
 import { collator, getLanguage, monthNames, t, titleLabel } from '../i18n.js';
 import { field, fill, h, select } from './dom.js';
 
@@ -13,14 +15,19 @@ const BLANK = {
   lat: '', lng: '', month: '', day: '', desc: '', titles: [],
 };
 
-/** Formulaire d'ajout d'un saint, enregistré sur l'appareil de l'utilisateur. */
+/**
+ * Formulaire d'ajout — et de modification, quand l'administrateur reprend une
+ * fiche existante. Un utilisateur soumet une proposition ; un administrateur
+ * publie directement.
+ */
 export class AddPanel {
-  constructor(atlas, { onAdd, onPick, onCancelPick }) {
+  constructor(atlas, { onSubmit, onPick, onCancelPick }) {
     this.atlas = atlas;
-    this.onAdd = onAdd;
+    this.onSubmit = onSubmit;
     this.onPick = onPick;
     this.onCancelPick = onCancelPick;
     this.values = { ...BLANK };
+    this.editing = null;
     this.message = null;
     this.root = h('form', { class: 'add', novalidate: true });
     this.render();
@@ -36,10 +43,40 @@ export class AddPanel {
 
   /** Sert de valeur par défaut au pays quand un pays est ouvert sur la carte. */
   suggestCountry(countryId) {
-    if (!this.values.country && countryId) {
+    if (!this.editing && !this.values.country && countryId) {
       this.values.country = countryId;
       this.render();
     }
+  }
+
+  /** Charge une fiche existante dans le formulaire. */
+  edit(saint) {
+    const lang = getLanguage();
+    const [month, day] = String(saint.feast || '').split('-');
+    this.editing = saint.id;
+    this.message = null;
+    this.values = {
+      name: this.atlas.saintName(saint, lang),
+      sex: saint.sex || 'm',
+      born: saint.born == null ? '' : String(saint.born),
+      died: saint.died == null ? '' : String(saint.died),
+      city: saint.city || '',
+      country: saint.country || '',
+      lat: String(saint.lat),
+      lng: String(saint.lng),
+      month: month ? String(Number(month)) : '',
+      day: day ? String(Number(day)) : '',
+      desc: typeof saint.desc === 'string' ? saint.desc : saint.desc?.[lang] || '',
+      titles: [...(saint.titles || [])],
+    };
+    this.render();
+  }
+
+  cancelEdit() {
+    this.editing = null;
+    this.values = { ...BLANK };
+    this.message = null;
+    this.render();
   }
 
   bind(key) {
@@ -59,6 +96,12 @@ export class AddPanel {
       .map((key) => ({ value: key, label: titleLabel(key, this.values.sex) }))
       .sort((a, b) => cmp.compare(a.label, b.label));
 
+    if (!can('propose')) {
+      fill(this.root, [h('p', { class: 'notice notice--error', text: t('perm.needUser') })]);
+      this.root.onsubmit = (event) => event.preventDefault();
+      return;
+    }
+
     const titleBox = h('div', { class: 'checks' }, ...titles.map((option) => h('label', {
       class: 'check',
     },
@@ -75,7 +118,12 @@ export class AddPanel {
     h('span', { text: option.label }))));
 
     fill(this.root, [
-      h('p', { class: 'add__intro', text: t('add.intro') }),
+      this.editing
+        ? h('h2', { class: 'panel__section', text: t('add.editTitle') })
+        : h('p', { class: 'add__intro', text: t('add.intro') }),
+      this.editing
+        ? null
+        : h('p', { class: 'add__intro', text: can('publish') ? t('add.introAdmin') : t('add.introUser') }),
       this.message
         ? h('p', { class: `notice notice--${this.message.kind}`, text: this.message.text })
         : null,
@@ -139,11 +187,11 @@ export class AddPanel {
         h('legend', { class: 'group__legend', text: t('add.feast') }),
         h('div', { class: 'filters__row' },
           select([{ value: '', label: '—' }, ...months], {
-            value: this.values.month, onchange: this.bind('month'), 'aria-label': t('search.feastMonth'),
+            value: this.values.month, onchange: this.bind('month'), 'aria-label': t('add.month'),
           }),
           h('input', {
             class: 'control', type: 'number', min: '1', max: '31',
-            value: this.values.day, oninput: this.bind('day'), 'aria-label': t('search.feastDay'),
+            value: this.values.day, oninput: this.bind('day'), 'aria-label': t('add.day'),
           }))),
 
       h('fieldset', { class: 'group' },
@@ -157,9 +205,21 @@ export class AddPanel {
         oninput: this.bind('desc'),
       }, this.values.desc)),
 
-      h('button', { class: 'btn btn--primary', type: 'submit', text: t('add.save') }),
-      h('p', { class: 'add__count', text: t('add.mineCount', { n: this.atlas.userSaints.length }) }),
-      this.atlas.userSaints.length
+      h('button', {
+        class: 'btn btn--primary',
+        type: 'submit',
+        text: this.editing ? t('add.update') : t('add.save'),
+      }),
+      this.editing
+        ? h('button', {
+          class: 'btn btn--ghost',
+          type: 'button',
+          text: t('add.cancel'),
+          onclick: () => this.cancelEdit(),
+        })
+        : null,
+      h('p', { class: 'add__count', text: t('add.mineCount', { n: this.atlas.store.added.length }) }),
+      this.atlas.store.added.length
         ? h('button', {
           class: 'btn btn--ghost',
           type: 'button',
@@ -204,7 +264,7 @@ export class AddPanel {
     const v = this.values;
     const lang = getLanguage();
     const pad = (n) => String(n).padStart(2, '0');
-    const saint = {
+    const draft = {
       name: { [lang]: v.name.trim() },
       sex: v.sex,
       born: v.born === '' ? null : Number(v.born),
@@ -217,14 +277,21 @@ export class AddPanel {
       titles: [...v.titles],
       desc: v.desc.trim() ? { [lang]: v.desc.trim() } : undefined,
     };
+
+    const editing = this.editing;
+    const status = can('publish') ? PUBLISHED : PENDING;
+    this.editing = null;
     this.values = { ...BLANK, country: v.country };
-    this.message = { kind: 'ok', text: t('add.saved') };
+    this.message = {
+      kind: 'ok',
+      text: editing ? t('add.updated') : t(status === PUBLISHED ? 'add.savedPublished' : 'add.savedPending'),
+    };
     this.render();
-    this.onAdd(saint);
+    this.onSubmit({ draft, editing, status, author: getSession().name });
   }
 
   exportMine() {
-    const blob = new Blob([JSON.stringify({ saints: this.atlas.userSaints }, null, 2)],
+    const blob = new Blob([JSON.stringify({ saints: this.atlas.store.added }, null, 2)],
       { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const link = h('a', { href: url, download: 'mes-saints.json' });

@@ -1,32 +1,32 @@
+import { can, getSession } from '../auth.js';
 import { LANGUAGES, getLanguage, setLanguage, t } from '../i18n.js';
-import { h, select } from './dom.js';
+import { fill, h, select } from './dom.js';
 
 /**
- * Panneau latéral : recherche, ajout et fiche détaillée.
- * Il se superpose à la carte sur les petits écrans et la borde sur les grands.
+ * Panneau latéral : recherche, ajout, fiche, et — pour l'administrateur — la
+ * file de modération et l'assistant. Il se superpose à la carte sur les petits
+ * écrans et la borde sur les grands.
  */
 export class Sidebar {
-  constructor(host, { searchPanel, addPanel, detailPanel }) {
+  constructor(host, panels) {
     this.host = host;
-    this.searchPanel = searchPanel;
-    this.addPanel = addPanel;
-    this.detailPanel = detailPanel;
+    this.panels = panels;
     this.tab = 'search';
     this.open = window.matchMedia('(min-width: 900px)').matches;
     this.build();
     this.sync();
   }
 
+  /** Onglets visibles : les deux derniers n'existent que pour l'administrateur. */
+  tabNames() {
+    return can('moderate')
+      ? ['search', 'add', 'moderate', 'assistant', 'account']
+      : ['search', 'add', 'account'];
+  }
+
   build() {
     this.body = h('div', { class: 'panel__body' });
-
-    this.tabs = ['search', 'add'].map((name) => h('button', {
-      class: 'tab',
-      type: 'button',
-      role: 'tab',
-      dataset: { tab: name },
-      onclick: () => this.showTab(name),
-    }));
+    this.tabBar = h('div', { class: 'panel__tabs', role: 'tablist' });
 
     this.languageSelect = select(
       LANGUAGES.map((l) => ({ value: l.code, label: l.label })),
@@ -40,14 +40,13 @@ export class Sidebar {
       onclick: () => this.setOpen(false),
     }, h('span', { 'aria-hidden': 'true', text: '×' }));
 
-    this.title = h('h1', { class: 'panel__title', text: 'SanctiMaps' });
     this.tagline = h('p', { class: 'panel__tagline' });
 
     this.panel = h('aside', { class: 'panel', id: 'panel' },
       h('header', { class: 'panel__header' },
-        h('div', {}, this.title, this.tagline),
+        h('div', {}, h('h1', { class: 'panel__title', text: 'SanctiMaps' }), this.tagline),
         this.closeButton),
-      h('div', { class: 'panel__tabs', role: 'tablist' }, ...this.tabs),
+      this.tabBar,
       this.body,
       h('footer', { class: 'panel__footer' },
         h('label', { class: 'field field--inline' }, this.languageLabel, this.languageSelect)));
@@ -72,7 +71,7 @@ export class Sidebar {
   }
 
   showDetail(saint) {
-    this.detailPanel.show(saint);
+    this.panels.detail.show(saint);
     this.tab = 'detail';
     this.setOpen(true);
     this.body.scrollTop = 0;
@@ -83,8 +82,36 @@ export class Sidebar {
     this.sync();
   }
 
-  /** Reflète l'état courant : onglet actif, visibilité, textes traduits. */
+  viewFor(name) {
+    if (name === 'add') return this.panels.add.root;
+    if (name === 'moderate') return this.panels.moderate.root;
+    if (name === 'assistant') return this.panels.assistant.root;
+    if (name === 'account') return this.panels.account.root;
+    if (name === 'detail') return this.panels.detail.root;
+    return this.panels.search.root;
+  }
+
+  /** Reflète l'état courant : onglets, visibilité, textes traduits. */
   sync() {
+    const names = this.tabNames();
+    if (this.tab !== 'detail' && !names.includes(this.tab)) this.tab = 'search';
+
+    const pending = this.panels.atlas.pending().length;
+    fill(this.tabBar, names.map((name) => {
+      const active = name === this.tab;
+      const badge = name === 'moderate' && pending
+        ? h('span', { class: 'tab__badge', text: String(pending) })
+        : null;
+      return h('button', {
+        class: `tab${active ? ' is-active' : ''}`,
+        type: 'button',
+        role: 'tab',
+        'aria-selected': String(active),
+        dataset: { tab: name },
+        onclick: () => this.showTab(name),
+      }, h('span', { text: t(`tab.${name}`) }), badge);
+    }));
+
     this.panel.classList.toggle('is-open', this.open);
     this.panel.setAttribute('aria-hidden', this.open ? 'false' : 'true');
     this.toggleButton.classList.toggle('is-hidden', this.open);
@@ -94,27 +121,22 @@ export class Sidebar {
     this.tagline.textContent = t('app.tagline');
     this.languageLabel.textContent = t('ui.language');
     this.languageSelect.value = getLanguage();
+    this.panel.dataset.role = getSession().role;
 
-    for (const tab of this.tabs) {
-      const active = tab.dataset.tab === this.tab;
-      tab.textContent = t(`tab.${tab.dataset.tab}`);
-      tab.classList.toggle('is-active', active);
-      tab.setAttribute('aria-selected', String(active));
-    }
-
-    const view = this.tab === 'add' ? this.addPanel.root
-      : this.tab === 'detail' ? this.detailPanel.root
-        : this.searchPanel.root;
+    const view = this.viewFor(this.tab);
     if (this.body.firstChild !== view) this.body.replaceChildren(view);
   }
 
   /** Reconstruit tout le contenu traduit après un changement de langue. */
   retranslate() {
-    this.searchPanel.render();
-    this.addPanel.render();
-    this.detailPanel.render();
-    this.languageSelect.replaceChildren(...LANGUAGES.map((l) => h('option', {
-      value: l.code, label: l.label, text: l.label, selected: l.code === getLanguage(),
+    this.panels.search.render();
+    this.panels.add.render();
+    this.panels.detail.render();
+    this.panels.moderate.render();
+    this.panels.assistant.render();
+    this.panels.account.render();
+    fill(this.languageSelect, LANGUAGES.map((l) => h('option', {
+      value: l.code, text: l.label, selected: l.code === getLanguage(),
     })));
     this.sync();
   }

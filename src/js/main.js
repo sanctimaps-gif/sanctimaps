@@ -1,7 +1,10 @@
-import { loadAtlas } from './data.js';
+import { getSession, onSessionChange } from './auth.js';
+import { PUBLISHED, loadAtlas } from './data.js';
 import { getDirection, getLanguage, onLanguageChange, t } from './i18n.js';
 import { MapView } from './map/view.js';
+import { AccountPanel } from './ui/account.js';
 import { AddPanel } from './ui/addForm.js';
+import { AssistantPanel, ModerationPanel } from './ui/admin.js';
 import { DetailPanel } from './ui/detail.js';
 import { SearchPanel } from './ui/search.js';
 import { Sidebar } from './ui/sidebar.js';
@@ -19,9 +22,9 @@ loaderText.textContent = t('app.loading');
 
 async function start() {
   const atlas = await loadAtlas();
+  atlas.setViewer(getSession().role);
 
   const map = new MapView(mapHost, atlas, {
-    continentName: (id) => t(`continent.${id}`),
     onCountry: (id) => openCountryFromMap(id),
     onSaint: (id) => openSaint(id),
     onBackground: () => goBack(),
@@ -32,25 +35,29 @@ async function start() {
   const detailPanel = new DetailPanel(atlas, {
     onBack: () => sidebar.backToSearch(),
     onLocate: (saint) => flyToSaint(saint),
+    onEdit: (saint) => {
+      addPanel.edit(saint);
+      sidebar.showTab('add');
+    },
     onRemove: (saint) => {
-      atlas.removeSaint(saint.id);
-      map.syncCountryClasses();
-      map.refreshOverlay();
-      searchPanel.render();
-      addPanel.render();
+      atlas.deleteSaint(saint.id);
+      refreshAll();
       sidebar.backToSearch();
-      topBar.render();
+    },
+    onStatus: (saint, status) => {
+      atlas.setStatus(saint.id, status);
+      refreshAll();
+      detailPanel.refresh();
     },
   });
 
   const addPanel = new AddPanel(atlas, {
-    onAdd: (draft) => {
-      const { saint } = atlas.addSaint(draft);
-      map.syncCountryClasses();
-      map.refreshOverlay();
-      searchPanel.render();
-      topBar.render();
-      flyToSaint(saint);
+    onSubmit: ({ draft, editing, status, author }) => {
+      if (editing) atlas.updateSaint(editing, draft);
+      else atlas.addSaint(draft, { status, author });
+      refreshAll();
+      const saved = editing ? atlas.byId.get(editing) : atlas.store.added.at(-1);
+      if (saved) flyToSaint(atlas.byId.get(saved.id) || saved);
     },
     onPick: () => {
       // Sur petit écran le panneau recouvre la carte : on l'escamote le temps du clic.
@@ -64,12 +71,65 @@ async function start() {
     onCancelPick: () => map.cancelPick(),
   });
 
-  const sidebar = new Sidebar(app, { searchPanel, addPanel, detailPanel });
+  const moderationPanel = new ModerationPanel(atlas, {
+    onOpen: (saint) => { map.highlightSaint(saint.id); sidebar.showDetail(saint); },
+    onStatus: (saint, status) => {
+      atlas.setStatus(saint.id, status);
+      refreshAll();
+    },
+    onReset: () => {
+      atlas.resetStore();
+      refreshAll();
+    },
+  });
+
+  const assistantPanel = new AssistantPanel(atlas, {
+    onAccept: (candidate) => {
+      const { id, x, y, ...draft } = candidate;
+      atlas.addSaint(draft, { status: PUBLISHED, author: getSession().name });
+      refreshAll();
+    },
+    onOpen: (candidate) => flyTo(candidate.country),
+  });
+
+  const accountPanel = new AccountPanel({
+    onChange: () => {
+      atlas.setViewer(getSession().role);
+      refreshAll();
+      accountPanel.render();
+    },
+  });
+
+  const sidebar = new Sidebar(app, {
+    atlas,
+    search: searchPanel,
+    add: addPanel,
+    detail: detailPanel,
+    moderate: moderationPanel,
+    assistant: assistantPanel,
+    account: accountPanel,
+  });
 
   const topBar = new TopBar(stage, atlas, {
     onWorld: () => goWorld(),
     onContinent: (id) => goContinent(id),
   });
+
+  // -------------------------------------------------------------------------
+  // Rafraîchissement transversal
+  // -------------------------------------------------------------------------
+
+  /** Le corpus a bougé : carte, listes et onglets doivent suivre. */
+  function refreshAll() {
+    map.syncCountryClasses();
+    map.refreshOverlay();
+    searchPanel.renderResults();
+    addPanel.render();
+    moderationPanel.render();
+    assistantPanel.render();
+    topBar.render();
+    sidebar.sync();
+  }
 
   // -------------------------------------------------------------------------
   // Navigation
@@ -118,6 +178,10 @@ async function start() {
     } else if (id !== map.countryId) goCountry(id);
   }
 
+  function flyTo(countryId) {
+    if (map.countryId !== countryId) goCountry(countryId);
+  }
+
   function openSaint(id, { fly = false } = {}) {
     const saint = atlas.byId.get(id);
     if (!saint) return;
@@ -129,7 +193,7 @@ async function start() {
   }
 
   function flyToSaint(saint) {
-    if (map.countryId !== saint.country) goCountry(saint.country);
+    flyTo(saint.country);
     map.highlightSaint(saint.id);
     sidebar.showDetail(saint);
     syncChrome();
@@ -144,6 +208,11 @@ async function start() {
       return;
     }
     goBack();
+  });
+
+  onSessionChange(() => {
+    atlas.setViewer(getSession().role);
+    refreshAll();
   });
 
   onLanguageChange(() => {

@@ -1,4 +1,5 @@
-import { eraOf } from '../data.js';
+import { PENDING, PUBLISHED, REJECTED } from '../data.js';
+import { can } from '../auth.js';
 import { formatFeast, formatYear, getLanguage, t, titleLabel } from '../i18n.js';
 import { fill, h } from './dom.js';
 
@@ -9,13 +10,15 @@ function row(label, value) {
     h('dd', { class: 'sheet__value', text: value }));
 }
 
-/** Fiche détaillée d'un saint. */
+/** Fiche détaillée d'un saint, avec les actions permises au rôle courant. */
 export class DetailPanel {
-  constructor(atlas, { onBack, onLocate, onRemove }) {
+  constructor(atlas, { onBack, onLocate, onEdit, onRemove, onStatus }) {
     this.atlas = atlas;
     this.onBack = onBack;
     this.onLocate = onLocate;
+    this.onEdit = onEdit;
     this.onRemove = onRemove;
+    this.onStatus = onStatus;
     this.saint = null;
     this.root = h('div', { class: 'detail' });
   }
@@ -25,14 +28,19 @@ export class DetailPanel {
     this.render();
   }
 
+  /** Reprend la fiche à jour après une modification ou un changement d'état. */
+  refresh() {
+    if (this.saint) this.saint = this.atlas.byId.get(this.saint.id) || null;
+    this.render();
+  }
+
   render() {
     const saint = this.saint;
     if (!saint) {
-      this.root.replaceChildren();
+      fill(this.root, []);
       return;
     }
     const lang = getLanguage();
-    const era = eraOf(saint);
     const description = typeof saint.desc === 'string'
       ? saint.desc
       : saint.desc?.[lang] || saint.desc?.fr || saint.desc?.en || '';
@@ -53,7 +61,10 @@ export class DetailPanel {
       }),
       h('h2', { class: 'detail__name', text: this.atlas.saintName(saint, lang) }),
       otherNames ? h('p', { class: 'detail__aka', text: otherNames }) : null,
-      saint.user ? h('p', { class: 'notice notice--mine', text: t('detail.mine') }) : null,
+      saint.status !== PUBLISHED
+        ? h('p', { class: `notice notice--${saint.status}`, text: t(`status.${saint.status}`) })
+        : null,
+      saint.local ? h('p', { class: 'notice notice--mine', text: t('detail.mine') }) : null,
       saint.titles?.length
         ? h('ul', { class: 'chips' }, ...saint.titles.map((key) => h('li', {
           class: 'chip', text: titleLabel(key, saint.sex),
@@ -68,7 +79,7 @@ export class DetailPanel {
         row(t('detail.birthplace'),
           `${saint.city} — ${this.atlas.countryName(saint.country, lang)}`),
         row(t('detail.feast'), formatFeast(saint.feast)),
-        row(t('detail.era'), era ? t(`era.${era}`) : null)),
+        row(t('detail.status'), t(`status.${saint.status}`))),
       h('div', { class: 'detail__actions' },
         h('button', {
           class: 'btn',
@@ -76,17 +87,33 @@ export class DetailPanel {
           text: t('detail.locate'),
           onclick: () => this.onLocate(saint),
         }),
-        saint.user
-          ? h('button', {
-            class: 'btn btn--danger',
-            type: 'button',
-            text: t('detail.remove'),
-            onclick: () => {
-              // eslint-disable-next-line no-alert
-              if (window.confirm(t('detail.confirmRemove'))) this.onRemove(saint);
-            },
-          })
-          : null),
+        can('edit') ? h('button', {
+          class: 'btn',
+          type: 'button',
+          text: t('detail.edit'),
+          onclick: () => this.onEdit(saint),
+        }) : null,
+        can('moderate') && saint.status === PENDING ? h('button', {
+          class: 'btn btn--go',
+          type: 'button',
+          text: t('detail.approve'),
+          onclick: () => this.onStatus(saint, PUBLISHED),
+        }) : null,
+        can('moderate') && saint.status === PENDING ? h('button', {
+          class: 'btn btn--danger',
+          type: 'button',
+          text: t('detail.reject'),
+          onclick: () => this.onStatus(saint, REJECTED),
+        }) : null,
+        can('remove') ? h('button', {
+          class: 'btn btn--danger',
+          type: 'button',
+          text: t('detail.remove'),
+          onclick: () => {
+            // eslint-disable-next-line no-alert
+            if (window.confirm(t('detail.confirmRemove'))) this.onRemove(saint);
+          },
+        }) : null),
     ]);
   }
 }

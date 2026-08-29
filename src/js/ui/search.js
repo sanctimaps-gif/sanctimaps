@@ -1,112 +1,117 @@
-import { ERAS, eraOf, fold } from '../data.js';
+import { PENDING, REJECTED, saintCentury } from '../data.js';
 import { collator, formatFeast, formatYear, getLanguage, monthNames, t } from '../i18n.js';
-import { field, h, select } from './dom.js';
+import { buildCountryIndex, parseQuery, removeToken, stringifyQuery } from '../query.js';
+import { fill, h } from './dom.js';
 
-const EMPTY = { query: '', era: '', country: '', month: '', day: '', sort: 'name' };
+/** Mois de la langue courante et mois anglais, pour que « september » marche partout. */
+const ENGLISH_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December'];
 
-/** Formulaire de recherche et liste des résultats. */
+/** Recherche : une seule barre, et les filtres qu'elle a compris. */
 export class SearchPanel {
   constructor(atlas, { onSelect }) {
     this.atlas = atlas;
     this.onSelect = onSelect;
-    this.filters = { ...EMPTY };
+    this.text = '';
     this.root = h('div', { class: 'search' });
     this.render();
   }
 
   reset() {
-    this.filters = { ...EMPTY };
+    this.text = '';
     this.render();
   }
 
-  /** Pré-remplit le filtre pays, quand la carte ouvre un pays. */
+  /** Pré-remplit la barre avec un pays, quand la carte en ouvre un. */
   focusCountry(countryId) {
-    this.filters = { ...EMPTY, country: countryId };
+    this.text = this.atlas.countryName(countryId, getLanguage());
     this.render();
   }
 
-  update(patch) {
-    Object.assign(this.filters, patch);
-    this.renderResults();
+  months() {
+    return [...monthNames(), ...ENGLISH_MONTHS];
+  }
+
+  parse() {
+    const lang = getLanguage();
+    if (this.indexLang !== lang) {
+      this.countryIndex = buildCountryIndex(this.atlas, lang);
+      this.indexLang = lang;
+    }
+    return parseQuery(this.text, { countryIndex: this.countryIndex, months: this.months() });
   }
 
   render() {
-    const lang = getLanguage();
-    const cmp = collator();
-    const countries = [...this.atlas.byCountry.keys()]
-      .map((id) => ({ value: id, label: this.atlas.countryName(id, lang) }))
-      .sort((a, b) => cmp.compare(a.label, b.label));
-    const months = monthNames().map((label, i) => ({ value: String(i + 1), label }));
+    this.input = h('input', {
+      class: 'control search__input',
+      type: 'search',
+      value: this.text,
+      placeholder: t('search.placeholder'),
+      'aria-label': t('search.label'),
+      oninput: (e) => {
+        this.text = e.target.value;
+        this.renderResults();
+      },
+    });
 
-    this.results = h('div', { class: 'results', role: 'list' });
+    this.tokenBar = h('div', { class: 'tokens' });
     this.summary = h('p', { class: 'results__summary', 'aria-live': 'polite' });
+    this.results = h('div', { class: 'results', role: 'list' });
 
-    this.root.replaceChildren(
-      h('div', { class: 'filters' },
-        field(t('search.name'), h('input', {
-          class: 'control',
-          type: 'search',
-          value: this.filters.query,
-          placeholder: t('search.namePlaceholder'),
-          oninput: (e) => this.update({ query: e.target.value }),
-        })),
-        field(t('search.era'), select(
-          [{ value: '', label: t('search.any') },
-            ...ERAS.map((era) => ({ value: era.id, label: t(`era.${era.id}`) }))],
-          { value: this.filters.era, onchange: (e) => this.update({ era: e.target.value }) },
-        )),
-        field(t('search.country'), select(
-          [{ value: '', label: t('search.any') }, ...countries],
-          { value: this.filters.country, onchange: (e) => this.update({ country: e.target.value }) },
-        )),
-        h('div', { class: 'filters__row' },
-          field(t('search.feastMonth'), select(
-            [{ value: '', label: t('search.any') }, ...months],
-            { value: this.filters.month, onchange: (e) => this.update({ month: e.target.value }) },
-          )),
-          field(t('search.feastDay'), h('input', {
-            class: 'control',
-            type: 'number',
-            min: '1',
-            max: '31',
-            value: this.filters.day,
-            oninput: (e) => this.update({ day: e.target.value }),
-          }))),
-        h('div', { class: 'filters__row' },
-          field(t('search.sort'), select(
-            [{ value: 'name', label: t('sort.name') },
-              { value: 'chrono', label: t('sort.chrono') },
-              { value: 'feast', label: t('sort.feast') }],
-            { value: this.filters.sort, onchange: (e) => this.update({ sort: e.target.value }) },
-          )),
-          h('button', {
-            class: 'btn btn--ghost filters__reset',
-            type: 'button',
-            text: t('search.reset'),
-            onclick: () => this.reset(),
-          }))),
+    fill(this.root, [
+      h('div', { class: 'search__bar' }, this.input),
+      h('p', { class: 'search__help', text: t('search.help') }),
+      this.tokenBar,
       this.summary,
       this.results,
-    );
+    ]);
     this.renderResults();
   }
 
-  matches() {
-    const { query, era, country, month, day } = this.filters;
+  /** Réécrit la barre après le retrait d'un jeton, en gardant le reste. */
+  dropToken(parsed, kind) {
     const lang = getLanguage();
-    const needle = fold(query.trim());
-    const monthNum = month ? Number(month) : null;
-    const dayNum = day ? Number(day) : null;
+    this.text = stringifyQuery(removeToken(parsed, kind), {
+      atlas: this.atlas, lang, months: monthNames(),
+    });
+    this.input.value = this.text;
+    this.renderResults();
+  }
 
+  renderTokens(parsed) {
+    const lang = getLanguage();
+    const label = (token) => {
+      if (token.kind === 'country') return this.atlas.countryName(token.value, lang);
+      if (token.kind === 'century') return t('search.centuryChip', { n: token.value });
+      if (token.kind === 'year') return t('search.yearChip', { n: token.value });
+      const { month, day } = token.value;
+      return day
+        ? formatFeast(`${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`)
+        : monthNames()[month - 1];
+    };
+    fill(this.tokenBar, parsed.tokens.map((token) => h('button', {
+      class: `chip chip--token chip--${token.kind}`,
+      type: 'button',
+      title: t('search.removeToken'),
+      onclick: () => this.dropToken(parsed, token.kind),
+    }, h('span', { text: label(token) }), h('span', { class: 'chip__x', text: '×' }))));
+  }
+
+  matches(parsed) {
+    const lang = getLanguage();
     return this.atlas.saints.filter((saint) => {
-      if (country && saint.country !== country) return false;
-      if (era && eraOf(saint) !== era) return false;
-      if (monthNum || dayNum) {
+      if (parsed.country && saint.country !== parsed.country) return false;
+      if (parsed.century && saintCentury(saint) !== parsed.century) return false;
+      if (parsed.year != null && !aliveAt(saint, parsed.year)) return false;
+      if (parsed.feast) {
         const [m, d] = String(saint.feast || '').split('-').map(Number);
-        if (monthNum && m !== monthNum) return false;
-        if (dayNum && d !== dayNum) return false;
+        if (m !== parsed.feast.month) return false;
+        if (parsed.feast.day && d !== parsed.feast.day) return false;
       }
-      if (needle && !this.atlas.searchIndex(saint, lang).includes(needle)) return false;
+      if (parsed.terms.length) {
+        const haystack = this.atlas.searchIndex(saint, lang);
+        if (!parsed.terms.every((term) => haystack.includes(term))) return false;
+      }
       return true;
     });
   }
@@ -114,11 +119,14 @@ export class SearchPanel {
   renderResults() {
     const lang = getLanguage();
     const cmp = collator();
-    const list = this.matches();
+    const parsed = this.parse();
+    this.renderTokens(parsed);
 
-    if (this.filters.sort === 'chrono') {
+    const list = this.matches(parsed);
+    // Tri chronologique dès qu'une date est en jeu, alphabétique sinon.
+    if (parsed.century || parsed.year != null) {
       list.sort((a, b) => (a.born ?? a.died ?? 0) - (b.born ?? b.died ?? 0));
-    } else if (this.filters.sort === 'feast') {
+    } else if (parsed.feast) {
       list.sort((a, b) => String(a.feast).localeCompare(String(b.feast)));
     } else {
       list.sort((a, b) => cmp.compare(
@@ -131,31 +139,42 @@ export class SearchPanel {
       : t('search.results', { n: list.length });
 
     if (!list.length) {
-      this.results.replaceChildren(h('p', { class: 'results__empty', text: t('search.none') }));
+      fill(this.results, [h('p', { class: 'results__empty', text: t('search.none') })]);
       return;
     }
 
-    this.results.replaceChildren(...list.map((saint) => {
-      const era = eraOf(saint);
-      return h('button', {
-        class: `result${saint.user ? ' result--user' : ''}`,
-        type: 'button',
-        role: 'listitem',
-        onclick: () => this.onSelect(saint.id),
-      },
-      h('span', { class: 'result__name', text: this.atlas.saintName(saint, lang) }),
-      h('span', { class: 'result__meta',
-        text: `${this.atlas.countryName(saint.country, lang)} · ${saint.city}` }),
-      h('span', { class: 'result__dates' },
-        h('span', { text: this.lifespan(saint) }),
-        h('span', { class: 'result__feast', text: formatFeast(saint.feast) })),
-      era ? h('span', { class: 'chip chip--era', text: t(`era.${era}`) }) : null);
-    }));
+    fill(this.results, list.map((saint) => h('button', {
+      class: `result${saint.status !== 'published' ? ' result--draft' : ''}`,
+      type: 'button',
+      role: 'listitem',
+      onclick: () => this.onSelect(saint.id),
+    },
+    h('span', { class: 'result__name', text: this.atlas.saintName(saint, lang) }),
+    h('span', { class: 'result__meta',
+      text: `${this.atlas.countryName(saint.country, lang)} · ${saint.city}` }),
+    h('span', { class: 'result__dates' },
+      h('span', { text: lifespan(saint) }),
+      h('span', { class: 'result__feast', text: formatFeast(saint.feast) })),
+    statusChip(saint))));
   }
+}
 
-  lifespan(saint) {
-    const born = saint.born != null ? formatYear(saint.born, { circa: saint.circa }) : '?';
-    const died = saint.died != null ? formatYear(saint.died) : '?';
-    return `${born} – ${died}`;
-  }
+function statusChip(saint) {
+  if (saint.status === PENDING) return h('span', { class: 'chip chip--pending', text: t('status.pending') });
+  if (saint.status === REJECTED) return h('span', { class: 'chip chip--rejected', text: t('status.rejected') });
+  return null;
+}
+
+function lifespan(saint) {
+  const born = saint.born != null ? formatYear(saint.born, { circa: saint.circa }) : '?';
+  const died = saint.died != null ? formatYear(saint.died) : '?';
+  return `${born} – ${died}`;
+}
+
+/** Une année isolée sélectionne les saints en vie à ce moment-là. */
+function aliveAt(saint, year) {
+  const born = saint.born ?? (saint.died != null ? saint.died - 70 : null);
+  const died = saint.died ?? (saint.born != null ? saint.born + 80 : null);
+  if (born == null || died == null) return false;
+  return year >= born && year <= died;
 }

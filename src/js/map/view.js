@@ -9,7 +9,13 @@ const TRANSITION = 720;
 const COVER_LIMIT = 1.35;
 
 /** Bornes de zoom en vue « pays », relatives au cadrage d'arrivée. */
-const COUNTRY_ZOOM = [1, 16];
+const COUNTRY_ZOOM = [1, 40];
+
+/** Nombre de localités affichées au cadrage d'arrivée, avant tout zoom. */
+const PLACES_AT_FIT = 12;
+
+/** Plafond de localités simultanées : au-delà, la carte devient illisible. */
+const PLACES_MAX = 450;
 
 /** Marge de déplacement autorisée autour d'un pays, en fraction de sa taille. */
 const COUNTRY_SLACK = 0.35;
@@ -68,10 +74,18 @@ export class MapView {
     this.overlay = el('g', { class: 'overlay' });
 
     const [x0, y0, x1, y1] = this.atlas.bounds;
-    this.sheet = el('rect', {
-      class: 'sheet', x: x0, y: y0, width: x1 - x0, height: y1 - y0,
-    });
-    this.scene.append(this.sheet);
+    const frame = { x: x0, y: y0, width: x1 - x0, height: y1 - y0 };
+    this.sheet = el('rect', { class: 'sheet', ...frame });
+
+    // Les tracés débordent le cadre du monde : le Groenland monte au-delà de la
+    // coupe nord, la Tchoukotka passe l'antiméridien. On les rogne au rectangle
+    // de la carte plutôt que de les laisser flotter dans le vide. Le découpage
+    // porte sur un groupe intérieur, sans transformation propre, pour que le
+    // rectangle de coupe partage exactement le repère de ce qu'il découpe.
+    const clip = el('clipPath', { id: 'sanctimaps-sheet' });
+    clip.append(el('rect', frame));
+    const defs = el('defs');
+    defs.append(clip);
 
     this.countryLayer = el('g', { class: 'countries' });
     this.detailLayer = el('g', { class: 'outline' });
@@ -87,7 +101,10 @@ export class MapView {
       this.paths.set(country.id, path);
       this.countryLayer.append(path);
     }
-    this.scene.append(this.countryLayer, this.detailLayer);
+
+    const clipped = el('g', { 'clip-path': 'url(#sanctimaps-sheet)' });
+    clipped.append(this.sheet, this.countryLayer, this.detailLayer);
+    this.scene.append(defs, clipped);
     this.svg.append(this.scene, this.overlay);
     this.root.append(this.svg);
 
@@ -166,7 +183,10 @@ export class MapView {
     this.transform = clamp ? this.clamp(transform) : transform;
     const { k, x, y } = this.transform;
     this.scene.setAttribute('transform', `translate(${x} ${y}) scale(${k})`);
-    this.positionOverlay();
+    // Zoomer fait apparaître des localités plus petites : on ne reconstruit le
+    // calque que lorsque leur nombre change réellement.
+    if (this.mode === 'country' && this.placeBudget() !== this.placeCount) this.refreshOverlay();
+    else this.positionOverlay();
   }
 
   animateTo(target) {
@@ -223,7 +243,7 @@ export class MapView {
   worldFrame() {
     const vp = this.viewport();
     const portrait = vp.h > vp.w;
-    return this.frame(this.atlas.bounds, { padding: 0.03, cover: portrait, limit: 1.6 });
+    return this.frame(this.atlas.bounds, { padding: 0.01, cover: portrait, limit: 1.6 });
   }
 
   showContinent(id, { animate = true } = {}) {
@@ -255,6 +275,11 @@ export class MapView {
     const target = this.frame(country.focus, { padding: 0.07 });
     this.fitScale = target.k;
     if (animate) this.animateTo(target); else this.apply(target);
+
+    // Villes et villages arrivent après coup : la transition ne les attend pas.
+    this.atlas.ensurePlaces(id).then(() => {
+      if (this.countryId === id) this.refreshOverlay();
+    });
 
     // Le contour fin arrive après coup : la transition ne l'attend pas.
     const detail = await this.atlas.countryDetail(id);
@@ -295,31 +320,30 @@ export class MapView {
   // Calque non déformé : étiquettes et repères
   // -------------------------------------------------------------------------
 
+  /**
+   * Combien de localités montrer à l'échelle courante.
+   *
+   * Au cadrage d'arrivée on ne veut que les grandes villes ; plus on zoome,
+   * plus la carte descend vers les bourgs puis les villages, le tri par
+   * population faisant office de hiérarchie.
+   */
+  placeBudget() {
+    if (!this.fitScale) return PLACES_AT_FIT;
+    const ratio = Math.max(1, this.transform.k / this.fitScale);
+    return Math.min(PLACES_MAX, Math.round(PLACES_AT_FIT * ratio ** 1.7));
+  }
+
+  visiblePlaces() {
+    return this.atlas.loadedPlaces(this.countryId).slice(0, this.placeBudget());
+  }
+
   refreshOverlay() {
     this.labels = [];
     this.markers = [];
+    this.placeCount = this.mode === 'country' ? this.placeBudget() : 0;
     const nodes = [];
 
-    if (this.mode === 'world') {
-      for (const continent of this.atlas.continents) {
-        const count = this.atlas.byContinent.get(continent.id) || 0;
-        // L'Océanie est décrite au-delà de 180° : sur la carte du monde son
-        // étiquette doit revenir du côté visible de l'antiméridien.
-        const labelX = continent.label[0] > WORLD_SIZE
-          ? continent.label[0] - WORLD_SIZE : continent.label[0];
-        nodes.push(this.makeLabel({
-          x: labelX,
-          y: continent.label[1],
-          text: this.handlers.continentName?.(continent.id) ?? continent.id,
-          sub: count ? String(count) : '',
-          cls: 'label label--continent',
-          // Quand deux noms de continents se disputent la place sur un petit
-          // écran, celui qui compte le plus de saints l'emporte.
-          priority: 1000 + count,
-          keepInView: true,
-        }));
-      }
-    } else if (this.mode === 'continent') {
+    if (this.mode === 'continent') {
       const continent = this.atlas.continentById.get(this.continentId);
       for (const id of continent.countries) {
         const country = this.atlas.countryById.get(id);
@@ -336,11 +360,12 @@ export class MapView {
     } else if (this.mode === 'country') {
       // Priorités d'affichage quand les étiquettes se disputent la place :
       // la capitale d'abord — elle situe le pays —, puis les saints, puis les
-      // autres villes, qui ne sont là que pour donner des repères.
-      for (const city of this.atlas.citiesIn(this.countryId)) {
+      // autres localités, qui ne sont là que pour donner des repères.
+      for (const place of this.visiblePlaces()) {
         nodes.push(this.makeMarker({
-          x: city.x, y: city.y, kind: 'city', text: city.n,
-          priority: city.c ? 1e12 : city.p,
+          x: place.x, y: place.y, kind: 'city', text: place.n,
+          small: place.p < 50000,
+          priority: place.c ? 1e12 : place.p,
         }));
       }
       for (const saint of this.atlas.saintsIn(this.countryId)) {
@@ -356,7 +381,7 @@ export class MapView {
     this.positionOverlay();
   }
 
-  makeLabel({ x, y, text, sub, cls, priority, keepInView = false }) {
+  makeLabel({ x, y, text, sub, cls, priority }) {
     const group = el('g', { class: cls });
     const main = el('text', { class: 'label__text', 'text-anchor': 'middle' });
     main.textContent = text;
@@ -366,15 +391,15 @@ export class MapView {
       badge.textContent = sub;
       group.append(badge);
     }
-    const item = { node: group, x, y, text, priority, keepInView, kind: 'label' };
+    const item = { node: group, x, y, text, priority, kind: 'label' };
     this.labels.push(item);
     return group;
   }
 
-  makeMarker({ x, y, kind, text, saint, priority }) {
-    const group = el('g', { class: `marker marker--${kind}` });
+  makeMarker({ x, y, kind, text, saint, priority, small = false }) {
+    const group = el('g', { class: `marker marker--${kind}${small ? ' marker--small' : ''}` });
     if (kind === 'city') {
-      group.append(el('circle', { class: 'marker__dot', r: 3.2 }));
+      group.append(el('circle', { class: 'marker__dot', r: small ? 2 : 3.2 }));
     } else {
       group.append(
         el('circle', { class: 'marker__halo', r: 9 }),
@@ -439,11 +464,6 @@ export class MapView {
       const { w, h } = this.measure(item);
       const dy = isLabel ? 0 : 16; // Les repères portent leur texte en dessous.
 
-      // Le nom d'un continent est ramené dans l'écran plutôt que rogné : son
-      // ancre est le centre d'un très vaste cadre, qui peut tomber au bord.
-      if (item.keepInView) {
-        item.sx = Math.min(vp.w - w / 2 - 12, Math.max(w / 2 + 12, item.sx));
-      }
       item.node.setAttribute('transform', `translate(${item.sx} ${item.sy})`);
 
       const box = [item.sx - w / 2, item.sy - h / 2 + dy, item.sx + w / 2, item.sy + h / 2 + dy];

@@ -11,8 +11,10 @@
  * Sorties (data/generated/) :
  *   - world.json            carte basse définition + index des pays et continents
  *   - countries/<ISO3>.json contour haute définition, chargé à la volée
- *   - cities.json           principales villes par pays
+ *   - cities/<ISO3>.json    villes et villages du pays, chargés à la volée
  *   - country-names.json    noms de pays traduits
+ *   - saints.json           corpus fusionné et validé
+ *   - candidates.json       réservoir de fiches pour l'assistant
  */
 
 import { createRequire } from 'node:module';
@@ -355,12 +357,19 @@ countries.sort((a, b) => a.id.localeCompare(b.id));
 // Cadre du monde : union des pays, ce qui borne le déplacement de la carte.
 // Quelques territoires débordent l'antiméridien après recollage (Tchoukotka,
 // Fidji) ; on rogne au carré Mercator plutôt que d'étirer la carte.
+//
+// Le nord est en outre coupé à 79° : au-delà, Mercator étire un océan Arctique
+// vide sur près d'un sixième de la hauteur, et cette bande volée à la carte
+// est la place que gagnent tous les continents habités.
+const NORTH_CUT = 79;
 let worldBBox = null;
 for (const c of countries) worldBBox = mergeBBox(worldBBox, c.bbox);
 worldBBox = [
-  Math.max(0, worldBBox[0]), Math.max(0, worldBBox[1]),
-  Math.min(WORLD_SIZE, worldBBox[2]), Math.min(WORLD_SIZE, worldBBox[3]),
-];
+  Math.max(0, worldBBox[0]),
+  Math.max(project(0, NORTH_CUT)[1], worldBBox[1]),
+  Math.min(WORLD_SIZE, worldBBox[2]),
+  Math.min(WORLD_SIZE, worldBBox[3]),
+].map(Math.round);
 
 const continents = Object.entries(CONTINENTS).map(([key, [w, s, e, n]]) => {
   const [x0, y0] = project(w, n);
@@ -393,7 +402,14 @@ console.log(`  countries/ : ${countries.length} contours détaillés`);
 // Villes
 // ---------------------------------------------------------------------------
 
-const CITIES_PER_COUNTRY = 14;
+/**
+ * Nombre de localités retenues par pays.
+ *
+ * Généreux à dessein : en vue pays on peut zoomer jusqu'aux villages, et la
+ * carte n'en révèle qu'une poignée à la fois, du plus peuplé au plus petit.
+ * Chaque pays a son fichier, chargé seulement quand on l'ouvre.
+ */
+const PLACES_PER_COUNTRY = 2500;
 const cca2ToCca3 = new Map(worldCountries.map((c) => [c.cca2, c.cca3]));
 const known = new Set(countries.map((c) => c.id));
 
@@ -405,34 +421,28 @@ for (const city of cities) {
   byCountry.get(iso3).push(city);
 }
 
-const citiesOut = {};
+mkdirSync(join(OUT, 'cities'), { recursive: true });
 let cityCount = 0;
 for (const [iso3, list] of byCountry) {
   list.sort((a, b) => b.population - a.population);
   const picked = [];
   const names = new Set();
+  const shift = shiftById.get(iso3) || 0;
   const push = (c) => {
-    if (names.has(c.name) || picked.length >= CITIES_PER_COUNTRY) return;
+    if (names.has(c.name) || picked.length >= PLACES_PER_COUNTRY) return;
     names.add(c.name);
     const [x, y] = project(c.loc.coordinates[0], c.loc.coordinates[1]);
-    picked.push({
-      n: c.name,
-      x: Math.round(x),
-      y: Math.round(y),
-      p: c.population,
-      c: c.featureCode === 'PPLC' ? 1 : 0,
-    });
+    const place = { n: c.name, x: Math.round(x) + shift, y: Math.round(y), p: c.population };
+    if (c.featureCode === 'PPLC') place.c = 1;
+    picked.push(place);
   };
-  const shift = shiftById.get(iso3) || 0;
   for (const c of list) if (c.featureCode === 'PPLC') push(c);
   for (const c of list) push(c);
-  if (shift) for (const c of picked) c.x += shift;
-  picked.sort((a, b) => b.c - a.c || b.p - a.p);
-  citiesOut[iso3] = picked;
+  picked.sort((a, b) => (b.c || 0) - (a.c || 0) || b.p - a.p);
+  writeFileSync(join(OUT, 'cities', `${iso3}.json`), JSON.stringify(picked));
   cityCount += picked.length;
 }
-writeFileSync(join(OUT, 'cities.json'), JSON.stringify(citiesOut));
-console.log(`  cities.json : ${cityCount} villes réparties sur ${Object.keys(citiesOut).length} pays`);
+console.log(`  cities/ : ${cityCount} localités réparties sur ${byCountry.size} pays`);
 
 // ---------------------------------------------------------------------------
 // Noms de pays traduits
@@ -506,5 +516,25 @@ for (const s of saints) {
 }
 console.log(`  saints.json : ${saints.length} saints, ${perCountry.size} pays`);
 console.log(`    ${[...perContinent].map(([k, n]) => `${k} ${n}`).join(', ')}`);
+
+// ---------------------------------------------------------------------------
+// Réservoir de candidats
+// ---------------------------------------------------------------------------
+
+// Volontairement copié sans validation : l'assistant de l'administrateur
+// vérifie lui-même chaque fiche, et le réservoir contient exprès quelques
+// entrées fautives pour que ce contrôle soit visible à l'usage.
+const CAND_DIR = join(ROOT, 'data', 'candidats');
+const candidates = [];
+for (const file of readdirSync(CAND_DIR).filter((f) => f.endsWith('.json')).sort()) {
+  const raw = JSON.parse(readFileSync(join(CAND_DIR, file), 'utf8'));
+  for (const c of raw.saints) {
+    const [x, y] = project(c.lng, c.lat);
+    const shift = shiftById.get(c.country) || 0;
+    candidates.push({ ...c, x: Math.round(x) + shift, y: Math.round(y) });
+  }
+}
+writeFileSync(join(OUT, 'candidates.json'), JSON.stringify({ candidates }));
+console.log(`  candidates.json : ${candidates.length} fiches candidates`);
 
 console.log('Terminé.');

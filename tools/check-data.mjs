@@ -12,6 +12,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { WORLD_SIZE, project, unproject } from '../src/js/map/projection.js';
+import { centuryOf } from '../src/js/data.js';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const GEN = join(ROOT, 'data', 'generated');
@@ -60,7 +61,7 @@ ok('projection réversible');
 // --- Saints -----------------------------------------------------------------
 
 const { saints } = read('saints.json');
-const cities = read('cities.json');
+const { candidates } = read('candidates.json');
 const names = read('country-names.json');
 
 if (saints.length < 100) fail(`corpus trop maigre : ${saints.length} saints`);
@@ -87,7 +88,33 @@ for (const id of new Set(saints.map((s) => s.country))) {
   if (!names[id]) fail(`${id} : aucun nom traduit`);
 }
 ok('tous les pays porteurs de saints ont un nom traduit');
-ok(`${Object.values(cities).flat().length} villes indexées`);
+const placeFiles = readdirSync(join(GEN, 'cities'));
+let placeCount = 0;
+for (const file of placeFiles) placeCount += read(join('cities', file)).length;
+ok(`${placeCount} localités réparties sur ${placeFiles.length} fichiers de pays`);
+
+// --- Siècles ----------------------------------------------------------------
+
+for (const [year, expected] of [[1, 1], [100, 1], [101, 2], [1789, 18], [2000, 20], [-44, -1]]) {
+  if (centuryOf(year) !== expected) fail(`siècle de ${year} : ${centuryOf(year)} au lieu de ${expected}`);
+}
+ok('calcul des siècles');
+
+// --- Candidats de l'assistant ------------------------------------------------
+
+if (candidates.length < 20) fail(`réservoir de candidats trop maigre : ${candidates.length}`);
+const corpusIds = new Set(saints.map((s) => s.id));
+for (const c of candidates) {
+  if (corpusIds.has(c.id)) fail(`candidat ${c.id} : identifiant déjà pris par le corpus`);
+  if (!c.name?.fr) fail(`candidat ${c.id} : nom français manquant`);
+}
+// Le réservoir contient exprès des fiches fautives : l'assistant doit avoir de
+// quoi montrer que sa vérification écarte vraiment quelque chose.
+const faulty = candidates.filter((c) => !countryIds.has(c.country)
+  || !/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(c.feast)
+  || (c.born != null && c.died != null && c.died < c.born));
+if (!faulty.length) fail('aucune fiche candidate fautive : la vérification ne serait pas démontrable');
+ok(`${candidates.length} candidats, dont ${faulty.length} détectés fautifs dès ce contrôle`);
 
 // --- Locales ----------------------------------------------------------------
 
