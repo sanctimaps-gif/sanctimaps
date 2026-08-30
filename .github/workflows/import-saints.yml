@@ -1,0 +1,118 @@
+# Importe les saints depuis Wikidata, puis publie.
+#
+# À lancer depuis l'onglet « Actions » du dépôt : rien à installer, rien à
+# taper. Le travail se fait sur une machine de GitHub, qui a accès à Internet,
+# et le résultat est versé dans le dépôt — ce qui redéploie le site.
+#
+# Le déclenchement est volontairement manuel. Un import quotidien réécrirait le
+# corpus sans que personne regarde, et Wikidata bouge : mieux vaut décider
+# quand on l'interroge.
+name: Importer les saints depuis Wikidata
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Nombre maximal de fiches (vide = toutes)"
+        required: false
+        default: ""
+      status:
+        description: "Statut de canonisation à retenir"
+        required: false
+        default: "tous"
+        type: choice
+        options:
+          - tous
+          - saint
+          - blessed
+      chunk:
+        description: "Taille des tranches de requête"
+        required: false
+        default: "1000"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: import-saints
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      # Les jeux de données géographiques ne servent qu'à régénérer :
+      # l'application, elle, n'a besoin de rien.
+      - name: Installer les jeux de données sources
+        run: npm ci
+
+      - name: Interroger Wikidata
+        run: |
+          set -euo pipefail
+          # Des « if » et non des « && » : sous `set -e`, un test qui échoue en
+          # fin de ligne arrête le script — ici, ne pas passer de limite
+          # suffirait à tout interrompre.
+          args=(--chunk "${{ inputs.chunk }}")
+          if [ -n "${{ inputs.limit }}" ]; then
+            args+=(--limit "${{ inputs.limit }}")
+          fi
+          if [ "${{ inputs.status }}" != "tous" ]; then
+            args+=(--status "${{ inputs.status }}")
+          fi
+          node tools/import-saints.mjs "${args[@]}" | tee /tmp/import.log
+
+      # Rien n'est publié sans être passé par les mêmes contrôles que le reste :
+      # si l'un échoue, le travail s'arrête et le dépôt n'est pas touché.
+      - name: Régénérer et contrôler
+        run: |
+          set -euo pipefail
+          npm run build:data | tee /tmp/build.log
+          npm run check
+
+      - name: Verser au dépôt
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/saints/wikidata.json data/generated
+          if git diff --cached --quiet; then
+            echo "Rien de neuf : le dépôt est déjà à jour."
+            exit 0
+          fi
+          retenues=$(grep -oE '^[0-9]+ fiches retenues' /tmp/import.log | head -1 || echo "des")
+          git commit -m "Import Wikidata : ${retenues}" \
+            -m "$(cat /tmp/import.log)"
+          git push origin HEAD:${{ github.ref_name }}
+
+      # Un envoi fait avec le jeton du dépôt ne réveille pas les autres
+      # ateliers : la reconstruction du site se demande donc explicitement.
+      - name: Demander la reconstruction du site
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" \
+            && echo "Reconstruction demandée."
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Import depuis Wikidata'
+            echo '```'
+            cat /tmp/import.log 2>/dev/null || echo "l'import n'a pas abouti"
+            echo '```'
+            grep 'saints.json' /tmp/build.log 2>/dev/null || true
+          } >> "$GITHUB_STEP_SUMMARY"

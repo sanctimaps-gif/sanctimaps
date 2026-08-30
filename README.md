@@ -499,6 +499,16 @@ Le corpus écrit à la main compte 285 fiches. Pour aller au-delà — vers les
 milliers de saints et de bienheureux que l'Église reconnaît — un outil verse
 d'un coup ce que Wikidata sait de plaçable :
 
+**Sans rien installer, depuis GitHub.** Onglet **Actions** du dépôt →
+*Importer les saints depuis Wikidata* → **Run workflow**. Le travail se fait
+sur une machine de GitHub, les contrôles s'appliquent, et le résultat est versé
+au dépôt — ce qui redéploie le site. Trois réglages facultatifs : un nombre
+maximal de fiches, un statut de canonisation, la taille des tranches. Le
+déclenchement est manuel à dessein : un import quotidien réécrirait le corpus
+sans que personne regarde, et Wikidata bouge.
+
+**En ligne de commande**, si l'on préfère :
+
 ```bash
 npm run import:saints                              # tout ce qui est plaçable
 node tools/import-saints.mjs --dry-run             # compter sans rien écrire
@@ -507,6 +517,9 @@ node tools/import-saints.mjs --status saint        # les canonisés seulement
 node tools/import-saints.mjs --names ma-liste.txt  # seulement ces noms-là
 npm run build:data && npm run check                # puis, toujours
 ```
+
+L'import lui-même n'a besoin que de Node ; `npm install` ne sert qu'à
+`build:data`, qui régénère les données géographiques.
 
 **Pourquoi Wikidata, quand on dispose de listes de saints.** Une carte a besoin
 de coordonnées. Les listes de noms — celle de Wikipédia, celle de Nominis,
@@ -613,6 +626,7 @@ data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complète
 data/reference/exonymes.json graphies acceptées pour les localités
 data/generated/          données produites par build:data (versionnées)
 tools/import-saints.mjs  import de masse depuis Wikidata
+.github/workflows/       le même import, lancé d'un clic depuis GitHub
 tools/ai.mjs             consigne et schéma des fiches, côté serveur
 tools/providers.mjs      adaptateurs de fournisseur (openai, ollama, anthropic)
 tools/build-data.mjs     génération des données
