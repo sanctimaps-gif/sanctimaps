@@ -51,6 +51,8 @@ const DEFAULTS = {
   pause: 300,
   chunk: 200,
   countries: [],
+  wikipedia: 'https://{lang}.wikipedia.org',
+  bios: true,
   dryRun: false,
 };
 
@@ -91,6 +93,8 @@ function parseArgs(argv) {
     else if (arg === '--pause') options.pause = Number(next());
     else if (arg === '--chunk') options.chunk = Number(next());
     else if (arg === '--countries') options.countries = String(next()).split(',').map((c) => c.trim().toUpperCase()).filter(Boolean);
+    else if (arg === '--wikipedia') options.wikipedia = next();
+    else if (arg === '--no-bios') options.bios = false;
     else if (arg === '--help' || arg === '-h') options.help = true;
     else throw new Error(`option inconnue : ${arg}`);
   }
@@ -179,6 +183,109 @@ SELECT ?s ?labelEn WHERE {
   { ?s wdt:P106 ?job } UNION { ?s wdt:P39 ?job }
   ?job rdfs:label ?labelEn . FILTER(LANG(?labelEn) = "en")
 }`;
+
+/** Les titres d'article, d'où l'on tirera la biographie. */
+const articlesFor = (ids) => `
+SELECT ?s ?wikiFr ?wikiEn WHERE {
+  ${values(ids)}
+  OPTIONAL { ?artFr schema:about ?s ; schema:isPartOf <https://fr.wikipedia.org/> ;
+             schema:name ?wikiFr }
+  OPTIONAL { ?artEn schema:about ?s ; schema:isPartOf <https://en.wikipedia.org/> ;
+             schema:name ?wikiEn }
+}`;
+
+// ---------------------------------------------------------------------------
+// Biographies
+// ---------------------------------------------------------------------------
+
+/** Titres demandés par appel : la limite de l'API d'extraits pour un anonyme. */
+const EXTRACT_BATCH = 20;
+
+/**
+ * Réduit une introduction d'article à une petite biographie.
+ *
+ * Trois phrases au plus, six cents caractères au plus, et la coupe se fait
+ * toujours en fin de phrase : une biographie tronquée au milieu d'un mot se
+ * remarque, et discrédite le reste de la fiche.
+ */
+function shorten(text, { sentences = 3, maxChars = 600 } = {}) {
+  const clean = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!clean) return '';
+  const parts = clean.split(/(?<=[.!?])\s+/);
+  let out = '';
+  for (const part of parts.slice(0, sentences)) {
+    const next = out ? `${out} ${part}` : part;
+    if (out && next.length > maxChars) break;
+    out = next;
+  }
+  if (!out) out = parts[0].slice(0, maxChars);
+  return out.length > maxChars
+    ? `${out.slice(0, maxChars).replace(/\s+\S*$/, '')}…`
+    : out;
+}
+
+/**
+ * Les introductions d'articles, par lots de vingt titres.
+ *
+ * L'API d'extraits rend le texte déjà débarrassé du balisage, ce qui évite
+ * d'avoir à démêler du wiki-texte. Les redirections et les normalisations de
+ * titres sont suivies, faute de quoi un article rendu sous son vrai nom ne se
+ * rattacherait à rien.
+ */
+async function extracts(lang, titles, options) {
+  const found = new Map();
+  const base = options.wikipedia.replace('{lang}', lang);
+  for (let i = 0; i < titles.length; i += EXTRACT_BATCH) {
+    const batch = titles.slice(i, i + EXTRACT_BATCH);
+    const url = new URL(`${base}/w/api.php`);
+    for (const [key, value] of Object.entries({
+      action: 'query',
+      prop: 'extracts',
+      exintro: '1',
+      explaintext: '1',
+      exlimit: 'max',
+      redirects: '1',
+      format: 'json',
+      formatversion: '2',
+      titles: batch.join('|'),
+    })) url.searchParams.set(key, value);
+
+    let data;
+    try {
+      const res = await fetch(url, { headers: { 'User-Agent': AGENT } });
+      if (!res.ok) throw new Error(String(res.status));
+      data = await res.json();
+    } catch (error) {
+      console.warn(`  biographies ${lang} : ${error.message}`);
+      await sleep(options.pause);
+      continue;
+    }
+
+    // Le titre demandé n'est pas toujours celui qui revient : on refait le
+    // chemin, normalisation puis redirection.
+    const moved = new Map();
+    for (const step of [data?.query?.normalized, data?.query?.redirects]) {
+      for (const { from, to } of step || []) moved.set(from, to);
+    }
+    const resolve = (title) => {
+      let current = title;
+      for (let hop = 0; hop < 4 && moved.has(current); hop += 1) current = moved.get(current);
+      return current;
+    };
+    const byTitle = new Map();
+    for (const page of data?.query?.pages || []) {
+      if (page.extract) byTitle.set(page.title, page.extract);
+    }
+    for (const title of batch) {
+      const extract = byTitle.get(resolve(title));
+      if (extract) found.set(title, extract);
+    }
+    process.stdout.write(`\r  biographies ${lang} : ${found.size}/${titles.length}`);
+    await sleep(options.pause);
+  }
+  process.stdout.write('\n');
+  return found;
+}
 
 // ---------------------------------------------------------------------------
 // Conversion
@@ -277,6 +384,8 @@ const HELP = `Importe les saints depuis Wikidata.
   --pause MS       attente entre deux requêtes (défaut : 400)
   --chunk N        taille des lots d'identifiants (défaut : 200)
   --countries A,B  n'interroger que ces pays, par code à trois lettres
+  --no-bios        ne pas aller chercher les biographies sur Wikipédia
+  --wikipedia URL  adresse de Wikipédia, « {lang} » valant la langue
   --dry-run        compter sans écrire
 `;
 
@@ -338,13 +447,36 @@ async function main() {
   const allIds = [...new Set(rows.map((row) => idOf(row.s?.value)).filter(Boolean))];
   const patronRows = [];
   const jobRows = [];
+  const articleRows = [];
   for (let i = 0; i < allIds.length; i += options.chunk) {
     const batch = allIds.slice(i, i + options.chunk);
     patronRows.push(...await sparql(options.endpoint, patronageFor(batch), options));
     await sleep(options.pause);
     jobRows.push(...await sparql(options.endpoint, occupationFor(batch), options));
     await sleep(options.pause);
+    if (options.bios) {
+      articleRows.push(...await sparql(options.endpoint, articlesFor(batch), options));
+      await sleep(options.pause);
+    }
     console.log(`  compléments : ${Math.min(i + options.chunk, allIds.length)}/${allIds.length}`);
+  }
+
+  // Les biographies : un titre d'article par saint et par langue, puis les
+  // introductions, que Wikipédia rend déjà en texte simple.
+  const articles = new Map();
+  for (const row of articleRows) {
+    const id = idOf(row.s?.value);
+    const entry = articles.get(id) || {};
+    if (row.wikiFr?.value) entry.fr = row.wikiFr.value;
+    if (row.wikiEn?.value) entry.en = row.wikiEn.value;
+    articles.set(id, entry);
+  }
+  const bios = { fr: new Map(), en: new Map() };
+  if (options.bios) {
+    for (const lang of ['fr', 'en']) {
+      const titles = [...new Set([...articles.values()].map((a) => a[lang]).filter(Boolean))];
+      if (titles.length) bios[lang] = await extracts(lang, titles, options);
+    }
   }
 
   const patronage = new Map();
@@ -445,6 +577,25 @@ async function main() {
       if (patron.en.length) fiche.patronage.en = [...new Set(patron.en)].join(', ');
     }
 
+    // La biographie vient de l'introduction de l'article, réduite à trois
+    // phrases. Le texte est sous licence CC BY-SA : l'adresse de l'article
+    // rejoint donc les sources de la fiche, ce n'est pas facultatif.
+    const article = articles.get(qid) || {};
+    const bio = {};
+    for (const lang of ['fr', 'en']) {
+      const title = article[lang];
+      const text = title ? bios[lang].get(title) : null;
+      const petite = shorten(text);
+      if (petite) {
+        bio[lang] = petite;
+        fiche.sources.push({
+          label: `Wikipédia (${lang})`,
+          url: `https://${lang}.wikipedia.org/wiki/${encodeURIComponent(title.replace(/ /g, '_'))}`,
+        });
+      }
+    }
+    if (bio.fr || bio.en) fiche.bio = bio;
+
     seen.add(qid);
     saints.push(fiche);
     if (options.limit && saints.length >= options.limit) break;
@@ -452,7 +603,8 @@ async function main() {
 
   saints.sort((a, b) => (a.born ?? a.died) - (b.born ?? b.died));
 
-  console.log(`\n${saints.length} fiches retenues.`);
+  const avecBio = saints.filter((s) => s.bio).length;
+  console.log(`\n${saints.length} fiches retenues, dont ${avecBio} avec une biographie.`);
   console.log('Écartées :');
   for (const [reason, n] of Object.entries(dropped)) if (n) console.log(`  ${reason.padEnd(10)} ${n}`);
 

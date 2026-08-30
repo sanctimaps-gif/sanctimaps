@@ -351,6 +351,11 @@ Ce que Wikidata rend, et où l'atelier le verse :
 | `P106`, `P39` | qualités |
 | lien vers Wikipédia | histoire du saint |
 
+L'import de masse fait de même : il joint à chaque fiche l'**introduction de
+l'article de Wikipédia**, réduite à trois phrases, coupée en fin de phrase et
+plafonnée à six cents caractères. Le texte est sous licence CC BY-SA, et
+l'adresse de l'article rejoint donc les sources de la fiche.
+
 Le choix de la source n'est pas indifférent. Un modèle de langue restitue ses
 souvenirs et se trompe avec assurance ; Wikidata rend des champs structurés,
 datés et **sourcés**. Chaque fiche composée ainsi garde l'adresse de ce qui l'a
@@ -524,6 +529,7 @@ node tools/import-saints.mjs --limit 200           # un échantillon, pour voir
 node tools/import-saints.mjs --status saint        # les canonisés seulement
 node tools/import-saints.mjs --names ma-liste.txt  # seulement ces noms-là
 node tools/import-saints.mjs --countries FRA,ITA   # seulement ces pays-là
+node tools/import-saints.mjs --no-bios             # sans les biographies
 npm run build:data && npm run check                # puis, toujours
 ```
 
