@@ -358,7 +358,8 @@ l'adresse de l'article rejoint donc les sources de la fiche. Les titres sont
 demandés par vingt à l'API de MediaWiki, dans les deux langues ; les
 redirections et les titres normalisés sont rendus à la fiche qui les avait
 demandés, faute de quoi une biographie irait au mauvais saint. Sur les 4 235
-fiches importées, 3 471 en ont reçu une.
+fiches importées, 3 471 en ont reçu une ; les 285 fiches écrites à la main
+sont pourvues à part, par l'outil décrit plus bas.
 
 Le choix de la source n'est pas indifférent. Un modèle de langue restitue ses
 souvenirs et se trompe avec assurance ; Wikidata rend des champs structurés,
@@ -495,14 +496,17 @@ origines s'y mêlent :
 S'y ajoutent 148 fiches candidates en réserve pour l'assistant et 293 fiches
 de fond documentaire.
 
-**3 471 fiches sur 4 520 — 77 % — portent une biographie**, c'est-à-dire un
+**3 743 fiches sur 4 520 — 83 % — portent une biographie**, c'est-à-dire un
 récit de quelques phrases sous les dates, et non la seule notice d'une ligne.
-2 951 viennent de l'article français de Wikipédia, 3 108 de l'anglais, la
+3 219 viennent de l'article français de Wikipédia, 3 379 de l'anglais, la
 plupart des deux ; l'introduction est réduite à trois phrases, coupée en fin de
-phrase et plafonnée à six cents caractères, ce qui donne 293 caractères en
-moyenne. Les 1 049 fiches restantes sont celles dont le saint n'a d'article
-dans aucune des deux langues : la fiche se tait alors plutôt que d'inventer.
-L'attribution CC BY-SA voyage avec le texte, dans les sources de la fiche.
+phrase et plafonnée à six cents caractères, ce qui donne 301 caractères en
+moyenne. Les fiches écrites à la main sont pourvues à 272 sur 285.
+
+Les 777 fiches restantes sont celles dont le saint n'a d'article dans aucune
+des deux langues, ou dont l'appariement n'a pas été assez sûr : la fiche se
+tait alors plutôt que d'inventer. L'attribution CC BY-SA voyage avec le texte,
+dans les sources de la fiche.
 
 153 de ces saints portent en plus un patronage — ce dont ils sont patrons —
 tenu à part dans `data/saints/patronages.json` et fusionné à la génération.
@@ -605,7 +609,8 @@ npm run build:data && npm run check       # puis, toujours
 
 Depuis GitHub, c'est l'atelier *Donner une biographie aux fiches écrites à la
 main*, dans l'onglet **Actions**, avec les mêmes contrôles et le même versement
-au dépôt que l'import.
+au dépôt que l'import. Il a pourvu **272 de ces 285 fiches** ; les 13 autres
+n'ont pas trouvé de candidat assez sûr, et restent à leur notice.
 
 **L'appariement est méfiant, et il le faut.** Chercher « Sébastien » sur
 Wikidata ramène aussi bien le martyr que d'autres Sébastien : une biographie
