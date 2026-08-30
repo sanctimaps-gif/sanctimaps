@@ -165,7 +165,7 @@ export default {
   },
   assistant: {
     title: 'Assistant de propositions',
-    intro: 'L’assistant puise dans un réservoir de fiches préparées, les vérifie une à une et ne soumet que celles qui passent tous les contrôles.',
+    intro: 'Sans compte, sans clé, sans réseau : l’assistant puise dans les 148 fiches préparées et livrées avec l’application, les vérifie une à une et ne soumet que celles qui passent tous les contrôles.',
     method: 'Il ne devine rien : il compare chaque fiche au corpus et à la carte. Une fiche fautive est écartée avec son motif.',
     scan: 'Lancer la vérification',
     rescan: 'Relancer la vérification',
@@ -179,8 +179,8 @@ export default {
     skipped: 'Fiche passée.',
     noneLeft: 'Plus rien à proposer pour le moment.',
     checks: 'Contrôles',
-    sourcePool: 'Réservoir',
-    sourceAi: 'IA',
+    sourcePool: 'Autonome',
+    sourceAi: 'Modèle externe',
     aiIntro: 'Le modèle rédige des fiches complètes, que la même vérification passe au crible avant de vous les soumettre.',
     aiNote: 'Le service est choisi au lancement du serveur : un modèle sur votre machine, ou celui d’un fournisseur. La clé, s’il en faut une, reste sur cette machine et n’entre jamais dans la page.',
     aiRegion: 'Région',
@@ -210,6 +210,8 @@ export default {
     low: 'basse',
   },
   map: {
+    several: '{n} saints ici',
+    chooseSaint: 'Choisir un saint',
     zoomIn: 'Zoomer',
     zoomOut: 'Dézoomer',
     zoomFit: 'Revoir tout le pays',

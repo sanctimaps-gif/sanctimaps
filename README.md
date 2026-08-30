@@ -128,6 +128,23 @@ d'habitants, réparties en un fichier par pays chargé seulement à l'ouverture 
 celui-ci. En deçà, la source n'a plus rien : c'est la limite de la carte, et
 elle se voit — au zoom maximal, la campagne est vide parce qu'elle l'est.
 
+### Plusieurs saints au même endroit
+
+Cinq saints sont nés à Alexandrie, cinq à Londres, trois à Rome. Leurs croix se
+posent au même pixel, et cliquer en ouvrait une au hasard — la dernière
+dessinée. Les repères qui se touchent sont donc **réunis en un seul**, qui
+porte le nombre qu'il cache ; le clic ouvre alors une petite liste où l'on
+choisit, dans l'ordre des siècles.
+
+Le regroupement se refait à chaque zoom : deux villages voisins se séparent dès
+qu'on s'approche assez pour les distinguer. Ceux qui partagent la même ville,
+eux, ne se sépareront jamais — c'est précisément pour eux que la liste existe.
+
+Au passage : le nom écrit sous une croix ne se clique plus. Posé sous son
+repère, il déborde volontiers sur le médaillon du voisin et happait alors le
+clic qui lui était destiné — on visait un groupe de six et l'on ouvrait un
+saint isolé.
+
 ## Le tiroir
 
 Le panneau de gauche s'ouvre sur un **sommaire** : la liste de ce qu'on peut
@@ -201,18 +218,29 @@ alors publiée — ou la refuse.
 La partie **Assistant**, réservée à l'administrateur, sert à verser des saints
 plus vite. Elle a deux sources et un seul circuit.
 
-**Le réservoir** puise dans des fiches préparées et livrées avec l'application.
-Il fonctionne hors ligne et sans rien configurer.
+**Autonome** — la source par défaut, et celle qui ne dépend de personne. Sans
+compte, sans clé, sans réseau, sans modèle : elle puise dans **148 fiches**
+écrites à la main et livrées avec l'application, les passe aux mêmes contrôles
+que le reste, et propose celles qui passent. C'est l'assistant qui fonctionne
+tout seul, y compris sur une machine hors ligne.
 
-**L'IA** demande à un modèle des fiches complètes — noms en trois langues,
-dates, lieu de naissance, coordonnées, fête, qualités, notice, patronage et
-biographie — pour une région et un siècle que vous choisissez. Une fiche
+Les fiches sont dans `data/candidats/*.json`, un objet par ligne. En ajouter
+est le moyen d'étoffer l'assistant sans rien brancher : la génération les
+reprend, la vérification s'applique, l'administrateur tranche. On n'y met que
+des vies bien attestées et des lieux de naissance sur lesquels les sources
+s'accordent — mieux vaut une liste plus courte qu'une fiche à corriger.
+
+**Modèle externe** — la seconde source, facultative. Elle demande à un modèle
+des fiches complètes — noms en trois langues, dates, lieu de naissance,
+coordonnées, fête, qualités, notice, patronage et biographie — pour une région
+et un siècle que vous choisissez. Une fiche
 acceptée est publiable telle quelle : c'est tout l'intérêt, l'administrateur
 relit au lieu de saisir.
 
-### Choisir son modèle
+### Choisir son modèle, si l'on en veut un
 
-**L'assistant n'est lié à aucun fournisseur.** Trois façons de parler à un
+Cette section ne concerne que la seconde source. La première n'a besoin de
+rien. **L'assistant n'est lié à aucun fournisseur.** Trois façons de parler à un
 modèle sont prévues, et elles couvrent à peu près tout ce qui existe :
 
 | `AI_PROVIDER` | Ce que c'est | Clé |
@@ -264,7 +292,8 @@ Seules les fiches qui passent tout sont proposées ; l'administrateur les
 accepte ou les passe. Les autres sont montrées à part **avec le motif exact de
 leur mise à l'écart** — c'est ce qui rend la vérification vérifiable. Le
 réservoir contient d'ailleurs quatre fiches volontairement fautives, une par
-type d'erreur, pour que ce tri se voie à l'usage. Elle vaut d'autant plus
+type d'erreur, pour que ce tri se voie à l'usage : sur 148 fiches, 144 sont
+proposées et ces quatre-là sont écartées, chacune avec son motif. Elle vaut d'autant plus
 qu'un petit modèle local se trompe plus souvent qu'un grand modèle distant :
 c'est le prix de l'indépendance, et le filet est fait pour ça.
 

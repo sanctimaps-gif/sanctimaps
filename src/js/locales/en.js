@@ -163,7 +163,7 @@ export default {
   },
   assistant: {
     title: 'Proposal assistant',
-    intro: 'The assistant draws on a pool of prepared entries, checks them one by one and submits only those that pass every test.',
+    intro: 'No account, no key, no network: the assistant draws on the 148 entries prepared and shipped with the application, checks them one by one and submits only those that pass every test.',
     method: 'It guesses nothing: it compares each entry against the corpus and the map. A faulty entry is set aside with its reason.',
     scan: 'Run the checks',
     rescan: 'Run the checks again',
@@ -177,8 +177,8 @@ export default {
     skipped: 'Entry skipped.',
     noneLeft: 'Nothing left to propose for now.',
     checks: 'Checks',
-    sourcePool: 'Pool',
-    sourceAi: 'AI',
+    sourcePool: 'Self-contained',
+    sourceAi: 'External model',
     aiIntro: 'The model writes complete entries, which the same checks sift before they reach you.',
     aiNote: 'The service is chosen when the server starts: a model on your own machine, or a provider\'s. The key, where one is needed, stays on that machine and never enters the page.',
     aiRegion: 'Region',
@@ -208,6 +208,8 @@ export default {
     low: 'low',
   },
   map: {
+    several: '{n} saints here',
+    chooseSaint: 'Choose a saint',
     zoomIn: 'Zoom in',
     zoomOut: 'Zoom out',
     zoomFit: 'Fit the whole country',

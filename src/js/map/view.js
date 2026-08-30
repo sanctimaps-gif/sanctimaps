@@ -76,6 +76,14 @@ const LABEL_DROP = 1.55;
 const LABEL_DROP_SAINT = 2.5;
 
 /**
+ * Distance en pixels en deçà de laquelle deux saints partagent un repère.
+ *
+ * De l'ordre du diamètre du médaillon : si deux croix se recouvrent, elles
+ * doivent n'en faire qu'une, qui ouvre une liste.
+ */
+const CLUSTER_RADIUS = 26;
+
+/**
  * Croix latine, dessinée autour de son centre.
  *
  * C'est le repère d'un lieu de naissance : une croix se reconnaît d'un coup
@@ -627,6 +635,13 @@ export class MapView {
     this.scene.setAttribute('transform', `translate(${x} ${y}) scale(${k})`);
     // Zoomer fait apparaître des localités plus petites : on ne reconstruit le
     // calque que lorsque leur nombre change réellement.
+    // Déplacer la carte déplacerait la liste sous le doigt : mieux vaut la
+    // refermer que la laisser désigner un autre endroit.
+    if (this.picker && (this.transform.k !== this.pickerAt?.k
+      || Math.abs(this.transform.x - this.pickerAt.x) > 2
+      || Math.abs(this.transform.y - this.pickerAt.y) > 2)) this.closePicker();
+    this.pickerAt = this.picker ? { ...this.transform } : null;
+
     this.syncTiles();
     if (this.overlayStale()) this.refreshOverlay();
     else this.positionOverlay();
@@ -698,6 +713,7 @@ export class MapView {
 
   showWorld({ animate = true } = {}) {
     this.mode = 'world';
+    this.closePicker();
     this.clearTiles();
     this.continentId = null;
     this.countryId = null;
@@ -724,6 +740,7 @@ export class MapView {
     const continent = this.atlas.continentById.get(id);
     if (!continent) return;
     this.mode = 'continent';
+    this.closePicker();
     this.clearTiles();
     this.continentId = id;
     this.countryId = null;
@@ -738,6 +755,7 @@ export class MapView {
   async showCountry(id, { animate = true } = {}) {
     const country = this.atlas.countryById.get(id);
     if (!country) return;
+    this.closePicker();
     if (this.countryId !== id) this.clearTiles();
     this.mode = 'country';
     this.continentId = country.continent;
@@ -783,7 +801,10 @@ export class MapView {
   highlightSaint(saintId) {
     this.highlightId = saintId;
     for (const marker of this.markers) {
-      marker.node.classList.toggle('is-active', marker.saint?.id === saintId);
+      marker.node.classList.toggle(
+        'is-active',
+        !!marker.group?.some((s) => s.id === saintId),
+      );
     }
   }
 
@@ -906,17 +927,85 @@ export class MapView {
           priority: place.c ? 1e12 : place.p,
         }));
       }
-      for (const saint of this.atlas.saintsIn(this.countryId)) {
+      this.clusters = this.clusterSaints(this.atlas.saintsIn(this.countryId));
+      this.clusters.forEach((group, index) => {
+        const shared = group.every((s) => s.city === group[0].city) ? group[0].city : '';
         nodes.push(this.makeMarker({
-          x: saint.x, y: saint.y, kind: 'saint', saint,
-          text: this.atlas.saintName(saint, this.lang),
-          priority: 1e10 - (saint.born ?? saint.died ?? 0),
+          x: group.x, y: group.y, kind: 'saint', group, index,
+          text: group.length === 1
+            ? this.atlas.saintName(group[0], this.lang)
+            : (shared || t('map.several', { n: group.length })),
+          // Un groupe passe avant un saint seul : il en cache plusieurs.
+          priority: 1e10 + group.length - (group[0].born ?? group[0].died ?? 0),
         }));
-      }
+      });
     }
 
     this.overlay.replaceChildren(...nodes);
     this.positionOverlay();
+  }
+
+  /**
+   * Regroupe les saints dont les repères se toucheraient à l'écran.
+   *
+   * Cinq saints sont nés à Alexandrie, cinq à Londres, trois à Rome : leurs
+   * croix se posent au même endroit, et cliquer en ouvrait une au hasard — la
+   * dernière dessinée. Un groupe porte le nombre qu'il cache, et l'on choisit
+   * dans une liste. Le regroupement se refait à chaque zoom : deux villages
+   * voisins se séparent dès qu'on s'approche assez pour les distinguer.
+   */
+  clusterSaints(saints) {
+    const { k, x: tx, y: ty } = this.transform;
+    const cell = CLUSTER_RADIUS;
+    const grid = new Map();
+    const groups = [];
+
+    for (const saint of saints) {
+      const sx = saint.x * k + tx;
+      const sy = saint.y * k + ty;
+      const cx = Math.floor(sx / cell);
+      const cy = Math.floor(sy / cell);
+
+      let found = null;
+      for (let i = cx - 1; i <= cx + 1 && !found; i += 1) {
+        for (let j = cy - 1; j <= cy + 1 && !found; j += 1) {
+          for (const group of grid.get(`${i},${j}`) || []) {
+            if (Math.hypot(group.sx - sx, group.sy - sy) <= CLUSTER_RADIUS) {
+              found = group;
+              break;
+            }
+          }
+        }
+      }
+
+      if (found) {
+        found.push(saint);
+        // Le groupe se recentre sur ses membres, sans quoi sa croix pencherait
+        // vers le premier arrivé.
+        found.sx = (found.sx * (found.length - 1) + sx) / found.length;
+        found.sy = (found.sy * (found.length - 1) + sy) / found.length;
+        found.x = (found.x * (found.length - 1) + saint.x) / found.length;
+        found.y = (found.y * (found.length - 1) + saint.y) / found.length;
+        continue;
+      }
+
+      const group = [saint];
+      group.sx = sx;
+      group.sy = sy;
+      group.x = saint.x;
+      group.y = saint.y;
+      groups.push(group);
+      const key = `${cx},${cy}`;
+      const bucket = grid.get(key);
+      if (bucket) bucket.push(group); else grid.set(key, [group]);
+    }
+
+    // Les plus anciens d'abord dans chaque liste : on lit une file de saints
+    // comme une chronologie, non comme l'ordre du fichier.
+    for (const group of groups) {
+      group.sort((a, b) => (a.born ?? a.died ?? 0) - (b.born ?? b.died ?? 0));
+    }
+    return groups;
   }
 
   makeLabel({ x, y, text, sub, cls, priority }) {
@@ -934,32 +1023,40 @@ export class MapView {
     return group;
   }
 
-  makeMarker({ x, y, kind, text, saint, priority, rank }) {
-    const group = el('g', { class: `marker marker--${kind}${rank ? ` marker--${rank.cls}` : ''}` });
+  makeMarker({ x, y, kind, text, group, index, priority, rank }) {
+    const node = el('g', { class: `marker marker--${kind}${rank ? ` marker--${rank.cls}` : ''}` });
     if (kind === 'city') {
-      group.append(el('circle', { class: 'marker__dot', r: rank.dot }));
+      node.append(el('circle', { class: 'marker__dot', r: rank.dot }));
     } else {
       // Un médaillon : disque clair pour détacher le repère de la carte,
       // écusson coloré, croix blanche. Trois pièces plutôt qu'une image, pour
       // qu'il suive le thème et l'état de la fiche sans autre ressource.
-      group.append(
+      node.append(
         el('circle', { class: 'marker__halo', r: 13 }),
         el('circle', { class: 'marker__ring', r: 10.5 }),
         el('rect', { class: 'marker__badge', x: -7.5, y: -7.5, width: 15, height: 15, rx: 4.5 }),
         el('path', { class: 'marker__cross', d: CROSS }),
       );
-      group.setAttribute('tabindex', '0');
-      group.setAttribute('role', 'button');
-      group.dataset.saint = saint.id;
-      if (saint.user) group.classList.add('is-user');
+      if (group.length > 1) {
+        // Une pastille dit combien de saints le repère recouvre : sans elle,
+        // rien n'inviterait à cliquer pour découvrir les autres.
+        node.classList.add('marker--group');
+        const count = el('text', { class: 'marker__count', 'text-anchor': 'middle' });
+        count.textContent = String(group.length);
+        node.append(el('circle', { class: 'marker__countdot', cx: 9, cy: -9, r: 7 }), count);
+      }
+      node.setAttribute('tabindex', '0');
+      node.setAttribute('role', 'button');
+      node.dataset.cluster = String(index);
+      if (group.length === 1 && group[0].user) node.classList.add('is-user');
     }
     const label = el('text', { class: 'marker__label', 'text-anchor': 'middle' });
     label.textContent = text;
-    group.append(label);
+    node.append(label);
 
-    const item = { node: group, x, y, text, priority, kind, saint, label, rank };
+    const item = { node, x, y, text, priority, kind, group, label, rank };
     this.markers.push(item);
-    return group;
+    return node;
   }
 
   /**
@@ -1084,7 +1181,7 @@ export class MapView {
       const clash = keys.some((key) => grid.get(key)?.some(
         (p) => box[0] < p[2] && p[0] < box[2] && box[1] < p[3] && p[1] < box[3],
       ));
-      const show = !clash || item.saint?.id === this.highlightId;
+      const show = !clash || !!item.group?.some((s) => s.id === this.highlightId);
       item.node.classList.toggle('is-crowded', !show);
       if (show) occupy(box);
     }
@@ -1172,10 +1269,16 @@ export class MapView {
   /** Zoom au clavier, pour qui n'a ni molette ni pavé tactile. */
   bindKeys() {
     this.onKey = (event) => {
+      if (event.key === 'Escape' && this.picker) {
+        this.closePicker();
+        event.stopPropagation();
+        return;
+      }
       if (this.mode !== 'country') return;
       if (event.ctrlKey || event.metaKey || event.altKey) return;
       // Rien ne doit se déclencher pendant qu'on écrit dans la barre de recherche.
       if (event.target.closest?.('input, textarea, select, [contenteditable]')) return;
+      if (event.key === 'Escape' && this.picker) { this.closePicker(); return; }
       if (event.key === '+' || event.key === '=') this.zoomBy(ZOOM_STEP);
       else if (event.key === '-' || event.key === '_') this.zoomBy(1 / ZOOM_STEP);
       else if (event.key === '0') this.refit();
@@ -1214,6 +1317,73 @@ export class MapView {
     });
   }
 
+  /**
+   * Liste de choix, quand un repère en cache plusieurs.
+   *
+   * Elle se pose sur la carte, à côté du groupe, et se referme au premier
+   * geste qui l'éloigne : choisir un saint, cliquer ailleurs, déplacer la
+   * carte, appuyer sur Échap.
+   */
+  openPicker(group, at) {
+    this.closePicker();
+    const vp = this.viewport();
+    const shared = group.every((s) => s.city === group[0].city) ? group[0].city : '';
+
+    const box = document.createElement('div');
+    box.className = 'picker';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-label', t('map.chooseSaint'));
+
+    const head = document.createElement('p');
+    head.className = 'picker__head';
+    head.textContent = shared
+      ? `${shared} — ${t('map.several', { n: group.length })}`
+      : t('map.several', { n: group.length });
+    box.append(head);
+
+    for (const saint of group) {
+      const row = document.createElement('button');
+      row.type = 'button';
+      row.className = 'picker__item';
+      const name = document.createElement('span');
+      name.className = 'picker__name';
+      name.textContent = this.atlas.saintName(saint, this.lang);
+      const meta = document.createElement('span');
+      meta.className = 'picker__meta';
+      const born = saint.born ?? saint.died;
+      meta.textContent = [saint.city, born == null ? '' : String(born)]
+        .filter(Boolean).join(' · ');
+      row.append(name, meta);
+      row.addEventListener('click', () => {
+        this.closePicker();
+        this.handlers.onSaint?.(saint.id);
+      });
+      box.append(row);
+    }
+
+    this.root.append(box);
+    this.picker = box;
+    // Le repère de position est posé ici, et non au prochain rendu : sans lui,
+    // la première image venue croirait la carte déplacée et refermerait la
+    // liste avant qu'on ait pu lire un seul nom.
+    this.pickerAt = { ...this.transform };
+
+    // Posée près du repère, mais jamais hors de la carte : sur un téléphone,
+    // un groupe au bord de l'écran pousserait la liste dans le vide.
+    const w = box.offsetWidth;
+    const hgt = box.offsetHeight;
+    const left = Math.max(8, Math.min(vp.w - w - 8, at.x - w / 2));
+    const top = at.y + 18 + hgt > vp.h ? at.y - hgt - 18 : at.y + 18;
+    box.style.left = `${Math.round(left)}px`;
+    box.style.top = `${Math.round(Math.max(8, top))}px`;
+    box.classList.add('is-open');
+  }
+
+  closePicker() {
+    this.picker?.remove();
+    this.picker = null;
+  }
+
   onTap(target, point) {
     if (this.picking) {
       const { k, x, y } = this.transform;
@@ -1233,11 +1403,17 @@ export class MapView {
       return;
     }
 
-    const marker = target.closest?.('[data-saint]');
+    const marker = target.closest?.('[data-cluster]');
     if (marker) {
-      this.handlers.onSaint?.(marker.dataset.saint);
+      const group = this.clusters?.[Number(marker.dataset.cluster)];
+      if (!group) return;
+      // Un seul saint : autant ouvrir sa fiche sans faire choisir entre lui
+      // et lui-même.
+      if (group.length === 1) this.handlers.onSaint?.(group[0].id);
+      else this.openPicker(group, point);
       return;
     }
+    this.closePicker();
     const shape = target.closest?.('[data-country]');
     if (shape) {
       this.handlers.onCountry?.(shape.dataset.country);
