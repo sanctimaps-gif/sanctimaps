@@ -48,8 +48,9 @@ const DEFAULTS = {
   limit: 0,
   status: '',
   names: '',
-  pause: 400,
-  chunk: 1000,
+  pause: 300,
+  chunk: 200,
+  countries: [],
   dryRun: false,
 };
 
@@ -89,6 +90,7 @@ function parseArgs(argv) {
     else if (arg === '--names') options.names = next();
     else if (arg === '--pause') options.pause = Number(next());
     else if (arg === '--chunk') options.chunk = Number(next());
+    else if (arg === '--countries') options.countries = String(next()).split(',').map((c) => c.trim().toUpperCase()).filter(Boolean);
     else if (arg === '--help' || arg === '-h') options.help = true;
     else throw new Error(`option inconnue : ${arg}`);
   }
@@ -114,7 +116,7 @@ async function sparql(endpoint, query, { pause }) {
       headers: { Accept: 'application/sparql-results+json', 'User-Agent': AGENT },
     });
     if (res.ok) return (await res.json()).results.bindings;
-    if (res.status !== 429 && res.status !== 503) {
+    if (![429, 502, 503, 504].includes(res.status)) {
       throw new Error(`${res.status} ${res.statusText} — ${(await res.text()).slice(0, 200)}`);
     }
     await sleep(pause * (attempt + 2) * 5);
@@ -123,45 +125,29 @@ async function sparql(endpoint, query, { pause }) {
 }
 
 /**
- * Interroge par tranches.
+ * Les faits, pour un pays.
  *
- * Le point d'entrée public coupe une requête au bout d'une minute, et la
- * collecte entière dépasse largement ce délai. On la découpe donc, ce qui a
- * l'avantage de montrer l'avancement : une collecte muette de dix minutes
- * ressemble trop à une panne.
- */
-async function collect(endpoint, query, options, label) {
-  const rows = [];
-  for (let offset = 0; ; offset += options.chunk) {
-    const page = await sparql(
-      endpoint, `${query}\nORDER BY ?s LIMIT ${options.chunk} OFFSET ${offset}`, options,
-    );
-    rows.push(...page);
-    process.stdout.write(`\r  ${label} : ${rows.length} lignes`);
-    if (page.length < options.chunk) break;
-    await sleep(options.pause);
-  }
-  process.stdout.write('\n');
-  return rows;
-}
-
-/**
- * Les faits, un saint par ligne.
+ * La première version demandait tout d'un coup, en paginant : le service
+ * public l'a coupée à soixante secondes. La pagination n'y pouvait rien, car
+ * `ORDER BY` oblige le moteur à trier l'ensemble des solutions avant de rendre
+ * la première tranche — la découpe multipliait le travail au lieu de le
+ * réduire.
+ *
+ * On part donc du code ISO du pays, qui est une chaîne littérale et donc le
+ * point d'entrée le plus sélectif qui soit : de là, le moteur ne visite que
+ * les lieux de ce pays et les personnes qui y sont nées. Deux cent trente
+ * petites requêtes valent mieux qu'une qui n'aboutit pas.
  *
  * `P411` est le statut de canonisation : la propriété ne s'applique qu'aux
  * saints, bienheureux et vénérables, ce qui dispense de nommer des
- * identifiants qu'on recopierait de mémoire — et de travers. Le statut est
- * rendu en clair, l'appelant filtre s'il veut.
+ * identifiants qu'on recopierait de mémoire — et de travers.
  */
-const CORE = `
+const byCountry = (iso) => `
 SELECT ?s ?statusEn ?nameFr ?nameEn ?nameLa ?descFr ?descEn
-       ?born ?died ?sex ?feastEn ?placeFr ?placeEn ?coord ?iso WHERE {
-  ?s wdt:P411 ?status .
-  ?s wdt:P19 ?place .
-  ?place wdt:P625 ?coord .
-  ?place wdt:P17 ?country .
-  ?country wdt:P298 ?iso .
-  ?s wdt:P841 ?feast .
+       ?born ?died ?sex ?feastEn ?placeFr ?placeEn ?coord WHERE {
+  ?country wdt:P298 "${iso}" .
+  ?place wdt:P17 ?country ; wdt:P625 ?coord .
+  ?s wdt:P19 ?place ; wdt:P411 ?status ; wdt:P841 ?feast .
   OPTIONAL { ?s wdt:P569 ?born }
   OPTIONAL { ?s wdt:P570 ?died }
   OPTIONAL { ?s wdt:P21 ?sex }
@@ -176,21 +162,20 @@ SELECT ?s ?statusEn ?nameFr ?nameEn ?nameLa ?descFr ?descEn
   OPTIONAL { ?place rdfs:label ?placeEn . FILTER(LANG(?placeEn) = "en") }
 }`;
 
-/** Les patronages, plusieurs lignes par saint. */
-const PATRONAGE = `
+/** Le complément se demande par lots d'identifiants déjà connus. */
+const values = (ids) => `VALUES ?s { ${ids.map((q) => `wd:${q}`).join(' ')} }`;
+
+const patronageFor = (ids) => `
 SELECT ?s ?labelFr ?labelEn WHERE {
-  ?s wdt:P411 ?status .
-  ?s wdt:P19 ?place . ?place wdt:P625 ?coord .
+  ${values(ids)}
   ?s wdt:P2925 ?domain .
   OPTIONAL { ?domain rdfs:label ?labelFr . FILTER(LANG(?labelFr) = "fr") }
   OPTIONAL { ?domain rdfs:label ?labelEn . FILTER(LANG(?labelEn) = "en") }
 }`;
 
-/** Les fonctions et métiers, plusieurs lignes par saint. */
-const OCCUPATION = `
+const occupationFor = (ids) => `
 SELECT ?s ?labelEn WHERE {
-  ?s wdt:P411 ?status .
-  ?s wdt:P19 ?place . ?place wdt:P625 ?coord .
+  ${values(ids)}
   { ?s wdt:P106 ?job } UNION { ?s wdt:P39 ?job }
   ?job rdfs:label ?labelEn . FILTER(LANG(?labelEn) = "en")
 }`;
@@ -290,7 +275,8 @@ const HELP = `Importe les saints depuis Wikidata.
   --out FICHIER    fichier de sortie (défaut : data/saints/wikidata.json)
   --endpoint URL   point d'entrée SPARQL
   --pause MS       attente entre deux requêtes (défaut : 400)
-  --chunk N        taille des tranches (défaut : 1000)
+  --chunk N        taille des lots d'identifiants (défaut : 200)
+  --countries A,B  n'interroger que ces pays, par code à trois lettres
   --dry-run        compter sans écrire
 `;
 
@@ -311,11 +297,55 @@ async function main() {
     : null;
 
   console.log(`Interrogation de ${options.endpoint}…`);
-  const rows = await collect(options.endpoint, CORE, options, 'faits');
-  await sleep(options.pause);
-  const patronRows = await collect(options.endpoint, PATRONAGE, options, 'patronages');
-  await sleep(options.pause);
-  const jobRows = await collect(options.endpoint, OCCUPATION, options, 'qualités');
+
+  // Un pays à la fois : chaque requête reste courte, et l'on voit avancer.
+  const isoList = options.countries.length
+    ? options.countries.filter((iso) => countries.has(iso))
+    : [...countries.keys()];
+  const rows = [];
+  const failures = [];
+  let done = 0;
+  for (const iso of isoList) {
+    let page;
+    try {
+      page = await sparql(options.endpoint, byCountry(iso), options);
+    } catch (error) {
+      // Un pays qui résiste ne doit pas emporter toute la collecte.
+      console.warn(`  ${iso} : ${error.message}`);
+      failures.push(iso);
+      done += 1;
+      await sleep(options.pause);
+      continue;
+    }
+    // Le pays est connu par la boucle, non par la réponse.
+    rows.push(...page.map((row) => ({ ...row, iso: { type: 'literal', value: iso } })));
+    done += 1;
+    if (page.length) {
+      console.log(`  ${iso} : ${page.length} — ${rows.length} au total`
+        + ` (${done}/${isoList.length} pays)`);
+    } else if (done % 25 === 0) {
+      console.log(`  … ${done}/${isoList.length} pays, ${rows.length} lignes`);
+    }
+    await sleep(options.pause);
+  }
+  console.log(`${rows.length} lignes de faits, sur ${isoList.length} pays.`);
+  if (failures.length) {
+    console.warn(`${failures.length} pays n'ont pas répondu : ${failures.join(', ')}`);
+  }
+
+  // Le complément, par lots d'identifiants : le moteur part d'un ensemble déjà
+  // réduit, ce qui rend ces requêtes courtes elles aussi.
+  const allIds = [...new Set(rows.map((row) => idOf(row.s?.value)).filter(Boolean))];
+  const patronRows = [];
+  const jobRows = [];
+  for (let i = 0; i < allIds.length; i += options.chunk) {
+    const batch = allIds.slice(i, i + options.chunk);
+    patronRows.push(...await sparql(options.endpoint, patronageFor(batch), options));
+    await sleep(options.pause);
+    jobRows.push(...await sparql(options.endpoint, occupationFor(batch), options));
+    await sleep(options.pause);
+    console.log(`  compléments : ${Math.min(i + options.chunk, allIds.length)}/${allIds.length}`);
+  }
 
   const patronage = new Map();
   for (const row of patronRows) {

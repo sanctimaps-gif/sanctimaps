@@ -25,10 +25,14 @@ on:
           - tous
           - saint
           - blessed
-      chunk:
-        description: "Taille des tranches de requête"
+      countries:
+        description: "Pays à interroger, codes à trois lettres séparés par des virgules (vide = tous)"
         required: false
-        default: "1000"
+        default: ""
+      chunk:
+        description: "Taille des lots d'identifiants"
+        required: false
+        default: "200"
 
 permissions:
   contents: write
@@ -68,6 +72,9 @@ jobs:
           fi
           if [ "${{ inputs.status }}" != "tous" ]; then
             args+=(--status "${{ inputs.status }}")
+          fi
+          if [ -n "${{ inputs.countries }}" ]; then
+            args+=(--countries "${{ inputs.countries }}")
           fi
           node tools/import-saints.mjs "${args[@]}" | tee /tmp/import.log
 

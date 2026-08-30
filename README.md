@@ -502,9 +502,9 @@ d'un coup ce que Wikidata sait de plaçable :
 **Sans rien installer, depuis GitHub.** Onglet **Actions** du dépôt →
 *Importer les saints depuis Wikidata* → **Run workflow**. Le travail se fait
 sur une machine de GitHub, les contrôles s'appliquent, et le résultat est versé
-au dépôt — ce qui redéploie le site. Trois réglages facultatifs : un nombre
-maximal de fiches, un statut de canonisation, la taille des tranches. Le
-déclenchement est manuel à dessein : un import quotidien réécrirait le corpus
+au dépôt — ce qui redéploie le site. Quatre réglages facultatifs : un nombre
+maximal de fiches, un statut de canonisation, une liste de pays, la taille des
+lots. Le déclenchement est manuel à dessein : un import quotidien réécrirait le corpus
 sans que personne regarde, et Wikidata bouge.
 
 **En ligne de commande**, si l'on préfère :
@@ -515,6 +515,7 @@ node tools/import-saints.mjs --dry-run             # compter sans rien écrire
 node tools/import-saints.mjs --limit 200           # un échantillon, pour voir
 node tools/import-saints.mjs --status saint        # les canonisés seulement
 node tools/import-saints.mjs --names ma-liste.txt  # seulement ces noms-là
+node tools/import-saints.mjs --countries FRA,ITA   # seulement ces pays-là
 npm run build:data && npm run check                # puis, toujours
 ```
 
