@@ -41,8 +41,8 @@ côtés : le montrer en entier le réduisait à un bandeau au milieu, entre deux
 larges bandes de mer. On arrive donc dans la carte, et le déplacement — borné,
 comme toujours — découvre ce qui dépasse.
 
-Au monde, un cartouche annonce l'étendue du corpus — « 285 saints recensés
-dans 57 pays » — avant même le premier clic. Il s'efface dès qu'on descend
+Au monde, un cartouche annonce l'étendue du corpus — « 4 520 saints recensés
+dans 91 pays » — avant même le premier clic. Il s'efface dès qu'on descend
 d'une échelle, où le compte devient celui du pays ouvert.
 
 Le déplacement est borné à chaque échelle : on ne peut pas dériver
@@ -178,9 +178,9 @@ présentent comme des résultats de recherche : un clic ouvre la fiche, et la
 fiche mène à la carte. Deux boutons feuillettent la veille et le lendemain, un
 troisième revient à aujourd'hui.
 
-**Les jours vides existent, et ils le disent.** Deux cent quatre-vingt-cinq
-fiches ne couvrent pas trois cent soixante-six jours : deux cent seize
-seulement en portent une, et le plus long silence dure six jours. Plutôt qu'un
+**Les jours vides le disent.** Depuis l'import de Wikidata il n'en reste
+qu'un : le 29 février, que le corpus ne pourvoit pas encore. Avant cet import,
+les 285 fiches écrites à la main n'en couvraient que 216 sur 366. Plutôt qu'un
 écran blanc, la partie cherche la prochaine date pourvue et propose d'y aller
 d'un bouton — un vide qui indique la sortie vaut mieux qu'un vide qui se tait.
 Une ligne finale donne le compte, pour que l'état du corpus soit lu là où son
@@ -193,7 +193,7 @@ même chose. Le dire est la moitié du réglage :
 
 | | Ce que ça fait | Ce que ça vaut |
 | --- | --- | --- |
-| **Calendrier du téléphone** | Produit un fichier `.ics` : 216 événements, un par jour pourvu, répétés tous les ans, chacun avec une alarme à l'heure choisie. | **C'est le chemin qui atteint vraiment le téléphone.** Une fois le fichier ouvert sur l'appareil, c'est l'agenda qui prévient — hors ligne, sans compte, sans que l'application soit ouverte. |
+| **Calendrier du téléphone** | Produit un fichier `.ics` : un événement par jour pourvu — 365 aujourd'hui —, répétés tous les ans, chacun avec une alarme à l'heure choisie. | **C'est le chemin qui atteint vraiment le téléphone.** Une fois le fichier ouvert sur l'appareil, c'est l'agenda qui prévient — hors ligne, sans compte, sans que l'application soit ouverte. |
 | **Notification du navigateur** | Demande la permission, puis annonce le saint du jour à l'heure dite. | Seulement **tant que cette page est ouverte**. |
 
 Un site statique n'a derrière lui ni serveur ni service de notification : il
@@ -231,7 +231,7 @@ d'Assise, `aveugles` Lucie de Syracuse.
 
 Sous le compte des résultats, un bouton verse la liste affichée dans un
 fichier `.ics` — un événement annuel par fête, avec le lieu et la notice.
-Il porte sur ce qui est à l'écran : sans filtre, les 285 saints ; après
+Il porte sur ce qui est à l'écran : sans filtre, le corpus entier ; après
 « Italie XIIIe », ces cinq-là seulement. Le fichier s'ouvre dans n'importe
 quel agenda, sans compte ni service tiers.
 
@@ -473,10 +473,18 @@ sous les yeux du lecteur.
 
 ## Les données
 
-285 saints répartis sur 57 pays et les six continents, avec pour chacun ses
-noms (français, anglais, latin), ses dates, son lieu de naissance rapporté au
-pays d'aujourd'hui, sa fête et une notice d'une phrase. S'y ajoutent 93 fiches
-candidates en réserve pour l'assistant.
+**4 520 saints répartis sur 91 pays** et les six continents, avec pour chacun
+ses noms (français, anglais, latin quand il existe), ses dates, son lieu de
+naissance rapporté au pays d'aujourd'hui, sa fête et souvent une notice. Deux
+origines s'y mêlent :
+
+| | | |
+| --- | ---: | --- |
+| Écrits à la main | 285 | notice rédigée, patronage attesté, latin systématique |
+| Importés de Wikidata | 4 235 | l'adresse de l'élément d'origine accompagne chaque fiche |
+
+S'y ajoutent 148 fiches candidates en réserve pour l'assistant et 293 fiches
+de fond documentaire.
 
 153 de ces saints portent en plus un patronage — ce dont ils sont patrons —
 tenu à part dans `data/saints/patronages.json` et fusionné à la génération.
@@ -495,9 +503,9 @@ collecte.
 
 ### Importer en masse depuis Wikidata
 
-Le corpus écrit à la main compte 285 fiches. Pour aller au-delà — vers les
-milliers de saints et de bienheureux que l'Église reconnaît — un outil verse
-d'un coup ce que Wikidata sait de plaçable :
+Le corpus écrit à la main compte 285 fiches ; l'import de Wikidata en a
+ajouté **4 235**, portant la carte à **4 520 saints dans 91 pays**. L'outil
+verse d'un coup ce que Wikidata sait de plaçable :
 
 **Sans rien installer, depuis GitHub.** Onglet **Actions** du dépôt →
 *Importer les saints depuis Wikidata* → **Run workflow**. Le travail se fait

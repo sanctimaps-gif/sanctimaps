@@ -12,11 +12,13 @@ import { fill, h } from './dom.js';
  * rien d'autre que lire l'horloge de la machine, en tirer un « mois-jour » et
  * ramener les fiches du corpus qui portent cette date.
  *
- * Les jours sans fête existent — deux cent quatre-vingt-cinq fiches ne
- * couvrent que deux cent seize jours sur trois cent soixante-six —, et plutôt
- * que d'afficher un écran vide, la partie cherche la prochaine date pourvue et
- * propose d'y aller. Un vide qui indique la sortie vaut mieux qu'un vide qui se
- * tait, et une ligne finale dit franchement où en est le corpus.
+ * Un jour sans fête reste possible — le corpus n'est pas tenu de couvrir les
+ * trois cent soixante-six jours, et les deux cent quatre-vingt-cinq fiches
+ * écrites à la main n'en couvraient que deux cent seize avant l'import de
+ * Wikidata. Plutôt que d'afficher un écran vide, la partie cherche la prochaine
+ * date pourvue et propose d'y aller. Un vide qui indique la sortie vaut mieux
+ * qu'un vide qui se tait, et une ligne finale dit franchement où en est le
+ * corpus.
  */
 export class DailyPanel {
   constructor(atlas, { onSelect }) {
@@ -67,9 +69,9 @@ export class DailyPanel {
   /**
    * Combien de jours de l'année portent au moins une fête.
    *
-   * Deux cent quatre-vingt-cinq fiches ne font pas trois cent soixante-six
-   * jours : la mesure est comptée une fois et dit franchement où en est le
-   * corpus, plutôt que de laisser croire à un trou passager.
+   * Rien ne garantit que le corpus couvre l'année entière : la mesure est
+   * comptée une fois et dit franchement où il en est, plutôt que de laisser
+   * croire à un trou passager.
    */
   coverage() {
     if (this.covered == null || this.coveredFor !== this.atlas.saints.length) {
