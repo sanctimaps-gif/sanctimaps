@@ -82,7 +82,9 @@ export class TopBar {
       h('ul', { class: 'legend__list' },
         h('li', {}, h('i', { class: 'swatch swatch--saints' }), t('legend.withSaints')),
         h('li', {}, h('i', { class: 'swatch swatch--plain' }), t('legend.withoutSaints')),
-        h('li', {}, h('i', { class: 'swatch swatch--city' }), t('legend.city')),
+        // La ligne « ville » n'a plus de sens sous un fond de tuiles : c'est
+        // lui qui écrit les localités, et nous n'en posons plus aucune.
+        h('li', { class: 'legend__city' }, h('i', { class: 'swatch swatch--city' }), t('legend.city')),
         h('li', {}, h('i', { class: 'swatch swatch--birth' }), t('legend.birthplace'))),
     );
   }

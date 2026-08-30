@@ -69,8 +69,19 @@ const OVERLAY_REDRAW = 0.25;
 const LABEL_GAP = 8;
 const LABEL_GAP_Y = 3;
 
-/** Descente du nom sous son point, en cadratins. Doit suivre la feuille de style. */
+/** Descente du nom sous son repère, en cadratins. Doit suivre la feuille de style. */
 const LABEL_DROP = 1.55;
+
+/** La croix d'un saint est plus haute qu'un point : son nom descend d'autant. */
+const LABEL_DROP_SAINT = 2.5;
+
+/**
+ * Croix latine, dessinée autour de son centre.
+ *
+ * C'est le repère d'un lieu de naissance : une croix se reconnaît d'un coup
+ * d'œil parmi des points, et dit ce qu'elle marque sans légende.
+ */
+const CROSS = 'M-1.1 -5.2H1.1V-2.4H3.5V-0.4H1.1V5.2H-1.1V-0.4H-3.5V-2.4H-1.1Z';
 
 /**
  * Rangs de localité, du chef-lieu au hameau.
@@ -112,13 +123,6 @@ const EQUATOR = 40075017;
 
 /** Côté d'une tuile, en pixels. Universel depuis Google Maps. */
 const TILE_SIZE = 256;
-
-/**
- * Échelle au sol à partir de laquelle le fond de tuiles se lève, en mètres
- * par pixel. Au-dessus, nos contours suffisent ; en dessous, ils n'ont plus
- * rien à montrer et ce sont les rues qui font la carte.
- */
-const TILE_FROM = 60;
 
 /** Zoom de tuile le plus fin qu'on demande : au-delà, le fournisseur peine. */
 const TILE_MAX_Z = 18;
@@ -384,11 +388,16 @@ export class MapView {
     return getBasemap() === 'auto' && this.tileFailures < TILE_GIVE_UP;
   }
 
-  /** Le fond de tuiles a-t-il lieu d'être, ici et maintenant ? */
+  /**
+   * Le fond de tuiles a-t-il lieu d'être ?
+   *
+   * Dès l'ouverture d'un pays, et non à partir d'un zoom : on veut voir les
+   * routes tout de suite, pas après trois paliers. Aux échelles supérieures —
+   * monde, continent — la carte est thématique, elle dit quels pays comptent
+   * des saints ; y poser des rues n'aurait aucun sens.
+   */
   tilesWanted() {
-    return this.mode === 'country'
-      && this.tilesAvailable()
-      && this.groundScale() < TILE_FROM;
+    return this.mode === 'country' && this.tilesAvailable();
   }
 
   /**
@@ -408,6 +417,7 @@ export class MapView {
     if (!this.tilesWanted()) {
       if (this.tiles.size) this.clearTiles();
       this.root.classList.remove('has-tiles');
+      document.documentElement.dataset.tiles = 'off';
       if (this.attribution) this.attribution.hidden = true;
       return;
     }
@@ -479,6 +489,7 @@ export class MapView {
     }
 
     this.root.classList.add('has-tiles');
+    document.documentElement.dataset.tiles = 'on';
     if (this.attribution) this.attribution.hidden = false;
   }
 
@@ -486,7 +497,16 @@ export class MapView {
   giveUpTiles() {
     this.clearTiles();
     this.root.classList.remove('has-tiles');
+    document.documentElement.dataset.tiles = 'off';
     if (this.attribution) this.attribution.hidden = true;
+    // Les localités reprennent leur service : il faut donc les charger, ce
+    // qu'on avait justement évité de faire en comptant sur les tuiles.
+    if (this.countryId) {
+      const id = this.countryId;
+      this.atlas.ensurePlaces(id).then(() => {
+        if (this.countryId === id) this.refreshOverlay();
+      });
+    }
     this.refreshOverlay();
     if (this.mode === 'country') {
       const [, hi] = this.zoomLimits();
@@ -736,9 +756,13 @@ export class MapView {
     if (animate) this.animateTo(target); else this.apply(target);
 
     // Villes et villages arrivent après coup : la transition ne les attend pas.
-    this.atlas.ensurePlaces(id).then(() => {
-      if (this.countryId === id) this.refreshOverlay();
-    });
+    // Sous un fond de tuiles ils ne serviraient à rien : autant ne pas
+    // télécharger un demi-mégaoctet de noms que personne ne lira.
+    if (!this.tilesWanted()) {
+      this.atlas.ensurePlaces(id).then(() => {
+        if (this.countryId === id) this.refreshOverlay();
+      });
+    }
 
     // Le contour fin arrive après coup : la transition ne l'attend pas.
     const detail = await this.atlas.countryDetail(id);
@@ -915,9 +939,14 @@ export class MapView {
     if (kind === 'city') {
       group.append(el('circle', { class: 'marker__dot', r: rank.dot }));
     } else {
+      // Un médaillon : disque clair pour détacher le repère de la carte,
+      // écusson coloré, croix blanche. Trois pièces plutôt qu'une image, pour
+      // qu'il suive le thème et l'état de la fiche sans autre ressource.
       group.append(
-        el('circle', { class: 'marker__halo', r: 9 }),
-        el('circle', { class: 'marker__dot', r: 4.5 }),
+        el('circle', { class: 'marker__halo', r: 13 }),
+        el('circle', { class: 'marker__ring', r: 10.5 }),
+        el('rect', { class: 'marker__badge', x: -7.5, y: -7.5, width: 15, height: 15, rx: 4.5 }),
+        el('path', { class: 'marker__cross', d: CROSS }),
       );
       group.setAttribute('tabindex', '0');
       group.setAttribute('role', 'button');
@@ -957,10 +986,11 @@ export class MapView {
       entry = {
         font: `${style.fontStyle} ${style.fontWeight} ${style.fontSize} ${style.fontFamily}`,
         h: size * 1.25,
-        // Le nom est posé sous le point, à 1,55 em : le décalage suit donc la
-        // taille du rang. Un décalage fixe désalignerait la boîte de collision
-        // du texte qu'elle est censée protéger.
-        dy: size * LABEL_DROP,
+        // Le nom est posé sous le repère : le décalage suit donc la taille du
+        // rang, et vaut davantage sous une croix que sous un point. Un
+        // décalage fixe désalignerait la boîte de collision du texte qu'elle
+        // est censée protéger.
+        dy: size * (item.kind === 'saint' ? LABEL_DROP_SAINT : LABEL_DROP),
       };
       this.fonts.set(key, entry);
     }
@@ -983,8 +1013,9 @@ export class MapView {
     // compte sous le nom : pour elles, la mesure exacte du tracé reste juste.
     if (item.kind !== 'label') {
       const { font, h, dy } = this.fontOf(item);
-      // Le halo d'un saint déborde son nom quand celui-ci est très court.
-      item.metrics = { w: Math.max(this.textWidth(item.text, font), 18), h, dy };
+      // Le médaillon d'un saint déborde son nom quand celui-ci est très court.
+      const floor = item.kind === 'saint' ? 26 : 18;
+      item.metrics = { w: Math.max(this.textWidth(item.text, font), floor), h, dy };
       return item.metrics;
     }
     try {
@@ -1212,6 +1243,10 @@ export class MapView {
       this.handlers.onCountry?.(shape.dataset.country);
       return;
     }
+    // Sous un fond de tuiles, tout l'écran est de la carte : un clic « à côté »
+    // n'existe plus, et le prendre pour un retour ferait remonter d'un niveau
+    // au moindre tapotement. On revient alors par le fil d'Ariane ou Échap.
+    if (this.tilesWanted()) return;
     this.handlers.onBackground?.();
   }
 

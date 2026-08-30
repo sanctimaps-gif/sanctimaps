@@ -2,8 +2,8 @@
 
 Carte mondiale interactive des saints de l'Église catholique. L'application
 s'ouvre directement sur le planisphère : on choisit un continent, puis un pays,
-et le pays se déploie à l'écran, où l'on peut zoomer jusqu'aux villages pour
-lire les lieux de naissance des saints.
+et le pays se déploie à l'écran sur un fond de rues, où chaque croix marque le
+lieu de naissance d'un saint.
 
 ## Démarrer
 
@@ -19,8 +19,8 @@ fourni n'utilise que Node. `npm install` ne sert qu'à régénérer les données
 
 La carte est un site statique : aucun outil de compilation, aucune bibliothèque
 chargée depuis un CDN, aucune requête réseau pour l'afficher — hormis le fond
-de tuiles au zoom rapproché, qui se coupe d'un réglage et dont l'absence
-n'empêche rien. Le serveur ne sert qu'à deux choses : distribuer les fichiers, et — si un fournisseur de
+de rues sous la vue pays, qui se coupe d'un réglage et dont l'absence n'empêche
+rien. Le serveur ne sert qu'à deux choses : distribuer les fichiers, et — si un fournisseur de
 modèle est configuré — porter les appels sans jamais confier de clé au
 navigateur.
 
@@ -32,7 +32,7 @@ Les trois échelles de lecture s'enchaînent, et chacune fixe ce qui est possibl
 | --- | --- | --- |
 | **Monde** | Les continents. Les pays comptant des saints sont d'une autre couleur. | Choisir un continent — le zoom est verrouillé. |
 | **Continent** | Les pays du continent, nommés et comptés. | Choisir un pays — le zoom reste verrouillé. |
-| **Pays** | Le pays entier à l'écran, ses villes et un point par saint. | Zoomer jusqu'aux villages, se déplacer, ouvrir une fiche. Commandes de zoom et barre d'échelle apparaissent ici. |
+| **Pays** | Le pays entier à l'écran sur un fond de rues, et une croix par lieu de naissance. | Zoomer jusqu'à la rue, se déplacer, ouvrir une fiche. Commandes de zoom et barre d'échelle apparaissent ici. |
 
 Le planisphère occupe toute la hauteur de l'écran, quitte à sortir par les
 côtés : le montrer en entier le réduisait à un bandeau au milieu, entre deux
@@ -44,9 +44,10 @@ dans 57 pays » — avant même le premier clic. Il s'efface dès qu'on descend
 d'une échelle, où le compte devient celui du pays ouvert.
 
 Le déplacement est borné à chaque échelle : on ne peut pas dériver
-indéfiniment hors de la carte. Un clic sur la mer, ou la touche `Échap`,
-remonte d'un niveau ; le fil d'Ariane et les puces de continents permettent
-d'aller directement où l'on veut.
+indéfiniment hors de la carte. La touche `Échap` remonte d'un niveau — de
+même qu'un clic sur la mer, tant qu'aucun fond de rues n'est posé ; le fil
+d'Ariane et les puces de continents permettent d'aller directement où l'on
+veut.
 
 ### Zoomer, une fois un pays ouvert
 
@@ -70,31 +71,44 @@ deux cents kilomètres du sol. Chaque pays descend donc jusqu'à la même échel
 au sol — celle où les villages se nomment sans fond de tuiles, celle de la rue
 avec.
 
-### Au zoom rapproché : le fond de carte
+### Dans un pays : le fond de carte
 
-Passé une échelle d'une soixantaine de mètres par pixel, nos contours n'ont
-plus rien à montrer — ils s'arrêtent aux frontières et aux villages d'un
-millier d'habitants. Un fond de tuiles OpenStreetMap prend alors le relais et
-apporte les rues, les routes et les cours d'eau : la carte descend jusqu'au
-pâté de maisons, échelle « 100 m », et l'on voit la rue où le saint est né.
+Dès qu'un pays s'ouvre, un fond de tuiles OpenStreetMap se pose sous la carte
+et apporte les rues, les routes et les cours d'eau. On peut alors descendre
+jusqu'au pâté de maisons, échelle « 100 m », et voir la rue où le saint est né.
 
-Le passage de relais est net : sous les tuiles, nos propres noms de localités
-s'effacent — le fond écrit déjà chaque bourg, les redoubler ne ferait que les
-brouiller. **La carte porte la géographie, nous portons les saints**, qui
-restent seuls posés dessus.
+Aux échelles supérieures — monde, continent — il n'y a pas de fond : la carte
+est thématique, elle dit quels pays comptent des saints, et des rues n'y
+auraient aucun sens.
+
+Le partage est net : **la carte porte la géographie, nous portons les
+saints**. Sous les tuiles, nos propres noms de localités et nos points de
+villes disparaissent — le fond écrit déjà chaque bourg, les redoubler ne
+ferait que les brouiller. Ne restent que les croix des lieux de naissance.
+
+Rien de ce fond ne se clique. Les tuiles happeraient chaque tapotement et le
+prendraient pour un clic « à côté » ; les pays voisins, devenus invisibles,
+seraient des cibles qu'on ne voit pas. **On change de pays en remontant au
+continent** — par le fil d'Ariane ou la touche `Échap` — et seules les croix
+des saints répondent au clic.
 
 C'est la seule chose de l'application qui sorte sur le réseau, et elle est
 faite pour pouvoir manquer. Fournisseur coupé, réseau absent, réglage sur
 « jamais » : après quelques essais infructueux l'application renonce, les
-villages reparaissent, le zoom se resserre là où il a encore de quoi montrer
-quelque chose, et rien d'autre ne change. Le réglage se trouve dans
+villes et les villages reparaissent — dessinés par nos soins, comme avant —,
+le zoom se resserre là où il a encore de quoi montrer quelque chose, et rien
+d'autre ne change. Le réglage se trouve dans
 **Paramètres → Fond de carte détaillé**.
 
 La mention « © OpenStreetMap » s'affiche dès qu'une tuile est visible : c'est
 une condition de la licence du fond, pas une politesse. Changer de fournisseur
 tient en deux lignes dans `src/js/basemap.js`.
 
-### Le grain de la vue pays
+### Le grain de la vue pays, sans fond de tuiles
+
+Ce qui suit ne vaut que lorsque le fond de carte est coupé — réglage sur
+« jamais », réseau absent, fournisseur muet. La carte revient alors à ses
+propres localités, et c'est ce dessin-là qui s'applique.
 
 Plus on zoome, plus la carte descend dans la hiérarchie des localités : une
 quarantaine de villes au cadrage d'arrivée, puis les bourgs, puis les villages.
