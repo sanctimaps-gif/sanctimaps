@@ -5,6 +5,7 @@ import { MapView } from './map/view.js';
 import { AccountPanel } from './ui/account.js';
 import { AddPanel } from './ui/addForm.js';
 import { AssistantPanel, ModerationPanel } from './ui/admin.js';
+import { DailyPanel } from './ui/daily.js';
 import { DetailPanel } from './ui/detail.js';
 import { SearchPanel } from './ui/search.js';
 import { apply as applyTheme } from './theme.js';
@@ -102,9 +103,14 @@ async function start() {
     },
   });
 
+  // Le saint du jour ne dépend que de l'horloge et du corpus : il n'a besoin
+  // d'aucun réglage, et se met à jour comme les autres quand le corpus bouge.
+  const dailyPanel = new DailyPanel(atlas, { onSelect: (id) => openSaint(id, { fly: true }) });
+
   const sidebar = new Sidebar(app, {
     atlas,
     search: searchPanel,
+    daily: dailyPanel,
     add: addPanel,
     detail: detailPanel,
     moderate: moderationPanel,
@@ -126,6 +132,7 @@ async function start() {
     map.syncCountryClasses();
     map.refreshOverlay();
     searchPanel.renderResults();
+    dailyPanel.render();
     addPanel.render();
     moderationPanel.render();
     assistantPanel.render();

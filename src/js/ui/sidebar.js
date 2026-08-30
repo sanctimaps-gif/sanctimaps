@@ -20,6 +20,7 @@ import { fill, h, select } from './dom.js';
 
 /** Une entrée du sommaire : clé, glyphe, et droit requis pour la voir. */
 const ENTRIES = [
+  { key: 'daily', glyph: '☀' },
   { key: 'search', glyph: '⌕' },
   { key: 'add', glyph: '✚' },
   { key: 'moderate', glyph: '☑', right: 'moderate' },
@@ -137,6 +138,7 @@ export class Sidebar {
   }
 
   viewFor(name) {
+    if (name === 'daily') return this.panels.daily.root;
     if (name === 'add') return this.panels.add.root;
     if (name === 'moderate') return this.panels.moderate.root;
     if (name === 'assistant') return this.panels.assistant.root;
@@ -230,6 +232,7 @@ export class Sidebar {
   /** Reconstruit tout le contenu traduit après un changement de langue. */
   retranslate() {
     this.panels.search.render();
+    this.panels.daily.render();
     this.panels.add.render();
     this.panels.detail.render();
     this.panels.moderate.render();

@@ -25,6 +25,7 @@ export default {
     language: 'Idioma',
   },
   tab: {
+    daily: 'Santo del día',
     search: 'Buscar',
     add: 'Añadir',
     moderate: 'Revisión',
@@ -33,6 +34,7 @@ export default {
     settings: 'Ajustes',
   },
   menu: {
+    daily: 'Quién se celebra hoy',
     title: 'Índice',
     backToMap: 'Volver al mapa',
     search: 'Por país, siglo, fecha o nombre',
@@ -194,6 +196,18 @@ export default {
     aiRemote: 'Servicio remoto · {provider} · {model}',
     aiEmpty: 'El modelo no ha devuelto ninguna ficha.',
     confidence: 'Certeza declarada por el modelo: {level}',
+  },
+  daily: {
+    title: 'Santo del día',
+    none: 'Ningún santo del corpus se celebra este día.',
+    nextIs: 'Próxima fiesta en el corpus: {date}.',
+    goNext: 'Ir a esa fecha',
+    count: '{n} santos celebrados',
+    countOne: '1 santo celebrado',
+    prev: 'Víspera',
+    next: 'Día siguiente',
+    back: 'Volver a hoy',
+    coverage: '{n} días del año de {total} llevan al menos una fiesta en el corpus.',
   },
   expert: {
     intro: 'Dé el nombre del santo: el programa devuelve su ficha completa — fechas, fiesta, cualidades, patronazgo, historia, lugar de nacimiento y lugar de muerte.',

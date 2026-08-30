@@ -25,6 +25,7 @@ export default {
     language: 'Język',
   },
   tab: {
+    daily: 'Święty dnia',
     search: 'Szukaj',
     add: 'Dodaj',
     moderate: 'Przegląd',
@@ -33,6 +34,7 @@ export default {
     settings: 'Ustawienia',
   },
   menu: {
+    daily: 'Kogo dziś się wspomina',
     title: 'Spis treści',
     backToMap: 'Powrót do mapy',
     search: 'Według kraju, wieku, daty lub nazwiska',
@@ -194,6 +196,18 @@ export default {
     aiRemote: 'Usługa zdalna · {provider} · {model}',
     aiEmpty: 'Model nie zwrócił żadnej karty.',
     confidence: 'Pewność podana przez model: {level}',
+  },
+  daily: {
+    title: 'Święty dnia',
+    none: 'Żaden święty z korpusu nie jest wspominany tego dnia.',
+    nextIs: 'Najbliższe święto w korpusie: {date}.',
+    goNext: 'Przejdź do tej daty',
+    count: 'Wspominanych świętych: {n}',
+    countOne: 'Wspominany 1 święty',
+    prev: 'Poprzedni dzień',
+    next: 'Następny dzień',
+    back: 'Wróć do dziś',
+    coverage: '{n} dni w roku na {total} ma w korpusie przynajmniej jedno wspomnienie.',
   },
   expert: {
     intro: 'Podaj imię świętego: program zwraca pełny wpis — daty, święto, przymioty, patronat, historię, miejsce urodzenia i miejsce śmierci.',

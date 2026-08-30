@@ -593,8 +593,60 @@ for (const file of readdirSync(REF_DIR).filter((f) => f.endsWith('.json')).sort(
   }
   for (const saint of raw.saints) entries.push(saint);
 }
+
+// Le réservoir de l'assistant autonome entre lui aussi dans le fond : ses
+// fiches portent déjà dates, fête, qualités, patronage et notice, et rien ne
+// justifie de faire ressaisir à la main ce qui est écrit deux dossiers plus
+// loin. Elles n'ont pas d'histoire rédigée — c'est la seule différence, et
+// l'atelier laisse le champ vide plutôt que de l'inventer.
+const FEAST_RE = /^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
+const byId = new Map(countries.map((c) => [c.id, c]));
+
+/** Le point tombe-t-il dans le cadre du pays annoncé, à 8 % près ? */
+function insideBox(country, lat, lng) {
+  const [x, y] = project(lng, lat);
+  const box = country.bbox;
+  const shifted = country.focus[0] > WORLD_SIZE ? x + WORLD_SIZE : x;
+  const w = (box[2] - box[0]) * 0.08;
+  const h = (box[3] - box[1]) * 0.08;
+  return shifted >= box[0] - w && shifted <= box[2] + w
+    && y >= box[1] - h && y <= box[3] + h;
+}
+const namesInFond = new Set(entries.flatMap(
+  (e) => [...Object.values(e.name), ...(e.aka || [])].map(fold),
+));
+let fromPool = 0;
+for (const c of candidates) {
+  // Les fiches volontairement fautives du réservoir servent à démontrer la
+  // vérification ; elles n'ont rien à faire dans un fond de consultation.
+  const country = byId.get(c.country);
+  if (!country || !FEAST_RE.test(String(c.feast))) continue;
+  if (!insideBox(country, c.lat, c.lng)) continue;
+  if (c.born != null && c.died != null && c.died < c.born) continue;
+  const forms = Object.values(c.name || {}).filter(Boolean);
+  if (forms.some((n) => namesInFond.has(fold(n)))) continue;
+  for (const n of forms) namesInFond.add(fold(n));
+  entries.push({
+    id: `ref-${c.id}`,
+    name: c.name,
+    aka: [],
+    sex: c.sex,
+    born: c.born ?? null,
+    died: c.died ?? null,
+    circa: Boolean(c.circa),
+    feast: c.feast,
+    titles: c.titles || [],
+    patronage: c.patronage,
+    desc: c.desc,
+    birth: { city: c.city, country: c.country, lat: c.lat, lng: c.lng },
+    source: 'pool',
+  });
+  fromPool += 1;
+}
+
 writeFileSync(join(OUT, 'reference.json'), JSON.stringify({ entries, aliases }));
 const aliasCount = Object.values(aliases).reduce((n, t) => n + Object.keys(t).length, 0);
-console.log(`  reference.json : ${entries.length} fiches de référence, ${aliasCount} graphies de lieux`);
+console.log(`  reference.json : ${entries.length} fiches de référence`
+  + ` (dont ${fromPool} venues du réservoir), ${aliasCount} graphies de lieux`);
 
 console.log('Terminé.');

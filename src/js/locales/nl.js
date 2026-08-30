@@ -25,6 +25,7 @@ export default {
     language: 'Taal',
   },
   tab: {
+    daily: 'Heilige van de dag',
     search: 'Zoeken',
     add: 'Toevoegen',
     moderate: 'Nazicht',
@@ -33,6 +34,7 @@ export default {
     settings: 'Instellingen',
   },
   menu: {
+    daily: 'Wie vandaag gevierd wordt',
     title: 'Overzicht',
     backToMap: 'Terug naar de kaart',
     search: 'Op land, eeuw, datum of naam',
@@ -194,6 +196,18 @@ export default {
     aiRemote: 'Externe dienst · {provider} · {model}',
     aiEmpty: 'Het model heeft geen enkele fiche teruggegeven.',
     confidence: 'Door het model opgegeven zekerheid: {level}',
+  },
+  daily: {
+    title: 'Heilige van de dag',
+    none: 'Op deze dag wordt geen heilige uit het bestand gevierd.',
+    nextIs: 'Volgend feest in het bestand: {date}.',
+    goNext: 'Naar die datum',
+    count: '{n} heiligen gevierd',
+    countOne: '1 heilige gevierd',
+    prev: 'Vorige dag',
+    next: 'Volgende dag',
+    back: 'Terug naar vandaag',
+    coverage: '{n} van de {total} dagen van het jaar dragen in het bestand ten minste één feest.',
   },
   expert: {
     intro: 'Geef de naam van de heilige: het programma levert de volledige fiche — data, feest, hoedanigheden, patronaat, geschiedenis, geboorteplaats en sterfplaats.',

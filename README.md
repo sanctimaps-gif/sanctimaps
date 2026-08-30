@@ -148,16 +148,37 @@ saint isolé.
 ## Le tiroir
 
 Le panneau de gauche s'ouvre sur un **sommaire** : la liste de ce qu'on peut
-faire, une ligne chacun, et rien d'autre. On choisit une partie — Rechercher,
-Ajouter, Modération, Assistant, Compte, Paramètres — et elle prend toute la
-place, avec un « ‹ Sommaire » pour revenir. Une rangée d'onglets aurait montré
-les six parties à la fois en n'en laissant lire aucune ; ici chaque écran ne
-dit qu'une chose.
+faire, une ligne chacun, et rien d'autre. On choisit une partie — Saint du
+jour, Rechercher, Ajouter, Modération, Assistant, Compte, Paramètres — et elle
+prend toute la place, avec un « ‹ Sommaire » pour revenir. Une rangée d'onglets
+aurait montré les sept parties à la fois en n'en laissant lire aucune ; ici
+chaque écran ne dit qu'une chose.
 
 Refermer le tiroir ramène au sommaire : le rouvrir repose la question « que
 voulez-vous faire », plutôt que de reprendre là où l'on en était trois clics
 plus tôt. « Retour à la carte », en bas du sommaire, referme sans naviguer
 ailleurs — la carte reste maîtresse.
+
+## Le saint du jour
+
+La première entrée du sommaire, parce que c'est la question qu'on se pose en
+ouvrant : **qui fête-t-on aujourd'hui ?** Le calendrier des saints est
+perpétuel — la fête revient au même jour tous les ans, l'année ne compte pas —,
+si bien que la partie ne fait rien d'autre que lire l'horloge de la machine et
+ramener les fiches qui portent cette date. Aucun réglage, aucune requête.
+
+La date s'écrit en grand, dans la langue courante, et les saints du jour se
+présentent comme des résultats de recherche : un clic ouvre la fiche, et la
+fiche mène à la carte. Deux boutons feuillettent la veille et le lendemain, un
+troisième revient à aujourd'hui.
+
+**Les jours vides existent, et ils le disent.** Deux cent quatre-vingt-cinq
+fiches ne couvrent pas trois cent soixante-six jours : deux cent seize
+seulement en portent une, et le plus long silence dure six jours. Plutôt qu'un
+écran blanc, la partie cherche la prochaine date pourvue et propose d'y aller
+d'un bouton — un vide qui indique la sortie vaut mieux qu'un vide qui se tait.
+Une ligne finale donne le compte, pour que l'état du corpus soit lu là où son
+manque se ressent.
 
 ## La recherche
 
@@ -243,8 +264,17 @@ consulter :
 
 | Fond | Contenu | Ce qu'il rend |
 | --- | --- | --- |
-| `data/reference/fond-*.json` | 148 fiches rédigées à l'avance | dates, fête, qualités, patronage, notice, histoire, lieu de naissance **et lieu de mort** |
+| `data/reference/fond-*.json` | 148 fiches rédigées pour ce fond | dates, fête, qualités, patronage, notice, histoire, lieu de naissance **et lieu de mort** |
+| `data/candidats/*.json` | 145 fiches du réservoir, reprises à la génération | la même chose, sans l'histoire rédigée |
 | `data/generated/cities/` | 113 584 localités | les coordonnées exactes du lieu |
+
+Soit **293 noms** que l'atelier remplit d'un clic. Le réservoir de la source
+autonome entre dans le fond parce que rien ne justifie de faire ressaisir à la
+main ce qui est déjà écrit deux dossiers plus loin ; ses fiches n'ont
+simplement pas d'histoire rédigée, et l'atelier laisse alors le champ vide
+plutôt que de l'inventer. Les quelques fiches volontairement fautives du
+réservoir — celles qui servent à démontrer la vérification — n'y entrent pas :
+la génération les écarte au même titre que le contrôle.
 
 Vous tapez le nom du saint, vous cliquez sur « Chercher ce saint », et
 l'atelier se remplit : la fiche entière descend du premier fond, la ville
@@ -449,6 +479,7 @@ src/js/i18n.js           langues, dates, nombres, accords en genre
 src/js/locales/*.js      douze paquets de traductions
 src/js/map/projection.js projection Mercator, partagée avec la génération
 src/js/map/view.js       rendu SVG, cadrages, zoom et déplacement bornés
+src/js/ui/daily.js       saint du jour : l'horloge, le corpus, rien d'autre
 src/js/ui/*.js           panneau, recherche, fiche, formulaire, modération,
                          assistant, compte, bandeau
 data/saints/*.json       corpus, écrit à la main

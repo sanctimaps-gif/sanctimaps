@@ -25,6 +25,7 @@ export default {
     language: 'Sprache',
   },
   tab: {
+    daily: 'Heiliger des Tages',
     search: 'Suchen',
     add: 'Hinzufügen',
     moderate: 'Prüfung',
@@ -33,6 +34,7 @@ export default {
     settings: 'Einstellungen',
   },
   menu: {
+    daily: 'Wer heute gefeiert wird',
     title: 'Übersicht',
     backToMap: 'Zurück zur Karte',
     search: 'Nach Land, Jahrhundert, Datum oder Name',
@@ -194,6 +196,18 @@ export default {
     aiRemote: 'Entfernter Dienst · {provider} · {model}',
     aiEmpty: 'Das Modell hat keinen Eintrag geliefert.',
     confidence: 'Vom Modell angegebene Sicherheit: {level}',
+  },
+  daily: {
+    title: 'Heiliger des Tages',
+    none: 'An diesem Tag wird kein Heiliger des Bestandes gefeiert.',
+    nextIs: 'Nächstes Fest im Bestand: {date}.',
+    goNext: 'Zu diesem Datum',
+    count: '{n} Heilige gefeiert',
+    countOne: '1 Heiliger gefeiert',
+    prev: 'Vortag',
+    next: 'Folgetag',
+    back: 'Zurück zu heute',
+    coverage: '{n} von {total} Tagen des Jahres tragen im Bestand mindestens ein Fest.',
   },
   expert: {
     intro: 'Nennen Sie den Namen des Heiligen: Das Programm liefert den vollständigen Eintrag — Daten, Fest, Eigenschaften, Patronat, Geschichte, Geburts- und Sterbeort.',

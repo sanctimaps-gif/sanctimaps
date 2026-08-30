@@ -1213,6 +1213,45 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .result--draft { border-inline-start: 3px solid var(--pending); }
 
+/* ------------------------------------------- Saint du jour */
+
+/* La date est le sujet de la page : elle se lit avant tout le reste, et la
+   majuscule initiale vient d'ici, le navigateur rendant « samedi 30 août ». */
+.daily__date {
+  font-family: var(--font);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  margin: 0.1rem 0 0.6rem;
+  color: var(--ink);
+}
+
+.daily__date::first-letter { text-transform: uppercase; }
+
+.daily__nav {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.daily__nav .btn { flex: 1; }
+
+/* La couverture du calendrier ferme la page : elle dit où en est le corpus. */
+.daily__coverage {
+  margin-top: 1rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+
+/* Un jour sans fête ne doit pas être un cul-de-sac : la sortie est visible. */
+.daily__next {
+  margin-top: 0.8rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+
 /* ------------------------------------------- Modération et assistant */
 
 .panel__section {

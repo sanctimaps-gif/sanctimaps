@@ -27,6 +27,7 @@ export default {
     language: 'Langue',
   },
   tab: {
+    daily: 'Saint du jour',
     search: 'Rechercher',
     add: 'Ajouter',
     moderate: 'Modération',
@@ -35,6 +36,7 @@ export default {
     settings: 'Paramètres',
   },
   menu: {
+    daily: 'Qui est fêté aujourd’hui',
     title: 'Sommaire',
     backToMap: 'Retour à la carte',
     search: 'Par pays, siècle, date ou nom',
@@ -196,6 +198,18 @@ export default {
     aiRemote: 'Service distant · {provider} · {model}',
     aiEmpty: 'Le modèle n’a rendu aucune fiche.',
     confidence: 'Certitude annoncée par le modèle : {level}',
+  },
+  daily: {
+    title: 'Saint du jour',
+    none: 'Aucun saint du corpus n’est fêté ce jour.',
+    nextIs: 'Prochaine fête au corpus : {date}.',
+    goNext: 'Aller à cette date',
+    count: '{n} saints fêtés',
+    countOne: '1 saint fêté',
+    prev: 'Veille',
+    next: 'Lendemain',
+    back: 'Revenir à aujourd’hui',
+    coverage: '{n} jours de l’année sur {total} portent au moins une fête au corpus.',
   },
   expert: {
     intro: 'Donnez le nom du saint : le programme rend sa fiche complète — dates, fête, qualités, patronage, histoire, lieu de naissance et lieu de mort.',

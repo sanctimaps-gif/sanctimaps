@@ -25,6 +25,7 @@ export default {
     language: '语言',
   },
   tab: {
+    daily: '每日圣人',
     search: '搜索',
     add: '添加',
     moderate: '审核',
@@ -33,6 +34,7 @@ export default {
     settings: '设置',
   },
   menu: {
+    daily: '今日纪念何人',
     title: '目录',
     backToMap: '返回地图',
     search: '按国家、世纪、日期或姓名',
@@ -194,6 +196,18 @@ export default {
     aiRemote: '远程服务 · {provider} · {model}',
     aiEmpty: '模型未返回任何条目。',
     confidence: '模型自述的把握：{level}',
+  },
+  daily: {
+    title: '每日圣人',
+    none: '语料中今日无圣人纪念。',
+    nextIs: '语料中下一个瞻礼：{date}。',
+    goNext: '前往该日',
+    count: '纪念 {n} 位圣人',
+    countOne: '纪念 1 位圣人',
+    prev: '前一日',
+    next: '后一日',
+    back: '回到今日',
+    coverage: '一年 {total} 天中，语料里有 {n} 天至少有一位圣人的瞻礼。',
   },
   expert: {
     intro: '给出圣人的名字：程序便交回完整记录——生卒、瞻礼、身份、主保、生平，以及出生地与去世地。',

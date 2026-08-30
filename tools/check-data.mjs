@@ -143,7 +143,10 @@ for (const e of entries) {
   if (!e.name?.fr || !e.name?.en) fail(`fond : ${e.id} nom incomplet`);
   if (!/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(e.feast)) fail(`fond : ${e.id} fête ${e.feast}`);
   if (e.born != null && e.died != null && e.died < e.born) fail(`fond : ${e.id} dates ${e.born} → ${e.died}`);
-  if (!e.desc?.fr || !e.bio?.fr) fail(`fond : ${e.id} notice ou histoire manquante`);
+  // Les fiches venues du réservoir n'ont pas d'histoire rédigée : on ne la
+  // réclame qu'à celles qui ont été écrites pour le fond.
+  if (!e.desc?.fr) fail(`fond : ${e.id} notice manquante`);
+  if (e.source !== 'pool' && !e.bio?.fr) fail(`fond : ${e.id} histoire manquante`);
   for (const key of ['birth', 'death']) {
     const place = e[key];
     if (!place) continue;

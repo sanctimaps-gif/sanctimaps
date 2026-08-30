@@ -129,6 +129,25 @@ export function formatFeast(feast) {
     .format(new Date(Date.UTC(2001, m - 1, d)));
 }
 
+/**
+ * Jour de l'année en toutes lettres, jour de semaine compris.
+ *
+ * L'année n'y figure pas : le saint du jour se fête tous les ans, et donner
+ * « 2026 » laisserait croire à une date unique.
+ */
+export function formatDay(date) {
+  const day = date.getDate();
+  const month = monthNames()[date.getMonth()];
+  if (current === 'la') {
+    const WEEK = ['Dies Solis', 'Dies Lunae', 'Dies Martis', 'Dies Mercurii',
+      'Dies Iovis', 'Dies Veneris', 'Dies Saturni'];
+    return `${WEEK[date.getDay()]}, ${day} ${month}`;
+  }
+  return new Intl.DateTimeFormat(current, {
+    weekday: 'long', day: 'numeric', month: 'long',
+  }).format(date);
+}
+
 /** Année éventuellement approximative, avec mention avant Jésus-Christ. */
 export function formatYear(year, { circa = false } = {}) {
   if (year == null) return t('misc.unknown');

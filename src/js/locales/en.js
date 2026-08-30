@@ -25,6 +25,7 @@ export default {
     language: 'Language',
   },
   tab: {
+    daily: 'Saint of the day',
     search: 'Search',
     add: 'Add',
     moderate: 'Review',
@@ -33,6 +34,7 @@ export default {
     settings: 'Settings',
   },
   menu: {
+    daily: 'Who is celebrated today',
     title: 'Menu',
     backToMap: 'Back to the map',
     search: 'By country, century, date or name',
@@ -194,6 +196,18 @@ export default {
     aiRemote: 'Remote service · {provider} · {model}',
     aiEmpty: 'The model returned no entry.',
     confidence: 'Confidence stated by the model: {level}',
+  },
+  daily: {
+    title: 'Saint of the day',
+    none: 'No saint in the corpus is celebrated on this day.',
+    nextIs: 'Next feast in the corpus: {date}.',
+    goNext: 'Go to that date',
+    count: '{n} saints celebrated',
+    countOne: '1 saint celebrated',
+    prev: 'Previous day',
+    next: 'Next day',
+    back: 'Back to today',
+    coverage: '{n} days of the year out of {total} carry at least one feast in the corpus.',
   },
   expert: {
     intro: 'Give the saint\'s name: the program returns the complete entry — dates, feast, qualities, patronage, history, place of birth and place of death.',

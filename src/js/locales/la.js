@@ -25,6 +25,7 @@ export default {
     language: 'Lingua',
   },
   tab: {
+    daily: 'Sanctus diei',
     search: 'Quaerere',
     add: 'Addere',
     moderate: 'Recensio',
@@ -33,6 +34,7 @@ export default {
     settings: 'Optiones',
   },
   menu: {
+    daily: 'Quis hodie celebretur',
     title: 'Index',
     backToMap: 'Ad tabulam redire',
     search: 'Per regionem, saeculum, diem vel nomen',
@@ -194,6 +196,18 @@ export default {
     aiRemote: 'Ministerium remotum · {provider} · {model}',
     aiEmpty: 'Machina nullam schedam reddidit.',
     confidence: 'Certitudo a machina declarata: {level}',
+  },
+  daily: {
+    title: 'Sanctus diei',
+    none: 'Nullus sanctus corporis hoc die celebratur.',
+    nextIs: 'Proximum festum in corpore: {date}.',
+    goNext: 'Ad hunc diem ire',
+    count: 'Sancti celebrati {n}',
+    countOne: 'Sanctus unus celebratus',
+    prev: 'Pridie',
+    next: 'Postridie',
+    back: 'Ad hodiernum redire',
+    coverage: 'Dies anni {n} ex {total} in corpore saltem unum festum ferunt.',
   },
   expert: {
     intro: 'Nomen sancti da: programma schedam integram reddit — dies, festum, dotes, patrocinium, historiam, locum natalem et locum obitus.',
