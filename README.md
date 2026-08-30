@@ -18,9 +18,11 @@ fourni n'utilise que Node. `npm install` ne sert qu'à régénérer les données
 (voir plus bas).
 
 La carte est un site statique : aucun outil de compilation, aucune bibliothèque
-chargée depuis un CDN, aucune requête réseau pour l'afficher — hormis le fond
-de rues sous la vue pays, qui se coupe d'un réglage et dont l'absence n'empêche
-rien. Le serveur ne sert qu'à deux choses : distribuer les fichiers, et — si un fournisseur de
+chargée depuis un CDN, aucune requête réseau pour l'afficher. Deux choses
+seulement sortent sur le réseau, et l'une comme l'autre est faite pour pouvoir
+manquer : le fond de rues sous la vue pays, qui se coupe d'un réglage, et la
+recherche de l'assistant sur Wikidata, qui ne part que si l'administrateur la
+demande. Le serveur ne sert qu'à deux choses : distribuer les fichiers, et — si un fournisseur de
 modèle est configuré — porter les appels sans jamais confier de clé au
 navigateur.
 
@@ -149,10 +151,14 @@ saint isolé.
 
 Le panneau de gauche s'ouvre sur un **sommaire** : la liste de ce qu'on peut
 faire, une ligne chacun, et rien d'autre. On choisit une partie — Saint du
-jour, Rechercher, Ajouter, Modération, Assistant, Compte, Paramètres — et elle
-prend toute la place, avec un « ‹ Sommaire » pour revenir. Une rangée d'onglets
-aurait montré les sept parties à la fois en n'en laissant lire aucune ; ici
+jour, Rechercher, Ajouter, Modération, Assistant, Paramètres — et elle prend
+toute la place, avec un « ‹ Sommaire » pour revenir. Une rangée d'onglets
+aurait montré les six parties à la fois en n'en laissant lire aucune ; ici
 chaque écran ne dit qu'une chose.
+
+**Paramètres** réunit ce qui se règle et ce qui vous identifie : affichage
+(langue, thème, fond de carte), rappel quotidien, puis compte. Deux entrées du
+sommaire pour six champs, c'était une porte de trop.
 
 Refermer le tiroir ramène au sommaire : le rouvrir repose la question « que
 voulez-vous faire », plutôt que de reprendre là où l'on en était trois clics
@@ -179,6 +185,25 @@ seulement en portent une, et le plus long silence dure six jours. Plutôt qu'un
 d'un bouton — un vide qui indique la sortie vaut mieux qu'un vide qui se tait.
 Une ligne finale donne le compte, pour que l'état du corpus soit lu là où son
 manque se ressent.
+
+### Être prévenu chaque jour
+
+Dans **Paramètres → Rappel quotidien**, deux chemins — et ils ne valent pas la
+même chose. Le dire est la moitié du réglage :
+
+| | Ce que ça fait | Ce que ça vaut |
+| --- | --- | --- |
+| **Calendrier du téléphone** | Produit un fichier `.ics` : 216 événements, un par jour pourvu, répétés tous les ans, chacun avec une alarme à l'heure choisie. | **C'est le chemin qui atteint vraiment le téléphone.** Une fois le fichier ouvert sur l'appareil, c'est l'agenda qui prévient — hors ligne, sans compte, sans que l'application soit ouverte. |
+| **Notification du navigateur** | Demande la permission, puis annonce le saint du jour à l'heure dite. | Seulement **tant que cette page est ouverte**. |
+
+Un site statique n'a derrière lui ni serveur ni service de notification : il
+n'a aucun moyen de réveiller un appareil éteint, et prétendre le contraire
+serait mentir. Le calendrier, lui, le peut, parce que c'est le téléphone qui
+garde les événements et déclenche l'alarme.
+
+L'heure est écrite en temps *flottant* — ni `Z`, ni fuseau : la notification
+tombe à sept heures là où l'on se trouve, et non à sept heures de Paris quand
+on est à Montréal.
 
 ## La recherche
 
@@ -305,9 +330,53 @@ vous choisissez : « Saint-Pierre » propose d'abord la commune qui porte
 exactement ce nom, puis les huit premières des composées. Et quand le saint est
 déjà sur la carte, il le dit avant le travail plutôt qu'après la vérification.
 
+#### Quand les fonds livrés ne savent pas : Internet
+
+Un nom absent des deux fonds ne s'arrête plus là. L'assistant interroge alors
+**Wikidata** pour les faits et **Wikipédia** pour le récit — directement depuis
+le navigateur, sans serveur intermédiaire, sans clé et sans compte : les deux
+services acceptent les requêtes d'origine tierce, ce qui laisse l'application
+entièrement statique. Le bouton « Chercher sur Internet » permet aussi de le
+demander expressément.
+
+Ce que Wikidata rend, et où l'atelier le verse :
+
+| Propriété | Champ de la fiche |
+| --- | --- |
+| `P569` / `P570` | années de naissance et de mort |
+| `P19` / `P20` → `P625` | ville et coordonnées, naissance **et** mort |
+| `P19` → `P17` → `P298` | pays, en code à trois lettres |
+| `P841` | date de fête |
+| `P2925` | patronage |
+| `P106`, `P39` | qualités |
+| lien vers Wikipédia | histoire du saint |
+
+Le choix de la source n'est pas indifférent. Un modèle de langue restitue ses
+souvenirs et se trompe avec assurance ; Wikidata rend des champs structurés,
+datés et **sourcés**. Chaque fiche composée ainsi garde l'adresse de ce qui l'a
+nourrie, affichée dans l'atelier puis sur la fiche publiée. Ce n'est pas un
+ornement : le texte de Wikipédia est sous licence CC BY-SA, et l'attribution
+voyage avec lui.
+
+Trois garde-fous, parce qu'une source ouverte n'est pas une source sûre :
+
+- **Seuls les êtres humains datés sont retenus.** Chercher « Odilon » ramène
+  aussi l'église Saint-Odilon ; l'atelier écarte ce qui n'est pas une personne
+  (`P31` ≠ `Q5`) et ce dont on ne sait ni la naissance ni la mort.
+- **Les six contrôles s'appliquent comme au reste.** Une fiche venue d'Internet
+  passe par le même crible que les autres, et l'administrateur tranche toujours.
+- **L'atelier le rappelle** : Wikidata et Wikipédia s'écrivent à plusieurs
+  mains, la fiche se relit avant d'être publiée.
+
+Internet coupé, service muet, requête bloquée : l'atelier le dit en une phrase
+et le fond livré avec l'application reste entier. C'est la deuxième chose de
+l'application qui sorte sur le réseau, après le fond de tuiles, et comme lui
+elle est faite pour pouvoir manquer.
+
 Ce qu'il ne fait pas, et ne prétend pas faire : connaître les saints qui ne
-sont dans aucun des deux fonds. Il le dit alors, et laisse l'atelier ouvert à
-la saisie manuelle — ce qu'il ne sait pas, il ne le comble pas. Un état des
+sont ni dans les deux fonds livrés ni sur Wikidata. Il le dit alors, et laisse
+l'atelier ouvert à la saisie manuelle — ce qu'il ne sait pas, il ne le comble
+pas. Un état des
 lieux tiré du corpus ferme l'atelier — combien de saints, dans combien de pays,
 quel continent est le moins pourvu, combien de fiches attendent un patronage —
 pour dire où porter l'effort suivant.
@@ -480,6 +549,8 @@ src/js/locales/*.js      douze paquets de traductions
 src/js/map/projection.js projection Mercator, partagée avec la génération
 src/js/map/view.js       rendu SVG, cadrages, zoom et déplacement bornés
 src/js/ui/daily.js       saint du jour : l'horloge, le corpus, rien d'autre
+src/js/ui/reminder.js    rappel quotidien : agenda du téléphone, notification
+src/js/wiki.js           recherche sur Wikidata et Wikipédia, depuis le navigateur
 src/js/ui/*.js           panneau, recherche, fiche, formulaire, modération,
                          assistant, compte, bandeau
 data/saints/*.json       corpus, écrit à la main

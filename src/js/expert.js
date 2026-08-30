@@ -114,7 +114,7 @@ export function findPlaces(places, query, aliases) {
  */
 export function buildDraft({
   name, sex, country, city, place, lat, lng, placeKind,
-  born, died, circa, feast, titles, desc, patronage, bio,
+  born, died, circa, feast, titles, desc, patronage, bio, sources,
 }) {
   const point = place ? unproject(place) : { lat: Number(lat), lng: Number(lng) };
   const draft = {
@@ -138,6 +138,10 @@ export function buildDraft({
   if (desc && desc.trim()) draft.desc = { fr: desc.trim() };
   if (patronage && patronage.trim()) draft.patronage = { fr: patronage.trim() };
   if (bio && bio.trim()) draft.bio = { fr: bio.trim() };
+  // D'où vient ce qu'on publie. Pour une fiche tirée d'Internet ce n'est pas
+  // un ornement : le texte de Wikipédia est sous licence CC BY-SA, et
+  // l'attribution doit voyager avec lui.
+  if (sources?.length) draft.sources = sources.map((s) => ({ label: s.label, url: s.url }));
   return draft;
 }
 

@@ -6,6 +6,7 @@ import {
 } from '../i18n.js';
 import { reviewPool, verifyCandidate } from '../verify.js';
 import { TITLE_KEYS } from './addForm.js';
+import { detailSaint, searchSaints } from '../wiki.js';
 import { field, fill, h, select } from './dom.js';
 
 function lifespan(saint) {
@@ -92,7 +93,8 @@ const blankExpert = () => ({
   name: '', sex: 'm', country: '', city: '',
   born: '', died: '', circa: false, month: '', day: '',
   titles: [], desc: '', patronage: '', bio: '',
-  places: null, chosen: null, fallback: null,
+  places: null, chosen: null, fallback: null, sources: [],
+  web: null, webBusy: false, webError: null,
   checked: null, busy: false, searching: false, error: null,
 });
 
@@ -168,6 +170,10 @@ export class AssistantPanel {
     if (query.length < 2) return;
     e.searching = true;
     e.error = null;
+    // Une nouvelle recherche efface la précédente, y compris l'échec d'Internet
+    // qui, resté affiché, semblerait porter sur le nom qu'on vient de taper.
+    e.web = null;
+    e.webError = null;
     this.render();
     try {
       const { entries } = await this.atlas.reference();
@@ -183,6 +189,75 @@ export class AssistantPanel {
       e.searching = false;
       this.render();
     }
+    // Le fond livré est muet sur ce nom : c'est le moment d'aller voir dehors,
+    // sans le demander — c'est bien ce qu'on attendait de l'assistant.
+    if (!this.expert.matches?.length) await this.searchWeb();
+  }
+
+  // -------------------------------------------------------------------------
+  // Internet : Wikidata pour les faits, Wikipédia pour le récit
+  // -------------------------------------------------------------------------
+
+  async searchWeb() {
+    const e = this.expert;
+    const query = e.query.trim();
+    if (query.length < 2) return;
+    e.webBusy = true;
+    e.webError = null;
+    e.web = null;
+    this.render();
+    try {
+      e.web = await searchSaints(query, getLanguage());
+      if (!e.web.length) e.webError = t('web.none');
+    } catch {
+      // Hors ligne, service muet, requête bloquée : le fond local reste entier.
+      e.webError = t('web.offline');
+    } finally {
+      e.webBusy = false;
+      this.render();
+    }
+  }
+
+  /**
+   * Verse une réponse d'Internet dans l'atelier.
+   *
+   * Elle est d'abord mise à la forme d'une fiche du fond : l'atelier ne
+   * connaît qu'un modèle, et la bascule naissance / mort, la résolution du
+   * lieu et la vérification s'appliquent sans savoir d'où vient la fiche.
+   */
+  async chooseWeb(found) {
+    const e = this.expert;
+    e.webBusy = true;
+    e.webError = null;
+    this.render();
+    let draft;
+    try {
+      draft = await detailSaint(found, getLanguage());
+    } catch {
+      e.webBusy = false;
+      e.webError = t('web.offline');
+      this.render();
+      return;
+    }
+    e.webBusy = false;
+    const lang = getLanguage();
+    await this.chooseEntry({
+      id: draft.id,
+      name: { [lang]: draft.name },
+      aka: [],
+      sex: draft.sex,
+      born: draft.born,
+      died: draft.died,
+      feast: draft.feast,
+      titles: draft.titles,
+      patronage: draft.patronage ? { [lang]: draft.patronage } : null,
+      desc: draft.desc ? { [lang]: draft.desc } : null,
+      bio: draft.bio ? { [lang]: draft.bio } : null,
+      birth: draft.birth,
+      death: draft.death,
+      sources: draft.sources,
+      web: true,
+    });
   }
 
   /**
@@ -209,10 +284,11 @@ export class AssistantPanel {
       patronage: pick(entry.patronage, lang),
       bio: pick(entry.bio, lang),
       placeKind: 'born',
+      sources: entry.sources || [],
       checked: null,
       error: null,
     });
-    await this.usePlace('born');
+    await this.usePlace(entry.birth ? 'born' : 'died');
   }
 
   /** Porte sur la carte le lieu de naissance, ou celui de la mort. */
@@ -221,9 +297,21 @@ export class AssistantPanel {
     const place = kind === 'died' ? e.entry?.death : e.entry?.birth;
     if (!place) return;
     e.placeKind = kind;
-    e.country = place.country;
+    e.country = this.atlas.countryById.has(place.country) ? place.country : '';
     e.city = place.city;
     e.checked = null;
+    // Un lieu venu d'Internet peut relever d'un pays que la carte ne connaît
+    // pas, ou d'aucun : on garde la ville et les coordonnées, et l'on demande
+    // le pays plutôt que d'en inventer un.
+    if (!e.country) {
+      e.places = null;
+      e.chosen = null;
+      e.fallback = place.lat != null && place.lng != null
+        ? { lat: place.lat, lng: place.lng } : null;
+      e.error = t('web.noCountry');
+      this.render();
+      return;
+    }
     await this.lookupPlace();
   }
 
@@ -292,6 +380,7 @@ export class AssistantPanel {
       desc: e.desc,
       patronage: e.patronage,
       bio: e.bio,
+      sources: e.sources,
     });
     const candidate = { ...draft, id: `exp-${Date.now().toString(36)}` };
     e.checked = { candidate, ...verifyCandidate(candidate, this.atlas) };
@@ -450,6 +539,8 @@ export class AssistantPanel {
         ? h('p', { class: 'field__hint', text: t('expert.notInFond') })
         : null,
 
+      ...this.webResults(),
+
       // Le fond répond par des fiches, pas par une fiche : à l'administrateur
       // de reconnaître le sien, dates et lieu à l'appui.
       e.matches && e.matches.length > 1
@@ -462,6 +553,57 @@ export class AssistantPanel {
         h('span', { class: 'result__meta',
           text: `${entry.birth.city} · ${lifespan(entry)}` }))))
         : null,
+    ];
+  }
+
+  /** Ce qu'Internet a répondu, et de quoi le retenir. */
+  webResults() {
+    const e = this.expert;
+    const lang = getLanguage();
+
+    return [
+      h('button', {
+        class: 'btn',
+        type: 'button',
+        disabled: e.webBusy || e.query.trim().length < 2,
+        text: e.webBusy ? t('web.searching') : t('web.search'),
+        onclick: () => this.searchWeb(),
+      }),
+
+      e.webError ? h('p', { class: 'notice notice--error', text: e.webError }) : null,
+
+      e.web && e.web.length
+        ? h('h3', { class: 'panel__subsection', text: t('web.results') })
+        : null,
+
+      e.web && e.web.length
+        ? h('div', { class: 'results' }, ...e.web.map((found) => h('button', {
+          class: `result${e.entry?.id === found.id ? ' is-active' : ''}`,
+          type: 'button',
+          onclick: () => this.chooseWeb(found),
+        },
+        h('span', { class: 'result__name', text: found.label || found.id }),
+        h('span', { class: 'result__meta', text: found.description || '—' }),
+        h('span', { class: 'result__dates' },
+          h('span', { text: lifespan(found) }),
+          h('span', { class: 'result__feast', text: found.id })))))
+        : null,
+
+      // La provenance de ce qui vient d'être versé, et la licence qui
+      // l'accompagne : ce n'est pas une politesse, c'est la condition d'usage.
+      e.sources?.length
+        ? h('p', { class: 'field__hint expert__sources' },
+          h('span', { text: `${t('web.sources')} ` }),
+          ...e.sources.flatMap((source, i) => [
+            i ? h('span', { text: ' · ' }) : null,
+            h('a', { href: source.url, target: '_blank', rel: 'noreferrer noopener', text: source.label }),
+          ].filter(Boolean)),
+          h('span', { text: ` — ${t('web.licence')}` }))
+        : null,
+
+      // Wikidata et Wikipédia s'écrivent à plusieurs mains : ce qui en vient
+      // se relit avant d'être publié, comme tout le reste.
+      e.entry?.web ? h('p', { class: 'field__hint', text: t('web.review') }) : null,
     ];
   }
 

@@ -87,6 +87,23 @@ export class DetailPanel {
           `${saint.city} — ${this.atlas.countryName(saint.country, lang)}`),
         row(t('detail.feast'), formatFeast(saint.feast)),
         row(t('detail.status'), t(`status.${saint.status}`))),
+
+      // D'où vient la fiche, quand elle vient d'ailleurs. Pour un texte repris
+      // de Wikipédia, l'attribution n'est pas facultative : elle est la
+      // condition de la licence sous laquelle il est publié.
+      saint.sources?.length
+        ? h('p', { class: 'detail__sources' },
+          h('span', { text: `${t('detail.sources')} ` }),
+          ...saint.sources.flatMap((source, i) => [
+            i ? h('span', { text: ' · ' }) : null,
+            h('a', {
+              href: source.url,
+              target: '_blank',
+              rel: 'noreferrer noopener',
+              text: source.label,
+            }),
+          ].filter(Boolean)))
+        : null,
       h('div', { class: 'detail__actions' },
         h('button', {
           class: 'btn',

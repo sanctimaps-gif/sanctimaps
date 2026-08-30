@@ -25,7 +25,6 @@ const ENTRIES = [
   { key: 'add', glyph: '✚' },
   { key: 'moderate', glyph: '☑', right: 'moderate' },
   { key: 'assistant', glyph: '✧', right: 'moderate' },
-  { key: 'account', glyph: '☖' },
   { key: 'settings', glyph: '⚙' },
 ];
 
@@ -70,12 +69,21 @@ export class Sidebar {
     this.basemapLabel = h('span', { class: 'field__label' });
     this.basemapHint = h('p', { class: 'field__hint' });
 
+    this.displayTitle = h('h2', { class: 'panel__section' });
     this.settings = h('div', { class: 'settings' },
+      this.displayTitle,
       h('label', { class: 'field' }, this.languageLabel, this.languageSelect),
       h('label', { class: 'field' }, this.themeLabel, this.themeSelect),
       h('div', {},
         h('label', { class: 'field' }, this.basemapLabel, this.basemapSelect),
         this.basemapHint));
+
+    // Réglages et compte tiennent dans un même écran : deux entrées du
+    // sommaire pour six champs, c'était une porte de trop.
+    this.settingsView = h('div', { class: 'settings-view' },
+      this.settings,
+      this.panels.reminder.root,
+      this.panels.account.root);
 
     this.closeButton = h('button', {
       class: 'icon-btn panel__close',
@@ -142,9 +150,8 @@ export class Sidebar {
     if (name === 'add') return this.panels.add.root;
     if (name === 'moderate') return this.panels.moderate.root;
     if (name === 'assistant') return this.panels.assistant.root;
-    if (name === 'account') return this.panels.account.root;
     if (name === 'detail') return this.panels.detail.root;
-    if (name === 'settings') return this.settings;
+    if (name === 'settings') return this.settingsView;
     return this.panels.search.root;
   }
 
@@ -195,6 +202,7 @@ export class Sidebar {
     this.toggleButton.setAttribute('aria-expanded', String(this.open));
     this.closeButton.setAttribute('aria-label', t('ui.closePanel'));
     this.tagline.textContent = t('app.tagline');
+    this.displayTitle.textContent = t('display.title');
     this.languageLabel.textContent = t('ui.language');
     this.languageSelect.value = getLanguage();
     this.themeLabel.textContent = t('theme.label');
@@ -237,6 +245,7 @@ export class Sidebar {
     this.panels.detail.render();
     this.panels.moderate.render();
     this.panels.assistant.render();
+    this.panels.reminder.render();
     this.panels.account.render();
     fill(this.languageSelect, LANGUAGES.map((l) => h('option', {
       value: l.code, text: l.label, selected: l.code === getLanguage(),

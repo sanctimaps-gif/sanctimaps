@@ -1204,6 +1204,19 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: var(--accent-soft);
 }
 
+/* La provenance d'une fiche tirée d'Internet, et sa licence. */
+.expert__sources a,
+.detail__sources a {
+  color: var(--accent);
+  text-underline-offset: 2px;
+}
+
+.detail__sources {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  margin: 0.6rem 0 0;
+}
+
 /* L'état des lieux ferme l'atelier : il dit où porter l'effort suivant. */
 .expert__survey {
   margin-top: 1rem;
@@ -1212,6 +1225,17 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .result--draft { border-inline-start: 3px solid var(--pending); }
+
+/* Réglages et compte partagent un écran : un filet sépare les blocs, faute de
+   quoi la liste des rôles semble appartenir au réglage du fond de carte. */
+.settings-view > * + * {
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.reminder .check { margin-top: 0.6rem; }
+.reminder .btn--primary { margin-top: 0.4rem; }
 
 /* ------------------------------------------- Saint du jour */
 

@@ -91,6 +91,67 @@ export function buildCalendar(saints, { name, country, lang, title }) {
   return lines.filter(Boolean).join('\r\n');
 }
 
+/**
+ * Rappel quotidien du saint du jour.
+ *
+ * Un site statique ne peut pas réveiller un téléphone éteint : il n'y a
+ * derrière lui ni serveur ni service de notification. Le calendrier, lui, le
+ * peut — c'est le téléphone qui garde les événements et déclenche l'alarme,
+ * hors ligne et sans compte. On produit donc un événement par jour pourvu,
+ * répété tous les ans, avec une alarme à l'heure choisie.
+ *
+ * L'heure est écrite en temps *flottant* : ni `Z`, ni fuseau. La notification
+ * tombe donc à huit heures là où l'on se trouve, et non à huit heures de Paris
+ * quand on est à Montréal.
+ *
+ * @param {Map<string, Array>} byDay fêtes du corpus, indexées « MM-JJ »
+ * @param {object} options heure, titre, et mise en forme du résumé
+ */
+export function buildDailyReminders(byDay, { hour, title, summary, describe }) {
+  const now = stamp();
+  const YEAR = 2024;
+  const at = `${String(hour).padStart(2, '0')}0000`;
+  const end = `${String(hour).padStart(2, '0')}1500`;
+
+  const lines = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//SanctiMaps//Saint du jour//FR',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    `X-WR-CALNAME:${esc(title)}`,
+    // Le lecteur d'agenda saura qu'il n'a pas à redemander le fichier chaque heure.
+    'X-PUBLISHED-TTL:P7D',
+    'REFRESH-INTERVAL;VALUE=DURATION:P7D',
+  ];
+
+  for (const [day, saints] of [...byDay].sort()) {
+    const [month, date] = day.split('-');
+    if (!month || !date) continue;
+    const text = summary(saints);
+    lines.push(
+      'BEGIN:VEVENT',
+      `UID:jour-${day}@sanctimaps`,
+      `DTSTAMP:${now}`,
+      `DTSTART:${YEAR}${month}${date}T${at}`,
+      `DTEND:${YEAR}${month}${date}T${end}`,
+      'RRULE:FREQ=YEARLY',
+      fold(`SUMMARY:${esc(text)}`),
+      fold(`DESCRIPTION:${esc(describe(saints))}`),
+      'TRANSP:TRANSPARENT',
+      'BEGIN:VALARM',
+      'ACTION:DISPLAY',
+      fold(`DESCRIPTION:${esc(text)}`),
+      'TRIGGER:PT0S',
+      'END:VALARM',
+      'END:VEVENT',
+    );
+  }
+
+  lines.push('END:VCALENDAR');
+  return lines.join('\r\n');
+}
+
 /** Propose le fichier au téléchargement. */
 export function downloadCalendar(content, filename = 'saints.ics') {
   const blob = new Blob([content], { type: 'text/calendar;charset=utf-8' });

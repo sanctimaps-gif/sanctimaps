@@ -6,6 +6,7 @@ import { AccountPanel } from './ui/account.js';
 import { AddPanel } from './ui/addForm.js';
 import { AssistantPanel, ModerationPanel } from './ui/admin.js';
 import { DailyPanel } from './ui/daily.js';
+import { ReminderPanel } from './ui/reminder.js';
 import { DetailPanel } from './ui/detail.js';
 import { SearchPanel } from './ui/search.js';
 import { apply as applyTheme } from './theme.js';
@@ -107,10 +108,14 @@ async function start() {
   // d'aucun réglage, et se met à jour comme les autres quand le corpus bouge.
   const dailyPanel = new DailyPanel(atlas, { onSelect: (id) => openSaint(id, { fly: true }) });
 
+  // Le rappel quotidien vit dans les réglages, à côté du compte.
+  const reminderPanel = new ReminderPanel(atlas);
+
   const sidebar = new Sidebar(app, {
     atlas,
     search: searchPanel,
     daily: dailyPanel,
+    reminder: reminderPanel,
     add: addPanel,
     detail: detailPanel,
     moderate: moderationPanel,
@@ -133,6 +138,7 @@ async function start() {
     map.refreshOverlay();
     searchPanel.renderResults();
     dailyPanel.render();
+    reminderPanel.render();
     addPanel.render();
     moderationPanel.render();
     assistantPanel.render();
