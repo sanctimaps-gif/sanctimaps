@@ -1198,6 +1198,19 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .chip--pending { border-color: var(--pending); color: var(--pending); }
 .chip--rejected { border-color: var(--accent); color: var(--accent); }
+/* Le lieu retenu parmi les homonymes se distingue du premier coup d'œil. */
+.result.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* L'état des lieux ferme l'atelier : il dit où porter l'effort suivant. */
+.expert__survey {
+  margin-top: 1rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--line);
+}
+
 .result--draft { border-inline-start: 3px solid var(--pending); }
 
 /* ------------------------------------------- Modération et assistant */

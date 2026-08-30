@@ -216,7 +216,8 @@ alors publiée — ou la refuse.
 ## L'assistant de propositions
 
 La partie **Assistant**, réservée à l'administrateur, sert à verser des saints
-plus vite. Elle a deux sources et un seul circuit.
+plus vite. Elle a trois sources et un seul circuit — et **les deux premières ne
+demandent rien à personne** : ni compte, ni clé, ni réseau, ni modèle.
 
 **Autonome** — la source par défaut, et celle qui ne dépend de personne. Sans
 compte, sans clé, sans réseau, sans modèle : elle puise dans **148 fiches**
@@ -230,8 +231,35 @@ reprend, la vérification s'applique, l'administrateur tranche. On n'y met que
 des vies bien attestées et des lieux de naissance sur lesquels les sources
 s'accordent — mieux vaut une liste plus courte qu'une fiche à corriger.
 
-**Modèle externe** — la seconde source, facultative. Elle demande à un modèle
-des fiches complètes — noms en trois langues, dates, lieu de naissance,
+**Expert** — la seconde source, elle aussi sans modèle. Elle part d'un constat :
+ce que faisait le modèle de langue tenait en deux choses très différentes,
+**savoir** qu'un saint existe et où il est né, et **placer** ce lieu sur la
+carte. La première demande une mémoire ; la seconde, une table. Or la table,
+nous l'avons : les 113 584 localités livrées avec l'application.
+
+L'expert fait donc la seconde moitié du travail, celle qui est fastidieuse et
+où l'on se trompe. Vous donnez le nom du saint et sa ville de naissance ; le
+programme retrouve le lieu dans la table du pays, en tire les coordonnées
+exactes, compose la fiche et la passe aux mêmes six contrôles. Rien n'est
+deviné, donc rien n'est inventé — sur des coordonnées, un index bat une
+mémoire, toujours.
+
+Quand le nom est ambigu, il rend les lieux possibles avec leur population et
+vous choisissez : « Saint-Pierre » propose d'abord la commune qui porte
+exactement ce nom, puis les huit premières des composées. Un point : la table
+retient les graphies locales, si bien qu'il faut chercher `Assisi` et non
+`Assise`. À défaut, il le dit et propose d'essayer une autre graphie.
+
+Ce qu'il ne fait pas, et ne prétend pas faire : vous dire quels saints
+existent. Cela reste votre part, ou celle de la source autonome. Un état des
+lieux tiré du corpus ferme l'atelier — combien de saints, dans combien de pays,
+quel continent est le moins pourvu, combien de fiches attendent un patronage —
+pour dire où porter l'effort suivant.
+
+**Modèle externe** — la troisième source, facultative, et **la seule qui sorte
+de la machine**. Elle n'apparaît que si un fournisseur est configuré : un
+onglet qui n'afficherait qu'un message d'indisponibilité n'est pas un choix,
+c'est une impasse. Elle demande à un modèle des fiches complètes — noms en trois langues, dates, lieu de naissance,
 coordonnées, fête, qualités, notice, patronage et biographie — pour une région
 et un siècle que vous choisissez. Une fiche
 acceptée est publiable telle quelle : c'est tout l'intérêt, l'administrateur
@@ -239,8 +267,8 @@ relit au lieu de saisir.
 
 ### Choisir son modèle, si l'on en veut un
 
-Cette section ne concerne que la seconde source. La première n'a besoin de
-rien. **L'assistant n'est lié à aucun fournisseur.** Trois façons de parler à un
+Cette section ne concerne que la troisième source. Les deux premières n'ont
+besoin de rien. **L'assistant n'est lié à aucun fournisseur.** Trois façons de parler à un
 modèle sont prévues, et elles couvrent à peu près tout ce qui existe :
 
 | `AI_PROVIDER` | Ce que c'est | Clé |
@@ -377,6 +405,7 @@ src/js/data.js           corpus, couche locale, index, siècles
 src/js/auth.js           rôles et permissions
 src/js/query.js          analyse de la barre de recherche unique
 src/js/verify.js         contrôles de l'assistant
+src/js/expert.js         assistant expert : la table des lieux tient lieu de mémoire
 src/js/ai.js             appels à l'assistant intelligent, côté navigateur
 src/js/calendar.js       export des fêtes au format iCalendar
 src/js/theme.js          thème système, clair ou sombre

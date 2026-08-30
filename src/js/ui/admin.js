@@ -1,6 +1,7 @@
 import { DEFAULT_COUNT, checkAvailability, requestSaints } from '../ai.js';
 import { PUBLISHED, REJECTED } from '../data.js';
-import { formatFeast, formatYear, getLanguage, t } from '../i18n.js';
+import { buildDraft, findPlaces, surveyGaps } from '../expert.js';
+import { collator, formatFeast, formatNumber, formatYear, getLanguage, monthNames, t } from '../i18n.js';
 import { reviewPool, verifyCandidate } from '../verify.js';
 import { field, fill, h, select } from './dom.js';
 
@@ -119,6 +120,12 @@ export class AssistantPanel {
     this.source = 'pool';
     this.review = null;
     this.ai = { region: '', century: '', count: DEFAULT_COUNT, busy: false, error: null, usage: null };
+    // L'expert : ce que l'administrateur sait, et ce que la table sait.
+    this.expert = {
+      name: '', sex: 'm', country: '', city: '',
+      born: '', died: '', circa: false, month: '', day: '', desc: '',
+      matches: null, chosen: null, checked: null, busy: false, error: null,
+    };
     this.root = h('div', { class: 'assistant' });
     this.render();
     checkAvailability().then((status) => {
@@ -131,6 +138,77 @@ export class AssistantPanel {
     this.source = source;
     this.review = null;
     this.ai.error = null;
+    this.expert.error = null;
+    this.render();
+  }
+
+  // -------------------------------------------------------------------------
+  // Expert : la table des localités tient lieu de mémoire
+  // -------------------------------------------------------------------------
+
+  /**
+   * Cherche la ville de naissance dans la table du pays.
+   *
+   * Le fichier d'un pays n'est chargé qu'à la demande : chercher un lieu en
+   * France ne fait pas descendre les localités du monde entier.
+   */
+  async lookup() {
+    const { country, city } = this.expert;
+    if (!country || !city.trim()) return;
+    this.expert.busy = true;
+    this.expert.error = null;
+    this.render();
+    try {
+      const places = await this.atlas.ensurePlaces(country);
+      this.expert.matches = findPlaces(places, city);
+      this.expert.chosen = this.expert.matches.length === 1 ? this.expert.matches[0] : null;
+      if (!this.expert.matches.length) this.expert.error = t('expert.noPlace');
+    } catch {
+      this.expert.error = t('expert.noPlace');
+    } finally {
+      this.expert.busy = false;
+      this.expert.checked = null;
+      this.render();
+    }
+  }
+
+  choosePlace(place) {
+    this.expert.chosen = place;
+    this.expert.checked = null;
+    this.render();
+  }
+
+  /** Assemble la fiche et la soumet aux mêmes contrôles que toute autre. */
+  compose() {
+    const e = this.expert;
+    if (!e.chosen || !e.name.trim()) return;
+    const pad = (n) => String(n).padStart(2, '0');
+    const draft = buildDraft({
+      name: e.name,
+      sex: e.sex,
+      country: e.country,
+      place: e.chosen,
+      born: e.born,
+      died: e.died,
+      circa: e.circa,
+      feast: e.month && e.day ? `${pad(Number(e.month))}-${pad(Number(e.day))}` : '',
+      desc: e.desc,
+    });
+    const candidate = { ...draft, id: `exp-${Date.now().toString(36)}` };
+    e.checked = { candidate, ...verifyCandidate(candidate, this.atlas) };
+    this.render();
+  }
+
+  /** Publie la fiche composée et remet l'atelier à zéro. */
+  publishExpert() {
+    const checked = this.expert.checked;
+    if (!checked?.ok) return;
+    this.onAccept(checked.candidate);
+    this.expert = {
+      ...this.expert,
+      name: '', city: '', born: '', died: '', circa: false, month: '', day: '', desc: '',
+      matches: null, chosen: null, checked: null,
+    };
     this.render();
   }
 
@@ -212,15 +290,192 @@ export class AssistantPanel {
     }
   }
 
+  /**
+   * Les sources disponibles.
+   *
+   * Le modèle externe ne paraît que s'il répond : un onglet qui n'affiche
+   * qu'un message d'indisponibilité n'est pas un choix, c'est une impasse.
+   * Les deux autres fonctionnent toujours, sans rien demander à personne.
+   */
+  sources() {
+    const list = [['pool', t('assistant.sourcePool')], ['expert', t('assistant.sourceExpert')]];
+    if (this.availability?.available) list.push(['ai', t('assistant.sourceAi')]);
+    return list;
+  }
+
   sourceSwitch() {
     return h('div', { class: 'segmented', role: 'tablist' },
-      ...[['pool', t('assistant.sourcePool')], ['ai', t('assistant.sourceAi')]].map(([key, label]) => h('button', {
+      ...this.sources().map(([key, label]) => h('button', {
         class: `segmented__btn${this.source === key ? ' is-active' : ''}`,
         type: 'button',
         role: 'tab',
         'aria-selected': String(this.source === key),
         onclick: () => this.setSource(key),
       }, h('span', { text: label }))));
+  }
+
+  /** L'atelier de l'expert : saisir, retrouver le lieu, contrôler, publier. */
+  expertControls() {
+    const e = this.expert;
+    const lang = getLanguage();
+    const cmp = collator();
+    const countries = this.atlas.countries
+      .map((c) => ({ value: c.id, label: this.atlas.countryName(c.id, lang) }))
+      .sort((a, b) => cmp.compare(a.label, b.label));
+    const months = monthNames().map((label, i) => ({ value: String(i + 1), label }));
+    const gaps = surveyGaps(this.atlas);
+    const thin = gaps.byContinent[0];
+
+    // Les deux boutons se règlent depuis la frappe, sans reconstruire le
+    // formulaire : un rendu à chaque touche volerait le curseur au champ.
+    const lookupBtn = h('button', {
+      class: 'btn',
+      type: 'button',
+      text: e.busy ? t('expert.looking') : t('expert.lookup'),
+      onclick: () => this.lookup(),
+    });
+    const composeBtn = h('button', {
+      class: 'btn btn--primary',
+      type: 'button',
+      text: t('expert.compose'),
+      onclick: () => this.compose(),
+    });
+    const syncButtons = () => {
+      lookupBtn.disabled = e.busy || !e.country || !e.city.trim();
+      composeBtn.disabled = !e.chosen || !e.name.trim();
+    };
+
+    const bind = (key) => (event) => {
+      e[key] = event.target.value;
+      syncButtons();
+    };
+
+    return [
+      h('p', { class: 'add__intro', text: t('expert.intro') }),
+      h('p', { class: 'field__hint', text: t('expert.method') }),
+
+      field(t('add.name'), h('input', {
+        class: 'control', type: 'text', value: e.name,
+        placeholder: t('add.namePlaceholder'), oninput: bind('name'),
+      })),
+      field(t('add.sex'), select(
+        [{ value: 'm', label: t('add.male') }, { value: 'f', label: t('add.female') }],
+        { value: e.sex, onchange: (ev) => { e.sex = ev.target.value; } },
+      )),
+      field(t('add.country'), select(
+        [{ value: '', label: '—' }, ...countries],
+        {
+          value: e.country,
+          onchange: (ev) => {
+            e.country = ev.target.value;
+            e.matches = null;
+            e.chosen = null;
+            e.checked = null;
+            this.render();
+          },
+        },
+      )),
+
+      h('div', { class: 'filters__row' },
+        field(t('add.city'), h('input', {
+          class: 'control', type: 'text', value: e.city,
+          placeholder: t('add.cityPlaceholder'),
+          oninput: bind('city'),
+          onkeydown: (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); this.lookup(); } },
+        })),
+        lookupBtn),
+
+      e.error ? h('p', { class: 'notice notice--error', text: e.error }) : null,
+
+      // La table répond par des lieux, pas par un lieu : à l'administrateur de
+      // reconnaître le sien parmi les homonymes, population à l'appui.
+      e.matches && e.matches.length
+        ? h('div', { class: 'results' }, ...e.matches.map((place) => h('button', {
+          class: `result${e.chosen === place ? ' is-active' : ''}`,
+          type: 'button',
+          onclick: () => this.choosePlace(place),
+        },
+        h('span', { class: 'result__name', text: place.n }),
+        h('span', { class: 'result__meta',
+          text: place.p ? t('expert.inhabitants', { n: formatNumber(place.p) }) : '—' }))))
+        : null,
+
+      h('div', { class: 'filters__row' },
+        field(t('add.born'), h('input', {
+          class: 'control', type: 'number', placeholder: '1182',
+          value: e.born, oninput: bind('born'),
+        })),
+        field(t('add.died'), h('input', {
+          class: 'control', type: 'number', placeholder: '1226',
+          value: e.died, oninput: bind('died'),
+        }))),
+      h('label', { class: 'check' },
+        h('input', {
+          type: 'checkbox',
+          checked: e.circa,
+          onchange: (ev) => { e.circa = ev.target.checked; },
+        }),
+        h('span', { text: t('expert.circa') })),
+
+      h('fieldset', { class: 'group' },
+        h('legend', { class: 'group__legend', text: t('add.feast') }),
+        h('div', { class: 'filters__row' },
+          select([{ value: '', label: '—' }, ...months], {
+            value: e.month, onchange: bind('month'), 'aria-label': t('add.month'),
+          }),
+          h('input', {
+            class: 'control', type: 'number', min: '1', max: '31',
+            value: e.day, oninput: bind('day'), 'aria-label': t('add.day'),
+          }))),
+
+      field(t('add.desc'), h('textarea', {
+        class: 'control control--area', rows: '2',
+        placeholder: t('add.descPlaceholder'), oninput: bind('desc'),
+      }, e.desc)),
+
+      composeBtn,
+
+      e.checked ? this.expertVerdict(e.checked) : null,
+
+      // Un état des lieux, tiré du corpus lui-même : il dit où porter l'effort.
+      // Les boutons naissent au bon état, avant même la première frappe.
+      (syncButtons(), null),
+
+      h('p', { class: 'field__hint expert__survey', text: t('expert.survey', {
+        n: formatNumber(gaps.saints),
+        c: formatNumber(gaps.countries),
+        continent: t(`continent.${thin.id}`),
+        few: formatNumber(thin.total),
+        patronage: formatNumber(gaps.withoutPatronage),
+      }) }),
+    ];
+  }
+
+  /** Ce que les six contrôles ont dit de la fiche composée. */
+  expertVerdict(checked) {
+    if (!checked.ok) {
+      return h('div', { class: 'review review--bad' },
+        h('span', { class: 'result__name', text: checked.candidate.name.fr }),
+        h('ul', { class: 'checks-list' }, ...checked.failures.map((failure) => h('li', {
+          class: 'check check--bad',
+          text: failure.hint
+            ? `${t(`check.${failure.key}`)} (${failure.hint})`
+            : t(`check.${failure.key}`),
+        }))));
+    }
+    const c = checked.candidate;
+    return h('div', { class: 'review' },
+      h('span', { class: 'result__name', text: c.name.fr }),
+      h('span', { class: 'result__meta',
+        text: `${this.atlas.countryName(c.country, getLanguage())} · ${c.city} · ${c.lat}, ${c.lng}` }),
+      h('span', { class: 'check check--ok', text: `✓ ${t('check.passed')}` }),
+      h('div', { class: 'review__actions' },
+        h('button', {
+          class: 'btn btn--go',
+          type: 'button',
+          text: t('expert.publish'),
+          onclick: () => this.publishExpert(),
+        })));
   }
 
   aiControls() {
@@ -324,8 +579,21 @@ export class AssistantPanel {
   }
 
   render() {
+    // Un modèle externe qui cesse de répondre ne doit pas laisser l'écran sur
+    // un onglet devenu invisible.
+    if (this.source === 'ai' && !this.availability?.available) this.source = 'pool';
     const review = this.review;
     const pool = this.source === 'pool';
+    const expert = this.source === 'expert';
+
+    if (expert) {
+      fill(this.root, [
+        h('h2', { class: 'panel__section', text: t('assistant.title') }),
+        this.sourceSwitch(),
+        ...this.expertControls(),
+      ]);
+      return;
+    }
 
     fill(this.root, [
       h('h2', { class: 'panel__section', text: t('assistant.title') }),
