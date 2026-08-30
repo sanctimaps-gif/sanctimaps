@@ -493,6 +493,59 @@ Le corpus est déséquilibré, et c'est fidèle : 190 saints en Europe contre de
 en Océanie. C'est la géographie réelle des canonisations, pas une lacune de
 collecte.
 
+### Importer en masse depuis Wikidata
+
+Le corpus écrit à la main compte 285 fiches. Pour aller au-delà — vers les
+milliers de saints et de bienheureux que l'Église reconnaît — un outil verse
+d'un coup ce que Wikidata sait de plaçable :
+
+```bash
+npm run import:saints                              # tout ce qui est plaçable
+node tools/import-saints.mjs --dry-run             # compter sans rien écrire
+node tools/import-saints.mjs --limit 200           # un échantillon, pour voir
+node tools/import-saints.mjs --status saint        # les canonisés seulement
+node tools/import-saints.mjs --names ma-liste.txt  # seulement ces noms-là
+npm run build:data && npm run check                # puis, toujours
+```
+
+**Pourquoi Wikidata, quand on dispose de listes de saints.** Une carte a besoin
+de coordonnées. Les listes de noms — celle de Wikipédia, celle de Nominis,
+celle de Vie chrétienne — n'en portent pas : elles donnent un nom, parfois un
+siècle, jamais un point. Wikidata, si, et c'est la même connaissance sous une
+forme que la machine peut lire.
+
+S'y ajoute une raison de droit. Wikidata est en CC0 et Wikipédia en CC BY-SA,
+l'une et l'autre réutilisables — la seconde à condition de citer, ce que chaque
+fiche importée fait. Les notices de **Nominis** (Conférence des évêques de
+France) et de **Vie chrétienne** sont, elles, protégées : leurs textes ne
+peuvent pas être versés ici. Leurs listes de noms restent utiles comme
+pense-bête, et `--names` sert exactement à cela : on colle les noms dans un
+fichier, l'outil ne remonte que ceux-là, en allant chercher les faits là où ils
+sont réutilisables.
+
+**Ce qui entre, et ce qui n'entre pas.** N'entre que ce qui est plaçable et
+vérifiable : un statut de canonisation (`P411`), un lieu de naissance pourvu de
+coordonnées, un pays que la carte connaît, une fête bien formée, au moins une
+année, et un point qui tombe dans le cadre de son pays. Tout le reste est
+compté et annoncé à l'écran, non deviné :
+
+```
+2999 fiches retenues.
+Écartées :
+  doublon    1
+  pays       1
+  cadre      2
+```
+
+Le total importé sera donc toujours inférieur au nombre de saints que l'Église
+reconnaît. La différence, ce sont les fiches dont on ignore où poser la croix —
+et une carte ne peut pas les porter.
+
+Une fiche écrite à la main l'emporte toujours sur une fiche importée : à nom
+égal, l'import cède. Le fichier produit, `data/saints/wikidata.json`, est
+réécrit à chaque passage et ne se corrige donc pas à la main ; une correction
+durable se fait dans les fichiers rédigés.
+
 ### Où vivent les modifications
 
 Le corpus livré est en lecture seule. Tout ce que l'utilisateur ou
@@ -559,6 +612,7 @@ data/candidats/*.json    réservoir de l'assistant
 data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complètes
 data/reference/exonymes.json graphies acceptées pour les localités
 data/generated/          données produites par build:data (versionnées)
+tools/import-saints.mjs  import de masse depuis Wikidata
 tools/ai.mjs             consigne et schéma des fiches, côté serveur
 tools/providers.mjs      adaptateurs de fournisseur (openai, ollama, anthropic)
 tools/build-data.mjs     génération des données
