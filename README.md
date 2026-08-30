@@ -354,7 +354,11 @@ Ce que Wikidata rend, et où l'atelier le verse :
 L'import de masse fait de même : il joint à chaque fiche l'**introduction de
 l'article de Wikipédia**, réduite à trois phrases, coupée en fin de phrase et
 plafonnée à six cents caractères. Le texte est sous licence CC BY-SA, et
-l'adresse de l'article rejoint donc les sources de la fiche.
+l'adresse de l'article rejoint donc les sources de la fiche. Les titres sont
+demandés par vingt à l'API de MediaWiki, dans les deux langues ; les
+redirections et les titres normalisés sont rendus à la fiche qui les avait
+demandés, faute de quoi une biographie irait au mauvais saint. Sur les 4 235
+fiches importées, 3 471 en ont reçu une.
 
 Le choix de la source n'est pas indifférent. Un modèle de langue restitue ses
 souvenirs et se trompe avec assurance ; Wikidata rend des champs structurés,
@@ -491,6 +495,15 @@ origines s'y mêlent :
 S'y ajoutent 148 fiches candidates en réserve pour l'assistant et 293 fiches
 de fond documentaire.
 
+**3 471 fiches sur 4 520 — 77 % — portent une biographie**, c'est-à-dire un
+récit de quelques phrases sous les dates, et non la seule notice d'une ligne.
+2 951 viennent de l'article français de Wikipédia, 3 108 de l'anglais, la
+plupart des deux ; l'introduction est réduite à trois phrases, coupée en fin de
+phrase et plafonnée à six cents caractères, ce qui donne 293 caractères en
+moyenne. Les 1 049 fiches restantes sont celles dont le saint n'a d'article
+dans aucune des deux langues : la fiche se tait alors plutôt que d'inventer.
+L'attribution CC BY-SA voyage avec le texte, dans les sources de la fiche.
+
 153 de ces saints portent en plus un patronage — ce dont ils sont patrons —
 tenu à part dans `data/saints/patronages.json` et fusionné à la génération.
 Seuls les patronages bien attestés y figurent : un saint sans entrée n'affiche
@@ -574,6 +587,47 @@ Une fiche écrite à la main l'emporte toujours sur une fiche importée : à nom
 réécrit à chaque passage et ne se corrige donc pas à la main ; une correction
 durable se fait dans les fichiers rédigés.
 
+### Donner une biographie aux fiches écrites à la main
+
+L'import connaît l'identifiant Wikidata de chaque fiche qu'il fabrique :
+l'article s'en déduit sans risque. Les 285 fiches écrites à la main font le
+chemin inverse — elles portent un nom, des dates et une fête, mais aucun
+identifiant. Ce sont pourtant les plus regardées : les apôtres, Marie, Joseph,
+François d'Assise. Un second outil les apparie et leur rapporte leur récit.
+
+```bash
+npm run enrich:bios                       # apparier et rapporter
+node tools/enrich-bios.mjs --dry-run      # apparier et compter, sans écrire
+node tools/enrich-bios.mjs --limit 20     # un échantillon, pour voir
+npm run build:data && npm run check       # puis, toujours
+```
+
+Depuis GitHub, c'est l'atelier *Donner une biographie aux fiches écrites à la
+main*, dans l'onglet **Actions**, avec les mêmes contrôles et le même versement
+au dépôt que l'import.
+
+**L'appariement est méfiant, et il le faut.** Chercher « Sébastien » sur
+Wikidata ramène aussi bien le martyr que d'autres Sébastien : une biographie
+mal attribuée mettrait le récit d'un autre sous le nom du saint, et sur les
+fiches les plus lues. Mieux vaut cent fiches sans récit qu'une fiche avec le
+mauvais. Trois garde-fous :
+
+- **Le statut de canonisation (`P411`) est exigé** — la propriété ne s'applique
+  qu'aux saints, bienheureux et vénérables.
+- **Le nom ne suffit jamais.** Il faut en plus une concordance : la même date
+  de fête (trois points), ou une année de naissance ou de mort à cinq ans près
+  (deux points chacune). Le nom exact ne vaut qu'un point — il est ce qui a
+  amené le candidat, il ne peut pas le confirmer. Il faut trois points pour
+  entrer.
+- **Deux candidats à égalité, c'est un doute, pas un choix.** La fiche reste
+  sans biographie et le rapport dit lesquels ont été écartés.
+
+Le résultat va dans `data/saints/biographies.json`, à part des fiches comme les
+patronages : une biographie s'ajoute sans qu'il faille rouvrir les huit
+fichiers du corpus, et `build:data` fait la jonction. Le fichier est réécrit à
+chaque passage — une biographie écrite à la main se met donc dans la fiche
+elle-même, où elle a priorité sur celle qui est rapportée.
+
 ### Où vivent les modifications
 
 Le corpus livré est en lecture seule. Tout ce que l'utilisateur ou
@@ -639,9 +693,12 @@ data/saints/patronages.json  patronages, indexés par identifiant
 data/candidats/*.json    réservoir de l'assistant
 data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complètes
 data/reference/exonymes.json graphies acceptées pour les localités
+data/saints/biographies.json biographies rapportées pour les fiches écrites à la main
 data/generated/          données produites par build:data (versionnées)
 tools/import-saints.mjs  import de masse depuis Wikidata
-.github/workflows/       le même import, lancé d'un clic depuis GitHub
+tools/enrich-bios.mjs    biographies des fiches écrites à la main
+tools/lib/wikimedia.mjs  ce que les deux outils Wikimedia ont en commun
+.github/workflows/       les deux, lancés d'un clic depuis GitHub
 tools/ai.mjs             consigne et schéma des fiches, côté serveur
 tools/providers.mjs      adaptateurs de fournisseur (openai, ollama, anthropic)
 tools/build-data.mjs     génération des données

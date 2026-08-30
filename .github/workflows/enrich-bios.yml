@@ -1,0 +1,110 @@
+# Donne une biographie aux fiches écrites à la main, puis publie.
+#
+# Les fiches importées de Wikidata reçoivent leur biographie à l'import : leur
+# identifiant est connu, l'article s'en déduit. Les deux cent quatre-vingt-cinq
+# fiches écrites à la main font le chemin inverse — un nom, des dates, une
+# fête, et aucun identifiant. Cet atelier les apparie, puis rapporte
+# l'introduction de leur article.
+#
+# Manuel, comme l'import : l'appariement se relit, et le rapport de l'atelier
+# dit combien de fiches ont été laissées de côté et pourquoi.
+name: Donner une biographie aux fiches écrites à la main
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: "Nombre maximal de fiches à apparier (vide = toutes)"
+        required: false
+        default: ""
+      dry_run:
+        description: "Apparier sans rien verser au dépôt"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: enrich-bios
+  cancel-in-progress: false
+
+jobs:
+  enrich:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Installer les jeux de données sources
+        run: npm ci
+
+      - name: Apparier et rapporter les biographies
+        run: |
+          set -euo pipefail
+          # Des « if » et non des « && » : sous `set -e`, un test qui échoue en
+          # fin de ligne arrête le script.
+          args=()
+          if [ -n "${{ inputs.limit }}" ]; then
+            args+=(--limit "${{ inputs.limit }}")
+          fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            args+=(--dry-run)
+          fi
+          node tools/enrich-bios.mjs "${args[@]}" | tee /tmp/bios.log
+
+      # Rien n'est publié sans être passé par les mêmes contrôles que le reste.
+      - name: Régénérer et contrôler
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          set -euo pipefail
+          npm run build:data | tee /tmp/build.log
+          npm run check
+
+      - name: Verser au dépôt
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/saints/biographies.json data/generated
+          if git diff --cached --quiet; then
+            echo "Rien de neuf : le dépôt est déjà à jour."
+            exit 0
+          fi
+          recues=$(grep -oE '^[0-9]+ fiches reçoivent' /tmp/bios.log | head -1 || echo "des fiches reçoivent")
+          git commit -m "Biographies rapportées : ${recues} une biographie" \
+            -m "$(cat /tmp/bios.log)"
+          git push origin HEAD:${{ github.ref_name }}
+
+      # Un envoi fait avec le jeton du dépôt ne réveille pas les autres
+      # ateliers : la reconstruction du site se demande donc explicitement.
+      - name: Demander la reconstruction du site
+        if: ${{ inputs.dry_run != true }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" \
+            && echo "Reconstruction demandée."
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Biographies des fiches écrites à la main'
+            echo '```'
+            cat /tmp/bios.log 2>/dev/null || echo "l'appariement n'a pas abouti"
+            echo '```'
+            grep 'saints.json' /tmp/build.log 2>/dev/null || true
+          } >> "$GITHUB_STEP_SUMMARY"

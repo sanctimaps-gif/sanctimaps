@@ -503,8 +503,18 @@ const errors = [];
 const PATRONAGE_FILE = 'patronages.json';
 const patronages = JSON.parse(readFileSync(join(SAINTS_DIR, PATRONAGE_FILE), 'utf8')).patronage;
 
+// Les biographies rapportées de Wikipédia pour les fiches écrites à la main
+// vivent de même à part, parce qu'elles sont refaites d'un bloc à chaque
+// passage de `enrich-bios.mjs`. Le fichier peut manquer — il n'est pas
+// nécessaire à la carte, et une fiche sans récit reste une fiche entière.
+const BIO_FILE = 'biographies.json';
+let biographies = {};
+try {
+  biographies = JSON.parse(readFileSync(join(SAINTS_DIR, BIO_FILE), 'utf8')).biographies || {};
+} catch { /* pas de biographies rapportées : la fiche garde sa notice */ }
+
 for (const file of readdirSync(SAINTS_DIR)
-  .filter((f) => f.endsWith('.json') && f !== PATRONAGE_FILE).sort()) {
+  .filter((f) => f.endsWith('.json') && f !== PATRONAGE_FILE && f !== BIO_FILE).sort()) {
   const raw = JSON.parse(readFileSync(join(SAINTS_DIR, file), 'utf8'));
   for (const s of raw.saints) {
     const where = `${file}:${s.id ?? '?'}`;
@@ -523,12 +533,22 @@ for (const file of readdirSync(SAINTS_DIR)
     const shift = shiftById.get(s.country) || 0;
     const record = { ...s, x: Math.round(x) + shift, y: Math.round(y) };
     if (patronages[s.id]) record.patronage = patronages[s.id];
+    // Une biographie écrite dans la fiche a priorité sur celle qui est
+    // rapportée : la main l'emporte sur la machine, jamais l'inverse.
+    const rapportee = biographies[s.id];
+    if (rapportee && !s.bio) {
+      record.bio = rapportee.bio;
+      record.sources = [...(s.sources || []), ...rapportee.sources];
+    }
     saints.push(record);
   }
 }
 
 for (const id of Object.keys(patronages)) {
   if (!ids.has(id)) errors.push(`${PATRONAGE_FILE} — identifiant inconnu : ${id}`);
+}
+for (const id of Object.keys(biographies)) {
+  if (!ids.has(id)) errors.push(`${BIO_FILE} — identifiant inconnu : ${id}`);
 }
 
 if (errors.length) {
