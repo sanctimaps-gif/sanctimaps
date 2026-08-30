@@ -45,7 +45,7 @@ import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { extracts, progress, shorten, sleep, sparql } from './lib/wikimedia.mjs';
+import { AGENT, extracts, progress, shorten, sleep, sparql } from './lib/wikimedia.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SAINTS_DIR = join(ROOT, 'data', 'saints');
@@ -54,8 +54,10 @@ const DEFAULTS = {
   endpoint: 'https://query.wikidata.org/sparql',
   out: join(SAINTS_DIR, 'biographies.json'),
   wikipedia: 'https://{lang}.wikipedia.org',
+  wikidata: 'https://www.wikidata.org',
   pause: 300,
   limit: 0,
+  search: true,
   dryRun: false,
 };
 
@@ -71,8 +73,10 @@ const HELP = `Donne une biographie aux fiches écrites à la main.
   --limit N        n'apparier que les N premières fiches
   --dry-run        apparier et compter, sans rien écrire
   --out FICHIER    autre destination que data/saints/biographies.json
+  --no-search      s'en tenir au libellé exact, sans second passage
   --endpoint URL   autre service SPARQL
   --wikipedia URL  autre Wikipédia (« {lang} » est remplacé)
+  --wikidata URL   autre Wikidata, pour la recherche par mots
   --pause MS       attente entre deux requêtes (défaut 300)
 `;
 
@@ -86,6 +90,8 @@ function parseArgs(argv) {
     else if (arg === '--out') options.out = next();
     else if (arg === '--endpoint') options.endpoint = next();
     else if (arg === '--wikipedia') options.wikipedia = next();
+    else if (arg === '--wikidata') options.wikidata = next();
+    else if (arg === '--no-search') options.search = false;
     else if (arg === '--pause') options.pause = Number(next());
     else if (arg === '--help' || arg === '-h') options.help = true;
     else throw new Error(`option inconnue : ${arg}`);
@@ -125,6 +131,63 @@ SELECT ?s ?feastEn ?born ?died ?wikiFr ?wikiEn ?nameFr ?nameEn WHERE {
              schema:name ?wikiEn }
 }
 LIMIT 40`;
+
+/**
+ * Les mêmes faits, pour des identifiants déjà trouvés.
+ *
+ * Le second passage part de la recherche par mots, qui rend des identifiants
+ * et non des libellés : on redemande ici ce qu'il faut pour les noter, avec la
+ * même exigence de `P411`.
+ */
+const byIds = (qids) => `
+SELECT ?s ?feastEn ?born ?died ?wikiFr ?wikiEn ?nameFr ?nameEn WHERE {
+  VALUES ?s { ${qids.map((q) => `wd:${q}`).join(' ')} }
+  ?s wdt:P411 ?status .
+  OPTIONAL { ?s wdt:P841 ?feast . ?feast rdfs:label ?feastEn . FILTER(LANG(?feastEn) = "en") }
+  OPTIONAL { ?s wdt:P569 ?born }
+  OPTIONAL { ?s wdt:P570 ?died }
+  OPTIONAL { ?s rdfs:label ?nameFr . FILTER(LANG(?nameFr) = "fr") }
+  OPTIONAL { ?s rdfs:label ?nameEn . FILTER(LANG(?nameEn) = "en") }
+  OPTIONAL { ?artFr schema:about ?s ; schema:isPartOf <https://fr.wikipedia.org/> ;
+             schema:name ?wikiFr }
+  OPTIONAL { ?artEn schema:about ?s ; schema:isPartOf <https://en.wikipedia.org/> ;
+             schema:name ?wikiEn }
+}`;
+
+/**
+ * La recherche par mots de Wikidata, pour les noms qui ne tombent pas juste.
+ *
+ * Le corpus dit « Patrick », « Boniface », « Louis IX » ; Wikidata range ces
+ * saints sous « Patrick d'Irlande », « Boniface de Mayence », « Louis IX de
+ * France ». Le libellé exact ne les trouve donc pas, et ce sont des saints
+ * majeurs. `wbsearchentities` accepte, lui, le nom approché.
+ *
+ * Ce second passage élargit ce que l'on va **regarder**, jamais ce que l'on
+ * va **retenir** : les candidats trouvés repassent par la même notation, le
+ * même seuil et la même règle du doute.
+ */
+async function search(name, lang, options) {
+  const url = new URL(`${options.wikidata}/w/api.php`);
+  for (const [key, value] of Object.entries({
+    action: 'wbsearchentities',
+    search: name,
+    language: lang,
+    uselang: lang,
+    type: 'item',
+    limit: '10',
+    format: 'json',
+    formatversion: '2',
+  })) url.searchParams.set(key, value);
+  try {
+    const res = await fetch(url, { headers: { 'User-Agent': AGENT } });
+    if (!res.ok) throw new Error(String(res.status));
+    const data = await res.json();
+    return (data.search || []).map((hit) => hit.id).filter((id) => /^Q\d+$/.test(id));
+  } catch (error) {
+    console.warn(`\n  recherche « ${name} » : ${error.message}`);
+    return [];
+  }
+}
 
 // ---------------------------------------------------------------------------
 // Lecture
@@ -188,6 +251,27 @@ function score(saint, candidate) {
 /** Une fête concordante, ou une année : le nom seul n'ouvre pas la porte. */
 const ENOUGH = 3;
 
+/** « Boniface de Mayence » -> ['boniface', 'mayence'] : accents et casse ôtés. */
+const words = (text) => String(text || '')
+  .normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase()
+  .split(/[^a-z0-9]+/).filter((w) => w.length >= 4);
+
+/**
+ * Le candidat porte-t-il bien le nom du saint ?
+ *
+ * La recherche par mots est indulgente : « Casimir » lui ramène aussi des
+ * Casimir qui n'en sont pas. On exige donc qu'un mot substantiel du nom se
+ * retrouve dans le libellé — « Boniface » dans « Boniface de Mayence ». Ce
+ * n'est pas une preuve, c'est un plancher : la note, elle, réclame toujours
+ * une fête ou des années.
+ */
+function samePerson(saint, candidate) {
+  const mine = new Set([...words(saint.name.fr), ...words(saint.name.en)]);
+  if (!mine.size) return true;
+  const theirs = [...words(candidate.nameFr), ...words(candidate.nameEn)];
+  return theirs.some((word) => mine.has(word));
+}
+
 function best(saint, rows) {
   const byQid = new Map();
   for (const row of rows) {
@@ -207,6 +291,7 @@ function best(saint, rows) {
   }
 
   const ranked = [...byQid.values()]
+    .filter((candidate) => samePerson(saint, candidate))
     .map((candidate) => ({ ...candidate, points: score(saint, candidate) }))
     .filter((candidate) => candidate.points >= ENOUGH)
     .sort((a, b) => b.points - a.points);
@@ -235,6 +320,8 @@ async function main() {
   const matched = [];
   const dropped = { aucun: 0, ambigu: 0, panne: 0 };
   const doubts = [];
+  /** Les fiches que le libellé exact n'a pas trouvées : à repasser par mots. */
+  const retry = [];
 
   for (const [i, saint] of saints.entries()) {
     const labels = [
@@ -256,13 +343,46 @@ async function main() {
 
     const verdict = best(saint, rows);
     if (verdict.kind === 'trouvé') matched.push({ saint, ...verdict.candidate });
+    else if (verdict.kind === 'aucun') retry.push(saint);
     else {
       dropped[verdict.kind] += 1;
-      if (verdict.kind === 'ambigu') doubts.push(`${saint.id} : ${verdict.a} ou ${verdict.b}`);
+      doubts.push(`${saint.id} : ${verdict.a} ou ${verdict.b}`);
     }
     progress(`  appariement : ${matched.length}/${i + 1}`, { done: i + 1 === saints.length });
     await sleep(options.pause);
   }
+
+  // Second passage, par mots : le corpus dit « Patrick », Wikidata range le
+  // saint sous « Patrick d'Irlande ». Le libellé exact ne les rapproche pas,
+  // la recherche par mots si — et la notation reste la même.
+  if (options.search && retry.length) {
+    console.log(`\n${retry.length} fiches sans candidat : second passage par mots.`);
+    for (const [i, saint] of retry.entries()) {
+      const qids = new Set();
+      for (const [name, lang] of [[saint.name.fr, 'fr'], [saint.name.en, 'en']]) {
+        if (!name) continue;
+        for (const qid of await search(name, lang, options)) qids.add(qid);
+        await sleep(options.pause);
+      }
+
+      let verdict = { kind: 'aucun' };
+      if (qids.size) {
+        try {
+          verdict = best(saint, await sparql(options.endpoint, byIds([...qids]), options));
+        } catch (error) {
+          console.warn(`\n  ${saint.id} : ${error.message}`);
+          dropped.panne += 1;
+        }
+      }
+      if (verdict.kind === 'trouvé') matched.push({ saint, ...verdict.candidate });
+      else if (verdict.kind === 'ambigu') {
+        dropped.ambigu += 1;
+        doubts.push(`${saint.id} : ${verdict.a} ou ${verdict.b}`);
+      } else dropped.aucun += 1;
+      progress(`  second passage : ${i + 1}/${retry.length}`, { done: i + 1 === retry.length });
+      await sleep(options.pause);
+    }
+  } else dropped.aucun += retry.length;
 
   // Les introductions se demandent par vingt, une fois tous les appariements
   // faits : vingt titres en un appel valent mieux que vingt appels.

@@ -599,6 +599,7 @@ François d'Assise. Un second outil les apparie et leur rapporte leur récit.
 npm run enrich:bios                       # apparier et rapporter
 node tools/enrich-bios.mjs --dry-run      # apparier et compter, sans écrire
 node tools/enrich-bios.mjs --limit 20     # un échantillon, pour voir
+node tools/enrich-bios.mjs --no-search    # libellé exact seulement
 npm run build:data && npm run check       # puis, toujours
 ```
 
@@ -621,6 +622,17 @@ mauvais. Trois garde-fous :
   entrer.
 - **Deux candidats à égalité, c'est un doute, pas un choix.** La fiche reste
   sans biographie et le rapport dit lesquels ont été écartés.
+
+**Deux passages, parce que les noms ne tombent pas toujours juste.** Le corpus
+dit « Patrick », « Boniface », « Louis IX » ; Wikidata range ces saints sous
+« Patrick d'Irlande », « Boniface de Mayence », « Louis IX de France ». Le
+libellé exact ne les trouve pas, et ce sont des saints majeurs. Les fiches
+restées sans candidat repassent donc par la recherche par mots de Wikidata,
+qui accepte le nom approché. Ce second passage élargit ce que l'on **regarde**,
+jamais ce que l'on **retient** : les candidats trouvés subissent la même
+notation, le même seuil et la même règle du doute, avec un plancher de plus —
+un mot substantiel du nom doit se retrouver dans le libellé, faute de quoi une
+recherche indulgente ramènerait n'importe qui.
 
 Le résultat va dans `data/saints/biographies.json`, à part des fiches comme les
 patronages : une biographie s'ajoute sans qu'il faille rouvrir les huit
