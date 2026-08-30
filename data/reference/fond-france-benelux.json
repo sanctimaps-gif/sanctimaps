@@ -1,0 +1,1206 @@
+{
+  "source": "Fond documentaire — France, Belgique, Pays-Bas, Suisse",
+  "note": "Ce fichier n'est pas un réservoir de propositions mais un index : l'assistant expert y cherche par le nom. Chaque fiche donne le lieu de naissance et, quand il diffère, le lieu de mort ; les noms de lieux sont écrits comme la table des localités les porte, puisque c'est elle qui fournira les coordonnées exactes. Aucun saint dont le lieu de naissance est disputé ne figure ici : une liste plus courte vaut mieux qu'une fiche à corriger.",
+  "saints": [
+    {
+      "id": "ref-germain-auxerre",
+      "name": {
+        "fr": "Germain d'Auxerre",
+        "en": "Germanus of Auxerre",
+        "la": "Germanus Autissiodorensis"
+      },
+      "aka": [
+        "Germain"
+      ],
+      "sex": "m",
+      "born": 378,
+      "died": 448,
+      "circa": true,
+      "feast": "07-31",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Auxerre",
+        "country": "FRA",
+        "lat": 47.7986,
+        "lng": 3.5735
+      },
+      "death": {
+        "city": "Ravenna",
+        "country": "ITA",
+        "lat": 44.4184,
+        "lng": 12.2035
+      },
+      "patronage": {
+        "fr": "Le diocèse d'Auxerre",
+        "en": "The diocese of Auxerre"
+      },
+      "desc": {
+        "fr": "Gouverneur devenu évêque d'Auxerre, envoyé deux fois en Bretagne contre le pélagianisme.",
+        "en": "A governor who became bishop of Auxerre, sent twice to Britain against Pelagianism."
+      },
+      "bio": {
+        "fr": "Germain administrait la province quand le peuple d'Auxerre le porta de force sur le siège épiscopal, en 418 ; il vendit ses biens et vécut le reste de sa vie en ascète. L'Église de Bretagne l'appela deux fois à venir réfuter les disciples de Pélage, et la seconde ambassade le retint assez longtemps pour que sa mémoire s'y attache durablement. Il mourut à Ravenne, où il était venu plaider la cause des Armoricains auprès de la cour impériale, et son corps fut ramené à Auxerre.",
+        "en": "Germanus was administering the province when the people of Auxerre forced him onto the episcopal see in 418; he sold his goods and lived out his life as an ascetic. The British Church twice called him over to refute the disciples of Pelagius, and the second embassy kept him there long enough for his memory to take root. He died at Ravenna, where he had come to plead the cause of the Armoricans before the imperial court, and his body was carried back to Auxerre."
+      }
+    },
+    {
+      "id": "ref-loup-troyes",
+      "name": {
+        "fr": "Loup de Troyes",
+        "en": "Lupus of Troyes",
+        "la": "Lupus Trecensis"
+      },
+      "aka": [
+        "Loup"
+      ],
+      "sex": "m",
+      "born": 383,
+      "died": 479,
+      "circa": true,
+      "feast": "07-29",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Toul",
+        "country": "FRA",
+        "lat": 48.6753,
+        "lng": 5.8917
+      },
+      "death": {
+        "city": "Troyes",
+        "country": "FRA",
+        "lat": 48.2973,
+        "lng": 4.0744
+      },
+      "desc": {
+        "fr": "Évêque de Troyes pendant plus de cinquante ans, qui obtint d'Attila l'épargne de sa ville.",
+        "en": "Bishop of Troyes for over fifty years, who obtained from Attila the sparing of his city."
+      },
+      "bio": {
+        "fr": "Marié puis séparé d'un commun accord, Loup se retira à Lérins avant d'être appelé au siège de Troyes vers 426. Il accompagna Germain d'Auxerre dans sa première mission en Bretagne. La tradition la plus tenace lui attribue d'être sorti à la rencontre d'Attila en 451 et d'avoir obtenu que Troyes fût épargnée, la ville étant ainsi la seule de la région à ne pas avoir été détruite.",
+        "en": "Married, then separated by mutual consent, Lupus withdrew to Lérins before being called to the see of Troyes around 426. He went with Germanus of Auxerre on his first mission to Britain. The most tenacious tradition credits him with going out to meet Attila in 451 and obtaining that Troyes be spared, the city being the only one in the region left standing."
+      }
+    },
+    {
+      "id": "ref-sidoine-apollinaire",
+      "name": {
+        "fr": "Sidoine Apollinaire",
+        "en": "Sidonius Apollinaris",
+        "la": "Sollius Apollinaris Sidonius"
+      },
+      "aka": [
+        "Sidoine"
+      ],
+      "sex": "m",
+      "born": 430,
+      "died": 489,
+      "circa": true,
+      "feast": "08-21",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Lyon",
+        "country": "FRA",
+        "lat": 45.7485,
+        "lng": 4.8467
+      },
+      "death": {
+        "city": "Clermont-Ferrand",
+        "country": "FRA",
+        "lat": 45.7797,
+        "lng": 3.0863
+      },
+      "desc": {
+        "fr": "Aristocrate gallo-romain, préfet de Rome, devenu évêque de Clermont et poète de la Gaule finissante.",
+        "en": "A Gallo-Roman aristocrat, prefect of Rome, who became bishop of Clermont and poet of a Gaul in its last days."
+      },
+      "bio": {
+        "fr": "Gendre de l'empereur Avitus, préfet de Rome en 468, Sidoine fut porté sur le siège de Clermont vers 470 par une cité qui cherchait moins un théologien qu'un défenseur. Il en fut un : il soutint quatre sièges wisigothiques et fut déporté quand la ville fut enfin cédée. Ses lettres, les plus abondantes que nous ait laissées la Gaule du Ve siècle, restent la source principale sur la fin du monde romain d'Occident.",
+        "en": "Son-in-law of the emperor Avitus and prefect of Rome in 468, Sidonius was raised to the see of Clermont around 470 by a city seeking a defender rather than a theologian. A defender he was: he withstood four Visigothic sieges and was deported when the city was at last surrendered. His letters, the most abundant left us by fifth-century Gaul, remain the chief source for the end of the Roman West."
+      }
+    },
+    {
+      "id": "ref-aubin-angers",
+      "name": {
+        "fr": "Aubin d'Angers",
+        "en": "Albinus of Angers",
+        "la": "Albinus Andegavensis"
+      },
+      "aka": [
+        "Aubin"
+      ],
+      "sex": "m",
+      "born": 470,
+      "died": 550,
+      "circa": true,
+      "feast": "03-01",
+      "titles": [
+        "bishop",
+        "abbot"
+      ],
+      "birth": {
+        "city": "Vannes",
+        "country": "FRA",
+        "lat": 47.6559,
+        "lng": -2.7603
+      },
+      "death": {
+        "city": "Angers",
+        "country": "FRA",
+        "lat": 47.4784,
+        "lng": -0.5632
+      },
+      "desc": {
+        "fr": "Abbé de Tincillac puis évêque d'Angers, connu pour avoir racheté des captifs.",
+        "en": "Abbot of Tincillac, then bishop of Angers, known for buying back captives."
+      },
+      "bio": {
+        "fr": "Aubin fut moine à vingt ans, abbé à trente-cinq, évêque d'Angers à cinquante-cinq, et il consacra l'essentiel de son épiscopat à deux causes : le rachat des captifs, qu'il payait de son propre trésor, et l'interdiction des mariages consanguins, qu'il fit reprendre par le concile d'Orléans de 538 malgré l'opposition d'une aristocratie qui y trouvait son compte.",
+        "en": "Albinus was a monk at twenty, an abbot at thirty-five, bishop of Angers at fifty-five, and he gave his episcopate to two causes: the ransoming of captives, which he paid for out of his own treasury, and the ban on consanguineous marriages, which he had taken up by the Council of Orléans in 538 against an aristocracy that profited from them."
+      }
+    },
+    {
+      "id": "ref-ouen-rouen",
+      "name": {
+        "fr": "Ouen de Rouen",
+        "en": "Audoin of Rouen",
+        "la": "Audoenus Rotomagensis"
+      },
+      "aka": [
+        "Ouen",
+        "Dadon"
+      ],
+      "sex": "m",
+      "born": 609,
+      "died": 684,
+      "circa": true,
+      "feast": "08-24",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Sancy",
+        "country": "FRA",
+        "lat": 49.5,
+        "lng": 3.3167
+      },
+      "death": {
+        "city": "Clichy",
+        "country": "FRA",
+        "lat": 48.9044,
+        "lng": 2.3064
+      },
+      "desc": {
+        "fr": "Référendaire de Dagobert, puis évêque de Rouen pendant quarante ans, ami et biographe d'Éloi.",
+        "en": "Referendary to Dagobert, then bishop of Rouen for forty years, friend and biographer of Eligius."
+      },
+      "bio": {
+        "fr": "Ouen tint la chancellerie de Dagobert Ier, garda le sceau royal et fonda l'abbaye de Rebais avant de recevoir le siège de Rouen en 641, le même jour que son ami Éloi recevait celui de Noyon. Il gouverna son diocèse quarante-trois ans, protégea les fondations monastiques normandes et écrivit la vie d'Éloi, qui reste l'un des rares témoignages directs sur la cour mérovingienne.",
+        "en": "Audoin held the chancellery of Dagobert I, kept the royal seal and founded the abbey of Rebais before receiving the see of Rouen in 641, the same day his friend Eligius received that of Noyon. He governed his diocese for forty-three years, protected the Norman monastic foundations, and wrote the life of Eligius, which remains one of the few direct accounts of the Merovingian court."
+      }
+    },
+    {
+      "id": "ref-philibert-jumieges",
+      "name": {
+        "fr": "Philibert de Jumièges",
+        "en": "Philibert of Jumièges",
+        "la": "Filibertus"
+      },
+      "aka": [
+        "Philibert"
+      ],
+      "sex": "m",
+      "born": 608,
+      "died": 685,
+      "circa": true,
+      "feast": "08-20",
+      "titles": [
+        "abbot"
+      ],
+      "birth": {
+        "city": "Eauze",
+        "country": "FRA",
+        "lat": 43.86,
+        "lng": 0.1025
+      },
+      "death": {
+        "city": "Noirmoutier-en-l'Île",
+        "country": "FRA",
+        "lat": 46.9986,
+        "lng": -2.2586
+      },
+      "desc": {
+        "fr": "Fondateur de Jumièges et de Noirmoutier, l'un des grands bâtisseurs monastiques de la Neustrie.",
+        "en": "Founder of Jumièges and Noirmoutier, one of the great monastic builders of Neustria."
+      },
+      "bio": {
+        "fr": "Élevé à la cour de Dagobert, Philibert entra à Rebais sous la direction d'Ouen, puis fonda Jumièges en 654 sur une terre donnée par Clovis II. Sa franchise lui valut la prison et l'exil : il gagna l'île de Noirmoutier, y fonda une seconde abbaye, et de là essaima jusqu'en Poitou. Les moines de Noirmoutier, fuyant plus tard les Normands avec ses reliques, portèrent son nom jusqu'à Tournus en Bourgogne.",
+        "en": "Raised at Dagobert's court, Philibert entered Rebais under Audoin's direction, then founded Jumièges in 654 on land given by Clovis II. His plain speaking earned him prison and exile: he reached the island of Noirmoutier, founded a second abbey there, and from it spread as far as Poitou. His monks, later fleeing the Norsemen with his relics, carried his name all the way to Tournus in Burgundy."
+      }
+    },
+    {
+      "id": "ref-wandrille",
+      "name": {
+        "fr": "Wandrille",
+        "en": "Wandregisel",
+        "la": "Wandregisilus"
+      },
+      "aka": [
+        "Wandrégisile"
+      ],
+      "sex": "m",
+      "born": 600,
+      "died": 668,
+      "circa": true,
+      "feast": "07-22",
+      "titles": [
+        "abbot"
+      ],
+      "birth": {
+        "city": "Verdun",
+        "country": "FRA",
+        "lat": 49.1597,
+        "lng": 5.3844
+      },
+      "death": {
+        "city": "Saint-Wandrille-Rançon",
+        "country": "FRA",
+        "lat": 49.5333,
+        "lng": 0.7667
+      },
+      "desc": {
+        "fr": "Comte du palais devenu ermite, fondateur de l'abbaye de Fontenelle.",
+        "en": "A count of the palace turned hermit, founder of the abbey of Fontenelle."
+      },
+      "bio": {
+        "fr": "Wandrille servait au palais de Dagobert et venait de se marier lorsque les deux époux convinrent de se séparer pour entrer en religion. Il passa par Montfaucon, Bobbio et Romainmôtier avant de fonder en 649, dans la vallée de la Fontenelle, l'abbaye qui porte aujourd'hui son nom et où la vie monastique n'a jamais cessé bien longtemps.",
+        "en": "Wandregisel served in Dagobert's palace and had just married when he and his wife agreed to part and enter religion. He passed through Montfaucon, Bobbio and Romainmôtier before founding, in 649, in the valley of the Fontenelle, the abbey that now bears his name and where monastic life has never long been interrupted."
+      }
+    },
+    {
+      "id": "ref-colette-corbie",
+      "name": {
+        "fr": "Colette de Corbie",
+        "en": "Colette of Corbie",
+        "la": "Coleta Corbiensis"
+      },
+      "aka": [
+        "Colette",
+        "Nicole Boellet"
+      ],
+      "sex": "f",
+      "born": 1381,
+      "died": 1447,
+      "feast": "03-06",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Corbie",
+        "country": "FRA",
+        "lat": 49.9086,
+        "lng": 2.5083
+      },
+      "death": {
+        "city": "Gent",
+        "country": "BEL",
+        "lat": 51.0536,
+        "lng": 3.7253
+      },
+      "patronage": {
+        "fr": "Les femmes enceintes, les enfants malades",
+        "en": "Expectant mothers, sick children"
+      },
+      "desc": {
+        "fr": "Recluse devenue réformatrice des Clarisses, fondatrice de dix-sept monastères.",
+        "en": "A recluse who became reformer of the Poor Clares and founded seventeen monasteries."
+      },
+      "bio": {
+        "fr": "Fille d'un charpentier de l'abbaye de Corbie, Colette vécut quatre ans emmurée dans une cellule attenante à l'église. Elle en sortit avec le projet de rendre aux Clarisses la pauvreté de leur règle primitive, obtint du pape d'Avignon les pouvoirs nécessaires, et fonda ou réforma dix-sept monastères en France, en Savoie et en Flandre. La branche colettine existe toujours.",
+        "en": "The daughter of a carpenter of Corbie abbey, Colette lived four years walled into a cell beside the church. She came out with the plan of restoring to the Poor Clares the poverty of their primitive rule, obtained the necessary powers from the Avignon pope, and founded or reformed seventeen monasteries in France, Savoy and Flanders. The Colettine branch exists to this day."
+      }
+    },
+    {
+      "id": "ref-hugues-cluny",
+      "name": {
+        "fr": "Hugues de Cluny",
+        "en": "Hugh of Cluny",
+        "la": "Hugo Cluniacensis"
+      },
+      "aka": [
+        "Hugues de Semur",
+        "Hugues le Grand"
+      ],
+      "sex": "m",
+      "born": 1024,
+      "died": 1109,
+      "feast": "04-29",
+      "titles": [
+        "abbot"
+      ],
+      "birth": {
+        "city": "Semur-en-Brionnais",
+        "country": "FRA",
+        "lat": 46.2489,
+        "lng": 4.0919
+      },
+      "death": {
+        "city": "Cluny",
+        "country": "FRA",
+        "lat": 46.4342,
+        "lng": 4.6592
+      },
+      "desc": {
+        "fr": "Abbé de Cluny pendant soixante ans, conseiller de neuf papes et bâtisseur de la plus grande église d'Occident.",
+        "en": "Abbot of Cluny for sixty years, counsellor to nine popes and builder of the largest church in the West."
+      },
+      "bio": {
+        "fr": "Élu abbé à vingt-cinq ans, Hugues gouverna Cluny soixante ans et porta l'ordre à près de deux mille maisons. Il fut le conseiller de neuf papes, l'arbitre demandé par l'empereur et le pape à Canossa, et il entreprit la construction de Cluny III, la plus vaste église de la chrétienté jusqu'à la reconstruction de Saint-Pierre de Rome.",
+        "en": "Elected abbot at twenty-five, Hugh governed Cluny for sixty years and brought the order to nearly two thousand houses. He was counsellor to nine popes, the arbiter sought by emperor and pope at Canossa, and he began the building of Cluny III, the largest church in Christendom until the rebuilding of Saint Peter's in Rome."
+      }
+    },
+    {
+      "id": "ref-guillaume-bourges",
+      "name": {
+        "fr": "Guillaume de Bourges",
+        "en": "William of Bourges",
+        "la": "Guillelmus Bituricensis"
+      },
+      "aka": [
+        "Guillaume de Donjeon"
+      ],
+      "sex": "m",
+      "born": 1155,
+      "died": 1209,
+      "circa": true,
+      "feast": "01-10",
+      "titles": [
+        "bishop",
+        "monk"
+      ],
+      "birth": {
+        "city": "Nevers",
+        "country": "FRA",
+        "lat": 46.9896,
+        "lng": 3.1628
+      },
+      "death": {
+        "city": "Bourges",
+        "country": "FRA",
+        "lat": 47.0844,
+        "lng": 2.3964
+      },
+      "desc": {
+        "fr": "Chartreux puis cistercien, archevêque de Bourges malgré lui.",
+        "en": "A Carthusian, then Cistercian, made archbishop of Bourges against his will."
+      },
+      "bio": {
+        "fr": "Chanoine de Soissons, Guillaume quitta sa prébende pour la Grande Chartreuse, puis passa à Pontigny et devint abbé de Chalis. Élu archevêque de Bourges en 1200, il n'accepta que sur ordre formel de son supérieur, et garda sous les ornements l'habit et le régime des cisterciens. Il préparait une mission chez les Albigeois lorsqu'il mourut.",
+        "en": "A canon of Soissons, William left his prebend for the Grande Chartreuse, then moved to Pontigny and became abbot of Chalis. Elected archbishop of Bourges in 1200, he accepted only on the formal order of his superior, and kept the Cistercian habit and diet beneath his vestments. He was preparing a mission among the Albigensians when he died."
+      }
+    },
+    {
+      "id": "ref-jean-matha",
+      "name": {
+        "fr": "Jean de Matha",
+        "en": "John of Matha",
+        "la": "Ioannes de Matha"
+      },
+      "aka": [
+        "Jean de Matha"
+      ],
+      "sex": "m",
+      "born": 1160,
+      "died": 1213,
+      "feast": "02-08",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Faucon-de-Barcelonnette",
+        "country": "FRA",
+        "lat": 44.3936,
+        "lng": 6.6642
+      },
+      "death": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "patronage": {
+        "fr": "Les captifs, les prisonniers",
+        "en": "Captives, prisoners"
+      },
+      "desc": {
+        "fr": "Fondateur des Trinitaires, ordre voué au rachat des chrétiens captifs.",
+        "en": "Founder of the Trinitarians, an order vowed to the ransoming of captive Christians."
+      },
+      "bio": {
+        "fr": "Docteur en théologie de Paris, Jean de Matha obtint d'Innocent III en 1198 l'approbation d'un ordre d'un genre nouveau : un tiers de ses revenus devait servir au rachat des chrétiens réduits en esclavage sur les côtes barbaresques. Les Trinitaires firent effectivement des voyages de rançon à Tunis et au Maroc, et Jean lui-même ramena des captifs. On leur attribue la libération de plusieurs milliers d'hommes en un siècle.",
+        "en": "A doctor of theology of Paris, John of Matha obtained from Innocent III in 1198 the approval of an order of a new kind: a third of its revenues was to go to ransoming Christians enslaved on the Barbary coasts. The Trinitarians did indeed make ransoming voyages to Tunis and Morocco, and John himself brought captives home. Several thousand men are credited to them in a century."
+      }
+    },
+    {
+      "id": "ref-louise-marillac",
+      "name": {
+        "fr": "Louise de Marillac",
+        "en": "Louise de Marillac",
+        "la": "Ludovica de Marillac"
+      },
+      "aka": [
+        "Louise de Marillac",
+        "Mademoiselle Le Gras"
+      ],
+      "sex": "f",
+      "born": 1591,
+      "died": 1660,
+      "feast": "03-15",
+      "titles": [
+        "widow",
+        "founder"
+      ],
+      "birth": {
+        "city": "Paris",
+        "country": "FRA",
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+      "death": {
+        "city": "Paris",
+        "country": "FRA",
+        "lat": 48.8566,
+        "lng": 2.3522
+      },
+      "patronage": {
+        "fr": "Les travailleurs sociaux",
+        "en": "Social workers"
+      },
+      "desc": {
+        "fr": "Veuve devenue, avec Vincent de Paul, fondatrice des Filles de la Charité.",
+        "en": "A widow who became, with Vincent de Paul, founder of the Daughters of Charity."
+      },
+      "bio": {
+        "fr": "Veuve à trente-quatre ans, Louise rencontra Vincent de Paul, qui d'abord la trouva trop tourmentée pour être utile et lui apprit la patience. Elle parcourut ensuite les Confréries de charité de province, en corrigea l'organisation, et fonda en 1633 une compagnie de filles de la campagne qui ne seraient pas cloîtrées : « pour monastère, les maisons des malades ; pour cellule, une chambre de louage ». C'était une nouveauté canonique autant que sociale.",
+        "en": "Widowed at thirty-four, Louise met Vincent de Paul, who at first found her too tormented to be of use and taught her patience. She then went round the provincial Confraternities of Charity, corrected their organisation, and in 1633 founded a company of country girls who would not be enclosed: \"for a monastery, the houses of the sick; for a cell, a hired room.\" It was as much a canonical novelty as a social one."
+      }
+    },
+    {
+      "id": "ref-jeanne-delanoue",
+      "name": {
+        "fr": "Jeanne Delanoue",
+        "en": "Jeanne Delanoue"
+      },
+      "aka": [
+        "Jeanne Delanoue",
+        "Jeanne de la Croix"
+      ],
+      "sex": "f",
+      "born": 1666,
+      "died": 1736,
+      "feast": "08-17",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Saumur",
+        "country": "FRA",
+        "lat": 47.2603,
+        "lng": -0.0769
+      },
+      "death": {
+        "city": "Saumur",
+        "country": "FRA",
+        "lat": 47.2603,
+        "lng": -0.0769
+      },
+      "desc": {
+        "fr": "Boutiquière âpre au gain devenue fondatrice des Sœurs de Sainte-Anne de la Providence.",
+        "en": "A hard-bargaining shopkeeper who became founder of the Sisters of Saint Anne of Providence."
+      },
+      "bio": {
+        "fr": "Jeanne tenait à Saumur un commerce prospère et ouvrait volontiers le dimanche, jusqu'à ce que l'accueil d'une pauvre femme, en 1693, retourne sa vie. Elle vendit son fonds, recueillit chez elle les mendiants et les orphelins, et fonda une communauté qui portait secours dans les épidémies et les famines. Elle mourut ayant ouvert une douzaine de maisons ; elle fut canonisée en 1982.",
+        "en": "Jeanne kept a thriving shop in Saumur and gladly opened on Sundays, until taking in a poor woman in 1693 turned her life over. She sold her business, gathered beggars and orphans into her house, and founded a community that brought relief in epidemics and famines. She died having opened a dozen houses, and was canonised in 1982."
+      }
+    },
+    {
+      "id": "ref-julie-billiart",
+      "name": {
+        "fr": "Julie Billiart",
+        "en": "Julie Billiart"
+      },
+      "aka": [
+        "Julie Billiart",
+        "Marie-Rose Julie Billiart"
+      ],
+      "sex": "f",
+      "born": 1751,
+      "died": 1816,
+      "feast": "04-08",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Cuvilly",
+        "country": "FRA",
+        "lat": 49.5333,
+        "lng": 2.7
+      },
+      "death": {
+        "city": "Namur",
+        "country": "BEL",
+        "lat": 50.4669,
+        "lng": 4.8675
+      },
+      "desc": {
+        "fr": "Paralysée pendant vingt-deux ans, fondatrice des Sœurs de Notre-Dame de Namur.",
+        "en": "Paralysed for twenty-two years, founder of the Sisters of Notre Dame de Namur."
+      },
+      "bio": {
+        "fr": "Julie enseignait le catéchisme aux enfants de son village quand un coup de feu tiré sur son père la laissa paralysée ; elle le resta vingt-deux ans, cachée pendant la Terreur pour avoir refusé le clergé constitutionnel. Elle recouvra l'usage de ses jambes en 1804 et fonda aussitôt, à Amiens puis à Namur, une congrégation vouée à l'instruction des filles pauvres, qui essaima jusqu'au Congo et aux États-Unis.",
+        "en": "Julie was teaching catechism to the children of her village when a shot fired at her father left her paralysed; she stayed so for twenty-two years, hidden during the Terror for refusing the constitutional clergy. She recovered the use of her legs in 1804 and at once founded, at Amiens and then Namur, a congregation for the schooling of poor girls, which spread as far as the Congo and the United States."
+      }
+    },
+    {
+      "id": "ref-anne-marie-rivier",
+      "name": {
+        "fr": "Anne-Marie Rivier",
+        "en": "Anne-Marie Rivier"
+      },
+      "aka": [
+        "Marie Rivier"
+      ],
+      "sex": "f",
+      "born": 1768,
+      "died": 1838,
+      "feast": "02-03",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Montpezat-sous-Bauzon",
+        "country": "FRA",
+        "lat": 44.6903,
+        "lng": 4.2019
+      },
+      "death": {
+        "city": "Bourg-Saint-Andéol",
+        "country": "FRA",
+        "lat": 44.3722,
+        "lng": 4.6428
+      },
+      "desc": {
+        "fr": "Infirme depuis l'enfance, fondatrice des Sœurs de la Présentation de Marie.",
+        "en": "Crippled from childhood, founder of the Sisters of the Presentation of Mary."
+      },
+      "bio": {
+        "fr": "Tombée à seize mois, Anne-Marie ne marcha qu'à six ans et resta petite et fragile toute sa vie. Refusée par les couvents pour cette raison, elle ouvrit une école à dix-huit ans, et fonda en 1796, en pleine Révolution, une congrégation enseignante clandestine. À sa mort, elle avait ouvert cent quarante-et-une maisons ; on l'appelait dans le Vivarais « la femme apôtre ».",
+        "en": "She fell at sixteen months, did not walk until she was six, and stayed small and frail all her life. Turned away by convents for that reason, she opened a school at eighteen and in 1796, in the middle of the Revolution, founded a clandestine teaching congregation. By her death she had opened a hundred and forty-one houses; in the Vivarais they called her \"the woman apostle\"."
+      }
+    },
+    {
+      "id": "ref-eugene-mazenod",
+      "name": {
+        "fr": "Eugène de Mazenod",
+        "en": "Eugene de Mazenod"
+      },
+      "aka": [
+        "Eugène de Mazenod"
+      ],
+      "sex": "m",
+      "born": 1782,
+      "died": 1861,
+      "feast": "05-21",
+      "titles": [
+        "bishop",
+        "founder"
+      ],
+      "birth": {
+        "city": "Aix-en-Provence",
+        "country": "FRA",
+        "lat": 43.5297,
+        "lng": 5.4474
+      },
+      "death": {
+        "city": "Marseille",
+        "country": "FRA",
+        "lat": 43.2965,
+        "lng": 5.3698
+      },
+      "desc": {
+        "fr": "Évêque de Marseille et fondateur des Oblats de Marie Immaculée.",
+        "en": "Bishop of Marseille and founder of the Oblates of Mary Immaculate."
+      },
+      "bio": {
+        "fr": "Émigré enfant en Italie pendant la Révolution, Eugène revint en Provence et se fit ordonner pour prêcher aux pauvres en provençal, langue que le clergé d'alors dédaignait. Il fonda en 1816 les Missionnaires de Provence, devenus Oblats de Marie Immaculée, et les envoya au Canada, en Afrique australe et à Ceylan. Évêque de Marseille pendant vingt-quatre ans, il y créa vingt-trois paroisses.",
+        "en": "Sent into exile in Italy as a child during the Revolution, Eugene came back to Provence and was ordained to preach to the poor in Provençal, a language the clergy of the day disdained. In 1816 he founded the Missionaries of Provence, who became the Oblates of Mary Immaculate, and sent them to Canada, southern Africa and Ceylon. Bishop of Marseille for twenty-four years, he created twenty-three parishes there."
+      }
+    },
+    {
+      "id": "ref-marcel-callo",
+      "name": {
+        "fr": "Marcel Callo",
+        "en": "Marcel Callo"
+      },
+      "aka": [
+        "Marcel Callo"
+      ],
+      "sex": "m",
+      "born": 1921,
+      "died": 1945,
+      "feast": "04-19",
+      "titles": [
+        "layperson",
+        "martyr",
+        "youth"
+      ],
+      "birth": {
+        "city": "Rennes",
+        "country": "FRA",
+        "lat": 48.1147,
+        "lng": -1.6794
+      },
+      "death": {
+        "city": "Mauthausen",
+        "country": "AUT",
+        "lat": 48.2431,
+        "lng": 14.5194
+      },
+      "patronage": {
+        "fr": "Les jeunes travailleurs",
+        "en": "Young workers"
+      },
+      "desc": {
+        "fr": "Typographe de la Jeunesse ouvrière chrétienne, mort au camp de Mauthausen.",
+        "en": "A printer of the Young Christian Workers, who died in the camp at Mauthausen."
+      },
+      "bio": {
+        "fr": "Ouvrier typographe et militant jociste, Marcel partit en 1943 au Service du travail obligatoire à Zella-Mehlis, en Thuringe, pour ne pas exposer sa famille. Il y organisa clandestinement la vie chrétienne des requis français, ce qui lui valut d'être arrêté « pour action catholique ». Il mourut d'épuisement à Mauthausen à vingt-trois ans, et fut béatifié en 1987.",
+        "en": "A printer and a militant of the Young Christian Workers, Marcel left in 1943 for compulsory labour service at Zella-Mehlis in Thuringia, so as not to expose his family. There he secretly organised the Christian life of the French conscripts, which had him arrested \"for Catholic action\". He died of exhaustion at Mauthausen at twenty-three, and was beatified in 1987."
+      }
+    },
+    {
+      "id": "ref-alix-le-clerc",
+      "name": {
+        "fr": "Alix Le Clerc",
+        "en": "Alix Le Clerc"
+      },
+      "aka": [
+        "Alix Le Clerc",
+        "Alix de Notre-Dame"
+      ],
+      "sex": "f",
+      "born": 1576,
+      "died": 1622,
+      "feast": "01-09",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Remiremont",
+        "country": "FRA",
+        "lat": 48.0181,
+        "lng": 6.5906
+      },
+      "death": {
+        "city": "Nancy",
+        "country": "FRA",
+        "lat": 48.6921,
+        "lng": 6.1844
+      },
+      "desc": {
+        "fr": "Fondatrice, avec Pierre Fourier, de la Congrégation Notre-Dame et de ses écoles gratuites pour filles.",
+        "en": "Founder, with Pierre Fourier, of the Congregation of Our Lady and its free schools for girls."
+      },
+      "bio": {
+        "fr": "Fille d'un marchand lorrain, Alix aimait la danse et les habits avant de se ranger sous la direction de Pierre Fourier, curé de Mattaincourt. Ils ouvrirent ensemble, en 1598, la première école gratuite pour filles de Lorraine, à une époque où l'instruction des filles pauvres n'allait pas de soi. La Congrégation Notre-Dame en tint bientôt des dizaines. Alix fut béatifiée en 1947.",
+        "en": "The daughter of a Lorraine merchant, Alix loved dancing and fine clothes before placing herself under the direction of Pierre Fourier, parish priest of Mattaincourt. Together, in 1598, they opened the first free school for girls in Lorraine, at a time when schooling poor girls went without saying for no one. The Congregation of Our Lady soon kept dozens. Alix was beatified in 1947."
+      }
+    },
+    {
+      "id": "ref-basile-moreau",
+      "name": {
+        "fr": "Basile Moreau",
+        "en": "Basil Moreau"
+      },
+      "aka": [
+        "Basile Moreau"
+      ],
+      "sex": "m",
+      "born": 1799,
+      "died": 1873,
+      "feast": "01-20",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Laigné-en-Belin",
+        "country": "FRA",
+        "lat": 47.8642,
+        "lng": 0.2286
+      },
+      "death": {
+        "city": "Le Mans",
+        "country": "FRA",
+        "lat": 48.0061,
+        "lng": 0.1996
+      },
+      "desc": {
+        "fr": "Fondateur de la Congrégation de Sainte-Croix, d'où sortit l'université Notre-Dame.",
+        "en": "Founder of the Congregation of Holy Cross, from which the University of Notre Dame came."
+      },
+      "bio": {
+        "fr": "Professeur au séminaire du Mans, Basile Moreau réunit en 1837 des prêtres auxiliaires et des frères enseignants en une seule famille religieuse, ce que Rome n'accepta qu'après bien des difficultés. Il envoya six religieux en Indiana en 1841 : ils y fondèrent l'université Notre-Dame. Écarté de sa propre congrégation à la fin de sa vie, il mourut à l'écart et fut béatifié en 2007.",
+        "en": "A professor at the seminary of Le Mans, Basil Moreau brought together in 1837 auxiliary priests and teaching brothers into a single religious family, which Rome accepted only after much difficulty. He sent six religious to Indiana in 1841: there they founded the University of Notre Dame. Pushed aside from his own congregation at the end of his life, he died in obscurity and was beatified in 2007."
+      }
+    },
+    {
+      "id": "ref-jacques-desire-laval",
+      "name": {
+        "fr": "Jacques-Désiré Laval",
+        "en": "Jacques-Désiré Laval"
+      },
+      "aka": [
+        "Jacques Laval",
+        "Père Laval"
+      ],
+      "sex": "m",
+      "born": 1803,
+      "died": 1864,
+      "feast": "09-09",
+      "titles": [
+        "priest",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Croth",
+        "country": "FRA",
+        "lat": 48.8422,
+        "lng": 1.4322
+      },
+      "death": {
+        "city": "Port Louis",
+        "country": "MUS",
+        "lat": -20.1619,
+        "lng": 57.4989
+      },
+      "desc": {
+        "fr": "Médecin devenu missionnaire, apôtre des affranchis de l'île Maurice.",
+        "en": "A doctor turned missionary, apostle of the freed slaves of Mauritius."
+      },
+      "bio": {
+        "fr": "Jacques Laval exerça dix ans la médecine en Normandie avant de vendre son cheval et son cabinet pour se faire prêtre. Envoyé à Maurice en 1841, trois ans après l'abolition, il y trouva quatre-vingt mille affranchis sans terre et sans instruction ; il apprit le créole, forma des catéchistes noirs et fit vivre une Église qui n'existait pas. Son tombeau de Sainte-Croix reste le premier lieu de pèlerinage de l'île ; il fut le premier béatifié du pontificat de Jean-Paul II.",
+        "en": "Jacques Laval practised medicine for ten years in Normandy before selling his horse and his practice to become a priest. Sent to Mauritius in 1841, three years after abolition, he found eighty thousand freed slaves with no land and no schooling; he learned Creole, trained black catechists and brought into being a Church that did not exist. His tomb at Sainte-Croix is still the island's chief place of pilgrimage; he was the first person beatified in John Paul II's pontificate."
+      }
+    },
+    {
+      "id": "ref-bichier-des-ages",
+      "name": {
+        "fr": "Jeanne-Élisabeth Bichier des Âges",
+        "en": "Jeanne Elisabeth Bichier des Ages"
+      },
+      "aka": [
+        "Élisabeth Bichier des Âges",
+        "Jeanne Bichier"
+      ],
+      "sex": "f",
+      "born": 1773,
+      "died": 1838,
+      "feast": "08-26",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Le Blanc",
+        "country": "FRA",
+        "lat": 46.6322,
+        "lng": 1.0631
+      },
+      "death": {
+        "city": "La Puye",
+        "country": "FRA",
+        "lat": 46.6667,
+        "lng": 0.6833
+      },
+      "desc": {
+        "fr": "Fondatrice, avec André-Hubert Fournet, des Filles de la Croix.",
+        "en": "Founder, with André-Hubert Fournet, of the Daughters of the Cross."
+      },
+      "bio": {
+        "fr": "Fille de noblesse ruinée par la Révolution, Élisabeth plaida elle-même à Poitiers pour sauver les biens de sa mère et gagna son procès. Elle rassembla ensuite les fidèles de sa paroisse privée de prêtre, puis rencontra André-Hubert Fournet, prêtre réfractaire caché dans la région ; ils fondèrent en 1807 les Filles de la Croix, vouées à l'école et au soin des malades à domicile. Elle en ouvrit soixante maisons.",
+        "en": "Born to a nobility ruined by the Revolution, Elisabeth pleaded at Poitiers to save her mother's property, and won her case. She then gathered the faithful of her priestless parish, and met André-Hubert Fournet, a non-juring priest hiding in the district; in 1807 they founded the Daughters of the Cross, for schooling and for nursing the sick at home. She opened sixty houses of them."
+      }
+    },
+    {
+      "id": "ref-andre-hubert-fournet",
+      "name": {
+        "fr": "André-Hubert Fournet",
+        "en": "André-Hubert Fournet"
+      },
+      "aka": [
+        "André Fournet"
+      ],
+      "sex": "m",
+      "born": 1752,
+      "died": 1834,
+      "feast": "05-13",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Saint-Pierre-de-Maillé",
+        "country": "FRA",
+        "lat": 46.7667,
+        "lng": 0.7833
+      },
+      "death": {
+        "city": "La Puye",
+        "country": "FRA",
+        "lat": 46.6667,
+        "lng": 0.6833
+      },
+      "desc": {
+        "fr": "Prêtre réfractaire, curé de Maillé, cofondateur des Filles de la Croix.",
+        "en": "A non-juring priest, parish priest of Maillé, co-founder of the Daughters of the Cross."
+      },
+      "bio": {
+        "fr": "Écolier indocile et jeune homme dissipé, Fournet devint curé de son village et y mena d'abord une vie confortable, jusqu'à ce qu'un mendiant lui fasse honte de sa table. Refusant le serment constitutionnel, il exerça dix ans dans la clandestinité, célébrant la nuit dans les granges du Poitou. Avec Élisabeth Bichier des Âges, il fonda en 1807 les Filles de la Croix.",
+        "en": "An unruly schoolboy and a dissipated young man, Fournet became priest of his own village and at first lived comfortably there, until a beggar shamed him over his table. Refusing the constitutional oath, he ministered for ten years in hiding, saying Mass at night in the barns of Poitou. With Elisabeth Bichier des Ages he founded the Daughters of the Cross in 1807."
+      }
+    },
+    {
+      "id": "ref-michel-garicoits",
+      "name": {
+        "fr": "Michel Garicoïts",
+        "en": "Michael Garicoïts"
+      },
+      "aka": [
+        "Michel Garicoïts"
+      ],
+      "sex": "m",
+      "born": 1797,
+      "died": 1863,
+      "feast": "05-14",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Ibarre",
+        "country": "FRA",
+        "lat": 43.2333,
+        "lng": -1.0667
+      },
+      "death": {
+        "city": "Lestelle-Bétharram",
+        "country": "FRA",
+        "lat": 43.1333,
+        "lng": -0.2
+      },
+      "desc": {
+        "fr": "Fils de paysans basques, fondateur des Prêtres du Sacré-Cœur de Bétharram.",
+        "en": "The son of Basque peasants, founder of the Priests of the Sacred Heart of Bétharram."
+      },
+      "bio": {
+        "fr": "Berger puis domestique pour payer ses études, Michel Garicoïts devint professeur de théologie à Bétharram et y fonda en 1832 une société de prêtres missionnaires, disponibles pour tout ce que l'évêque leur demanderait. Sa devise tenait en deux mots : « Me voici. » Ses religieux passèrent en Argentine et en Uruguay dès 1856.",
+        "en": "A shepherd, then a servant to pay for his studies, Michael Garicoïts became a professor of theology at Bétharram and there founded, in 1832, a society of missionary priests available for whatever their bishop might ask. His motto came to two words: \"Here I am.\" His religious crossed to Argentina and Uruguay as early as 1856."
+      }
+    },
+    {
+      "id": "ref-marie-madeleine-postel",
+      "name": {
+        "fr": "Marie-Madeleine Postel",
+        "en": "Mary Magdalen Postel"
+      },
+      "aka": [
+        "Julie Postel",
+        "Marie-Madeleine Postel"
+      ],
+      "sex": "f",
+      "born": 1756,
+      "died": 1846,
+      "feast": "07-16",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Barfleur",
+        "country": "FRA",
+        "lat": 49.6706,
+        "lng": -1.2639
+      },
+      "death": {
+        "city": "Saint-Sauveur-le-Vicomte",
+        "country": "FRA",
+        "lat": 49.3856,
+        "lng": -1.5347
+      },
+      "desc": {
+        "fr": "Institutrice normande, fondatrice des Sœurs des Écoles chrétiennes de la Miséricorde.",
+        "en": "A Norman schoolmistress, founder of the Sisters of the Christian Schools of Mercy."
+      },
+      "bio": {
+        "fr": "Julie Postel tenait une école de filles à Barfleur quand la Révolution ferma les églises ; elle cacha des prêtres, garda le Saint-Sacrement chez elle et fit passer les enfants au catéchisme sous couvert de leçons. Elle fonda sa congrégation à cinquante ans passés, connut vingt ans de misère et d'échecs, et ne s'établit qu'à soixante-quinze ans dans l'abbaye ruinée de Saint-Sauveur, qu'elle releva. Elle mourut à quatre-vingt-dix ans.",
+        "en": "Julie Postel kept a girls' school at Barfleur when the Revolution closed the churches; she hid priests, kept the Blessed Sacrament in her house, and slipped the children their catechism under cover of lessons. She founded her congregation past fifty, knew twenty years of poverty and failure, and only settled at seventy-five in the ruined abbey of Saint-Sauveur, which she rebuilt. She died at ninety."
+      }
+    },
+    {
+      "id": "ref-eleuthere-tournai",
+      "name": {
+        "fr": "Éleuthère de Tournai",
+        "en": "Eleutherius of Tournai",
+        "la": "Eleutherius Tornacensis"
+      },
+      "aka": [
+        "Éleuthère"
+      ],
+      "sex": "m",
+      "born": 456,
+      "died": 531,
+      "circa": true,
+      "feast": "02-20",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Tournai",
+        "country": "BEL",
+        "lat": 50.6069,
+        "lng": 3.3878
+      },
+      "death": {
+        "city": "Tournai",
+        "country": "BEL",
+        "lat": 50.6069,
+        "lng": 3.3878
+      },
+      "patronage": {
+        "fr": "Le diocèse de Tournai",
+        "en": "The diocese of Tournai"
+      },
+      "desc": {
+        "fr": "Premier évêque historiquement attesté de Tournai, contemporain de Clovis.",
+        "en": "The first historically attested bishop of Tournai, a contemporary of Clovis."
+      },
+      "bio": {
+        "fr": "Éleuthère naquit à Tournai d'une famille chrétienne, dans une ville alors capitale des Francs saliens et païenne pour l'essentiel. Devenu évêque vers 486, il eut pour tâche d'évangéliser une population que la conversion de Clovis n'avait pas entraînée d'un bloc. Sa cathédrale conserve sa châsse, et l'on porte encore ses reliques en procession dans la ville.",
+        "en": "Eleutherius was born at Tournai to a Christian family, in a town then the capital of the Salian Franks and largely pagan. Bishop from about 486, his task was to evangelise a people whom Clovis's conversion had not carried along in one piece. His cathedral keeps his shrine, and his relics are still carried in procession through the town."
+      }
+    },
+    {
+      "id": "ref-beatrice-nazareth",
+      "name": {
+        "fr": "Béatrice de Nazareth",
+        "en": "Beatrice of Nazareth",
+        "la": "Beatrix Nazarethana"
+      },
+      "aka": [
+        "Béatrice de Nazareth",
+        "Beatrijs van Nazareth"
+      ],
+      "sex": "f",
+      "born": 1200,
+      "died": 1268,
+      "feast": "08-29",
+      "titles": [
+        "nun",
+        "mystic"
+      ],
+      "birth": {
+        "city": "Tienen",
+        "country": "BEL",
+        "lat": 50.8072,
+        "lng": 4.9422
+      },
+      "death": {
+        "city": "Lier",
+        "country": "BEL",
+        "lat": 51.1319,
+        "lng": 4.5708
+      },
+      "desc": {
+        "fr": "Cistercienne brabançonne, auteur du plus ancien traité mystique en langue néerlandaise.",
+        "en": "A Brabantine Cistercian, author of the oldest mystical treatise in the Dutch language."
+      },
+      "bio": {
+        "fr": "Élevée chez les béguines de Léau puis entrée à l'abbaye de Bloemendaal, Béatrice fut copiste et prieure de Nazareth, près de Lier. Elle écrivit les Sept manières de saint amour, premier traité de mystique rédigé en moyen néerlandais et non en latin, ce qui le rendait lisible aux femmes qui ne savaient pas la langue de l'Église. Le texte a survécu, à la différence de son journal.",
+        "en": "Brought up among the beguines of Zoutleeuw and then entering the abbey of Bloemendaal, Beatrice was a copyist and prioress of Nazareth, near Lier. She wrote the Seven Manners of Holy Love, the first mystical treatise composed in Middle Dutch rather than Latin, which made it readable by women who had no Church Latin. The text has survived; her diary has not."
+      }
+    },
+    {
+      "id": "ref-boniface-bruxelles",
+      "name": {
+        "fr": "Boniface de Bruxelles",
+        "en": "Boniface of Brussels",
+        "la": "Bonifatius Bruxellensis"
+      },
+      "aka": [
+        "Boniface de Bruxelles"
+      ],
+      "sex": "m",
+      "born": 1183,
+      "died": 1260,
+      "circa": true,
+      "feast": "02-19",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Brussels",
+        "country": "BEL",
+        "lat": 50.8503,
+        "lng": 4.3517
+      },
+      "death": {
+        "city": "Brussels",
+        "country": "BEL",
+        "lat": 50.8503,
+        "lng": 4.3517
+      },
+      "desc": {
+        "fr": "Chancelier de l'université de Paris, évêque de Lausanne, retiré à l'abbaye de La Cambre.",
+        "en": "Chancellor of the University of Paris, bishop of Lausanne, retired to the abbey of La Cambre."
+      },
+      "bio": {
+        "fr": "Boniface enseigna la théologie à Paris et en fut chancelier, puis reçut en 1231 l'évêché de Lausanne. Son opposition à Frédéric II lui valut d'être frappé et chassé ; il renonça à son siège en 1239 et passa ses vingt dernières années à l'abbaye cistercienne de La Cambre, à Bruxelles, où il continua de prêcher.",
+        "en": "Boniface taught theology at Paris and was its chancellor, then received the bishopric of Lausanne in 1231. His opposition to Frederick II earned him blows and expulsion; he resigned his see in 1239 and spent his last twenty years at the Cistercian abbey of La Cambre in Brussels, where he went on preaching."
+      }
+    },
+    {
+      "id": "ref-charles-houben",
+      "name": {
+        "fr": "Charles Houben",
+        "en": "Charles of Mount Argus",
+        "la": "Carolus a Sancto Andrea"
+      },
+      "aka": [
+        "Charles de Mount Argus",
+        "Jan Andries Houben"
+      ],
+      "sex": "m",
+      "born": 1821,
+      "died": 1893,
+      "feast": "01-05",
+      "titles": [
+        "priest",
+        "religious"
+      ],
+      "birth": {
+        "city": "Munstergeleen",
+        "country": "NLD",
+        "lat": 50.9667,
+        "lng": 5.8333
+      },
+      "death": {
+        "city": "Dublin",
+        "country": "IRL",
+        "lat": 53.3498,
+        "lng": -6.2603
+      },
+      "desc": {
+        "fr": "Passionniste limbourgeois, confesseur recherché des pauvres de Dublin.",
+        "en": "A Limburg Passionist, a confessor sought out by the poor of Dublin."
+      },
+      "bio": {
+        "fr": "Fils de meunier, Charles Houben entra chez les Passionnistes et fut envoyé en Irlande en 1857, où il ne maîtrisa jamais bien l'anglais. Cela ne l'empêcha pas de devenir, au couvent de Mount Argus, le prêtre que les Dublinois faisaient la queue pour voir : on venait de toute l'île se faire bénir par lui. Ses supérieurs, gênés par cette affluence, l'éloignèrent quelque temps ; la foule le fit revenir.",
+        "en": "A miller's son, Charles Houben entered the Passionists and was sent to Ireland in 1857, where he never mastered English. It did not stop him becoming, at Mount Argus, the priest Dubliners queued to see: people came from all over the island for his blessing. His superiors, embarrassed by the crowds, moved him away for a time; the crowds brought him back."
+      }
+    },
+    {
+      "id": "ref-pierre-donders",
+      "name": {
+        "fr": "Pierre Donders",
+        "en": "Peter Donders",
+        "la": "Petrus Donders"
+      },
+      "aka": [
+        "Peerke Donders",
+        "Pierre Donders"
+      ],
+      "sex": "m",
+      "born": 1809,
+      "died": 1887,
+      "feast": "01-14",
+      "titles": [
+        "priest",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Tilburg",
+        "country": "NLD",
+        "lat": 51.5606,
+        "lng": 5.0919
+      },
+      "death": {
+        "city": "Paramaribo",
+        "country": "SUR",
+        "lat": 5.8667,
+        "lng": -55.1667
+      },
+      "patronage": {
+        "fr": "Les lépreux",
+        "en": "Lepers"
+      },
+      "desc": {
+        "fr": "Tisserand devenu prêtre, quarante-cinq ans au service des lépreux du Suriname.",
+        "en": "A weaver turned priest, forty-five years among the lepers of Suriname."
+      },
+      "bio": {
+        "fr": "Trop pauvre et trop peu instruit pour être admis au séminaire, Pierre Donders y entra d'abord comme domestique et fut ordonné à trente ans. Parti au Suriname en 1842, il passa la plus grande partie de sa vie à Batavia, colonie de lépreux au bord du fleuve, où il fut à la fois prêtre, infirmier et fossoyeur. Il apprit les langues des esclaves et des Amérindiens de l'intérieur ; il fut béatifié en 1982.",
+        "en": "Too poor and too little schooled to be admitted to the seminary, Peter Donders entered it first as a servant and was ordained at thirty. He left for Suriname in 1842 and spent most of his life at Batavia, a leper settlement on the river, where he was priest, nurse and gravedigger at once. He learned the languages of the slaves and of the inland Amerindians; he was beatified in 1982."
+      }
+    },
+    {
+      "id": "ref-marguerite-bays",
+      "name": {
+        "fr": "Marguerite Bays",
+        "en": "Marguerite Bays"
+      },
+      "aka": [
+        "Marguerite Bays"
+      ],
+      "sex": "f",
+      "born": 1815,
+      "died": 1879,
+      "feast": "06-27",
+      "titles": [
+        "layperson",
+        "mystic"
+      ],
+      "birth": {
+        "city": "Siviriez",
+        "country": "CHE",
+        "lat": 46.6667,
+        "lng": 6.9167
+      },
+      "death": {
+        "city": "Siviriez",
+        "country": "CHE",
+        "lat": 46.6667,
+        "lng": 6.9167
+      },
+      "desc": {
+        "fr": "Couturière fribourgeoise, tertiaire franciscaine, canonisée en 2019.",
+        "en": "A Fribourg seamstress and Franciscan tertiary, canonised in 2019."
+      },
+      "bio": {
+        "fr": "Marguerite Bays passa sa vie entière dans la ferme familiale de La Pierraz, cousant pour le village et faisant le catéchisme aux enfants. Guérie d'un cancer de l'intestin le jour de la proclamation du dogme de l'Immaculée Conception, en 1854, elle porta ensuite des marques de la Passion qu'elle cacha de son mieux. Sa canonisation, en 2019, a été celle d'une vie sans événements et sans départ.",
+        "en": "Marguerite Bays spent her whole life on the family farm at La Pierraz, sewing for the village and teaching the children their catechism. Cured of an intestinal cancer on the day the dogma of the Immaculate Conception was proclaimed in 1854, she afterwards bore marks of the Passion that she hid as best she could. Her canonisation in 2019 was that of a life with no events and no departures."
+      }
+    }
+  ]
+}

@@ -81,7 +81,9 @@ export class DetailPanel {
           ? formatYear(saint.born, { circa: saint.circa }) : t('misc.unknown')),
         row(t('detail.death'), saint.died != null
           ? formatYear(saint.died) : t('misc.unknown')),
-        row(t('detail.birthplace'),
+        // Le point porté sur la carte est presque toujours une naissance ;
+        // quand c'est une mort, dire « lieu de naissance » serait une erreur.
+        row(t(saint.placeKind === 'died' ? 'detail.deathplace' : 'detail.birthplace'),
           `${saint.city} — ${this.atlas.countryName(saint.country, lang)}`),
         row(t('detail.feast'), formatFeast(saint.feast)),
         row(t('detail.status'), t(`status.${saint.status}`))),

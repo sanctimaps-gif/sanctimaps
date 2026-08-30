@@ -3,7 +3,8 @@ import { PENDING, PUBLISHED } from '../data.js';
 import { collator, getLanguage, monthNames, t, titleLabel } from '../i18n.js';
 import { field, fill, h, select } from './dom.js';
 
-const TITLE_KEYS = [
+/** Vocabulaire des qualités, partagé avec l'atelier de l'assistant expert. */
+export const TITLE_KEYS = [
   'abbess', 'abbot', 'apostle', 'bishop', 'cardinal', 'deacon', 'disciple', 'doctor',
   'evangelist', 'founder', 'hermit', 'king', 'layperson', 'martyr', 'missionary', 'monk',
   'mystic', 'nun', 'pilgrim', 'pope', 'preacher', 'priest', 'prince', 'prophet', 'queen',

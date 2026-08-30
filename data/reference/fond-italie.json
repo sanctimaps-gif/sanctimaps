@@ -1,0 +1,1168 @@
+{
+  "source": "Fond documentaire — Italie",
+  "note": "Index consulté par l'assistant expert. Les noms de lieux suivent la graphie de la table des localités, qui fournira les coordonnées : Firenze et non Florence, Roma et non Rome.",
+  "saints": [
+    {
+      "id": "ref-romuald",
+      "name": {
+        "fr": "Romuald",
+        "en": "Romuald",
+        "la": "Romualdus"
+      },
+      "aka": [
+        "Romuald de Ravenne"
+      ],
+      "sex": "m",
+      "born": 951,
+      "died": 1027,
+      "circa": true,
+      "feast": "06-19",
+      "titles": [
+        "abbot",
+        "hermit",
+        "founder"
+      ],
+      "birth": {
+        "city": "Ravenna",
+        "country": "ITA",
+        "lat": 44.4184,
+        "lng": 12.2035
+      },
+      "death": {
+        "city": "Fabriano",
+        "country": "ITA",
+        "lat": 43.3358,
+        "lng": 12.9053
+      },
+      "desc": {
+        "fr": "Fondateur des Camaldules, qui joignit la vie érémitique à la règle bénédictine.",
+        "en": "Founder of the Camaldolese, who joined the hermit's life to the Benedictine rule."
+      },
+      "bio": {
+        "fr": "Fils d'un duc de Ravenne, Romuald se fit moine par expiation après avoir assisté à un duel où son père tua un parent. Il passa sa vie à fonder des ermitages dans les Apennins, dont Camaldoli vers 1023, où les moines vivent en cellules séparées tout en gardant la règle de Benoît.",
+        "en": "The son of a duke of Ravenna, Romuald became a monk in expiation after witnessing a duel in which his father killed a kinsman. He spent his life founding hermitages in the Apennines, among them Camaldoli around 1023, where monks live in separate cells while keeping Benedict's rule."
+      }
+    },
+    {
+      "id": "ref-jean-gualbert",
+      "name": {
+        "fr": "Jean Gualbert",
+        "en": "John Gualbert",
+        "la": "Ioannes Gualbertus"
+      },
+      "aka": [
+        "Giovanni Gualberto"
+      ],
+      "sex": "m",
+      "born": 985,
+      "died": 1073,
+      "circa": true,
+      "feast": "07-12",
+      "titles": [
+        "abbot",
+        "founder"
+      ],
+      "birth": {
+        "city": "Florence",
+        "country": "ITA",
+        "lat": 43.7714,
+        "lng": 11.2542
+      },
+      "death": {
+        "city": "Tavarnelle Val di Pesa",
+        "country": "ITA",
+        "lat": 43.5539,
+        "lng": 11.1725,
+        "note": "mort à la badia de Passignano"
+      },
+      "patronage": {
+        "fr": "Les forestiers, les gardes des parcs",
+        "en": "Foresters, park rangers"
+      },
+      "desc": {
+        "fr": "Fondateur de Vallombreuse, célèbre pour avoir gracié le meurtrier de son frère.",
+        "en": "Founder of Vallombrosa, famous for pardoning his brother's murderer."
+      },
+      "bio": {
+        "fr": "Jean tenait au bout de son épée l'homme qui avait tué son frère, un Vendredi saint ; il lui fit grâce et entra le jour même au monastère. Il fonda ensuite Vallombreuse, communauté bénédictine réformée qui planta les grandes forêts de sapins de l'Apennin toscan, ce qui lui a valu son patronage.",
+        "en": "John held at sword's point the man who had killed his brother, on a Good Friday; he spared him and entered a monastery that same day. He then founded Vallombrosa, a reformed Benedictine community which planted the great fir forests of the Tuscan Apennines — hence his patronage."
+      }
+    },
+    {
+      "id": "ref-pierre-chrysologue",
+      "name": {
+        "fr": "Pierre Chrysologue",
+        "en": "Peter Chrysologus",
+        "la": "Petrus Chrysologus"
+      },
+      "aka": [
+        "Pierre Chrysologue"
+      ],
+      "sex": "m",
+      "born": 380,
+      "died": 450,
+      "circa": true,
+      "feast": "07-30",
+      "titles": [
+        "bishop",
+        "doctor"
+      ],
+      "birth": {
+        "city": "Imola",
+        "country": "ITA",
+        "lat": 44.3531,
+        "lng": 11.7139
+      },
+      "death": {
+        "city": "Imola",
+        "country": "ITA",
+        "lat": 44.3531,
+        "lng": 11.7139
+      },
+      "desc": {
+        "fr": "Archevêque de Ravenne, docteur de l'Église, surnommé « parole d'or » pour la brièveté de ses sermons.",
+        "en": "Archbishop of Ravenna, doctor of the Church, called \"golden word\" for the brevity of his sermons."
+      },
+      "bio": {
+        "fr": "Évêque de Ravenne alors que la ville était capitale impériale, Pierre prêchait court, ce qui était assez rare pour lui valoir son surnom : cent soixante-seize de ses homélies nous sont parvenues, la plupart tenant en quelques minutes. Il fut proclamé docteur de l'Église en 1729.",
+        "en": "Bishop of Ravenna while the city was an imperial capital, Peter preached briefly — rare enough to earn him his nickname. A hundred and seventy-six of his homilies survive, most of them a few minutes long. He was proclaimed a doctor of the Church in 1729."
+      }
+    },
+    {
+      "id": "ref-guillaume-verceil",
+      "name": {
+        "fr": "Guillaume de Verceil",
+        "en": "William of Vercelli",
+        "la": "Guillelmus Vercellensis"
+      },
+      "aka": [
+        "Guillaume de Montevergine"
+      ],
+      "sex": "m",
+      "born": 1085,
+      "died": 1142,
+      "feast": "06-25",
+      "titles": [
+        "abbot",
+        "hermit",
+        "founder"
+      ],
+      "birth": {
+        "city": "Vercelli",
+        "country": "ITA",
+        "lat": 45.3206,
+        "lng": 8.4231
+      },
+      "death": {
+        "city": "Nusco",
+        "country": "ITA",
+        "lat": 40.8867,
+        "lng": 15.0817,
+        "note": "mort au Goleto, près de Sant'Angelo dei Lombardi"
+      },
+      "desc": {
+        "fr": "Ermite du mont Vierge, fondateur de la congrégation de Montevergine.",
+        "en": "Hermit of Monte Vergine, founder of the congregation of Montevergine."
+      },
+      "bio": {
+        "fr": "Orphelin, Guillaume partit en pèlerinage à Compostelle à quinze ans, puis voulut gagner Jérusalem ; détourné de ce projet, il s'établit en ermite sur le mont Vierge, en Campanie, où des disciples le rejoignirent. Le roi Roger II de Sicile le prit pour conseiller et lui confia plusieurs fondations.",
+        "en": "Orphaned young, William walked to Compostela at fifteen and then meant to reach Jerusalem; turned from that plan, he settled as a hermit on Monte Vergine in Campania, where disciples joined him. King Roger II of Sicily took him as a counsellor and entrusted several foundations to him."
+      }
+    },
+    {
+      "id": "ref-silvestre-guzzolini",
+      "name": {
+        "fr": "Silvestre Guzzolini",
+        "en": "Sylvester Gozzolini",
+        "la": "Silvester Guzzolinus"
+      },
+      "aka": [
+        "Silvestre de Osimo"
+      ],
+      "sex": "m",
+      "born": 1177,
+      "died": 1267,
+      "feast": "11-26",
+      "titles": [
+        "abbot",
+        "founder"
+      ],
+      "birth": {
+        "city": "Osimo",
+        "country": "ITA",
+        "lat": 43.4861,
+        "lng": 13.4833
+      },
+      "death": {
+        "city": "Fabriano",
+        "country": "ITA",
+        "lat": 43.3358,
+        "lng": 12.9053
+      },
+      "desc": {
+        "fr": "Chanoine devenu ermite, fondateur des Bénédictins silvestrins.",
+        "en": "A canon turned hermit, founder of the Sylvestrine Benedictines."
+      },
+      "bio": {
+        "fr": "Envoyé étudier le droit, Silvestre passa à la théologie contre la volonté de son père, qui ne lui parla plus pendant dix ans. Chanoine d'Osimo, il quitta tout après avoir vu le corps décomposé d'un homme qu'il avait connu beau, et fonda en 1231 à Montefano une congrégation bénédictine d'une austérité particulière.",
+        "en": "Sent to study law, Sylvester turned to theology against his father's will, who then did not speak to him for ten years. A canon of Osimo, he left everything after seeing the decayed body of a man he had known handsome, and in 1231 founded at Montefano a Benedictine congregation of particular austerity."
+      }
+    },
+    {
+      "id": "ref-marie-madeleine-pazzi",
+      "name": {
+        "fr": "Marie-Madeleine de Pazzi",
+        "en": "Mary Magdalene de' Pazzi",
+        "la": "Maria Magdalena de Pazzis"
+      },
+      "aka": [
+        "Maria Maddalena de' Pazzi",
+        "Caterina de' Pazzi"
+      ],
+      "sex": "f",
+      "born": 1566,
+      "died": 1607,
+      "feast": "05-25",
+      "titles": [
+        "nun",
+        "mystic"
+      ],
+      "birth": {
+        "city": "Florence",
+        "country": "ITA",
+        "lat": 43.7714,
+        "lng": 11.2542
+      },
+      "death": {
+        "city": "Florence",
+        "country": "ITA",
+        "lat": 43.7714,
+        "lng": 11.2542
+      },
+      "desc": {
+        "fr": "Carmélite florentine, mystique dont les extases furent notées mot à mot par ses sœurs.",
+        "en": "A Florentine Carmelite whose ecstasies were taken down word for word by her sisters."
+      },
+      "bio": {
+        "fr": "Née dans une des grandes familles de Florence, Catherine de' Pazzi entra au Carmel de Sainte-Marie-des-Anges à seize ans. Ses sœurs prirent l'habitude d'écrire sous sa dictée pendant ses extases : cinq volumes en sont sortis, qui ne furent publiés que bien après sa mort. Elle passa aussi cinq années d'aridité complète, qu'elle appelait sa « nuit ».",
+        "en": "Born into one of the great families of Florence, Caterina de' Pazzi entered the Carmel of Santa Maria degli Angeli at sixteen. Her sisters took to writing at her dictation during her ecstasies: five volumes came of it, published long after her death. She also passed five years of complete aridity, which she called her \"night\"."
+      }
+    },
+    {
+      "id": "ref-catherine-ricci",
+      "name": {
+        "fr": "Catherine de Ricci",
+        "en": "Catherine de' Ricci",
+        "la": "Catharina de Ricciis"
+      },
+      "aka": [
+        "Caterina de' Ricci"
+      ],
+      "sex": "f",
+      "born": 1522,
+      "died": 1590,
+      "feast": "02-13",
+      "titles": [
+        "nun",
+        "mystic"
+      ],
+      "birth": {
+        "city": "Florence",
+        "country": "ITA",
+        "lat": 43.7714,
+        "lng": 11.2542
+      },
+      "death": {
+        "city": "Prato",
+        "country": "ITA",
+        "lat": 43.8805,
+        "lng": 11.0961
+      },
+      "desc": {
+        "fr": "Dominicaine de Prato, prieure et conseillère écoutée de trois futurs papes.",
+        "en": "A Dominican of Prato, prioress and trusted counsellor of three future popes."
+      },
+      "bio": {
+        "fr": "Entrée à treize ans au couvent de San Vincenzo à Prato, Catherine en fut prieure la plus grande partie de sa vie et s'y montra administratrice exacte autant que mystique. Sa correspondance avec Philippe Néri et avec trois cardinaux devenus papes fit du parloir de Prato l'un des lieux d'avis les plus fréquentés de la Toscane.",
+        "en": "She entered the convent of San Vincenzo at Prato at thirteen, was its prioress for most of her life, and proved as exact an administrator as she was a mystic. Her correspondence with Philip Neri and with three cardinals who became popes made the Prato parlour one of the most consulted places in Tuscany."
+      }
+    },
+    {
+      "id": "ref-alexandre-sauli",
+      "name": {
+        "fr": "Alexandre Sauli",
+        "en": "Alexander Sauli",
+        "la": "Alexander Sauli"
+      },
+      "aka": [
+        "Alessandro Sauli"
+      ],
+      "sex": "m",
+      "born": 1534,
+      "died": 1592,
+      "feast": "10-11",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Milan",
+        "country": "ITA",
+        "lat": 45.4643,
+        "lng": 9.1895
+      },
+      "death": {
+        "city": "Calosso",
+        "country": "ITA",
+        "lat": 44.75,
+        "lng": 8.2833
+      },
+      "desc": {
+        "fr": "Barnabite, évêque d'Aléria, qui releva l'Église de Corse en vingt ans.",
+        "en": "A Barnabite, bishop of Aleria, who rebuilt the Church of Corsica in twenty years."
+      },
+      "bio": {
+        "fr": "Envoyé en 1570 dans un diocèse corse sans séminaire, sans clergé instruit et à demi ruiné par la guerre, Sauli y fonda des collèges, tint des synodes et parcourut l'île à pied pendant vingt ans. Charles Borromée le comptait parmi ses amis les plus proches ; il refusa trois sièges plus prestigieux.",
+        "en": "Sent in 1570 to a Corsican diocese with no seminary, no educated clergy and half-ruined by war, Sauli founded colleges, held synods and walked the island for twenty years. Charles Borromeo counted him among his closest friends; he refused three more prestigious sees."
+      }
+    },
+    {
+      "id": "ref-bernardin-realino",
+      "name": {
+        "fr": "Bernardin Realino",
+        "en": "Bernardine Realino",
+        "la": "Bernardinus Realinus"
+      },
+      "aka": [
+        "Bernardino Realino"
+      ],
+      "sex": "m",
+      "born": 1530,
+      "died": 1616,
+      "feast": "07-02",
+      "titles": [
+        "priest"
+      ],
+      "birth": {
+        "city": "Carpi Centro",
+        "country": "ITA",
+        "lat": 44.7833,
+        "lng": 10.8833
+      },
+      "death": {
+        "city": "Lecce",
+        "country": "ITA",
+        "lat": 40.3515,
+        "lng": 18.175
+      },
+      "desc": {
+        "fr": "Juriste devenu jésuite, quarante-deux ans au service de la ville de Lecce.",
+        "en": "A jurist turned Jesuit, forty-two years in the service of the city of Lecce."
+      },
+      "bio": {
+        "fr": "Docteur en droit et administrateur de fiefs, Realino entra chez les jésuites à trente-quatre ans et fut envoyé à Lecce, qu'il ne quitta plus. Il y était si respecté que la municipalité, à son lit de mort, vint lui demander officiellement d'accepter d'être le protecteur céleste de la ville — il consentit, et l'acte fut consigné aux registres.",
+        "en": "A doctor of law and administrator of fiefs, Realino entered the Jesuits at thirty-four and was sent to Lecce, which he never left. He was so respected there that on his deathbed the city council came formally to ask him to be the town's heavenly protector — he agreed, and the act was entered in the registers."
+      }
+    },
+    {
+      "id": "ref-ange-acri",
+      "name": {
+        "fr": "Ange d'Acri",
+        "en": "Angelo of Acri",
+        "la": "Angelus ab Acri"
+      },
+      "aka": [
+        "Angelo d'Acri",
+        "Luca Antonio Falcone"
+      ],
+      "sex": "m",
+      "born": 1669,
+      "died": 1739,
+      "feast": "10-30",
+      "titles": [
+        "priest",
+        "preacher"
+      ],
+      "birth": {
+        "city": "Acri",
+        "country": "ITA",
+        "lat": 39.4931,
+        "lng": 16.3856
+      },
+      "death": {
+        "city": "Acri",
+        "country": "ITA",
+        "lat": 39.4931,
+        "lng": 16.3856
+      },
+      "desc": {
+        "fr": "Capucin calabrais, prédicateur populaire pendant quarante ans.",
+        "en": "A Calabrian Capuchin, a popular preacher for forty years."
+      },
+      "bio": {
+        "fr": "Ayant quitté deux fois le noviciat capucin avant d'y tenir, Ange échoua aussi à son premier sermon, dont il avait appris le texte par cœur. Il prit alors le parti de prêcher simplement, en dialecte, et devint le missionnaire le plus demandé du royaume de Naples ; il fut canonisé en 2017.",
+        "en": "Having twice left the Capuchin novitiate before it held, Angelo also failed at his first sermon, whose text he had learned by heart. He then took to preaching plainly, in dialect, and became the most sought-after missionary in the kingdom of Naples; he was canonised in 2017."
+      }
+    },
+    {
+      "id": "ref-rosa-venerini",
+      "name": {
+        "fr": "Rosa Venerini",
+        "en": "Rose Venerini",
+        "la": "Rosa Venerini"
+      },
+      "aka": [
+        "Rosa Venerini"
+      ],
+      "sex": "f",
+      "born": 1656,
+      "died": 1728,
+      "feast": "05-07",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Viterbo",
+        "country": "ITA",
+        "lat": 42.4167,
+        "lng": 12.1
+      },
+      "death": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "desc": {
+        "fr": "Fondatrice, en 1685, de la première école publique pour filles d'Italie.",
+        "en": "Founder, in 1685, of the first public school for girls in Italy."
+      },
+      "bio": {
+        "fr": "Rosa réunissait les femmes du quartier pour réciter le rosaire, et s'aperçut qu'aucune ne savait lire. Elle ouvrit à Viterbe, en 1685, une école gratuite pour les filles — la première du genre en Italie — puis une quarantaine d'autres. Clément XI, venu visiter une de ses classes à Rome, lui dit qu'elle faisait ce que lui-même ne pouvait pas faire.",
+        "en": "Rosa gathered the women of her quarter to say the rosary, and found that none of them could read. In 1685 she opened a free school for girls at Viterbo — the first of its kind in Italy — and some forty more after it. Clement XI, having visited one of her Roman classrooms, told her she was doing what he himself could not."
+      }
+    },
+    {
+      "id": "ref-lucie-filippini",
+      "name": {
+        "fr": "Lucie Filippini",
+        "en": "Lucy Filippini",
+        "la": "Lucia Filippini"
+      },
+      "aka": [
+        "Lucia Filippini"
+      ],
+      "sex": "f",
+      "born": 1672,
+      "died": 1732,
+      "feast": "03-25",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Tarquinia",
+        "country": "ITA",
+        "lat": 42.2531,
+        "lng": 11.7561
+      },
+      "death": {
+        "city": "Montefiascone",
+        "country": "ITA",
+        "lat": 42.5417,
+        "lng": 12.0333
+      },
+      "desc": {
+        "fr": "Fondatrice des Maîtresses pieuses, écoles de campagne pour filles pauvres.",
+        "en": "Founder of the Religious Teachers Filippini, country schools for poor girls."
+      },
+      "bio": {
+        "fr": "Orpheline, remarquée par le cardinal Barbarigo pour son intelligence, Lucie fut associée à Rosa Venerini pour former des maîtresses d'école. Elle organisa ensuite dans le Latium un réseau de petites écoles rurales tenues par des femmes consacrées ; ses religieuses passèrent aux États-Unis en 1910 pour les enfants d'immigrés italiens.",
+        "en": "An orphan noticed by Cardinal Barbarigo for her intelligence, Lucy was set to work with Rosa Venerini training schoolmistresses. She then built up across Lazio a network of small rural schools kept by consecrated women; her sisters crossed to the United States in 1910 for the children of Italian immigrants."
+      }
+    },
+    {
+      "id": "ref-ignace-santhia",
+      "name": {
+        "fr": "Ignace de Santhià",
+        "en": "Ignatius of Santhià",
+        "la": "Ignatius a Sanctia"
+      },
+      "aka": [
+        "Ignazio da Santhià",
+        "Lorenzo Maurizio Belvisotti"
+      ],
+      "sex": "m",
+      "born": 1686,
+      "died": 1770,
+      "feast": "09-22",
+      "titles": [
+        "priest",
+        "religious"
+      ],
+      "birth": {
+        "city": "Santhià",
+        "country": "ITA",
+        "lat": 45.3667,
+        "lng": 8.1667
+      },
+      "death": {
+        "city": "Turin",
+        "country": "ITA",
+        "lat": 45.0705,
+        "lng": 7.6868
+      },
+      "desc": {
+        "fr": "Capucin piémontais, aumônier des armées puis confesseur à Turin.",
+        "en": "A Piedmontese Capuchin, army chaplain and then confessor at Turin."
+      },
+      "bio": {
+        "fr": "Chanoine bien établi, Ignace quitta sa charge pour le noviciat capucin à trente ans. Nommé aumônier des armées pendant la guerre de Succession d'Autriche, il servit les blessés des deux camps dans les hôpitaux militaires du Piémont, puis passa ses trente dernières années au couvent du Mont, à Turin, où l'on venait se confesser à lui de toute la ville.",
+        "en": "A well-established canon, Ignatius left his post for the Capuchin novitiate at thirty. Appointed an army chaplain during the War of the Austrian Succession, he served the wounded of both sides in the military hospitals of Piedmont, then spent his last thirty years at the friary of Monte in Turin, where the whole city came to confess to him."
+      }
+    },
+    {
+      "id": "ref-vincent-pallotti",
+      "name": {
+        "fr": "Vincent Pallotti",
+        "en": "Vincent Pallotti",
+        "la": "Vincentius Pallotti"
+      },
+      "aka": [
+        "Vincenzo Pallotti"
+      ],
+      "sex": "m",
+      "born": 1795,
+      "died": 1850,
+      "feast": "01-22",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "death": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "desc": {
+        "fr": "Fondateur de l'Apostolat catholique, précurseur de l'apostolat des laïcs.",
+        "en": "Founder of the Catholic Apostolate, a forerunner of the lay apostolate."
+      },
+      "bio": {
+        "fr": "Prêtre romain, Pallotti soutenait que l'apostolat n'était pas le monopole du clergé et fonda en 1835 une union de prêtres, de religieuses et de laïcs travaillant ensemble — idée qui lui valut des soupçons de son vivant et qui fut reprise un siècle plus tard par le concile Vatican II. Il ouvrit des écoles du soir pour les ouvriers et s'occupa des exilés italiens à Londres.",
+        "en": "A Roman priest, Pallotti held that the apostolate was no monopoly of the clergy and in 1835 founded a union of priests, religious and lay people working together — an idea that drew suspicion in his lifetime and was taken up a century later by the Second Vatican Council. He opened evening schools for workers and cared for Italian exiles in London."
+      }
+    },
+    {
+      "id": "ref-gaspar-bufalo",
+      "name": {
+        "fr": "Gaspar del Bufalo",
+        "en": "Gaspar del Bufalo",
+        "la": "Gaspar del Bufalo"
+      },
+      "aka": [
+        "Gaspare del Bufalo"
+      ],
+      "sex": "m",
+      "born": 1786,
+      "died": 1837,
+      "feast": "12-28",
+      "titles": [
+        "priest",
+        "founder",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "death": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "desc": {
+        "fr": "Fondateur des Missionnaires du Précieux Sang, prédicateur des campagnes brigandées.",
+        "en": "Founder of the Missionaries of the Precious Blood, preacher in the brigand country."
+      },
+      "bio": {
+        "fr": "Déporté quatre ans pour avoir refusé le serment à Napoléon, Gaspar revint à Rome en 1814 et fonda l'année suivante une société de missionnaires qu'il envoya prêcher dans les provinces tenues par les brigands. Il obtint de plusieurs bandes qu'elles déposent les armes, et Pie IX le tenait pour l'un des plus grands prédicateurs de son siècle.",
+        "en": "Deported for four years for refusing the oath to Napoleon, Gaspar returned to Rome in 1814 and the next year founded a society of missionaries whom he sent to preach in the provinces held by brigands. He got several bands to lay down their arms, and Pius IX reckoned him one of the greatest preachers of his century."
+      }
+    },
+    {
+      "id": "ref-bartolomea-capitanio",
+      "name": {
+        "fr": "Barthélemy Capitanio",
+        "en": "Bartholomea Capitanio",
+        "la": "Bartholomaea Capitanio"
+      },
+      "aka": [
+        "Bartolomea Capitanio"
+      ],
+      "sex": "f",
+      "born": 1807,
+      "died": 1833,
+      "feast": "07-26",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Lovere",
+        "country": "ITA",
+        "lat": 45.8167,
+        "lng": 10.0667
+      },
+      "death": {
+        "city": "Lovere",
+        "country": "ITA",
+        "lat": 45.8167,
+        "lng": 10.0667
+      },
+      "desc": {
+        "fr": "Fondatrice, à vingt-cinq ans, des Sœurs de charité de Lovere.",
+        "en": "Founder, at twenty-five, of the Sisters of Charity of Lovere."
+      },
+      "bio": {
+        "fr": "Institutrice dans son bourg du lac d'Iseo, Bartolomea s'associa à Caterina Gerosa pour ouvrir une maison vouée à l'école et aux malades. Elle mourut de tuberculose onze mois après la fondation, à vingt-six ans ; sa compagne poursuivit l'œuvre, et les deux femmes furent canonisées ensemble en 1950.",
+        "en": "A schoolmistress in her town on Lake Iseo, Bartolomea joined with Caterina Gerosa to open a house for schooling and for the sick. She died of tuberculosis eleven months after the foundation, aged twenty-six; her companion carried the work on, and the two women were canonised together in 1950."
+      }
+    },
+    {
+      "id": "ref-crocifissa-di-rosa",
+      "name": {
+        "fr": "Marie-Crucifiée Di Rosa",
+        "en": "Mary Crucifix Di Rosa",
+        "la": "Maria a Cruce Di Rosa"
+      },
+      "aka": [
+        "Maria Crocifissa di Rosa",
+        "Paola Di Rosa"
+      ],
+      "sex": "f",
+      "born": 1813,
+      "died": 1855,
+      "feast": "12-15",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Brescia",
+        "country": "ITA",
+        "lat": 45.5417,
+        "lng": 10.2167
+      },
+      "death": {
+        "city": "Brescia",
+        "country": "ITA",
+        "lat": 45.5417,
+        "lng": 10.2167
+      },
+      "desc": {
+        "fr": "Fondatrice des Servantes de la Charité, infirmières sous le feu à Brescia.",
+        "en": "Founder of the Handmaids of Charity, nurses under fire at Brescia."
+      },
+      "bio": {
+        "fr": "Fille d'un industriel de Brescia, Paola Di Rosa dirigeait déjà l'hôpital de la ville pendant l'épidémie de choléra de 1836. Elle fonda en 1840 une congrégation d'infirmières, et lors des Dix Journées de Brescia, en 1849, ses sœurs soignèrent les blessés des deux camps pendant les combats de rue.",
+        "en": "The daughter of a Brescia industrialist, Paola Di Rosa was already running the city hospital during the cholera epidemic of 1836. In 1840 she founded a congregation of nurses, and during the Ten Days of Brescia in 1849 her sisters tended the wounded of both sides amid the street fighting."
+      }
+    },
+    {
+      "id": "ref-nunzio-sulprizio",
+      "name": {
+        "fr": "Nunzio Sulprizio",
+        "en": "Nunzio Sulprizio",
+        "la": "Nuntius Sulprizio"
+      },
+      "aka": [
+        "Nunzio Sulprizio"
+      ],
+      "sex": "m",
+      "born": 1817,
+      "died": 1836,
+      "feast": "05-05",
+      "titles": [
+        "layperson",
+        "youth"
+      ],
+      "birth": {
+        "city": "Pescosansonesco",
+        "country": "ITA",
+        "lat": 42.2,
+        "lng": 13.9
+      },
+      "death": {
+        "city": "Naples",
+        "country": "ITA",
+        "lat": 40.8522,
+        "lng": 14.2681
+      },
+      "patronage": {
+        "fr": "Les jeunes malades, les apprentis",
+        "en": "Sick young people, apprentices"
+      },
+      "desc": {
+        "fr": "Apprenti forgeron des Abruzzes, mort à dix-neuf ans d'une gangrène osseuse.",
+        "en": "A blacksmith's apprentice from the Abruzzi, dead at nineteen of bone gangrene."
+      },
+      "bio": {
+        "fr": "Orphelin battu par un oncle forgeron qui l'envoyait chercher l'eau pieds nus dans la neige, Nunzio contracta une ostéomyélite qui ne le quitta plus. Hospitalisé à Naples, il passa ses dernières années à consoler les autres malades de sa salle. Canonisé en 2018, il est proposé comme figure des jeunes que le travail abîme.",
+        "en": "An orphan beaten by a blacksmith uncle who sent him barefoot through the snow for water, Nunzio contracted an osteomyelitis that never left him. Taken into hospital at Naples, he spent his last years consoling the other patients in his ward. Canonised in 2018, he is held up as a figure of the young whom labour destroys."
+      }
+    },
+    {
+      "id": "ref-paula-frassinetti",
+      "name": {
+        "fr": "Paula Frassinetti",
+        "en": "Paula Frassinetti",
+        "la": "Paula Frassinetti"
+      },
+      "aka": [
+        "Paola Frassinetti"
+      ],
+      "sex": "f",
+      "born": 1809,
+      "died": 1882,
+      "feast": "06-11",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Genoa",
+        "country": "ITA",
+        "lat": 44.4056,
+        "lng": 8.9463
+      },
+      "death": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "desc": {
+        "fr": "Fondatrice des Sœurs de Sainte-Dorothée, vouées à l'instruction des filles pauvres.",
+        "en": "Founder of the Sisters of Saint Dorothy, for the schooling of poor girls."
+      },
+      "bio": {
+        "fr": "Envoyée à la campagne pour sa santé, Paula se mit à faire l'école aux filles de la paroisse que dirigeait son frère, et n'arrêta plus. Sa congrégation, fondée en 1834, s'étendit au Portugal et au Brésil de son vivant ; elle en gouverna la maison de Rome jusqu'à sa mort.",
+        "en": "Sent to the country for her health, Paula began teaching the girls of the parish her brother served, and never stopped. Her congregation, founded in 1834, spread to Portugal and Brazil in her lifetime; she governed its Roman house until her death."
+      }
+    },
+    {
+      "id": "ref-rossello",
+      "name": {
+        "fr": "Marie-Josèphe Rossello",
+        "en": "Mary Joseph Rossello",
+        "la": "Maria Iosepha Rossello"
+      },
+      "aka": [
+        "Maria Giuseppa Rossello",
+        "Benedetta Rossello"
+      ],
+      "sex": "f",
+      "born": 1811,
+      "died": 1880,
+      "feast": "12-07",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Albisola Marina",
+        "country": "ITA",
+        "lat": 44.3272,
+        "lng": 8.5019
+      },
+      "death": {
+        "city": "Savona",
+        "country": "ITA",
+        "lat": 44.3097,
+        "lng": 8.4772
+      },
+      "desc": {
+        "fr": "Fille de potier, fondatrice des Filles de Notre-Dame de la Miséricorde.",
+        "en": "A potter's daughter, founder of the Daughters of Our Lady of Mercy."
+      },
+      "bio": {
+        "fr": "Refusée au couvent faute de dot, Benedetta Rossello servit dix ans comme domestique dans une famille de Savone. L'évêque lui confia en 1837 quatre pièces et cinq lires pour commencer une œuvre : elle en fit une congrégation qui tenait hôpitaux, orphelinats et écoles, et qui passait en Argentine dès 1875.",
+        "en": "Refused the convent for want of a dowry, Benedetta Rossello served ten years as a maid in a Savona household. In 1837 the bishop gave her four rooms and five lire to begin a work: she made of it a congregation running hospitals, orphanages and schools, and crossing to Argentina as early as 1875."
+      }
+    },
+    {
+      "id": "ref-louis-scrosoppi",
+      "name": {
+        "fr": "Louis Scrosoppi",
+        "en": "Luigi Scrosoppi",
+        "la": "Aloisius Scrosoppi"
+      },
+      "aka": [
+        "Luigi Scrosoppi"
+      ],
+      "sex": "m",
+      "born": 1804,
+      "died": 1884,
+      "feast": "10-03",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Udine",
+        "country": "ITA",
+        "lat": 46.0667,
+        "lng": 13.2333
+      },
+      "death": {
+        "city": "Udine",
+        "country": "ITA",
+        "lat": 46.0667,
+        "lng": 13.2333
+      },
+      "desc": {
+        "fr": "Prêtre de l'Oratoire, fondateur des Sœurs de la Providence à Udine.",
+        "en": "An Oratorian priest, founder of the Sisters of Providence at Udine."
+      },
+      "bio": {
+        "fr": "Scrosoppi recueillit les orphelines du Frioul pendant la famine et le choléra des années 1830, mendiant lui-même de quoi les nourrir ; il ouvrit ensuite des maisons pour les sourdes-muettes et les servantes sans place. Sa congrégation, fondée en 1837, existe aujourd'hui sur quatre continents.",
+        "en": "Scrosoppi took in the orphan girls of Friuli during the famine and cholera of the 1830s, begging himself for the means to feed them; he then opened houses for deaf-mute girls and for servants out of place. His congregation, founded in 1837, exists today on four continents."
+      }
+    },
+    {
+      "id": "ref-jean-leonardi",
+      "name": {
+        "fr": "Jean Léonardi",
+        "en": "John Leonardi",
+        "la": "Ioannes Leonardi"
+      },
+      "aka": [
+        "Giovanni Leonardi"
+      ],
+      "sex": "m",
+      "born": 1541,
+      "died": 1609,
+      "feast": "10-09",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Lucca",
+        "country": "ITA",
+        "lat": 43.8433,
+        "lng": 10.5,
+        "note": "né à Diecimo, dans la province de Lucques"
+      },
+      "death": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "patronage": {
+        "fr": "Les pharmaciens",
+        "en": "Pharmacists"
+      },
+      "desc": {
+        "fr": "Apothicaire devenu prêtre, fondateur des Clercs réguliers de la Mère de Dieu.",
+        "en": "An apothecary turned priest, founder of the Clerks Regular of the Mother of God."
+      },
+      "bio": {
+        "fr": "Jean Léonardi exerça dix ans la pharmacie à Lucques avant d'être ordonné, ce qui lui vaut d'être invoqué par les pharmaciens. Il fonda une congrégation vouée au catéchisme des enfants, fut banni de sa ville pendant plus de vingt ans pour avoir déplu au gouvernement, et participa à Rome à la naissance du collège de la Propagation de la foi.",
+        "en": "John Leonardi practised as an apothecary at Lucca for ten years before ordination, which is why pharmacists invoke him. He founded a congregation for the catechising of children, was banished from his city for over twenty years for displeasing the government, and had a part at Rome in the birth of the college for the Propagation of the Faith."
+      }
+    },
+    {
+      "id": "ref-guanella",
+      "name": {
+        "fr": "Louis Guanella",
+        "en": "Luigi Guanella",
+        "la": "Aloisius Guanella"
+      },
+      "aka": [
+        "Luigi Guanella"
+      ],
+      "sex": "m",
+      "born": 1842,
+      "died": 1915,
+      "feast": "10-24",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Campodolcino",
+        "country": "ITA",
+        "lat": 46.4,
+        "lng": 9.35,
+        "note": "né au hameau de Fraciscio"
+      },
+      "death": {
+        "city": "Como",
+        "country": "ITA",
+        "lat": 45.8081,
+        "lng": 9.0852
+      },
+      "desc": {
+        "fr": "Fondateur des Serviteurs de la Charité, pour les handicapés et les vieillards abandonnés.",
+        "en": "Founder of the Servants of Charity, for the disabled and abandoned old people."
+      },
+      "bio": {
+        "fr": "Neuvième de treize enfants d'un hameau alpin, Guanella passa trois ans auprès de Don Bosco avant de revenir dans le diocèse de Côme, où l'administration le surveillait pour ses opinions. Il ouvrit des maisons pour les infirmes que personne ne prenait, y compris ceux qu'on jugeait incurables, et suivit ses émigrés jusqu'à Chicago.",
+        "en": "The ninth of thirteen children from an Alpine hamlet, Guanella spent three years with Don Bosco before returning to the diocese of Como, where the authorities watched him for his opinions. He opened houses for the infirm whom no one else would take, the incurable included, and followed his emigrants as far as Chicago."
+      }
+    },
+    {
+      "id": "ref-scalabrini",
+      "name": {
+        "fr": "Jean-Baptiste Scalabrini",
+        "en": "John Baptist Scalabrini",
+        "la": "Ioannes Baptista Scalabrini"
+      },
+      "aka": [
+        "Giovanni Battista Scalabrini"
+      ],
+      "sex": "m",
+      "born": 1839,
+      "died": 1905,
+      "feast": "06-01",
+      "titles": [
+        "bishop",
+        "founder"
+      ],
+      "birth": {
+        "city": "Fino Mornasco",
+        "country": "ITA",
+        "lat": 45.7333,
+        "lng": 9.05
+      },
+      "death": {
+        "city": "Piacenza",
+        "country": "ITA",
+        "lat": 45.05,
+        "lng": 9.7
+      },
+      "patronage": {
+        "fr": "Les migrants",
+        "en": "Migrants"
+      },
+      "desc": {
+        "fr": "Évêque de Plaisance, « père des migrants », fondateur des Scalabriniens.",
+        "en": "Bishop of Piacenza, \"father of migrants\", founder of the Scalabrinians."
+      },
+      "bio": {
+        "fr": "Frappé, dans une gare de Milan, par le spectacle de centaines d'émigrants en partance, Scalabrini consacra son épiscopat à leur sort : il fonda en 1887 une congrégation de missionnaires pour les accompagner en Amérique, publia des études sur l'émigration italienne et réclama au Parlement une loi protégeant les partants. Il fut canonisé en 2022.",
+        "en": "Struck, in a Milan station, by the sight of hundreds of emigrants waiting to leave, Scalabrini gave his episcopate to their cause: in 1887 he founded a congregation of missionaries to go with them to the Americas, published studies of Italian emigration and pressed Parliament for a law protecting those who left. He was canonised in 2022."
+      }
+    },
+    {
+      "id": "ref-di-francia",
+      "name": {
+        "fr": "Annibale Maria Di Francia",
+        "en": "Hannibal Mary Di Francia",
+        "la": "Hannibal Maria Di Francia"
+      },
+      "aka": [
+        "Annibale Di Francia"
+      ],
+      "sex": "m",
+      "born": 1851,
+      "died": 1927,
+      "feast": "06-01",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Messina",
+        "country": "ITA",
+        "lat": 38.1936,
+        "lng": 15.5542
+      },
+      "death": {
+        "city": "Messina",
+        "country": "ITA",
+        "lat": 38.1936,
+        "lng": 15.5542
+      },
+      "desc": {
+        "fr": "Apôtre du quartier misérable d'Avignone, à Messine, et des orphelins du tremblement de terre.",
+        "en": "Apostle of the wretched Avignone quarter in Messina, and of the earthquake orphans."
+      },
+      "bio": {
+        "fr": "Jeune séminariste, Di Francia entra par curiosité dans le faubourg d'Avignone, le plus misérable de Messine, et y resta toute sa vie : écoles, ateliers, orphelinats. Après le tremblement de terre de 1908, qui rasa la ville et tua quatre-vingt mille personnes, il recueillit des centaines d'enfants et fit ouvrir pour eux des maisons dans toute l'Italie.",
+        "en": "As a young seminarian Di Francia walked out of curiosity into the Avignone quarter, the most wretched in Messina, and stayed there all his life: schools, workshops, orphanages. After the 1908 earthquake, which flattened the city and killed eighty thousand people, he took in hundreds of children and had houses opened for them all over Italy."
+      }
+    },
+    {
+      "id": "ref-moscati",
+      "name": {
+        "fr": "Joseph Moscati",
+        "en": "Joseph Moscati",
+        "la": "Iosephus Moscati"
+      },
+      "aka": [
+        "Giuseppe Moscati"
+      ],
+      "sex": "m",
+      "born": 1880,
+      "died": 1927,
+      "feast": "11-16",
+      "titles": [
+        "layperson"
+      ],
+      "birth": {
+        "city": "Benevento",
+        "country": "ITA",
+        "lat": 41.1297,
+        "lng": 14.7828
+      },
+      "death": {
+        "city": "Naples",
+        "country": "ITA",
+        "lat": 40.8522,
+        "lng": 14.2681
+      },
+      "patronage": {
+        "fr": "Les médecins",
+        "en": "Physicians"
+      },
+      "desc": {
+        "fr": "Médecin napolitain, chercheur et clinicien, qui soignait gratuitement les pauvres.",
+        "en": "A Neapolitan physician, researcher and clinician, who treated the poor for nothing."
+      },
+      "bio": {
+        "fr": "Chef de service aux Incurables de Naples et chercheur reconnu — il fut l'un des premiers à traiter le diabète par l'insuline en Italie —, Moscati consultait chez lui sans honoraires et glissait souvent un billet dans l'ordonnance. Lors de l'éruption du Vésuve de 1906, il fit évacuer un hospice sous les cendres. Il mourut à quarante-six ans, à son bureau.",
+        "en": "Head of department at the Incurabili in Naples and a respected researcher — among the first in Italy to treat diabetes with insulin — Moscati saw patients at home without fees and often slipped a banknote in with the prescription. During the eruption of Vesuvius in 1906 he had a hospice evacuated under falling ash. He died at forty-six, at his desk."
+      }
+    },
+    {
+      "id": "ref-bartolo-longo",
+      "name": {
+        "fr": "Bartolo Longo",
+        "en": "Bartolo Longo",
+        "la": "Bartholomaeus Longo"
+      },
+      "aka": [
+        "Bartolo Longo"
+      ],
+      "sex": "m",
+      "born": 1841,
+      "died": 1926,
+      "feast": "10-05",
+      "titles": [
+        "layperson",
+        "founder"
+      ],
+      "birth": {
+        "city": "Latiano",
+        "country": "ITA",
+        "lat": 40.5528,
+        "lng": 17.7208
+      },
+      "death": {
+        "city": "Pompei",
+        "country": "ITA",
+        "lat": 40.7461,
+        "lng": 14.5008
+      },
+      "desc": {
+        "fr": "Avocat un temps passé au spiritisme, bâtisseur du sanctuaire de Pompéi.",
+        "en": "A lawyer who for a time went over to spiritism, builder of the shrine of Pompeii."
+      },
+      "bio": {
+        "fr": "Étudiant à Naples, Longo fréquenta les cercles spirites et fut, dit-il, ordonné « prêtre » de l'un d'eux avant d'en sortir bouleversé. Chargé d'administrer des terres dans la plaine de Pompéi, il y trouva des paysans sans église et sans instruction ; il y bâtit un sanctuaire, des écoles et des orphelinats pour les enfants de condamnés. Il fut canonisé en 2025.",
+        "en": "A student at Naples, Longo frequented spiritist circles and was, by his own account, ordained a \"priest\" of one before leaving it shaken. Set to manage estates on the plain of Pompeii, he found peasants with no church and no schooling; he built there a shrine, schools and orphanages for the children of convicts. He was canonised in 2025."
+      }
+    },
+    {
+      "id": "ref-calabria",
+      "name": {
+        "fr": "Jean Calabria",
+        "en": "John Calabria",
+        "la": "Ioannes Calabria"
+      },
+      "aka": [
+        "Giovanni Calabria"
+      ],
+      "sex": "m",
+      "born": 1873,
+      "died": 1954,
+      "feast": "12-04",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Verona",
+        "country": "ITA",
+        "lat": 45.4386,
+        "lng": 10.9928
+      },
+      "death": {
+        "city": "Verona",
+        "country": "ITA",
+        "lat": 45.4386,
+        "lng": 10.9928
+      },
+      "desc": {
+        "fr": "Fondateur des Pauvres Serviteurs de la Divine Providence, correspondant de C. S. Lewis.",
+        "en": "Founder of the Poor Servants of Divine Providence, correspondent of C. S. Lewis."
+      },
+      "bio": {
+        "fr": "Fils d'un cordonnier, Calabria recueillit son premier enfant abandonné à vingt-quatre ans et fit de sa maison un orphelinat, puis une congrégation qui refusa toujours de constituer des rentes : elle vivait au jour le jour. Il cacha des juifs à Vérone pendant la guerre, et entretint avec C. S. Lewis, chacun écrivant en latin faute d'une langue commune, une correspondance de dix ans.",
+        "en": "A cobbler's son, Calabria took in his first abandoned child at twenty-four and turned his house into an orphanage, then a congregation that always refused endowments: it lived from day to day. He hid Jews in Verona during the war, and kept up with C. S. Lewis, each writing in Latin for want of a shared language, a correspondence of ten years."
+      }
+    },
+    {
+      "id": "ref-chiara-badano",
+      "name": {
+        "fr": "Chiara Badano",
+        "en": "Chiara Badano"
+      },
+      "aka": [
+        "Chiara Luce Badano"
+      ],
+      "sex": "f",
+      "born": 1971,
+      "died": 1990,
+      "feast": "10-29",
+      "titles": [
+        "layperson",
+        "youth"
+      ],
+      "birth": {
+        "city": "Sassello",
+        "country": "ITA",
+        "lat": 44.4761,
+        "lng": 8.4864
+      },
+      "death": {
+        "city": "Sassello",
+        "country": "ITA",
+        "lat": 44.4761,
+        "lng": 8.4864
+      },
+      "desc": {
+        "fr": "Adolescente ligure morte d'un cancer des os à dix-huit ans, béatifiée en 2010.",
+        "en": "A Ligurian teenager who died of bone cancer at eighteen, beatified in 2010."
+      },
+      "bio": {
+        "fr": "Chiara jouait au tennis et nageait quand un ostéosarcome fut diagnostiqué, à dix-sept ans. Elle refusa la morphine pour rester lucide, distribua ses affaires et demanda que ses funérailles soient célébrées comme des noces. Ses lettres, écrites pendant ces deux années, ont été publiées ; elle a été béatifiée vingt ans après sa mort.",
+        "en": "Chiara played tennis and swam when an osteosarcoma was diagnosed, at seventeen. She refused morphine so as to stay lucid, gave away her things and asked that her funeral be celebrated as a wedding. The letters she wrote over those two years have been published; she was beatified twenty years after her death."
+      }
+    }
+  ]
+}

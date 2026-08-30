@@ -15,6 +15,7 @@
  *   - country-names.json    noms de pays traduits
  *   - saints.json           corpus fusionné et validé
  *   - candidates.json       réservoir de fiches pour l'assistant
+ *   - reference.json        fond documentaire consulté par l'assistant expert
  */
 
 import { createRequire } from 'node:module';
@@ -25,6 +26,7 @@ import { fileURLToPath } from 'node:url';
 import { feature } from 'topojson-client';
 
 import { WORLD_SIZE, project } from '../src/js/map/projection.js';
+import { fold } from '../src/js/data.js';
 
 const require = createRequire(import.meta.url);
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -566,5 +568,33 @@ for (const file of readdirSync(CAND_DIR).filter((f) => f.endsWith('.json')).sort
 }
 writeFileSync(join(OUT, 'candidates.json'), JSON.stringify({ candidates }));
 console.log(`  candidates.json : ${candidates.length} fiches candidates`);
+
+// ---------------------------------------------------------------------------
+// Fond documentaire de l'assistant expert
+// ---------------------------------------------------------------------------
+
+// Ce que le modèle de langue faisait de mémoire — dire qui était un saint, de
+// quoi il est patron, où il est né et où il est mort — est ici écrit une fois
+// pour toutes et livré avec l'application. L'assistant y cherche par le nom ;
+// il ne devine rien, il consulte.
+const REF_DIR = join(ROOT, 'data', 'reference');
+const entries = [];
+const aliases = {};
+for (const file of readdirSync(REF_DIR).filter((f) => f.endsWith('.json')).sort()) {
+  const raw = JSON.parse(readFileSync(join(REF_DIR, file), 'utf8'));
+  if (raw.aliases) {
+    // Les graphies acceptées : « Assise » et « Roma » doivent mener à la
+    // localité que la table connaît sous « Assisi » et « Rome ».
+    for (const { country, name, aka } of raw.aliases) {
+      const table = aliases[country] || (aliases[country] = {});
+      for (const form of [name, ...(aka || [])]) table[fold(form)] = name;
+    }
+    continue;
+  }
+  for (const saint of raw.saints) entries.push(saint);
+}
+writeFileSync(join(OUT, 'reference.json'), JSON.stringify({ entries, aliases }));
+const aliasCount = Object.values(aliases).reduce((n, t) => n + Object.keys(t).length, 0);
+console.log(`  reference.json : ${entries.length} fiches de référence, ${aliasCount} graphies de lieux`);
 
 console.log('Terminé.');

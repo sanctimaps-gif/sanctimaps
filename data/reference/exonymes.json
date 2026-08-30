@@ -1,0 +1,1563 @@
+{
+ "source": "Graphies acceptées pour les localités",
+ "note": "La table des localités ne connaît qu'un nom par lieu, et ce nom est tantôt local (Assisi), tantôt anglais (Rome, Florence). Ce fichier dit à l'assistant que « Assise », « Roma » et « Florence » désignent la même chose, de sorte qu'on puisse chercher dans la langue où l'on pense. Rien n'est deviné : chaque correspondance est écrite ici, et le contrôle vérifie que le nom de droite existe bien dans le pays.",
+ "aliases": [
+  {
+   "country": "ITA",
+   "name": "Rome",
+   "aka": [
+    "Roma"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Florence",
+   "aka": [
+    "Firenze"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Milan",
+   "aka": [
+    "Milano"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Naples",
+   "aka": [
+    "Napoli"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Turin",
+   "aka": [
+    "Torino"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Genoa",
+   "aka": [
+    "Gênes",
+    "Genova"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Venice",
+   "aka": [
+    "Venise",
+    "Venezia"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Padova",
+   "aka": [
+    "Padoue",
+    "Padua"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Assisi",
+   "aka": [
+    "Assise"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Siena",
+   "aka": [
+    "Sienne"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Bologna",
+   "aka": [
+    "Bologne"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Verona",
+   "aka": [
+    "Vérone"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Mantova",
+   "aka": [
+    "Mantoue",
+    "Mantua"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Palermo",
+   "aka": [
+    "Palerme"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Siracusa",
+   "aka": [
+    "Syracuse"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Catania",
+   "aka": [
+    "Catane"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Perugia",
+   "aka": [
+    "Pérouse"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Ravenna",
+   "aka": [
+    "Ravenne"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Livorno",
+   "aka": [
+    "Livourne"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Trento",
+   "aka": [
+    "Trente"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Cagliari",
+   "aka": [
+    "Caller"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Brindisi",
+   "aka": [
+    "Brindes"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Aosta",
+   "aka": [
+    "Aoste"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Nusco",
+   "aka": [
+    "Le Goleto"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Tavarnelle Val di Pesa",
+   "aka": [
+    "Passignano"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Carpi Centro",
+   "aka": [
+    "Carpi"
+   ]
+  },
+  {
+   "country": "ITA",
+   "name": "Albisola Marina",
+   "aka": [
+    "Albissola Marina"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Munich",
+   "aka": [
+    "München",
+    "Muniche"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Köln",
+   "aka": [
+    "Cologne"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Aachen",
+   "aka": [
+    "Aix-la-Chapelle"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Trier",
+   "aka": [
+    "Trèves"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Mainz",
+   "aka": [
+    "Mayence"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Regensburg",
+   "aka": [
+    "Ratisbonne"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Nürnberg",
+   "aka": [
+    "Nuremberg"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Augsburg",
+   "aka": [
+    "Augsbourg"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Hannover",
+   "aka": [
+    "Hanovre"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Braunschweig",
+   "aka": [
+    "Brunswick"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Frankfurt am Main",
+   "aka": [
+    "Francfort"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Speyer",
+   "aka": [
+    "Spire"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Konstanz",
+   "aka": [
+    "Constance"
+   ]
+  },
+  {
+   "country": "DEU",
+   "name": "Freiburg",
+   "aka": [
+    "Fribourg-en-Brisgau"
+   ]
+  },
+  {
+   "country": "AUT",
+   "name": "Vienna",
+   "aka": [
+    "Vienne",
+    "Wien"
+   ]
+  },
+  {
+   "country": "AUT",
+   "name": "Salzburg",
+   "aka": [
+    "Salzbourg"
+   ]
+  },
+  {
+   "country": "AUT",
+   "name": "Graz",
+   "aka": []
+  },
+  {
+   "country": "AUT",
+   "name": "Linz",
+   "aka": []
+  },
+  {
+   "country": "CHE",
+   "name": "Genève",
+   "aka": [
+    "Geneva",
+    "Genève"
+   ]
+  },
+  {
+   "country": "CHE",
+   "name": "Basel",
+   "aka": [
+    "Bâle"
+   ]
+  },
+  {
+   "country": "CHE",
+   "name": "Zürich",
+   "aka": [
+    "Zurich"
+   ]
+  },
+  {
+   "country": "CHE",
+   "name": "Bern",
+   "aka": [
+    "Berne"
+   ]
+  },
+  {
+   "country": "CHE",
+   "name": "Luzern",
+   "aka": [
+    "Lucerne"
+   ]
+  },
+  {
+   "country": "CHE",
+   "name": "Fribourg",
+   "aka": [
+    "Freiburg"
+   ]
+  },
+  {
+   "country": "BEL",
+   "name": "Brussels",
+   "aka": [
+    "Bruxelles",
+    "Brussel"
+   ]
+  },
+  {
+   "country": "BEL",
+   "name": "Antwerpen",
+   "aka": [
+    "Anvers",
+    "Antwerp"
+   ]
+  },
+  {
+   "country": "BEL",
+   "name": "Gent",
+   "aka": [
+    "Gand",
+    "Ghent"
+   ]
+  },
+  {
+   "country": "BEL",
+   "name": "Brugge",
+   "aka": [
+    "Bruges"
+   ]
+  },
+  {
+   "country": "BEL",
+   "name": "Leuven",
+   "aka": [
+    "Louvain"
+   ]
+  },
+  {
+   "country": "BEL",
+   "name": "Mechelen",
+   "aka": [
+    "Malines"
+   ]
+  },
+  {
+   "country": "BEL",
+   "name": "Tournai",
+   "aka": [
+    "Doornik"
+   ]
+  },
+  {
+   "country": "BEL",
+   "name": "Namur",
+   "aka": [
+    "Namen"
+   ]
+  },
+  {
+   "country": "BEL",
+   "name": "Liège",
+   "aka": [
+    "Luik",
+    "Liege"
+   ]
+  },
+  {
+   "country": "NLD",
+   "name": "The Hague",
+   "aka": [
+    "La Haye",
+    "Den Haag",
+    "'s-Gravenhage"
+   ]
+  },
+  {
+   "country": "NLD",
+   "name": "'s-Hertogenbosch",
+   "aka": [
+    "Bois-le-Duc"
+   ]
+  },
+  {
+   "country": "NLD",
+   "name": "Nijmegen",
+   "aka": [
+    "Nimègue"
+   ]
+  },
+  {
+   "country": "NLD",
+   "name": "Maastricht",
+   "aka": [
+    "Maëstricht"
+   ]
+  },
+  {
+   "country": "NLD",
+   "name": "Utrecht",
+   "aka": [
+    "Utrecht"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Sevilla",
+   "aka": [
+    "Séville",
+    "Seville"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Zaragoza",
+   "aka": [
+    "Saragosse"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Córdoba",
+   "aka": [
+    "Cordoue"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Granada",
+   "aka": [
+    "Grenade"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Barcelona",
+   "aka": [
+    "Barcelone"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Valencia",
+   "aka": [
+    "Valence",
+    "València"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Segovia",
+   "aka": [
+    "Ségovie"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Toledo",
+   "aka": [
+    "Tolède"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Salamanca",
+   "aka": [
+    "Salamanque"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Santiago de Compostela",
+   "aka": [
+    "Compostelle",
+    "Saint-Jacques-de-Compostelle"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Palma",
+   "aka": [
+    "Majorque",
+    "Palma de Mallorca"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Ávila",
+   "aka": [
+    "Avila"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "A Coruña",
+   "aka": [
+    "La Corogne"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Pamplona",
+   "aka": [
+    "Pampelune"
+   ]
+  },
+  {
+   "country": "ESP",
+   "name": "Burgos",
+   "aka": []
+  },
+  {
+   "country": "ESP",
+   "name": "Vic",
+   "aka": [
+    "Vich"
+   ]
+  },
+  {
+   "country": "PRT",
+   "name": "Lisbon",
+   "aka": [
+    "Lisbonne",
+    "Lisboa"
+   ]
+  },
+  {
+   "country": "PRT",
+   "name": "Porto",
+   "aka": [
+    "Oporto"
+   ]
+  },
+  {
+   "country": "PRT",
+   "name": "Coimbra",
+   "aka": []
+  },
+  {
+   "country": "PRT",
+   "name": "Braga",
+   "aka": []
+  },
+  {
+   "country": "PRT",
+   "name": "Fátima",
+   "aka": [
+    "Fatima"
+   ]
+  },
+  {
+   "country": "PRT",
+   "name": "Guimarães",
+   "aka": [
+    "Guimaraes"
+   ]
+  },
+  {
+   "country": "POL",
+   "name": "Warsaw",
+   "aka": [
+    "Varsovie",
+    "Warszawa"
+   ]
+  },
+  {
+   "country": "POL",
+   "name": "Kraków",
+   "aka": [
+    "Cracovie",
+    "Cracow"
+   ]
+  },
+  {
+   "country": "POL",
+   "name": "Gdańsk",
+   "aka": [
+    "Dantzig",
+    "Danzig"
+   ]
+  },
+  {
+   "country": "POL",
+   "name": "Wrocław",
+   "aka": [
+    "Breslau"
+   ]
+  },
+  {
+   "country": "POL",
+   "name": "Poznań",
+   "aka": [
+    "Posen"
+   ]
+  },
+  {
+   "country": "POL",
+   "name": "Częstochowa",
+   "aka": [
+    "Czestochowa"
+   ]
+  },
+  {
+   "country": "POL",
+   "name": "Oława",
+   "aka": [
+    "Ohlau"
+   ]
+  },
+  {
+   "country": "CZE",
+   "name": "Prague",
+   "aka": [
+    "Praha"
+   ]
+  },
+  {
+   "country": "CZE",
+   "name": "Brno",
+   "aka": [
+    "Brünn"
+   ]
+  },
+  {
+   "country": "CZE",
+   "name": "Olomouc",
+   "aka": [
+    "Olmütz"
+   ]
+  },
+  {
+   "country": "HUN",
+   "name": "Budapest",
+   "aka": []
+  },
+  {
+   "country": "HUN",
+   "name": "Esztergom",
+   "aka": [
+    "Gran"
+   ]
+  },
+  {
+   "country": "HUN",
+   "name": "Győr",
+   "aka": [
+    "Raab"
+   ]
+  },
+  {
+   "country": "HUN",
+   "name": "Pécs",
+   "aka": [
+    "Fünfkirchen"
+   ]
+  },
+  {
+   "country": "HRV",
+   "name": "Zagreb",
+   "aka": [
+    "Agram"
+   ]
+  },
+  {
+   "country": "HRV",
+   "name": "Split",
+   "aka": [
+    "Spalato"
+   ]
+  },
+  {
+   "country": "HRV",
+   "name": "Dubrovnik",
+   "aka": [
+    "Raguse"
+   ]
+  },
+  {
+   "country": "HRV",
+   "name": "Rijeka",
+   "aka": [
+    "Fiume"
+   ]
+  },
+  {
+   "country": "ROU",
+   "name": "Bucharest",
+   "aka": [
+    "Bucarest",
+    "București"
+   ]
+  },
+  {
+   "country": "ROU",
+   "name": "Cluj-Napoca",
+   "aka": [
+    "Cluj",
+    "Kolozsvár"
+   ]
+  },
+  {
+   "country": "ROU",
+   "name": "Sighișoara",
+   "aka": [
+    "Segesvár",
+    "Schässburg"
+   ]
+  },
+  {
+   "country": "ROU",
+   "name": "Alba Iulia",
+   "aka": [
+    "Gyulafehérvár"
+   ]
+  },
+  {
+   "country": "UKR",
+   "name": "Kyiv",
+   "aka": [
+    "Kiev"
+   ]
+  },
+  {
+   "country": "UKR",
+   "name": "Lviv",
+   "aka": [
+    "Léopol",
+    "Lwów",
+    "Lemberg"
+   ]
+  },
+  {
+   "country": "UKR",
+   "name": "Odessa",
+   "aka": [
+    "Odessa"
+   ]
+  },
+  {
+   "country": "RUS",
+   "name": "Moscow",
+   "aka": [
+    "Moscou",
+    "Moskva"
+   ]
+  },
+  {
+   "country": "RUS",
+   "name": "Saint Petersburg",
+   "aka": [
+    "Saint-Pétersbourg",
+    "Leningrad"
+   ]
+  },
+  {
+   "country": "RUS",
+   "name": "Vladimir",
+   "aka": []
+  },
+  {
+   "country": "GRC",
+   "name": "Athens",
+   "aka": [
+    "Athènes"
+   ]
+  },
+  {
+   "country": "GRC",
+   "name": "Thessaloníki",
+   "aka": [
+    "Thessalonique",
+    "Salonique",
+    "Thessaloniki"
+   ]
+  },
+  {
+   "country": "GRC",
+   "name": "Pátra",
+   "aka": [
+    "Patras",
+    "Patra"
+   ]
+  },
+  {
+   "country": "GRC",
+   "name": "Kórinthos",
+   "aka": [
+    "Corinthe",
+    "Korinthos"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "Istanbul",
+   "aka": [
+    "Constantinople",
+    "İstanbul",
+    "Byzance"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "İzmir",
+   "aka": [
+    "Smyrne",
+    "Izmir"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "İznik",
+   "aka": [
+    "Nicée",
+    "Iznik"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "Selçuk",
+   "aka": [
+    "Éphèse",
+    "Ephese"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "Antakya",
+   "aka": [
+    "Antioche"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "Tarsus",
+   "aka": [
+    "Tarse"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "Nusaybin",
+   "aka": [
+    "Nisibe"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "Kayseri",
+   "aka": [
+    "Césarée de Cappadoce"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "Van",
+   "aka": [
+    "Narek"
+   ]
+  },
+  {
+   "country": "TUR",
+   "name": "Konya",
+   "aka": [
+    "Iconium"
+   ]
+  },
+  {
+   "country": "SYR",
+   "name": "Damascus",
+   "aka": [
+    "Damas"
+   ]
+  },
+  {
+   "country": "SYR",
+   "name": "Aleppo",
+   "aka": [
+    "Alep"
+   ]
+  },
+  {
+   "country": "SYR",
+   "name": "Homs",
+   "aka": [
+    "Émèse",
+    "Emese"
+   ]
+  },
+  {
+   "country": "LBN",
+   "name": "Beirut",
+   "aka": [
+    "Beyrouth"
+   ]
+  },
+  {
+   "country": "LBN",
+   "name": "Jbaïl",
+   "aka": [
+    "Byblos"
+   ]
+  },
+  {
+   "country": "LBN",
+   "name": "Tripoli",
+   "aka": [
+    "Tripoli du Liban"
+   ]
+  },
+  {
+   "country": "LBN",
+   "name": "Baalbek",
+   "aka": [
+    "Héliopolis"
+   ]
+  },
+  {
+   "country": "PSE",
+   "name": "East Jerusalem",
+   "aka": [
+    "Jérusalem",
+    "Jerusalem"
+   ]
+  },
+  {
+   "country": "PSE",
+   "name": "Bethlehem",
+   "aka": [
+    "Bethléem"
+   ]
+  },
+  {
+   "country": "PSE",
+   "name": "Nablus",
+   "aka": [
+    "Naplouse"
+   ]
+  },
+  {
+   "country": "PSE",
+   "name": "Hebron",
+   "aka": [
+    "Hébron"
+   ]
+  },
+  {
+   "country": "ISR",
+   "name": "Jerusalem",
+   "aka": [
+    "Jérusalem"
+   ]
+  },
+  {
+   "country": "ISR",
+   "name": "Nazareth",
+   "aka": [
+    "Nazareth"
+   ]
+  },
+  {
+   "country": "ISR",
+   "name": "Haifa",
+   "aka": [
+    "Haïfa"
+   ]
+  },
+  {
+   "country": "ISR",
+   "name": "Acre",
+   "aka": [
+    "Saint-Jean-d'Acre"
+   ]
+  },
+  {
+   "country": "EGY",
+   "name": "Cairo",
+   "aka": [
+    "Le Caire"
+   ]
+  },
+  {
+   "country": "EGY",
+   "name": "Alexandria",
+   "aka": [
+    "Alexandrie"
+   ]
+  },
+  {
+   "country": "EGY",
+   "name": "Asyūţ",
+   "aka": [
+    "Assiout",
+    "Asyut"
+   ]
+  },
+  {
+   "country": "GBR",
+   "name": "London",
+   "aka": [
+    "Londres"
+   ]
+  },
+  {
+   "country": "GBR",
+   "name": "Edinburgh",
+   "aka": [
+    "Édimbourg"
+   ]
+  },
+  {
+   "country": "GBR",
+   "name": "Canterbury",
+   "aka": [
+    "Cantorbéry"
+   ]
+  },
+  {
+   "country": "GBR",
+   "name": "Dover",
+   "aka": [
+    "Douvres"
+   ]
+  },
+  {
+   "country": "GBR",
+   "name": "York",
+   "aka": []
+  },
+  {
+   "country": "GBR",
+   "name": "Oxford",
+   "aka": []
+  },
+  {
+   "country": "GBR",
+   "name": "Cambridge",
+   "aka": []
+  },
+  {
+   "country": "GBR",
+   "name": "Winchester",
+   "aka": []
+  },
+  {
+   "country": "GBR",
+   "name": "Sleaford",
+   "aka": [
+    "Sempringham"
+   ]
+  },
+  {
+   "country": "GBR",
+   "name": "Helmsley",
+   "aka": [
+    "Rievaulx"
+   ]
+  },
+  {
+   "country": "IRL",
+   "name": "Dublin",
+   "aka": []
+  },
+  {
+   "country": "IRL",
+   "name": "Cork",
+   "aka": []
+  },
+  {
+   "country": "IRL",
+   "name": "Kildare",
+   "aka": []
+  },
+  {
+   "country": "DNK",
+   "name": "Copenhagen",
+   "aka": [
+    "Copenhague",
+    "København"
+   ]
+  },
+  {
+   "country": "DNK",
+   "name": "Odense",
+   "aka": []
+  },
+  {
+   "country": "DNK",
+   "name": "Roskilde",
+   "aka": []
+  },
+  {
+   "country": "SWE",
+   "name": "Stockholm",
+   "aka": []
+  },
+  {
+   "country": "SWE",
+   "name": "Uppsala",
+   "aka": [
+    "Upsal"
+   ]
+  },
+  {
+   "country": "SWE",
+   "name": "Linköping",
+   "aka": []
+  },
+  {
+   "country": "SWE",
+   "name": "Vadstena",
+   "aka": []
+  },
+  {
+   "country": "NOR",
+   "name": "Trondheim",
+   "aka": [
+    "Nidaros"
+   ]
+  },
+  {
+   "country": "NOR",
+   "name": "Oslo",
+   "aka": [
+    "Christiania"
+   ]
+  },
+  {
+   "country": "NOR",
+   "name": "Bergen",
+   "aka": []
+  },
+  {
+   "country": "FRA",
+   "name": "Nuits-Saint-Georges",
+   "aka": [
+    "Cîteaux"
+   ]
+  },
+  {
+   "country": "FRA",
+   "name": "Marcigny",
+   "aka": [
+    "Semur-en-Brionnais"
+   ]
+  },
+  {
+   "country": "FRA",
+   "name": "Reims",
+   "aka": [
+    "Rheims"
+   ]
+  },
+  {
+   "country": "FRA",
+   "name": "Lyon",
+   "aka": [
+    "Lyons"
+   ]
+  },
+  {
+   "country": "FRA",
+   "name": "Marseille",
+   "aka": [
+    "Marseilles"
+   ]
+  },
+  {
+   "country": "FRA",
+   "name": "Dunkerque",
+   "aka": [
+    "Dunkirk"
+   ]
+  },
+  {
+   "country": "VNM",
+   "name": "Hanoi",
+   "aka": [
+    "Hanoï",
+    "Hà Nội"
+   ]
+  },
+  {
+   "country": "VNM",
+   "name": "Ho Chi Minh City",
+   "aka": [
+    "Saïgon",
+    "Saigon"
+   ]
+  },
+  {
+   "country": "VNM",
+   "name": "Huế",
+   "aka": [
+    "Hue"
+   ]
+  },
+  {
+   "country": "VNM",
+   "name": "Nam Định",
+   "aka": [
+    "Nam Dinh"
+   ]
+  },
+  {
+   "country": "CHN",
+   "name": "Beijing",
+   "aka": [
+    "Pékin",
+    "Peking"
+   ]
+  },
+  {
+   "country": "CHN",
+   "name": "Nanjing",
+   "aka": [
+    "Nankin"
+   ]
+  },
+  {
+   "country": "CHN",
+   "name": "Guangzhou",
+   "aka": [
+    "Canton"
+   ]
+  },
+  {
+   "country": "CHN",
+   "name": "Shanghai",
+   "aka": [
+    "Changhaï"
+   ]
+  },
+  {
+   "country": "CHN",
+   "name": "Shangri-La",
+   "aka": [
+    "Zhongdian",
+    "Gyalthang"
+   ]
+  },
+  {
+   "country": "CHN",
+   "name": "Taiyuan",
+   "aka": [
+    "Taïyuan"
+   ]
+  },
+  {
+   "country": "JPN",
+   "name": "Tokyo",
+   "aka": [
+    "Edo",
+    "Yedo",
+    "Tōkyō"
+   ]
+  },
+  {
+   "country": "JPN",
+   "name": "Nagasaki",
+   "aka": []
+  },
+  {
+   "country": "JPN",
+   "name": "Kyoto",
+   "aka": [
+    "Kyōto"
+   ]
+  },
+  {
+   "country": "JPN",
+   "name": "Osaka",
+   "aka": [
+    "Ōsaka"
+   ]
+  },
+  {
+   "country": "KOR",
+   "name": "Seoul",
+   "aka": [
+    "Séoul",
+    "Hanyang"
+   ]
+  },
+  {
+   "country": "KOR",
+   "name": "Jeonju",
+   "aka": []
+  },
+  {
+   "country": "KOR",
+   "name": "Daegu",
+   "aka": []
+  },
+  {
+   "country": "IND",
+   "name": "Mumbai",
+   "aka": [
+    "Bombay"
+   ]
+  },
+  {
+   "country": "IND",
+   "name": "Kolkata",
+   "aka": [
+    "Calcutta"
+   ]
+  },
+  {
+   "country": "IND",
+   "name": "Chennai",
+   "aka": [
+    "Madras"
+   ]
+  },
+  {
+   "country": "IND",
+   "name": "Panaji",
+   "aka": [
+    "Goa",
+    "Panjim"
+   ]
+  },
+  {
+   "country": "IND",
+   "name": "Cochin",
+   "aka": [
+    "Kochi"
+   ]
+  },
+  {
+   "country": "PHL",
+   "name": "Manila",
+   "aka": [
+    "Manille"
+   ]
+  },
+  {
+   "country": "PHL",
+   "name": "Cebu City",
+   "aka": [
+    "Cebu"
+   ]
+  },
+  {
+   "country": "MEX",
+   "name": "Mexico City",
+   "aka": [
+    "Mexico",
+    "Ciudad de México"
+   ]
+  },
+  {
+   "country": "MEX",
+   "name": "Guadalajara",
+   "aka": []
+  },
+  {
+   "country": "MEX",
+   "name": "Puebla",
+   "aka": []
+  },
+  {
+   "country": "CUB",
+   "name": "Havana",
+   "aka": [
+    "La Havane",
+    "La Habana"
+   ]
+  },
+  {
+   "country": "CUB",
+   "name": "Santiago de Cuba",
+   "aka": []
+  },
+  {
+   "country": "BRA",
+   "name": "Rio de Janeiro",
+   "aka": []
+  },
+  {
+   "country": "BRA",
+   "name": "São Paulo",
+   "aka": [
+    "Sao Paulo"
+   ]
+  },
+  {
+   "country": "BRA",
+   "name": "Salvador",
+   "aka": [
+    "Bahia"
+   ]
+  },
+  {
+   "country": "BRA",
+   "name": "Açu",
+   "aka": [
+    "Assú"
+   ]
+  },
+  {
+   "country": "ARG",
+   "name": "Buenos Aires",
+   "aka": []
+  },
+  {
+   "country": "ARG",
+   "name": "Córdoba",
+   "aka": [
+    "Cordoba"
+   ]
+  },
+  {
+   "country": "PER",
+   "name": "Lima",
+   "aka": []
+  },
+  {
+   "country": "PER",
+   "name": "Cusco",
+   "aka": [
+    "Cuzco"
+   ]
+  },
+  {
+   "country": "ECU",
+   "name": "Quito",
+   "aka": []
+  },
+  {
+   "country": "ECU",
+   "name": "Cuenca",
+   "aka": []
+  },
+  {
+   "country": "COL",
+   "name": "Bogotá",
+   "aka": [
+    "Bogota"
+   ]
+  },
+  {
+   "country": "COL",
+   "name": "Medellín",
+   "aka": [
+    "Medellin"
+   ]
+  },
+  {
+   "country": "CAN",
+   "name": "Montréal",
+   "aka": [
+    "Montreal",
+    "Lachine",
+    "Ville-Marie"
+   ]
+  },
+  {
+   "country": "CAN",
+   "name": "Québec",
+   "aka": [
+    "Quebec"
+   ]
+  },
+  {
+   "country": "CAN",
+   "name": "Trois-Rivières",
+   "aka": [
+    "Trois-Rivieres"
+   ]
+  },
+  {
+   "country": "USA",
+   "name": "New York City",
+   "aka": [
+    "New York"
+   ]
+  },
+  {
+   "country": "USA",
+   "name": "Philadelphia",
+   "aka": [
+    "Philadelphie"
+   ]
+  },
+  {
+   "country": "USA",
+   "name": "Baltimore",
+   "aka": []
+  },
+  {
+   "country": "USA",
+   "name": "New Orleans",
+   "aka": [
+    "La Nouvelle-Orléans"
+   ]
+  }
+ ]
+}

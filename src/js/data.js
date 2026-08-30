@@ -272,6 +272,21 @@ export class Atlas {
     return this.placesReady?.get(id) || [];
   }
 
+  /**
+   * Fond documentaire de l'assistant expert.
+   *
+   * Il ne descend qu'à la demande : un visiteur qui regarde la carte n'a que
+   * faire des cent quarante-huit fiches de référence, et l'administrateur ne
+   * les charge qu'en ouvrant son atelier.
+   */
+  reference() {
+    if (!this.referencePromise) {
+      this.referencePromise = getJSON(`${BASE}/reference.json`)
+        .catch(() => ({ entries: [], aliases: {} }));
+    }
+    return this.referencePromise;
+  }
+
   async ensurePlaces(id) {
     const list = await this.places(id);
     if (!this.placesReady) this.placesReady = new Map();

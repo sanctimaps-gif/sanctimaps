@@ -232,26 +232,52 @@ des vies bien attestées et des lieux de naissance sur lesquels les sources
 s'accordent — mieux vaut une liste plus courte qu'une fiche à corriger.
 
 **Expert** — la seconde source, elle aussi sans modèle. Elle part d'un constat :
-ce que faisait le modèle de langue tenait en deux choses très différentes,
-**savoir** qu'un saint existe et où il est né, et **placer** ce lieu sur la
-carte. La première demande une mémoire ; la seconde, une table. Or la table,
-nous l'avons : les 113 584 localités livrées avec l'application.
+ce que faisait le modèle de langue tenait en trois choses très différentes.
+**Savoir** qu'un saint existe et ce qu'il fut ; **raconter** sa vie ; **placer**
+son lieu sur la carte. Les deux premières demandent une mémoire, la troisième
+une table — mais une mémoire écrite une fois pour toutes est une table comme
+une autre.
 
-L'expert fait donc la seconde moitié du travail, celle qui est fastidieuse et
-où l'on se trompe. Vous donnez le nom du saint et sa ville de naissance ; le
-programme retrouve le lieu dans la table du pays, en tire les coordonnées
-exactes, compose la fiche et la passe aux mêmes six contrôles. Rien n'est
-deviné, donc rien n'est inventé — sur des coordonnées, un index bat une
-mémoire, toujours.
+L'application en emporte donc deux, et l'expert ne fait rien d'autre que les
+consulter :
+
+| Fond | Contenu | Ce qu'il rend |
+| --- | --- | --- |
+| `data/reference/fond-*.json` | 148 fiches rédigées à l'avance | dates, fête, qualités, patronage, notice, histoire, lieu de naissance **et lieu de mort** |
+| `data/generated/cities/` | 113 584 localités | les coordonnées exactes du lieu |
+
+Vous tapez le nom du saint, vous cliquez sur « Chercher ce saint », et
+l'atelier se remplit : la fiche entière descend du premier fond, la ville
+descend au second qui en tire les coordonnées, et il ne vous reste qu'à
+relire avant de composer. C'est là qu'on gagne du temps : la fiche complète
+d'un saint représentait une dizaine de champs à saisir un par un.
+
+Trois précisions, parce qu'elles font la différence entre un index et un
+modèle :
+
+- **Le lieu de mort.** Un saint peut naître d'un côté du monde et mourir de
+  l'autre — Jacques Laval naît en Normandie et meurt à Maurice. La carte ne
+  portant qu'un point, une bascule laisse choisir lequel, et la fiche publiée
+  dit alors « lieu de mort » plutôt que « lieu de naissance ».
+- **Les graphies.** La table ne connaît qu'un nom par lieu, tantôt local
+  (`Assisi`), tantôt anglais (`Rome`, `Florence`). Un fichier de correspondances,
+  `data/reference/exonymes.json`, dit que « Assise », « Roma » et « Florence »
+  désignent la même chose : on peut chercher dans la langue où l'on pense.
+  Rien n'y est deviné, chaque correspondance est écrite, et `npm run check`
+  vérifie que le nom de droite existe vraiment dans le pays.
+- **Les hameaux.** La table s'arrête aux lieux qu'elle recense ; une trentaine
+  de villages du fond y échappent, Siviriez ou Barfleur par exemple. Ce sont
+  alors les coordonnées de la fiche qui servent, et l'atelier l'annonce au lieu
+  de le taire.
 
 Quand le nom est ambigu, il rend les lieux possibles avec leur population et
 vous choisissez : « Saint-Pierre » propose d'abord la commune qui porte
-exactement ce nom, puis les huit premières des composées. Un point : la table
-retient les graphies locales, si bien qu'il faut chercher `Assisi` et non
-`Assise`. À défaut, il le dit et propose d'essayer une autre graphie.
+exactement ce nom, puis les huit premières des composées. Et quand le saint est
+déjà sur la carte, il le dit avant le travail plutôt qu'après la vérification.
 
-Ce qu'il ne fait pas, et ne prétend pas faire : vous dire quels saints
-existent. Cela reste votre part, ou celle de la source autonome. Un état des
+Ce qu'il ne fait pas, et ne prétend pas faire : connaître les saints qui ne
+sont dans aucun des deux fonds. Il le dit alors, et laisse l'atelier ouvert à
+la saisie manuelle — ce qu'il ne sait pas, il ne le comble pas. Un état des
 lieux tiré du corpus ferme l'atelier — combien de saints, dans combien de pays,
 quel continent est le moins pourvu, combien de fiches attendent un patronage —
 pour dire où porter l'effort suivant.
@@ -379,9 +405,10 @@ d'un geste ; les fiches ajoutées s'exportent en JSON depuis la partie
 
 ### Modifier ou enrichir le corpus
 
-Les fiches sont réparties par aire géographique dans `data/saints/*.json`, et
-le réservoir de l'assistant dans `data/candidats/*.json`, un objet par ligne
-pour rester lisibles en revue. Après toute modification :
+Les fiches sont réparties par aire géographique dans `data/saints/*.json`, le
+réservoir de l'assistant dans `data/candidats/*.json` et son fond documentaire
+dans `data/reference/fond-*.json`, un objet par ligne pour rester lisibles en
+revue. Après toute modification :
 
 ```bash
 npm install          # une fois, pour les jeux de données sources
@@ -395,6 +422,14 @@ limites, mort avant la naissance. Le réservoir de candidats échappe à cette
 validation — c'est l'assistant qui doit la faire, sous les yeux de
 l'administrateur.
 
+Le fond documentaire, lui, est contrôlé plus sévèrement que le reste, parce
+qu'il est écrit à la main et qu'une faute y serait invisible à l'écran mais
+visible sur la carte : identifiants uniques et distincts du corpus, nom en deux
+langues, fête bien formée, dates cohérentes, notice et histoire présentes, et
+chacun des deux lieux tombant dans le cadre du pays annoncé. Les graphies de
+`exonymes.json` sont vérifiées de même : le nom vers lequel elles pointent doit
+exister dans la table de ce pays.
+
 ## Organisation
 
 ```
@@ -405,7 +440,7 @@ src/js/data.js           corpus, couche locale, index, siècles
 src/js/auth.js           rôles et permissions
 src/js/query.js          analyse de la barre de recherche unique
 src/js/verify.js         contrôles de l'assistant
-src/js/expert.js         assistant expert : la table des lieux tient lieu de mémoire
+src/js/expert.js         assistant expert : deux fonds tiennent lieu de mémoire
 src/js/ai.js             appels à l'assistant intelligent, côté navigateur
 src/js/calendar.js       export des fêtes au format iCalendar
 src/js/theme.js          thème système, clair ou sombre
@@ -419,6 +454,8 @@ src/js/ui/*.js           panneau, recherche, fiche, formulaire, modération,
 data/saints/*.json       corpus, écrit à la main
 data/saints/patronages.json  patronages, indexés par identifiant
 data/candidats/*.json    réservoir de l'assistant
+data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complètes
+data/reference/exonymes.json graphies acceptées pour les localités
 data/generated/          données produites par build:data (versionnées)
 tools/ai.mjs             consigne et schéma des fiches, côté serveur
 tools/providers.mjs      adaptateurs de fournisseur (openai, ollama, anthropic)

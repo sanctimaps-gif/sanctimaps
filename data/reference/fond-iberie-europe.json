@@ -1,0 +1,1147 @@
+{
+  "source": "Fond documentaire — péninsule Ibérique, Europe centrale et du Nord",
+  "note": "Index consulté par l'assistant expert. Quand un saint est né dans un lieu trop petit pour figurer dans la table des localités, la fiche donne la commune ou la ville voisine et le précise en note.",
+  "saints": [
+    {
+      "id": "ref-jean-ribera",
+      "name": {
+        "fr": "Jean de Ribera",
+        "en": "John of Ribera",
+        "la": "Ioannes de Ribera"
+      },
+      "aka": [
+        "Juan de Ribera"
+      ],
+      "sex": "m",
+      "born": 1532,
+      "died": 1611,
+      "feast": "01-06",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Sevilla",
+        "country": "ESP",
+        "lat": 37.3891,
+        "lng": -5.9845
+      },
+      "death": {
+        "city": "Valencia",
+        "country": "ESP",
+        "lat": 39.4699,
+        "lng": -0.3763
+      },
+      "desc": {
+        "fr": "Archevêque de Valence et vice-roi, fondateur du collège du Corpus Christi.",
+        "en": "Archbishop of Valencia and viceroy, founder of the College of Corpus Christi."
+      },
+      "bio": {
+        "fr": "Fils du duc d'Alcalá, Ribera gouverna quarante-deux ans le diocèse de Valence, y appliqua le concile de Trente et fonda un collège-séminaire dont la bibliothèque et les tapisseries subsistent intactes. Sa mémoire reste discutée : il soutint l'expulsion des Morisques, décidée en 1609.",
+        "en": "Son of the duke of Alcalá, Ribera governed the diocese of Valencia for forty-two years, applied the Council of Trent there and founded a college-seminary whose library and tapestries survive intact. His memory remains debated: he supported the expulsion of the Moriscos decreed in 1609."
+      }
+    },
+    {
+      "id": "ref-alphonse-rodriguez",
+      "name": {
+        "fr": "Alphonse Rodríguez",
+        "en": "Alphonsus Rodriguez",
+        "la": "Alphonsus Rodriguez"
+      },
+      "aka": [
+        "Alonso Rodríguez"
+      ],
+      "sex": "m",
+      "born": 1532,
+      "died": 1617,
+      "feast": "10-30",
+      "titles": [
+        "religious"
+      ],
+      "birth": {
+        "city": "Segovia",
+        "country": "ESP",
+        "lat": 40.9481,
+        "lng": -4.1184
+      },
+      "death": {
+        "city": "Palma",
+        "country": "ESP",
+        "lat": 39.5696,
+        "lng": 2.6502
+      },
+      "desc": {
+        "fr": "Marchand ruiné devenu portier du collège jésuite de Majorque pendant quarante-six ans.",
+        "en": "A ruined merchant who was porter of the Jesuit college in Majorca for forty-six years."
+      },
+      "bio": {
+        "fr": "Veuf, ayant perdu ses trois enfants et son commerce de laine, Alphonse fut admis chez les jésuites comme frère coadjuteur à trente-neuf ans, faute d'études suffisantes. Portier à Palma, il eut pour tout emploi d'ouvrir la porte ; Pierre Claver, alors étudiant, tint de lui sa vocation américaine.",
+        "en": "Widowed, having lost his three children and his wool business, Alphonsus was admitted to the Jesuits as a lay brother at thirty-nine, his schooling being too slight for anything else. Porter at Palma, his whole employment was to open the door; Peter Claver, then a student, took from him his American vocation."
+      }
+    },
+    {
+      "id": "ref-michel-des-saints",
+      "name": {
+        "fr": "Michel des Saints",
+        "en": "Michael of the Saints",
+        "la": "Michael a Sanctis"
+      },
+      "aka": [
+        "Miquel dels Sants",
+        "Miguel de los Santos"
+      ],
+      "sex": "m",
+      "born": 1591,
+      "died": 1625,
+      "feast": "04-10",
+      "titles": [
+        "priest",
+        "mystic"
+      ],
+      "birth": {
+        "city": "Vic",
+        "country": "ESP",
+        "lat": 41.9304,
+        "lng": 2.2547
+      },
+      "death": {
+        "city": "Valladolid",
+        "country": "ESP",
+        "lat": 41.6523,
+        "lng": -4.7245
+      },
+      "desc": {
+        "fr": "Trinitaire catalan, mystique mort à trente-trois ans.",
+        "en": "A Catalan Trinitarian, a mystic dead at thirty-three."
+      },
+      "bio": {
+        "fr": "Entré chez les Trinitaires à douze ans, Michel passa à la branche déchaussée et fut deux fois supérieur à Valladolid. Il mourut à trente-trois ans ; sa ville natale de Vic le tient pour son patron et lui doit son surnom catalan.",
+        "en": "He entered the Trinitarians at twelve, passed to the discalced branch and was twice superior at Valladolid. He died at thirty-three; his native Vic keeps him as its patron and owes him his Catalan name."
+      }
+    },
+    {
+      "id": "ref-jean-sahagun",
+      "name": {
+        "fr": "Jean de Sahagún",
+        "en": "John of Sahagún",
+        "la": "Ioannes de Sancto Facundo"
+      },
+      "aka": [
+        "Juan de Sahagún"
+      ],
+      "sex": "m",
+      "born": 1430,
+      "died": 1479,
+      "circa": true,
+      "feast": "06-12",
+      "titles": [
+        "priest",
+        "preacher"
+      ],
+      "birth": {
+        "city": "Sahagún",
+        "country": "ESP",
+        "lat": 42.3714,
+        "lng": -5.0297
+      },
+      "death": {
+        "city": "Salamanca",
+        "country": "ESP",
+        "lat": 40.9701,
+        "lng": -5.6635
+      },
+      "patronage": {
+        "fr": "La ville de Salamanque",
+        "en": "The city of Salamanca"
+      },
+      "desc": {
+        "fr": "Augustin de Salamanque, prédicateur qui réconcilia les factions de la ville.",
+        "en": "An Augustinian of Salamanca, a preacher who reconciled the city's factions."
+      },
+      "bio": {
+        "fr": "Jean quitta ses bénéfices pour prêcher à Salamanque, alors déchirée par les vendettas entre grandes maisons ; ses sermons obtinrent des trêves que ni l'évêque ni le roi n'avaient su imposer. Sa franchise à l'égard des puissants lui valut des menaces, et l'on soupçonna un empoisonnement à sa mort.",
+        "en": "John gave up his benefices to preach at Salamanca, then torn by vendettas between great houses; his sermons obtained truces that neither bishop nor king had managed to impose. His plain speaking to the powerful drew threats, and poisoning was suspected at his death."
+      }
+    },
+    {
+      "id": "ref-domingo-calzada",
+      "name": {
+        "fr": "Dominique de la Calzada",
+        "en": "Dominic de la Calzada",
+        "la": "Dominicus a Calceata"
+      },
+      "aka": [
+        "Santo Domingo de la Calzada"
+      ],
+      "sex": "m",
+      "born": 1019,
+      "died": 1109,
+      "circa": true,
+      "feast": "05-12",
+      "titles": [
+        "hermit"
+      ],
+      "birth": {
+        "city": "Santo Domingo de la Calzada",
+        "country": "ESP",
+        "lat": 42.4406,
+        "lng": -2.9531,
+        "note": "né à Viloria de Rioja, à quelques lieues de là"
+      },
+      "death": {
+        "city": "Santo Domingo de la Calzada",
+        "country": "ESP",
+        "lat": 42.4406,
+        "lng": -2.9531
+      },
+      "patronage": {
+        "fr": "Les ingénieurs des travaux publics espagnols",
+        "en": "Spanish civil engineers"
+      },
+      "desc": {
+        "fr": "Ermite bâtisseur de ponts et de chaussées sur le chemin de Compostelle.",
+        "en": "A hermit who built bridges and roads on the road to Compostela."
+      },
+      "bio": {
+        "fr": "Refusé par deux monastères pour son ignorance, Dominique s'établit dans la forêt d'Oja et entreprit d'y faire passer les pèlerins : il défricha, empierra une chaussée, jeta un pont sur l'Oja et bâtit un hôpital. La ville qui porte son nom est née de ce chantier.",
+        "en": "Turned away by two monasteries for his ignorance, Dominic settled in the Oja forest and set about getting pilgrims through it: he cleared the ground, metalled a causeway, threw a bridge over the Oja and built a hospice. The town that bears his name grew out of that worksite."
+      }
+    },
+    {
+      "id": "ref-joachina-vedruna",
+      "name": {
+        "fr": "Joachina de Vedruna",
+        "en": "Joaquina de Vedruna",
+        "la": "Ioachima de Vedruna"
+      },
+      "aka": [
+        "Joaquima de Vedruna",
+        "Joaquina de Mas"
+      ],
+      "sex": "f",
+      "born": 1783,
+      "died": 1854,
+      "feast": "05-22",
+      "titles": [
+        "widow",
+        "founder"
+      ],
+      "birth": {
+        "city": "Barcelona",
+        "country": "ESP",
+        "lat": 41.3888,
+        "lng": 2.159
+      },
+      "death": {
+        "city": "Vic",
+        "country": "ESP",
+        "lat": 41.9304,
+        "lng": 2.2547
+      },
+      "desc": {
+        "fr": "Mère de neuf enfants, veuve, fondatrice des Carmélites de la Charité.",
+        "en": "Mother of nine, widowed, founder of the Carmelites of Charity."
+      },
+      "bio": {
+        "fr": "Mariée à seize ans et veuve à trente-trois, Joachina éleva ses neuf enfants avant de fonder à Vic, en 1826, une congrégation vouée aux écoles et aux hôpitaux. Ses religieuses soignèrent pendant les guerres carlistes ; elle mourut du choléra.",
+        "en": "Married at sixteen and widowed at thirty-three, Joaquina raised her nine children before founding at Vic, in 1826, a congregation for schools and hospitals. Her sisters nursed through the Carlist wars; she died of cholera."
+      }
+    },
+    {
+      "id": "ref-soledad-torres",
+      "name": {
+        "fr": "Marie-Solitude Torres Acosta",
+        "en": "Mary Soledad Torres Acosta",
+        "la": "Maria a Solitudine Torres Acosta"
+      },
+      "aka": [
+        "María Soledad Torres Acosta",
+        "Manuela Torres Acosta"
+      ],
+      "sex": "f",
+      "born": 1826,
+      "died": 1887,
+      "feast": "10-11",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Madrid",
+        "country": "ESP",
+        "lat": 40.4165,
+        "lng": -3.7026
+      },
+      "death": {
+        "city": "Madrid",
+        "country": "ESP",
+        "lat": 40.4165,
+        "lng": -3.7026
+      },
+      "desc": {
+        "fr": "Fondatrice des Servantes de Marie, gardes-malades à domicile.",
+        "en": "Founder of the Handmaids of Mary, nurses at the bedside."
+      },
+      "bio": {
+        "fr": "Choisie parmi sept jeunes filles pour veiller les malades pauvres chez eux, de nuit comme de jour, Manuela Torres se retrouva à trente ans seule à la tête du groupe, les autres ayant renoncé. Elle en fit une congrégation de plus de mille religieuses, présente à Cuba et en Amérique centrale de son vivant.",
+        "en": "Chosen among seven young women to sit with the sick poor in their own homes, by night as by day, Manuela Torres found herself at thirty alone at the head of the group, the others having given up. She made of it a congregation of over a thousand sisters, present in Cuba and Central America in her lifetime."
+      }
+    },
+    {
+      "id": "ref-ezequiel-moreno",
+      "name": {
+        "fr": "Ézéchiel Moreno",
+        "en": "Ezequiel Moreno",
+        "la": "Ezechiel Moreno"
+      },
+      "aka": [
+        "Ezequiel Moreno y Díaz"
+      ],
+      "sex": "m",
+      "born": 1848,
+      "died": 1906,
+      "feast": "08-19",
+      "titles": [
+        "bishop",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Alfaro",
+        "country": "ESP",
+        "lat": 42.1806,
+        "lng": -1.7497
+      },
+      "death": {
+        "city": "Monteagudo",
+        "country": "ESP",
+        "lat": 42.0333,
+        "lng": -1.6167
+      },
+      "patronage": {
+        "fr": "Les malades du cancer",
+        "en": "Cancer patients"
+      },
+      "desc": {
+        "fr": "Augustin récollet, missionnaire aux Philippines puis évêque de Pasto, en Colombie.",
+        "en": "An Augustinian Recollect, missionary in the Philippines and then bishop of Pasto in Colombia."
+      },
+      "bio": {
+        "fr": "Missionnaire treize ans aux Philippines, Moreno fut envoyé en Colombie et devint évêque de Pasto en pleine guerre civile. Atteint d'un cancer du visage, il revint mourir en Espagne après avoir refusé l'anesthésie lors de son opération ; les malades du cancer l'invoquent depuis.",
+        "en": "A missionary for thirteen years in the Philippines, Moreno was sent to Colombia and became bishop of Pasto in the midst of civil war. Struck by a cancer of the face, he came home to Spain to die after refusing anaesthetic for his operation; cancer patients have invoked him since."
+      }
+    },
+    {
+      "id": "ref-pedro-poveda",
+      "name": {
+        "fr": "Pedro Poveda",
+        "en": "Pedro Poveda",
+        "la": "Petrus Poveda"
+      },
+      "aka": [
+        "Pedro Poveda Castroverde"
+      ],
+      "sex": "m",
+      "born": 1874,
+      "died": 1936,
+      "feast": "07-28",
+      "titles": [
+        "priest",
+        "martyr",
+        "founder"
+      ],
+      "birth": {
+        "city": "Linares",
+        "country": "ESP",
+        "lat": 38.0956,
+        "lng": -3.6367
+      },
+      "death": {
+        "city": "Madrid",
+        "country": "ESP",
+        "lat": 40.4165,
+        "lng": -3.7026
+      },
+      "desc": {
+        "fr": "Fondateur de l'Institution thérésienne, tué au premier jour de la guerre civile.",
+        "en": "Founder of the Teresian Association, killed in the first days of the civil war."
+      },
+      "bio": {
+        "fr": "Poveda avait ouvert des écoles dans les grottes de Guadix, où vivaient des familles de gitans, avant de fonder en 1911 une association de femmes enseignantes laïques présentes dans l'école publique — une idée neuve dans l'Espagne d'alors. Arrêté le 27 juillet 1936, il fut fusillé le lendemain.",
+        "en": "Poveda had opened schools in the caves of Guadix, where gypsy families lived, before founding in 1911 an association of lay women teachers working within the state school system — a new idea in the Spain of the day. Arrested on 27 July 1936, he was shot the next day."
+      }
+    },
+    {
+      "id": "ref-vicenta-lopez",
+      "name": {
+        "fr": "Vicenta María López y Vicuña",
+        "en": "Vicenta Maria Lopez y Vicuña"
+      },
+      "aka": [
+        "Vicenta María López"
+      ],
+      "sex": "f",
+      "born": 1847,
+      "died": 1890,
+      "feast": "12-26",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Cascante",
+        "country": "ESP",
+        "lat": 42.0,
+        "lng": -1.6833
+      },
+      "death": {
+        "city": "Madrid",
+        "country": "ESP",
+        "lat": 40.4165,
+        "lng": -3.7026
+      },
+      "desc": {
+        "fr": "Fondatrice des Filles de Marie Immaculée, pour les domestiques de Madrid.",
+        "en": "Founder of the Daughters of Mary Immaculate, for the servant girls of Madrid."
+      },
+      "bio": {
+        "fr": "Sa tante tenait à Madrid une maison recueillant les jeunes filles montées de province pour servir, exposées au chômage et à la prostitution. Vicenta reprit l'œuvre à vingt-neuf ans et en fit une congrégation ; elle mourut à quarante-trois ans.",
+        "en": "Her aunt kept a house in Madrid for the country girls who came up to go into service and were exposed to unemployment and prostitution. Vicenta took the work over at twenty-nine and made a congregation of it; she died at forty-three."
+      }
+    },
+    {
+      "id": "ref-teresa-jornet",
+      "name": {
+        "fr": "Thérèse Jornet Ibars",
+        "en": "Teresa Jornet Ibars"
+      },
+      "aka": [
+        "Teresa Jornet"
+      ],
+      "sex": "f",
+      "born": 1843,
+      "died": 1897,
+      "feast": "08-26",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Aitona",
+        "country": "ESP",
+        "lat": 41.4833,
+        "lng": 0.4667
+      },
+      "death": {
+        "city": "Llíria",
+        "country": "ESP",
+        "lat": 39.6264,
+        "lng": -0.5967
+      },
+      "patronage": {
+        "fr": "Les vieillards",
+        "en": "The elderly"
+      },
+      "desc": {
+        "fr": "Fondatrice des Petites Sœurs des Vieillards abandonnés.",
+        "en": "Founder of the Little Sisters of the Abandoned Aged."
+      },
+      "bio": {
+        "fr": "Institutrice de village, Thérèse Jornet fonda en 1873 une congrégation pour les vieillards sans famille, dont les maisons vivaient exclusivement d'aumônes quêtées chaque jour. Elle en ouvrit cent trois de son vivant ; Pie XII l'a déclarée patronne des personnes âgées.",
+        "en": "A village schoolmistress, Teresa Jornet founded in 1873 a congregation for old people without family, its houses living entirely on alms begged each day. She opened a hundred and three of them in her lifetime; Pius XII declared her patron of the aged."
+      }
+    },
+    {
+      "id": "ref-alexandrina-balazar",
+      "name": {
+        "fr": "Alexandrina de Balazar",
+        "en": "Alexandrina of Balazar"
+      },
+      "aka": [
+        "Alexandrina Maria da Costa"
+      ],
+      "sex": "f",
+      "born": 1904,
+      "died": 1955,
+      "feast": "10-13",
+      "titles": [
+        "layperson",
+        "mystic"
+      ],
+      "birth": {
+        "city": "Balazar",
+        "country": "PRT",
+        "lat": 41.4,
+        "lng": -8.5333
+      },
+      "death": {
+        "city": "Balazar",
+        "country": "PRT",
+        "lat": 41.4,
+        "lng": -8.5333
+      },
+      "desc": {
+        "fr": "Paysanne portugaise paralysée trente ans après avoir sauté par une fenêtre.",
+        "en": "A Portuguese countrywoman paralysed for thirty years after jumping from a window."
+      },
+      "bio": {
+        "fr": "À quatorze ans, Alexandrina sauta d'une fenêtre pour échapper à trois hommes entrés chez elle ; elle en resta paralysée et vécut trente ans alitée dans sa chambre de Balazar. Sa longue inanition fut examinée pendant quarante jours par des médecins de Porto ; elle fut béatifiée en 2004.",
+        "en": "At fourteen Alexandrina jumped from a window to escape three men who had broken into her house; she was left paralysed and lived thirty years in her bed at Balazar. Her long abstinence from food was examined for forty days by doctors from Porto; she was beatified in 2004."
+      }
+    },
+    {
+      "id": "ref-bruno-querfurt",
+      "name": {
+        "fr": "Bruno de Querfurt",
+        "en": "Bruno of Querfurt",
+        "la": "Brunus Querfurtensis"
+      },
+      "aka": [
+        "Boniface de Querfurt"
+      ],
+      "sex": "m",
+      "born": 974,
+      "died": 1009,
+      "feast": "06-19",
+      "titles": [
+        "bishop",
+        "martyr",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Querfurt",
+        "country": "DEU",
+        "lat": 51.3833,
+        "lng": 11.6
+      },
+      "desc": {
+        "fr": "Missionnaire chez les Prussiens, tué à la frontière lituanienne.",
+        "en": "A missionary among the Prussians, killed on the Lithuanian border."
+      },
+      "bio": {
+        "fr": "Chapelain d'Otton III, Bruno se fit ermite camaldule puis partit évangéliser les Hongrois, les Petchenègues et enfin les Prussiens. Il fut tué avec dix-huit compagnons en 1009, aux confins de la Prusse et de la Lituanie ; il avait écrit la vie d'Adalbert de Prague, dont il suivait l'exemple.",
+        "en": "Chaplain to Otto III, Bruno became a Camaldolese hermit and then went to evangelise the Hungarians, the Pechenegs and finally the Prussians. He was killed with eighteen companions in 1009 on the marches of Prussia and Lithuania; he had written the life of Adalbert of Prague, whose example he followed."
+      }
+    },
+    {
+      "id": "ref-emmerick",
+      "name": {
+        "fr": "Anne-Catherine Emmerick",
+        "en": "Anne Catherine Emmerich",
+        "la": "Anna Catharina Emmerick"
+      },
+      "aka": [
+        "Anna Katharina Emmerick"
+      ],
+      "sex": "f",
+      "born": 1774,
+      "died": 1824,
+      "feast": "02-09",
+      "titles": [
+        "nun",
+        "mystic"
+      ],
+      "birth": {
+        "city": "Coesfeld",
+        "country": "DEU",
+        "lat": 51.9456,
+        "lng": 7.1656
+      },
+      "death": {
+        "city": "Dülmen",
+        "country": "DEU",
+        "lat": 51.8311,
+        "lng": 7.2794
+      },
+      "desc": {
+        "fr": "Augustine westphalienne, visionnaire dont les récits furent notés par Clemens Brentano.",
+        "en": "A Westphalian Augustinian whose visions were taken down by Clemens Brentano."
+      },
+      "bio": {
+        "fr": "Fille de paysans, entrée tard au couvent d'Agnetenberg, Anne-Catherine se retrouva à la rue quand la sécularisation le ferma, et passa ses douze dernières années alitée. Le poète Clemens Brentano nota ses visions pendant cinq ans ; l'Église, en la béatifiant en 2004, a expressément écarté ces écrits du dossier, la part de Brentano y étant indémêlable.",
+        "en": "A peasant's daughter who entered the convent of Agnetenberg late, Anne Catherine was turned out when secularisation closed it, and spent her last twelve years bedridden. The poet Clemens Brentano took down her visions over five years; in beatifying her in 2004 the Church expressly set those writings aside, Brentano's own share in them being impossible to separate out."
+      }
+    },
+    {
+      "id": "ref-rupert-mayer",
+      "name": {
+        "fr": "Rupert Mayer",
+        "en": "Rupert Mayer",
+        "la": "Rupertus Mayer"
+      },
+      "aka": [
+        "Rupert Mayer"
+      ],
+      "sex": "m",
+      "born": 1876,
+      "died": 1945,
+      "feast": "11-03",
+      "titles": [
+        "priest"
+      ],
+      "birth": {
+        "city": "Stuttgart",
+        "country": "DEU",
+        "lat": 48.7823,
+        "lng": 9.177
+      },
+      "death": {
+        "city": "Munich",
+        "country": "DEU",
+        "lat": 48.1371,
+        "lng": 11.5754
+      },
+      "desc": {
+        "fr": "Jésuite munichois, aumônier militaire amputé, opposant public au nazisme.",
+        "en": "A Munich Jesuit, an army chaplain who lost a leg, a public opponent of Nazism."
+      },
+      "bio": {
+        "fr": "Aumônier de première ligne pendant la Grande Guerre, où il perdit une jambe, Mayer était l'orateur le plus écouté de Munich lorsqu'il déclara publiquement qu'un catholique ne pouvait être national-socialiste. Interdit de parole en 1937, emprisonné puis interné à l'abbaye d'Ettal, il mourut en chaire quelques mois après la fin de la guerre.",
+        "en": "A front-line chaplain in the Great War, where he lost a leg, Mayer was the most listened-to preacher in Munich when he declared publicly that a Catholic could not be a National Socialist. Banned from speaking in 1937, imprisoned and then confined to the abbey of Ettal, he died in the pulpit a few months after the war ended."
+      }
+    },
+    {
+      "id": "ref-karl-leisner",
+      "name": {
+        "fr": "Karl Leisner",
+        "en": "Karl Leisner"
+      },
+      "aka": [
+        "Karl Leisner"
+      ],
+      "sex": "m",
+      "born": 1915,
+      "died": 1945,
+      "feast": "08-12",
+      "titles": [
+        "priest",
+        "martyr",
+        "youth"
+      ],
+      "birth": {
+        "city": "Rees",
+        "country": "DEU",
+        "lat": 51.7614,
+        "lng": 6.3969
+      },
+      "death": {
+        "city": "Planegg",
+        "country": "DEU",
+        "lat": 48.1,
+        "lng": 11.4167
+      },
+      "desc": {
+        "fr": "Diacre ordonné prêtre clandestinement au camp de Dachau.",
+        "en": "A deacon ordained priest in secret in the camp at Dachau."
+      },
+      "bio": {
+        "fr": "Responsable de la jeunesse catholique du diocèse de Münster, Leisner fut arrêté en 1939 pour une phrase sur l'attentat manqué contre Hitler et envoyé à Dachau. Un évêque français interné dans le même camp l'y ordonna prêtre le 17 décembre 1944, avec des objets liturgiques fabriqués sur place ; il célébra une seule messe et mourut de tuberculose peu après la libération.",
+        "en": "In charge of Catholic youth in the diocese of Münster, Leisner was arrested in 1939 for a remark about the failed attempt on Hitler's life and sent to Dachau. A French bishop interned in the same camp ordained him priest there on 17 December 1944, with vessels made on the spot; he said a single Mass and died of tuberculosis soon after the liberation."
+      }
+    },
+    {
+      "id": "ref-lichtenberg",
+      "name": {
+        "fr": "Bernhard Lichtenberg",
+        "en": "Bernhard Lichtenberg"
+      },
+      "aka": [
+        "Bernhard Lichtenberg"
+      ],
+      "sex": "m",
+      "born": 1875,
+      "died": 1943,
+      "feast": "11-05",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Oława",
+        "country": "POL",
+        "lat": 50.9464,
+        "lng": 17.2925,
+        "note": "Ohlau, en Silésie allemande à sa naissance"
+      },
+      "death": {
+        "city": "Hof",
+        "country": "DEU",
+        "lat": 50.3167,
+        "lng": 11.9167
+      },
+      "desc": {
+        "fr": "Prévôt de la cathédrale de Berlin, qui priait chaque soir en public pour les juifs.",
+        "en": "Provost of Berlin cathedral, who prayed publicly each evening for the Jews."
+      },
+      "bio": {
+        "fr": "Après la Nuit de Cristal, en novembre 1938, Lichtenberg prit l'habitude de terminer l'office du soir à Sainte-Hedwige par une prière à voix haute pour les juifs et les détenus des camps ; il le fit près de trois ans. Dénoncé, condamné, il mourut à Hof pendant son transfert vers Dachau.",
+        "en": "After Kristallnacht in November 1938, Lichtenberg took to ending evening prayer at St Hedwig's with an aloud petition for the Jews and for those in the camps; he did so for nearly three years. Denounced and sentenced, he died at Hof while being transported to Dachau."
+      }
+    },
+    {
+      "id": "ref-jagerstatter",
+      "name": {
+        "fr": "Franz Jägerstätter",
+        "en": "Franz Jägerstätter"
+      },
+      "aka": [
+        "Franz Jägerstätter"
+      ],
+      "sex": "m",
+      "born": 1907,
+      "died": 1943,
+      "feast": "05-21",
+      "titles": [
+        "layperson",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Sankt Radegund",
+        "country": "AUT",
+        "lat": 48.0667,
+        "lng": 12.9333
+      },
+      "death": {
+        "city": "Brandenburg an der Havel",
+        "country": "DEU",
+        "lat": 52.4117,
+        "lng": 12.5561
+      },
+      "desc": {
+        "fr": "Paysan autrichien décapité pour avoir refusé de servir dans la Wehrmacht.",
+        "en": "An Austrian farmer beheaded for refusing to serve in the Wehrmacht."
+      },
+      "bio": {
+        "fr": "Seul de son village à voter contre l'Anschluss, Jägerstätter refusa en 1943 de prêter serment et d'être incorporé, malgré son curé, son évêque et sa famille, qui lui rappelaient ses trois filles. Il fut décapité à Brandebourg ; sa veuve Franziska assista à sa béatification en 2007, à quatre-vingt-quatorze ans.",
+        "en": "The only man in his village to vote against the Anschluss, Jägerstätter refused in 1943 to swear the oath and be conscripted, against his parish priest, his bishop and his family, who reminded him of his three daughters. He was beheaded at Brandenburg; his widow Franziska attended his beatification in 2007, at ninety-four."
+      }
+    },
+    {
+      "id": "ref-jakob-gapp",
+      "name": {
+        "fr": "Jakob Gapp",
+        "en": "Jakob Gapp"
+      },
+      "aka": [
+        "Jakob Gapp"
+      ],
+      "sex": "m",
+      "born": 1897,
+      "died": 1943,
+      "feast": "08-13",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Wattens",
+        "country": "AUT",
+        "lat": 47.2917,
+        "lng": 11.5917
+      },
+      "death": {
+        "city": "Berlin",
+        "country": "DEU",
+        "lat": 52.5244,
+        "lng": 13.4105
+      },
+      "desc": {
+        "fr": "Marianiste tyrolien, attiré hors d'Espagne par un piège de la Gestapo.",
+        "en": "A Tyrolean Marianist, lured out of Spain by a Gestapo trap."
+      },
+      "bio": {
+        "fr": "Professeur marianiste, Gapp enseignait que le racisme national-socialiste était inconciliable avec la foi ; chassé d'Autriche, il gagna la France puis l'Espagne. Deux agents allemands se firent passer pour des juifs en quête d'instruction et l'attirèrent au-delà de la frontière française, où il fut arrêté ; il fut guillotiné à Berlin.",
+        "en": "A Marianist teacher, Gapp taught that National Socialist racism could not be reconciled with the faith; driven out of Austria, he reached France and then Spain. Two German agents posed as Jews seeking instruction and drew him over the French border, where he was seized; he was guillotined in Berlin."
+      }
+    },
+    {
+      "id": "ref-charles-autriche",
+      "name": {
+        "fr": "Charles Ier d'Autriche",
+        "en": "Charles I of Austria",
+        "la": "Carolus I Austriae"
+      },
+      "aka": [
+        "Charles de Habsbourg",
+        "Karl von Österreich"
+      ],
+      "sex": "m",
+      "born": 1887,
+      "died": 1922,
+      "feast": "10-21",
+      "titles": [
+        "king",
+        "layperson"
+      ],
+      "birth": {
+        "city": "Persenbeug",
+        "country": "AUT",
+        "lat": 48.1833,
+        "lng": 15.0833
+      },
+      "death": {
+        "city": "Funchal",
+        "country": "PRT",
+        "lat": 32.6669,
+        "lng": -16.9241
+      },
+      "desc": {
+        "fr": "Dernier empereur d'Autriche, artisan malheureux d'une paix séparée, mort en exil à Madère.",
+        "en": "The last emperor of Austria, unsuccessful architect of a separate peace, dead in exile on Madeira."
+      },
+      "bio": {
+        "fr": "Monté sur le trône en 1916, en pleine guerre, Charles chercha secrètement une paix négociée, interdit les gaz de combat à ses armées et créa un ministère des affaires sociales. Déchu en 1918, exilé après deux tentatives de restauration en Hongrie, il mourut à trente-quatre ans d'une pneumonie à Madère, dans une maison prêtée. Il fut béatifié en 2004.",
+        "en": "Coming to the throne in 1916, in the middle of the war, Charles sought a negotiated peace in secret, forbade his armies the use of poison gas and created a ministry of social affairs. Deposed in 1918 and exiled after two attempts at restoration in Hungary, he died at thirty-four of pneumonia on Madeira, in a borrowed house. He was beatified in 2004."
+      }
+    },
+    {
+      "id": "ref-ledochowska-maria-teresa",
+      "name": {
+        "fr": "Marie-Thérèse Ledóchowska",
+        "en": "Maria Theresa Ledóchowska"
+      },
+      "aka": [
+        "Maria Teresa Ledóchowska"
+      ],
+      "sex": "f",
+      "born": 1863,
+      "died": 1922,
+      "feast": "07-06",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Loosdorf",
+        "country": "AUT",
+        "lat": 48.2,
+        "lng": 15.4
+      },
+      "death": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "desc": {
+        "fr": "Dame de cour devenue « mère des missions d'Afrique », fondatrice des Sœurs de Saint-Pierre-Claver.",
+        "en": "A lady-in-waiting turned \"mother of the African missions\", founder of the Sisters of Saint Peter Claver."
+      },
+      "bio": {
+        "fr": "Dame d'honneur à la cour de Toscane, elle quitta tout après avoir lu un appel du cardinal Lavigerie contre l'esclavage. Sa congrégation, fondée en 1894, ne partait pas en Afrique : elle imprimait, traduisait et collectait en Europe pour ceux qui y partaient, en une quinzaine de langues africaines. Sa sœur Ursule est également canonisée.",
+        "en": "A lady-in-waiting at the Tuscan court, she left it all after reading an appeal by Cardinal Lavigerie against slavery. Her congregation, founded in 1894, did not go to Africa: it printed, translated and raised funds in Europe for those who did, in some fifteen African languages. Her sister Ursula is also canonised."
+      }
+    },
+    {
+      "id": "ref-papczynski",
+      "name": {
+        "fr": "Stanislas Papczyński",
+        "en": "Stanislaus Papczyński",
+        "la": "Stanislaus Papczyński"
+      },
+      "aka": [
+        "Stanisław Papczyński"
+      ],
+      "sex": "m",
+      "born": 1631,
+      "died": 1701,
+      "feast": "05-18",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Podegrodzie",
+        "country": "POL",
+        "lat": 49.5833,
+        "lng": 20.6
+      },
+      "death": {
+        "city": "Góra Kalwaria",
+        "country": "POL",
+        "lat": 51.9833,
+        "lng": 21.2167
+      },
+      "desc": {
+        "fr": "Fondateur des Marianistes de l'Immaculée Conception, premier ordre polonais d'hommes.",
+        "en": "Founder of the Marians of the Immaculate Conception, the first Polish order of men."
+      },
+      "bio": {
+        "fr": "Fils de forgeron, longtemps mauvais élève, Papczyński devint un prédicateur écouté et le confesseur du roi Jean III Sobieski. Il quitta les Piaristes pour fonder en 1673 une communauté vouée aux défunts oubliés et à l'instruction des paysans ; c'était le premier institut religieux masculin né en Pologne.",
+        "en": "A blacksmith's son and long a poor pupil, Papczyński became a noted preacher and confessor to King John III Sobieski. He left the Piarists to found in 1673 a community for the forgotten dead and for the schooling of peasants; it was the first male religious institute born in Poland."
+      }
+    },
+    {
+      "id": "ref-honorat-kozminski",
+      "name": {
+        "fr": "Honorat Koźmiński",
+        "en": "Honorat Koźmiński"
+      },
+      "aka": [
+        "Honorat Koźmiński"
+      ],
+      "sex": "m",
+      "born": 1829,
+      "died": 1916,
+      "feast": "12-16",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Biała Podlaska",
+        "country": "POL",
+        "lat": 52.0333,
+        "lng": 23.1167
+      },
+      "death": {
+        "city": "Nowe Miasto nad Pilicą",
+        "country": "POL",
+        "lat": 51.6333,
+        "lng": 20.5833
+      },
+      "desc": {
+        "fr": "Capucin qui fonda vingt-six congrégations clandestines sous l'occupation russe.",
+        "en": "A Capuchin who founded twenty-six clandestine congregations under Russian rule."
+      },
+      "bio": {
+        "fr": "Emprisonné à dix-sept ans par la police tsariste, athée un temps, Honorat entra chez les Capucins et fut, après la suppression des couvents en 1864, confiné à Zakroczym. De son confessionnal, il organisa des congrégations sans habit ni clôture, dont les membres vivaient en ouvrières ou en boutiquières : vingt-six furent ainsi fondées, dont dix-sept existent encore.",
+        "en": "Imprisoned at seventeen by the tsarist police and for a time an atheist, Honorat entered the Capuchins and, after the suppression of the convents in 1864, was confined to Zakroczym. From his confessional he organised congregations without habit or enclosure, whose members lived as factory hands or shopkeepers: twenty-six were founded this way, of which seventeen still exist."
+      }
+    },
+    {
+      "id": "ref-popieluszko",
+      "name": {
+        "fr": "Jerzy Popiełuszko",
+        "en": "Jerzy Popiełuszko"
+      },
+      "aka": [
+        "Jerzy Popiełuszko"
+      ],
+      "sex": "m",
+      "born": 1947,
+      "died": 1984,
+      "feast": "06-06",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Suchowola",
+        "country": "POL",
+        "lat": 53.5833,
+        "lng": 23.1,
+        "note": "né au hameau d'Okopy"
+      },
+      "death": {
+        "city": "Włocławek",
+        "country": "POL",
+        "lat": 52.65,
+        "lng": 19.0667
+      },
+      "desc": {
+        "fr": "Aumônier de Solidarność, enlevé et tué par la police politique.",
+        "en": "Chaplain to Solidarity, abducted and killed by the political police."
+      },
+      "bio": {
+        "fr": "Curé à Varsovie, Popiełuszko célébrait chaque mois une « messe pour la patrie » que des dizaines de milliers de personnes venaient entendre pendant l'état de guerre. Enlevé le 19 octobre 1984 par trois officiers du ministère de l'Intérieur, il fut battu et jeté dans la Vistule ; ses obsèques rassemblèrent des centaines de milliers de Polonais.",
+        "en": "A parish priest in Warsaw, Popiełuszko said each month a \"Mass for the fatherland\" that tens of thousands came to hear under martial law. Abducted on 19 October 1984 by three officers of the interior ministry, he was beaten and thrown into the Vistula; hundreds of thousands of Poles came to his funeral."
+      }
+    },
+    {
+      "id": "ref-gorazdowski",
+      "name": {
+        "fr": "Zygmunt Gorazdowski",
+        "en": "Zygmunt Gorazdowski"
+      },
+      "aka": [
+        "Zygmunt Gorazdowski"
+      ],
+      "sex": "m",
+      "born": 1845,
+      "died": 1920,
+      "feast": "01-01",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Sanok",
+        "country": "POL",
+        "lat": 49.5556,
+        "lng": 22.2056
+      },
+      "death": {
+        "city": "Lviv",
+        "country": "UKR",
+        "lat": 49.8383,
+        "lng": 24.0232
+      },
+      "desc": {
+        "fr": "Prêtre de Lwów, fondateur des Sœurs de Saint-Joseph et de la « maison du sou ».",
+        "en": "A priest of Lwów, founder of the Sisters of Saint Joseph and of the \"penny house\"."
+      },
+      "bio": {
+        "fr": "Tuberculeux au point qu'on l'avait cru mort, Gorazdowski passa quarante ans à Lwów, ville partagée entre Polonais, Ruthènes et juifs, et ouvrit ses œuvres à tous sans distinction : une cuisine où le repas coûtait un sou, une maison pour les sans-abri, une école. Il fonda en 1884 les Sœurs de Saint-Joseph.",
+        "en": "So consumptive that he had once been given up for dead, Gorazdowski spent forty years in Lwów, a city shared between Poles, Ruthenians and Jews, and opened his works to all alike: a kitchen where a meal cost a penny, a house for the homeless, a school. In 1884 he founded the Sisters of Saint Joseph."
+      }
+    },
+    {
+      "id": "ref-apor",
+      "name": {
+        "fr": "Vilmos Apor",
+        "en": "Vilmos Apor"
+      },
+      "aka": [
+        "Vilmos Apor"
+      ],
+      "sex": "m",
+      "born": 1892,
+      "died": 1945,
+      "feast": "05-23",
+      "titles": [
+        "bishop",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Sighișoara",
+        "country": "ROU",
+        "lat": 46.2167,
+        "lng": 24.7833
+      },
+      "death": {
+        "city": "Győr",
+        "country": "HUN",
+        "lat": 47.6833,
+        "lng": 17.6353
+      },
+      "desc": {
+        "fr": "Évêque de Győr, abattu en défendant des femmes réfugiées dans sa cave.",
+        "en": "Bishop of Győr, shot defending women sheltering in his cellar."
+      },
+      "bio": {
+        "fr": "Baron d'une vieille famille transylvaine, Apor protesta publiquement contre la déportation des juifs de Hongrie et fit cacher des familles dans son évêché. Le Vendredi saint 1945, il s'interposa devant des soldats soviétiques venus chercher les femmes réfugiées dans sa cave et reçut trois balles ; il mourut trois jours plus tard.",
+        "en": "A baron of an old Transylvanian family, Apor protested publicly against the deportation of Hungary's Jews and had families hidden in his residence. On Good Friday 1945 he stood in the way of Soviet soldiers who had come for the women sheltering in his cellar and took three bullets; he died three days later."
+      }
+    },
+    {
+      "id": "ref-bulesic",
+      "name": {
+        "fr": "Miroslav Bulešić",
+        "en": "Miroslav Bulešić"
+      },
+      "aka": [
+        "Miroslav Bulešić"
+      ],
+      "sex": "m",
+      "born": 1920,
+      "died": 1947,
+      "feast": "08-24",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Svetvinčenat",
+        "country": "HRV",
+        "lat": 45.0833,
+        "lng": 13.8167,
+        "note": "né au hameau de Čabrunići"
+      },
+      "death": {
+        "city": "Lanišće",
+        "country": "HRV",
+        "lat": 45.4167,
+        "lng": 14.0833
+      },
+      "desc": {
+        "fr": "Prêtre istrien égorgé au sortir d'une confirmation, en 1947.",
+        "en": "An Istrian priest whose throat was cut after a confirmation, in 1947."
+      },
+      "bio": {
+        "fr": "Ordonné pendant la guerre, Bulešić refusa de plier devant les autorités communistes qui voulaient contrôler l'Église d'Istrie. Le 24 août 1947, une foule organisée envahit le presbytère de Lanišće où il accompagnait un délégué apostolique ; il fut poignardé et égorgé à vingt-sept ans.",
+        "en": "Ordained during the war, Bulešić refused to bend to the communist authorities who meant to control the Church in Istria. On 24 August 1947 an organised mob broke into the presbytery of Lanišće where he was attending an apostolic delegate; he was stabbed and his throat cut, at twenty-seven."
+      }
+    },
+    {
+      "id": "ref-nicolas-steno",
+      "name": {
+        "fr": "Nicolas Sténon",
+        "en": "Nicolas Steno",
+        "la": "Nicolaus Stenonis"
+      },
+      "aka": [
+        "Niels Stensen",
+        "Nicolas Steno"
+      ],
+      "sex": "m",
+      "born": 1638,
+      "died": 1686,
+      "feast": "11-25",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Copenhagen",
+        "country": "DNK",
+        "lat": 55.6759,
+        "lng": 12.5655
+      },
+      "death": {
+        "city": "Schwerin",
+        "country": "DEU",
+        "lat": 53.6333,
+        "lng": 11.4167
+      },
+      "patronage": {
+        "fr": "Les géologues",
+        "en": "Geologists"
+      },
+      "desc": {
+        "fr": "Anatomiste et père de la géologie, converti puis évêque des missions du Nord.",
+        "en": "An anatomist and father of geology, a convert and then bishop of the northern missions."
+      },
+      "bio": {
+        "fr": "Fils d'orfèvre luthérien, Sténon découvrit le canal de la glande parotide, montra que le cœur est un muscle et établit les lois de la superposition des strates, fondant la géologie moderne. Converti au catholicisme à Florence en 1667, il abandonna la science, fut ordonné et envoyé comme évêque dans le Nord protestant, où il mourut pauvre.",
+        "en": "The son of a Lutheran goldsmith, Steno discovered the duct of the parotid gland, showed the heart to be a muscle, and laid down the laws of superposition of strata, founding modern geology. Converted to Catholicism at Florence in 1667, he gave up science, was ordained and sent as bishop to the Protestant north, where he died poor."
+      }
+    },
+    {
+      "id": "ref-hesselblad",
+      "name": {
+        "fr": "Élisabeth Hesselblad",
+        "en": "Elisabeth Hesselblad",
+        "la": "Elisabetha Hesselblad"
+      },
+      "aka": [
+        "Maria Elisabeth Hesselblad"
+      ],
+      "sex": "f",
+      "born": 1870,
+      "died": 1957,
+      "feast": "06-04",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Fåglavik",
+        "country": "SWE",
+        "lat": 58.1333,
+        "lng": 13.0333
+      },
+      "death": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "desc": {
+        "fr": "Infirmière suédoise, restauratrice de l'ordre de sainte Brigitte, Juste parmi les nations.",
+        "en": "A Swedish nurse who restored the Brigittine order, Righteous Among the Nations."
+      },
+      "bio": {
+        "fr": "Partie à dix-huit ans travailler comme infirmière à New York, Élisabeth se convertit au catholicisme et obtint de reprendre la maison romaine de sainte Brigitte, où elle refonda l'ordre. Pendant l'occupation allemande de Rome, elle cacha une soixantaine de juifs dans son couvent de la place Farnèse ; Yad Vashem l'a reconnue Juste parmi les nations.",
+        "en": "She left at eighteen to work as a nurse in New York, converted to Catholicism and obtained the Roman house of Saint Bridget, where she refounded the order. During the German occupation of Rome she hid some sixty Jews in her convent on the Piazza Farnese; Yad Vashem has recognised her as Righteous Among the Nations."
+      }
+    }
+  ]
+}

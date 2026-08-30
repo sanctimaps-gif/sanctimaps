@@ -1,0 +1,1179 @@
+{
+  "source": "Fond documentaire — Amériques, Afrique, Asie et Océanie",
+  "note": "Index consulté par l'assistant expert. Beaucoup de ces fiches donnent un lieu de mort éloigné du lieu de naissance : c'est le propre des missionnaires, et l'atelier laisse choisir lequel des deux porter sur la carte.",
+  "saints": [
+    {
+      "id": "ref-febres-cordero",
+      "name": {
+        "fr": "Michel Febres Cordero",
+        "en": "Miguel Febres Cordero",
+        "la": "Michael Febres Cordero"
+      },
+      "aka": [
+        "Miguel Febres Cordero",
+        "Francisco Febres Cordero"
+      ],
+      "sex": "m",
+      "born": 1854,
+      "died": 1910,
+      "feast": "02-09",
+      "titles": [
+        "religious"
+      ],
+      "birth": {
+        "city": "Cuenca",
+        "country": "ECU",
+        "lat": -2.9,
+        "lng": -79.0
+      },
+      "death": {
+        "city": "Premià de Mar",
+        "country": "ESP",
+        "lat": 41.4917,
+        "lng": 2.3611
+      },
+      "desc": {
+        "fr": "Frère des Écoles chrétiennes équatorien, grammairien et académicien.",
+        "en": "An Ecuadorian Brother of the Christian Schools, grammarian and academician."
+      },
+      "bio": {
+        "fr": "Infirme des jambes jusqu'à l'âge de cinq ans, Miguel entra à quatorze ans chez les Frères, dont il fut le premier religieux équatorien. Ses manuels de grammaire castillane servirent dans toutes les écoles du pays, et l'Académie équatorienne de la langue l'élut à vingt-neuf ans ; il mourut en Espagne, où l'avaient conduit la maladie et les troubles politiques.",
+        "en": "Crippled in the legs until he was five, Miguel entered the Brothers at fourteen and was their first Ecuadorian religious. His Spanish grammars served in every school in the country, and the Ecuadorian Academy of the Language elected him at twenty-nine; he died in Spain, where illness and political troubles had taken him."
+      }
+    },
+    {
+      "id": "ref-garcia-zavala",
+      "name": {
+        "fr": "Marie-Guadalupe García Zavala",
+        "en": "Maria Guadalupe García Zavala"
+      },
+      "aka": [
+        "María Guadalupe García Zavala",
+        "Madre Lupita"
+      ],
+      "sex": "f",
+      "born": 1878,
+      "died": 1963,
+      "feast": "04-27",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Zapopan",
+        "country": "MEX",
+        "lat": 20.7167,
+        "lng": -103.4
+      },
+      "death": {
+        "city": "Guadalajara",
+        "country": "MEX",
+        "lat": 20.6667,
+        "lng": -103.35
+      },
+      "desc": {
+        "fr": "Fondatrice des Servantes de sainte Marguerite-Marie, qui cacha des prêtres pendant la guerre des Cristeros.",
+        "en": "Founder of the Handmaids of Saint Margaret Mary, who hid priests during the Cristero war."
+      },
+      "bio": {
+        "fr": "Fiancée, Guadalupe rompit ses noces pour fonder en 1901 un hôpital pour les malades pauvres de Guadalajara. Pendant la persécution religieuse des années 1920, elle abrita dans son établissement l'archevêque et plusieurs prêtres recherchés, tout en soignant les soldats du gouvernement, qui l'ignoraient. Elle finit par envoyer ses sœurs mendier dans les rues pour nourrir les malades.",
+        "en": "Engaged to be married, Guadalupe broke it off to found, in 1901, a hospital for the sick poor of Guadalajara. During the religious persecution of the 1920s she sheltered the archbishop and several hunted priests in her own building, while nursing the government soldiers, who knew nothing of it. In the end she sent her sisters out to beg in the streets to feed the patients."
+      }
+    },
+    {
+      "id": "ref-gonzalez-flores",
+      "name": {
+        "fr": "Anacleto González Flores",
+        "en": "Anacleto González Flores"
+      },
+      "aka": [
+        "Anacleto González Flores",
+        "El Maestro"
+      ],
+      "sex": "m",
+      "born": 1888,
+      "died": 1927,
+      "feast": "04-01",
+      "titles": [
+        "layperson",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Tepatitlán de Morelos",
+        "country": "MEX",
+        "lat": 20.8167,
+        "lng": -102.7667
+      },
+      "death": {
+        "city": "Guadalajara",
+        "country": "MEX",
+        "lat": 20.6667,
+        "lng": -103.35
+      },
+      "desc": {
+        "fr": "Avocat mexicain, chef de la résistance civique et non violente à la persécution.",
+        "en": "A Mexican lawyer, leader of the civic and non-violent resistance to the persecution."
+      },
+      "bio": {
+        "fr": "Fils de tisserand, avocat et journaliste, González Flores organisa contre les lois anticléricales de Calles un boycott économique et une désobéissance civile qu'il voulait sans armes, et qui firent de lui le porte-parole des catholiques du Jalisco. Arrêté en 1927, il fut torturé et fusillé sans jugement ; il fut béatifié en 2005.",
+        "en": "A weaver's son, lawyer and journalist, González Flores organised against the anticlerical laws of Calles an economic boycott and a civil disobedience he meant to keep unarmed, which made him the spokesman of the Catholics of Jalisco. Arrested in 1927, he was tortured and shot without trial; he was beatified in 2005."
+      }
+    },
+    {
+      "id": "ref-alvarado",
+      "name": {
+        "fr": "Marie de Saint-Joseph Alvarado",
+        "en": "Mary of Saint Joseph Alvarado"
+      },
+      "aka": [
+        "María de San José Alvarado Cardozo"
+      ],
+      "sex": "f",
+      "born": 1875,
+      "died": 1967,
+      "feast": "04-02",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Choroní",
+        "country": "VEN",
+        "lat": 10.5,
+        "lng": -67.6
+      },
+      "death": {
+        "city": "Maracay",
+        "country": "VEN",
+        "lat": 10.25,
+        "lng": -67.6
+      },
+      "desc": {
+        "fr": "Première béatifiée du Venezuela, fondatrice des Augustines Récollettes du Cœur de Jésus.",
+        "en": "The first Venezuelan to be beatified, founder of the Augustinian Recollects of the Heart of Jesus."
+      },
+      "bio": {
+        "fr": "Laura Alvarado avait vingt-six ans lorsqu'elle prit la direction de l'hospice des pauvres de Maracay, ouvert par son curé après une épidémie ; elle en fit une congrégation qui tint orphelinats, hospices et écoles dans tout le pays. Elle mourut à quatre-vingt-onze ans et fut béatifiée en 1995, la première de son pays.",
+        "en": "Laura Alvarado was twenty-six when she took charge of the poorhouse at Maracay, opened by her parish priest after an epidemic; she made of it a congregation that ran orphanages, hospices and schools across the country. She died at ninety-one and was beatified in 1995, the first of her nation."
+      }
+    },
+    {
+      "id": "ref-janssoone",
+      "name": {
+        "fr": "Frédéric Janssoone",
+        "en": "Frédéric Janssoone"
+      },
+      "aka": [
+        "Frédéric Janssoone",
+        "le Bon Père Frédéric"
+      ],
+      "sex": "m",
+      "born": 1838,
+      "died": 1916,
+      "feast": "08-05",
+      "titles": [
+        "priest",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Ghyvelde",
+        "country": "FRA",
+        "lat": 51.0333,
+        "lng": 2.55
+      },
+      "death": {
+        "city": "Montréal",
+        "country": "CAN",
+        "lat": 45.5089,
+        "lng": -73.5617
+      },
+      "desc": {
+        "fr": "Franciscain flamand, custode de Terre sainte puis quêteur au Québec.",
+        "en": "A Flemish Franciscan, custos in the Holy Land and then a questor in Quebec."
+      },
+      "bio": {
+        "fr": "Frédéric Janssoone rétablit à Jérusalem le chemin de croix public, interrompu depuis des siècles, et négocia avec les autorités ottomanes les droits des Latins sur les lieux saints. Envoyé au Canada quêter pour la Terre sainte, il y resta trente ans, parcourant les paroisses du Québec à pied et relançant le sanctuaire du Cap-de-la-Madeleine.",
+        "en": "Frédéric Janssoone restored at Jerusalem the public Way of the Cross, interrupted for centuries, and negotiated with the Ottoman authorities the Latin rights over the holy places. Sent to Canada to raise funds for the Holy Land, he stayed thirty years, walking the parishes of Quebec and reviving the shrine of Cap-de-la-Madeleine."
+      }
+    },
+    {
+      "id": "ref-blondin",
+      "name": {
+        "fr": "Marie-Anne Blondin",
+        "en": "Marie-Anne Blondin"
+      },
+      "aka": [
+        "Esther Blondin",
+        "Marie-Anne Blondin"
+      ],
+      "sex": "f",
+      "born": 1809,
+      "died": 1890,
+      "feast": "01-02",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Terrebonne",
+        "country": "CAN",
+        "lat": 45.7,
+        "lng": -73.6333
+      },
+      "death": {
+        "city": "Montréal",
+        "country": "CAN",
+        "lat": 45.4333,
+        "lng": -73.6667,
+        "note": "morte à Lachine, aujourd'hui dans Montréal"
+      },
+      "desc": {
+        "fr": "Fondatrice des Sœurs de Sainte-Anne, écartée de son œuvre et restée quarante ans à la lingerie.",
+        "en": "Founder of the Sisters of Saint Anne, set aside from her own work and left forty years in the laundry."
+      },
+      "bio": {
+        "fr": "Analphabète jusqu'à vingt-deux ans, Esther Blondin fonda en 1850 une congrégation enseignante et obtint une nouveauté que le clergé jugeait scandaleuse : des classes mixtes, faute de moyens pour deux écoles dans les villages. Un conflit avec l'aumônier la fit déposer ; elle vécut ses quarante dernières années comme simple sœur à la buanderie, sans jamais rien réclamer.",
+        "en": "Unable to read until she was twenty-two, Esther Blondin founded a teaching congregation in 1850 and obtained a novelty the clergy found scandalous: mixed classes, there being no means for two schools in a village. A quarrel with the chaplain had her deposed; she lived her last forty years as an ordinary sister in the laundry, never claiming anything back."
+      }
+    },
+    {
+      "id": "ref-durocher",
+      "name": {
+        "fr": "Marie-Rose Durocher",
+        "en": "Marie-Rose Durocher"
+      },
+      "aka": [
+        "Eulalie Durocher",
+        "Marie-Rose Durocher"
+      ],
+      "sex": "f",
+      "born": 1811,
+      "died": 1849,
+      "feast": "10-06",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Saint-Antoine-sur-Richelieu",
+        "country": "CAN",
+        "lat": 45.7667,
+        "lng": -73.1833
+      },
+      "death": {
+        "city": "Longueuil",
+        "country": "CAN",
+        "lat": 45.5333,
+        "lng": -73.5167
+      },
+      "desc": {
+        "fr": "Fondatrice des Sœurs des Saints Noms de Jésus et de Marie, morte à trente-huit ans.",
+        "en": "Founder of the Sisters of the Holy Names of Jesus and Mary, dead at thirty-eight."
+      },
+      "bio": {
+        "fr": "Ménagère du presbytère de son frère pendant treize ans, Eulalie Durocher y fonda la première association de jeunes filles du Canada. Pressée par l'évêque de Montréal, elle accepta en 1843 d'ouvrir une congrégation enseignante malgré une santé ruinée ; elle mourut six ans plus tard, laissant trente religieuses et quatre écoles.",
+        "en": "Housekeeper at her brother's presbytery for thirteen years, Eulalie Durocher founded there the first sodality for young women in Canada. Pressed by the bishop of Montreal, she agreed in 1843 to open a teaching congregation despite ruined health; she died six years later, leaving thirty sisters and four schools."
+      }
+    },
+    {
+      "id": "ref-turgeon",
+      "name": {
+        "fr": "Élisabeth Turgeon",
+        "en": "Élisabeth Turgeon"
+      },
+      "aka": [
+        "Élisabeth Turgeon"
+      ],
+      "sex": "f",
+      "born": 1840,
+      "died": 1881,
+      "feast": "08-17",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Beaumont",
+        "country": "CAN",
+        "lat": 46.8333,
+        "lng": -71.0167
+      },
+      "death": {
+        "city": "Rimouski",
+        "country": "CAN",
+        "lat": 48.45,
+        "lng": -68.5333
+      },
+      "desc": {
+        "fr": "Fondatrice des Sœurs de Notre-Dame du Saint-Rosaire, pour les écoles de rang du Bas-Saint-Laurent.",
+        "en": "Founder of the Sisters of Our Lady of the Holy Rosary, for the country schools of the Lower St Lawrence."
+      },
+      "bio": {
+        "fr": "Institutrice de campagne malgré une santé fragile, Élisabeth Turgeon fut appelée à Rimouski pour prendre la tête d'un groupe de maîtresses que l'évêque voulait ériger en congrégation. Elle imposa qu'on les instruise avant de les envoyer enseigner, ce qui n'allait pas de soi ; elle mourut à quarante ans, peu après les premiers vœux.",
+        "en": "A country schoolmistress despite frail health, Élisabeth Turgeon was called to Rimouski to head a group of teachers whom the bishop meant to erect into a congregation. She insisted they be trained before being sent to teach, which was not taken for granted; she died at forty, shortly after the first vows."
+      }
+    },
+    {
+      "id": "ref-catherine-saint-augustin",
+      "name": {
+        "fr": "Catherine de Saint-Augustin",
+        "en": "Catherine of Saint Augustine"
+      },
+      "aka": [
+        "Catherine de Longpré",
+        "Catherine de Saint-Augustin"
+      ],
+      "sex": "f",
+      "born": 1632,
+      "died": 1668,
+      "feast": "05-08",
+      "titles": [
+        "nun"
+      ],
+      "birth": {
+        "city": "Saint-Sauveur-le-Vicomte",
+        "country": "FRA",
+        "lat": 49.3856,
+        "lng": -1.5347
+      },
+      "death": {
+        "city": "Québec",
+        "country": "CAN",
+        "lat": 46.8123,
+        "lng": -71.2145
+      },
+      "desc": {
+        "fr": "Hospitalière normande, l'une des fondatrices de l'Église du Canada.",
+        "en": "A Norman hospital sister, one of the founders of the Church in Canada."
+      },
+      "bio": {
+        "fr": "Partie de Normandie à seize ans pour l'Hôtel-Dieu de Québec, Catherine y passa dix-neuf ans à soigner colons, soldats et Amérindiens dans une colonie de quelques centaines d'âmes, en pleine guerre iroquoise. Elle mourut à trente-six ans ; son journal spirituel, publié par son confesseur, est l'un des grands textes de la Nouvelle-France.",
+        "en": "She left Normandy at sixteen for the Hôtel-Dieu of Quebec and spent nineteen years nursing settlers, soldiers and Amerindians in a colony of a few hundred souls, in the midst of the Iroquois wars. She died at thirty-six; her spiritual journal, published by her confessor, is one of the great texts of New France."
+      }
+    },
+    {
+      "id": "ref-chiquitunga",
+      "name": {
+        "fr": "Marie-Félicie de Jésus au Saint-Sacrement",
+        "en": "Mary Felicia of Jesus in the Blessed Sacrament"
+      },
+      "aka": [
+        "Chiquitunga",
+        "María Felicia Guggiari Echeverría"
+      ],
+      "sex": "f",
+      "born": 1925,
+      "died": 1959,
+      "feast": "04-23",
+      "titles": [
+        "nun"
+      ],
+      "birth": {
+        "city": "Villarrica",
+        "country": "PRY",
+        "lat": -25.75,
+        "lng": -56.4333
+      },
+      "death": {
+        "city": "Asunción",
+        "country": "PRY",
+        "lat": -25.2667,
+        "lng": -57.6667
+      },
+      "desc": {
+        "fr": "Carmélite paraguayenne, première béatifiée de son pays.",
+        "en": "A Paraguayan Carmelite, the first of her country to be beatified."
+      },
+      "bio": {
+        "fr": "Militante de l'Action catholique, connue de tous sous son surnom d'enfance, Chiquitunga cacha des blessés et des opposants pendant la guerre civile de 1947 avant d'entrer au Carmel d'Asunción. Elle y mourut d'une hépatite fulminante à trente-trois ans, deux ans après sa profession ; elle fut béatifiée en 2018.",
+        "en": "A Catholic Action militant known to everyone by her childhood nickname, Chiquitunga hid the wounded and the hunted during the civil war of 1947 before entering the Carmel of Asunción. She died there of fulminant hepatitis at thirty-three, two years after her profession; she was beatified in 2018."
+      }
+    },
+    {
+      "id": "ref-francisco-victor",
+      "name": {
+        "fr": "Francisco de Paula Víctor",
+        "en": "Francisco de Paula Víctor"
+      },
+      "aka": [
+        "Francisco de Paula Victor"
+      ],
+      "sex": "m",
+      "born": 1827,
+      "died": 1905,
+      "feast": "09-23",
+      "titles": [
+        "priest"
+      ],
+      "birth": {
+        "city": "Campanha",
+        "country": "BRA",
+        "lat": -21.8333,
+        "lng": -45.4
+      },
+      "death": {
+        "city": "Três Pontas",
+        "country": "BRA",
+        "lat": -21.3667,
+        "lng": -45.5167
+      },
+      "desc": {
+        "fr": "Fils d'esclave devenu prêtre, curé de Três Pontas pendant quarante ans.",
+        "en": "The son of a slave who became a priest, parish priest of Três Pontas for forty years."
+      },
+      "bio": {
+        "fr": "Né esclave d'une maison du Minas Gerais, Francisco fut admis au séminaire de Mariana grâce à la protection de sa marraine, et y subit l'hostilité de condisciples blancs qui refusaient de servir sa messe. Curé de Três Pontas pendant quarante ans, il y fonda une école ouverte aux enfants noirs et laissa la réputation d'avoir désarmé la ville par sa douceur ; il fut béatifié en 2015.",
+        "en": "Born a slave in a household of Minas Gerais, Francisco was admitted to the seminary at Mariana through his godmother's protection, and there met the hostility of white fellow students who would not serve his Mass. Parish priest of Três Pontas for forty years, he founded a school open to black children and left the name of having disarmed the town by his mildness; he was beatified in 2015."
+      }
+    },
+    {
+      "id": "ref-albertina-berkenbrock",
+      "name": {
+        "fr": "Albertina Berkenbrock",
+        "en": "Albertina Berkenbrock"
+      },
+      "aka": [
+        "Albertina Berkenbrock"
+      ],
+      "sex": "f",
+      "born": 1919,
+      "died": 1931,
+      "feast": "06-15",
+      "titles": [
+        "layperson",
+        "martyr",
+        "youth"
+      ],
+      "birth": {
+        "city": "Imaruí",
+        "country": "BRA",
+        "lat": -28.3333,
+        "lng": -48.8167
+      },
+      "death": {
+        "city": "Imaruí",
+        "country": "BRA",
+        "lat": -28.3333,
+        "lng": -48.8167
+      },
+      "desc": {
+        "fr": "Fillette brésilienne de douze ans, tuée en résistant à un employé de la ferme familiale.",
+        "en": "A twelve-year-old Brazilian girl, killed resisting a hand on the family farm."
+      },
+      "bio": {
+        "fr": "Albertina cherchait une vache égarée quand un ouvrier de la ferme voisine l'entraîna dans un bois ; elle résista et il l'égorgea. Le meurtrier fut arrêté, l'affaire jugée, et l'enfant béatifiée en 2007 comme martyre de la chasteté.",
+        "en": "Albertina was looking for a lost cow when a hand from the neighbouring farm dragged her into a wood; she resisted and he cut her throat. The murderer was arrested, the case tried, and the child beatified in 2007 as a martyr of chastity."
+      }
+    },
+    {
+      "id": "ref-lindalva",
+      "name": {
+        "fr": "Lindalva Justo de Oliveira",
+        "en": "Lindalva Justo de Oliveira"
+      },
+      "aka": [
+        "Lindalva Justo de Oliveira"
+      ],
+      "sex": "f",
+      "born": 1953,
+      "died": 1993,
+      "feast": "04-09",
+      "titles": [
+        "nun",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Açu",
+        "country": "BRA",
+        "lat": -5.5667,
+        "lng": -36.9167
+      },
+      "death": {
+        "city": "Salvador",
+        "country": "BRA",
+        "lat": -12.9711,
+        "lng": -38.5108
+      },
+      "desc": {
+        "fr": "Fille de la Charité assassinée dans l'hospice de vieillards où elle servait.",
+        "en": "A Daughter of Charity murdered in the old people's home where she served."
+      },
+      "bio": {
+        "fr": "Lindalva servait depuis deux ans les pensionnaires de l'asile Dom Pedro II, à Salvador de Bahia, quand un vieillard de la maison, dont elle avait repoussé les avances, l'attaqua au couteau un matin de Vendredi saint, devant les autres pensionnaires. Elle fut béatifiée en 2007.",
+        "en": "Lindalva had served the residents of the Dom Pedro II home in Salvador da Bahia for two years when one of the old men there, whose advances she had refused, attacked her with a knife on a Good Friday morning, in front of the others. She was beatified in 2007."
+      }
+    },
+    {
+      "id": "ref-angelelli",
+      "name": {
+        "fr": "Enrique Angelelli",
+        "en": "Enrique Angelelli"
+      },
+      "aka": [
+        "Enrique Angelelli"
+      ],
+      "sex": "m",
+      "born": 1923,
+      "died": 1976,
+      "feast": "08-04",
+      "titles": [
+        "bishop",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Córdoba",
+        "country": "ARG",
+        "lat": -31.4,
+        "lng": -64.1833
+      },
+      "death": {
+        "city": "La Rioja",
+        "country": "ARG",
+        "lat": -29.4131,
+        "lng": -66.8558
+      },
+      "desc": {
+        "fr": "Évêque de La Rioja, tué dans un accident de route organisé par la dictature argentine.",
+        "en": "Bishop of La Rioja, killed in a road \"accident\" arranged by the Argentine dictatorship."
+      },
+      "bio": {
+        "fr": "Évêque d'une province pauvre, Angelelli soutint les coopératives de mineurs et de paysans contre les grands propriétaires, ce qui lui valut des menaces et l'hostilité d'une partie de son clergé. Le 4 août 1976, revenant d'enquêter sur l'assassinat de deux de ses prêtres, sa camionnette fut poussée hors de la route ; la justice argentine a reconnu en 2014 qu'il s'agissait d'un homicide, et il fut béatifié en 2019.",
+        "en": "Bishop of a poor province, Angelelli backed the mining and peasant cooperatives against the great landowners, which brought him threats and the hostility of part of his clergy. On 4 August 1976, returning from an inquiry into the murder of two of his priests, his pick-up was forced off the road; the Argentine courts ruled in 2014 that it was homicide, and he was beatified in 2019."
+      }
+    },
+    {
+      "id": "ref-james-miller",
+      "name": {
+        "fr": "James Miller",
+        "en": "James Miller"
+      },
+      "aka": [
+        "James Miller",
+        "Hermano Santiago"
+      ],
+      "sex": "m",
+      "born": 1944,
+      "died": 1982,
+      "feast": "02-13",
+      "titles": [
+        "religious",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Stevens Point",
+        "country": "USA",
+        "lat": 44.5236,
+        "lng": -89.5746
+      },
+      "death": {
+        "city": "Huehuetenango",
+        "country": "GTM",
+        "lat": 15.3197,
+        "lng": -91.4708
+      },
+      "desc": {
+        "fr": "Frère des Écoles chrétiennes du Wisconsin, abattu au Guatemala.",
+        "en": "A Christian Brother from Wisconsin, shot dead in Guatemala."
+      },
+      "bio": {
+        "fr": "Fils de fermiers, le frère James enseignait aux jeunes Indiens mams de Huehuetenango et s'employait à les soustraire aux enrôlements forcés de l'armée. Le 13 février 1982, trois hommes cagoulés l'abattirent alors qu'il réparait un mur de l'école ; il fut béatifié en 2019.",
+        "en": "A farmer's son, Brother James taught the young Mam Indians of Huehuetenango and worked to keep them out of the army's forced levies. On 13 February 1982 three hooded men shot him as he was repairing a school wall; he was beatified in 2019."
+      }
+    },
+    {
+      "id": "ref-botovasoa",
+      "name": {
+        "fr": "Lucien Botovasoa",
+        "en": "Lucien Botovasoa"
+      },
+      "aka": [
+        "Lucien Botovasoa"
+      ],
+      "sex": "m",
+      "born": 1908,
+      "died": 1947,
+      "feast": "04-17",
+      "titles": [
+        "layperson",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Vohipeno",
+        "country": "MDG",
+        "lat": -22.35,
+        "lng": 47.8333
+      },
+      "death": {
+        "city": "Vohipeno",
+        "country": "MDG",
+        "lat": -22.35,
+        "lng": 47.8333
+      },
+      "desc": {
+        "fr": "Instituteur malgache, père de famille, tué pendant l'insurrection de 1947.",
+        "en": "A Malagasy schoolmaster and father, killed during the insurrection of 1947."
+      },
+      "bio": {
+        "fr": "Instituteur et tertiaire franciscain, marié et père de cinq enfants, Botovasoa était l'un des lettrés de son village antemoro. Quand l'insurrection de 1947 tourna à la chasse aux chrétiens, il refusa de fuir et fut décapité au bord de la rivière Matitanana sur ordre d'un conseil de notables ; il fut béatifié en 2018.",
+        "en": "A schoolmaster and Franciscan tertiary, married with five children, Botovasoa was one of the lettered men of his Antemoro village. When the 1947 insurrection turned into a hunt for Christians, he refused to flee and was beheaded on the bank of the Matitanana river by order of a council of elders; he was beatified in 2018."
+      }
+    },
+    {
+      "id": "ref-daudi-okelo",
+      "name": {
+        "fr": "Daudi Okelo",
+        "en": "Daudi Okelo"
+      },
+      "aka": [
+        "Daudi Okelo",
+        "David Okelo"
+      ],
+      "sex": "m",
+      "born": 1902,
+      "died": 1918,
+      "circa": true,
+      "feast": "10-18",
+      "titles": [
+        "layperson",
+        "martyr",
+        "youth"
+      ],
+      "birth": {
+        "city": "Gulu",
+        "country": "UGA",
+        "lat": 2.7667,
+        "lng": 32.3056,
+        "note": "né au village d'Ogom-Payira"
+      },
+      "death": {
+        "city": "Kitgum",
+        "country": "UGA",
+        "lat": 3.2783,
+        "lng": 32.8867,
+        "note": "tué à Paimol"
+      },
+      "desc": {
+        "fr": "Catéchiste acholi de seize ans, tué à la lance avec son compagnon Jildo Irwa.",
+        "en": "An Acholi catechist of sixteen, speared to death with his companion Jildo Irwa."
+      },
+      "bio": {
+        "fr": "Envoyé catéchiser le village de Paimol malgré les avertissements sur l'insécurité de la région, Daudi refusa d'abandonner son poste quand des hommes armés lui ordonnèrent de cesser d'enseigner. Il fut transpercé de lances avec Jildo Irwa, son cadet de quatre ans ; les deux garçons furent béatifiés ensemble en 2002.",
+        "en": "Sent to catechise the village of Paimol despite warnings about the insecurity of the district, Daudi refused to leave his post when armed men ordered him to stop teaching. He was run through with spears alongside Jildo Irwa, four years his junior; the two boys were beatified together in 2002."
+      }
+    },
+    {
+      "id": "ref-jildo-irwa",
+      "name": {
+        "fr": "Jildo Irwa",
+        "en": "Jildo Irwa"
+      },
+      "aka": [
+        "Jildo Irwa"
+      ],
+      "sex": "m",
+      "born": 1906,
+      "died": 1918,
+      "circa": true,
+      "feast": "10-18",
+      "titles": [
+        "layperson",
+        "martyr",
+        "youth"
+      ],
+      "birth": {
+        "city": "Gulu",
+        "country": "UGA",
+        "lat": 2.7667,
+        "lng": 32.3056,
+        "note": "né au village de Bar-Kitoba"
+      },
+      "death": {
+        "city": "Kitgum",
+        "country": "UGA",
+        "lat": 3.2783,
+        "lng": 32.8867,
+        "note": "tué à Paimol"
+      },
+      "desc": {
+        "fr": "Aide-catéchiste acholi de douze ans, tué avec Daudi Okelo.",
+        "en": "An Acholi assistant catechist of twelve, killed with Daudi Okelo."
+      },
+      "bio": {
+        "fr": "Jildo avait douze ans lorsqu'il suivit Daudi Okelo à Paimol comme aide-catéchiste. Aux hommes venus les menacer, il répondit qu'ils faisaient l'œuvre de Dieu et non celle des Blancs ; il fut tué à la lance après son compagnon, et béatifié avec lui en 2002.",
+        "en": "Jildo was twelve when he followed Daudi Okelo to Paimol as his assistant catechist. To the men who came to threaten them he answered that they were doing God's work and not the white men's; he was speared after his companion, and beatified with him in 2002."
+      }
+    },
+    {
+      "id": "ref-berthieu",
+      "name": {
+        "fr": "Jacques Berthieu",
+        "en": "Jacques Berthieu"
+      },
+      "aka": [
+        "Jacques Berthieu"
+      ],
+      "sex": "m",
+      "born": 1838,
+      "died": 1896,
+      "feast": "06-08",
+      "titles": [
+        "priest",
+        "martyr",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Polminhac",
+        "country": "FRA",
+        "lat": 44.9333,
+        "lng": 2.55
+      },
+      "death": {
+        "city": "Ambatondrazaka",
+        "country": "MDG",
+        "lat": -17.8333,
+        "lng": 48.4167,
+        "note": "tué au bord de la rivière Mananara"
+      },
+      "desc": {
+        "fr": "Jésuite auvergnat, premier saint canonisé de Madagascar.",
+        "en": "An Auvergnat Jesuit, the first canonised saint of Madagascar."
+      },
+      "bio": {
+        "fr": "Curé de campagne devenu jésuite à trente-cinq ans, Berthieu passa vingt ans à Madagascar, apprenant le malgache et suivant ses chrétiens dans leurs déplacements forcés. Pendant l'insurrection des Menalamba, il refusa de renier sa foi devant les rebelles qui l'avaient capturé et fut abattu ; il fut canonisé en 2012.",
+        "en": "A country priest who became a Jesuit at thirty-five, Berthieu spent twenty years in Madagascar, learning Malagasy and following his Christians through their forced displacements. During the Menalamba rising he refused to renounce his faith before the rebels who had taken him, and was shot; he was canonised in 2012."
+      }
+    },
+    {
+      "id": "ref-leonella-sgorbati",
+      "name": {
+        "fr": "Leonella Sgorbati",
+        "en": "Leonella Sgorbati"
+      },
+      "aka": [
+        "Leonella Sgorbati",
+        "Rosa Sgorbati"
+      ],
+      "sex": "f",
+      "born": 1940,
+      "died": 2006,
+      "feast": "09-17",
+      "titles": [
+        "nun",
+        "martyr",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Piacenza",
+        "country": "ITA",
+        "lat": 45.05,
+        "lng": 9.7,
+        "note": "née au hameau de Rezzanello, dans la province de Plaisance"
+      },
+      "death": {
+        "city": "Mogadishu",
+        "country": "SOM",
+        "lat": 2.0667,
+        "lng": 45.3667
+      },
+      "desc": {
+        "fr": "Missionnaire de la Consolata, infirmière, abattue devant l'hôpital de Mogadiscio.",
+        "en": "A Consolata missionary and nurse, shot outside the hospital in Mogadishu."
+      },
+      "bio": {
+        "fr": "Après trente ans au Kenya, où elle avait formé des générations d'infirmières, sœur Leonella accepta d'ouvrir une école d'infirmiers à Mogadiscio, dans un pays sans État. Le 17 septembre 2006, deux hommes l'abattirent alors qu'elle rentrait de l'hôpital ; son garde du corps somalien, musulman, fut tué avec elle. Elle fut béatifiée en 2018.",
+        "en": "After thirty years in Kenya, where she had trained generations of nurses, Sister Leonella agreed to open a nursing school in Mogadishu, in a country without a state. On 17 September 2006 two men shot her as she walked back from the hospital; her Somali bodyguard, a Muslim, was killed with her. She was beatified in 2018."
+      }
+    },
+    {
+      "id": "ref-maurice-tornay",
+      "name": {
+        "fr": "Maurice Tornay",
+        "en": "Maurice Tornay"
+      },
+      "aka": [
+        "Maurice Tornay"
+      ],
+      "sex": "m",
+      "born": 1910,
+      "died": 1949,
+      "feast": "08-11",
+      "titles": [
+        "priest",
+        "martyr",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Orsières",
+        "country": "CHE",
+        "lat": 46.0289,
+        "lng": 7.1447
+      },
+      "death": {
+        "city": "Shangri-La",
+        "country": "CHN",
+        "lat": 27.8167,
+        "lng": 99.7,
+        "note": "tué au col de Choula, aux confins du Tibet"
+      },
+      "desc": {
+        "fr": "Chanoine du Grand-Saint-Bernard, tué aux marches du Tibet.",
+        "en": "A canon of the Great St Bernard, killed on the marches of Tibet."
+      },
+      "bio": {
+        "fr": "Chanoine du Grand-Saint-Bernard envoyé desservir les cols de la frontière sino-tibétaine, Tornay tint la mission de Yerkalo jusqu'à en être chassé par les lamas du monastère voisin. Parti plaider sa cause à Lhassa déguisé en marchand, il fut abattu en embuscade au retour, en 1949 ; il fut béatifié en 1993.",
+        "en": "A canon of the Great St Bernard sent to serve the passes of the Sino-Tibetan border, Tornay held the mission of Yerkalo until the lamas of the neighbouring monastery drove him out. Setting off disguised as a trader to plead his case at Lhasa, he was shot from ambush on the way back, in 1949; he was beatified in 1993."
+      }
+    },
+    {
+      "id": "ref-bunkerd",
+      "name": {
+        "fr": "Nicolas Bunkerd Kitbamrung",
+        "en": "Nicholas Bunkerd Kitbamrung"
+      },
+      "aka": [
+        "Nicolas Bunkerd Kitbamrung"
+      ],
+      "sex": "m",
+      "born": 1895,
+      "died": 1944,
+      "feast": "01-12",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Nakhon Pathom",
+        "country": "THA",
+        "lat": 13.8196,
+        "lng": 100.0645
+      },
+      "death": {
+        "city": "Bangkok",
+        "country": "THA",
+        "lat": 13.75,
+        "lng": 100.5167
+      },
+      "desc": {
+        "fr": "Prêtre siamois mort en prison, accusé d'espionnage pendant la guerre.",
+        "en": "A Siamese priest who died in prison, accused of spying during the war."
+      },
+      "bio": {
+        "fr": "Missionnaire dans le nord du Siam et jusqu'au Laos, Bunkerd fut arrêté en 1941, quand le nationalisme de guerre fit soupçonner les catholiques d'être des agents français. Condamné à quinze ans, il catéchisa ses codétenus et en baptisa soixante-huit avant de mourir de tuberculose ; il fut béatifié en 2000.",
+        "en": "A missionary in northern Siam and as far as Laos, Bunkerd was arrested in 1941, when wartime nationalism made Catholics suspect as French agents. Sentenced to fifteen years, he catechised his fellow prisoners and baptised sixty-eight of them before dying of tuberculosis; he was beatified in 2000."
+      }
+    },
+    {
+      "id": "ref-peter-kibe",
+      "name": {
+        "fr": "Pierre Kibe Kasui",
+        "en": "Peter Kibe Kasui"
+      },
+      "aka": [
+        "Petro Kibe Kasui",
+        "Pierre Kibe"
+      ],
+      "sex": "m",
+      "born": 1587,
+      "died": 1639,
+      "feast": "07-01",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Kunisaki",
+        "country": "JPN",
+        "lat": 33.5667,
+        "lng": 131.7333
+      },
+      "death": {
+        "city": "Tokyo",
+        "country": "JPN",
+        "lat": 35.6895,
+        "lng": 139.6917
+      },
+      "desc": {
+        "fr": "Japonais qui gagna Rome à pied pour se faire prêtre, et revint mourir au pays.",
+        "en": "A Japanese who walked to Rome to be made a priest, and came back to die at home."
+      },
+      "bio": {
+        "fr": "Expulsé du Japon avec les missionnaires, Kibe fut refusé au sacerdoce à Macao ; il gagna alors Rome par Goa, la Perse et Jérusalem, en grande partie à pied, et y fut ordonné en 1620. Il rentra clandestinement au Japon en 1630, y exerça neuf ans en fuite, et mourut à Edo dans la fosse, ayant refusé d'apostasier.",
+        "en": "Expelled from Japan with the missionaries, Kibe was refused ordination at Macao; so he made his way to Rome by Goa, Persia and Jerusalem, much of it on foot, and was ordained there in 1620. He slipped back into Japan in 1630, ministered nine years on the run, and died at Edo in the pit, having refused to apostatise."
+      }
+    },
+    {
+      "id": "ref-yun-ji-chung",
+      "name": {
+        "fr": "Paul Yun Ji-chung",
+        "en": "Paul Yun Ji-chung"
+      },
+      "aka": [
+        "Yun Ji-chung",
+        "Paul Yun"
+      ],
+      "sex": "m",
+      "born": 1759,
+      "died": 1791,
+      "feast": "05-29",
+      "titles": [
+        "layperson",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Jeonju",
+        "country": "KOR",
+        "lat": 35.8219,
+        "lng": 127.1489
+      },
+      "death": {
+        "city": "Jeonju",
+        "country": "KOR",
+        "lat": 35.8219,
+        "lng": 127.1489
+      },
+      "desc": {
+        "fr": "Premier martyr de Corée, décapité pour n'avoir pas dressé la tablette funéraire de sa mère.",
+        "en": "The first martyr of Korea, beheaded for not setting up his mother's ancestral tablet."
+      },
+      "bio": {
+        "fr": "Lettré converti par des livres venus de Pékin, dans une Église coréenne née sans missionnaire, Yun fit brûler les tablettes ancestrales de sa famille et enterra sa mère sans les rites confucéens — un crime capital sous les Joseon. Décapité à Jeonju avec son cousin, il ouvre la longue liste des martyrs coréens ; il fut béatifié en 2014.",
+        "en": "A scholar converted by books brought from Peking, in a Korean Church born without missionaries, Yun burned his family's ancestral tablets and buried his mother without the Confucian rites — a capital crime under the Joseon. Beheaded at Jeonju with his cousin, he opens the long roll of the Korean martyrs; he was beatified in 2014."
+      }
+    },
+    {
+      "id": "ref-vincent-liem",
+      "name": {
+        "fr": "Vincent Liem de la Paix",
+        "en": "Vincent Liem of Peace"
+      },
+      "aka": [
+        "Vinh Sơn Phạm Hiếu Liêm",
+        "Vincent Liêm"
+      ],
+      "sex": "m",
+      "born": 1732,
+      "died": 1773,
+      "feast": "11-07",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Nam Định",
+        "country": "VNM",
+        "lat": 20.4333,
+        "lng": 106.1667,
+        "note": "né au village de Trà Lũ"
+      },
+      "death": {
+        "city": "Hanoi",
+        "country": "VNM",
+        "lat": 21.0245,
+        "lng": 105.8412
+      },
+      "desc": {
+        "fr": "Premier martyr dominicain vietnamien, formé à Manille.",
+        "en": "The first Vietnamese Dominican martyr, trained at Manila."
+      },
+      "bio": {
+        "fr": "Envoyé étudier à Manille, où il passa douze ans, Vincent Liem revint prêcher au Tonkin sous les Trịnh. Arrêté en 1773, il fut soumis à une controverse publique avec des lettrés avant d'être décapité ; il fut canonisé en 1988 avec les cent dix-sept martyrs du Vietnam.",
+        "en": "Sent to study at Manila, where he spent twelve years, Vincent Liem came back to preach in Tonkin under the Trịnh. Arrested in 1773, he was put through a public disputation with scholars before being beheaded; he was canonised in 1988 with the hundred and seventeen martyrs of Vietnam."
+      }
+    },
+    {
+      "id": "ref-simon-phan-dac-hoa",
+      "name": {
+        "fr": "Simon Phan Đắc Hòa",
+        "en": "Simon Phan Đắc Hòa"
+      },
+      "aka": [
+        "Simon Hòa",
+        "Simon Phan Đắc Hòa"
+      ],
+      "sex": "m",
+      "born": 1774,
+      "died": 1840,
+      "feast": "12-12",
+      "titles": [
+        "layperson",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Huế",
+        "country": "VNM",
+        "lat": 16.4667,
+        "lng": 107.6,
+        "note": "né au village de Mai Vĩnh"
+      },
+      "death": {
+        "city": "Huế",
+        "country": "VNM",
+        "lat": 16.4667,
+        "lng": 107.6
+      },
+      "desc": {
+        "fr": "Médecin et chef de village vietnamien, décapité pour avoir caché des prêtres.",
+        "en": "A Vietnamese physician and village head, beheaded for hiding priests."
+      },
+      "bio": {
+        "fr": "Orphelin élevé par un catéchiste, Simon Hòa devint médecin, se maria, eut douze enfants et fut élu chef de son village. Il abritait les prêtres traqués sous Minh Mạng ; arrêté et sommé de piétiner la croix, il refusa et fut décapité à Huế. Il fut canonisé en 1988.",
+        "en": "An orphan raised by a catechist, Simon Hòa became a physician, married, had twelve children and was elected head of his village. He sheltered the priests hunted under Minh Mạng; arrested and ordered to trample the cross, he refused and was beheaded at Huế. He was canonised in 1988."
+      }
+    },
+    {
+      "id": "ref-bonnard",
+      "name": {
+        "fr": "Jean-Louis Bonnard",
+        "en": "Jean-Louis Bonnard"
+      },
+      "aka": [
+        "Jean-Louis Bonnard"
+      ],
+      "sex": "m",
+      "born": 1824,
+      "died": 1852,
+      "feast": "05-01",
+      "titles": [
+        "priest",
+        "martyr",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Saint-Christo-en-Jarez",
+        "country": "FRA",
+        "lat": 45.5333,
+        "lng": 4.4667
+      },
+      "death": {
+        "city": "Nam Định",
+        "country": "VNM",
+        "lat": 20.4333,
+        "lng": 106.1667
+      },
+      "desc": {
+        "fr": "Missionnaire lyonnais décapité au Tonkin à vingt-huit ans.",
+        "en": "A missionary from the Lyonnais, beheaded in Tonkin at twenty-eight."
+      },
+      "bio": {
+        "fr": "Parti des Missions étrangères de Paris à vingt-trois ans, Bonnard n'eut que trois ans de ministère au Tonkin avant d'être dénoncé et mis à la cangue. Ses lettres de prison à sa famille, publiées en France, firent connaître la persécution vietnamienne ; il fut canonisé en 1988.",
+        "en": "He left the Paris Foreign Missions at twenty-three and had barely three years of ministry in Tonkin before being denounced and put in the cangue. His prison letters home, published in France, made the Vietnamese persecution known there; he was canonised in 1988."
+      }
+    },
+    {
+      "id": "ref-kunjachan",
+      "name": {
+        "fr": "Augustin Thevarparampil",
+        "en": "Augustine Thevarparampil"
+      },
+      "aka": [
+        "Kunjachan",
+        "Augustine Thevarparampil"
+      ],
+      "sex": "m",
+      "born": 1891,
+      "died": 1973,
+      "feast": "10-16",
+      "titles": [
+        "priest"
+      ],
+      "birth": {
+        "city": "Ramapuram",
+        "country": "IND",
+        "lat": 9.8167,
+        "lng": 76.7667
+      },
+      "death": {
+        "city": "Ramapuram",
+        "country": "IND",
+        "lat": 9.8167,
+        "lng": 76.7667
+      },
+      "desc": {
+        "fr": "Prêtre syro-malabar, apôtre des Dalits de son village pendant quarante ans.",
+        "en": "A Syro-Malabar priest, apostle of the Dalits of his own village for forty years."
+      },
+      "bio": {
+        "fr": "Jugé trop faible pour une charge paroissiale, Kunjachan — « le petit prêtre » — obtint de se consacrer aux Pulayas, la caste des intouchables de son village du Kerala, qu'il visita dans leurs huttes pendant quarante ans, s'asseyant par terre avec eux. Il en baptisa près de six mille et fit scolariser leurs enfants ; il fut béatifié en 2006.",
+        "en": "Judged too frail for a parish, Kunjachan — \"the little priest\" — obtained leave to devote himself to the Pulayas, the untouchable caste of his Kerala village, whom he visited in their huts for forty years, sitting on the ground with them. He baptised nearly six thousand of them and got their children schooled; he was beatified in 2006."
+      }
+    },
+    {
+      "id": "ref-assunta-pallotta",
+      "name": {
+        "fr": "Marie-Assunta Pallotta",
+        "en": "Maria Assunta Pallotta"
+      },
+      "aka": [
+        "Maria Assunta Pallotta"
+      ],
+      "sex": "f",
+      "born": 1878,
+      "died": 1905,
+      "feast": "04-07",
+      "titles": [
+        "nun",
+        "missionary"
+      ],
+      "birth": {
+        "city": "Force",
+        "country": "ITA",
+        "lat": 42.9667,
+        "lng": 13.6167
+      },
+      "death": {
+        "city": "Taiyuan",
+        "country": "CHN",
+        "lat": 37.8694,
+        "lng": 112.5603,
+        "note": "morte à l'orphelinat de Dongergou"
+      },
+      "desc": {
+        "fr": "Franciscaine missionnaire de Marie, morte du typhus en Chine à vingt-sept ans.",
+        "en": "A Franciscan Missionary of Mary, dead of typhus in China at twenty-seven."
+      },
+      "bio": {
+        "fr": "Fille de journaliers des Marches, entrée chez les Franciscaines missionnaires de Marie comme sœur converse, Assunta partit en 1904 pour le Shanxi et fut affectée à la cuisine d'un orphelinat. Elle mourut du typhus l'année suivante, ayant soigné les enfants atteints ; sa béatification, en 1954, honora une vie entièrement occupée de tâches obscures.",
+        "en": "The daughter of day-labourers in the Marches, who entered the Franciscan Missionaries of Mary as a lay sister, Assunta left for Shanxi in 1904 and was put in the kitchen of an orphanage. She died of typhus the next year, having nursed the stricken children; her beatification in 1954 honoured a life wholly taken up with obscure work."
+      }
+    },
+    {
+      "id": "ref-alfredo-ildefonso",
+      "name": {
+        "fr": "Ildephonse Schuster",
+        "en": "Ildefonso Schuster",
+        "la": "Ildephonsus Schuster"
+      },
+      "aka": [
+        "Alfredo Ildefonso Schuster"
+      ],
+      "sex": "m",
+      "born": 1880,
+      "died": 1954,
+      "feast": "08-30",
+      "titles": [
+        "cardinal",
+        "monk"
+      ],
+      "birth": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "death": {
+        "city": "Venegono Inferiore",
+        "country": "ITA",
+        "lat": 45.7667,
+        "lng": 8.9
+      },
+      "desc": {
+        "fr": "Bénédictin devenu archevêque de Milan, liturgiste et médiateur des derniers jours du fascisme.",
+        "en": "A Benedictine who became archbishop of Milan, liturgist and mediator in the last days of Fascism."
+      },
+      "bio": {
+        "fr": "Fils d'un tailleur bavarois établi à Rome, abbé de Saint-Paul-hors-les-Murs et savant liturgiste, Schuster fut fait archevêque de Milan en 1929. Il condamna publiquement le racisme d'État en 1938 et tenta, le 25 avril 1945, une médiation de la dernière heure entre Mussolini et la Résistance dans son archevêché ; il fut béatifié en 1996.",
+        "en": "The son of a Bavarian tailor settled in Rome, abbot of St Paul's Outside the Walls and a learned liturgist, Schuster was made archbishop of Milan in 1929. He condemned state racism publicly in 1938 and attempted, on 25 April 1945, a last-hour mediation between Mussolini and the Resistance in his own archbishop's house; he was beatified in 1996."
+      }
+    }
+  ]
+}

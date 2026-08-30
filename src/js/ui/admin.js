@@ -1,8 +1,11 @@
 import { DEFAULT_COUNT, checkAvailability, requestSaints } from '../ai.js';
 import { PUBLISHED, REJECTED } from '../data.js';
-import { buildDraft, findPlaces, surveyGaps } from '../expert.js';
-import { collator, formatFeast, formatNumber, formatYear, getLanguage, monthNames, t } from '../i18n.js';
+import { buildDraft, findKnown, findPlaces, findSaints, pick, surveyGaps } from '../expert.js';
+import {
+  collator, formatFeast, formatNumber, formatYear, getLanguage, monthNames, t, titleLabel,
+} from '../i18n.js';
 import { reviewPool, verifyCandidate } from '../verify.js';
+import { TITLE_KEYS } from './addForm.js';
 import { field, fill, h, select } from './dom.js';
 
 function lifespan(saint) {
@@ -82,6 +85,17 @@ export class ModerationPanel {
 
 const HANDLED_KEY = 'sanctimaps.assistant.handled.v1';
 
+/** L'atelier de l'expert au repos. Une fonction, pour que le tableau des
+ *  qualités soit neuf à chaque remise à zéro. */
+const blankExpert = () => ({
+  query: '', matches: null, known: null, entry: null, placeKind: 'born',
+  name: '', sex: 'm', country: '', city: '',
+  born: '', died: '', circa: false, month: '', day: '',
+  titles: [], desc: '', patronage: '', bio: '',
+  places: null, chosen: null, fallback: null,
+  checked: null, busy: false, searching: false, error: null,
+});
+
 function readHandled() {
   try {
     return new Set(JSON.parse(localStorage.getItem(HANDLED_KEY) || '[]'));
@@ -120,12 +134,8 @@ export class AssistantPanel {
     this.source = 'pool';
     this.review = null;
     this.ai = { region: '', century: '', count: DEFAULT_COUNT, busy: false, error: null, usage: null };
-    // L'expert : ce que l'administrateur sait, et ce que la table sait.
-    this.expert = {
-      name: '', sex: 'm', country: '', city: '',
-      born: '', died: '', circa: false, month: '', day: '', desc: '',
-      matches: null, chosen: null, checked: null, busy: false, error: null,
-    };
+    // L'expert : ce que l'administrateur sait, et ce que les deux fonds savent.
+    this.expert = blankExpert();
     this.root = h('div', { class: 'assistant' });
     this.render();
     checkAvailability().then((status) => {
@@ -143,31 +153,113 @@ export class AssistantPanel {
   }
 
   // -------------------------------------------------------------------------
-  // Expert : la table des localités tient lieu de mémoire
+  // Expert : deux fonds livrés avec l'application tiennent lieu de mémoire
   // -------------------------------------------------------------------------
 
   /**
-   * Cherche la ville de naissance dans la table du pays.
+   * Cherche le saint par son nom.
    *
-   * Le fichier d'un pays n'est chargé qu'à la demande : chercher un lieu en
-   * France ne fait pas descendre les localités du monde entier.
+   * D'abord dans le corpus, pour dire tout de suite s'il y est déjà ; puis
+   * dans le fond documentaire, qui rendra sa fiche complète.
    */
-  async lookup() {
-    const { country, city } = this.expert;
-    if (!country || !city.trim()) return;
-    this.expert.busy = true;
-    this.expert.error = null;
+  async lookupSaint() {
+    const e = this.expert;
+    const query = e.query.trim();
+    if (query.length < 2) return;
+    e.searching = true;
+    e.error = null;
     this.render();
     try {
-      const places = await this.atlas.ensurePlaces(country);
-      this.expert.matches = findPlaces(places, city);
-      this.expert.chosen = this.expert.matches.length === 1 ? this.expert.matches[0] : null;
-      if (!this.expert.matches.length) this.expert.error = t('expert.noPlace');
-    } catch {
-      this.expert.error = t('expert.noPlace');
+      const { entries } = await this.atlas.reference();
+      e.matches = findSaints(entries, query);
+      e.known = findKnown(this.atlas, query);
+      // Une seule réponse : inutile de faire choisir entre elle et rien.
+      if (e.matches.length === 1) {
+        await this.chooseEntry(e.matches[0]);
+        return;
+      }
+      if (!e.matches.length) e.name = query;
     } finally {
-      this.expert.busy = false;
-      this.expert.checked = null;
+      e.searching = false;
+      this.render();
+    }
+  }
+
+  /**
+   * Verse dans l'atelier tout ce que la fiche de référence contient.
+   *
+   * L'état est modifié sur place et non remplacé : une méthode entamée avant
+   * ce choix garde ainsi la main sur le même objet, faute de quoi elle
+   * écrirait dans un atelier que plus personne ne regarde.
+   */
+  async chooseEntry(entry) {
+    const lang = getLanguage();
+    const [month, day] = (entry.feast || '').split('-');
+    Object.assign(this.expert, {
+      entry,
+      name: pick(entry.name, lang) || entry.name.fr,
+      sex: entry.sex || 'm',
+      born: entry.born == null ? '' : String(entry.born),
+      died: entry.died == null ? '' : String(entry.died),
+      circa: Boolean(entry.circa),
+      month: month ? String(Number(month)) : '',
+      day: day ? String(Number(day)) : '',
+      titles: [...(entry.titles || [])],
+      desc: pick(entry.desc, lang),
+      patronage: pick(entry.patronage, lang),
+      bio: pick(entry.bio, lang),
+      placeKind: 'born',
+      checked: null,
+      error: null,
+    });
+    await this.usePlace('born');
+  }
+
+  /** Porte sur la carte le lieu de naissance, ou celui de la mort. */
+  async usePlace(kind) {
+    const e = this.expert;
+    const place = kind === 'died' ? e.entry?.death : e.entry?.birth;
+    if (!place) return;
+    e.placeKind = kind;
+    e.country = place.country;
+    e.city = place.city;
+    e.checked = null;
+    await this.lookupPlace();
+  }
+
+  /**
+   * Cherche la localité dans la table du pays.
+   *
+   * Le fichier d'un pays n'est chargé qu'à la demande : chercher un lieu en
+   * France ne fait pas descendre les localités du monde entier. Quand la table
+   * ignore le village — elle s'arrête aux lieux habités qu'elle recense —, les
+   * coordonnées de la fiche de référence prennent le relais, et l'atelier le
+   * dit plutôt que de le taire.
+   */
+  async lookupPlace() {
+    const e = this.expert;
+    if (!e.country || !e.city.trim()) return;
+    e.busy = true;
+    e.error = null;
+    e.fallback = null;
+    this.render();
+    try {
+      const [places, { aliases }] = await Promise.all([
+        this.atlas.ensurePlaces(e.country),
+        this.atlas.reference(),
+      ]);
+      e.places = findPlaces(places, e.city, aliases[e.country]);
+      e.chosen = e.places.length ? e.places[0] : null;
+      if (!e.places.length) {
+        const known = e.placeKind === 'died' ? e.entry?.death : e.entry?.birth;
+        if (known && known.country === e.country) e.fallback = { lat: known.lat, lng: known.lng };
+        else e.error = t('expert.noPlace');
+      }
+    } catch {
+      e.error = t('expert.noPlace');
+    } finally {
+      e.busy = false;
+      e.checked = null;
       this.render();
     }
   }
@@ -181,18 +273,25 @@ export class AssistantPanel {
   /** Assemble la fiche et la soumet aux mêmes contrôles que toute autre. */
   compose() {
     const e = this.expert;
-    if (!e.chosen || !e.name.trim()) return;
+    if ((!e.chosen && !e.fallback) || !e.name.trim()) return;
     const pad = (n) => String(n).padStart(2, '0');
     const draft = buildDraft({
       name: e.name,
       sex: e.sex,
       country: e.country,
+      city: e.city,
       place: e.chosen,
+      lat: e.fallback?.lat,
+      lng: e.fallback?.lng,
+      placeKind: e.placeKind,
       born: e.born,
       died: e.died,
       circa: e.circa,
       feast: e.month && e.day ? `${pad(Number(e.month))}-${pad(Number(e.day))}` : '',
+      titles: e.titles,
       desc: e.desc,
+      patronage: e.patronage,
+      bio: e.bio,
     });
     const candidate = { ...draft, id: `exp-${Date.now().toString(36)}` };
     e.checked = { candidate, ...verifyCandidate(candidate, this.atlas) };
@@ -204,11 +303,7 @@ export class AssistantPanel {
     const checked = this.expert.checked;
     if (!checked?.ok) return;
     this.onAccept(checked.candidate);
-    this.expert = {
-      ...this.expert,
-      name: '', city: '', born: '', died: '', circa: false, month: '', day: '', desc: '',
-      matches: null, chosen: null, checked: null,
-    };
+    Object.assign(this.expert, blankExpert());
     this.render();
   }
 
@@ -314,74 +409,100 @@ export class AssistantPanel {
       }, h('span', { text: label }))));
   }
 
-  /** L'atelier de l'expert : saisir, retrouver le lieu, contrôler, publier. */
-  expertControls() {
+  /** La barre de recherche du fond, et ce qu'elle répond. */
+  expertSearch() {
     const e = this.expert;
     const lang = getLanguage();
-    const cmp = collator();
-    const countries = this.atlas.countries
-      .map((c) => ({ value: c.id, label: this.atlas.countryName(c.id, lang) }))
-      .sort((a, b) => cmp.compare(a.label, b.label));
-    const months = monthNames().map((label, i) => ({ value: String(i + 1), label }));
-    const gaps = surveyGaps(this.atlas);
-    const thin = gaps.byContinent[0];
 
-    // Les deux boutons se règlent depuis la frappe, sans reconstruire le
-    // formulaire : un rendu à chaque touche volerait le curseur au champ.
+    const searchBtn = h('button', {
+      class: 'btn btn--primary',
+      type: 'button',
+      disabled: e.searching || e.query.trim().length < 2,
+      text: e.searching ? t('expert.looking') : t('expert.find'),
+      onclick: () => this.lookupSaint(),
+    });
+
+    return [
+      h('div', { class: 'filters__row' },
+        field(t('expert.saint'), h('input', {
+          class: 'control', type: 'text', value: e.query,
+          placeholder: t('expert.saintPlaceholder'),
+          oninput: (ev) => {
+            e.query = ev.target.value;
+            searchBtn.disabled = e.searching || e.query.trim().length < 2;
+          },
+          onkeydown: (ev) => {
+            if (ev.key === 'Enter') { ev.preventDefault(); this.lookupSaint(); }
+          },
+        })),
+        searchBtn),
+
+      // Un saint déjà sur la carte n'a pas besoin d'une seconde fiche ; mieux
+      // vaut le dire avant le travail qu'après la vérification.
+      e.known && e.known.length
+        ? h('p', { class: 'notice notice--mine',
+          text: t('expert.already', {
+            names: e.known.map((s) => this.atlas.saintName(s, lang)).join(', '),
+          }) })
+        : null,
+
+      e.matches && !e.matches.length
+        ? h('p', { class: 'field__hint', text: t('expert.notInFond') })
+        : null,
+
+      // Le fond répond par des fiches, pas par une fiche : à l'administrateur
+      // de reconnaître le sien, dates et lieu à l'appui.
+      e.matches && e.matches.length > 1
+        ? h('div', { class: 'results' }, ...e.matches.map((entry) => h('button', {
+          class: `result${e.entry === entry ? ' is-active' : ''}`,
+          type: 'button',
+          onclick: () => this.chooseEntry(entry),
+        },
+        h('span', { class: 'result__name', text: pick(entry.name, lang) }),
+        h('span', { class: 'result__meta',
+          text: `${entry.birth.city} · ${lifespan(entry)}` }))))
+        : null,
+    ];
+  }
+
+  /** Le lieu porté sur la carte : naissance ou mort, et sa résolution. */
+  expertPlace() {
+    const e = this.expert;
+    const entry = e.entry;
+    const both = entry?.birth && entry?.death
+      && (entry.death.city !== entry.birth.city || entry.death.country !== entry.birth.country);
+
     const lookupBtn = h('button', {
       class: 'btn',
       type: 'button',
       text: e.busy ? t('expert.looking') : t('expert.lookup'),
-      onclick: () => this.lookup(),
+      onclick: () => this.lookupPlace(),
     });
-    const composeBtn = h('button', {
-      class: 'btn btn--primary',
-      type: 'button',
-      text: t('expert.compose'),
-      onclick: () => this.compose(),
-    });
-    const syncButtons = () => {
-      lookupBtn.disabled = e.busy || !e.country || !e.city.trim();
-      composeBtn.disabled = !e.chosen || !e.name.trim();
-    };
-
-    const bind = (key) => (event) => {
-      e[key] = event.target.value;
-      syncButtons();
-    };
 
     return [
-      h('p', { class: 'add__intro', text: t('expert.intro') }),
-      h('p', { class: 'field__hint', text: t('expert.method') }),
-
-      field(t('add.name'), h('input', {
-        class: 'control', type: 'text', value: e.name,
-        placeholder: t('add.namePlaceholder'), oninput: bind('name'),
-      })),
-      field(t('add.sex'), select(
-        [{ value: 'm', label: t('add.male') }, { value: 'f', label: t('add.female') }],
-        { value: e.sex, onchange: (ev) => { e.sex = ev.target.value; } },
-      )),
-      field(t('add.country'), select(
-        [{ value: '', label: '—' }, ...countries],
-        {
-          value: e.country,
-          onchange: (ev) => {
-            e.country = ev.target.value;
-            e.matches = null;
-            e.chosen = null;
-            e.checked = null;
-            this.render();
-          },
-        },
-      )),
+      // Un saint peut naître d'un côté du monde et mourir de l'autre : la carte
+      // ne portant qu'un point, il faut choisir lequel, et le dire.
+      both
+        ? h('div', { class: 'segmented', role: 'group' },
+          ...[['born', 'expert.bornAt'], ['died', 'expert.diedAt']].map(([kind, key]) => h('button', {
+            class: `segmented__btn${e.placeKind === kind ? ' is-active' : ''}`,
+            type: 'button',
+            'aria-pressed': String(e.placeKind === kind),
+            onclick: () => this.usePlace(kind),
+          }, h('span', {
+            text: t(key, { city: (kind === 'died' ? entry.death : entry.birth).city }),
+          }))))
+        : null,
 
       h('div', { class: 'filters__row' },
         field(t('add.city'), h('input', {
           class: 'control', type: 'text', value: e.city,
           placeholder: t('add.cityPlaceholder'),
-          oninput: bind('city'),
-          onkeydown: (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); this.lookup(); } },
+          oninput: (ev) => {
+            e.city = ev.target.value;
+            lookupBtn.disabled = e.busy || !e.country || !e.city.trim();
+          },
+          onkeydown: (ev) => { if (ev.key === 'Enter') { ev.preventDefault(); this.lookupPlace(); } },
         })),
         lookupBtn),
 
@@ -389,8 +510,8 @@ export class AssistantPanel {
 
       // La table répond par des lieux, pas par un lieu : à l'administrateur de
       // reconnaître le sien parmi les homonymes, population à l'appui.
-      e.matches && e.matches.length
-        ? h('div', { class: 'results' }, ...e.matches.map((place) => h('button', {
+      e.places && e.places.length
+        ? h('div', { class: 'results' }, ...e.places.map((place) => h('button', {
           class: `result${e.chosen === place ? ' is-active' : ''}`,
           type: 'button',
           onclick: () => this.choosePlace(place),
@@ -399,6 +520,82 @@ export class AssistantPanel {
         h('span', { class: 'result__meta',
           text: place.p ? t('expert.inhabitants', { n: formatNumber(place.p) }) : '—' }))))
         : null,
+
+      // La table s'arrête aux lieux qu'elle recense : pour les hameaux, ce sont
+      // les coordonnées de la fiche qui servent, et l'atelier l'annonce.
+      e.fallback
+        ? h('p', { class: 'field__hint',
+          text: t('expert.offTable', { lat: e.fallback.lat, lng: e.fallback.lng }) })
+        : null,
+
+      (lookupBtn.disabled = e.busy || !e.country || !e.city.trim(), null),
+    ];
+  }
+
+  /** L'atelier de l'expert : chercher, vérifier ce qui est proposé, publier. */
+  expertControls() {
+    const e = this.expert;
+    const lang = getLanguage();
+    const cmp = collator();
+    const countries = this.atlas.countries
+      .map((c) => ({ value: c.id, label: this.atlas.countryName(c.id, lang) }))
+      .sort((a, b) => cmp.compare(a.label, b.label));
+    const months = monthNames().map((label, i) => ({ value: String(i + 1), label }));
+    const titles = TITLE_KEYS
+      .map((key) => ({ value: key, label: titleLabel(key, e.sex) }))
+      .sort((a, b) => cmp.compare(a.label, b.label));
+    const gaps = surveyGaps(this.atlas);
+    const thin = gaps.byContinent[0];
+
+    const composeBtn = h('button', {
+      class: 'btn btn--primary',
+      type: 'button',
+      text: t('expert.compose'),
+      onclick: () => this.compose(),
+    });
+    const syncCompose = () => {
+      composeBtn.disabled = (!e.chosen && !e.fallback) || !e.name.trim();
+    };
+
+    // Les champs se relisent à la frappe sans reconstruire le formulaire : un
+    // rendu à chaque touche volerait le curseur au champ.
+    const bind = (key) => (event) => {
+      e[key] = event.target.value;
+      syncCompose();
+    };
+
+    return [
+      h('p', { class: 'add__intro', text: t('expert.intro') }),
+      h('p', { class: 'field__hint', text: t('expert.method') }),
+
+      ...this.expertSearch(),
+
+      h('h3', { class: 'panel__subsection', text: t('expert.sheet') }),
+
+      field(t('add.name'), h('input', {
+        class: 'control', type: 'text', value: e.name,
+        placeholder: t('add.namePlaceholder'), oninput: bind('name'),
+      })),
+      field(t('add.sex'), select(
+        [{ value: 'm', label: t('add.male') }, { value: 'f', label: t('add.female') }],
+        { value: e.sex, onchange: (ev) => { e.sex = ev.target.value; this.render(); } },
+      )),
+      field(t('add.country'), select(
+        [{ value: '', label: '—' }, ...countries],
+        {
+          value: e.country,
+          onchange: (ev) => {
+            e.country = ev.target.value;
+            e.places = null;
+            e.chosen = null;
+            e.fallback = null;
+            e.checked = null;
+            this.render();
+          },
+        },
+      )),
+
+      ...this.expertPlace(),
 
       h('div', { class: 'filters__row' },
         field(t('add.born'), h('input', {
@@ -428,18 +625,43 @@ export class AssistantPanel {
             value: e.day, oninput: bind('day'), 'aria-label': t('add.day'),
           }))),
 
+      h('fieldset', { class: 'group' },
+        h('legend', { class: 'group__legend', text: t('add.titles') }),
+        h('div', { class: 'checks' }, ...titles.map((option) => h('label', { class: 'check' },
+          h('input', {
+            type: 'checkbox',
+            value: option.value,
+            checked: e.titles.includes(option.value),
+            onchange: (ev) => {
+              const set = new Set(e.titles);
+              if (ev.target.checked) set.add(option.value); else set.delete(option.value);
+              e.titles = [...set];
+            },
+          }),
+          h('span', { text: option.label }))))),
+
+      field(t('add.patronage'), h('input', {
+        class: 'control', type: 'text', value: e.patronage,
+        placeholder: t('add.patronagePlaceholder'), oninput: bind('patronage'),
+      })),
+
       field(t('add.desc'), h('textarea', {
         class: 'control control--area', rows: '2',
         placeholder: t('add.descPlaceholder'), oninput: bind('desc'),
       }, e.desc)),
+
+      field(t('add.bio'), h('textarea', {
+        class: 'control control--area', rows: '5',
+        placeholder: t('add.bioPlaceholder'), oninput: bind('bio'),
+      }, e.bio)),
 
       composeBtn,
 
       e.checked ? this.expertVerdict(e.checked) : null,
 
       // Un état des lieux, tiré du corpus lui-même : il dit où porter l'effort.
-      // Les boutons naissent au bon état, avant même la première frappe.
-      (syncButtons(), null),
+      // Le bouton naît au bon état, avant même la première frappe.
+      (syncCompose(), null),
 
       h('p', { class: 'field__hint expert__survey', text: t('expert.survey', {
         n: formatNumber(gaps.saints),

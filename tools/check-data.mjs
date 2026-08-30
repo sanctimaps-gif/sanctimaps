@@ -116,6 +116,57 @@ const faulty = candidates.filter((c) => !countryIds.has(c.country)
 if (!faulty.length) fail('aucune fiche candidate fautive : la vérification ne serait pas démontrable');
 ok(`${candidates.length} candidats, dont ${faulty.length} détectés fautifs dès ce contrôle`);
 
+// --- Fond documentaire de l'expert -------------------------------------------
+
+// Ce fond est écrit à la main : il faut donc le contrôler plus sévèrement que
+// le reste. Un lieu qui tomberait hors du pays annoncé serait une faute
+// invisible à l'écran mais visible sur la carte.
+const { entries, aliases } = read('reference.json');
+if (entries.length < 100) fail(`fond documentaire trop maigre : ${entries.length}`);
+
+const boxes = new Map(world.countries.map((c) => [c.id, c]));
+const inside = (place) => {
+  const country = boxes.get(place.country);
+  const [x, y] = project(place.lng, place.lat);
+  const box = country.bbox;
+  const shifted = country.focus[0] > WORLD_SIZE ? x + WORLD_SIZE : x;
+  const w = (box[2] - box[0]) * 0.08;
+  const h = (box[3] - box[1]) * 0.08;
+  return shifted >= box[0] - w && shifted <= box[2] + w && y >= box[1] - h && y <= box[3] + h;
+};
+
+const refIds = new Set();
+let deaths = 0;
+for (const e of entries) {
+  if (refIds.has(e.id) || ids.has(e.id)) fail(`fond : identifiant en double ${e.id}`);
+  refIds.add(e.id);
+  if (!e.name?.fr || !e.name?.en) fail(`fond : ${e.id} nom incomplet`);
+  if (!/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(e.feast)) fail(`fond : ${e.id} fête ${e.feast}`);
+  if (e.born != null && e.died != null && e.died < e.born) fail(`fond : ${e.id} dates ${e.born} → ${e.died}`);
+  if (!e.desc?.fr || !e.bio?.fr) fail(`fond : ${e.id} notice ou histoire manquante`);
+  for (const key of ['birth', 'death']) {
+    const place = e[key];
+    if (!place) continue;
+    if (key === 'death') deaths += 1;
+    if (!countryIds.has(place.country)) fail(`fond : ${e.id} pays inconnu ${place.country}`);
+    else if (!inside(place)) fail(`fond : ${e.id} ${key} hors du cadre de ${place.country}`);
+  }
+  if (!e.birth) fail(`fond : ${e.id} sans lieu de naissance`);
+}
+ok(`${entries.length} fiches de référence, dont ${deaths} avec un lieu de mort`);
+
+// Chaque graphie doit mener à une localité qui existe vraiment dans ce pays :
+// une correspondance fausse enverrait chercher un lieu introuvable.
+let aliasCount = 0;
+for (const [country, table] of Object.entries(aliases)) {
+  const names = new Set(read(join('cities', `${country}.json`)).map((p) => p.n));
+  for (const target of new Set(Object.values(table))) {
+    if (!names.has(target)) fail(`graphies : ${country} ne contient pas ${target}`);
+  }
+  aliasCount += Object.keys(table).length;
+}
+ok(`${aliasCount} graphies de lieux, toutes résolues dans la table`);
+
 // --- Locales ----------------------------------------------------------------
 
 const localeDir = join(ROOT, 'src', 'js', 'locales');

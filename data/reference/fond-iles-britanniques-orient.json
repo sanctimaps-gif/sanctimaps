@@ -1,0 +1,1192 @@
+{
+  "source": "Fond documentaire — Îles Britanniques et chrétientés d'Orient",
+  "note": "Index consulté par l'assistant expert. Les lieux d'Orient sont donnés sous le nom actuel de la localité, celui que porte la table : Nusaybin et non Nisibe, İstanbul et non Constantinople.",
+  "saints": [
+    {
+      "id": "ref-etienne-harding",
+      "name": {
+        "fr": "Étienne Harding",
+        "en": "Stephen Harding",
+        "la": "Stephanus Harding"
+      },
+      "aka": [
+        "Stephen Harding"
+      ],
+      "sex": "m",
+      "born": 1060,
+      "died": 1134,
+      "circa": true,
+      "feast": "04-17",
+      "titles": [
+        "abbot"
+      ],
+      "birth": {
+        "city": "Sherborne",
+        "country": "GBR",
+        "lat": 50.9464,
+        "lng": -2.5169
+      },
+      "death": {
+        "city": "Nuits-Saint-Georges",
+        "country": "FRA",
+        "lat": 47.1358,
+        "lng": 4.9483,
+        "note": "mort à l'abbaye de Cîteaux"
+      },
+      "desc": {
+        "fr": "Troisième abbé de Cîteaux, rédacteur de la Charte de charité, qui reçut Bernard de Clairvaux.",
+        "en": "Third abbot of Cîteaux, author of the Charter of Charity, who received Bernard of Clairvaux."
+      },
+      "bio": {
+        "fr": "Moine anglais passé par Rome, Étienne rejoignit les fondateurs de Cîteaux et en devint le troisième abbé, dans une maison si pauvre qu'elle semblait devoir s'éteindre — jusqu'à ce que Bernard s'y présente avec trente compagnons. Sa Charte de charité, qui règle les rapports entre abbayes sans les soumettre à une seule, est l'un des premiers textes constitutionnels de l'Occident.",
+        "en": "An English monk who had been to Rome, Stephen joined the founders of Cîteaux and became its third abbot, in a house so poor it seemed bound to die out — until Bernard turned up with thirty companions. His Charter of Charity, which orders the relations between abbeys without subjecting them to a single one, is among the first constitutional texts of the West."
+      }
+    },
+    {
+      "id": "ref-aelred-rievaulx",
+      "name": {
+        "fr": "Aelred de Rievaulx",
+        "en": "Aelred of Rievaulx",
+        "la": "Ailredus Rievallensis"
+      },
+      "aka": [
+        "Aelred"
+      ],
+      "sex": "m",
+      "born": 1110,
+      "died": 1167,
+      "feast": "01-12",
+      "titles": [
+        "abbot"
+      ],
+      "birth": {
+        "city": "Hexham",
+        "country": "GBR",
+        "lat": 54.9714,
+        "lng": -2.1014
+      },
+      "death": {
+        "city": "Helmsley",
+        "country": "GBR",
+        "lat": 54.2464,
+        "lng": -1.0611,
+        "note": "mort à l'abbaye de Rievaulx"
+      },
+      "desc": {
+        "fr": "Abbé cistercien du Yorkshire, auteur du traité De l'amitié spirituelle.",
+        "en": "A Cistercian abbot of Yorkshire, author of the treatise On Spiritual Friendship."
+      },
+      "bio": {
+        "fr": "Intendant à la cour du roi d'Écosse, Aelred quitta une carrière assurée pour l'abbaye de Rievaulx, qu'il gouverna vingt ans et porta à six cents moines. Son traité De l'amitié spirituelle, écrit contre l'avis de ceux qui tenaient l'amitié pour une faiblesse monastique, reste lu.",
+        "en": "A steward at the court of the king of Scots, Aelred left a settled career for the abbey of Rievaulx, which he governed for twenty years and brought to six hundred monks. His treatise On Spiritual Friendship, written against those who held friendship a monastic weakness, is still read."
+      }
+    },
+    {
+      "id": "ref-gilbert-sempringham",
+      "name": {
+        "fr": "Gilbert de Sempringham",
+        "en": "Gilbert of Sempringham",
+        "la": "Gilbertus de Sempringham"
+      },
+      "aka": [
+        "Gilbert de Sempringham"
+      ],
+      "sex": "m",
+      "born": 1083,
+      "died": 1189,
+      "circa": true,
+      "feast": "02-04",
+      "titles": [
+        "priest",
+        "founder"
+      ],
+      "birth": {
+        "city": "Sleaford",
+        "country": "GBR",
+        "lat": 52.9964,
+        "lng": -0.4103,
+        "note": "né à Sempringham, dans le Lincolnshire"
+      },
+      "death": {
+        "city": "Sleaford",
+        "country": "GBR",
+        "lat": 52.9964,
+        "lng": -0.4103,
+        "note": "mort à Sempringham"
+      },
+      "desc": {
+        "fr": "Fondateur du seul ordre religieux d'origine anglaise, les Gilbertins.",
+        "en": "Founder of the only religious order of English origin, the Gilbertines."
+      },
+      "bio": {
+        "fr": "Infirme et jugé inapte au métier des armes, Gilbert devint curé de son village et bâtit un cloître pour sept jeunes filles qui voulaient vivre en recluses ; l'institut grandit en maisons doubles, moniales et chanoines sous un même toit mais séparés. Il vécut plus de cent ans et affronta Henri II pour avoir aidé Thomas Becket en exil.",
+        "en": "Lame and judged unfit for arms, Gilbert became priest of his own village and built a cloister for seven young women who wished to live as recluses; the institute grew into double houses, nuns and canons under one roof but apart. He lived over a hundred years and faced down Henry II for having helped Thomas Becket in exile."
+      }
+    },
+    {
+      "id": "ref-edith-wilton",
+      "name": {
+        "fr": "Édith de Wilton",
+        "en": "Edith of Wilton",
+        "la": "Editha Wiltoniensis"
+      },
+      "aka": [
+        "Édith de Wilton"
+      ],
+      "sex": "f",
+      "born": 961,
+      "died": 984,
+      "circa": true,
+      "feast": "09-16",
+      "titles": [
+        "nun"
+      ],
+      "birth": {
+        "city": "Kemsing",
+        "country": "GBR",
+        "lat": 51.3,
+        "lng": 0.2333
+      },
+      "death": {
+        "city": "Wilton",
+        "country": "GBR",
+        "lat": 51.0806,
+        "lng": -1.8617
+      },
+      "desc": {
+        "fr": "Fille du roi Edgar, moniale à Wilton, morte à vingt-trois ans.",
+        "en": "Daughter of King Edgar, a nun at Wilton, dead at twenty-three."
+      },
+      "bio": {
+        "fr": "Élevée au monastère de Wilton où sa mère s'était retirée, Édith refusa trois abbayes et la couronne que le parti de son demi-frère lui offrait après l'assassinat d'Édouard le Martyr. Elle mourut à vingt-trois ans, ayant fait bâtir une église et gardé, dit son biographe, une ménagerie d'animaux sauvages.",
+        "en": "Brought up in the monastery of Wilton where her mother had withdrawn, Edith refused three abbeys and the crown that her half-brother's party offered her after the murder of Edward the Martyr. She died at twenty-three, having built a church and kept, her biographer says, a menagerie of wild beasts."
+      }
+    },
+    {
+      "id": "ref-edmond-abingdon",
+      "name": {
+        "fr": "Edmond d'Abingdon",
+        "en": "Edmund of Abingdon",
+        "la": "Edmundus Abendoniensis"
+      },
+      "aka": [
+        "Edmond Rich",
+        "Edmund Rich"
+      ],
+      "sex": "m",
+      "born": 1174,
+      "died": 1240,
+      "feast": "11-16",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Abingdon",
+        "country": "GBR",
+        "lat": 51.6714,
+        "lng": -1.2792
+      },
+      "death": {
+        "city": "Provins",
+        "country": "FRA",
+        "lat": 48.5586,
+        "lng": 3.2986,
+        "note": "mort à Soisy, non loin de là ; enseveli à Pontigny"
+      },
+      "desc": {
+        "fr": "Archevêque de Cantorbéry, exilé pour avoir résisté à Henri III.",
+        "en": "Archbishop of Canterbury, exiled for resisting Henry III."
+      },
+      "bio": {
+        "fr": "Maître ès arts à Paris et à Oxford, l'un des premiers à y commenter Aristote, Edmond fut porté à Cantorbéry en 1233 et s'y opposa aux nominations que le roi et la curie imposaient à l'Église d'Angleterre. Il partit en exil chez les cisterciens de Pontigny et mourut en route ; son tombeau y attira longtemps les pèlerins anglais.",
+        "en": "A master of arts at Paris and Oxford, among the first to lecture there on Aristotle, Edmund was raised to Canterbury in 1233 and opposed the appointments that king and curia forced upon the English Church. He left for exile among the Cistercians of Pontigny and died on the way; his tomb there long drew English pilgrims."
+      }
+    },
+    {
+      "id": "ref-thomas-hereford",
+      "name": {
+        "fr": "Thomas de Hereford",
+        "en": "Thomas Cantilupe",
+        "la": "Thomas de Cantilupo"
+      },
+      "aka": [
+        "Thomas de Cantilupe"
+      ],
+      "sex": "m",
+      "born": 1218,
+      "died": 1282,
+      "circa": true,
+      "feast": "10-03",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Hambleden",
+        "country": "GBR",
+        "lat": 51.5833,
+        "lng": -0.8667
+      },
+      "death": {
+        "city": "Orvieto",
+        "country": "ITA",
+        "lat": 42.7167,
+        "lng": 12.1167
+      },
+      "desc": {
+        "fr": "Chancelier d'Angleterre puis évêque de Hereford, mort excommunié et pourtant canonisé.",
+        "en": "Chancellor of England and then bishop of Hereford, who died excommunicate and was canonised nonetheless."
+      },
+      "bio": {
+        "fr": "Chancelier de l'université d'Oxford puis chancelier du royaume pendant la révolte des barons, Thomas devint évêque de Hereford et se querella avec son archevêque, qui l'excommunia. Il partit à Orvieto plaider sa cause devant le pape et mourut en chemin ; l'absolution vint après sa mort, la canonisation en 1320.",
+        "en": "Chancellor of the University of Oxford and then of the realm during the barons' revolt, Thomas became bishop of Hereford and quarrelled with his archbishop, who excommunicated him. He set out for Orvieto to plead his case before the pope and died on the way; absolution came after his death, canonisation in 1320."
+      }
+    },
+    {
+      "id": "ref-duns-scot",
+      "name": {
+        "fr": "Jean Duns Scot",
+        "en": "John Duns Scotus",
+        "la": "Ioannes Duns Scotus"
+      },
+      "aka": [
+        "Duns Scot",
+        "le Docteur subtil"
+      ],
+      "sex": "m",
+      "born": 1266,
+      "died": 1308,
+      "feast": "11-08",
+      "titles": [
+        "priest",
+        "doctor"
+      ],
+      "birth": {
+        "city": "Duns",
+        "country": "GBR",
+        "lat": 55.7767,
+        "lng": -2.3417
+      },
+      "death": {
+        "city": "Köln",
+        "country": "DEU",
+        "lat": 50.9333,
+        "lng": 6.95
+      },
+      "desc": {
+        "fr": "Franciscain écossais, « docteur subtil », défenseur de l'Immaculée Conception.",
+        "en": "A Scottish Franciscan, the \"subtle doctor\", defender of the Immaculate Conception."
+      },
+      "bio": {
+        "fr": "Professeur à Oxford, Paris et Cologne, Duns Scot soutint contre l'opinion dominante que Marie avait été préservée du péché dès sa conception — thèse qui deviendra dogme cinq siècles et demi plus tard. Sa langue, réputée obscure, a donné à l'anglais le mot dunce, qui signifie cancre : l'ironie de l'histoire des idées.",
+        "en": "A professor at Oxford, Paris and Cologne, Duns Scotus held, against the prevailing view, that Mary had been preserved from sin from her conception — a thesis that became dogma five and a half centuries later. His style, reckoned obscure, gave English the word dunce: the irony of the history of ideas."
+      }
+    },
+    {
+      "id": "ref-cuthbert-mayne",
+      "name": {
+        "fr": "Cuthbert Mayne",
+        "en": "Cuthbert Mayne"
+      },
+      "aka": [
+        "Cuthbert Mayne"
+      ],
+      "sex": "m",
+      "born": 1544,
+      "died": 1577,
+      "feast": "11-29",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Barnstaple",
+        "country": "GBR",
+        "lat": 51.0806,
+        "lng": -4.0592
+      },
+      "death": {
+        "city": "Launceston",
+        "country": "GBR",
+        "lat": 50.6367,
+        "lng": -4.3603
+      },
+      "desc": {
+        "fr": "Premier prêtre du séminaire de Douai exécuté en Angleterre.",
+        "en": "The first priest of the Douai seminary executed in England."
+      },
+      "bio": {
+        "fr": "Ministre anglican converti, Mayne passa à Douai se faire prêtre et revint en Cornouailles sous l'habit d'un intendant. Arrêté chez son hôte Francis Tregian, il fut le premier des séminaristes de Douai à être exécuté, en 1577 ; on lui reprochait surtout d'avoir apporté une bulle et un objet de dévotion.",
+        "en": "An Anglican minister who converted, Mayne went to Douai to be made a priest and returned to Cornwall in the dress of a steward. Arrested at the house of his host Francis Tregian, he was the first of the Douai seminarians to be executed, in 1577; the charge rested chiefly on his having brought in a bull and a devotional object."
+      }
+    },
+    {
+      "id": "ref-margaret-ward",
+      "name": {
+        "fr": "Margaret Ward",
+        "en": "Margaret Ward"
+      },
+      "aka": [
+        "Margaret Ward"
+      ],
+      "sex": "f",
+      "born": 1550,
+      "died": 1588,
+      "circa": true,
+      "feast": "08-30",
+      "titles": [
+        "layperson",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Congleton",
+        "country": "GBR",
+        "lat": 53.1625,
+        "lng": -2.2167
+      },
+      "death": {
+        "city": "London",
+        "country": "GBR",
+        "lat": 51.5085,
+        "lng": -0.1257
+      },
+      "desc": {
+        "fr": "Gentilhomme du Cheshire qui fit évader un prêtre par une corde, et fut pendue pour cela.",
+        "en": "A Cheshire gentlewoman who got a priest out by a rope, and was hanged for it."
+      },
+      "bio": {
+        "fr": "Margaret Ward visitait les prisonniers de Bridewell et fit passer au prêtre William Watson une corde dissimulée dans un panier ; il s'évada, elle fut prise. On lui offrit la liberté si elle demandait pardon à la reine et se rendait à l'église officielle : elle refusa et fut pendue à Tyburn.",
+        "en": "Margaret Ward visited the prisoners of Bridewell and got a rope to the priest William Watson hidden in a basket; he escaped, she was taken. She was offered her freedom if she would beg the queen's pardon and attend the state church: she refused, and was hanged at Tyburn."
+      }
+    },
+    {
+      "id": "ref-anne-line",
+      "name": {
+        "fr": "Anne Line",
+        "en": "Anne Line"
+      },
+      "aka": [
+        "Anne Line"
+      ],
+      "sex": "f",
+      "born": 1567,
+      "died": 1601,
+      "circa": true,
+      "feast": "02-27",
+      "titles": [
+        "layperson",
+        "martyr",
+        "widow"
+      ],
+      "birth": {
+        "city": "Great Dunmow",
+        "country": "GBR",
+        "lat": 51.8722,
+        "lng": 0.3611
+      },
+      "death": {
+        "city": "London",
+        "country": "GBR",
+        "lat": 51.5085,
+        "lng": -0.1257
+      },
+      "desc": {
+        "fr": "Veuve déshéritée par son père, tenancière d'une maison sûre pour les prêtres à Londres.",
+        "en": "A widow disinherited by her father, who kept a safe house for priests in London."
+      },
+      "bio": {
+        "fr": "Chassée par sa famille puritaine pour s'être convertie, veuve à vingt-huit ans, Anne Line tint pour les jésuites une maison où l'on cachait les prêtres de passage. Une messe trop fréquentée la fit découvrir le 2 février 1601 ; jugée, elle déclara regretter seulement de n'avoir pu en cacher mille.",
+        "en": "Turned out by her Puritan family for converting, and widowed at twenty-eight, Anne Line kept a house for the Jesuits where priests passing through were hidden. A too-crowded Mass gave her away on 2 February 1601; at her trial she said her only regret was that she had not been able to hide a thousand of them."
+      }
+    },
+    {
+      "id": "ref-philip-howard",
+      "name": {
+        "fr": "Philip Howard",
+        "en": "Philip Howard"
+      },
+      "aka": [
+        "Philip Howard",
+        "comte d'Arundel"
+      ],
+      "sex": "m",
+      "born": 1557,
+      "died": 1595,
+      "feast": "10-19",
+      "titles": [
+        "layperson",
+        "martyr"
+      ],
+      "birth": {
+        "city": "London",
+        "country": "GBR",
+        "lat": 51.5085,
+        "lng": -0.1257
+      },
+      "death": {
+        "city": "London",
+        "country": "GBR",
+        "lat": 51.5085,
+        "lng": -0.1257
+      },
+      "desc": {
+        "fr": "Comte d'Arundel, mort après dix ans à la Tour de Londres.",
+        "en": "Earl of Arundel, dead after ten years in the Tower of London."
+      },
+      "bio": {
+        "fr": "Courtisan brillant et mari négligent, Howard changea de vie après avoir assisté à une dispute théologique entre Edmund Campion et ses juges. Arrêté alors qu'il tentait de quitter le royaume, il passa dix ans à la Tour sans revoir sa femme ni l'enfant né après son arrestation ; on lui refusa cette entrevue faute d'avoir renié sa foi.",
+        "en": "A brilliant courtier and a neglectful husband, Howard changed his life after attending a theological disputation between Edmund Campion and his judges. Arrested as he tried to leave the kingdom, he spent ten years in the Tower without seeing his wife or the child born after his arrest; that meeting was refused him for want of renouncing his faith."
+      }
+    },
+    {
+      "id": "ref-nicholas-owen",
+      "name": {
+        "fr": "Nicholas Owen",
+        "en": "Nicholas Owen"
+      },
+      "aka": [
+        "Nicholas Owen",
+        "Petit Jean"
+      ],
+      "sex": "m",
+      "born": 1562,
+      "died": 1606,
+      "circa": true,
+      "feast": "03-22",
+      "titles": [
+        "religious",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Oxford",
+        "country": "GBR",
+        "lat": 51.7522,
+        "lng": -1.2578
+      },
+      "death": {
+        "city": "London",
+        "country": "GBR",
+        "lat": 51.5085,
+        "lng": -0.1257
+      },
+      "desc": {
+        "fr": "Menuisier jésuite, constructeur des cachettes à prêtres des manoirs anglais.",
+        "en": "A Jesuit carpenter, builder of the priest holes of the English manor houses."
+      },
+      "bio": {
+        "fr": "Petit, boiteux et hernié, Owen creusa pendant vingt ans, seul et de nuit, les cachettes aménagées dans les murs et les cheminées des maisons catholiques ; on en découvre encore. Arrêté à Hindlip Hall après huit jours de traque, il mourut sous la torture sans nommer personne.",
+        "en": "Small, lame and ruptured, Owen dug for twenty years, alone and by night, the hiding places worked into the walls and chimneys of Catholic houses; some are still being found. Arrested at Hindlip Hall after an eight-day search, he died under torture without naming anyone."
+      }
+    },
+    {
+      "id": "ref-edmund-arrowsmith",
+      "name": {
+        "fr": "Edmund Arrowsmith",
+        "en": "Edmund Arrowsmith"
+      },
+      "aka": [
+        "Edmund Arrowsmith"
+      ],
+      "sex": "m",
+      "born": 1585,
+      "died": 1628,
+      "feast": "08-28",
+      "titles": [
+        "priest",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Haydock",
+        "country": "GBR",
+        "lat": 53.4667,
+        "lng": -2.6667
+      },
+      "death": {
+        "city": "Lancaster",
+        "country": "GBR",
+        "lat": 54.0489,
+        "lng": -2.8014
+      },
+      "desc": {
+        "fr": "Jésuite du Lancashire, dénoncé pour avoir refusé de bénir un mariage irrégulier.",
+        "en": "A Lancashire Jesuit, denounced for refusing to bless an irregular marriage."
+      },
+      "bio": {
+        "fr": "Né dans une famille dont les biens avaient été saisis pour recusance, Arrowsmith exerça quinze ans le ministère clandestin dans le Lancashire. Un jeune homme à qui il avait refusé une bénédiction de mariage le dénonça ; il fut exécuté à Lancastre, et sa main droite, conservée, fait encore l'objet d'une dévotion locale.",
+        "en": "Born to a family whose goods had been seized for recusancy, Arrowsmith ministered in secret in Lancashire for fifteen years. A young man he had refused to marry denounced him; he was executed at Lancaster, and his right hand, kept as a relic, is still the object of local devotion."
+      }
+    },
+    {
+      "id": "ref-ambrose-barlow",
+      "name": {
+        "fr": "Ambrose Barlow",
+        "en": "Ambrose Barlow"
+      },
+      "aka": [
+        "Ambrose Barlow"
+      ],
+      "sex": "m",
+      "born": 1585,
+      "died": 1641,
+      "feast": "09-10",
+      "titles": [
+        "priest",
+        "martyr",
+        "monk"
+      ],
+      "birth": {
+        "city": "Manchester",
+        "country": "GBR",
+        "lat": 53.4809,
+        "lng": -2.2374
+      },
+      "death": {
+        "city": "Lancaster",
+        "country": "GBR",
+        "lat": 54.0489,
+        "lng": -2.8014
+      },
+      "desc": {
+        "fr": "Bénédictin qui desservit vingt-quatre ans les pauvres du Lancashire.",
+        "en": "A Benedictine who served the poor of Lancashire for twenty-four years."
+      },
+      "bio": {
+        "fr": "Barlow desservait clandestinement les paroissiens catholiques de la région de Manchester, vivant chez les uns et les autres, et il tenait table ouverte pour les pauvres à chaque grande fête. Frappé de paralysie, il fut arrêté à l'autel le dimanche de Pâques 1641 par un pasteur venu avec quatre cents hommes ; il refusa de promettre qu'il cesserait.",
+        "en": "Barlow served the Catholic households around Manchester in secret, living with one and then another, and kept open table for the poor at every great feast. Struck with palsy, he was arrested at the altar on Easter Sunday 1641 by a parson who came with four hundred men; he refused to promise that he would stop."
+      }
+    },
+    {
+      "id": "ref-richard-gwyn",
+      "name": {
+        "fr": "Richard Gwyn",
+        "en": "Richard Gwyn"
+      },
+      "aka": [
+        "Richard Gwyn",
+        "Richard White"
+      ],
+      "sex": "m",
+      "born": 1537,
+      "died": 1584,
+      "circa": true,
+      "feast": "10-17",
+      "titles": [
+        "layperson",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Llanidloes",
+        "country": "GBR",
+        "lat": 52.45,
+        "lng": -3.5333
+      },
+      "death": {
+        "city": "Wrexham",
+        "country": "GBR",
+        "lat": 53.0464,
+        "lng": -2.9925
+      },
+      "desc": {
+        "fr": "Maître d'école gallois, poète, premier martyr du pays de Galles sous Élisabeth.",
+        "en": "A Welsh schoolmaster and poet, the first Welsh martyr under Elizabeth."
+      },
+      "bio": {
+        "fr": "Gwyn tenait école dans le Denbighshire et composait en gallois des poèmes satiriques contre les ministres de la nouvelle Église. Traîné de force à l'office, il y fit tinter ses chaînes assez fort pour couvrir le sermon ; il fut pendu à Wrexham, laissant une femme et six enfants.",
+        "en": "Gwyn kept a school in Denbighshire and wrote satirical poems in Welsh against the ministers of the new Church. Dragged by force to the service, he rattled his chains loudly enough to drown the sermon; he was hanged at Wrexham, leaving a wife and six children."
+      }
+    },
+    {
+      "id": "ref-gregoire-narek",
+      "name": {
+        "fr": "Grégoire de Narek",
+        "en": "Gregory of Narek",
+        "la": "Gregorius Narecensis"
+      },
+      "aka": [
+        "Grigor Narekatsi"
+      ],
+      "sex": "m",
+      "born": 951,
+      "died": 1003,
+      "circa": true,
+      "feast": "02-27",
+      "titles": [
+        "monk",
+        "doctor"
+      ],
+      "birth": {
+        "city": "Van",
+        "country": "TUR",
+        "lat": 38.4942,
+        "lng": 43.38,
+        "note": "né dans le Vaspourakan, au bord du lac de Van"
+      },
+      "death": {
+        "city": "Van",
+        "country": "TUR",
+        "lat": 38.4942,
+        "lng": 43.38,
+        "note": "mort au monastère de Narek"
+      },
+      "desc": {
+        "fr": "Moine arménien, auteur du Livre des lamentations, docteur de l'Église depuis 2015.",
+        "en": "An Armenian monk, author of the Book of Lamentations, a doctor of the Church since 2015."
+      },
+      "bio": {
+        "fr": "Moine et professeur au monastère de Narek, au bord du lac de Van, Grégoire écrivit quatre-vingt-quinze prières adressées « du fond du cœur à Dieu », que les foyers arméniens ont recopiées pendant mille ans et posées sur le lit des malades. Proclamé docteur de l'Église en 2015, il est le premier à l'être sans avoir jamais appartenu à l'Église latine.",
+        "en": "A monk and teacher at the monastery of Narek on Lake Van, Gregory wrote ninety-five prayers addressed \"from the depths of the heart to God\", which Armenian households copied for a thousand years and laid on the beds of the sick. Proclaimed a doctor of the Church in 2015, he is the first to be so without ever having belonged to the Latin Church."
+      }
+    },
+    {
+      "id": "ref-romanos-melode",
+      "name": {
+        "fr": "Romanos le Mélode",
+        "en": "Romanos the Melodist",
+        "la": "Romanus Melodus"
+      },
+      "aka": [
+        "Romain le Mélode"
+      ],
+      "sex": "m",
+      "born": 490,
+      "died": 556,
+      "circa": true,
+      "feast": "10-01",
+      "titles": [
+        "deacon"
+      ],
+      "birth": {
+        "city": "Homs",
+        "country": "SYR",
+        "lat": 34.7333,
+        "lng": 36.7167
+      },
+      "death": {
+        "city": "Istanbul",
+        "country": "TUR",
+        "lat": 41.0136,
+        "lng": 28.955
+      },
+      "desc": {
+        "fr": "Diacre syrien, le plus grand poète liturgique de Byzance.",
+        "en": "A Syrian deacon, the greatest liturgical poet of Byzantium."
+      },
+      "bio": {
+        "fr": "Venu d'Émèse à Constantinople sous Anastase, Romanos composa des kontakia — longs poèmes chantés, dialogués, où les personnages de l'Évangile prennent la parole. Une soixantaine nous sont parvenus sous son nom, dont l'hymne de Noël que la cour impériale fit chanter chaque année pendant des siècles.",
+        "en": "He came from Emesa to Constantinople under Anastasius and composed kontakia — long sung poems in dialogue, in which the figures of the Gospel speak. Some sixty survive under his name, among them the Nativity hymn the imperial court had sung each year for centuries."
+      }
+    },
+    {
+      "id": "ref-sophrone-jerusalem",
+      "name": {
+        "fr": "Sophrone de Jérusalem",
+        "en": "Sophronius of Jerusalem",
+        "la": "Sophronius Hierosolymitanus"
+      },
+      "aka": [
+        "Sophrone"
+      ],
+      "sex": "m",
+      "born": 560,
+      "died": 638,
+      "circa": true,
+      "feast": "03-11",
+      "titles": [
+        "bishop",
+        "monk"
+      ],
+      "birth": {
+        "city": "Damascus",
+        "country": "SYR",
+        "lat": 33.5,
+        "lng": 36.3
+      },
+      "death": {
+        "city": "East Jerusalem",
+        "country": "PSE",
+        "lat": 31.7683,
+        "lng": 35.2137,
+        "note": "mort à Jérusalem"
+      },
+      "desc": {
+        "fr": "Patriarche de Jérusalem, qui remit la ville au calife Omar en 638.",
+        "en": "Patriarch of Jerusalem, who handed the city over to the caliph Umar in 638."
+      },
+      "bio": {
+        "fr": "Rhéteur devenu moine, Sophrone parcourut l'Égypte et la Palestine et combattit le monothélisme avec obstination avant d'être élu patriarche de Jérusalem à près de quatre-vingts ans. Assiégé, il négocia lui-même la reddition de la ville et obtint du calife Omar des garanties écrites pour les chrétiens ; il mourut dans l'année.",
+        "en": "A rhetorician turned monk, Sophronius travelled Egypt and Palestine and fought monothelitism stubbornly before being elected patriarch of Jerusalem at nearly eighty. Besieged, he negotiated the city's surrender himself and obtained written guarantees for the Christians from the caliph Umar; he died within the year."
+      }
+    },
+    {
+      "id": "ref-theodore-studite",
+      "name": {
+        "fr": "Théodore Studite",
+        "en": "Theodore the Studite",
+        "la": "Theodorus Studita"
+      },
+      "aka": [
+        "Théodore le Studite"
+      ],
+      "sex": "m",
+      "born": 759,
+      "died": 826,
+      "feast": "11-11",
+      "titles": [
+        "abbot"
+      ],
+      "birth": {
+        "city": "Istanbul",
+        "country": "TUR",
+        "lat": 41.0136,
+        "lng": 28.955
+      },
+      "death": {
+        "city": "Istanbul",
+        "country": "TUR",
+        "lat": 41.0136,
+        "lng": 28.955,
+        "note": "mort dans l'île de Prinkipo"
+      },
+      "desc": {
+        "fr": "Abbé du Stoudion, principal adversaire de l'iconoclasme byzantin.",
+        "en": "Abbot of the Stoudios, chief adversary of Byzantine iconoclasm."
+      },
+      "bio": {
+        "fr": "Abbé du monastère du Stoudion, qu'il porta à près d'un millier de moines, Théodore réforma la vie monastique byzantine et fut exilé trois fois pour avoir tenu tête aux empereurs, sur le mariage illégitime de l'un et sur les images sacrées. Ses lettres d'exil, expédiées clandestinement, tinrent le parti des images pendant des années.",
+        "en": "Abbot of the Stoudios monastery, which he brought to nearly a thousand monks, Theodore reformed Byzantine monastic life and was exiled three times for standing up to emperors, over the unlawful marriage of one and over the sacred images. His letters from exile, smuggled out, held the party of the images together for years."
+      }
+    },
+    {
+      "id": "ref-jean-aumonier",
+      "name": {
+        "fr": "Jean l'Aumônier",
+        "en": "John the Almsgiver",
+        "la": "Ioannes Eleemosynarius"
+      },
+      "aka": [
+        "Jean l'Aumônier",
+        "Jean le Miséricordieux"
+      ],
+      "sex": "m",
+      "born": 550,
+      "died": 620,
+      "circa": true,
+      "feast": "11-12",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Limassol",
+        "country": "CYP",
+        "lat": 34.6841,
+        "lng": 33.0379,
+        "note": "né à Amathonte, aujourd'hui dans la banlieue de Limassol"
+      },
+      "death": {
+        "city": "Limassol",
+        "country": "CYP",
+        "lat": 34.6841,
+        "lng": 33.0379
+      },
+      "desc": {
+        "fr": "Patriarche d'Alexandrie qui appelait les pauvres « mes maîtres ».",
+        "en": "Patriarch of Alexandria, who called the poor \"my masters\"."
+      },
+      "bio": {
+        "fr": "Riche Chypriote devenu patriarche d'Alexandrie, Jean fit recenser les indigents de la ville — sept mille cinq cents — et les déclara ses maîtres, ayant seuls le pouvoir de le faire entrer au ciel. Il ouvrit des hôpitaux, unifia les poids et mesures contre les fraudeurs et accueillit les réfugiés de Jérusalem quand les Perses la prirent.",
+        "en": "A rich Cypriot who became patriarch of Alexandria, John had the city's destitute counted — seven thousand five hundred — and declared them his masters, as the only ones who could get him into heaven. He opened hospitals, unified weights and measures against cheating traders, and took in the refugees from Jerusalem when the Persians took it."
+      }
+    },
+    {
+      "id": "ref-jacques-nisibe",
+      "name": {
+        "fr": "Jacques de Nisibe",
+        "en": "James of Nisibis",
+        "la": "Iacobus Nisibenus"
+      },
+      "aka": [
+        "Jacques de Nisibe",
+        "Mar Yacoub"
+      ],
+      "sex": "m",
+      "born": 280,
+      "died": 338,
+      "circa": true,
+      "feast": "07-15",
+      "titles": [
+        "bishop"
+      ],
+      "birth": {
+        "city": "Nusaybin",
+        "country": "TUR",
+        "lat": 37.0783,
+        "lng": 41.2158
+      },
+      "death": {
+        "city": "Nusaybin",
+        "country": "TUR",
+        "lat": 37.0783,
+        "lng": 41.2158
+      },
+      "desc": {
+        "fr": "Premier évêque de Nisibe, maître d'Éphrem le Syrien, père du concile de Nicée.",
+        "en": "First bishop of Nisibis, teacher of Ephrem the Syrian, a father of the Council of Nicaea."
+      },
+      "bio": {
+        "fr": "Ermite des montagnes du Tour Abdin avant d'être fait évêque de sa ville, Jacques y fonda l'école qui formera Éphrem le Syrien et siégea au concile de Nicée en 325. Les habitants lui attribuèrent la levée du siège perse de 338, qu'il aurait obtenue par la prière ; il mourut peu après.",
+        "en": "A hermit of the Tur Abdin mountains before being made bishop of his own city, James founded there the school that would form Ephrem the Syrian and sat at the Council of Nicaea in 325. The townspeople credited him with the lifting of the Persian siege of 338, obtained, they said, by prayer; he died soon after."
+      }
+    },
+    {
+      "id": "ref-estephan-nehme",
+      "name": {
+        "fr": "Estephan Nehmé",
+        "en": "Estephan Nehmé"
+      },
+      "aka": [
+        "Stéphane Nehmé",
+        "Youssef Nehmé"
+      ],
+      "sex": "m",
+      "born": 1889,
+      "died": 1938,
+      "feast": "08-30",
+      "titles": [
+        "monk"
+      ],
+      "birth": {
+        "city": "Lehfed",
+        "country": "LBN",
+        "lat": 34.1333,
+        "lng": 35.7833
+      },
+      "death": {
+        "city": "Batroun",
+        "country": "LBN",
+        "lat": 34.2553,
+        "lng": 35.6581,
+        "note": "mort au monastère de Kfifane"
+      },
+      "desc": {
+        "fr": "Frère convers maronite, laboureur et maçon du monastère de Kfifane.",
+        "en": "A Maronite lay brother, ploughman and mason of the monastery of Kfifan."
+      },
+      "bio": {
+        "fr": "Entré à vingt ans à l'ordre libanais maronite, Estephan resta frère convers toute sa vie : il laboura, tailla la pierre et construisit des murs, sans jamais demander les ordres. « Dieu me voit » était sa seule maxime ; son corps, retrouvé intact en 1951, valut à sa cause d'être ouverte, et il fut béatifié en 2010.",
+        "en": "Entering the Lebanese Maronite Order at twenty, Estephan remained a lay brother all his life: he ploughed, cut stone and built walls, never asking for orders. \"God sees me\" was his only maxim; his body, found intact in 1951, opened the way to his cause, and he was beatified in 2010."
+      }
+    },
+    {
+      "id": "ref-nazju-falzon",
+      "name": {
+        "fr": "Nazju Falzon",
+        "en": "Nazju Falzon"
+      },
+      "aka": [
+        "Ignazio Falzon",
+        "Nazju Falzon"
+      ],
+      "sex": "m",
+      "born": 1813,
+      "died": 1865,
+      "feast": "07-01",
+      "titles": [
+        "layperson"
+      ],
+      "birth": {
+        "city": "Valletta",
+        "country": "MLT",
+        "lat": 35.8989,
+        "lng": 14.5146
+      },
+      "death": {
+        "city": "Valletta",
+        "country": "MLT",
+        "lat": 35.8989,
+        "lng": 14.5146
+      },
+      "desc": {
+        "fr": "Juriste maltais, catéchiste des soldats et marins britanniques.",
+        "en": "A Maltese jurist, catechist to the British soldiers and sailors."
+      },
+      "bio": {
+        "fr": "Docteur en droit, Falzon reçut les ordres mineurs mais ne se jugea jamais digne du sacerdoce. Il consacra sa vie aux militaires britanniques stationnés à Malte, réunissant chaque soir des centaines d'hommes pour le catéchisme dans une église de La Valette ; on lui attribue plusieurs centaines de conversions. Il fut béatifié en 2001.",
+        "en": "A doctor of law, Falzon received minor orders but never judged himself worthy of the priesthood. He gave his life to the British servicemen stationed in Malta, gathering hundreds of men each evening for catechism in a Valletta church; several hundred conversions are credited to him. He was beatified in 2001."
+      }
+    },
+    {
+      "id": "ref-marija-petkovic",
+      "name": {
+        "fr": "Marie de Jésus Crucifié Petković",
+        "en": "Mary of Jesus Crucified Petković"
+      },
+      "aka": [
+        "Marija Petković",
+        "Marija od Raspetog Isusa"
+      ],
+      "sex": "f",
+      "born": 1892,
+      "died": 1966,
+      "feast": "07-09",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Blato",
+        "country": "HRV",
+        "lat": 42.9333,
+        "lng": 16.8
+      },
+      "death": {
+        "city": "Rome",
+        "country": "ITA",
+        "lat": 41.8955,
+        "lng": 12.4823
+      },
+      "desc": {
+        "fr": "Fondatrice dalmate des Filles de la Miséricorde, passée en Amérique latine.",
+        "en": "A Dalmatian founder of the Daughters of Mercy, who went on to Latin America."
+      },
+      "bio": {
+        "fr": "Née dans l'île de Korčula, Marija fonda en 1920 une congrégation pour les enfants et les vieillards de la Dalmatie appauvrie d'après-guerre. Elle passa ensuite en Argentine, au Paraguay et au Pérou, où ses maisons se multiplièrent ; elle fut béatifiée en 2003.",
+        "en": "Born on the island of Korčula, Marija founded in 1920 a congregation for the children and the old people of a Dalmatia impoverished by war. She then crossed to Argentina, Paraguay and Peru, where her houses multiplied; she was beatified in 2003."
+      }
+    },
+    {
+      "id": "ref-anna-kolesarova",
+      "name": {
+        "fr": "Anna Kolesárová",
+        "en": "Anna Kolesárová"
+      },
+      "aka": [
+        "Anna Kolesárová"
+      ],
+      "sex": "f",
+      "born": 1928,
+      "died": 1944,
+      "feast": "11-20",
+      "titles": [
+        "layperson",
+        "martyr",
+        "youth"
+      ],
+      "birth": {
+        "city": "Michalovce",
+        "country": "SVK",
+        "lat": 48.7561,
+        "lng": 21.9194,
+        "note": "née au village de Vysoká nad Uhom"
+      },
+      "death": {
+        "city": "Michalovce",
+        "country": "SVK",
+        "lat": 48.7561,
+        "lng": 21.9194
+      },
+      "desc": {
+        "fr": "Paysanne slovaque de seize ans, abattue par un soldat dont elle refusait les avances.",
+        "en": "A sixteen-year-old Slovak farm girl, shot by a soldier whose advances she refused."
+      },
+      "bio": {
+        "fr": "Le 22 novembre 1944, un soldat de l'Armée rouge descendit dans la cave où la famille Kolesár s'abritait des combats et voulut entraîner Anna ; elle résista et fut abattue devant son père et son frère. Béatifiée en 2018, elle est la première laïque slovaque reconnue martyre.",
+        "en": "On 22 November 1944 a Red Army soldier came down into the cellar where the Kolesár family were sheltering from the fighting and tried to take Anna away; she resisted and was shot in front of her father and brother. Beatified in 2018, she is the first Slovak laywoman recognised as a martyr."
+      }
+    },
+    {
+      "id": "ref-salkahazi",
+      "name": {
+        "fr": "Sára Salkaházi",
+        "en": "Sára Salkaházi"
+      },
+      "aka": [
+        "Sára Salkaházi"
+      ],
+      "sex": "f",
+      "born": 1899,
+      "died": 1944,
+      "feast": "05-11",
+      "titles": [
+        "nun",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Košice",
+        "country": "SVK",
+        "lat": 48.7167,
+        "lng": 21.25
+      },
+      "death": {
+        "city": "Budapest",
+        "country": "HUN",
+        "lat": 47.4984,
+        "lng": 19.0404
+      },
+      "desc": {
+        "fr": "Sœur sociale hongroise, fusillée dans le Danube pour avoir caché des juifs.",
+        "en": "A Hungarian Sister of Social Service, shot into the Danube for hiding Jews."
+      },
+      "bio": {
+        "fr": "Journaliste et modiste avant d'entrer chez les Sœurs sociales, Sára dirigeait à Budapest un foyer de travailleuses. Elle y cacha près d'une centaine de juifs pendant l'occupation allemande ; dénoncée le 27 décembre 1944, elle fut emmenée avec ses protégés sur la berge du Danube et fusillée. Yad Vashem l'a reconnue Juste parmi les nations.",
+        "en": "A journalist and milliner before entering the Sisters of Social Service, Sára ran a hostel for working women in Budapest. She hid nearly a hundred Jews there during the German occupation; denounced on 27 December 1944, she was taken with those she sheltered to the bank of the Danube and shot. Yad Vashem has recognised her as Righteous Among the Nations."
+      }
+    },
+    {
+      "id": "ref-iuliu-hossu",
+      "name": {
+        "fr": "Iuliu Hossu",
+        "en": "Iuliu Hossu"
+      },
+      "aka": [
+        "Iuliu Hossu"
+      ],
+      "sex": "m",
+      "born": 1885,
+      "died": 1970,
+      "feast": "05-31",
+      "titles": [
+        "bishop",
+        "cardinal",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Bistrița",
+        "country": "ROU",
+        "lat": 47.1333,
+        "lng": 24.5,
+        "note": "né au village de Milaș"
+      },
+      "death": {
+        "city": "Bucharest",
+        "country": "ROU",
+        "lat": 44.4325,
+        "lng": 26.1039
+      },
+      "desc": {
+        "fr": "Évêque gréco-catholique de Cluj-Gherla, mort après vingt-deux ans de détention.",
+        "en": "Greek-Catholic bishop of Cluj-Gherla, dead after twenty-two years in detention."
+      },
+      "bio": {
+        "fr": "C'est lui qui lut, le 1er décembre 1918 à Alba Iulia, l'acte d'union de la Transylvanie à la Roumanie. Arrêté en 1948 avec tout l'épiscopat gréco-catholique quand le régime communiste supprima cette Église, il refusa jusqu'au bout de passer à l'orthodoxie et mourut en résidence surveillée ; Paul VI l'avait créé cardinal in pectore.",
+        "en": "It was he who read out, at Alba Iulia on 1 December 1918, the act uniting Transylvania to Romania. Arrested in 1948 with the whole Greek-Catholic episcopate when the communist regime suppressed that Church, he refused to the end to go over to Orthodoxy and died under house arrest; Paul VI had created him a cardinal in pectore."
+      }
+    },
+    {
+      "id": "ref-sheptytsky-klymentiy",
+      "name": {
+        "fr": "Klymentiy Cheptytsky",
+        "en": "Klymentiy Sheptytsky"
+      },
+      "aka": [
+        "Klymentiy Sheptytsky",
+        "Kazimierz Szeptycki"
+      ],
+      "sex": "m",
+      "born": 1869,
+      "died": 1951,
+      "feast": "05-01",
+      "titles": [
+        "monk",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Yavoriv",
+        "country": "UKR",
+        "lat": 49.9375,
+        "lng": 23.3833,
+        "note": "né au village de Prylbychi"
+      },
+      "death": {
+        "city": "Vladimir",
+        "country": "RUS",
+        "lat": 56.1366,
+        "lng": 40.3966,
+        "note": "mort à la prison de Vladimir"
+      },
+      "desc": {
+        "fr": "Archimandrite studite, frère du métropolite Andrey, Juste parmi les nations.",
+        "en": "A Studite archimandrite, brother of Metropolitan Andrey, Righteous Among the Nations."
+      },
+      "bio": {
+        "fr": "Député au parlement de Vienne avant de se faire moine, Klymentiy organisa avec son frère, le métropolite Andrey Cheptytsky, le sauvetage d'enfants juifs cachés dans les monastères studites de Galicie. Arrêté par le NKVD en 1947 pour avoir refusé la liquidation de l'Église gréco-catholique, il mourut à la prison de Vladimir ; il fut béatifié en 2001.",
+        "en": "A deputy in the Vienna parliament before becoming a monk, Klymentiy organised with his brother, Metropolitan Andrey Sheptytsky, the rescue of Jewish children hidden in the Studite monasteries of Galicia. Arrested by the NKVD in 1947 for refusing the liquidation of the Greek-Catholic Church, he died in Vladimir prison; he was beatified in 2001."
+      }
+    },
+    {
+      "id": "ref-josaphata-hordashevska",
+      "name": {
+        "fr": "Josaphata Hordashevska",
+        "en": "Josaphata Hordashevska"
+      },
+      "aka": [
+        "Josaphata Hordashevska",
+        "Mykhaïlyna Hordashevska"
+      ],
+      "sex": "f",
+      "born": 1869,
+      "died": 1919,
+      "feast": "04-07",
+      "titles": [
+        "nun",
+        "founder"
+      ],
+      "birth": {
+        "city": "Lviv",
+        "country": "UKR",
+        "lat": 49.8383,
+        "lng": 24.0232
+      },
+      "death": {
+        "city": "Lviv",
+        "country": "UKR",
+        "lat": 49.8383,
+        "lng": 24.0232
+      },
+      "desc": {
+        "fr": "Première Sœur servante de Marie Immaculée, congrégation gréco-catholique non cloîtrée.",
+        "en": "The first Sister Servant of Mary Immaculate, an uncloistered Greek-Catholic congregation."
+      },
+      "bio": {
+        "fr": "Fille d'artisans de Lviv, Mykhaïlyna fut choisie en 1892 pour être la première d'une congrégation d'un type inédit chez les gréco-catholiques : des religieuses non cloîtrées, envoyées dans les villages tenir crèches, dispensaires et écoles. Malade et souffrante les quinze dernières années de sa vie, elle mourut à cinquante ans ; elle fut béatifiée en 2001.",
+        "en": "The daughter of Lviv artisans, Mykhailyna was chosen in 1892 to be the first of a congregation of a kind new among Greek Catholics: uncloistered sisters sent into the villages to keep nurseries, dispensaries and schools. Ill and in pain for the last fifteen years of her life, she died at fifty; she was beatified in 2001."
+      }
+    },
+    {
+      "id": "ref-theodore-romzha",
+      "name": {
+        "fr": "Théodore Romzha",
+        "en": "Theodore Romzha"
+      },
+      "aka": [
+        "Teodor Romzha"
+      ],
+      "sex": "m",
+      "born": 1911,
+      "died": 1947,
+      "feast": "10-31",
+      "titles": [
+        "bishop",
+        "martyr"
+      ],
+      "birth": {
+        "city": "Velykyi Bychkiv",
+        "country": "UKR",
+        "lat": 47.9833,
+        "lng": 24.0167
+      },
+      "death": {
+        "city": "Mukacheve",
+        "country": "UKR",
+        "lat": 48.4414,
+        "lng": 22.7169
+      },
+      "desc": {
+        "fr": "Évêque gréco-catholique de Moukatchevo, tué à trente-six ans sur ordre du pouvoir soviétique.",
+        "en": "Greek-Catholic bishop of Mukachevo, killed at thirty-six on Soviet orders."
+      },
+      "bio": {
+        "fr": "Évêque à trente-trois ans d'un diocèse que l'annexion soviétique venait de placer sous pression, Romzha refusa de rattacher son Église au patriarcat de Moscou. Le 27 octobre 1947, un camion militaire percuta sa voiture et ses occupants furent achevés à coups de barre ; survivant, il fut empoisonné à l'hôpital. Il fut béatifié en 2001.",
+        "en": "A bishop at thirty-three of a diocese newly under pressure from Soviet annexation, Romzha refused to attach his Church to the Moscow patriarchate. On 27 October 1947 a military lorry rammed his carriage and its occupants were finished off with iron bars; surviving that, he was poisoned in hospital. He was beatified in 2001."
+      }
+    }
+  ]
+}
