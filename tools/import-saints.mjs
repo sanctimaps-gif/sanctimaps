@@ -124,20 +124,12 @@ function parseArgs(argv) {
  */
 const byCountry = (iso) => `
 SELECT ?s ?statusEn ?nameFr ?nameEn ?nameLa ?descFr ?descEn
-       ?born ?bornPrec ?died ?diedPrec ?sex ?feastEn ?placeFr ?placeEn ?coord WHERE {
+       ?born ?died ?sex ?feastEn ?placeFr ?placeEn ?coord WHERE {
   ?country wdt:P298 "${iso}" .
   ?place wdt:P17 ?country ; wdt:P625 ?coord .
   ?s wdt:P19 ?place ; wdt:P411 ?status ; wdt:P841 ?feast .
-  # La précision se lit sur le nœud de déclaration, jamais sur la valeur
-  # simple : « +0200 » ne dit pas s'il faut lire « 200 » ou « IIe siècle ».
-  # On la rattache à la valeur retenue, pour ne pas prendre celle d'une
-  # déclaration concurrente.
-  OPTIONAL { ?s wdt:P569 ?born .
-             OPTIONAL { ?s p:P569/psv:P569 [ wikibase:timeValue ?born ;
-                                             wikibase:timePrecision ?bornPrec ] } }
-  OPTIONAL { ?s wdt:P570 ?died .
-             OPTIONAL { ?s p:P570/psv:P570 [ wikibase:timeValue ?died ;
-                                             wikibase:timePrecision ?diedPrec ] } }
+  OPTIONAL { ?s wdt:P569 ?born }
+  OPTIONAL { ?s wdt:P570 ?died }
   OPTIONAL { ?s wdt:P21 ?sex }
   OPTIONAL { ?status rdfs:label ?statusEn . FILTER(LANG(?statusEn) = "en") }
   OPTIONAL { ?feast rdfs:label ?feastEn . FILTER(LANG(?feastEn) = "en") }
@@ -166,6 +158,32 @@ SELECT ?s ?labelEn WHERE {
   ${values(ids)}
   { ?s wdt:P106 ?job } UNION { ?s wdt:P39 ?job }
   ?job rdfs:label ?labelEn . FILTER(LANG(?labelEn) = "en")
+}`;
+
+/**
+ * La finesse des dates, par lots d'identifiants déjà connus.
+ *
+ * « +0200 » ne dit pas s'il faut lire « 200 » ou « IIe siècle » : seule la
+ * déclaration le sait, et il faut donc descendre au nœud de déclaration —
+ * `p:` puis `psv:` — pour y lire `wikibase:timePrecision`.
+ *
+ * Cela s'est d'abord demandé dans la requête par pays, où c'était payé au prix
+ * fort : l'Italie et le Royaume-Uni, les deux plus gros lots, ont dépassé les
+ * soixante secondes du service public et se sont perdus — mille six cents
+ * fiches en moins. Entrer par une liste d'identifiants ne coûte, lui, presque
+ * rien. La valeur retenue est rappelée dans la requête pour que la précision
+ * lue soit bien celle de cette valeur-là, et non celle d'une déclaration
+ * concurrente.
+ */
+const precisionFor = (ids) => `
+SELECT ?s ?bornPrec ?diedPrec WHERE {
+  ${values(ids)}
+  OPTIONAL { ?s wdt:P569 ?born .
+             ?s p:P569/psv:P569 [ wikibase:timeValue ?born ;
+                                  wikibase:timePrecision ?bornPrec ] }
+  OPTIONAL { ?s wdt:P570 ?died .
+             ?s p:P570/psv:P570 [ wikibase:timeValue ?died ;
+                                  wikibase:timePrecision ?diedPrec ] }
 }`;
 
 /** Les titres d'article, d'où l'on tirera la biographie. */
@@ -351,11 +369,14 @@ async function main() {
   const patronRows = [];
   const jobRows = [];
   const articleRows = [];
+  const precisionRows = [];
   for (let i = 0; i < allIds.length; i += options.chunk) {
     const batch = allIds.slice(i, i + options.chunk);
     patronRows.push(...await sparql(options.endpoint, patronageFor(batch), options));
     await sleep(options.pause);
     jobRows.push(...await sparql(options.endpoint, occupationFor(batch), options));
+    await sleep(options.pause);
+    precisionRows.push(...await sparql(options.endpoint, precisionFor(batch), options));
     await sleep(options.pause);
     if (options.bios) {
       articleRows.push(...await sparql(options.endpoint, articlesFor(batch), options));
@@ -380,6 +401,19 @@ async function main() {
       const titles = [...new Set([...articles.values()].map((a) => a[lang]).filter(Boolean))];
       if (titles.length) bios[lang] = await extracts(lang, titles, options);
     }
+  }
+
+  // La finesse des dates : sans elle, « +0200 » se lirait « 200 » alors que
+  // Wikidata ne dit que « IIe siècle ».
+  const precisions = new Map();
+  for (const row of precisionRows) {
+    const id = idOf(row.s?.value);
+    const entry = precisions.get(id) || {};
+    const born = precisionOf(row.bornPrec?.value);
+    const died = precisionOf(row.diedPrec?.value);
+    if (born != null) entry.born = born;
+    if (died != null) entry.died = died;
+    precisions.set(id, entry);
   }
 
   const patronage = new Map();
@@ -446,8 +480,7 @@ async function main() {
 
     const born = yearOf(row.born?.value);
     const died = yearOf(row.died?.value);
-    const bornPrec = precisionOf(row.bornPrec?.value);
-    const diedPrec = precisionOf(row.diedPrec?.value);
+    const { born: bornPrec, died: diedPrec } = precisions.get(qid) || {};
     if (born == null && died == null) { dropped.dates += 1; continue; }
     if (!coherent(born, died, bornPrec, diedPrec)) { dropped.dates += 1; continue; }
 
