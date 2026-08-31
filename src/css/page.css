@@ -221,6 +221,60 @@ h2 {
   .plain { columns: 1; }
 }
 
+/* ------------------------------------------------- Carte de situation */
+
+/* Le contour du pays et un point : dessiné dans la page, sans rien charger.
+   Il ne s'agit pas de lire la géographie mais de situer d'un coup d'œil —
+   d'où la hauteur modeste et l'absence de tout ornement. */
+.locator {
+  display: block;
+  width: 100%;
+  max-width: 20rem;
+  height: 11rem;
+  margin: 0 0 1.5rem;
+  padding: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+/* `non-scaling-stroke` compte l'épaisseur en pixels d'écran, non en unités du
+   dessin : la même valeur qui convient au repère — deux cents unités d'un
+   monde qui en fait un million — couvrirait ici toute la vignette. */
+.locator path {
+  fill: var(--line);
+  stroke: var(--ink-soft);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.locator circle {
+  fill: var(--accent);
+  stroke: var(--panel);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+
+/* Une remarque de second plan : ce que la source ne sait pas, ou ce qui
+   demanderait autrement une explication. */
+.note {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.facts .note { display: block; }
+
+/* Le paragraphe qui situe la fiche parmi les autres. Il n'est rapporté de
+   nulle part : il est tiré du corpus lui-même. */
+.situe {
+  margin: 0 0 1.5rem;
+  padding: 0.75rem 1rem;
+  border-inline-start: 3px solid var(--line);
+  background: var(--panel);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.95rem;
+}
+
 /* ---------------------------------------------------------------- Boutons */
 
 .go {

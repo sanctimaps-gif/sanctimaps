@@ -33,7 +33,7 @@ montre n'existe qu'une fois le code exécuté. Un moteur de recherche n'avait
 donc qu'une page à indexer — l'accueil — pour quatre mille six cents saints, et
 chercher « saint Odilon de Cluny » ne menait nulle part ici.
 
-À côté de la carte vivent maintenant **5 637 pages de HTML servi tel quel** :
+À côté de la carte vivent maintenant **5 664 pages de HTML servi tel quel** :
 
 | | |
 | --- | --- |
@@ -41,6 +41,7 @@ chercher « saint Odilon de Cluny » ne menait nulle part ici.
 | `saints/lettre-<x>.html` | l'index alphabétique, coupé par initiale |
 | `pays/<pays>.html` | les saints nés dans ce pays — 91 pages |
 | `lieux/<ville>.html` | les saints nés là — 523 villes qui en comptent au moins deux |
+| `epoques/<n>e-siecle.html` | les saints d'un siècle — 27 pages |
 | `calendrier/<jour>.html` | les saints fêtés ce jour-là — 365 pages |
 | `sitemap.xml`, `robots.txt` | la liste complète, pour qui préfère la lire d'un coup |
 
@@ -53,9 +54,27 @@ carte porte le titre de la page, la phrase qui dit ce qu'est SanctiMaps et les
 trois portes vers les index : c'est du texte écrit dans le fichier, non posé
 par le code, et c'est par là que tout commence.
 
+**Ce que porte une fiche.** Le nom, la notice, la biographie, les dates, le
+lieu de naissance, le pays, la fête, l'époque, les qualités, le patronage, les
+sources — et trois choses de plus, qui ne viennent d'aucune source extérieure :
+
+- **une carte de situation**, le contour du pays et un point, dessinée dans la
+  page à partir du tracé basse définition et des coordonnées de la fiche. Rien
+  n'est chargé, aucun service tiers n'est appelé, pas une ligne de JavaScript
+  n'est nécessaire ;
+- **le lieu que le nom désigne**, quand ce n'est pas celui de la naissance.
+  Nazaire **de Milan** est né à Rome, Pancrace **de Taormine** à Antioche : un
+  saint porte presque toujours le nom du lieu où on le vénère, la carte porte
+  celui où il est né, et une fiche qui ne nommait que le second avait l'air de
+  se contredire ;
+- **un paragraphe qui la situe parmi les autres** — combien de saints au même
+  endroit, au même jour, au même siècle. Il est tiré du corpus lui-même et ne
+  se trouve donc nulle part ailleurs.
+
 Chaque fiche porte son **JSON-LD** (`schema.org/Person` : dates, lieu,
-coordonnées, `sameAs` vers Wikidata et Wikipédia), une adresse canonique et ses
-balises Open Graph. Le bouton « Voir sur la carte » rouvre l'application sur ce
+coordonnées, `sameAs` vers Wikidata et Wikipédia) et son fil d'Ariane
+(`BreadcrumbList`) ; les pages de liste y ajoutent leur `ItemList`. Chacune a
+son adresse canonique et ses balises Open Graph. Le bouton « Voir sur la carte » rouvre l'application sur ce
 saint — `index.html?saint=<id>` —, de sorte qu'une page trouvée par un moteur
 de recherche mène à la carte plutôt qu'à un cul-de-sac.
 
@@ -74,6 +93,39 @@ node tools/build-pages.mjs --base https://…  # autre adresse publique
 la page ne dirait rien que sa fiche ne dise déjà, et deux mille pages jumelles
 dilueraient le reste plus qu'elles ne l'aideraient. Rome en compte 153,
 Séoul 42, Alexandrie 37.
+
+### Ce que valent les données, dit sans fard
+
+`npm run audit:lieux` passe le corpus au crible géographique. Il ne corrige
+rien — la moitié de ce qu'il signale demande une meilleure source, l'autre une
+décision qui n'appartient pas à un programme — mais il compte, et il nomme :
+
+```
+CE QUI DEMANDE UNE MEILLEURE SOURCE
+    30   0,6 %  sans lieu de naissance du tout
+   173   3,7 %  un pays entier tient lieu de ville
+   271   5,9 %  une région ou une province tient lieu de ville
+
+CE QUI DEMANDE UNE FORME FRANÇAISE
+   264   5,7 %  nom resté dans une autre langue
+  1871  40,4 %  sans notice en français
+  1328  28,7 %  sans biographie en français
+
+CE QUI N’EST PAS UNE FAUTE
+  1279  27,6 %  le nom désigne un autre lieu que la naissance
+```
+
+Cette dernière ligne mérite qu'on s'y arrête, parce qu'elle a l'air d'une
+erreur et n'en est pas une. Un saint porte presque toujours le nom du lieu où
+on le vénère, non celui où il est né : Nazaire **de Milan** est né à Rome,
+Pancrace **de Taormine** à Antioche, Ovídio **de Braga** en Sicile. La carte,
+elle, porte le lieu de naissance. Les deux sont exacts ; c'est la fiche qui
+devait le dire, et elle le dit maintenant.
+
+`build:data` corrige au passage ce qu'il peut : quand le libellé français de
+Wikidata n'est pas français — « Natale di Milano », « Hroznata von Ovenec » —
+et qu'un article français existe, son titre en tient lieu. Trente-neuf fiches y
+ont gagné leur nom français sans qu'il faille réinterroger quoi que ce soit.
 
 `npm run check` relit ensuite le tout : autant de fiches que de saints publiés,
 chaque adresse du plan du site pourvue d'un fichier, et les liens internes d'un
@@ -817,7 +869,8 @@ data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complète
 data/reference/exonymes.json graphies acceptées pour les localités
 data/saints/biographies.json biographies rapportées pour les fiches écrites à la main
 data/generated/          données produites par build:data (versionnées)
-tools/build-pages.mjs    pages indexables : saints/, pays/, calendrier/
+tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/
+tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus
 saints/ pays/ lieux/ calendrier/  pages générées, servies telles quelles (versionnées)
 tools/import-saints.mjs  import de masse depuis Wikidata
 tools/enrich-bios.mjs    biographies des fiches écrites à la main

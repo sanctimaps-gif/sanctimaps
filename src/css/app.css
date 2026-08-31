@@ -178,6 +178,22 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .intro__pays a { color: var(--accent); }
 
+/* Les chiffres du corpus, chacun menant à son index : ce que le site couvre,
+   dit avant le premier clic. */
+.intro__chiffres {
+  margin: 0;
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1.1rem;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+.intro__chiffres a { color: inherit; text-decoration: none; }
+.intro__chiffres a:hover { color: var(--accent); }
+.intro__chiffres b { color: var(--ink); font-weight: 700; }
+
 /* Sur un téléphone, la phrase passe sous le titre et la carte garde sa
    place : trois lignes de bandeau mangeraient la moitié de l'écran. */
 @media (max-width: 40rem) {

@@ -37,8 +37,8 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/adalbert-de-magdebourg.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/adalbert-de-prague.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/adalberta-vojtecha-hasmandova.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/adalgis-de-novare.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/adalgis-de-thierache.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/adalgisio-di-novara.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/adam-abbe.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/adam-bargielski.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/adelaide-de-bourgogne.html</loc></url>
@@ -139,6 +139,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/albert-de-jerusalem.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/albert-de-louvain.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/albert-de-montecorvino.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/albert-de-pontida.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/albert-de-trapani.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/albert-de-villa-d-ogna.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/albert-le-grand.html</loc></url>
@@ -146,7 +147,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/albertina-berkenbrock.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/albertino-da-montone.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/alberto-da-genova.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/alberto-da-prezzate.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/alberto-da-sarteano.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/alberto-hurtado.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/alberto-marvelli.html</loc></url>
@@ -157,7 +157,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/alcuin.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/aldebrand-de-fossombrone.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/aldegonde-de-maubeuge.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/aldemaro-di-capua.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/aldemar-de-capoue.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/aleaume-de-burgos.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/aleksandr-bykov.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/aleksy-sobaszek.html</loc></url>
@@ -369,6 +369,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/anne-de-kachine.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/anne-de-leucate.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/anne-de-saint-barthelemy.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/anne-des-anges-monteagudo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/anne-la-prophetesse.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/anne-line.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/anne-marie-rubatto.html</loc></url>
@@ -505,7 +506,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/arthelais.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/arthur-bell.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/artur-ros-montalt.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ascension-nicol-y-goni.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ascension-nicol-goni.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/asella.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/aspren.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/assalone-of-capodistria.html</loc></url>
@@ -632,10 +633,8 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beat-de-lungern.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beata-cecilia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beata-eustochio.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beata-maria-clara-do-menino-jesus.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beato-amadeu-da-silva.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beato-constancio-de-fabriano.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beato-giacomo-da-ulma.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beato-miguel-francisco-de-la-santisima-trinidad.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beatrice-d-este.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beatrice-d-ornacieux.html</loc></url>
@@ -650,7 +649,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bellinus-of-padua.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benedetta-bianchi-porro.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benedetta-cambiagio-frassinello.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benedetto-da-urbino.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benedetto-i-di-milano.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benedetto-revelli.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benedict-of-skalka.html</loc></url>
@@ -669,6 +667,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benoit-biscop.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benoit-d-alignan.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benoit-d-aniane.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benoit-d-urbin.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benoit-de-nursie.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benoit-ii.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benoit-le-more.html</loc></url>
@@ -681,17 +680,18 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/benvenuto-scotivoli.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/berard-de-carbio.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/berard-des-marses.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/berardo-da-teramo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/berchaire.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/beregise-d-andage.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernabe-de-jesus-mendez-montoya.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernadette-soubirous.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-d-offida.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-de-clairvaux.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-de-corleone.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-de-hoyos.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-de-tiron.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-due-van-vo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-franciszek-de-cucsac.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-paleara.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-perrin.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernard-marie-de-jesus.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernardin-de-feltre.html</loc></url>
@@ -699,7 +699,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernardin-gantin.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernardin-palaj.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernardino-realino.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernardo-da-offida.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernardo-degli-uberti.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernardo-pellegrino.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/bernardo-tolomei.html</loc></url>
@@ -919,8 +918,8 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/chiara-corbella-petrillo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/chiara-gambacorti.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/christian-de-cherge.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/christina-von-stommeln.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/christine-ciccarelli.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/christine-de-stommeln.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/christine-de-tyr.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/christopher-bales.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/christophoros-papoulakos.html</loc></url>
@@ -956,9 +955,9 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/clement-cheptytsky.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/clement-d-alexandrie.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/clement-d-ancyre.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/clement-d-osimo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/clement-de-rome.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/clement-marie-hofbauer.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/clemente-da-osimo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/clemente-vismara.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/cleopatre.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/clotilde.html</loc></url>
@@ -1150,7 +1149,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dometie-manolache.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/domice-de-perse.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/domingo-caballe-bru.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/domingo-del-santismo-sacramento-iturrate-zubero.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/domingo-ibanez-de-erquicia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dominguito-del-val.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dominicus-of-arras.html</loc></url>
@@ -1163,6 +1161,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dominique-de-la-chaussee.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dominique-de-silos.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dominique-de-sora.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dominique-du-saint-sacrement.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dominique-henares.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dominique-l-encuirasse.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/dominique-lentini.html</loc></url>
@@ -1421,8 +1420,8 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/euthyme-de-souzdal.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/euthyme-de-tarnovo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/euthyme-ier-de-constantinople.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/euthyme-l-athonite.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/euthyme-le-grand.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/euthymius-of-athos.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/eutrope-d-orange.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/eutychien.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/eutychius-de-constantinople.html</loc></url>
@@ -1540,9 +1539,9 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/fra-angelico.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/fragan.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/fraimbault-de-lassay.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/franca-da-vitalta.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/franc-d-assergi.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/france-de-vitalta.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francesco-bonifacio.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francesco-faa-di-bruno.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francesco-gattola.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francesco-maria-greco.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francesco-mottola.html</loc></url>
@@ -1583,7 +1582,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/franciszek-od-jezusa-terrero-de-ortega-perez.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/franciszek-ros-aniec.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/franciszek-stryjas.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/franco-da-assergi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/franco-lippi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francois-antoine-fasani.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francois-borgia.html</loc></url>
@@ -1596,6 +1594,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francois-de-posadas.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francois-de-sales.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francois-diaz.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francois-faa-di-bruno.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francois-fernandez-de-capillas.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francois-fogolla.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/francois-galvez.html</loc></url>
@@ -1742,7 +1741,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gerasimus-of-kefalonia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/geraud-d-aurillac.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/geraud-de-salles.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/geremia-da-valacchia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gereon-de-cologne.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gerhard-hirschfelder.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gerland-d-agrigente.html</loc></url>
@@ -1788,7 +1786,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gilles-l-ermite.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gimer-de-carcassonne.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giorgio-di-suelli.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovan-giuseppe-della-croce.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanna-da-signa.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanna-maria-bonomo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanna-soderini.html</loc></url>
@@ -1799,7 +1796,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanni-battista-quilici.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanni-bono.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanni-da-caramola.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanni-da-triora.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanni-di-tui.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanni-fausti.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giovanni-il-buono.html</loc></url>
@@ -1835,7 +1831,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giuseppina-bonino.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/giustino-russolillo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gladys-du-pays-de-galles.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gloria-maria-di-gesu-elizondo-garcia.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gloria-maria-elizondo-garcia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/glycerius.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/goar-de-rhenanie.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gobain-de-voas.html</loc></url>
@@ -1892,7 +1888,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/gregory-of-nicomedia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/grigorie-iv-dascalul.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/grimbald.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/grimoaldo-della-purificazione.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/grimoald-de-la-purification.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/grzegorz-frackowiak.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/guadalupe-ortiz-de-landazuri.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/guala-de-roniis.html</loc></url>
@@ -2014,7 +2010,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/hormisdas.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/hospitius-de-nice.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/hripsime.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/hroznata-von-ovenec.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/hroznata-d-ovenec.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/hryhory-khomyshyn.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/hubert-de-liege.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/hugues-canefro.html</loc></url>
@@ -2046,7 +2042,9 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignace-d-antioche.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignace-d-azevedo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignace-de-constantinople.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignace-de-laconi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignace-de-loyola.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignace-de-santhia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignace-elie-iii-d-antioche.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignacio-delgado.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignacio-tejero-molina.html</loc></url>
@@ -2055,8 +2053,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignatius-choe-in-cheol.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignatius-falzon.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignatius-maloyan.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignazio-da-laconi.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ignazio-da-santhia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ilario-di-matera.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ildefonse-de-tolede.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ildefonso-fernandez-muniz.html</loc></url>
@@ -2138,6 +2134,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jacques-benfatti.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jacques-berthieu.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jacques-chastan.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jacques-d-ulm.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jacques-de-cerqueto.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jacques-de-ghazir.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jacques-de-jesus.html</loc></url>
@@ -2249,6 +2246,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-de-salerne.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-de-shanghai.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-de-trau.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-de-triora.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-de-verceil.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-dominici.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-dominique-lucchesi.html</loc></url>
@@ -2292,6 +2290,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-francois-burte.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-francois-regis.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-gabriel-perboyre.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-joseph-de-la-croix.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-joseph-lataste.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-louis-bonnard.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jean-louis-loir.html</loc></url>
@@ -2320,6 +2319,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jeanne-marie-guerguin.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jenaro-sanchez-delgadillo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jeong-yak-jong.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jeremie-de-valachie.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jerome.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jerome-de-angelis.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jerome-emilien.html</loc></url>
@@ -2393,18 +2393,17 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-de-los-sagrados-corazones.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-fenollosa-alcayna.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-fernandez-de-ventosa.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-gabriel-del-rosario-brochero.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-gonzalez-huguet.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-gregorio-hernandez.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-amoros-hernandez.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-arizmendiarrieta.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-cuartero-gascon.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-de-yermo-y-parres.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-diaz-sanjurjo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-gran-cirera.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-peris-polo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-ros-florerisa.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-rubio.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-maria-yermo-y-parres.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-medes-ferris.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-olallo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/jose-otin-aquilue.html</loc></url>
@@ -2436,6 +2435,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/joseph-de-leonessa.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/joseph-de-volokolamsk.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/joseph-freinademetz.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/joseph-gabriel-du-rosaire.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/joseph-gerard.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/joseph-han-won-so.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/joseph-hoang-luong-canh.html</loc></url>
@@ -2604,7 +2604,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lambert-de-vence.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/landelin.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/landoald.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/landolfo-di-vergiate.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/landolfe-de-variglia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/landrade-de-munsterbilzen.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/landry-de-paris.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/landry-de-soignies.html</loc></url>
@@ -2623,6 +2623,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/laurent-bai-xiaoman.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/laurent-de-brindes.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/laurent-de-la-resurrection.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/laurent-de-ripafratta.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/laurent-de-rome.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/laurent-de-villamagna.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/laurent-imbert.html</loc></url>
@@ -2697,7 +2698,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lojze-grozde.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/longin-le-centurion.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lorenzo-da-frazzano.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lorenzo-da-ripafratta.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lorenzo-maria-salvi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lorenzo-sobrevia-canardo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/louis-aleman.html</loc></url>
@@ -2738,11 +2738,11 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucerius.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/luchese-de-poggibonsi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucia-brocadelli-de-narni.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucia-da-caltagirone.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucia-de-settefonti.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucia-filippini.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucia-wang-wang.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucido-di-aquara.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucie-de-caltagirone.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucie-de-sampigny.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucie-de-syracuse.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucie-kim.html</loc></url>
@@ -2756,9 +2756,9 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucja-szewczyk.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/lucy-wang-cheng.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ludmila-de-boheme.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ludovic-de-casoria.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ludovic-pavoni.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ludovica-albertoni.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ludovico-da-casoria.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ludovico-sabbatini.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ludwik-exarch.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ludwik-gietyngier.html</loc></url>
@@ -2849,7 +2849,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manuel-buil-lalueza.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manuel-domingo-y-sol.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manuel-gomez-gonzalez.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manuel-gonzalez-y-garcia.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manuel-gonzalez-garcia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manuel-legua-marti.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manuel-lozano-garrido.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manuel-martin-sierra.html</loc></url>
@@ -2864,9 +2864,12 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manuela-del-sagrado-corazon.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/manvieu-de-bayeux.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maol-rubha.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maravillas-de-jesus.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marc.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marc-d-aviano.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marc-d-ephese.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marc-de-montegallo.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marc-fantuzzi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marc-krizin.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcantonio-durando.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcel-callo.html</loc></url>
@@ -2882,8 +2885,8 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcellin-champagnat.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcellin-d-embrun.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcelline-darowska.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcello-spinola-y-maestre.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcellus.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcelo-spinola-y-maestre.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marchell.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcianus-l-ascete.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcien.html</loc></url>
@@ -2891,8 +2894,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcien-de-tortone.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcienne-de-cesaree.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcin-oprzadek.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marco-da-bologna.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marco-da-montegallo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcolin-de-forli.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcos-criado.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marcoul.html</loc></url>
@@ -2945,11 +2946,9 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-crocifissa-satellico.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-de-cervello.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-de-edesa.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-de-las-maravillas-de-jesus.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-de-leon-bello-y-delgado.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-de-los-angeles-ginard-marti.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-de-san-jose-alvarado.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-del-carmen-gonzalez-ramos.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-del-carmen-viel-ferrando.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-dolores-rodriguez-sopena.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-dolores-segarra.html</loc></url>
@@ -2966,7 +2965,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-giuseppa-rossello.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-grazia-tarallo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-guadalupe-garcia-zavala.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-ines-teresa-del-santisimo-sacramento.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-ines-teresa-arias-espinosa.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-josefa-karolina-brader.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-josefa-sancho.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/maria-kar-owska.html</loc></url>
@@ -3021,7 +3020,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mariano-adradas-gonzalo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mariano-arciero.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mariano-d-acerenza.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mariano-da-roccacasale.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mariano-de-jesus-euse-hoyos.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mariano-de-la-mata.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mariano-de-saint-joseph.html</loc></url>
@@ -3031,6 +3029,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-ange-de-saint-joseph.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-angeline-therese-mc-crory.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-cabanillas.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-claire-de-l-enfant-jesus.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-claire-nanetti.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-d-oignies.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-de-bethanie.html</loc></url>
@@ -3042,6 +3041,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-de-l-incarnation-2.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-de-la-paix-giuliani.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-de-mattias.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-del-carmen-gonzalez-ramos.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-des-anges.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-des-anges-2.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-des-apotres.html</loc></url>
@@ -3105,6 +3105,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-therese-de-soubiran.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marie-therese-ledochowska.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marien-de-combraille.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marien-de-roccacasale.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marija-berchmana-leidenix.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marija-bernadeta-banja.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/marija-jula-ivanisevic.html</loc></url>
@@ -3157,8 +3158,8 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mary-zhu.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mateo-correa-magallanes.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mathilde-de-ringelheim.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mathilde-tellez-robles.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/mathurin-de-larchant.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/matilde-del-sagrado-corazon.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/matrona-anemnyasevskaya.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/matrona-de-perge.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/matrona-of-barcelona.html</loc></url>
@@ -3307,7 +3308,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/narcisse-de-gerone.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/narcyz-putz.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/narcyz-turchan.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/natale-di-milano.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/natale-de-milan.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/natalia-tu-asiewicz.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nath-i-of-achonry.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nathalie-de-cordoue.html</loc></url>
@@ -3338,14 +3339,14 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicodeme-de-mammola.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicodeme-de-tismana.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicodeme-l-hagiorite.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicola-da-forca-palena.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicola-da-gesturi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicola-saggio.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas-barre.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas-bunkerd-kitbamrung.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas-cabasilas.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas-de-flue.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas-de-forca-palena.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas-de-gesturi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas-de-myre.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas-de-tolentino.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/nicolas-du-japon.html</loc></url>
@@ -3445,8 +3446,8 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/pablo-de-anda-padilla.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/pablo-melendez-gonzalo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/pacien-de-barcelone.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/pacifico-da-san-severino.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/pacifique-de-cerano.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/pacifique-de-san-severino.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/pacome.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/pacome-le-grand.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/padre-donizetti.html</loc></url>
@@ -3825,8 +3826,8 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/rhetice-d-autun.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/rhuddlad.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/ricardo-atanes-castro.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/riccardo-di-andria.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/richard-bere.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/richard-d-andria.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/richard-de-chichester.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/richard-de-saint-vanne.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/richard-de-sainte-anne.html</loc></url>
@@ -4105,8 +4106,8 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/septime-de-jesi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/serafina-cinque.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/serafina-emanuela-justa-fernandez-ibero.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/serafino-da-montegranaro.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/serafino-morazzone.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/seraphin-de-montegranaro.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/seraphin-de-sarov.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/seraphine-de-dieu.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/serapion.html</loc></url>
@@ -4148,13 +4149,13 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-ballacchi.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-de-lipnica.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-de-rojas.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-fidati.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-le-zelote.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-qin-chunfu.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-qin-cunfu.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-rinalducci.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-soiguinski.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simon-stock.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simone-fidati-da-cascia.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/simplice.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/sirice.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/sisoes-le-grand.html</loc></url>
@@ -4172,7 +4173,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/soledad-torres-acosta.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/sophie-leeves.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/sophrone-de-jerusalem.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/sor-ana-de-los-angeles-monteagudo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/sosie-de-misene.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/sosthene-de-chalcedoine.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/soter.html</loc></url>
@@ -4472,7 +4472,6 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/viateur-de-lyon.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/viator-of-bergamo.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vibiane.html</loc></url>
-<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vicenta-maria-lopez-y-vicuna.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vicente-ballester-far.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vicente-burrel-enjuanes.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vicente-de-paul-canelles-vives.html</loc></url>
@@ -4515,6 +4514,7 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vincent-l-henoret.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vincent-pallotti.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vincent-marie-strambi.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vincente-marie-lopez-y-vicuna.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vincentius-le-quang-liem-o-p.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vincenza-gerosa.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/saints/vincenza-maria-poloni.html</loc></url>
@@ -5272,6 +5272,33 @@
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/lieux/santa-cruz-de-la-salceda.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/lieux/tabuenca.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/lieux/tbilissi.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/20e-siecle-av-jc.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/11e-siecle-av-jc.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/9e-siecle-av-jc.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/7e-siecle-av-jc.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/5e-siecle-av-jc.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/2e-siecle-av-jc.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/1er-siecle-av-jc.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/1er-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/2e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/3e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/4e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/5e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/6e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/7e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/8e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/9e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/10e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/11e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/12e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/13e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/14e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/15e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/16e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/17e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/18e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/19e-siecle.html</loc></url>
+<url><loc>https://sanctimaps-gif.github.io/sanctimaps/epoques/20e-siecle.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/calendrier/4-septembre.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/calendrier/29-decembre.html</loc></url>
 <url><loc>https://sanctimaps-gif.github.io/sanctimaps/calendrier/21-septembre.html</loc></url>

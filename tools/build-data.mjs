@@ -495,6 +495,36 @@ console.log(`  country-names.json : ${Object.keys(names).length} pays, ${Object.
 const SAINTS_DIR = join(ROOT, 'data', 'saints');
 const REQUIRED = ['id', 'name', 'sex', 'city', 'country', 'lat', 'lng', 'feast'];
 
+/** Tournures qui trahissent un nom resté dans une autre langue. */
+const ETRANGER = / of | the | di | da | do | dos | von | zu | della | degli | del | de los | de las | y /;
+
+/**
+ * Rend son nom français à une fiche qui n'en a pas.
+ *
+ * L'import prend le libellé français de Wikidata, et à défaut le titre de
+ * l'article français. Reste le cas où Wikidata *a* un libellé français qui
+ * n'est pas français : « Natale di Milano », « Aldemaro di Capua », « Hroznata
+ * von Ovenec ». L'article français existe pourtant, et son titre, lui, est
+ * français — « Natale de Milan », « Aldemar de Capoue », « Hroznata d'Ovenec ».
+ *
+ * On ne remplace que sur deux conditions, parce qu'un titre d'article n'est
+ * pas toujours le nom d'un homme : le nom actuel doit porter une tournure
+ * étrangère franche, et le titre ne doit pas être le nom actuel précédé d'un
+ * mot — « Affaire Dominguito del Val » parle du meurtre, non du saint.
+ */
+function nomFrancais(saint) {
+  const nom = saint.name?.fr;
+  if (!nom || !ETRANGER.test(` ${nom} `)) return null;
+  const source = (saint.sources || []).find((u) => /fr\.wikipedia/.test(u.url));
+  if (!source) return null;
+  const titre = decodeURIComponent(source.url.split('/wiki/')[1] || '')
+    .replace(/_/g, ' ')
+    .replace(/\s*\([^)]*\)\s*$/, '')
+    .trim();
+  if (!titre || titre === nom || titre.includes(nom)) return null;
+  return titre;
+}
+
 const saints = [];
 const ids = new Set();
 const errors = [];
@@ -533,6 +563,8 @@ for (const file of readdirSync(SAINTS_DIR)
     const [x, y] = project(s.lng, s.lat);
     const shift = shiftById.get(s.country) || 0;
     const record = { ...s, x: Math.round(x) + shift, y: Math.round(y) };
+    const francais = nomFrancais(s);
+    if (francais) record.name = { ...s.name, fr: francais };
     if (patronages[s.id]) record.patronage = patronages[s.id];
     // Une biographie écrite dans la fiche a priorité sur celle qui est
     // rapportée : la main l'emporte sur la machine, jamais l'inverse.
@@ -612,6 +644,10 @@ for (const file of readdirSync(REF_DIR).filter((f) => f.endsWith('.json')).sort(
     }
     continue;
   }
+  // Le dossier accueille aussi des tables qui ne sont ni des fiches ni des
+  // graphies — les compléments de nom des pays, par exemple. Elles ne
+  // concernent pas le fond documentaire : on les laisse à qui les lit.
+  if (!Array.isArray(raw.saints)) continue;
   for (const saint of raw.saints) entries.push(saint);
 }
 
