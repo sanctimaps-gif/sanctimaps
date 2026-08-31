@@ -293,6 +293,9 @@ export default {
   misc: {
     counted: '已收录 {c} 个国家的 {n} 位圣人',
     circa: '约',
+    century: '{n}世纪',
+    millennium: '{n}千年',
+    decade: '{n}年代',
     unknown: '不详',
     bc: '公元前',
     saintsHere: '已收录 {n} 位圣人',

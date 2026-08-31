@@ -1,6 +1,6 @@
 import { PENDING, PUBLISHED, REJECTED } from '../data.js';
 import { can } from '../auth.js';
-import { formatFeast, formatYear, getLanguage, t, titleLabel } from '../i18n.js';
+import { formatFeast, formatYear, getLanguage, pickText, t, titleLabel } from '../i18n.js';
 import { fill, h } from './dom.js';
 
 function row(label, value) {
@@ -41,12 +41,9 @@ export class DetailPanel {
       return;
     }
     const lang = getLanguage();
-    const pick = (value) => (typeof value === 'string'
-      ? value
-      : value?.[lang] || value?.fr || value?.en || '');
-    const description = pick(saint.desc);
-    const patronage = pick(saint.patronage);
-    const biography = pick(saint.bio);
+    const description = pickText(saint.desc, lang);
+    const patronage = pickText(saint.patronage, lang);
+    const biography = pickText(saint.bio, lang);
 
     const otherNames = typeof saint.name === 'object'
       ? Object.entries(saint.name)
@@ -78,9 +75,11 @@ export class DetailPanel {
       h('dl', { class: 'sheet' },
         row(t('detail.patronage'), patronage),
         row(t('detail.birth'), saint.born != null
-          ? formatYear(saint.born, { circa: saint.circa }) : t('misc.unknown')),
+          ? formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })
+          : t('misc.unknown')),
         row(t('detail.death'), saint.died != null
-          ? formatYear(saint.died) : t('misc.unknown')),
+          ? formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })
+          : t('misc.unknown')),
         // Le point porté sur la carte est presque toujours une naissance ;
         // quand c'est une mort, dire « lieu de naissance » serait une erreur.
         row(t(saint.placeKind === 'died' ? 'detail.deathplace' : 'detail.birthplace'),

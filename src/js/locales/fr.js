@@ -295,6 +295,9 @@ export default {
   misc: {
     counted: '{n} saints recensés dans {c} pays',
     circa: 'vers',
+    century: '{r}{s} siècle',
+    millennium: '{r}{s} millénaire',
+    decade: 'années {n}',
     unknown: 'inconnue',
     bc: 'av. J.-C.',
     saintsHere: '{n} saints recensés',

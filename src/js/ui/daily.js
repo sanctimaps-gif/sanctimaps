@@ -160,8 +160,10 @@ export class DailyPanel {
   }
 
   card(saint, lang) {
-    const born = saint.born != null ? formatYear(saint.born, { circa: saint.circa }) : '?';
-    const died = saint.died != null ? formatYear(saint.died) : '?';
+    const born = saint.born != null
+      ? formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec }) : '?';
+    const died = saint.died != null
+      ? formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec }) : '?';
     return h('button', {
       class: `result${saint.status !== 'published' ? ' result--draft' : ''}`,
       type: 'button',

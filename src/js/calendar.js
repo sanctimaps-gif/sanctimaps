@@ -6,6 +6,8 @@
  * Outlook, Thunderbird — sans compte ni service tiers.
  */
 
+import { pickText } from './i18n.js';
+
 /** Plie les lignes à 75 octets, comme l'exige la norme iCalendar. */
 function fold(line) {
   const bytes = new TextEncoder().encode(line);
@@ -68,9 +70,7 @@ export function buildCalendar(saints, { name, country, lang, title }) {
     const end = new Date(Date.UTC(YEAR, Number(month) - 1, Number(day) + 1));
     const summary = name(saint, lang);
     const where = `${saint.city} — ${country(saint.country, lang)}`;
-    const notice = typeof saint.desc === 'string'
-      ? saint.desc
-      : saint.desc?.[lang] || saint.desc?.fr || saint.desc?.en || '';
+    const notice = pickText(saint.desc, lang);
 
     lines.push(
       'BEGIN:VEVENT',

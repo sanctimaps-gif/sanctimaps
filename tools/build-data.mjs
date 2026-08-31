@@ -27,6 +27,7 @@ import { feature } from 'topojson-client';
 
 import { WORLD_SIZE, project } from '../src/js/map/projection.js';
 import { fold } from '../src/js/data.js';
+import { coherent } from './lib/dates.mjs';
 
 const require = createRequire(import.meta.url);
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -527,7 +528,7 @@ for (const file of readdirSync(SAINTS_DIR)
     if (!/^\d{2}-\d{2}$/.test(s.feast || '')) errors.push(`${where} — fête mal formée : ${s.feast}`);
     if (Math.abs(s.lat) > 85 || Math.abs(s.lng) > 180) errors.push(`${where} — coordonnées hors limites`);
     if (s.born == null && s.died == null) errors.push(`${where} — ni naissance ni mort`);
-    if (s.born != null && s.died != null && s.died < s.born) errors.push(`${where} — mort avant la naissance`);
+    if (!coherent(s.born, s.died, s.bornPrec, s.diedPrec)) errors.push(`${where} — mort avant la naissance`);
 
     const [x, y] = project(s.lng, s.lat);
     const shift = shiftById.get(s.country) || 0;

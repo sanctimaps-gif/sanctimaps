@@ -293,6 +293,9 @@ export default {
   misc: {
     counted: 'Świętych: {n}, w {c} krajach',
     circa: 'ok.',
+    century: '{r} wiek',
+    millennium: '{r} tysiąclecie',
+    decade: 'lata {n}',
     unknown: 'nieznana',
     bc: 'p.n.e.',
     saintsHere: 'Zapisanych świętych: {n}',

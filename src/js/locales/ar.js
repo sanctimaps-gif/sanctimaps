@@ -293,6 +293,9 @@ export default {
   misc: {
     counted: '{n} قدّيسًا في {c} بلدًا',
     circa: 'نحو',
+    century: 'القرن {n}',
+    millennium: 'الألفية {n}',
+    decade: 'عقد {n}',
     unknown: 'غير معروف',
     bc: 'ق.م.',
     saintsHere: '{n} قدّيسًا مسجّلًا',

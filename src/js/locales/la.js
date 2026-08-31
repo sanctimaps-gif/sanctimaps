@@ -293,6 +293,9 @@ export default {
   misc: {
     counted: 'Sancti {n} in {c} regionibus descripti',
     circa: 'circa',
+    century: 'saeculum {r}',
+    millennium: 'millennium {r}',
+    decade: 'anni {n}',
     unknown: 'ignotus',
     bc: 'a.C.n.',
     saintsHere: 'Sancti notati: {n}',

@@ -293,6 +293,9 @@ export default {
   misc: {
     counted: '{n} heiligen opgetekend in {c} landen',
     circa: 'ca.',
+    century: '{n}e eeuw',
+    millennium: '{n}e millennium',
+    decade: 'jaren {n}',
     unknown: 'onbekend',
     bc: 'v.Chr.',
     saintsHere: '{n} heiligen opgetekend',

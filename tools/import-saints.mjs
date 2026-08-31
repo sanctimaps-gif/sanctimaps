@@ -36,6 +36,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { fold } from '../src/js/data.js';
+import { coherent } from './lib/dates.mjs';
 import { extracts, shorten, sleep, sparql } from './lib/wikimedia.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -123,12 +124,20 @@ function parseArgs(argv) {
  */
 const byCountry = (iso) => `
 SELECT ?s ?statusEn ?nameFr ?nameEn ?nameLa ?descFr ?descEn
-       ?born ?died ?sex ?feastEn ?placeFr ?placeEn ?coord WHERE {
+       ?born ?bornPrec ?died ?diedPrec ?sex ?feastEn ?placeFr ?placeEn ?coord WHERE {
   ?country wdt:P298 "${iso}" .
   ?place wdt:P17 ?country ; wdt:P625 ?coord .
   ?s wdt:P19 ?place ; wdt:P411 ?status ; wdt:P841 ?feast .
-  OPTIONAL { ?s wdt:P569 ?born }
-  OPTIONAL { ?s wdt:P570 ?died }
+  # La précision se lit sur le nœud de déclaration, jamais sur la valeur
+  # simple : « +0200 » ne dit pas s'il faut lire « 200 » ou « IIe siècle ».
+  # On la rattache à la valeur retenue, pour ne pas prendre celle d'une
+  # déclaration concurrente.
+  OPTIONAL { ?s wdt:P569 ?born .
+             OPTIONAL { ?s p:P569/psv:P569 [ wikibase:timeValue ?born ;
+                                             wikibase:timePrecision ?bornPrec ] } }
+  OPTIONAL { ?s wdt:P570 ?died .
+             OPTIONAL { ?s p:P570/psv:P570 [ wikibase:timeValue ?died ;
+                                             wikibase:timePrecision ?diedPrec ] } }
   OPTIONAL { ?s wdt:P21 ?sex }
   OPTIONAL { ?status rdfs:label ?statusEn . FILTER(LANG(?statusEn) = "en") }
   OPTIONAL { ?feast rdfs:label ?feastEn . FILTER(LANG(?feastEn) = "en") }
@@ -192,6 +201,18 @@ function yearOf(value) {
 }
 
 /** « 6 March » ou « March 6 » -> « 03-06 ». */
+/**
+ * La précision d'une date, telle que Wikidata la compte.
+ *
+ * 6 le millénaire, 7 le siècle, 8 la décennie, 9 l'année, 11 le jour. Rien
+ * au-delà de 11 ne concerne un saint, et rien en deçà de 6 n'est lisible : on
+ * garde le nombre tel quel et l'affichage décide quoi en dire.
+ */
+function precisionOf(value) {
+  const n = Number(value);
+  return Number.isFinite(n) && n >= 0 && n <= 14 ? n : null;
+}
+
 function feastOf(text) {
   const lower = String(text || '').toLowerCase();
   const month = MONTHS.findIndex((name) => lower.includes(name));
@@ -394,7 +415,13 @@ async function main() {
     const status = String(row.statusEn?.value || '').toLowerCase();
     if (options.status && !status.includes(options.status)) { dropped.statut += 1; continue; }
 
-    const fr = row.nameFr?.value || '';
+    // Quand Wikidata n'a pas de libellé français, le titre de l'article
+    // français en tient lieu : « Romulus de Fiesole » vaut mieux que
+    // « Romulus of Fiesole » sur une carte lue en français. La parenthèse de
+    // désambiguïsation ne fait pas partie du nom — « Daniel (prophète) » se
+    // lit « Daniel ».
+    const frArticle = String(articles.get(qid)?.fr || '').replace(/\s*\([^)]*\)\s*$/, '').trim();
+    const fr = row.nameFr?.value || frArticle;
     const en = row.nameEn?.value || '';
     const name = fr || en;
     if (!name) { dropped.nom += 1; continue; }
@@ -419,8 +446,10 @@ async function main() {
 
     const born = yearOf(row.born?.value);
     const died = yearOf(row.died?.value);
+    const bornPrec = precisionOf(row.bornPrec?.value);
+    const diedPrec = precisionOf(row.diedPrec?.value);
     if (born == null && died == null) { dropped.dates += 1; continue; }
-    if (born != null && died != null && died < born) { dropped.dates += 1; continue; }
+    if (!coherent(born, died, bornPrec, diedPrec)) { dropped.dates += 1; continue; }
 
     const id = slug(name, qid);
     if (takenIds.has(id)) { dropped.doublon += 1; continue; }
@@ -435,7 +464,13 @@ async function main() {
       sex: idOf(row.sex?.value) === 'Q6581072' ? 'f' : 'm',
       born,
       died,
-      circa: true,
+      // La précision ne voyage que lorsqu'elle est plus grossière qu'une
+      // année : ailleurs, elle n'apprendrait rien et pèserait sur le fichier.
+      ...(bornPrec != null && bornPrec < 9 ? { bornPrec } : {}),
+      ...(diedPrec != null && diedPrec < 9 ? { diedPrec } : {}),
+      // « Vers » ne se dit que d'une année : un siècle n'est pas une date
+      // approchée, c'est une autre échelle, et l'affichage la nomme.
+      circa: (bornPrec ?? 9) >= 9,
       city: row.placeFr?.value || row.placeEn?.value || '',
       country: iso,
       lat: Number(lat.toFixed(4)),

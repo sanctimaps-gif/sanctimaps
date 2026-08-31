@@ -148,13 +148,83 @@ export function formatDay(date) {
   }).format(date);
 }
 
-/** Année éventuellement approximative, avec mention avant Jésus-Christ. */
-export function formatYear(year, { circa = false } = {}) {
+/** Chiffres romains de I à XXI, la seule plage utile pour des siècles. */
+const ROMAN = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X',
+  'XI', 'XII', 'XIII', 'XIV', 'XV', 'XVI', 'XVII', 'XVIII', 'XIX', 'XX', 'XXI'];
+
+/** « 2 » -> « 2nd », pour les langues qui numérotent ainsi leurs siècles. */
+function ordinal(n) {
+  const ten = n % 100;
+  if (ten >= 11 && ten <= 13) return `${n}th`;
+  return `${n}${['th', 'st', 'nd', 'rd'][n % 10] || 'th'}`;
+}
+
+/**
+ * Année, siècle ou millénaire, selon ce que la source sait vraiment.
+ *
+ * Wikidata ne donne pas toujours une année : pour les saints anciens, elle ne
+ * connaît souvent que le siècle, et l'enregistre alors comme une année ronde
+ * avec une « précision » qui vaut 7. Écrire « vers 200 » serait alors une
+ * fausse exactitude — la source ne dit pas 200, elle dit « IIe siècle ». La
+ * précision voyage donc avec la fiche, et l'affichage la respecte :
+ *
+ *   précision 9 et plus : l'année, telle quelle
+ *   précision 8         : la décennie — « années 250 »
+ *   précision 7         : le siècle   — « IIe siècle »
+ *   précision 6         : le millénaire
+ *
+ * Chaque langue dit cela à sa façon : « IIe siècle » en français, « 2nd
+ * century » en anglais, « 2. Jahrhundert » en allemand. Le motif est donc
+ * traduit, avec le chiffre en romain (`{r}`), en arabe (`{n}`) ou en ordinal
+ * anglais (`{o}`), et chaque langue prend celui qui lui convient.
+ */
+export function formatYear(year, { circa = false, precision = 9 } = {}) {
   if (year == null) return t('misc.unknown');
-  const abs = new Intl.NumberFormat(current === 'la' ? 'en' : current, { useGrouping: false })
-    .format(Math.abs(year));
-  const label = year < 0 ? `${abs} ${t('misc.bc')}` : abs;
+  const num = (value) => new Intl.NumberFormat(current === 'la' ? 'en' : current,
+    { useGrouping: false }).format(value);
+  const abs = Math.abs(year);
+  const bc = (label) => (year < 0 ? `${label} ${t('misc.bc')}` : label);
+
+  if (precision <= 8) {
+    // Peu importe où l'année tombe dans son siècle : 101 comme 200 sont du
+    // deuxième, et la division plafonnée le dit sans avoir à s'en soucier.
+    const rank = precision <= 6 ? Math.ceil(abs / 1000) : Math.ceil(abs / 100);
+    const key = precision <= 6 ? 'misc.millennium' : 'misc.century';
+    if (precision === 8) return bc(t('misc.decade', { n: num(Math.floor(abs / 10) * 10) }));
+    return bc(t(key, {
+      n: num(rank),
+      r: ROMAN[rank] || num(rank),
+      o: ordinal(rank),
+      // Le français écrit « Ier siècle » mais « IIe siècle » : le suffixe
+      // change au premier rang seulement, et les autres langues l'ignorent.
+      s: rank === 1 ? 'er' : 'e',
+    }));
+  }
+
+  const label = bc(num(abs));
   return circa ? `${t('misc.circa')} ${label}` : label;
+}
+
+/**
+ * Le texte d'une fiche dans la langue où on la lit — et rien d'autre.
+ *
+ * Le corpus ne porte de la prose qu'en deux langues : le français, qu'il
+ * écrit, et l'anglais, qu'il rapporte de Wikipédia. Servir l'anglais à qui lit
+ * en français n'est pas rendre service : une notice « Italian Roman Catholic
+ * bishop » sous un nom français se remarque plus qu'elle n'instruit, et donne
+ * l'impression d'une carte à moitié traduite. Dans ces deux langues, on montre
+ * donc ce qu'on a dans cette langue, ou rien.
+ *
+ * Les dix autres langues de l'interface n'ont, elles, aucune prose à leur
+ * nom : leur refuser le repli les priverait de tout. Elles gardent donc le
+ * français puis l'anglais, faute de mieux.
+ */
+export function pickText(value, lang = current) {
+  if (typeof value === 'string') return value;
+  if (!value) return '';
+  if (value[lang]) return value[lang];
+  if (lang === 'fr' || lang === 'en') return '';
+  return value.fr || value.en || '';
 }
 
 export function formatNumber(n) {

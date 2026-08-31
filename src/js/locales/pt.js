@@ -293,6 +293,9 @@ export default {
   misc: {
     counted: '{n} santos registados em {c} países',
     circa: 'c.',
+    century: 'século {r}',
+    millennium: '{r}.º milénio',
+    decade: 'anos {n}',
     unknown: 'desconhecida',
     bc: 'a.C.',
     saintsHere: '{n} santos registados',
