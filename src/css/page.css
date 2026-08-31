@@ -1,0 +1,249 @@
+/* SanctiMaps — feuille des pages lisibles sans JavaScript.
+ *
+ * Les pages de saints, de pays et de jours de fête sont du HTML servi tel
+ * quel : un moteur de recherche les lit, un lecteur sans JavaScript aussi. Ce
+ * n'est donc pas la feuille de la carte, qui suppose une application en place
+ * et un écran verrouillé — c'est celle d'un document qui défile.
+ *
+ * Les couleurs sont celles de la carte, recopiées ici plutôt qu'importées :
+ * une page doit tenir avec un seul fichier de style, et le thème sombre doit
+ * être posé avant le premier rendu comme il l'est sur la carte.
+ */
+
+:root {
+  --ink: #24201b;
+  --ink-soft: #6b6155;
+  --paper: #f7f2e8;
+  --panel: #fffdf8;
+  --line: #ded3c0;
+  --accent: #8c2230;
+  --accent-soft: #f3e2e4;
+  --radius: 10px;
+  --font: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --font-ui: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #ece5da;
+    --ink-soft: #a79c8c;
+    --paper: #161c23;
+    --panel: #1d242c;
+    --line: #333d48;
+    --accent: #c9505f;
+    --accent-soft: #33222a;
+  }
+}
+
+:root[data-theme="dark"] {
+  --ink: #ece5da;
+  --ink-soft: #a79c8c;
+  --paper: #161c23;
+  --panel: #1d242c;
+  --line: #333d48;
+  --accent: #c9505f;
+  --accent-soft: #33222a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 4rem;
+}
+
+a { color: var(--accent); }
+a:hover { text-decoration: none; }
+
+/* ------------------------------------------------------------- En-tête */
+
+.top {
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.top__in {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  align-items: baseline;
+}
+
+.top__brand {
+  font-family: var(--font);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+}
+
+.top__nav {
+  margin-left: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  font-size: 0.9rem;
+}
+
+/* Fil d'Ariane : où l'on est, et par où l'on remonte. */
+.crumbs {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin: 0 0 1rem;
+}
+
+.crumbs a { color: var(--ink-soft); }
+
+/* --------------------------------------------------------------- Titres */
+
+h1 {
+  font-family: var(--font);
+  font-size: 2rem;
+  line-height: 1.2;
+  margin: 0 0 0.35rem;
+}
+
+h2 {
+  font-family: var(--font);
+  font-size: 1.25rem;
+  margin: 2rem 0 0.6rem;
+}
+
+.lede {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.5rem;
+}
+
+.bio { margin: 0 0 1.25rem; }
+
+/* --------------------------------------------------------------- Repères */
+
+.facts {
+  margin: 0 0 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.facts > div {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.facts dt {
+  flex: 0 0 9.5rem;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.facts dd { margin: 0; }
+
+/* ---------------------------------------------------------------- Listes */
+
+.cards {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+}
+
+.cards a {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: inherit;
+  text-decoration: none;
+}
+
+.cards a:hover { border-color: var(--accent); }
+
+.cards b { font-weight: 600; }
+
+.cards span {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+/* Index alphabétique : beaucoup de noms, peu de place. */
+.letters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.letters a {
+  display: inline-block;
+  min-width: 2rem;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  text-decoration: none;
+}
+
+.plain {
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+  columns: 2;
+  column-gap: 2rem;
+}
+
+.plain li { break-inside: avoid; }
+
+@media (max-width: 34rem) {
+  .plain { columns: 1; }
+}
+
+/* ---------------------------------------------------------------- Boutons */
+
+.go {
+  display: inline-block;
+  margin: 0 0 1.5rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.sources {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 1.5rem 0 0;
+}
+
+.foot {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}

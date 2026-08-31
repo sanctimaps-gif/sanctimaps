@@ -125,6 +125,10 @@ export function formatFeast(feast) {
   const [m, d] = feast.split('-').map(Number);
   if (!m || !d) return feast;
   if (current === 'la') return `${d} ${monthNames()[m - 1]}`;
+  // Le français dit « 1er novembre », jamais « 1 novembre ». C'est le seul
+  // jour du mois qui prenne l'ordinal, et il revient douze fois l'an — dont la
+  // Toussaint, qui est la fête la mieux connue du calendrier.
+  if (current === 'fr' && d === 1) return `1er ${monthNames()[m - 1]}`;
   return new Intl.DateTimeFormat(current, { day: 'numeric', month: 'long' })
     .format(new Date(Date.UTC(2001, m - 1, d)));
 }

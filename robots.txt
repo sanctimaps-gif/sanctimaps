@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sanctimaps-gif.github.io/sanctimaps/sitemap.xml

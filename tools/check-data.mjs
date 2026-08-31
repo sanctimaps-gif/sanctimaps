@@ -7,7 +7,7 @@
  * puisse servir de garde-fou avant un commit.
  */
 
-import { readFileSync, readdirSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -192,6 +192,52 @@ for (const [code, bundle] of bundles) {
   for (const key of keys) if (!reference.has(key)) fail(`locale ${code} : clé en trop ${key}`);
 }
 ok(`${bundles.length} langues, toutes complètes (${reference.size} clés)`);
+
+// --- Pages indexables --------------------------------------------------------
+
+/**
+ * Les pages générées ne valent que si leurs liens tombent juste.
+ *
+ * Un lien mort dans une page statique ne se voit pas à l'usage — personne ne
+ * clique quatre mille six cents fiches — mais un moteur de recherche, lui, les
+ * suit toutes. On vérifie donc que chaque page annoncée existe, et que chaque
+ * lien interne mène à un fichier présent. Les pages sont facultatives : tant
+ * qu'elles n'ont pas été générées, le contrôle passe son tour.
+ */
+const pagesDir = join(ROOT, 'saints');
+if (existsSync(pagesDir)) {
+  const published = read('saints.json').saints.filter((s) => (s.status ?? 'published') === 'published');
+  const fiches = readdirSync(pagesDir).filter((f) => f.endsWith('.html')
+    && f !== 'index.html' && !f.startsWith('lettre-'));
+  if (fiches.length !== published.length) {
+    fail(`pages : ${fiches.length} fiches écrites pour ${published.length} saints publiés`);
+  }
+
+  const sitemap = readFileSync(join(ROOT, 'sitemap.xml'), 'utf8');
+  const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const base = locs[0].replace(/\/$/, '');
+  let morts = 0;
+  for (const loc of locs) {
+    const rel = loc.slice(base.length).replace(/^\//, '');
+    if (rel && !existsSync(join(ROOT, rel))) { morts += 1; if (morts < 4) fail(`plan du site : ${rel} n'existe pas`); }
+  }
+  if (morts >= 4) fail(`plan du site : ${morts} adresses sans fichier`);
+
+  // Les liens internes, vus depuis une poignée de pages tirées au hasard :
+  // les relire toutes coûterait une minute pour la même certitude.
+  const echantillon = ['saints/index.html', 'pays/index.html', 'calendrier/index.html',
+    ...fiches.filter((_, i) => i % 97 === 0).map((f) => `saints/${f}`)];
+  let brises = 0;
+  for (const rel of echantillon) {
+    const html = readFileSync(join(ROOT, rel), 'utf8');
+    for (const [, href] of html.matchAll(/href="([^"#?:]+)"/g)) {
+      const cible = join(dirname(join(ROOT, rel)), href);
+      if (!existsSync(cible)) { brises += 1; if (brises < 4) fail(`lien brisé dans ${rel} : ${href}`); }
+    }
+  }
+  if (brises >= 4) fail(`${brises} liens internes brisés`);
+  ok(`${fiches.length} fiches, ${locs.length} adresses au plan du site, liens vérifiés sur ${echantillon.length} pages`);
+}
 
 // --- Bilan ------------------------------------------------------------------
 

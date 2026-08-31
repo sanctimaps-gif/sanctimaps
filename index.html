@@ -3,11 +3,23 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SanctiMaps — carte mondiale des saints</title>
-<meta name="description" content="Carte mondiale interactive des saints de l’Église catholique : parcourez les continents, ouvrez un pays et découvrez les lieux de naissance des saints.">
+<title>Carte mondiale des saints — SanctiMaps</title>
+<meta name="description" content="SanctiMaps est une carte interactive permettant de découvrir les saints du monde entier, leurs lieux d’origine, leurs dates de fête et différentes informations historiques.">
+<link rel="canonical" href="https://sanctimaps-gif.github.io/sanctimaps/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Carte mondiale des saints — SanctiMaps">
+<meta property="og:description" content="Une carte interactive pour découvrir les saints du monde entier, leurs lieux d’origine, leurs dates de fête et leur histoire.">
+<meta property="og:url" content="https://sanctimaps-gif.github.io/sanctimaps/">
+<meta property="og:site_name" content="SanctiMaps">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>✝</text></svg>">
 <link rel="stylesheet" href="src/css/app.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"SanctiMaps",
+"url":"https://sanctimaps-gif.github.io/sanctimaps/",
+"description":"Carte mondiale des saints de l’Église catholique : lieux d’origine, dates de fête et notices historiques.",
+"inLanguage":"fr"}
+</script>
 <script>
 // Le thème est posé avant le premier rendu : un module est différé, et un
 // écran clair qui vire au sombre après coup se voit. Voir src/js/theme.js.
@@ -18,6 +30,30 @@ try {
 </script>
 </head>
 <body>
+
+<!--
+  Ce bandeau est écrit dans la page, non posé par le code.
+
+  Tout le reste de l'accueil est peuplé en JavaScript : sans exécution, il n'y
+  a rien à lire, ni pour un moteur de recherche ni pour un lecteur sans script.
+  Le titre, la phrase qui dit ce qu'est SanctiMaps et les trois portes vers les
+  index sont donc du HTML servi tel quel — et ce sont eux qui mènent aux
+  quatre mille six cents pages de saints.
+-->
+<header class="intro">
+  <div class="intro__in">
+    <h1 class="intro__title">Carte mondiale des saints</h1>
+    <p class="intro__text">SanctiMaps est une carte interactive permettant de découvrir
+      les saints du monde entier, leurs lieux d’origine, leurs dates de fête et
+      différentes informations historiques.</p>
+    <nav class="intro__nav" aria-label="Index du site">
+      <a href="saints/index.html">Tous les saints</a>
+      <a href="pays/index.html">Par pays</a>
+      <a href="calendrier/index.html">Calendrier</a>
+    </nav>
+  </div>
+</header>
+
 <div class="app" id="app">
   <main class="stage" id="stage">
     <div class="map-host" id="map-host"></div>
@@ -30,7 +66,9 @@ try {
 </div>
 
 <noscript>
-  <p class="noscript">SanctiMaps est une carte interactive : activez JavaScript pour l’explorer.</p>
+  <p class="noscript">SanctiMaps est une carte interactive : activez JavaScript pour l’explorer,
+    ou parcourez <a href="saints/index.html">les fiches des saints</a>,
+    <a href="pays/index.html">les pays</a> et <a href="calendrier/index.html">le calendrier</a>.</p>
 </noscript>
 
 <script type="module" src="src/js/main.js"></script>

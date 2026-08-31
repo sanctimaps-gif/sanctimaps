@@ -238,6 +238,15 @@ async function start() {
 
   map.setLanguage(getLanguage());
   goWorld();
+
+  // Une adresse peut nommer un saint : « ?saint=blandine ». C'est par là
+  // qu'arrive un lecteur venu d'une page de fiche ou d'un moteur de recherche,
+  // et la carte doit alors s'ouvrir sur ce saint plutôt que sur le monde. Un
+  // identifiant inconnu — une fiche retirée depuis — ne casse rien : on reste
+  // au monde, ce qui est encore une réponse.
+  const asked = new URLSearchParams(location.search).get('saint');
+  if (asked) openSaint(asked, { fly: true });
+
   loader.remove();
 }
 

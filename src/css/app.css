@@ -91,14 +91,74 @@ body {
   font-size: 15px;
   line-height: 1.5;
   overflow: hidden;
+  /* Le bandeau de titre en haut, la carte dessous : une colonne, où la carte
+     prend tout ce qui reste. `min-height: 0` sur la carte, sans quoi son
+     contenu l'empêcherait de se réduire et la page déborderait. */
+  display: flex;
+  flex-direction: column;
 }
 
 button, input, select, textarea { font: inherit; color: inherit; }
 
 .app {
   display: flex;
-  height: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
   width: 100%;
+}
+
+/* ------------------------------------------------- Bandeau de présentation */
+
+/* Ce que la page dit d'elle-même avant que le code s'exécute : le titre, une
+   phrase, et les trois portes vers les pages de saints. Il reste mince — la
+   carte est le sujet —, mais il est du texte, lisible par un moteur de
+   recherche comme par un lecteur sans JavaScript. */
+.intro {
+  flex: 0 0 auto;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+
+.intro__in {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.15rem 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+.intro__title {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.15rem;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}
+
+.intro__text {
+  margin: 0;
+  flex: 1 1 20rem;
+  min-width: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.intro__nav {
+  display: flex;
+  gap: 0.9rem;
+  margin-inline-start: auto;
+  font-size: 0.85rem;
+}
+
+.intro__nav a { color: var(--accent); }
+
+/* Sur un téléphone, la phrase passe sous le titre et la carte garde sa
+   place : trois lignes de bandeau mangeraient la moitié de l'écran. */
+@media (max-width: 40rem) {
+  .intro__in { padding: 0.4rem 0.75rem; }
+  .intro__title { font-size: 1rem; }
+  .intro__text { font-size: 0.8rem; flex-basis: 100%; }
+  .intro__nav { margin-inline-start: 0; flex-basis: 100%; }
 }
 
 /* --------------------------------------------------------------- La carte */

@@ -96,7 +96,10 @@ export class Sidebar {
 
     this.panel = h('aside', { class: 'panel', id: 'panel' },
       h('header', { class: 'panel__header' },
-        h('div', {}, h('h1', { class: 'panel__title', text: 'SanctiMaps' }), this.tagline),
+        // Marque, non titre : le titre de la page est le H1 du bandeau, qui
+        // dit ce que la page montre. Deux H1 se disputeraient ce rôle, et
+        // « SanctiMaps » n'apprend rien à qui ne connaît pas déjà le site.
+        h('div', {}, h('p', { class: 'panel__title', text: 'SanctiMaps' }), this.tagline),
         this.closeButton),
       this.crumb,
       this.body);

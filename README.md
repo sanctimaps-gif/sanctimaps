@@ -26,6 +26,53 @@ demande. Le serveur ne sert qu'à deux choses : distribuer les fichiers, et — 
 modèle est configuré — porter les appels sans jamais confier de clé au
 navigateur.
 
+## Une page par saint, lisible sans JavaScript
+
+La carte est une application : elle se peuple en JavaScript, et tout ce qu'elle
+montre n'existe qu'une fois le code exécuté. Un moteur de recherche n'avait
+donc qu'une page à indexer — l'accueil — pour quatre mille six cents saints, et
+chercher « saint Odilon de Cluny » ne menait nulle part ici.
+
+À côté de la carte vivent maintenant **5 114 pages de HTML servi tel quel** :
+
+| | |
+| --- | --- |
+| `saints/<nom>.html` | 4 628 fiches : dates, lieu, fête, biographie, sources |
+| `saints/lettre-<x>.html` | l'index alphabétique, coupé par initiale |
+| `pays/<pays>.html` | les saints nés dans ce pays — 91 pages |
+| `calendrier/<jour>.html` | les saints fêtés ce jour-là — 365 pages |
+| `sitemap.xml`, `robots.txt` | la liste complète, pour qui préfère la lire d'un coup |
+
+**Le maillage compte autant que les pages.** Une page isolée n'est jamais
+trouvée : chaque fiche renvoie à son pays, à son jour de fête et à douze saints
+voisins ; chaque index renvoie aux fiches. Un lecteur — ou un robot — entré
+n'importe où parcourt le corpus de proche en proche. Un bandeau en tête de la
+carte porte le titre de la page, la phrase qui dit ce qu'est SanctiMaps et les
+trois portes vers les index : c'est du texte écrit dans le fichier, non posé
+par le code, et c'est par là que tout commence.
+
+Chaque fiche porte son **JSON-LD** (`schema.org/Person` : dates, lieu,
+coordonnées, `sameAs` vers Wikidata et Wikipédia), une adresse canonique et ses
+balises Open Graph. Le bouton « Voir sur la carte » rouvre l'application sur ce
+saint — `index.html?saint=<id>` —, de sorte qu'une page trouvée par un moteur
+de recherche mène à la carte plutôt qu'à un cul-de-sac.
+
+Ces pages ne réécrivent rien : tout ce qu'elles disent vient de
+`data/generated/saints.json`, dans les mêmes mots que la fiche de la carte,
+avec les mêmes sources et la même règle de langue — le français, ou rien. Elles
+sont donc régénérées à chaque import et ne se corrigent pas à la main :
+
+```bash
+npm run build:pages                          # après tout build:data
+node tools/build-pages.mjs --dry-run         # compter sans écrire
+node tools/build-pages.mjs --base https://…  # autre adresse publique
+```
+
+`npm run check` relit ensuite le tout : autant de fiches que de saints publiés,
+chaque adresse du plan du site pourvue d'un fichier, et les liens internes d'un
+échantillon de pages vérifiés un à un — un lien mort ne se voit pas à l'usage,
+mais un robot les suit tous.
+
 ## Comment on navigue
 
 Les trois échelles de lecture s'enchaînent, et chacune fixe ce qui est possible :
@@ -763,6 +810,8 @@ data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complète
 data/reference/exonymes.json graphies acceptées pour les localités
 data/saints/biographies.json biographies rapportées pour les fiches écrites à la main
 data/generated/          données produites par build:data (versionnées)
+tools/build-pages.mjs    pages indexables : saints/, pays/, calendrier/
+saints/ pays/ calendrier/ pages générées, servies telles quelles (versionnées)
 tools/import-saints.mjs  import de masse depuis Wikidata
 tools/enrich-bios.mjs    biographies des fiches écrites à la main
 tools/lib/wikimedia.mjs  ce que les deux outils Wikimedia ont en commun
