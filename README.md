@@ -519,9 +519,55 @@ Stein est née à Breslau, donc en Pologne ; Ambroise de Milan à Trèves, donc 
 Allemagne. Les dates antérieures au haut Moyen Âge sont souvent traditionnelles
 plutôt qu'établies ; elles sont alors marquées « vers ».
 
+### Une année, un siècle : dire ce que la source sait
+
+Wikidata ne connaît souvent des saints anciens que le **siècle**. Elle
+l'enregistre comme une année ronde — « +0200 » — assortie d'une *précision*
+qui vaut 7 au lieu de 9. Lire l'année seule et afficher « vers 200 » serait une
+fausse exactitude : la source ne dit pas 200, elle dit « IIe siècle ». La fiche
+le dit donc ainsi.
+
+La précision voyage avec la fiche (`bornPrec`, `diedPrec`), et l'affichage la
+respecte :
+
+| Précision | Ce que la fiche montre |
+| ---: | --- |
+| 9 et plus | l'année — `1226`, ou `vers 1226` si la date est traditionnelle |
+| 8 | la décennie — `années 1250` |
+| 7 | le siècle — `IIe siècle`, `IIe siècle av. J.-C.` |
+| 6 | le millénaire |
+
+Chaque langue a sa formule : « IIe siècle », « 2nd century », « 2.
+Jahrhundert », « saeculum II », « siglo II », « II век » — le rang en chiffres
+romains, arabes ou en ordinal selon l'usage, et « Ier » et non « Ie » au premier
+rang. **« Vers » ne se dit plus que d'une année** : un siècle n'est pas une date
+approchée, c'est une autre échelle.
+
+Une conséquence moins attendue : le contrôle « mort avant la naissance »
+écartait des fiches saines. Né « au IIe siècle » enregistré 200, mort en 187 :
+rien d'incohérent, puisque la naissance ne voulait dire que le siècle. La
+comparaison se fait donc à la maille la plus grossière des deux dates.
+
 Le corpus est déséquilibré, et c'est fidèle : 190 saints en Europe contre deux
 en Océanie. C'est la géographie réelle des canonisations, pas une lacune de
 collecte.
+
+### Le français d'abord, et rien d'autre
+
+Le corpus ne porte de la prose qu'en deux langues : le français, qu'il écrit,
+et l'anglais, qu'il rapporte de Wikipédia. Servir l'anglais à qui lit en
+français n'est pas rendre service — une notice « Italian Roman Catholic
+bishop » sous un nom français se remarque plus qu'elle n'instruit. **Dans ces
+deux langues, la fiche montre ce qu'elle a dans cette langue, ou rien.** Les
+dix autres langues de l'interface n'ont aucune prose à leur nom : leur refuser
+le repli les priverait de tout, elles gardent donc le français puis l'anglais.
+
+Le nom suit la même règle, mais l'import a de quoi faire mieux que se taire :
+quand Wikidata n'a pas de libellé français, **le titre de l'article français
+en tient lieu**, débarrassé de sa parenthèse de désambiguïsation. « Romulus de
+Fiesole » vaut mieux que « Romulus of Fiesole », et « Daniel (prophète) » se
+lit « Daniel ». Reste ce que Wikimedia n'a en aucune forme française : ces
+noms-là restent tels quels, faute de pouvoir les inventer.
 
 ### Importer en masse depuis Wikidata
 

@@ -95,7 +95,8 @@ ok(`${placeCount} localités réparties sur ${placeFiles.length} fichiers de pay
 
 // --- Siècles ----------------------------------------------------------------
 
-for (const [year, expected] of [[1, 1], [100, 1], [101, 2], [1789, 18], [2000, 20], [-44, -1]]) {
+for (const [year, expected] of [[1, 1], [100, 1], [101, 2], [1789, 18], [2000, 20],
+  [-44, -1], [-100, -1], [-101, -2], [-200, -2], [-201, -3]]) {
   if (centuryOf(year) !== expected) fail(`siècle de ${year} : ${centuryOf(year)} au lieu de ${expected}`);
 }
 ok('calcul des siècles');

@@ -11,7 +11,10 @@ export const REJECTED = 'rejected';
 /** Siècle d'une année : 1789 -> 18, -44 -> -1. */
 export function centuryOf(year) {
   if (year == null) return null;
-  return year > 0 ? Math.floor((year - 1) / 100) + 1 : -(Math.floor(-year / 100) + 1);
+  // Avant Jésus-Christ, le siècle se compte à rebours : l'an 200 av. J.-C.
+  // ouvre le IIe siècle, il ne clôt pas le IIIe. La division plafonnée le dit,
+  // là où l'arrondi par le bas décalait d'un siècle les années rondes.
+  return year > 0 ? Math.floor((year - 1) / 100) + 1 : -Math.ceil(-year / 100);
 }
 
 /** Siècle auquel rattacher une fiche : sa naissance, ou à défaut sa mort. */
