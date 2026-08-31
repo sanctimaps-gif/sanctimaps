@@ -41,7 +41,7 @@ côtés : le montrer en entier le réduisait à un bandeau au milieu, entre deux
 larges bandes de mer. On arrive donc dans la carte, et le déplacement — borné,
 comme toujours — découvre ce qui dépasse.
 
-Au monde, un cartouche annonce l'étendue du corpus — « 4 520 saints recensés
+Au monde, un cartouche annonce l'étendue du corpus — « 4 628 saints recensés
 dans 91 pays » — avant même le premier clic. Il s'efface dès qu'on descend
 d'une échelle, où le compte devient celui du pays ouvert.
 
@@ -357,8 +357,8 @@ plafonnée à six cents caractères. Le texte est sous licence CC BY-SA, et
 l'adresse de l'article rejoint donc les sources de la fiche. Les titres sont
 demandés par vingt à l'API de MediaWiki, dans les deux langues ; les
 redirections et les titres normalisés sont rendus à la fiche qui les avait
-demandés, faute de quoi une biographie irait au mauvais saint. Sur les 4 235
-fiches importées, 3 471 en ont reçu une ; les 285 fiches écrites à la main
+demandés, faute de quoi une biographie irait au mauvais saint. Sur les 4 343
+fiches importées, 3 571 en ont reçu une ; les 285 fiches écrites à la main
 sont pourvues à part, par l'outil décrit plus bas.
 
 Le choix de la source n'est pas indifférent. Un modèle de langue restitue ses
@@ -483,7 +483,7 @@ sous les yeux du lecteur.
 
 ## Les données
 
-**4 520 saints répartis sur 91 pays** et les six continents, avec pour chacun
+**4 628 saints répartis sur 91 pays** et les six continents, avec pour chacun
 ses noms (français, anglais, latin quand il existe), ses dates, son lieu de
 naissance rapporté au pays d'aujourd'hui, sa fête et souvent une notice. Deux
 origines s'y mêlent :
@@ -491,24 +491,25 @@ origines s'y mêlent :
 | | | |
 | --- | ---: | --- |
 | Écrits à la main | 285 | notice rédigée, patronage attesté, latin systématique |
-| Importés de Wikidata | 4 235 | l'adresse de l'élément d'origine accompagne chaque fiche |
+| Importés de Wikidata | 4 343 | l'adresse de l'élément d'origine accompagne chaque fiche |
 
 S'y ajoutent 148 fiches candidates en réserve pour l'assistant et 293 fiches
 de fond documentaire.
 
-**3 743 fiches sur 4 520 — 83 % — portent une biographie**, c'est-à-dire un
+**3 843 fiches sur 4 628 — 83 % — portent une biographie**, c'est-à-dire un
 récit de quelques phrases sous les dates, et non la seule notice d'une ligne.
-3 219 viennent de l'article français de Wikipédia, 3 379 de l'anglais, la
-plupart des deux ; l'introduction est réduite à trois phrases, coupée en fin de
-phrase et plafonnée à six cents caractères, ce qui donne 301 caractères en
+L'introduction de l'article est réduite à trois phrases, coupée en fin de
+phrase et plafonnée à six cents caractères, ce qui donne 304 caractères en
 moyenne. Les fiches écrites à la main sont pourvues à 272 sur 285.
 
-Les 777 fiches restantes sont celles dont le saint n'a d'article dans aucune
-des deux langues, ou dont l'appariement n'a pas été assez sûr : la fiche se
-tait alors plutôt que d'inventer. L'attribution CC BY-SA voyage avec le texte,
-dans les sources de la fiche.
+**3 300 le sont en français** — c'est ce que lit un lecteur français, puisque
+la fiche ne lui sert pas d'anglais. 543 fiches n'ont d'article qu'en anglais et
+se taisent donc en français ; 785 n'en ont dans aucune des deux langues, ou
+n'ont pas trouvé d'appariement assez sûr. Une fiche sans récit vaut mieux
+qu'une fiche avec le récit d'un autre, et qu'une fiche à demi traduite.
+L'attribution CC BY-SA voyage avec le texte, dans les sources de la fiche.
 
-153 de ces saints portent en plus un patronage — ce dont ils sont patrons —
+234 de ces saints portent en plus un patronage — ce dont ils sont patrons —
 tenu à part dans `data/saints/patronages.json` et fusionné à la génération.
 Seuls les patronages bien attestés y figurent : un saint sans entrée n'affiche
 simplement pas la ligne « Saint patron de », ce qui vaut mieux qu'un patronage
@@ -536,6 +537,10 @@ respecte :
 | 8 | la décennie — `années 1250` |
 | 7 | le siècle — `IIe siècle`, `IIe siècle av. J.-C.` |
 | 6 | le millénaire |
+
+Sur les 4 343 fiches importées, **797 sont datées au siècle**, 35 au millénaire
+et 75 à la décennie : autant d'années qui n'ont jamais été dites et qui ne
+sont plus affichées.
 
 Chaque langue a sa formule : « IIe siècle », « 2nd century », « 2.
 Jahrhundert », « saeculum II », « siglo II », « II век » — le rang en chiffres
@@ -572,7 +577,7 @@ noms-là restent tels quels, faute de pouvoir les inventer.
 ### Importer en masse depuis Wikidata
 
 Le corpus écrit à la main compte 285 fiches ; l'import de Wikidata en a
-ajouté **4 235**, portant la carte à **4 520 saints dans 91 pays**. L'outil
+ajouté **4 343**, portant la carte à **4 628 saints dans 91 pays**. L'outil
 verse d'un coup ce que Wikidata sait de plaçable :
 
 **Sans rien installer, depuis GitHub.** Onglet **Actions** du dépôt →
