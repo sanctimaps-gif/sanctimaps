@@ -241,11 +241,19 @@ async function start() {
 
   // Une adresse peut nommer un saint : « ?saint=blandine ». C'est par là
   // qu'arrive un lecteur venu d'une page de fiche ou d'un moteur de recherche,
-  // et la carte doit alors s'ouvrir sur ce saint plutôt que sur le monde. Un
-  // identifiant inconnu — une fiche retirée depuis — ne casse rien : on reste
-  // au monde, ce qui est encore une réponse.
+  // et la carte doit alors s'ouvrir sur ce saint plutôt que sur le monde.
+  //
+  // Un identifiant inconnu arrive plus souvent qu'on ne croit : une page
+  // gardée en signet, un lien partagé, une fiche retirée du corpus depuis. La
+  // carte s'ouvrait alors sur le monde, sans un mot — le lecteur venait de
+  // quitter une biographie pour un planisphère muet, et rien ne lui disait
+  // pourquoi. Elle ouvre maintenant la recherche, qui est l'endroit d'où l'on
+  // repart.
   const asked = new URLSearchParams(location.search).get('saint');
-  if (asked) openSaint(asked, { fly: true });
+  if (asked) {
+    if (atlas.byId.has(asked)) openSaint(asked, { fly: true });
+    else sidebar.showTab('search');
+  }
 
   loader.remove();
 }

@@ -226,6 +226,7 @@ if (existsSync(pagesDir)) {
   // Les liens internes, vus depuis une poignée de pages tirées au hasard :
   // les relire toutes coûterait une minute pour la même certitude.
   const echantillon = ['saints/index.html', 'pays/index.html', 'calendrier/index.html',
+    'lieux/index.html', 'pays/france.html', 'lieux/rome.html',
     ...fiches.filter((_, i) => i % 97 === 0).map((f) => `saints/${f}`)];
   let brises = 0;
   for (const rel of echantillon) {

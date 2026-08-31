@@ -684,8 +684,19 @@ export class MapView {
         x: from.x + (to.x - from.x) * e,
         y: from.y + (to.y - from.y) * e,
       }, { clamp: false });
-      if (p < 1) this.animation = requestAnimationFrame(step);
-      else this.animation = null;
+      if (p < 1) { this.animation = requestAnimationFrame(step); return; }
+      this.animation = null;
+      // Une dernière reconstruction, au cadrage d'arrivée.
+      //
+      // En cours de route, `apply` ne reconstruit le calque que lorsqu'il l'a
+      // jugé périmé — une heuristique, faite pour ne pas redessiner mille
+      // nœuds à chaque cran de molette. Elle suffit tant qu'on zoome à la
+      // main ; elle ne suffit pas ici, où l'on saute du monde à un pays. Le
+      // calque pouvait alors rester tel qu'il avait été calculé au départ,
+      // c'est-à-dire à l'échelle du monde, où les saints d'un pays entier
+      // tiennent en un seul amas : la carte arrivait sur la France avec un
+      // unique repère au lieu de sept cents.
+      if (this.mode === 'country') this.refreshOverlay();
     };
     this.animation = requestAnimationFrame(step);
   }
@@ -1049,6 +1060,14 @@ export class MapView {
       node.setAttribute('role', 'button');
       node.dataset.cluster = String(index);
       if (group.length === 1 && group[0].user) node.classList.add('is-user');
+      // Le saint mis en avant doit le rester à travers les reconstructions du
+      // calque. Elles sont nombreuses — chaque cran de zoom en déclenche une,
+      // et une transition en enchaîne plusieurs —, et la classe posée sur
+      // l'ancien nœud disparaissait avec lui : le repère qu'on venait
+      // d'ouvrir se fondait alors dans la foule des autres.
+      if (this.highlightId && group.some((s) => s.id === this.highlightId)) {
+        node.classList.add('is-active');
+      }
     }
     const label = el('text', { class: 'marker__label', 'text-anchor': 'middle' });
     label.textContent = text;

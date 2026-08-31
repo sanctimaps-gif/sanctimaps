@@ -33,19 +33,21 @@ montre n'existe qu'une fois le code exécuté. Un moteur de recherche n'avait
 donc qu'une page à indexer — l'accueil — pour quatre mille six cents saints, et
 chercher « saint Odilon de Cluny » ne menait nulle part ici.
 
-À côté de la carte vivent maintenant **5 114 pages de HTML servi tel quel** :
+À côté de la carte vivent maintenant **5 637 pages de HTML servi tel quel** :
 
 | | |
 | --- | --- |
 | `saints/<nom>.html` | 4 628 fiches : dates, lieu, fête, biographie, sources |
 | `saints/lettre-<x>.html` | l'index alphabétique, coupé par initiale |
 | `pays/<pays>.html` | les saints nés dans ce pays — 91 pages |
+| `lieux/<ville>.html` | les saints nés là — 523 villes qui en comptent au moins deux |
 | `calendrier/<jour>.html` | les saints fêtés ce jour-là — 365 pages |
 | `sitemap.xml`, `robots.txt` | la liste complète, pour qui préfère la lire d'un coup |
 
 **Le maillage compte autant que les pages.** Une page isolée n'est jamais
-trouvée : chaque fiche renvoie à son pays, à son jour de fête et à douze saints
-voisins ; chaque index renvoie aux fiches. Un lecteur — ou un robot — entré
+trouvée : chaque fiche renvoie à son pays, à son lieu de naissance, à son jour
+de fête et à douze saints voisins ; chaque pays renvoie à ses villes ; chaque
+index renvoie aux fiches. Un lecteur — ou un robot — entré
 n'importe où parcourt le corpus de proche en proche. Un bandeau en tête de la
 carte porte le titre de la page, la phrase qui dit ce qu'est SanctiMaps et les
 trois portes vers les index : c'est du texte écrit dans le fichier, non posé
@@ -67,6 +69,11 @@ npm run build:pages                          # après tout build:data
 node tools/build-pages.mjs --dry-run         # compter sans écrire
 node tools/build-pages.mjs --base https://…  # autre adresse publique
 ```
+
+**Un lieu ne fait une page que s'il porte au moins deux saints** : à un seul,
+la page ne dirait rien que sa fiche ne dise déjà, et deux mille pages jumelles
+dilueraient le reste plus qu'elles ne l'aideraient. Rome en compte 153,
+Séoul 42, Alexandrie 37.
 
 `npm run check` relit ensuite le tout : autant de fiches que de saints publiés,
 chaque adresse du plan du site pourvue d'un fichier, et les liens internes d'un
@@ -811,7 +818,7 @@ data/reference/exonymes.json graphies acceptées pour les localités
 data/saints/biographies.json biographies rapportées pour les fiches écrites à la main
 data/generated/          données produites par build:data (versionnées)
 tools/build-pages.mjs    pages indexables : saints/, pays/, calendrier/
-saints/ pays/ calendrier/ pages générées, servies telles quelles (versionnées)
+saints/ pays/ lieux/ calendrier/  pages générées, servies telles quelles (versionnées)
 tools/import-saints.mjs  import de masse depuis Wikidata
 tools/enrich-bios.mjs    biographies des fiches écrites à la main
 tools/lib/wikimedia.mjs  ce que les deux outils Wikimedia ont en commun
