@@ -1,7 +1,7 @@
 # SanctiMaps
 <div align="center">
 
-<img src="IMG_3952.jpeg" width="280" alt="Logo SanctiMaps">
+<img src= "IMG_3952.jpeg" width="280" alt="Logo SanctiMaps">
 
 # ✝️ SanctiMaps
 
