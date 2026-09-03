@@ -1,7 +1,7 @@
 # SanctiMaps
 <div align="center">
 
-src="1CA1A404-5F52-4FBF-8F4F-305264E9FC14.png" width="280" alt="Logo SanctiMaps">
+![Logo SanctiMaps](1CA1A404-5F52-4FBF-8F4F-305264E9FC14.png)
 
 # ✝️ SanctiMaps
 
