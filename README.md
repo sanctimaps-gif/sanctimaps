@@ -1,5 +1,60 @@
 # SanctiMaps
+<div align="center">
 
+<img src="IMG_3952.jpeg" width="280" alt="Logo SanctiMaps">
+
+# ✝️ SanctiMaps
+
+### La carte mondiale des saints de l'Église catholique
+
+<p>
+  Une application interactive qui regroupe les saints de l'Église catholique
+  sur une carte mondiale.
+</p>
+
+</div>
+
+---
+
+## 🌍 À propos
+
+**SanctiMaps** est une application qui permet d'explorer les saints de
+l'Église catholique à travers une **carte mondiale interactive**.
+
+Découvrez les saints selon leur lieu d'origine, leur lieu de vie ou les
+lieux associés à leur histoire.
+
+---
+
+## ✨ Fonctionnalités
+
+- 🌍 Carte mondiale interactive
+- ✝️ Découverte des saints de l'Église catholique
+- 📍 Localisation des saints sur la carte
+- 🔎 Recherche de saints
+- 📖 Informations sur chaque saint
+- 🗺️ Exploration par pays et régions
+
+---
+
+## 🎯 Objectif
+
+Rendre l'histoire et la vie des saints accessibles à tous grâce à une
+interface moderne, simple et interactive.
+
+---
+
+## 🚀 SanctiMaps
+
+**Explorez le monde des saints.**
+
+<div align="center">
+
+✝️ 🌍 ✝️
+
+**SanctiMaps — La carte mondiale des saints**
+
+</div>
 Carte mondiale interactive des saints de l'Église catholique. L'application
 s'ouvre directement sur le planisphère : on choisit un continent, puis un pays,
 et le pays se déploie à l'écran sur un fond de rues, où chaque croix marque le
