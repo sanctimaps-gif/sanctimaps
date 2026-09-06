@@ -57,7 +57,17 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const GEN = join(ROOT, 'data', 'generated');
 
 const DEFAULTS = {
-  base: 'https://sanctimaps-gif.github.io/sanctimaps',
+  // Le domaine du site, lu dans le fichier CNAME que GitHub Pages y pose
+  // lui-même : le jour où il change, les cinq mille adresses canoniques et le
+  // plan du site suivent sans qu'on ait à y penser. Sans CNAME, on retombe sur
+  // l'adresse github.io.
+  base: (() => {
+    try {
+      const nom = readFileSync(join(ROOT, 'CNAME'), 'utf8').trim();
+      if (nom) return `https://${nom}`;
+    } catch { /* pas de domaine propre : l'adresse par défaut fera l'affaire */ }
+    return 'https://sanctimaps-gif.github.io/sanctimaps';
+  })(),
   dryRun: false,
 };
 
