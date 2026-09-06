@@ -1,0 +1,23 @@
+{
+  "name": "SanctiMaps — carte mondiale des saints",
+  "short_name": "SanctiMaps",
+  "description": "Une carte interactive pour découvrir les saints du monde entier, leurs lieux d’origine, leurs dates de fête et leur histoire.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f8eede",
+  "theme_color": "#f8eede",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Saint du jour", "url": "./calendrier/index.html" },
+    { "name": "Tous les saints", "url": "./saints/index.html" },
+    { "name": "Par pays", "url": "./pays/index.html" }
+  ]
+}

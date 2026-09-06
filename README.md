@@ -132,6 +132,43 @@ chaque adresse du plan du site pourvue d'un fichier, et les liens internes d'un
 échantillon de pages vérifiés un à un — un lien mort ne se voit pas à l'usage,
 mais un robot les suit tous.
 
+## L'icône, en trois cadrages
+
+Le logo est une carte de visite : un planisphère, une silhouette auréolée, puis
+« SAINTS » et « CARTE MONDIALE DE L'ÉGLISE CATHOLIQUE ». C'est très bien à deux
+cents pixels et illisible à seize — à cette taille, le mot ferait deux pixels
+de haut et le planisphère deviendrait du bruit turquoise. Réduire le logo
+entier donnerait donc une tache.
+
+`npm run build:icons` en tire trois cadrages, et chaque taille prend celui
+qu'elle peut porter :
+
+| Tailles | Cadrage | Ce qu'on y voit |
+| ---: | --- | --- |
+| 512, 192, 180 | la carte entière | l'icône d'application, texte compris |
+| 64, 48 | l'emblème | planisphère et silhouette, sans le texte |
+| 32, 16 | la silhouette | la seule forme qui survive à seize pixels |
+
+S'y ajoute une icône **masquable** à part : Android rogne celle-là à sa guise —
+cercle, goutte, carré arrondi — et ne garantit que les quatre cinquièmes du
+centre. La carte entière y perdrait son bord doré ; l'emblème seul, posé au
+milieu d'un grand carré crème, ne craint aucune découpe.
+
+Le tout est déclaré dans `index.html`, dans chacune des 5 664 pages générées et
+dans `site.webmanifest`, qui fait de la carte une application installable — nom,
+couleur de fond, et trois raccourcis vers le calendrier, les saints et les pays.
+
+**Aucune bibliothèque n'a été installée pour cela.** Le projet ne dépend de rien
+pour fonctionner, et six icônes ne valaient pas vingt mégaoctets de binaire
+natif : `tools/lib/png.mjs` lit et écrit le PNG avec le seul `zlib` de Node —
+en-tête, filtres de ligne, flux compressé —, et un fichier ICO n'est qu'un
+sommaire suivi de PNG. La réduction se fait par moyenne de surface : à seize
+pixels, un simple échantillonnage ne prendrait qu'un pixel sur soixante-dix et
+ferait disparaître la crosse et l'auréole.
+
+Le logo d'origine reste dans `data/brand/logo.png` : les icônes se refont d'une
+commande s'il change.
+
 ## Comment on navigue
 
 Les trois échelles de lecture s'enchaînent, et chacune fixe ce qui est possible :
@@ -871,6 +908,10 @@ data/saints/biographies.json biographies rapportées pour les fiches écrites à
 data/generated/          données produites par build:data (versionnées)
 tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/
 tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus
+tools/make-icons.mjs     les icônes du site, tirées du logo
+tools/lib/png.mjs        lire et écrire un PNG avec le seul zlib de Node
+data/brand/logo.png      le logo d'origine
+icons/                   icônes produites, servies telles quelles
 saints/ pays/ lieux/ calendrier/  pages générées, servies telles quelles (versionnées)
 tools/import-saints.mjs  import de masse depuis Wikidata
 tools/enrich-bios.mjs    biographies des fiches écrites à la main

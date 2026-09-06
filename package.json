@@ -10,6 +10,7 @@
     "build:pages": "node tools/build-pages.mjs",
     "check": "node tools/check-data.mjs",
     "audit:lieux": "node tools/audit-lieux.mjs",
+    "build:icons": "node tools/make-icons.mjs",
     "import:saints": "node tools/import-saints.mjs",
     "enrich:bios": "node tools/enrich-bios.mjs"
   },

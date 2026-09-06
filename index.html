@@ -12,7 +12,25 @@
 <meta property="og:url" content="https://sanctimaps-gif.github.io/sanctimaps/">
 <meta property="og:site_name" content="SanctiMaps">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>✝</text></svg>">
+<!--
+  L'icône de l'application, en plusieurs tailles et en trois cadrages.
+
+  Le logo entier — planisphère, silhouette, « SAINTS », « CARTE MONDIALE » —
+  est illisible à seize pixels : le mot ferait deux pixels de haut. Les petites
+  tailles portent donc la seule silhouette auréolée, les moyennes l'emblème
+  sans le texte, les grandes la carte entière. Voir tools/make-icons.mjs.
+-->
+<link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="16x16" href="icons/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<meta name="theme-color" content="#f8eede">
+<meta property="og:image" content="https://sanctimaps-gif.github.io/sanctimaps/icons/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="src/css/app.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebSite","name":"SanctiMaps",

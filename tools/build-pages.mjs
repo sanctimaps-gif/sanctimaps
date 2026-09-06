@@ -204,7 +204,15 @@ function page({ title, description, canonical, up, crumbs, body, jsonld, trail, 
 <meta property="og:url" content="${esc(canonical)}">
 <meta property="og:site_name" content="SanctiMaps">
 <meta name="color-scheme" content="light dark">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>✝</text></svg>">
+<link rel="icon" href="${r}favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="16x16" href="${r}icons/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="${r}icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="${r}icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="${r}icons/apple-touch-icon.png">
+<link rel="manifest" href="${r}site.webmanifest">
+<meta name="theme-color" content="#f8eede">
+<meta property="og:image" content="${canonical.replace(/\/(saints|pays|lieux|calendrier|epoques)\/.*$/, "")}/icons/icon-512.png">
+<meta name="twitter:card" content="summary">
 <link rel="stylesheet" href="${r}src/css/page.css">
 <script>
 // Le thème choisi sur la carte vaut aussi ici, et se pose avant le premier

@@ -49,6 +49,12 @@ const TYPES = {
   '.json': 'application/json; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
+  // Les icônes et le manifeste : un navigateur refuse un manifeste servi en
+  // « application/octet-stream », et l'icône d'application ne se pose pas.
+  '.png': 'image/png',
+  '.webmanifest': 'application/manifest+json',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
 };
 
 function sendJSON(res, status, payload) {
