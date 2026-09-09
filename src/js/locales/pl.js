@@ -211,6 +211,19 @@ export default {
   display: {
     title: 'Wyświetlanie',
   },
+  install: {
+    title: 'Dodaj do ekranu głównego',
+    intro: 'Umieść mapę na ekranie głównym, jak aplikację.',
+    button: 'Zainstaluj aplikację',
+    what: 'Po instalacji otwiera się na pełnym ekranie, bez paska adresu, i zachowuje offline to, co już przeglądałeś.',
+    already: 'Mapa jest już zainstalowana na tym urządzeniu.',
+    ios: 'Na iPhonie i iPadzie: dotknij przycisku udostępniania na dole Safari, następnie „Do ekranu początkowego”. Apple nie pozwala zrobić tego przyciskiem.',
+    safari: 'W Safari na Macu: menu Plik, następnie „Dodaj do Docka”.',
+    firefox: 'W Firefoksie: otwórz menu przeglądarki, następnie „Zainstaluj”. Na komputerze Firefox tego nie proponuje.',
+    none: 'Ta przeglądarka nie proponuje jeszcze instalacji. Czasem pojawia się przy drugiej wizycie; w przeciwnym razie poszukaj „Zainstaluj” w jej menu.',
+    dismissed: 'Instalacja przerwana. Można ją wznowić z menu przeglądarki.',
+    unavailable: 'Przeglądarka nie odpowiedziała. Skorzystaj z jej menu, pozycja „Zainstaluj”.',
+  },
   reminder: {
     title: 'Codzienne przypomnienie',
     intro: 'Otrzymywać każdego dnia imię wspominanego świętego.',

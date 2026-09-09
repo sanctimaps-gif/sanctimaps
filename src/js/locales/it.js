@@ -211,6 +211,19 @@ export default {
   display: {
     title: 'Visualizzazione',
   },
+  install: {
+    title: 'Aggiungi alla schermata iniziale',
+    intro: 'Mettere la mappa sulla schermata iniziale, come un’app.',
+    button: 'Installa l’applicazione',
+    what: 'Una volta installata si apre a schermo intero, senza barra degli indirizzi, e conserva offline ciò che avete già consultato.',
+    already: 'La mappa è già installata su questo dispositivo.',
+    ios: 'Su iPhone e iPad: toccate il pulsante di condivisione in basso in Safari, poi « Aggiungi a Home ». Apple non permette di farlo con un pulsante.',
+    safari: 'In Safari su Mac: menu File, poi « Aggiungi al Dock ».',
+    firefox: 'In Firefox: aprite il menu del browser, poi « Installa ». Su computer Firefox non lo propone.',
+    none: 'Questo browser non propone ancora l’installazione. A volte compare alla seconda visita; altrimenti cercate « Installa » nel suo menu.',
+    dismissed: 'Installazione annullata. Potete riavviarla dal menu del browser.',
+    unavailable: 'Il browser non ha dato seguito. Usate il suo menu, alla voce « Installa ».',
+  },
   reminder: {
     title: 'Promemoria quotidiano',
     intro: 'Ricevere ogni giorno il nome del santo festeggiato.',

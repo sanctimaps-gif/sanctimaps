@@ -211,6 +211,19 @@ export default {
   display: {
     title: 'Display',
   },
+  install: {
+    title: 'Add to home screen',
+    intro: 'Put the map on your home screen, like an app.',
+    button: 'Install the app',
+    what: 'Once installed it opens full screen, without an address bar, and keeps what you have already read available offline.',
+    already: 'The map is already installed on this device.',
+    ios: 'On iPhone and iPad: tap the share button at the bottom of Safari, then “Add to Home Screen”. Apple allows no button to do it.',
+    safari: 'In Safari on Mac: the File menu, then “Add to Dock”.',
+    firefox: 'In Firefox: open the browser menu, then “Install”. On desktop, Firefox does not offer it.',
+    none: 'This browser does not offer installation yet. It sometimes appears on a second visit; otherwise look for “Install” or “Add to Home Screen” in its menu.',
+    dismissed: 'Installation cancelled. You can start it again from the browser menu.',
+    unavailable: 'The browser did not follow through. Use its menu, the “Install” entry.',
+  },
   reminder: {
     title: 'Daily reminder',
     intro: 'Receive the name of the saint celebrated each day.',

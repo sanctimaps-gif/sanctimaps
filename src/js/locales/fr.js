@@ -213,6 +213,19 @@ export default {
   display: {
     title: 'Affichage',
   },
+  install: {
+    title: 'Ajouter à l’écran d’accueil',
+    intro: 'Poser la carte sur l’écran d’accueil, comme une application.',
+    button: 'Installer l’application',
+    what: 'Une fois posée, elle s’ouvre en plein écran, sans barre d’adresse, et garde hors ligne ce que vous avez déjà consulté.',
+    already: 'La carte est déjà installée sur cet appareil.',
+    ios: 'Sur iPhone et iPad : touchez le bouton de partage, en bas de Safari, puis « Sur l’écran d’accueil ». Apple ne permet pas de le faire d’un bouton.',
+    safari: 'Dans Safari sur Mac : menu Fichier, puis « Ajouter au Dock ».',
+    firefox: 'Dans Firefox : ouvrez le menu du navigateur, puis « Installer ». Sur ordinateur, Firefox ne le propose pas.',
+    none: 'Ce navigateur ne propose pas encore l’installation. Elle apparaît parfois après une seconde visite ; sinon, cherchez « Installer » ou « Ajouter à l’écran d’accueil » dans son menu.',
+    dismissed: 'Installation abandonnée. Vous pouvez la relancer depuis le menu du navigateur.',
+    unavailable: 'Le navigateur n’a pas donné suite. Passez par son menu, à la ligne « Installer ».',
+  },
   reminder: {
     title: 'Rappel quotidien',
     intro: 'Recevoir chaque jour le nom du saint fêté.',

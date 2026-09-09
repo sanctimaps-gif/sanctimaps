@@ -211,6 +211,19 @@ export default {
   display: {
     title: 'Species',
   },
+  install: {
+    title: 'Ad tabulam domesticam addere',
+    intro: 'Mappam in tabula domestica ponere, velut programma.',
+    button: 'Programma instituere',
+    what: 'Semel posita, tota fronte aperitur, sine linea inscriptionis, et quae iam legisti sine rete servat.',
+    already: 'Mappa in hac machina iam instituta est.',
+    ios: 'In iPhone et iPad: signum communicandi in ima parte Safari tange, deinde « Ad tabulam domesticam ». Apple id bulla fieri non sinit.',
+    safari: 'In Safari apud Mac: menu Fasciculi, deinde « Ad Dock addere ».',
+    firefox: 'In Firefox: menu navigatri aperi, deinde « Instituere ». In computatro Firefox id non offert.',
+    none: 'Hoc navigatrum institutionem nondum offert. Interdum altera visitatione apparet; alioquin « Instituere » in eius menu quaere.',
+    dismissed: 'Institutio omissa. Ex menu navigatri iterum incipi potest.',
+    unavailable: 'Navigatrum nihil respondit. Per menu eius, ad lineam « Instituere ».',
+  },
   reminder: {
     title: 'Admonitio cotidiana',
     intro: 'Nomen sancti cotidie celebrati accipere.',

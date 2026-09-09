@@ -211,6 +211,19 @@ export default {
   display: {
     title: 'Weergave',
   },
+  install: {
+    title: 'Aan beginscherm toevoegen',
+    intro: 'De kaart op het beginscherm zetten, als een app.',
+    button: 'De app installeren',
+    what: 'Eenmaal geïnstalleerd opent zij schermvullend, zonder adresbalk, en bewaart offline wat u al hebt bekeken.',
+    already: 'De kaart is al op dit apparaat geïnstalleerd.',
+    ios: 'Op iPhone en iPad: tik onderin Safari op de deelknop en daarna op „Zet op beginscherm”. Apple staat geen knop toe die dat doet.',
+    safari: 'In Safari op de Mac: menu Archief, daarna „Voeg toe aan Dock”.',
+    firefox: 'In Firefox: open het browsermenu en daarna „Installeren”. Op de computer biedt Firefox dit niet aan.',
+    none: 'Deze browser biedt installatie nog niet aan. Soms verschijnt zij bij een tweede bezoek; zoek anders „Installeren” in het menu.',
+    dismissed: 'Installatie afgebroken. U kunt haar opnieuw starten via het browsermenu.',
+    unavailable: 'De browser gaf geen gevolg. Gebruik het menu, bij „Installeren”.',
+  },
   reminder: {
     title: 'Dagelijkse herinnering',
     intro: 'Elke dag de naam ontvangen van de heilige die gevierd wordt.',

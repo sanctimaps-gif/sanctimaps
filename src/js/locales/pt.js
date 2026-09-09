@@ -211,6 +211,19 @@ export default {
   display: {
     title: 'Apresentação',
   },
+  install: {
+    title: 'Adicionar ao ecrã principal',
+    intro: 'Colocar o mapa no ecrã principal, como uma aplicação.',
+    button: 'Instalar a aplicação',
+    what: 'Uma vez instalada abre em ecrã inteiro, sem barra de endereço, e guarda sem ligação o que já consultou.',
+    already: 'O mapa já está instalado neste aparelho.',
+    ios: 'No iPhone e no iPad: toque no botão de partilha, em baixo no Safari, e depois « Adicionar ao ecrã principal ». A Apple não permite fazê-lo com um botão.',
+    safari: 'No Safari em Mac: menu Ficheiro, depois « Adicionar à Dock ».',
+    firefox: 'No Firefox: abra o menu do navegador e depois « Instalar ». No computador, o Firefox não o oferece.',
+    none: 'Este navegador ainda não oferece a instalação. Por vezes aparece numa segunda visita; caso contrário, procure « Instalar » no seu menu.',
+    dismissed: 'Instalação cancelada. Pode recomeçá-la a partir do menu do navegador.',
+    unavailable: 'O navegador não deu seguimento. Use o seu menu, na linha « Instalar ».',
+  },
   reminder: {
     title: 'Lembrete diário',
     intro: 'Receber cada dia o nome do santo festejado.',

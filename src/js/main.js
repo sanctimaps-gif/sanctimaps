@@ -6,6 +6,8 @@ import { AccountPanel } from './ui/account.js';
 import { AddPanel } from './ui/addForm.js';
 import { AssistantPanel, ModerationPanel } from './ui/admin.js';
 import { DailyPanel } from './ui/daily.js';
+import { enregistrerServiceWorker } from './install.js';
+import { InstallPanel } from './ui/install.js';
 import { ReminderPanel } from './ui/reminder.js';
 import { DetailPanel } from './ui/detail.js';
 import { SearchPanel } from './ui/search.js';
@@ -20,6 +22,9 @@ const mapHost = document.getElementById('map-host');
 const app = document.getElementById('app');
 
 applyTheme();
+// Avant tout le reste : c'est lui qui rend la carte installable, et qui la
+// garde lisible quand le réseau manque.
+enregistrerServiceWorker();
 document.documentElement.lang = getLanguage();
 document.documentElement.dir = getDirection();
 loaderText.textContent = t('app.loading');
@@ -111,11 +116,16 @@ async function start() {
   // Le rappel quotidien vit dans les réglages, à côté du compte.
   const reminderPanel = new ReminderPanel(atlas);
 
+  // « Ajouter à l'écran d'accueil » : le navigateur peut le proposer à tout
+  // moment, la partie se redessine seule quand il le fait.
+  const installPanel = new InstallPanel();
+
   const sidebar = new Sidebar(app, {
     atlas,
     search: searchPanel,
     daily: dailyPanel,
     reminder: reminderPanel,
+    install: installPanel,
     add: addPanel,
     detail: detailPanel,
     moderate: moderationPanel,
@@ -139,6 +149,7 @@ async function start() {
     searchPanel.renderResults();
     dailyPanel.render();
     reminderPanel.render();
+    installPanel.render();
     addPanel.render();
     moderationPanel.render();
     assistantPanel.render();

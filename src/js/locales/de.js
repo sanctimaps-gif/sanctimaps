@@ -211,6 +211,19 @@ export default {
   display: {
     title: 'Darstellung',
   },
+  install: {
+    title: 'Zum Startbildschirm hinzufügen',
+    intro: 'Die Karte wie eine App auf den Startbildschirm legen.',
+    button: 'App installieren',
+    what: 'Einmal installiert öffnet sie sich im Vollbild, ohne Adressleiste, und behält offline, was Sie bereits gelesen haben.',
+    already: 'Die Karte ist auf diesem Gerät bereits installiert.',
+    ios: 'Auf iPhone und iPad: unten in Safari auf „Teilen“ tippen, dann „Zum Home-Bildschirm“. Apple lässt das über keine Schaltfläche zu.',
+    safari: 'In Safari auf dem Mac: Menü „Ablage“, dann „Zum Dock hinzufügen“.',
+    firefox: 'In Firefox: das Browsermenü öffnen, dann „Installieren“. Am Rechner bietet Firefox das nicht an.',
+    none: 'Dieser Browser bietet die Installation noch nicht an. Manchmal erscheint sie beim zweiten Besuch; sonst suchen Sie „Installieren“ in seinem Menü.',
+    dismissed: 'Installation abgebrochen. Sie können sie über das Browsermenü erneut starten.',
+    unavailable: 'Der Browser hat nicht reagiert. Nehmen Sie sein Menü, den Eintrag „Installieren“.',
+  },
   reminder: {
     title: 'Tägliche Erinnerung',
     intro: 'Täglich den Namen des gefeierten Heiligen erhalten.',

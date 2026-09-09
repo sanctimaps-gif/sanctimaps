@@ -211,6 +211,19 @@ export default {
   display: {
     title: '显示',
   },
+  install: {
+    title: '添加到主屏幕',
+    intro: '把地图放到主屏幕上，像一个应用。',
+    button: '安装应用',
+    what: '装好后全屏打开，没有地址栏，并可离线查看你已经看过的内容。',
+    already: '本设备已安装此地图。',
+    ios: 'iPhone 与 iPad：点按 Safari 底部的分享按钮，再选「添加到主屏幕」。苹果不允许用按钮完成。',
+    safari: 'Mac 上的 Safari：「文件」菜单，再选「添加到程序坞」。',
+    firefox: 'Firefox：打开浏览器菜单，再选「安装」。桌面版 Firefox 不提供此项。',
+    none: '此浏览器尚未提供安装。有时第二次访问才出现；否则请在菜单中找「安装」。',
+    dismissed: '已取消安装。可从浏览器菜单重新开始。',
+    unavailable: '浏览器没有响应。请从它的菜单里选「安装」。',
+  },
   reminder: {
     title: '每日提醒',
     intro: '每天收到当日所纪念圣人的名字。',

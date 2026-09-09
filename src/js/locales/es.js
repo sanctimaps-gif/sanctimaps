@@ -211,6 +211,19 @@ export default {
   display: {
     title: 'Visualización',
   },
+  install: {
+    title: 'Añadir a la pantalla de inicio',
+    intro: 'Poner el mapa en la pantalla de inicio, como una aplicación.',
+    button: 'Instalar la aplicación',
+    what: 'Una vez instalada se abre a pantalla completa, sin barra de direcciones, y conserva sin conexión lo que ya haya consultado.',
+    already: 'El mapa ya está instalado en este dispositivo.',
+    ios: 'En iPhone y iPad: toque el botón de compartir, abajo en Safari, y luego « Añadir a inicio ». Apple no permite hacerlo con un botón.',
+    safari: 'En Safari para Mac: menú Archivo, y luego « Añadir al Dock ».',
+    firefox: 'En Firefox: abra el menú del navegador y luego « Instalar ». En ordenador, Firefox no lo ofrece.',
+    none: 'Este navegador todavía no ofrece la instalación. A veces aparece en una segunda visita; si no, busque « Instalar » en su menú.',
+    dismissed: 'Instalación cancelada. Puede reiniciarla desde el menú del navegador.',
+    unavailable: 'El navegador no dio curso. Use su menú, en la línea « Instalar ».',
+  },
   reminder: {
     title: 'Recordatorio diario',
     intro: 'Recibir cada día el nombre del santo celebrado.',

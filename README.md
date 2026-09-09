@@ -384,6 +384,36 @@ d'un bouton — un vide qui indique la sortie vaut mieux qu'un vide qui se tait.
 Une ligne finale donne le compte, pour que l'état du corpus soit lu là où son
 manque se ressent.
 
+### Poser la carte sur l'écran d'accueil
+
+Dans **Paramètres → Ajouter à l'écran d'accueil**. Le bouton n'est pas un
+bouton comme les autres : selon le navigateur, il n'existe pas.
+
+| | |
+| --- | --- |
+| **Chrome, Edge, Android** | Le navigateur émet `beforeinstallprompt` quand il juge le site installable. On le retient — au lieu de laisser le navigateur poser sa bannière quand cela lui chante — et l'on offre un vrai bouton, qui installe. |
+| **iPhone, iPad** | Safari n'a pas cette API du tout. Aucun bouton ne peut y installer quoi que ce soit : la partie affiche la marche à suivre — Partager, puis « Sur l'écran d'accueil ». |
+| **Safari sur Mac** | Menu Fichier, « Ajouter au Dock ». |
+| **Firefox** | Son propre menu sur Android ; rien sur ordinateur. |
+| **Déjà installée** | On le dit, et l'on n'offre rien. |
+
+Un bouton mort vaudrait moins qu'une phrase qui explique : c'est pourquoi il y
+a quatre écrans pour un seul réglage.
+
+**Un service worker était nécessaire**, et il rend deux services. Chrome ne
+propose l'installation que si le site sait répondre hors ligne : sans `sw.js`,
+aucun `beforeinstallprompt` ne serait émis et le bouton ne paraîtrait jamais.
+Mais une carte des saints se consulte aussi dans une église ou un train, là où
+le réseau manque.
+
+Il va **au réseau d'abord**, et ne se sert du cache qu'en secours. Un service
+worker mal réglé est pire que pas de service worker : il fige une ancienne
+version chez le lecteur, parfois pour des mois, et le corpus change à chaque
+import. Ici le lecteur connecté voit toujours la dernière version, le lecteur
+coupé du réseau voit la dernière qu'il a vue, et personne ne voit du figé. Il
+ne précharge que la coquille — le site pèse cinquante mégaoctets, les
+télécharger derrière le dos du lecteur serait un abus.
+
 ### Être prévenu chaque jour
 
 Dans **Paramètres → Rappel quotidien**, deux chemins — et ils ne valent pas la
@@ -951,6 +981,9 @@ src/js/map/projection.js projection Mercator, partagée avec la génération
 src/js/map/view.js       rendu SVG, cadrages, zoom et déplacement bornés
 src/js/ui/daily.js       saint du jour : l'horloge, le corpus, rien d'autre
 src/js/ui/reminder.js    rappel quotidien : agenda du téléphone, notification
+src/js/install.js        installation sur l'écran d'accueil, et le service worker
+src/js/ui/install.js     la partie « Ajouter à l'écran d'accueil » des réglages
+sw.js                    réseau d'abord, cache en secours
 src/js/wiki.js           recherche sur Wikidata et Wikipédia, depuis le navigateur
 src/js/ui/*.js           panneau, recherche, fiche, formulaire, modération,
                          assistant, compte, bandeau

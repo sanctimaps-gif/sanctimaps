@@ -83,6 +83,7 @@ export class Sidebar {
     this.settingsView = h('div', { class: 'settings-view' },
       this.settings,
       this.panels.reminder.root,
+      this.panels.install.root,
       this.panels.account.root);
 
     this.closeButton = h('button', {
@@ -249,6 +250,7 @@ export class Sidebar {
     this.panels.moderate.render();
     this.panels.assistant.render();
     this.panels.reminder.render();
+    this.panels.install.render();
     this.panels.account.render();
     fill(this.languageSelect, LANGUAGES.map((l) => h('option', {
       value: l.code, text: l.label, selected: l.code === getLanguage(),
