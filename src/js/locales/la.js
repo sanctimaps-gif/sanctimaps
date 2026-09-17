@@ -76,6 +76,7 @@ export default {
     mine: 'Scheda hic addita',
     confirmRemove: 'Hanc schedam in perpetuum delere?',
     back: 'Ad inventa redire',
+    translated: 'Ex Anglico conversum, secundum commentarium Vicipaediae in fontibus laudatum.',
   },
   add: {
     namePlaceholder: 'Franciscus Assisiensis',

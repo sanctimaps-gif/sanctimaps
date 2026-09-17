@@ -76,6 +76,7 @@ export default {
     mine: 'Scheda aggiunta localmente',
     confirmRemove: 'Eliminare definitivamente questa scheda?',
     back: 'Torna ai risultati',
+    translated: 'Tradotto dall’inglese, dall’articolo di Wikipedia citato nelle fonti.',
   },
   add: {
     namePlaceholder: 'Francesco d’Assisi',

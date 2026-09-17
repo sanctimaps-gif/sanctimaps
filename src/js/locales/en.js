@@ -76,6 +76,7 @@ export default {
     mine: 'Entry added locally',
     confirmRemove: 'Permanently delete this entry?',
     back: 'Back to results',
+    translated: 'Translated from English, after the Wikipedia article cited in the sources.',
   },
   add: {
     namePlaceholder: 'Francis of Assisi',

@@ -164,10 +164,10 @@ CE QUI DEMANDE UNE MEILLEURE SOURCE
 CE QUI DEMANDE UNE FORME FRANÇAISE
    264   5,7 %  nom resté dans une autre langue
   1871  40,4 %  sans notice en français
-  1328  28,7 %  sans biographie en français
+   790  17,1 %  sans biographie en français
 
 CE QUI N’EST PAS UNE FAUTE
-  1279  27,6 %  le nom désigne un autre lieu que la naissance
+  1271  27,5 %  le nom désigne un autre lieu que la naissance
 ```
 
 Cette dernière ligne mérite qu'on s'y arrête, parce qu'elle a l'air d'une
@@ -176,6 +176,37 @@ on le vénère, non celui où il est né : Nazaire **de Milan** est né à Rome,
 Pancrace **de Taormine** à Antioche, Ovídio **de Braga** en Sicile. La carte,
 elle, porte le lieu de naissance. Les deux sont exacts ; c'est la fiche qui
 devait le dire, et elle le dit maintenant.
+
+### Les biographies traduites
+
+Cinq cent quarante-trois fiches n'avaient de récit qu'en anglais. La carte
+n'affichant que le français, elles paraissaient sans biographie — l'information
+existait, mais personne ne la voyait. **Cinq cent trente-huit sont maintenant
+traduites**, et la part des fiches pourvues d'une biographie française passe de
+71 % à **83 %** (3 838 sur 4 628).
+
+Les traductions vivent dans `data/saints/traductions.json`, à part du corpus et
+pour une raison précise : un réimport réécrit `wikidata.json` d'un bloc, et
+emporterait tout ce qu'on y aurait écrit. Le fichier, lui, se garde. La
+traduction ne comble qu'un manque — elle n'écrase jamais un français trouvé à la
+source — et le jour où l'article français paraît sur Wikipédia, l'import le
+rapporte et la traduction s'efface d'elle-même.
+
+**Chaque fiche traduite le dit.** La licence de Wikipédia (CC BY-SA) demande
+qu'une modification soit signalée, et une traduction en est une : la fiche porte
+« traduit de l'anglais, d'après l'article de Wikipédia cité en source », et la
+source anglaise reste jointe. Le lecteur sait ainsi que la tournure française
+n'est pas celle d'une source française.
+
+**Cinq fiches n'ont pas été traduites, et le fichier dit pourquoi.** Dans chaque
+cas, le texte anglais ne parle pas du saint de la fiche : Agustín Caloca Cortés
+porte mot pour mot la biographie de Cristóbal Magallanes — l'article anglais
+redirige de l'un vers l'autre —, Albina de Césarée a reçu l'article du prénom
+*Albina* et de la déesse étrusque de l'aurore, Archippos celui du poète comique
+athénien, Gwen ferch Cynyr celui d'une paroisse rurale de Cornouailles, et
+l'extrait de Théophane Graptos est tronqué au milieu d'une phrase. Traduire
+aurait donné un récit faux, mais en français, donc plus crédible. Ce sont des
+défauts de l'import, à corriger à la source.
 
 `build:data` corrige au passage ce qu'il peut : quand le libellé français de
 Wikidata n'est pas français — « Natale di Milano », « Hroznata von Ovenec » —
@@ -776,12 +807,14 @@ L'introduction de l'article est réduite à trois phrases, coupée en fin de
 phrase et plafonnée à six cents caractères, ce qui donne 304 caractères en
 moyenne. Les fiches écrites à la main sont pourvues à 272 sur 285.
 
-**3 300 le sont en français** — c'est ce que lit un lecteur français, puisque
-la fiche ne lui sert pas d'anglais. 543 fiches n'ont d'article qu'en anglais et
-se taisent donc en français ; 785 n'en ont dans aucune des deux langues, ou
-n'ont pas trouvé d'appariement assez sûr. Une fiche sans récit vaut mieux
-qu'une fiche avec le récit d'un autre, et qu'une fiche à demi traduite.
-L'attribution CC BY-SA voyage avec le texte, dans les sources de la fiche.
+**3 838 le sont en français** — c'est ce que lit un lecteur français, puisque
+la fiche ne lui sert pas d'anglais. Elles n'étaient que 3 300 : les 543 fiches
+qui n'avaient d'article qu'en anglais ont été traduites, moins cinq dont le
+texte anglais parlait de quelqu'un d'autre (voir « Les biographies traduites »).
+Restent 785 fiches sans récit dans aucune des deux langues, ou dont
+l'appariement n'était pas assez sûr. Une fiche sans récit vaut mieux qu'une
+fiche avec le récit d'un autre, et qu'une fiche à demi traduite. L'attribution
+CC BY-SA voyage avec le texte, dans les sources de la fiche.
 
 234 de ces saints portent en plus un patronage — ce dont ils sont patrons —
 tenu à part dans `data/saints/patronages.json` et fusionné à la génération.
@@ -1040,6 +1073,7 @@ data/candidats/*.json    réservoir de l'assistant
 data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complètes
 data/reference/exonymes.json graphies acceptées pour les localités
 data/saints/biographies.json biographies rapportées pour les fiches écrites à la main
+data/saints/traductions.json biographies traduites de l'anglais, et les cinq écartées
 data/generated/          données produites par build:data (versionnées)
 tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/
 tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus

@@ -72,6 +72,12 @@ export class DetailPanel {
         : null,
       description ? h('p', { class: 'detail__desc', text: description }) : null,
       biography ? h('p', { class: 'detail__bio', text: biography }) : null,
+      // La licence de Wikipédia demande qu'une modification soit signalée, et
+      // une traduction en est une. Le lecteur, lui, sait ainsi que la tournure
+      // française n'est pas celle d'une source française.
+      biography && saint.traduit && lang === 'fr'
+        ? h('p', { class: 'detail__traduit', text: t('detail.translated') })
+        : null,
       h('dl', { class: 'sheet' },
         row(t('detail.patronage'), patronage),
         row(t('detail.birth'), saint.born != null

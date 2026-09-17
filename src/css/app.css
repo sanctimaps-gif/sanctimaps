@@ -1145,6 +1145,14 @@ a.btn {
   white-space: pre-line;
 }
 
+/* La mention de traduction : elle doit se lire, non se faire remarquer. Elle
+   suit le texte de près, en plus petit et en retrait de couleur. */
+.detail__traduit {
+  margin: -0.3rem 0 0.6rem;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+}
+
 .sheet {
   display: grid;
   gap: 0.25rem;

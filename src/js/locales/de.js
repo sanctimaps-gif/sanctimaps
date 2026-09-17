@@ -76,6 +76,7 @@ export default {
     mine: 'Lokal hinzugefügter Eintrag',
     confirmRemove: 'Diesen Eintrag endgültig löschen?',
     back: 'Zurück zu den Ergebnissen',
+    translated: 'Aus dem Englischen übersetzt, nach dem in den Quellen genannten Wikipedia-Artikel.',
   },
   add: {
     namePlaceholder: 'Franz von Assisi',

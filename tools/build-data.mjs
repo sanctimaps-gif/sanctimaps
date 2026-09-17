@@ -544,8 +544,19 @@ try {
   biographies = JSON.parse(readFileSync(join(SAINTS_DIR, BIO_FILE), 'utf8')).biographies || {};
 } catch { /* pas de biographies rapportées : la fiche garde sa notice */ }
 
+// Les traductions des biographies qui n'existaient qu'en anglais. Elles vivent
+// à part pour la raison inverse des précédentes : elles sont écrites à la main
+// et ne doivent *pas* être refaites par un outil. Le fichier se garde, et
+// survit à un réimport qui réécrirait `wikidata.json` d'un bloc.
+const TRAD_FILE = 'traductions.json';
+let traductions = {};
+try {
+  traductions = JSON.parse(readFileSync(join(SAINTS_DIR, TRAD_FILE), 'utf8')).traductions || {};
+} catch { /* pas de traductions : les fiches concernées restent sans récit */ }
+
 for (const file of readdirSync(SAINTS_DIR)
-  .filter((f) => f.endsWith('.json') && f !== PATRONAGE_FILE && f !== BIO_FILE).sort()) {
+  .filter((f) => f.endsWith('.json') && f !== PATRONAGE_FILE && f !== BIO_FILE && f !== TRAD_FILE)
+  .sort()) {
   const raw = JSON.parse(readFileSync(join(SAINTS_DIR, file), 'utf8'));
   for (const s of raw.saints) {
     const where = `${file}:${s.id ?? '?'}`;
@@ -573,6 +584,16 @@ for (const file of readdirSync(SAINTS_DIR)
       record.bio = rapportee.bio;
       record.sources = [...(s.sources || []), ...rapportee.sources];
     }
+
+    // La traduction ne comble qu'un manque : elle n'écrase jamais un français
+    // trouvé à la source, et le jour où l'article français paraît, l'import le
+    // rapporte et la traduction s'efface d'elle-même.
+    const traduite = traductions[s.id];
+    if (traduite?.bio && !record.bio?.fr) {
+      record.bio = { ...record.bio, fr: traduite.bio };
+      record.traduit = 'en';
+    }
+
     saints.push(record);
   }
 }
@@ -582,6 +603,10 @@ for (const id of Object.keys(patronages)) {
 }
 for (const id of Object.keys(biographies)) {
   if (!ids.has(id)) errors.push(`${BIO_FILE} — identifiant inconnu : ${id}`);
+}
+for (const [id, t] of Object.entries(traductions)) {
+  if (!ids.has(id)) errors.push(`${TRAD_FILE} — identifiant inconnu : ${id}`);
+  if (typeof t.bio !== 'string' || !t.bio.trim()) errors.push(`${TRAD_FILE} — ${id} : traduction vide`);
 }
 
 if (errors.length) {

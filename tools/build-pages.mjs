@@ -444,7 +444,7 @@ function saintPage(saint, ctx) {
 
   const body = `<h1>${esc(name)}</h1>
 <p class="lede">${esc(lede)}.</p>
-${desc ? `<p class="bio">${esc(desc)}</p>\n` : ''}${bio ? `<h2>Biographie</h2>\n<p class="bio">${esc(bio)}</p>\n` : ''}
+${desc ? `<p class="bio">${esc(desc)}</p>\n` : ''}${bio ? `<h2>Biographie</h2>\n<p class="bio">${esc(bio)}</p>\n` : ''}${bio && saint.traduit ? `<p class="note">Biographie traduite de l’anglais, d’après l’article de Wikipédia cité en source.</p>\n` : ''}
 <h2>Repères</h2>
 <dl class="facts">
 ${fact('Fête', `<a href="../calendrier/${esc(slug(dayLabel(saint.feast)))}.html">${esc(feast)}</a>`)}${fact('Naissance', saint.born != null ? esc(formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })) : '')}${fact('Mort', saint.died != null ? esc(formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })) : '')}${fact(place, `${lieu ? `<a href="${esc(lieu)}">${esc(saint.city)}</a>` : esc(saint.city)}`

@@ -1,0 +1,1628 @@
+{
+ "source": "Traduction française des biographies rapportées de la Wikipédia anglophone",
+ "note": "Cinq cent quarante-trois fiches n'avaient de biographie qu'en anglais : la carte n'affiche que le français, elles paraissaient donc sans récit. Le texte anglais vient de l'introduction de l'article de Wikipédia (CC BY-SA) ; une traduction est une œuvre dérivée, qui reste sous la même licence et doit signaler qu'elle modifie l'original — d'où le « traduit de l'anglais » porté par chaque fiche, et la source anglaise qui reste jointe. Contrairement à biographies.json, ce fichier n'est pas réécrit par un outil : il se garde, et survit aux réimports. Une biographie écrite dans la fiche elle-même, ou trouvée en français, a priorité sur celle-ci.",
+ "traductions": {
+  "cristobal-magallanes": {
+   "bio": "Cristóbal Magallanes Jara (30 juillet 1869 – 25 mai 1927) était un prêtre catholique et un martyr mexicain, tué sans procès alors qu'il se rendait à dire la messe pendant la guerre des Cristeros. Il avait été accusé, sur des charges forgées de toutes pièces, d'inciter à la rébellion."
+  },
+  "felicite": {
+   "bio": "Perpétue et Félicité (en latin : Perpetua et Felicitas ; v. 182 – v. 203) furent des martyres chrétiennes du IIIe siècle."
+  },
+  "louis-martin": {
+   "bio": "Louis Martin (22 août 1823 – 29 juillet 1894) et Azélie-Marie « Zélie » Guérin Martin (23 décembre 1831 – 28 août 1877) formaient un couple de catholiques français, parents de cinq religieuses, parmi lesquelles Thérèse de Lisieux, carmélite canonisée par l'Église catholique en 1925, et sa sœur aînée Léonie Martin, visitandine déclarée servante de Dieu en 2015. Cette même année, ils devinrent le premier couple de l'histoire catholique à être canonisé ensemble."
+  },
+  "perpetue": {
+   "bio": "Perpétue et Félicité (en latin : Perpetua et Felicitas ; v. 182 – v. 203) furent des martyres chrétiennes du IIIe siècle."
+  },
+  "wd-abbain-q305843": {
+   "bio": "Abbán de Corbmaic (en vieil irlandais : Abbán moccu Corbmaic ; en latin : Abbanus ; mort en 520 ?), également appelé Eibbán ou Moabba, fut un saint et un abbé. Son nom est avant tout attaché au Mag Arnaide (Moyarney ou Adamstown, dans le comté de Wexford, près de New Ross)."
+  },
+  "wd-abdalong-of-marseilles-q4664696": {
+   "bio": "Abdalong de Marseille fut évêque du diocèse de Marseille au VIIIe siècle, sous le règne de Charles Martel. Il fait l'objet d'un culte populaire, sans reconnaissance officielle, qui le fête de manière informelle le 1er mars."
+  },
+  "wd-abraham-de-scete-q4055990": {
+   "bio": "Abraham de Scété fut un moine devenu saint de l'Église copte. Il naquit fils d'un riche propriétaire terrien d'Égypte. On rapporte qu'il eut une vision du Christ monté sur le char des Chérubins."
+  },
+  "wd-abraham-of-egypt-q4055992": {
+   "bio": "Abraham d'Égypte, ou Abraham de Ménouf, fut un moine et ermite égyptien du IVe siècle, connu seulement par le Synaxaire. Il était originaire de Ménouf, dans le Delta, né de parents chrétiens qui tenaient un rang important dans le monde. On ignore à quel âge il embrassa la vie monastique."
+  },
+  "wd-abraham-q4055988": {
+   "bio": "Abraham de Farchout (VIe siècle environ) fut un abbé, et il est saint de l'Église copte et, par extension, de toutes les Églises orthodoxes orientales. Sa fête, au calendrier des saints de l'Église copte, tombe le 12 février."
+  },
+  "wd-abraham-the-poor-q12643068": {
+   "bio": "Abraham le Pauvre (appelé aussi saint Abraham l'Enfant et Abraham le Simple) fut un ermite égyptien du IVe siècle, et un saint."
+  },
+  "wd-abudeme-q2595580": {
+   "bio": "Abudème (en grec : Ἅγιος Ἀβούδιμος ; mort en 305) fut un martyr chrétien grec, connu aussi sous le nom d'Abudème de Ténédos. Il fut torturé pendant la persécution de Dioclétien, dans l'île de Ténédos, avant de mourir en 305. La raison de son martyre est qu'il refusa de manger de la viande sacrifiée aux idoles."
+  },
+  "wd-adam-bargielski-q2499650": {
+   "bio": "Adam Bargielski (7 janvier 1903 – 8 septembre 1942) fut un prêtre catholique polonais. Il naquit à Kalinowo, dans le district de Łomża. Il mourut au camp de concentration nazi de Dachau."
+  },
+  "wd-adele-brise-q113736932": {
+   "bio": "Adèle Brise, T.O.S.F. (30 janvier 1831 – 5 juillet 1896), fut une laïque catholique et une visionnaire mariale, née en Belgique et établie aux États-Unis, qui rapporta une série d'apparitions de la Vierge Marie en 1859, à l'emplacement de l'actuelle Champion, dans le Wisconsin, alors une colonie rurale de catholiques belges. À la suite de ces apparitions, elle fonda sur les lieux une petite chapelle et une école."
+  },
+  "wd-adeline-de-mortain-q17143191": {
+   "bio": "L'Abbaye Blanche fut un monastère de femmes fondé en 1112 à Mortain, en France. Peu après avoir établi une abbaye d'hommes, la Sainte-Trinité de Savigny, saint Vital, fondateur de l'ordre monastique de Savigny, institua l'Abbaye Blanche pour les femmes et en donna la charge à sa sœur Adeline, première abbesse. Les moniales de l'Abbaye Blanche portaient l'habit de laine écrue et suivaient une interprétation très stricte de la règle de saint Benoît."
+  },
+  "wd-adrian-of-ondrusov-q11684505": {
+   "bio": "Le vénérable Adrien d'Ondrousov (mort le 26 août 1549) fut un moine et un saint orthodoxe russe, vénéré comme thaumaturge. Né André Zavalouchine dans une famille noble, il possédait un riche domaine, Andreevchtchina, situé non loin du monastère de saint Alexandre de Svir. Il rencontra ce dernier par hasard, à la chasse, en 1493 ; il alla dès lors souvent chercher auprès de lui sa direction, et pourvut aux besoins matériels des ascètes."
+  },
+  "wd-afan-q4072521": {
+   "bio": "Afan de Builth (en gallois : Sant Afan Buellt ; en latin : Avanus) fut un évêque, martyr et saint gallois du début du VIe siècle. Sa fête est généralement fixée au 17 novembre, bien que le calendrier de Dyfed, autrefois en usage dans le sud du pays de Galles, l'ait placée au 16 ; elle n'est plus observée aujourd'hui ni par l'Église anglicane ni par l'Église catholique au pays de Galles."
+  },
+  "wd-agathange-de-rome-q2695843": {
+   "bio": "Saint Agathange de Rome (mort en 312) fut un diacre romain et un disciple de Clément d'Ancyre, martyrisé sous le règne de l'empereur Dioclétien. Il rencontra Clément alors que celui-ci était emprisonné à Rome, et l'accompagna jusqu'à Ancyre, où tous deux furent décapités. Selon le calendrier grégorien, sa fête et celle de Clément tombent le 23 janvier ; elles tombent le 5 février selon le calendrier julien, en usage dans certains pays orthodoxes orientaux."
+  },
+  "wd-agnello-da-pisa-q394406": {
+   "bio": "Agnel de Pise, O.F.M. (v. 1195 – 1236), fut un frère franciscain italien. Premier ministre provincial de l'ordre en Angleterre (1224-1236), il est tenu pour le fondateur des Franciscains dans ce pays."
+  },
+  "wd-agostino-de-fango-q2016928": {
+   "bio": "Augustin Fangi (dit aussi Augustin de Bielle ; 1430 – 22 juillet 1493) fut un frère dominicain et un prêtre catholique italien. Ses contemporains le tenaient communément pour un thaumaturge ; prieur de plusieurs couvents de son ordre, il s'attacha à y rétablir et à y maintenir la fidèle observance de la règle de saint Dominique. Il fut béatifié en 1878."
+  },
+  "wd-agrippina-of-mineo-q2627803": {
+   "bio": "Agrippine de Mineo, dite aussi sainte Agrippine (IIIe siècle, morte en 262), fut vénérée comme vierge et martyre dans l'Église catholique et dans l'orthodoxie."
+  },
+  "wd-alberik-i-q1347216": {
+   "bio": "Saint Albéric d'Utrecht (en néerlandais : Alberik I van Utrecht ; mort le 21 août 784) fut un moine bénédictin et un évêque d'Utrecht, dans l'actuel territoire des Pays-Bas."
+  },
+  "wd-albert-de-montecorvino-q3608656": {
+   "bio": "Albert, né en Normandie, fut emmené enfant à Motta Montecorvino, dans les Pouilles, en Italie. Il en devint plus tard l'évêque. Il perdit la vue dans ses dernières années, mais fut connu pour ses visions et comme thaumaturge."
+  },
+  "wd-alberto-da-genova-q3608662": {
+   "bio": "Albert de Gênes, appelé aussi Lambert de Gênes, fut un ermite cistercien. Né à Gênes, en Italie, il entra à l'abbaye cistercienne voisine. Il y demeura tout le reste de sa vie comme frère convers et ermite."
+  },
+  "wd-alberto-da-sarteano-q3608660": {
+   "bio": "Albert Berdini de Sarteano (1385 – 15 août 1450) fut un frère franciscain et un prédicateur. Compagnon de Bernardin de Sienne, il fut l'envoyé diplomatique du pape Eugène IV auprès des Églises copte et éthiopienne."
+  },
+  "wd-alberto-ramento-q3457863": {
+   "bio": "Alberto Baldovino Ramento (9 août 1936 – 3 octobre 2006) fut le neuvième évêque suprême (Obispo Máximo) et un ancien président du Conseil suprême des évêques de l'Église indépendante des Philippines (Iglesia Filipina Independiente). On le connaissait sous le nom d'« évêque des paysans et des ouvriers pauvres ». Critique déclaré des atteintes aux droits de l'homme aux Philippines, il fut assassiné par des inconnus en 2006, et l'affaire demeure aujourd'hui non élucidée."
+  },
+  "wd-aldebrand-de-fossombrone-q3609071": {
+   "bio": "Aldebrand, ou Aldebrandus (en italien : Aldebrando da Fossombrone), appelé aussi Hildebrand (1119 – 30 avril 1219), fut évêque de Fossombrone et saint. Il naquit très probablement à Sorrivoli, dans la commune de Roncofreddo, en Italie. Il fut instruit par les chanoines de Santa Maria de Porto, près de Ravenne."
+  },
+  "wd-aleksy-sobaszek-q4425760": {
+   "bio": "Aleksy Sobaszek (1895-1942) fut un prêtre catholique polonais. Il mourut dans un camp de concentration nazi. Il est l'un des 108 martyrs de la Seconde Guerre mondiale béatifiés par le pape Jean-Paul II en 1999."
+  },
+  "wd-alexander-peresvet-q2623788": {
+   "bio": "Alexandre Peresvet (en russe : Александр Пересвет ; mort le 8 septembre 1380) fut un moine orthodoxe russe qui affronta en combat singulier le champion tatar Temir-Mirza, connu de la plupart des sources russes sous le nom de Tchéloubeï, à l'ouverture de la bataille de Koulikovo, le 8 septembre 1380. Les deux hommes s'entretuèrent."
+  },
+  "wd-alexei-shepelev-q4062026": {
+   "bio": "Alexis de Golosseïevo (en russe : Алексий Голосеевский ; de son nom séculier Vladimir Ivanovitch Chepelev ; né le 14 avril 1840 à Kiev, mort le 11 mars 1917 à Kiev) fut un saint et un moine orthodoxe, vénéré par l'Église orthodoxe d'Ukraine du patriarcat de Moscou. Enfant, il fut confié à la laure des Grottes de Kiev, où il devint clerc. Il passa les vingt dernières années de sa vie à l'ermitage de Golosseïevo, à Kiev, comme confesseur et père spirituel."
+  },
+  "wd-alexis-toth-q747050": {
+   "bio": "Alexis Georgievitch Toth (dit aussi Alexis de Wilkes-Barre ; 14 mars 1853 – 7 mai 1909) fut un prêtre ruthène devenu missionnaire orthodoxe russe aux États-Unis. Il naquit au village de Kobylnice, en Slovaquie, près de Prešov, qui appartenait alors au comitat de Sáros, dans le royaume de Hongrie, au sein de l'Empire austro-hongrois. Toth était de ce groupe ethnique ruthène qui peuplait la région des Carpates."
+  },
+  "wd-alfredo-versoza-q12961340": {
+   "bio": "Alfredo Verzosa y Florentín (9 décembre 1877 – 27 juin 1954) fut le quatrième Philippin de naissance élevé à l'épiscopat dans l'Église catholique, et le premier venu du nord de Luçon. Il fut aussi le premier évêque ilocano. Il cofonda la Congrégation des catéchistes missionnaires du Sacré-Cœur, vouée à l'enseignement et à l'administration au sein de l'Église, et particulièrement à la catéchèse."
+  },
+  "wd-alojzije-palic-q12626777": {
+   "bio": "Alojzije Palić (en latin : Aloysius Mathaeus Paliq ; en albanais : Luigj Paliq ; 1877 ou 1878 – 7 mars 1913) fut un franciscain croate du Kosovo et un prêtre catholique en Albanie, martyr, tué par des soldats monténégrins en 1913. Il fut béatifié à Shkodër le 16 novembre 2024, en même temps que don Ivan Gazula (1893-1927)."
+  },
+  "wd-alojzy-liguda-q4261242": {
+   "bio": "Aloys Liguda (23 janvier 1898 – 8 décembre 1942) fut un prêtre polonais, vénéré comme bienheureux martyr de la Société du Verbe-Divin. Liguda fut aumônier et enseignant. Il mourut au camp de concentration de Dachau, au cours d'expérimentations médicales."
+  },
+  "wd-alonzo-de-barcena-q4734593": {
+   "bio": "Alonzo de Bárcena (appelé aussi de Barzana) fut un missionnaire et linguiste jésuite espagnol. Un procès en béatification a été ouvert pour lui en 2016."
+  },
+  "wd-alphius-philadelphus-and-cyrinus-q2248717": {
+   "bio": "Les saints Alphius, Philadelphe et Cyrin (en italien : S.S. Alfio, Filadelfo e Cirino), martyrs des traditions byzantines de l'Italie du Sud, étaient trois frères de Vaste, dans le diocèse d'Otrante, morts avec leur mère Benedicta pendant la persécution de Dèce, vers 251. Le détail de ces martyres est traditionnel, et fut mis par écrit plus tard, dans les Actes bénédictins de saint Alphius."
+  },
+  "wd-amadio-degli-amidei-q660723": {
+   "bio": "Les sept saints fondateurs de l'ordre des Servites (Bonfils, Alexis, Manetto, Amédée, Hugues, Sosthène et Bonagiunta) étaient sept hommes de la ville de Florence, liés les uns aux autres par une amitié spirituelle, qui fondèrent l'ordre des Servites au XIIIe siècle. Ils se sentirent appelés par Marie, mère de Jésus, envers laquelle ils pratiquaient une dévotion intense. Ils rapportèrent une vision, qu'ils eurent apparemment tous séparément au même moment."
+  },
+  "wd-amans-de-come-q3613633": {
+   "bio": "Amance de Côme (en italien : Sant'Amanzio di Como ; mort le 8 avril 448) est vénéré comme le troisième évêque de Côme. Il avait eu pour prédécesseurs Félix de Côme et Provin, et eut pour successeur Abondance."
+  },
+  "wd-amato-di-nusco-q3613714": {
+   "bio": "Amat de Nusco, en italien Amato di Nusco (v. 1003-1093), fut le premier évêque de Nusco, en Irpinie, dans le sud de l'Italie. Le récit le plus vraisemblable veut qu'il fût de naissance noble, originaire du Midi italien, qu'il distribua tous ses biens aux pauvres, devint prêtre, puis moine à l'abbaye du Mont-Vierge."
+  },
+  "wd-ambroise-d-alexandrie-q459774": {
+   "bio": "Ambroise d'Alexandrie (avant 212 – v. 250) fut un ami du théologien chrétien Origène."
+  },
+  "wd-ambros-gudko-q2259906": {
+   "bio": "L'évêque Ambroise (de son nom séculier Vassili Ivanovitch Goudko, en russe : Василий Иванович Гудко ; 28 décembre 1867 – 9 août 1918) fut évêque de Sarapoul et d'Ielabouga. Il fut canonisé parmi les saints russes par l'Église orthodoxe russe en 2000."
+  },
+  "wd-ambrosio-kibuuka-q4741909": {
+   "bio": "Ambrosio Kibuuka (1868 – 3 juin 1886), dit aussi Ambrose Kibuuka Katekamu ou Kateka Mulundaggana, fut un martyr catholique ougandais tué pour sa foi vers 1886. Il naquit au Buganda. Il fut l'un des nombreux chrétiens mis à mort par le roi Mwanga II entre 1885 et 1887."
+  },
+  "wd-amphien-q4779600": {
+   "bio": "Amphien (en latin : Amphianus ; en grec : Αμφιανός) est vénéré comme martyr par l'Église catholique et par l'Église orthodoxe. On rapporte qu'il mourut pendant les persécutions de l'empereur Galère, un 2 avril, aux environs de l'an 305. Au calendrier orthodoxe, sa fête tombe donc le 2 avril, en même temps que celle d'Édèse, que l'on dit parfois son frère."
+  },
+  "wd-amphilochius-of-pochayiv-q4064634": {
+   "bio": "Amphiloque de Potchaïv (en ukrainien : Амфілохій Почаївський) fut un saint orthodoxe ukrainien du XXe siècle, originaire de l'oblast de Ternopil, dans l'ouest de l'Ukraine."
+  },
+  "wd-anacleto-gonzalez-flores-q2303426": {
+   "bio": "Anacleto González Flores (13 juillet 1888 – 1er avril 1927) fut un laïc catholique et un avocat mexicain, torturé et exécuté pendant la persécution de l'Église catholique sous la présidence de Plutarco Elías Calles. Il fut béatifié comme martyr par Benoît XVI le 20 novembre 2005."
+  },
+  "wd-anastazy-pankiewicz-q4344069": {
+   "bio": "Anastazy Jakub Pankiewicz (9 juillet 1882 – 20 mai 1942) fut un frère franciscain et prêtre catholique polonais. Arrêté le 10 octobre 1941, il fut conduit au camp de concentration nazi de Dachau, où il mourut. Il est l'un des 108 martyrs de la Seconde Guerre mondiale béatifiés par le pape Jean-Paul II en 1999."
+  },
+  "wd-andrea-franchi-q20028188": {
+   "bio": "Andrea Franchi, O.P. (1335 – 26 mai 1401), fut un religieux catholique italien de l'ordre des Prêcheurs, évêque de Pistoia de 1382 à 1400. Prédicateur et évangélisateur réputé, il se dévoua profondément aux pauvres de son diocèse. La confirmation de son culte permit au pape Benoît XV de confirmer sa béatification en 1921."
+  },
+  "wd-ange-de-furci-q3617288": {
+   "bio": "Ange de Furci (1246 – 6 février 1327) fut un prêtre catholique italien et un profès de l'ordre de Saint-Augustin. Ami et disciple de Gilles de Rome, il fut prieur provincial de la branche des Abruzzes de la congrégation. La reconnaissance de son culte permit au pape Léon XIII de présider à sa béatification, le 20 décembre 1888."
+  },
+  "wd-angel-dario-acosta-zurita-q9201919": {
+   "bio": "Darío Acosta Zurita (14 décembre 1908 – 25 juillet 1931) fut un prêtre catholique mexicain, en ministère à Veracruz, où il vécut et fut tué. Il entreprit ses études pour le sacerdoce après s'en être vu d'abord refuser l'entrée, et se fit connaître comme un séminariste sportif. L'évêque Rafael Guízar Valencia l'ordonna en 1931 ; il fut tué trois mois plus tard, des hommes armés ayant pris d'assaut la cathédrale — en application de la loi dite Tejeda — et l'ayant abattu."
+  },
+  "wd-angela-iacobellis-q9154503": {
+   "bio": "Angela Iacobellis (28 octobre 1948 – 27 mars 1961) fut une jeune Italienne dont la cause de béatification a été introduite par l'Église catholique. Elle porte à ce titre le nom de servante de Dieu."
+  },
+  "wd-anna-wang-q4103195": {
+   "bio": "Anne Wang (en chinois : 王亞納) fut une jeune laïque catholique martyrisée pendant la révolte des Boxers. Elle fut déclarée sainte par Jean-Paul II. Elle est l'une des martyrs de Chine."
+  },
+  "wd-anne-de-kachine-q1141121": {
+   "bio": "Anne de Kachine (en russe : Анна Кашинская ; v. 1280 – 2 octobre 1368) fut l'épouse du prince Michel de Tver. Elle est vénérée comme sainte et princesse de droite foi, patronne de Kachine et de Tver."
+  },
+  "wd-ansurius-q615628": {
+   "bio": "Ansurius (mort en 925, connu aussi sous les noms d'Aduri, Asurius, Isauri) fut un évêque galicien. Il devint évêque d'Orense en 915. En 922, il abandonna sa charge pour se faire moine au monastère qu'il avait contribué à fonder, Ribas de Sil."
+  },
+  "wd-ante-antic-q12626970": {
+   "bio": "Le vénérable Ante Antić, O.F.M.Cap. (16 avril 1893 – 4 mars 1956), fut un prêtre catholique croate, capucin et auteur spirituel, connu pour sa direction spirituelle, ses confessions et ses lettres. Selon l'Encyclopédie croate, il fut une « figure charismatique de l'histoire religieuse croate contemporaine ». Son procès en béatification fut ouvert en 1984."
+  },
+  "wd-anthony-della-chiesa-q4773777": {
+   "bio": "Antonio della Chiesa, O.P. (1394 – 22 janvier 1459), fut un prêtre catholique italien et un membre de l'ordre dominicain. Compagnon de Bernardin de Sienne, il fut béatifié par le pape Pie VII en 1819."
+  },
+  "wd-anton-martin-slomsek-q591809": {
+   "bio": "Le bienheureux Anton Martin Slomšek (26 novembre 1800 – 24 septembre 1862) fut un prélat catholique slovène, évêque de Lavant de 1846 jusqu'à sa mort. Il fut aussi écrivain et poète, et un défenseur résolu de la culture de sa nation. Il servit dans plusieurs paroisses comme simple prêtre avant de devenir évêque ; son engagement patriotique s'accrut alors, car il défendait l'écrit et la nécessité de l'instruction."
+  },
+  "wd-anton-strle-q4776021": {
+   "bio": "Anton Strle (21 janvier 1915 – 20 octobre 2003) fut un professeur slovène de théologie dogmatique et un prêtre catholique. Il naquit au village d'Osredek, dans la paroisse de Sveti Vid nad Cerknico. Il fut ordonné prêtre en 1941 et reçut son doctorat en théologie."
+  },
+  "wd-antoni-beszta-borowski-q4086119": {
+   "bio": "Antoni Beszta-Borowski (9 septembre 1880 – 15 juillet 1943) fut un prêtre catholique polonais. Il était doyen de Bielsk Podlaski. Il est l'un des 108 martyrs de la Seconde Guerre mondiale."
+  },
+  "wd-antoni-julian-nowowiejski-q538813": {
+   "bio": "Antoni Julian Nowowiejski (11 février 1858 – 28 mai 1941) fut un évêque polonais de Płock (1908-1941), archevêque titulaire de Silyum, premier secrétaire de la Conférence épiscopale de Pologne (1918-1919), citoyen d'honneur de Płock et historien. Il mourut aux mains des Allemands au camp de concentration de Soldau, près de Działdowo, le 28 mai 1941, et fut ensuite béatifié par le pape Jean-Paul II en 1999, parmi les 108 martyrs de la Seconde Guerre mondiale."
+  },
+  "wd-antoni-rewera-q4391668": {
+   "bio": "Antoni Rewera (6 janvier 1869 – 1er octobre 1942) fut un prêtre catholique et un martyr polonais. L'un des 108 martyrs de la Seconde Guerre mondiale, il fut seize ans professeur au séminaire diocésain de Sandomierz, et doyen du chapitre de sa cathédrale de 1931 jusqu'à sa mort. Il contribua à fonder une congrégation religieuse de sœurs."
+  },
+  "wd-antoni-swiadek-q4448349": {
+   "bio": "Antoni Świadek (1909-1945) fut un prêtre polonais de Bydgoszcz. Il mourut au camp de concentration de Dachau et fut béatifié par l'Église catholique. Il est l'un des 108 martyrs de la Seconde Guerre mondiale."
+  },
+  "wd-antonio-da-stroncone-q26763929": {
+   "bio": "Antonio da Stroncone (1391 – 7 février 1461) fut un frère italien de l'ordre des Frères mineurs. Il y entra dans sa jeunesse, après avoir nourri dès l'enfance une forte dévotion à François d'Assise, auprès de parents eux-mêmes membres du tiers ordre de Saint-François. Sa béatification reçut confirmation formelle du pape Innocent XI le 28 juin 1687, le pontife ayant ratifié le culte local et durable dont le frère était l'objet."
+  },
+  "wd-antonio-lucci-q3619781": {
+   "bio": "Antonio Lucci (2 août 1682 – 25 juillet 1752), né Angelo Nicola Lucci, fut un profès catholique italien de l'ordre des Frères mineurs conventuels, évêque de Bovino de 1729 jusqu'à sa mort. Sa cause de béatification s'ouvrit le 5 décembre 1764 sous Clément XIII ; il fut déclaré vénérable le 13 juin 1847 sous Pie IX. Jean-Paul II le béatifia le 18 juin 1989, place Saint-Pierre."
+  },
+  "wd-antonio-patrizi-q19984448": {
+   "bio": "Antonio Patrizi (17 janvier 1280 – 23 avril 1311) fut un prêtre catholique italien et un profès de l'ordre de Saint-Augustin. Il entra dans l'ordre à Lecceto et vécut en ermite, jusqu'à sa mort soudaine alors qu'il rendait visite à un ami dans un autre couvent. Il fut béatifié le 1er mars 1804, le pape Pie VII ayant confirmé le culte ancien dont il faisait l'objet."
+  },
+  "wd-apollonios-l-apologiste-q619457": {
+   "bio": "Apollonios l'Apologiste, ou Apollonios de Rome (en grec : Ἀπολλώνιος ; mort le 21 avril 185), fut un martyr et apologiste chrétien du IIe siècle, mis à mort en 185 sous l'empereur Commode (161-192)."
+  },
+  "wd-arcadius-of-mauretania-q959019": {
+   "bio": "Arcade de Maurétanie (mort vers 302) est vénéré comme saint et martyr. La tradition veut qu'il ait été un notable de Césarée de Maurétanie Césarienne (aujourd'hui Cherchell), qui se cacha dans la campagne pour échapper à l'obligation d'adorer les dieux romains."
+  },
+  "wd-arcangelo-canetoli-q26702288": {
+   "bio": "Arcangelo Canetoli (1460 – 16 avril 1513) fut un prêtre catholique italien et un chanoine régulier de Santa Maria di Reno. Il échappa au massacre de ses parents et de ses frères, tués à Bologne au cours d'une querelle politique, et embrassa peu après la vie religieuse, où il se fit remarquer au point de décliner à plusieurs reprises l'archevêché de Bologne et celui de Florence. Sa béatification fut pleinement approuvée le 2 octobre 1748, le pape Benoît XIV ayant reconnu le culte local dont il était l'objet."
+  },
+  "wd-arsace-de-nicomedie-q5706385": {
+   "bio": "Arsace de Nicomédie (mort le 24 août 358) fut un soldat de l'armée romaine, tenu pour saint par l'Église catholique. Selon la tradition, il se convertit au christianisme et fut arrêté sous le règne de l'empereur Licinius."
+  },
+  "wd-artemy-of-verkola-q2025841": {
+   "bio": "Artème de Verkola (en russe : Артемий Веркольский ; 1532 – 23 juin 1545) est un saint enfant russe, vénéré dans l'Église orthodoxe russe."
+  },
+  "wd-arthelais-q4070172": {
+   "bio": "Arthélaïs (en italien : Sant'Artellaide ; 544-560) est vénérée comme sainte chrétienne. Elle est l'une des saintes patronnes de Bénévent, avec Barbat de Bénévent et Barthélemy. Sa fête tombe le 3 mars."
+  },
+  "wd-asella-q1296256": {
+   "bio": "Sainte Asella, appelée aussi Osella ou Ocella (v. 334 – v. 406), fut une vierge et ermite romaine, disciple et amie de saint Jérôme, qui parla d'elle dans ses écrits."
+  },
+  "wd-atila-de-zamora-q705797": {
+   "bio": "Attilan (en aragonais : Sant Atilano ; 937-1007) fut un bénédictin aragonais et un évêque de Zamora. Il fut prieur de l'abbaye de Moreruela."
+  },
+  "wd-autonome-q4826873": {
+   "bio": "Saint Autonome (en grec : Άγιος Αυτόνομος ; mort en 313) est un saint martyr. On le dit évêque italien, échappé à la persécution de Dioclétien en gagnant la Bithynie, en Asie Mineure."
+  },
+  "wd-auxence-de-bithynie-q2630223": {
+   "bio": "Auxence de Bithynie (en grec : Αὐξέντιος Βιθυνίας) fut un ermite né vers l'an 400 en Syrie, mort le 14 février 473 sur le mont Scopas (appelé aussi mont Auxence, aujourd'hui Kayış Dağı en turc)."
+  },
+  "wd-bacolo-di-sorrento-q3413907": {
+   "bio": "Saint Bacule de Sorrente (en italien : San Bacolo di Sorrento, San Baccolo di Sorrento) est vénéré comme évêque de Sorrente. La Vie de saint Antonin, abbé de Sorrente, composée au IXe siècle ou peu après, mentionne quelques saints patrons de la ville : les évêques Renat, Athanase et Bacule. Cette Vie donne une description des saints tirée d'une peinture qui se trouvait alors dans la cathédrale de Sorrente."
+  },
+  "wd-baldassarre-ravaschieri-q3633260": {
+   "bio": "Baldassare Ravaschieri, O.F.M. (1420 – 17 octobre 1492), fut un prêtre catholique italien et un profès de l'ordre des Frères mineurs. Prédicateur et confesseur réputé, il eut pour amis et contemporains Bernardin de Feltre et l'architecte Giovanni Antonio Amadeo. Sa béatification fut confirmée le 8 janvier 1930, par un décret du pape Pie XI reconnaissant le culte dont il faisait l'objet."
+  },
+  "wd-barbora-zagariete-q12650369": {
+   "bio": "Barbora de Žagarė (1628 – v. 1648) fut une laïque catholique de Žagarė, alors dans le grand-duché de Lituanie. Selon la tradition orale, Barbora se distingua par ses vertus chrétiennes et mourut jeune, dans des circonstances obscures."
+  },
+  "wd-barthelemy-de-grottaferrata-q438149": {
+   "bio": "Barthélemy de Grottaferrata (en italien : San Bartolomeo il Giovane ; Rossano, v. 970 – Grottaferrata, 11 novembre 1055), dit aussi Barthélemy le Jeune, fut un abbé italo-grec du monastère de Grottaferrata. Comme Nil le Jeune, Barthélemy était d'origine grecque."
+  },
+  "wd-bartolo-da-san-gimignano-q26997486": {
+   "bio": "Bartolo da San Gimignano (né Bartolo Buonpedoni ; 1228 – 12 décembre 1300) fut un prêtre catholique italien et un membre du tiers ordre de Saint-François. Né de parents nobles près de Sienne, il s'enfuit de chez lui pour se faire prêtre et échapper à la colère de son père. Il soignait les pauvres dans les rues et employait ses revenus à leur faire l'aumône et à soulager leurs souffrances ; il contracta lui-même auprès d'eux une maladie dont il mourut."
+  },
+  "wd-bartolome-blanco-q2817196": {
+   "bio": "Bartolomé Blanco Márquez (25 novembre 1914 – 2 octobre 1936) fut un secrétaire espagnol de l'Action catholique et un délégué aux syndicats catholiques."
+  },
+  "wd-baselios-yaldo-q5354001": {
+   "bio": "Saint Baselios Yeldo fut le maphrien d'Orient de l'Église syriaque orthodoxe, de 1678 jusqu'à sa démission en 1684. Il est vénéré comme saint dans l'Église syriaque orthodoxe jacobite, et sa fête tombe le 3 octobre. Son tombeau se trouve à Marthoman Cheriyapally, à Kothamangalam ; sa fête, célébrée le 20 du mois de kanni, rassemble de nombreux pèlerins auprès du tombeau."
+  },
+  "wd-basile-d-amasee-q1136050": {
+   "bio": "Basile d'Amasée (Basileus ou Basilius) fut un évêque et martyr chrétien du IVe siècle. Dans la version latine que Jérôme donna de la Chronique d'Eusèbe, il est dit, à la 275e olympiade (321-324), que Basileus, évêque d'Amasée du Pont, souffrit le martyre sous le règne de Licinius. Parmi les signatures des évêques présents au concile d'Ancyre et à celui de Néocésarée (314) figure le nom de Basileus d'Amasée."
+  },
+  "wd-basilisque-q4104472": {
+   "bio": "Basilisque de Comana (en grec : Βασιλίσκος ; mort vers 310), appelé aussi Basilisque du Pont, fut un martyr grec. Sa fête tombe le 22 mai, ou le 30 juillet au calendrier grec."
+  },
+  "wd-baudolino-eremita-q2696763": {
+   "bio": "Saint Baudolino (v. 700 – v. 740) fut un ermite qui vécut au temps du roi lombard Liutprand, à Forum Fulvii (aujourd'hui Villa del Foro), localité du cours inférieur du Tanaro, dans le nord-ouest de l'Italie."
+  },
+  "wd-beat-de-lungern-q324548": {
+   "bio": "Saint Béat de Lungern, appelé aussi Béat du Beatenberg ou Béat de Thoune, fut un moine et ermite des premiers temps chrétiens, vénéré comme saint. Sa légende le dit mort au IIe siècle, mais son histoire a vraisemblablement été confondue avec celle d'autres saints du même nom, en particulier Béat de Vendôme, et un abbé Béat qui reçut de Charlemagne, en 810, une charte confirmant que l'abbaye de Honau serait administrée par des moines irlandais."
+  },
+  "wd-beata-cecilia-q18222737": {
+   "bio": "Cécile Cesarini (1203-1290) fut une moniale dominicaine. Décrite comme « une jeune Romaine pleine d'entrain », elle naquit dans la famille Cesarini, famille établie de la petite noblesse. On ignore la raison qui la fit entrer en religion."
+  },
+  "wd-beato-amadeu-da-silva-q2528283": {
+   "bio": "Amédée de Portugal (Campo Maior, Portugal, v. 1420 – Milan, duché de Milan, 10 août 1482), né João de Menezes da Silva, fut un noble portugais qui se fit d'abord moine hiéronymite, puis quitta cette vie pour devenir frère de l'ordre franciscain. Il en devint plus tard un réformateur, ce qui le conduisit à fonder une branche distincte des Frères mineurs, qui porta son nom, mais que le pape supprima ensuite pour réunir tous ces religieux en une seule grande famille de Frères mineurs de l'Observance (1568)."
+  },
+  "wd-beatrice-i-d-este-q2482961": {
+   "bio": "La bienheureuse Béatrice d'Este (en occitan : Biatritz ou Beatritz d'Est ; 1192 – 10 mai 1226) fut la fille d'Azzo VI de la maison d'Este et de sa seconde épouse, Sophie Éléonore, fille d'Humbert III, comte de Savoie. Elle était la tante de sainte Béatrice d'Este."
+  },
+  "wd-begu-q4880603": {
+   "bio": "Sainte Begu (morte le 31 octobre 690) fut une moniale, plus tard tenue pour sainte, de Hackness, dans le Yorkshire (Deira). Elle servait à la cellule monastique du couvent de Hackness, près de Scarborough, bâti par sainte Hilda de Whitby peu avant sa mort. Selon Bède, Begu est la femme qui déclara avoir vu l'âme d'Hilda portée au ciel par les anges, à la mort de celle-ci, le 17 novembre 680."
+  },
+  "wd-bellinus-of-padua-q3637802": {
+   "bio": "Bellino Bertaldo (en vénitien : San Bełin de Sasonia ; mort le 26 novembre 1145) fut un prélat catholique italien, évêque de Padoue de 1128 jusqu'à son assassinat. Le pape Eugène IV le canonisa plus tard."
+  },
+  "wd-benedetto-i-di-milano-q1153993": {
+   "bio": "Benoît (en latin : Benedictus ; en italien : Benedetto) fut archevêque de Milan de 685 environ à 732. Il est honoré comme saint dans les Églises catholique et orthodoxe."
+  },
+  "wd-benedict-of-skalka-q832638": {
+   "bio": "Benoît de Skalka, ou Szkalka (en hongrois : Zoborhegyi Szent Benedek ; en slovaque : Svätý Benedikt pustovník ; Xe siècle – 1012), né à Nitra, dans la principauté de Hongrie, fut un moine bénédictin. Il fut canonisé en 1083 et est vénéré comme saint. Il se fit ermite et mena une vie austère dans une grotte au bord du Váh."
+  },
+  "wd-benigne-d-armagh-q4887989": {
+   "bio": "Benán (Bénigne d'Armagh ; mort en 467) était le fils de Sesenen, chef irlandais de la région qu'on appelle aujourd'hui le comté de Meath."
+  },
+  "wd-benignus-q3638206": {
+   "bio": "Bénigne (en italien : Benigno) fut archevêque de Milan de 465 à 472. Il est honoré comme saint dans l'Église catholique, et sa fête tombe le 20 septembre."
+  },
+  "wd-benvenuto-scotivoli-q4162246": {
+   "bio": "Benvenuto Scotivoli (mort le 22 mars 1282) fut un prélat catholique italien, évêque d'Osimo de 1264 jusqu'à sa mort. Le pape Martin IV le canonisa en 1284."
+  },
+  "wd-berard-de-carbio-q818683": {
+   "bio": "Bérard de Carbio fut un frère franciscain du XIIIe siècle, exécuté au Maroc pour avoir tenté d'y répandre le christianisme. Lui et ses compagnons — Pierre, Otton, Accurse et Adjutus — sont vénérés comme saints catholiques et tenus pour les protomartyrs franciscains. Chassés deux fois du royaume, ils y revinrent chaque fois et continuèrent de prêcher contre l'islam."
+  },
+  "wd-bernard-due-van-vo-q4893085": {
+   "bio": "Bernard Vu Van Due (en vietnamien : Thánh Bênađô Vũ Văn Duệ ; 1755 – 1er août 1838) fut un Vietnamien converti au catholicisme. Devenu prêtre, il fut missionnaire dans son pays plusieurs décennies durant. Il fut arrêté et décapité en 1838, à l'âge de 82 ou 83 ans, pour être prêtre catholique au Tonkin."
+  },
+  "wd-bernardin-palaj-q15997530": {
+   "bio": "Bernardin Palaj (20 octobre 1894 – 8 décembre 1947) fut un frère franciscain, folkloriste et poète albanais."
+  },
+  "wd-bernardyna-maria-jab-onska-q589040": {
+   "bio": "Maria Jabłońska (13 juin 1878 – 23 septembre 1940), en religion Bernardyna, fut une religieuse professe catholique polonaise, cofondatrice avec Albert Chmielowski des Sœurs servantes des pauvres (1891). Sa béatification fut célébrée le 6 juin 1997 en Pologne."
+  },
+  "wd-bernat-calbo-q4894016": {
+   "bio": "Bernat Calbó (ou Calvó ; v. 1180 – 26 octobre 1243), appelé parfois Bernard de Calvo, fut un juriste, administrateur, moine, évêque et soldat catalan. Né et instruit à Manso Calvo, près de Reus, Bernat appartenait à une famille de la classe chevaleresque et servit d'abord comme juriste et fonctionnaire à la curie de l'archidiocèse de Tarragone."
+  },
+  "wd-bertulfo-de-bobbio-q1108795": {
+   "bio": "Bertulf (mort en 640) fut le troisième abbé du monastère de Bobbio."
+  },
+  "wd-birillus-q865423": {
+   "bio": "Birillus d'Antioche (mort en 90) fut un saint des premiers temps chrétiens. Ordonné prêtre par saint Pierre, il devint le premier évangélisateur et le premier évêque de Catane, en Sicile."
+  },
+  "wd-blanche-q1258743": {
+   "bio": "Wenna (en gallois : Gwen) fut une princesse et martyre chrétienne du Moyen Âge, qui vécut au pays de Galles et en Cornouailles. Vénérée plus tard comme sainte, elle est honorée dans plusieurs églises de Cornouailles et du Devon."
+  },
+  "wd-blessed-john-of-moscow-the-fool-for-chri-q2261788": {
+   "bio": "Jean de Moscou, connu aussi sous le nom de bienheureux Jean le Fol-en-Christ, fut un saint russe du XVIe siècle. Il naquit aux abords de Vologda, en Russie. Il passait à Moscou pour thaumaturge, et avait passé sa jeunesse comme ouvrier dans une saline du pays et comme porteur d'eau."
+  },
+  "wd-boniface-de-tarse-q892536": {
+   "bio": "Saint Boniface de Tarse (en grec : Βονιφάτιος) fut, selon la légende, exécuté comme chrétien en l'an 307 à Tarse, où il s'était rendu depuis Rome pour rapporter à sa maîtresse Aglaé des reliques de martyrs."
+  },
+  "wd-brynach-q2381536": {
+   "bio": "Saint Brynach fut un saint gallois du VIe siècle. La tradition l'associe au Pembrokeshire, où plusieurs églises lui sont dédiées."
+  },
+  "wd-buenaventura-garcia-de-paredes-q4985482": {
+   "bio": "Buenaventura García de Paredes (19 avril 1866 à Castañedo de Valdés – 12 août 1936) fut un prêtre espagnol, martyr de la guerre civile espagnole et maître de l'ordre des Prêcheurs."
+  },
+  "wd-buriana-q4099574": {
+   "bio": "Buriana, appelée aussi Berriona, Beriana, Bruinseach, Buryan, Beryan ou Berion, fut une sainte irlandaise du VIe siècle, ermite à St Buryan, près de Penzance, en Cornouailles. Baring-Gould l'identifie à la sainte irlandaise Bruinsech."
+  },
+  "wd-bystrik-q712599": {
+   "bio": "Saint Bystrík (en latin : Beztertus Nitriensis, Bestredius, Bestridus, Bestricus, Bistridus, Bistritus ; en hongrois : Beszteréd, Besztrik, Besztríd ; mort en 1046) fut un martyr et l'évêque du diocèse de Nitra."
+  },
+  "wd-callwen-q23927294": {
+   "bio": "Sainte Callwen fut une sainte galloise des premiers temps chrétiens, de la famille de Brychan. Son existence même n'est pas assurée. Une église lui fut dédiée à Defynnog, dans le Brecknockshire."
+  },
+  "wd-calocerus-q1027390": {
+   "bio": "Saint Calocère (en italien : Caio, Calocero, Calogero) fut un martyr chrétien du IIe siècle. Les « actes » qu'on lui prête sont d'une époque bien postérieure."
+  },
+  "wd-calogero-de-sicile-q1172641": {
+   "bio": "Calogère l'Anachorète (en grec ancien : Καλόγερος ὁ Αναχωρητής ; en latin : Calogerus ou Calocerus ; en sicilien : Calòjiru et Caloriu ; en italien : Calogero), appelé aussi Calogère l'Ermite et Calogère de Sicile (Chalcédoine, v. 466 – 18 juin 561, mont Kronio), fut un moine érémitique, vénéré comme saint par les Églises catholique et orthodoxe, et patron de bien des lieux de Sicile."
+  },
+  "wd-camilla-gentili-q26222394": {
+   "bio": "Camilla Gentili (14?? – 26 juillet 1486) fut une catholique italienne de Macerata. Elle avait épousé Battista Santucci, hostile à la religion et violent, qui l'assassina de sang-froid par opposition à sa foi et à ce qu'il tenait pour de la désobéissance."
+  },
+  "wd-candida-the-elder-q432813": {
+   "bio": "Candide l'Ancienne (en italien : Candida la Vecchia ; morte vers 78) fut une sainte légendaire des premiers temps chrétiens, habitante de Naples, en Italie, vénérée comme sainte dans l'Église orthodoxe et dans l'Église catholique, avec une fête le 4 septembre. Elle est l'une des saintes patronnes de Naples."
+  },
+  "wd-canius-q2697100": {
+   "bio": "Saint Canion (en italien : San Canio ou San Canione) fut un évêque et martyr catholique, saint patron des villes de Calitri et d'Acerenza, ainsi que de son archidiocèse. Il descendait peut-être de la gens romaine Cania. Il est vénéré le 25 mai."
+  },
+  "wd-canna-q3404543": {
+   "bio": "Canna fut, au VIe siècle, une mère de saints, plus tard moniale dans le sud du pays de Galles, à qui deux églises galloises sont dédiées."
+  },
+  "wd-carino-pietro-da-balsamo-q1422506": {
+   "bio": "Le bienheureux Carino Pietro de Balsamo (mort en 1293), appelé parfois saint Acerinus, fut le meurtrier de saint Pierre de Vérone (« Pierre Martyr ») ; il se repentit plus tard de son acte et devint frère convers dominicain. Il est vénéré comme bienheureux par l'Église catholique."
+  },
+  "wd-cellach-of-armagh-q1052985": {
+   "bio": "Cellach d'Armagh, ou Celsus, ou Célestin (1080-1129), fut archevêque d'Armagh et l'un des grands artisans de la réforme de l'Église d'Irlande au XIIe siècle. Il est vénéré dans l'Église catholique sous le nom de saint Cellach. Bien que membre de la dynastie ecclésiastique laïcisée des Clann Sínaig, il prononça des vœux et reçut l'ordination sacerdotale."
+  },
+  "wd-cerbonius-q590391": {
+   "bio": "Cerbonius (en latin : Cerbo ; en italien : Cerbone, Cerbonio ; mort en 575) fut un évêque de Populonia au temps des invasions barbares. Le pape Grégoire Ier fait son éloge au livre XI de ses Dialogues."
+  },
+  "wd-chiaffredo-q633800": {
+   "bio": "Chiaffredo (appelé aussi Chiaffredus, Theofredus, Ciafrè, Chaffre, Teofredo, Jafredo, Jafredus, Eufredus, Jofredus, Sinfredus, Zaffredus) est vénéré comme le saint patron de Saluces, en Italie. La tradition le compte parmi la légion thébaine, mais au lieu d'être martyrisé avec elle à Agaune (dans l'actuelle Suisse), il se serait enfui en Piémont et y aurait souffert le martyre. Un récit du XIVe siècle rapporte que, vers 522, un homme tomba d'un précipice près de Crissolo sans se faire aucun mal."
+  },
+  "wd-claudius-cayx-dumas-q2652519": {
+   "bio": "Claude Cayx-Dumas (1724-1792) fut un jésuite français. Il entra dans la Compagnie de Jésus en 1757."
+  },
+  "wd-claudius-franciscus-gagnieres-des-grange-q257607": {
+   "bio": "Claude-François Gagnières des Granges (23 mai 1722 – 2 septembre 1792) fut un jésuite français. Né à Chambéry, il fut l'une des 191 victimes des massacres de Septembre. Il fut béatifié par le pape Pie XI en 1926."
+  },
+  "wd-cleopatre-q7401130": {
+   "bio": "Sainte Cléopâtre (en grec : Κλεοπάτρα ; morte en 327) fut une sainte chrétienne qui vécut entre le IIIe et le IVe siècle. Elle est vénérée dans l'Église catholique et dans l'orthodoxie."
+  },
+  "wd-clydog-q18535514": {
+   "bio": "Clydog (appelé aussi Clydawg, Clodock, Clitaucus, Cleodicus, Cladocus) fut un roi gallois d'Ergyng au VIe siècle, devenu saint. Sa fête se tient traditionnellement le 3 novembre, mais se célèbre aussi le 19 août. L'iconographie le représente en roi tenant une épée et un lis."
+  },
+  "wd-colman-de-wurtzbourg-q2697141": {
+   "bio": "Saint Colman, ou Kolonat (en irlandais : Colmán ; en latin : Colomannus ; v. 600 – 8 juillet 689 à Wurtzbourg), fut un prêtre et missionnaire chrétien né en Irlande."
+  },
+  "wd-colman-mac-duagh-q5147732": {
+   "bio": "Saint Colman mac Duagh (v. 560 – 29 octobre 632) naquit à Corker, à Kiltartan, dans le comté de Galway, en Irlande, fils du chef irlandais Duac — d'où, en irlandais, mac Duach. Il vécut d'abord en reclus, dans la prière et de longs jeûnes, d'abord à Inismore, puis dans une grotte du Burren, dans le comté de Clare."
+  },
+  "wd-concorde-de-spolete-q1124235": {
+   "bio": "Concorde de Spolète est un saint et martyr chrétien du IIe siècle, peu connu. Un autre martyr du nom de Concorde mourut au IVe siècle."
+  },
+  "wd-cono-da-teggiano-q3687091": {
+   "bio": "Cono fut un moine bénédictin. Né à Diano, en Italie, à la fin du XIIe siècle, il se fit moine au monastère bénédictin de Santa Maria di Cadossa (aujourd'hui sanctuaire Saint-Cono), près de Montesano sulla Marcellana."
+  },
+  "wd-contardo-d-este-q2613026": {
+   "bio": "Contardo d'Este fut le fils posthume d'Aldobrandino Ier d'Este, marquis de Ferrare. Il naquit en 1216 à Ferrare. Il renonça à sa fortune et à son rang d'héritier de Ferrare pour devenir un simple « homme de Dieu », et se mit en route pour le pèlerinage de Saint-Jacques-de-Compostelle."
+  },
+  "wd-crescencia-valls-espi-q10261433": {
+   "bio": "Crescencia Valls Espí (Onteniente, 9 juin 1863 – Canals, 26 septembre 1936) fut une brodeuse catholique espagnole, martyrisée pendant la guerre civile espagnole. Elle fut béatifiée par le pape Jean-Paul II le 11 mars 2001."
+  },
+  "wd-crescentius-of-rome-q3697042": {
+   "bio": "Crescent de Rome (en italien : San Crescenzio di Roma) est vénéré comme martyr enfant par l'Église catholique. Selon la tradition, il naquit d'une famille noble romaine et fut baptisé avec ses parents par Epigmenius. Pendant les persécutions de Dioclétien contre les chrétiens, la famille s'enfuit à Pérouse, où son père Euthyme mourut."
+  },
+  "wd-cristina-semenzi-da-calvisano-q3697560": {
+   "bio": "Agostina Camozzi (1435 – 13 février 1458), en religion Cristina, fut une religieuse professe catholique italienne de l'ordre de Saint-Augustin. Veuve, puis maîtresse d'un soldat, elle mena une vie dissolue avant de se faire moniale et d'embrasser une vie de pénitence entière. Sa béatification fut confirmée par le pape Grégoire XVI le 19 septembre 1834, le pontife ayant reconnu le culte ancien dont elle était l'objet."
+  },
+  "wd-cristiolus-q4241293": {
+   "bio": "Cristiolus fut un saint gallois qui vécut au VIe siècle."
+  },
+  "wd-cristobal-magallanes-jara-q1152723": {
+   "bio": "Cristóbal Magallanes Jara (30 juillet 1869 – 25 mai 1927) était un prêtre catholique et un martyr mexicain, tué sans procès alors qu'il se rendait à dire la messe pendant la guerre des Cristeros. Il avait été accusé, sur des charges forgées de toutes pièces, d'inciter à la rébellion."
+  },
+  "wd-curig-q17377054": {
+   "bio": "Saint Curig fut un évêque et un saint celte du pays de Galles, aux temps qui suivirent la domination romaine. Il s'établit au pays de Galles au VIIe siècle, sous le règne de Maelgwn Gwynedd, dont on le dit avoir été un guerrier. La tradition raconte que Maelgwn s'irrita de la foi nouvelle de son guerrier, et qu'en retour Curig le frappa de cécité, lui et ses hommes."
+  },
+  "wd-cybi-q3399340": {
+   "bio": "Saint Cybi (en gallois), ou Cuby (en cornique), fut au VIe siècle un évêque, un saint et, brièvement, un roi de Cornouailles, dont l'activité s'exerça surtout en Cornouailles et dans le nord du pays de Galles ; sa vie est rapportée par deux « vies » médiévales, légèrement divergentes."
+  },
+  "wd-cyngar-ap-geraint-q17479540": {
+   "bio": "Saint Cyngar fut un saint gallois du Ve siècle. Il est le saint patron de Llangefni, à Anglesey, au pays de Galles, et l'un des fondateurs du monastère de Saint-Cybi, à Holyhead, à Anglesey."
+  },
+  "wd-cyprien-d-antioche-q16663501": {
+   "bio": "Les saints Cyprien et Justine (en grec : Κυπριανός & Ίουστίνη) sont honorés dans l'Église catholique, l'Église orthodoxe et les Églises orthodoxes orientales comme des chrétiens d'Antioche qui, en 304, pendant la persécution de Dioclétien, souffrirent le martyre à Nicomédie (aujourd'hui İzmit, en Turquie), un 26 septembre. Selon les sources catholiques, aucun évêque d'Antioche ne porta le nom de Cyprien. L'historien des religions Gilles Quispel a soutenu que l'histoire de Cyprien est un prototype de celle de Faust."
+  },
+  "wd-cyriaca-q5200605": {
+   "bio": "Cyriaque, appelée aussi Dominique, fut une veuve romaine, protectrice de saint Laurent, qui finit par souffrir le martyre."
+  },
+  "wd-cyriacus-the-anchorite-q743246": {
+   "bio": "Cyriaque l'Anachorète, dit aussi Cyriaque l'Ermite (en grec ancien : Ὅσιος Κυριακός ὁ Ἀναχωρητής ; 448-557), fut un moine et un saint chrétien grec."
+  },
+  "wd-czes-aw-odrowaz-q332882": {
+   "bio": "Ceslas (en polonais : Czesław ; v. 1184 – v. 1242) fut un prêtre et missionnaire dominicain polonais."
+  },
+  "wd-dabheog-q4086821": {
+   "bio": "Saint Dabheog est le saint patron et l'un des fondateurs d'un monastère établi sur une île du Lough Derg, lac du comté de Donegal, en Irlande, près de la ville de Pettigo, à la limite des comtés de Donegal et de Fermanagh. Sa fête tombe le 16 décembre."
+  },
+  "wd-dalmace-moner-q3701179": {
+   "bio": "Dalmau Moner (1291 – 24 septembre 1341) fut un prêtre catholique espagnol et un profès de l'ordre des Prêcheurs, originaire de Gérone. Il mena une humble vie de solitude à son couvent de Gérone, puis passa quelque temps en France, dans une grotte, avant d'être rappelé à Gérone, où il mourut. Sa béatification fut formellement ratifiée par le pape Innocent XIII le 13 août 1721, celui-ci ayant confirmé le culte local dont il faisait l'objet."
+  },
+  "wd-damaskinos-stouditis-q3558609": {
+   "bio": "Damascène le Studite (en grec : Δαμασκηνός Στουδίτης ; en latin : Damascenus Studites) fut un ecclésiastique et écrivain grec de haut rang, au XVIe siècle. Né à Thessalonique vers 1500, il se fit moine à Constantinople, où il fut l'élève de Thomas (Théophane) Eleavoulkos Notaras à l'Académie patriarcale. En 1564, il fut nommé évêque de Lété et Rendina."
+  },
+  "wd-david-de-vasteras-q3703644": {
+   "bio": "Saint David de Munktorp fut un moine clunisien anglo-saxon du XIe siècle. Il fut envoyé comme missionnaire en Suède par saint Sigfrid de Växjö, avec saint Botvid et saint Eskil. Les missionnaires David, Eskil et Botvid prêchèrent surtout en Södermanland et en Västmanland, dans la région du lac Mälar."
+  },
+  "wd-david-galvan-bermudez-q5799997": {
+   "bio": "David Galván Bermúdez (29 janvier 1881 – 30 janvier 1915) fut un prêtre catholique mexicain tué pendant la guerre des Cristeros. Il fut canonisé par le pape Jean-Paul II le 21 mai 2000, parmi les 25 martyrs de cette guerre."
+  },
+  "wd-david-roldan-lara-q17362081": {
+   "bio": "David Roldán Lara (2 mars 1902 – 15 août 1926) fut un laïc mexicain tué pendant la guerre des Cristeros. Militant catholique au temps de la politique anticléricale du président Plutarco Elías Calles, il fut capturé par les forces gouvernementales et exécuté pour avoir refusé d'abjurer ses engagements. Il fut canonisé par le pape Jean-Paul II le 21 mai 2000, parmi les 25 martyrs de la guerre des Cristeros."
+  },
+  "wd-declan-of-ardmore-q923854": {
+   "bio": "Declán d'Ardmore (en vieil irlandais : Declán mac Eircc ; en irlandais : Deaglán, Deuglán ; en latin : Declanus ; mort au Ve siècle), appelé aussi Déclán, fut un saint irlandais des premiers temps, de la lignée des Déisi Muman, dont on garda la mémoire pour avoir converti les Déisi au christianisme à la fin du Ve siècle et fondé le monastère d'Ardmore (Ard Mór), dans l'actuel comté de Waterford. La source principale de sa vie et de son ministère est une Vie latine du XIIe siècle."
+  },
+  "wd-defendens-q6955878": {
+   "bio": "Défendent de Thèbes (en italien : San Defendente di Tebe) est vénéré comme martyr par l'Église catholique. Tenu pour un saint soldat, il appartenait, selon la tradition chrétienne, à la légion thébaine, et fut donc martyrisé à Agaune."
+  },
+  "wd-derfel-q7401174": {
+   "bio": "Derfel, dit Derfel Gadarn (cadarn : « puissant, vaillant, fort »), fut un moine chrétien celte du VIe siècle, tenu pour saint. La légende locale veut qu'il ait été un guerrier du roi Arthur."
+  },
+  "wd-diego-ventaja-milan-q6709903": {
+   "bio": "Diego Ventaja Milán (22 juillet 1880 – 31 août 1936) fut un prélat catholique espagnol, évêque d'Almería depuis sa nomination en 1934 jusqu'à sa mort. Il fut fusillé, victime des persécutions religieuses de 1936, et béatifié par le pape Jean-Paul II en 1993."
+  },
+  "wd-dieter-von-vestervig-q1223102": {
+   "bio": "Theodgar de Vestervig (en allemand : Dieter von Vestervig ; en danois : Thøger ; appelé aussi Dietger, Dioter, Theodgardus ; mort le 24 juin, en 1065 ou environ) fut un missionnaire de Thuringe, dont l'activité s'exerça surtout au Jutland, au Danemark, où il mourut et où il est vénéré comme saint. Il étudia la théologie en Angleterre, puis passa en Norvège comme missionnaire ; le roi Olav II Haraldsson l'attacha à sa cour."
+  },
+  "wd-dionysios-of-zakynthos-q1402964": {
+   "bio": "Saint Denis de Zante fut un évêque orthodoxe d'Égine, au XVIe siècle. Il naquit dans l'île grecque de Zante en 1547. Il est le saint patron de Zante, et on le fête le 24 août et le 17 décembre."
+  },
+  "wd-dominicus-of-arras-q17388310": {
+   "bio": "Dominique d'Arras fut un saint d'avant les procédures de canonisation, et évêque d'Arras, en France, de 540 à 545 environ. Sa fête tombe le 6 février."
+  },
+  "wd-dominik-jedrzejewski-q4175582": {
+   "bio": "Dominik Jędrzejewski (4 août 1886 – 29 août 1942) fut un prêtre catholique polonais, tué au camp de concentration de Dachau pendant la Seconde Guerre mondiale. Il fut béatifié à Varsovie le 13 juin 1999. Né à Kowal, en Pologne, il était le dernier des six enfants d'Andrzej et de Katarzyna Zakrzewski."
+  },
+  "wd-donatus-of-fiesole-q544904": {
+   "bio": "Donat de Fiesole (mort en 876) fut un maître et poète irlandais, et évêque de Fiesole."
+  },
+  "wd-dosoftei-q2600496": {
+   "bio": "Dimitrie Barilă, mieux connu sous son nom monastique de Dosoftei (26 octobre 1624 – 13 décembre 1693), fut un métropolite de Moldavie, un érudit, un poète et un traducteur. Né à Suceava dans une famille d'origine grecque, il fréquenta l'école du monastère des Trois-Hiérarques de Iași, puis celle de la confrérie orthodoxe de Lviv, où il étudia les humanités et apprit plusieurs langues."
+  },
+  "wd-dryhthelm-q5309696": {
+   "bio": "Dryhthelm (actif vers 700), appelé aussi Drithelm ou Drythelm, fut un moine attaché au monastère de Melrose, connu par l'Historia Ecclesiastica gentis Anglorum de Bède."
+  },
+  "wd-eadburh-of-bicester-q2019824": {
+   "bio": "Eadburh de Bicester (appelée aussi Eadburth ou Edburg ; morte vers 650) fut une moniale, abbesse et sainte anglaise du VIIe siècle. On l'a dite « assez énigmatique » : plusieurs saintes saxonnes portèrent le même nom, et il est difficile de dire laquelle fut Eadburh."
+  },
+  "wd-eberhard-von-biburg-q1279551": {
+   "bio": "Eberhard fut archevêque de Salzbourg, en Autriche, de 1146 jusqu'à sa mort en 1164."
+  },
+  "wd-ebons-de-sarrancolin-q3823602": {
+   "bio": "Ebontius (mort en 1104), appelé aussi Ebon, Pontius ou Ponce, fut évêque de Barbastro, en Espagne, après la reprise de la ville aux Maures. Né en Comminges, en Haute-Garonne, il se fit bénédictin, puis abbé, avant d'accepter le siège de Barbastro."
+  },
+  "wd-ebregise-q316643": {
+   "bio": "Éberigisile (mort avant 593) fut évêque de Cologne, cinquième de la série bien attestée et premier à porter un nom franc. Son épiscopat fut marqué par les troubles nés des migrations de peuples, qui régnaient à la ville comme à la campagne. Il s'efforça d'y relever la vie religieuse et la paix de l'Église."
+  },
+  "wd-edesios-q4687473": {
+   "bio": "Saint Édèse d'Alexandrie (en grec : Αιδέσιος ; mort en 306) fut un chrétien des premiers temps, martyrisé sous Galère Maximien. Il était le frère de saint Amphien. Selon le martyrologe, il reprocha publiquement à un juge de contraindre des vierges chrétiennes à travailler dans des lupanars afin de leur faire abjurer leur foi ; il fut pour cela torturé et noyé."
+  },
+  "wd-eduard-klinik-q95016": {
+   "bio": "Edward Klinik (21 juillet 1919 – 24 août 1942) fut un résistant catholique polonais contre le nazisme. L'un des « Cinq de Poznań », il fut guillotiné dans une prison de Dresde pour son action de résistance. Il est l'un des 108 martyrs de la Seconde Guerre mondiale béatifiés par le pape Jean-Paul II en 1999."
+  },
+  "wd-eduard-muller-q96980": {
+   "bio": "Eduard Müller (20 août 1911 – 10 novembre 1943) fut un prêtre catholique et un martyr allemand. Il fut guillotiné dans une prison de Hambourg par les autorités nazies en novembre 1943, avec les trois autres martyrs de Lübeck. Il fut béatifié par le pape Benoît XVI en 2011."
+  },
+  "wd-edward-detkens-q2107733": {
+   "bio": "Edward Detkens (1885-1942) fut un prêtre catholique polonais. Emprisonné au camp de concentration nazi de Sachsenhausen, il mourut à Dachau. Il est l'un des 108 martyrs de la Seconde Guerre mondiale."
+  },
+  "wd-edward-grzyma-a-q1923977": {
+   "bio": "Edward Grzymała (29 septembre 1906 – 10 août 1940) fut un prêtre catholique polonais. Il fut emprisonné au camp de concentration nazi de Sachsenhausen. Il mourut au camp de Dachau."
+  },
+  "wd-edward-kazmierski-q95013": {
+   "bio": "Edward Kaźmierski (1er octobre 1919 – 24 août 1942) fut un résistant catholique polonais contre le nazisme. Il naquit à Poznań. Il fut l'un des « Cinq de Poznań », guillotinés dans une prison de Dresde pour leur action spirituelle et leur résistance à l'occupation nazie."
+  },
+  "wd-edward-oldcorne-q5344685": {
+   "bio": "Edward Oldcorne, dit Hall (1561 – 7 avril 1606), fut un prêtre jésuite anglais. Il connaissait des gens informés de la conspiration des Poudres, qui visait à détruire le Parlement d'Angleterre et à tuer le roi Jacques Ier ; son rôle n'est pas clair, mais il fut pris dans l'enquête qui suivit. Martyr catholique, il fut béatifié en 1929."
+  },
+  "wd-elena-spirgeviciute-q2567534": {
+   "bio": "Elena Spirgevičiūtė (22 décembre 1924 – 4 janvier 1944) fut une étudiante lituanienne. Elle fut abattue par des partisans soviétiques pour avoir résisté à un viol. L'un des quatre hommes, Alfonsas Čeponis, fut fait à titre posthume Héros de l'Union soviétique."
+  },
+  "wd-elena-valentinis-q18202809": {
+   "bio": "Elena Valentinis (1396 – 23 avril 1458) fut une religieuse professe catholique italienne, du tiers ordre de Saint-Augustin. Née de parents nobles, elle épousa un chevalier à l'adolescence et eut six enfants, avant de devenir veuve en 1441. Elle se fit bientôt religieuse professe et se voua aux austérités et à une vie de pénitence entière."
+  },
+  "wd-elis-us-of-albania-q4174987": {
+   "bio": "Saint Élisée, ou Ełišay, Yeghishe, Elishe, Ełišē (en arménien : Եղիշե), fut, selon la tradition locale, le premier patriarche de l'Église d'Albanie du Caucase."
+  },
+  "wd-elizabeth-of-pasarea-q138042562": {
+   "bio": "Elisabeta Lazăr (née Rodica Lazăr ; 16 juillet 1970 – 5 juin 2014) fut une moniale orthodoxe roumaine du grand habit, au monastère de Pasărea."
+  },
+  "wd-elizabeth-picenardi-q22833456": {
+   "bio": "Elisabetta Picenardi, dite aussi Élisabeth de Mantoue (1428 – 19 février 1468), fut une tertiaire italienne de l'ordre des Servites. Née à Mantoue dans une famille noble, elle refusa, malgré les pressions qu'on exerça sur elle pour qu'elle épousât un gentilhomme, et voulut suivre la voie religieuse aux côtés de sa sœur."
+  },
+  "wd-elpidios-q17993178": {
+   "bio": "Saint Elpide le Cappadocien (en italien : Sant'Elpidio, Santo Abate Elpidio ; IVe siècle) fut un abbé et un saint d'Asie Mineure. La tradition veut qu'il ait vécu vingt-cinq ans dans une grotte de Cappadoce. Des disciples, tels qu'Eustache et Ennèse, se rassemblèrent autour de lui."
+  },
+  "wd-emil-kapaun-q989327": {
+   "bio": "Emil Joseph Kapaun (20 avril 1916 – 23 mai 1951) fut un prêtre catholique américain et un capitaine de l'armée des États-Unis, aumônier pendant la Seconde Guerre mondiale et la guerre de Corée. Il fut aumônier sur le théâtre birman de la Seconde Guerre mondiale, puis de nouveau auprès de l'armée américaine en Corée, où il fut fait prisonnier."
+  },
+  "wd-emil-szramek-q2319675": {
+   "bio": "Emil Szramek (29 septembre 1887 – 13 janvier 1942) fut un prêtre catholique polonais. Il fit ses études à l'université de Wrocław. Il mourut au camp de concentration nazi de Dachau."
+  },
+  "wd-emilianus-of-trevi-q3724316": {
+   "bio": "Saint Émilien de Trevi (en italien : Emiliano — ou Miliano — di Trevi), parfois Æmilianus (mort en 302 ou 304), fut un évêque de Trevi au IVe siècle, martyrisé sous Dioclétien."
+  },
+  "wd-endellion-q936150": {
+   "bio": "Endelient (appelée aussi Endelienta, Edellienta ou Endellion) fut une sainte de Cornouailles des Ve et VIe siècles. On la croit fille du roi gallois Brychan, native du sud du pays de Galles, passée dans le nord de la Cornouailles pour y rejoindre ses frères et sœurs et convertir les habitants au christianisme. La légende la dit filleule du roi Arthur, et veut qu'elle ait vécu en ermite à Trentinney, où elle subsistait du lait d'une vache."
+  },
+  "wd-eoban-q559396": {
+   "bio": "Eoban (mort le 5 juin 754 à Dokkum) fut un compagnon de saint Boniface, martyrisé avec lui lors de sa dernière mission. En Allemagne, on le vénère comme évêque et martyr."
+  },
+  "wd-ephraim-katounakiotis-q12874882": {
+   "bio": "Saint Éphrem de Katounakia, ou Éphrem Katounakiotis (en grec : Εφραίμ Κατουνακιώτης ; né Evangelos Papanikitas ; 6 décembre 1912 – 27 février 1998), fut un moine orthodoxe grec qui vécut au mont Athos. Il fut canonisé par le patriarcat œcuménique de Constantinople le 9 mars 2020. Sa fête se célèbre le 27 février."
+  },
+  "wd-ephysius-q1343711": {
+   "bio": "Éphise de Sardaigne (250 ? – 303 ?) est un martyr chrétien. On ne sait rien de sa vie, sinon son martyre. Il est le patron de Cagliari, capitale de l'île de Sardaigne, en Italie."
+  },
+  "wd-ernest-de-zwiefalten-q3732351": {
+   "bio": "Saint Ernest (mort en 1148) fut l'abbé du monastère bénédictin de Zwiefalten, en Allemagne, de 1141 à 1146. Il prit part à la deuxième croisade, menée par les chrétiens entre 1146 et 1149 pour défendre la Terre sainte après la prise, en 1144, de la ville stratégique d'Édesse par l'atabeg turc Zengi."
+  },
+  "wd-eugenio-sanz-orozco-mortera-q5408329": {
+   "bio": "José María de Manille (5 septembre 1880, Manille – 17 août 1936, Madrid) fut un prêtre catholique créole et un frère de l'ordre des Frères mineurs capucins. Il fut martyrisé en Espagne au début de la guerre civile, et il est le troisième Philippin déclaré bienheureux par l'Église catholique."
+  },
+  "wd-euphemia-of-raciborz-q511267": {
+   "bio": "Euphémie de Racibórz, O.P. (en polonais : Eufemia raciborska ; 1299 ou 1301 – 17 janvier 1359), fut prieure dominicaine à Racibórz, après avoir été princesse polonaise de la maison de Piast, branche de Racibórz."
+  },
+  "wd-euplius-q2599965": {
+   "bio": "Euple (en italien : Euplo, Euplio ; en grec : Εὖπλος ; mort vers 304) est vénéré comme martyr et saint par l'Église orthodoxe et par l'Église catholique."
+  },
+  "wd-eusebe-de-rome-q3820734": {
+   "bio": "Eusèbe de Rome (mort vers 357), fondateur de l'église de l'Esquilin, à Rome, qui porte son nom, figure au Martyrologe romain parmi les saints vénérés le 14 août."
+  },
+  "wd-eusebius-of-esztergom-q831571": {
+   "bio": "Le bienheureux Eusèbe d'Esztergom (en hongrois : Esztergomi Boldog Özséb ; en polonais : Euzebiusz z Ostrzyhomia ; en allemand : Eusebius von Gran ; v. 1200 – 20 janvier 1270) fut un chanoine et ermite hongrois, fondateur de l'ordre de Saint-Paul-Premier-Ermite."
+  },
+  "wd-evasio-q1069600": {
+   "bio": "Évase (en italien : Sant'Evasio ; probablement du IIIe siècle) passe pour avoir été missionnaire et évêque d'Asti, dans le nord-ouest de l'Italie. Contraint de fuir dans la grande forêt padane appelée Selva Cornea, il y fut décapité avec de nombreux compagnons par des ennemis païens, ou selon d'autres ariens, dans la région de l'actuelle Casale Monferrato. Il est vénéré comme saint par l'Église catholique et patronne plusieurs villes du Piémont et de Lombardie."
+  },
+  "wd-evermode-de-ratzebourg-q1382089": {
+   "bio": "Évermode (v. 1100 – 17 février 1178) fut l'un des premiers chanoines réguliers prémontrés, et devint le compagnon de toute une vie de Norbert de Xanten, fondateur de l'ordre en France en 1120. On l'appelle parfois l'« apôtre des Wendes »."
+  },
+  "wd-evmenios-saridakis-q131742474": {
+   "bio": "Evmenios Saridakis (en grec : Ευμένιος Σαριδάκης), dit Evmenios le Nouveau ou Evmenios le Lépreux, fut un ancien orthodoxe grec d'Athènes, qui vécut du 1er janvier 1931 au 23 mai 1999. Il fut canonisé dans l'Église orthodoxe le 14 avril 2022."
+  },
+  "wd-faci-de-cremona-q9177337": {
+   "bio": "Fazzio (Fatius, Fazius, Facius) de Vérone (1190-1272) fut un saint italien. Natif de Vérone, orfèvre de son état, il fonda à Crémone une confrérie charitable qui s'occupait des pèlerins et des malades. Elle s'appelait l'ordre du Saint-Esprit."
+  },
+  "wd-famianus-of-compostela-q23307590": {
+   "bio": "Saint Famien de Compostelle (1090-1150) fut un saint catholique. Il fut canonisé par le pape Adrien IV."
+  },
+  "wd-fantinus-q3739416": {
+   "bio": "Fantin (en italien : Fantino ; v. 927-1000) fut un saint italien. On l'appelle parfois Fantin de Calabre ou Fantin le Jeune (Fantino il Giovane), pour le distinguer de Fantin le Thaumaturge (ou l'Ancien), saint calabrais plus ancien."
+  },
+  "wd-febronia-of-nisibis-q2182396": {
+   "bio": "Phébronie de Nisibe, appelée aussi Phébronie de Sébapte, fut une moniale à Nisibe, dans l'Empire romain (aujourd'hui Nusaybin, en Turquie). Elle souffrit la persécution sous Dioclétien, qui lui offrit la liberté si elle abjurait sa foi et épousait son neveu Lysimaque, lequel penchait vers la conversion au christianisme. Elle refusa, fut torturée, mutilée et mise à mort."
+  },
+  "wd-felix-fortunatus-and-achilleus-q3818716": {
+   "bio": "Félix, Fortunat et Achillée furent des saints chrétiens du IIIe siècle, martyrisés sous le règne de Caracalla. Félix, prêtre, Fortunat et Achillée, tous deux diacres, furent envoyés par Irénée à Valence pour y convertir les habitants."
+  },
+  "wd-fernando-olmedo-reguera-q26971133": {
+   "bio": "Fernando Olmedo Reguera (10 janvier 1873 – 12 août 1936), appelé aussi Fernando de Santiago, fut un frère espagnol et une victime de la guerre civile. À l'ouverture du conflit, en 1936, il dut quitter son couvent ; il fut arrêté, emprisonné et battu par les forces républicaines. Ayant refusé de révéler les confessions de ses pénitents, il fut jugé par un tribunal populaire et condamné à mort."
+  },
+  "wd-flore-de-cordoue-q3746667": {
+   "bio": "Flore et Marie furent les deux premières des neuf femmes martyres chrétiennes de Cordoue. Après avoir dénoncé l'islam devant un juge musulman, elles furent emprisonnées. Bien qu'on les eût menacées « d'être jetées à la rue comme des prostituées », elles finirent décapitées."
+  },
+  "wd-florentino-asensio-barroso-q8213971": {
+   "bio": "Florentino Asensio Barroso (16 octobre 1877 – 9 août 1936) fut un prélat catholique espagnol, administrateur apostolique du diocèse de Barbastro. Prêtre, il fut aumônier des Petites Sœurs des pauvres et des Servantes de Jésus. Fait évêque en 1935, il fut tué en 1936 pendant la guerre civile espagnole."
+  },
+  "wd-florinus-of-remus-q327304": {
+   "bio": "Florin de Remüs (mort en 856), appelé aussi Florin, Florian de Coire, Florin de Matsch ou Florin du Vinschgau, est vénéré comme saint dans l'Église catholique, particulièrement dans les diocèses de Coire, de Bolzano-Bressanone, de Vaduz, et en Rhénanie."
+  },
+  "wd-foulques-de-pavie-q3747051": {
+   "bio": "Foulques (1164 – 26 octobre 1229) fut un chanoine régulier et un prélat italien, évêque de Plaisance de 1210 à 1217, puis évêque de Pavie de 1217 jusqu'à sa mort. Il avait exercé diverses charges avant son élévation à l'épiscopat, notamment celle de prévôt de sa communauté religieuse. Il se fit remarquer par le soin qu'il prit de se tenir hors des affaires politiques, voulant se consacrer davantage à celles de son diocèse."
+  },
+  "wd-francesco-bonifacio-q524388": {
+   "bio": "Francesco Giovanni Bonifacio (7 septembre 1912 – 11 septembre 1946) fut un prêtre catholique italien, tué par les communistes yougoslaves à Grisignana (alors en Italie, aujourd'hui en Croatie) ; il fut béatifié à Trieste le 4 octobre 2008."
+  },
+  "wd-francesco-gattola-q19974638": {
+   "bio": "Francesco Gattola (19 septembre 1822 – 20 janvier 1899) fut un prêtre catholique italien, qui vécut et exerça son ministère à Naples. Il fonda les Filles de la très sainte Vierge immaculée de Lourdes. En 2015, le pape François a reconnu l'héroïcité de ses vertus et l'a déclaré vénérable."
+  },
+  "wd-francesco-venimbeni-q3750782": {
+   "bio": "François de Fabriano (2 septembre 1251 – 22 avril 1322), né Francesco Venimbeni, fut un profès catholique italien de l'ordre des Frères mineurs. Auteur remarqué sur diverses matières théologiques et bibliques, il fut connu pour l'étendue du savoir théologique qui marqua sa vie religieuse. Le pape Pie VI béatifia ce frère franciscain le 1er avril 1775."
+  },
+  "wd-francis-taylor-q1441753": {
+   "bio": "Francis Taylor (en irlandais : Proinnsias Táiliúr ; Swords, v. 1550 – Dublin, 29 janvier 1621) fut maire de Dublin, en Irlande, et fut emprisonné à cause de son catholicisme. Il a été déclaré martyr de la foi et béatifié par l'Église catholique."
+  },
+  "wd-francisca-cuallado-baixauli-q9263149": {
+   "bio": "Francisca Cualladó Baixauli (3 décembre 1890 – 19 septembre 1936) fut une couturière catholique espagnole, née au Molino de San Isidro, dans le quartier de Ruzafa, à Valence, fusillée à la Torre Espioca de Benifaió en 1936, pendant la guerre civile espagnole. L'Église catholique la tient pour martyre ; elle fut béatifiée par le pape Jean-Paul II le 11 mars 2001. Sa fête se célèbre le 19 septembre."
+  },
+  "wd-franciszek-dachtera-q2626102": {
+   "bio": "Franciszek Dachtera (22 septembre 1910 – 22 août 1942) fut un prêtre catholique polonais. Emprisonné dans les camps de concentration nazis de Buchenwald et de Dachau, il y mourut après avoir été torturé lors d'expérimentations médicales. Il est l'un des 108 martyrs de la Seconde Guerre mondiale."
+  },
+  "wd-francois-serrano-q4417821": {
+   "bio": "Francisco Serrano (en chinois : 德方济 ; 4 décembre 1695 – 28 octobre 1748) fut un missionnaire catholique espagnol en Chine au XVIIIe siècle. Il mourut martyr en 1748 et fut plus tard canonisé par l'Église."
+  },
+  "wd-frutos-q2089305": {
+   "bio": "Saint Fructueux (en espagnol : San Fruitos, Frutos, Fructos) fut un ermite castillan du VIIIe siècle, vénéré comme saint. La tradition chrétienne lui donne deux frère et sœur, Valentin et Engrâce. Tous trois vécurent en ermites sur une montagne de la région de Sepúlveda."
+  },
+  "wd-fusca-of-ravenna-q3748935": {
+   "bio": "Fusca de Ravenne fut une enfant martyre, tuée vers 250 à Ravenne, en Italie, pendant la persécution de Dèce. Sa nourrice, Maura, fut martyrisée avec elle."
+  },
+  "wd-gabin-de-rome-q1327697": {
+   "bio": "Gavin (en italien : San Gavino) est un saint chrétien très fêté en Sardaigne, en Italie, comme l'un des martyrs de Torres (Martiri turritani), avec ses compagnons Prote, évêque, et Janvier, diacre."
+  },
+  "wd-gabriel-de-qartamin-q3675835": {
+   "bio": "Saint Gabriel de Beth Qustan (en syriaque : ܡܪܝ ܓܒܪܐܝܠ, Mor Gabriel), appelé aussi saint Gabriel de Qartmin, fut l'évêque du Tur Abdin jusqu'à sa mort en 648. Il est vénéré comme saint dans les Églises orthodoxes orientales, et sa fête tombe le 23 décembre."
+  },
+  "wd-garin-de-palestrina-q93518": {
+   "bio": "Guarino Foscari (v. 1080 – 6 février 1158) fut un chanoine régulier augustin catholique italien, et cardinal-évêque de Palestrina à partir de décembre 1144, son parent le pape Lucius II l'ayant élevé au cardinalat. Mieux connu sous le nom de « Guarin de Palestrina », il est resté célèbre pour sa charité envers les pauvres de cette ville."
+  },
+  "wd-gaudentius-de-rimini-q1447596": {
+   "bio": "Gaudence de Rimini (en italien : San Gaudenzo di Rimini, parfois écrit Gaudenzio ; v. 280 – 14 octobre 360) fut un évêque de Rimini, vénéré comme saint martyr dans l'Église catholique et l'Église orthodoxe. Les récits de sa vie divergent."
+  },
+  "wd-gebhard-de-constance-q315693": {
+   "bio": "Gebhard de Constance (en latin : Gebhardus Constantiensis ; en allemand : Gebhard von Konstanz ; 949-995) fut évêque de Constance de 979 à 995. Il fonda l'abbaye bénédictine de Petershausen en 983. Tenu pour saint, il est fêté le 27 août."
+  },
+  "wd-georgios-karslidis-q30591873": {
+   "bio": "Saint Georges de Drama (en grec : Ὁ Ὅσιος Γεώργιος τῆς Δράμας ; 1er janvier 1901 – 4 novembre 1959), né Athanasios Karslidis, fut un moine orthodoxe grec d'origine caucasienne. Il est vénéré comme saint dans l'Église orthodoxe et rattaché aux traditions grecque et géorgienne. On le remarqua pour sa direction spirituelle autant que pour son ascèse."
+  },
+  "wd-gerardo-la-porta-q3760950": {
+   "bio": "Gérard de Potenza (en italien : Gerardo di Potenza), appelé aussi Gérard La Porta, fut évêque de Potenza, aujourd'hui chef-lieu de la Basilicate, dans le sud de l'Italie. Il y exerça l'épiscopat huit ans, jusqu'à sa mort en 1119. Après sa mort, l'Église catholique le reconnut saint."
+  },
+  "wd-gerasimus-of-kefalonia-q3562532": {
+   "bio": "Gérasime de Céphalonie (en grec : Άγιος Γεράσιμος) est le saint patron de l'île de Céphalonie, en Grèce."
+  },
+  "wd-germanus-of-man-q13605908": {
+   "bio": "Saint Germain de Man (en mannois : Carmane ; v. 410 – v. 474), appelé aussi saint Germain de Peel, fut le premier évêque de l'île de Man. Né en Bretagne au début du Ve siècle, il passa en Irlande pour étudier auprès de saint Patrick, dont il était peut-être le neveu."
+  },
+  "wd-gertrude-d-altenberg-q442889": {
+   "bio": "La bienheureuse Gertrude d'Altenberg (v. octobre 1227 – 13 août 1297) fut une noble et une abbesse allemande. Elle était la fille d'Élisabeth de Hongrie et de Louis IV, landgrave de Thuringe."
+  },
+  "wd-giacomo-illirico-q348558": {
+   "bio": "Jacques de Slavonie (en croate : Jakov Zadranin ; v. 1400 – 27 avril 1485 ou 1496), appelé aussi Giacomo Illirico, Jacques de Bitetto ou Jakov Varingez, fut un frère croate de l'ordre des Frères mineurs. Il prit en religion le nom de « Giacomo »."
+  },
+  "wd-gilbert-de-caithness-q5561307": {
+   "bio": "Gilbert de Moravia (mort en 1245), connu plus tard sous le nom de saint Gilbert de Dornoch, ou Gilbert de Caithness, fut le plus célèbre des évêques de Caithness et le fondateur de la cathédrale de Dornoch. Son nom laisse penser qu'il venait de cette famille d'origine flamande, à demi gaélicisée, qui tenait la seigneurie de Duffus et qui, pendant son épiscopat, allait fonder le comté de Sutherland sous William de Moravia, premier comte de Sutherland, peut-être son cousin."
+  },
+  "wd-gilbert-de-limerick-q18671342": {
+   "bio": "Gillebert (en irlandais : Gilla Espaic ; v. 1070-1145) fut un prélat catholique irlandais, évêque de Limerick de 1106 à 1140."
+  },
+  "wd-giovanna-da-signa-q3766297": {
+   "bio": "Giovanna da Signa (1245 – 9 novembre 1307) fut une catholique italienne de Florence, recluse, réputée thaumaturge. Elle passa sa vie dans une solitude silencieuse vouée à Dieu et demeura vierge toute sa vie, au titre de cette consécration. Sa béatification fut célébrée à Florence sous le pape Pie VI en 1798 ; ce fut la dernière de ce pontificat."
+  },
+  "wd-giovanni-battista-quilici-q19985321": {
+   "bio": "Giovanni Battista Quilici (26 avril 1791 – 10 juin 1844) fut un prêtre catholique italien. Il fonda les Filles du Crucifié, ainsi que plusieurs autres institutions religieuses. Originaire de Livourne, il y fut curé pendant plusieurs décennies et s'occupa des prostituées et des malades ; il se distingua lors de l'épidémie de choléra de 1835, qui emporta sa sœur."
+  },
+  "wd-giovanni-il-buono-q3768504": {
+   "bio": "Jean le Bon (en latin : Ioannes Bonus ; en italien : Giovanni Bono ou Buono), appelé aussi Jean Camille, fut archevêque de Milan de 641 environ à 669. Il est honoré comme saint dans l'Église orthodoxe et dans l'Église catholique."
+  },
+  "wd-giovanni-morosini-q3767789": {
+   "bio": "Le bienheureux Jean Morosini, O.S.B. (mort en 1012), fut un abbé vénitien, fondateur du célèbre monastère Saint-Georges de cette ville. Né à Venise, il appartenait à l'illustre famille Morosini, qui joua un grand rôle dans l'histoire de la cité."
+  },
+  "wd-giovanni-oldrati-q3767845": {
+   "bio": "Jean de Meda, de l'ordre des Humiliés (1100 – 26 septembre 1159), appelé aussi Jean de Côme, fut un moine italien des Humiliés et abbé de leurs monastères de Milan et de Côme. L'Église catholique l'a déclaré saint."
+  },
+  "wd-giovanni-righi-q320332": {
+   "bio": "Giovanni Battista Righi (1469 – 11 mars 1539) fut un prêtre catholique italien et un profès de l'ordre des Frères mineurs. On le connut pour sa vie ascétique, sa prédication et ses guérisons. Sa béatification fut confirmée par le pape Pie X le 7 septembre 1903, un décret du pontife ayant ratifié le culte local dont ce prêtre franciscain était l'objet."
+  },
+  "wd-giovanni-theristis-q1130663": {
+   "bio": "Jean Thériste, O.S.B. (en italien : Giovanni Theristis, « Jean le Moissonneur » ; en sicilien : Santu Juanni Teristi ; 1049-1129), fut un moine bénédictin italo-byzantin. Bien que mort près d'un siècle après le grand schisme de 1054, il est saint à la fois dans l'Église catholique et dans l'Église orthodoxe, ce qui est remarquable. Le détail de sa vie a été transmis par des légendes et des croyances populaires."
+  },
+  "wd-giovanni-vincenzo-q3947264": {
+   "bio": "Jean X, dit Giovanni da Besate (« Jean de Besate ») ou Giovanni Vincenzo (« Jean Vincent »), fut archevêque de Ravenne de 983 à 998. Il appartenait à une famille en vue de Besate, en Lombardie. Ses frères furent Rotofred, père de l'évêque Sigifred de Plaisance, et Otton, bienfaiteur du monastère de San Savino, à Plaisance."
+  },
+  "wd-giuliana-di-collalto-q18814523": {
+   "bio": "Giuliana di Collalto (v. 1186 à Collalto, Susegana – 1er septembre 1262 à Venise) fut une moniale bénédictine italienne. Elle fut béatifiée en 1743 par le pape Benoît XIV."
+  },
+  "wd-giuliana-puricelli-q3769331": {
+   "bio": "Giuliana Puricelli (1427 – 15 août 1501) fut une religieuse professe catholique italienne de l'ordre de Saint-Augustin. Elle quitta sa maison lorsque son père voulut la marier, et s'enfuit vers un ermitage où elle se mit sous la direction spirituelle de Caterina Moriggi. Les deux femmes devinrent amies intimes, et leur ermitage s'agrandit au fil des décennies suivantes."
+  },
+  "wd-giuliano-da-valle-q1120759": {
+   "bio": "Julien de Bale (début du XIVe siècle – v. 1350) fut un frère franciscain, béatifié par l'Église catholique en 1910. Le décret par lequel l'Église le béatifia, le 23 février 1910, ne donne sur lui que de maigres renseignements."
+  },
+  "wd-glycerius-q1862798": {
+   "bio": "Glycère (en italien : Glicerio) fut archevêque de Milan de 436 à 438. Il est honoré comme saint dans l'Église catholique et dans l'Église orthodoxe."
+  },
+  "wd-gobnait-q5575577": {
+   "bio": "Sainte Gobnait (active au VIe siècle ?), appelée aussi Gobnat, Mo Gobnat, Abigaïl ou Déborah, est le nom d'une sainte irlandaise du haut Moyen Âge, dont l'église était à Móin Mór, plus tard Bairnech, au village de Ballyvourney (en irlandais : Baile Bhuirne), dans le comté de Cork, en Irlande. On l'associe aux Múscraige ; son église et son couvent se trouvaient à la limite des Múscraige Mittine et des Eóganacht Locha Léin."
+  },
+  "wd-gorgonia-de-nazianze-q3556557": {
+   "bio": "Sainte Gorgonie (en grec : Αγία Γοργονία ; morte vers 375) fut la fille de saint Grégoire l'Ancien et de sainte Nonna. Elle est vénérée comme sainte dans l'Église orthodoxe comme dans l'Église catholique, pour sa piété de femme mariée."
+  },
+  "wd-grata-of-bergamo-q3775842": {
+   "bio": "Grate de Bergame (début du IVe siècle) est une sainte et martyre italienne, sœur d'Astérie de Bergame. Ses parents étaient saint Loup de Bergame et sainte Adélaïde, duc et duchesse de Bergame."
+  },
+  "wd-gregorio-aglipay-q981953": {
+   "bio": "Gregorio Aglipay Cruz y Labayán (5 mai 1860 – 1er septembre 1940) fut un ancien prêtre catholique philippin et un révolutionnaire pendant la révolution philippine et la guerre américano-philippine, devenu le premier chef de l'Iglesia Filipina Independiente, première Église chrétienne indépendante des Philippines entièrement dirigée par des Philippins, sous la forme d'une Église nationale."
+  },
+  "wd-gregorio-celli-q26763935": {
+   "bio": "Gregorio Celli (1225, dit-on – 11 mai 1343) fut un prêtre catholique italien et un profès de l'ordre de Saint-Augustin. Il vécut avec cet ordre à Rimini, jusqu'à ce qu'il résolût de passer le reste de sa vie dans une profonde contemplation ; il gagna alors les collines de la région et demeura dans une grotte, près des franciscains qui y étaient établis. On prétend qu'il fut chassé de son ordre et se fit franciscain, mais rien ne l'atteste."
+  },
+  "wd-gregorio-da-cerchiara-q1545214": {
+   "bio": "Grégoire de Burtscheid (en grec : Γρηγόριος ὁ Καλαβρός ; v. 940 – 4 novembre 999), appelé aussi Grégoire de Calabre ou Grégoire de Cassano, fut le premier abbé de l'abbaye de Burtscheid, fondée sur l'ordre d'Otton III, empereur du Saint-Empire."
+  },
+  "wd-gregorios-of-parumala-q3595878": {
+   "bio": "Geevarghese Mar Gregorios de Parumala (15 juin 1848 – 2 novembre 1902), connu aussi sous le nom de Parumala Thirumeni, fut un métropolite syriaque orthodoxe de l'Église syriaque du Malankare. Il fut le premier homme d'origine indienne canonisé. En 1947, l'Église orthodoxe syriaque du Malankare le déclara saint, ce qui fit de lui le premier saint indien canonisé par cette Église."
+  },
+  "wd-guido-d-acqui-q3779522": {
+   "bio": "Saint Guy d'Acqui (appelé aussi Wido ; v. 1004 – 2 juin 1070) fut évêque d'Acqui (aujourd'hui Acqui Terme), dans le nord-ouest de l'Italie, de 1034 jusqu'à sa mort. Il naquit vers 1004 dans une famille noble de la région d'Acqui, les comtes d'Acquesana, à Melazzo, où se concentraient les biens de la famille."
+  },
+  "wd-gwenfyl-q23927301": {
+   "bio": "Sainte Gwenfyl fut une sainte galloise des premiers temps chrétiens, de la famille de Brychan. On sait peu de chose de sa vie."
+  },
+  "wd-hallvard-vebj-rnsson-q1364981": {
+   "bio": "Hallvard Vebjørnsson (Hallvard Den Hellige ; v. 1020-1043), communément appelé saint Hallvard (Sankt Hallvard), est le saint patron d'Oslo. On le tient pour martyr en raison de la défense qu'il prit d'une serve innocente."
+  },
+  "wd-heimerad-q98272": {
+   "bio": "Heimerad (appelé aussi Heimrad, Haimrad ou Heimo ; v. 970 à Meßkirch, près du lac de Constance, dans le pays de Bade – 28 juin 1019 sur le Hasunger Berg, aujourd'hui Burghasungen, près de Cassel) fut un prêtre et un prédicateur itinérant allemand. Il est vénéré comme saint dans l'Église orthodoxe et dans l'Église catholique, sous le titre de fol en Christ."
+  },
+  "wd-hellade-de-tolede-q3721107": {
+   "bio": "Hellade, ou Eladio, ou Elladio de Tolède (mort en 633 à Tolède), fut un archevêque chrétien. Né dans une famille noble wisigothe d'Espagne, il occupa d'abord d'importantes charges à la cour, mais fut attiré par la vie monastique et prononça ses vœux au monastère d'Agali. Il en devint l'abbé, puis archevêque de Tolède."
+  },
+  "wd-hemming-de-turku-q3774995": {
+   "bio": "Le bienheureux Hemming de Turku (1290-1366) fut un évêque catholique suédois, évêque de Turku de 1338 jusqu'à sa mort en 1366. Né en Suède, il s'établit en Finlande après sa nomination. Il devint une figure populaire du diocèse par le soin obstiné qu'il prit de l'instruction et de la vie spirituelle des fidèles."
+  },
+  "wd-henry-of-asti-q3725698": {
+   "bio": "Henri d'Asti (Enrico d'Asti, appelé aussi Enrico Comentina ; mort le 17 janvier 1345) fut patriarche latin titulaire de Constantinople à partir de 1339 et évêque de Négrepont, en Grèce franque. Sa renommée tient à ce qu'il conduisit la première croisade de Smyrne (1342-1345), où il mourut. En février 1341, le pape Benoît XII lui ordonna de recevoir des procureurs de la Grande Compagnie catalane, qui souhaitait revenir « au sein de l'Église notre mère »."
+  },
+  "wd-herbert-hoscam-q3731158": {
+   "bio": "Herbert Hoscam (mort en 1180), Anglais de naissance, fut prélat en Irpinie, comme archevêque de Conza."
+  },
+  "wd-herculanus-of-piegaro-q5736391": {
+   "bio": "Herculan de Piegaro (mort en 1451) fut un franciscain italien, béatifié en 1860. On le commémore le 2 juin. Né à Piegaro, il entra au couvent franciscain de la Stricte Observance de Sarteano, où il étudia sous la conduite d'Albert Berdini de Sarteano."
+  },
+  "wd-hermione-d-ephese-q468098": {
+   "bio": "Hermione d'Éphèse (en grec : Ερμιόνη της Εφέσου ; morte en 117) est une sainte et martyre du IIe siècle, vénérée par l'Église orthodoxe et l'Église catholique."
+  },
+  "wd-hermogius-q3732076": {
+   "bio": "Hermogius fut un évêque bénédictin, oncle de Pélage de Cordoue. Né à Tui, en Espagne, il fonda le monastère de Labrugia, en Galice espagnole, en 915. Peu après, il fut fait prisonnier par les Maures, qui venaient de conquérir la région."
+  },
+  "wd-hierothee-le-thesmothete-q1959605": {
+   "bio": "Hiérothée le Thesmothète (en grec : Ἱερόθεος ὁ Θεσμοθέτης) passe pour le premier chef et évêque des Athéniens chrétiens. Le titre de thesmothète désigne un magistrat, archonte subalterne d'Athènes — littéralement « celui qui pose la règle »."
+  },
+  "wd-hilary-of-galeata-q773794": {
+   "bio": "Hilaire de Galeata (en italien : Sant'Ilaro, aussi Sant'Ellero ; 476 – 15 mai 558) est vénéré comme saint dans l'Église orthodoxe et dans l'Église catholique. Sa fête tombe le 15 mai."
+  },
+  "wd-hilary-pawe-januszewski-q2235456": {
+   "bio": "Hilary Paweł Januszewski, O.Carm. (11 juin 1907 à Krajenki – 25 mars 1945 au camp de concentration de Dachau), fut un prêtre polonais, frère carme de l'Ancienne Observance. L'un des 108 martyrs de la Seconde Guerre mondiale, il était prieur d'un couvent de Cracovie lorsqu'il fut arrêté en 1940 ; détenu à Sachsenhausen puis à Dachau, il y mourut du typhus."
+  },
+  "wd-himerius-q970582": {
+   "bio": "Himère (Imier, Imerio) de Crémone (mort le 17 juin, vers 560), appelé aussi Himère d'Amelia ou Irnerius, fut un évêque italien."
+  },
+  "wd-hiob-poczajowski-q1305306": {
+   "bio": "Job de Potchaïv (en ukrainien : Йов Почаївський ; v. 1551 – 28 octobre 1651), dans le siècle Ivan Zalizo, et Jean sous le grand habit, fut un moine et un saint orthodoxe."
+  },
+  "wd-honorata-de-pavia-q11710058": {
+   "bio": "Honorata de Pavie (morte le 11 janvier 500 à Pavie), sœur de l'évêque Épiphane (mort en 496), fut une vierge consacrée et une sainte catholique. Ce qu'on sait de sa vie vient de la biographie que donna Ennodius de son frère. Elle était la plus jeune des quatre sœurs pieuses de celui-ci — Speciosa, Luminosa, Liberata et Honorata —, toutes vénérées plus tard comme vierges, quoique certains savants ne tiennent qu'Honorata pour sa sœur de sang."
+  },
+  "wd-hryhory-khomyshyn-q1337201": {
+   "bio": "Hryhoriy Khomyshyn (en ukrainien : Григорій Лукич Хомишин ; en polonais : Grzegorz Chomyszyn) fut un évêque gréco-catholique ukrainien et un hiéromartyr."
+  },
+  "wd-ibar-of-beggerin-q704189": {
+   "bio": "Ibar mac Lugna, dont le nom se donne aussi sous les formes Iberius ou Ivor, fut un saint irlandais des premiers temps, patron de l'île de Beggerin, et évêque. On le dit parfois l'un des « Quattuor sanctissimi Episcopi » (« les quatre très saints évêques ») qui auraient précédé saint Patrick en Irlande — avec Ailbe, Ciarán et Déclán —, mais ils n'étaient peut-être que ses contemporains. Sa fête tombe le 23 avril."
+  },
+  "wd-ida-von-nivelles-q1656569": {
+   "bio": "Ide de Nivelles (v. 1190 – 11 décembre 1231) fut une moniale cistercienne et une mystique, béatifiée."
+  },
+  "wd-idda-von-toggenburg-q427221": {
+   "bio": "Ide de Toggenbourg (v. 1140 – 3 novembre 1226), appelée aussi Idda, Ita, Itha, Itta, Ydda, Judith ou Gutta de Fischingen, fut une moniale chrétienne suisse, vénérée comme sainte dans le diocèse de Constance, et particulièrement à Fischingen, en Suisse. Elle est l'héroïne de maints récits et légendes du pays."
+  },
+  "wd-illidius-q653804": {
+   "bio": "Saint Illide (en français : saint Allyre, ou Alyre ; mort en 385) fut un évêque de Clermont, en France, au IVe siècle. On lui attribue l'essor de Clermont-Ferrand comme foyer d'enseignement et de culture religieuse. Grégoire de Tours le mentionne dans son œuvre."
+  },
+  "wd-ilya-q335298": {
+   "bio": "Saint Jean II (Ioann) de Novgorod (en russe : Иоанн Новгородский — le nom qu'il prit sous le grand habit, et sous lequel l'hagiographie orthodoxe russe le connaît), appelé avant 1185 Ilya de Novgorod, fut archevêque de Novgorod de 1165 jusqu'à sa mort en 1186."
+  },
+  "wd-indaletius-q965979": {
+   "bio": "Saint Indalèce (en espagnol : San Indalecio) est vénéré comme le saint patron d'Almería, en Espagne. La tradition en fait un missionnaire chrétien du Ier siècle, au temps des Apôtres. Il évangélisa la ville d'Urci (aujourd'hui Pechina), près de l'actuelle Almería, et en devint le premier évêque."
+  },
+  "wd-ioasaph-of-belgorod-q1960442": {
+   "bio": "Joasaph de Belgorod (en russe : Иоасаф Белгородский ; en ukrainien : Йоаса́ф Бєлгородський ; dans le siècle Ioakim Andreïevitch Gorlenko ; 8 (19) septembre 1705 – 10 (21) décembre 1754) fut un hiérarque orthodoxe russe du XVIIIe siècle, évêque de Belgorod de 1748 jusqu'à sa mort. Son corps fut trouvé incorrompu et, après de nombreux miracles, l'Église orthodoxe le glorifia en 1911. Dérobé à sa châsse en 1917, le corps du saint passa pour perdu, avant d'être retrouvé dans les réserves d'un musée et rendu à Belgorod en 1991."
+  },
+  "wd-isaac-de-dalmatie-q705202": {
+   "bio": "Saint Isaac le Confesseur, ou Isaacius, ou Isaakios (en grec ancien : Ἰσαάκιος ou Ἰσάκιος ; mort le 30 mai 383), fondateur du monastère des Dalmates à Constantinople, fut un moine chrétien honoré comme saint et confesseur. On l'appelle parfois Isaac le Dalmate, non qu'il vînt de Dalmatie, mais à cause du monastère qu'il fonda."
+  },
+  "wd-isabella-gilmore-q6078008": {
+   "bio": "Isabella Gilmore (née Morris ; 1842-1923) fut une femme d'Église anglaise, qui présida au relèvement de l'ordre des diaconesses dans la Communion anglicane. Elle servit activement dans les paroisses les plus pauvres du sud de Londres pendant près de vingt ans, et on la commémore au calendrier des saints de certaines Églises de la Communion anglicane, le 16 avril. Elle était la sœur de William Morris."
+  },
+  "wd-isfael-q13129278": {
+   "bio": "Isfael, ou Ismael (en vieux gallois : Ysmail), souvent anglicisé en Ishmael, fut au VIe siècle un évêque gallois de Rhos, et un saint. On le dit aussi prince breton d'Armorique. Si son nom anglicisé invite à le rapprocher de l'Ismaël biblique, Isfael est en réalité un nom — voire un surnom — proprement gallois, qui signifie « prince en second »."
+  },
+  "wd-isidore-de-chio-q1342994": {
+   "bio": "Isidore de Chio fut un soldat chrétien égyptien, martyrisé dans l'île de Chio en 251, pendant les persécutions ordonnées par l'empereur romain Dèce. On le commémore le 14 mai."
+  },
+  "wd-isnardo-da-chiampo-q20029145": {
+   "bio": "Isnardo da Chiampo, O.P. (mort le 19 mars 1244), fut un prêtre catholique italien et un profès de l'ordre des Prêcheurs. Il étudia à Bologne — où Dominique d'Osma le reçut lui-même dans son ordre — puis à Milan, avant de prêcher, une fois ordonné, dans les villes de l'Italie du Nord, comme Brescia et Bergame."
+  },
+  "wd-ite-of-killeedy-q1288349": {
+   "bio": "Íte ingen Chinn Fhalad (morte vers 570-577), appelée aussi Íde, Ita, Ida ou Ides, fut une moniale irlandaise des premiers temps et la sainte patronne de Killeedy (Cluain Creadhail). On la connaissait comme la « mère nourricière des saints d'Erin »."
+  },
+  "wd-iwan-s-eziuk-q176600": {
+   "bio": "Ivan Slezyuk (en ukrainien : Іван Слезюк ; en polonais : Iwan Słeziuk ; 14 janvier 1896 – 2 décembre 1973) fut un évêque gréco-catholique ukrainien et un hiéromartyr."
+  },
+  "wd-iwan-ziatyk-q2500920": {
+   "bio": "Ivan Ziatyk (en ukrainien : Іван Зятик ; 26 décembre 1899 – 17 mai 1952) fut un prêtre catholique ukrainien, rédemptoriste et professeur, tenu pour martyr par l'Église catholique."
+  },
+  "wd-jacob-lacops-q20028600": {
+   "bio": "Jakob Lacoupe (v. 1542, Audenarde – 9 juillet 1572, Gorinchem), appelé aussi Jacques Lacoupe, fut un prêtre prémontré, mort martyr parmi les martyrs de Gorcum, et saint catholique."
+  },
+  "wd-jacques-benfatti-q3761994": {
+   "bio": "Giacomo Benefatti (mort le 19 novembre 1332) fut un prêtre catholique italien et un profès de l'ordre des Prêcheurs, qui accéda à l'évêché de Mantoue. Il se fit remarquer par le soin attentif qu'il prit des malades pendant les épidémies de peste, et le pape Benoît XI — un ami intime — comme le pape Jean XXII le tinrent en haute estime. Sa réputation de sainteté se maintint dans les siècles qui suivirent sa mort, et la confirmation du culte local dont il était l'objet permit au pape Pie IX de confirmer sa béatification, le 22 septembre 1859."
+  },
+  "wd-jacques-friteyre-durve-q2122059": {
+   "bio": "Jacques Friteyre-Durvé (1725-1792) fut un jésuite français. Il naquit à Marsac-en-Livradois, dans le Puy-de-Dôme."
+  },
+  "wd-jacques-l-intercis-q2625267": {
+   "bio": "Jacques l'Intercis (en latin : Jacobus Intercisus ; en grec ancien : Ἰάκωβος ὁ Πέρσης ; né à Beth Huzaye, mort le 27 novembre 420 à Beth Lapat), communément appelé Mor Yaqoub M'Pasqo Sahada (en syriaque : ܡܪ ܝܥܩܘܒ ܡܦܣܩܐ ܣܗܕܐ), dit aussi Jacques le Mutilé, Jacques le Persan ou Jacob le Persan (et à Chypre Akouphos), fut un saint chrétien né à Beth Huzaye, dans la ville de Beth Lapat. Son surnom latin, Intercisus (Pasqo en syriaque), vient du mot qui signifie « coupé en morceaux », et désigne la manière de son martyre."
+  },
+  "wd-jakub-strzemie-q11716598": {
+   "bio": "Jakub Strzemię (v. 1340 – 20 octobre 1409) fut un archevêque catholique polonais et un profès de l'ordre des Frères mineurs. Il fut archevêque de Halicz de 1392 jusqu'à sa mort, date à laquelle l'archidiocèse fut rattaché à celui de Lviv."
+  },
+  "wd-jan-bula-q1681666": {
+   "bio": "Jan Bula (24 juin 1920, Lukov – 20 mai 1952, Jihlava) fut un prêtre catholique tchèque, administrateur de la paroisse de Rokytnice nad Rokytnou. Il fut l'une des victimes des assassinats judiciaires commis par le régime communiste dans l'affaire dite de Babice. L'Église catholique le vénère comme bienheureux martyr et le commémorera chaque année avec Václav Drbola, le 17 juin."
+  },
+  "wd-jan-jakub-fernandez-q6300057": {
+   "bio": "Les martyrs de Damas furent onze saints catholiques tués par des Druzes alors qu'ils priaient dans une paroisse tenue par les franciscains à Damas, pendant les troubles civils de 1860 au mont Liban et à Damas. Ce sont les frères Massabki (en arabe : الأخوة المسابكيين) — Abdel Moati, Francis et Raphaël Massabki — ainsi que Manuel Ruiz López et ses compagnons : Carmelo Bolta Bañuls, Nicanor Ascanio Soria, Nicolás María Alberca Torres, Pedro Nolasco Soler Méndez, Engelbert Kolland, Francisco Pinazo Peñalver et Juan Jacob Fernández."
+  },
+  "wd-jan-pelingotto-q26246968": {
+   "bio": "Giovanni Pelingotto (1240 – 1er juin 1304) fut un catholique italien du tiers ordre franciscain séculier, originaire d'Urbino, qui vécut en distributeur d'aumônes et en ermite. Il travailla d'abord au commerce de son père, puis y renonça et donna aux plus démunis de sa région tout ce qu'il pouvait. Cela le mit en rapport avec les franciscains, ce qui l'ouvrit à un service plus haut de Dieu et des pauvres."
+  },
+  "wd-janos-scheffler-q719040": {
+   "bio": "János Scheffler (en allemand : Johann Scheffler ; 29 octobre 1887 – 6 décembre 1952) fut un prélat catholique né en Hongrie, évêque de deux diocèses avant d'être évêque d'Oradea Mare. Emprisonné pour s'être opposé à la politique du gouvernement communiste, il mourut en détention. Son épiscopat fut marqué par l'attention qu'il porta aux vocations et par la défense de la foi contre les forces qui cherchaient à l'ébranler, tel le communisme."
+  },
+  "wd-jayananda-dasa-q4160008": {
+   "bio": "Jayananda Dasa fut une figure religieuse influente de l'Association internationale pour la conscience de Krishna (ISKCON) à San Francisco, entre 1967 et 1977. L'ISKCON le tient pour un saint."
+  },
+  "wd-jean-charton-de-millou-q2730124": {
+   "bio": "Jean Charton de Millou (1736-1792) fut un prêtre catholique jésuite français et un martyr, victime de la persécution antireligieuse pendant la Révolution française. Il entra dans la Compagnie de Jésus le 7 septembre 1751 ; ses études furent cependant interrompues par la dissolution de l'ordre, et il les poursuivit dans un séminaire diocésain."
+  },
+  "wd-jean-de-cologne-q2296290": {
+   "bio": "Jean de Cologne (Joannes van Hoornaar) fut un frère et un prêtre de l'ordre dominicain, né dans l'électorat de Cologne, dans l'actuelle Allemagne. Il devint plus tard curé de Hoornaar, aux Pays-Bas espagnols."
+  },
+  "wd-jean-de-gaza-q3816820": {
+   "bio": "Jean le Prophète, appelé aussi le vénérable Jean, fut un ermite chrétien d'Orient, du monastère de Sérid, et le maître de Dorothée de Gaza. Il est vénéré comme saint dans l'Église catholique et dans l'Église orthodoxe."
+  },
+  "wd-jean-de-gothie-q720171": {
+   "bio": "Jean de Gothie (en grec : ᾿Ιωάννης ἐπίσκοπος τῆς Γοτθίας ; mort vers 791) fut un métropolite goth de Crimée, évêque de Doros, et le chef de la révolte qui renversa les Khazars et les chassa brièvement de Gothie en 787. Il fut canonisé comme saint orthodoxe."
+  },
+  "wd-jean-de-trau-q3768441": {
+   "bio": "Jean de Trogir (mort avant 1111) fut évêque de Trogir, et un saint chrétien du XIe siècle. Il était d'abord moine bénédictin au monastère Saint-Pierre d'Osor, dans l'île de Cres. Il fut enfin consacré évêque de Trogir, à la demande des habitants, par Laurentinus, archevêque de Split."
+  },
+  "wd-jenaro-sanchez-delgadillo-q525268": {
+   "bio": "Jenaro Sánchez y Delgadillo fut un prêtre catholique mexicain exécuté par l'armée pendant la guerre des Cristeros ; il naquit le 19 septembre 1886 et mourut le 17 janvier 1927. L'Église catholique l'honore aujourd'hui comme martyr et comme saint."
+  },
+  "wd-jeong-yak-jong-q11270126": {
+   "bio": "Chŏng Yakchong (en coréen : 정약종 ; en hanja : 丁若鍾 ; 1760 – 8 avril 1801), appelé aussi Augustin Chong, fut un martyr catholique coréen qui contribua grandement à la diffusion du catholicisme en Corée. Il était le frère aîné de Chŏng Yagyong et le père de Paul Chong Hasang. Il écrivit le premier catéchisme catholique en caractères coréens seuls, afin d'atteindre le peuple aussi bien que les nobles, seuls à savoir lire les caractères chinois dans la société coréenne."
+  },
+  "wd-joao-de-oliveira-matos-ferreira-q15821917": {
+   "bio": "João de Oliveira Matos Ferreira (1er mars 1879 – 29 août 1962) fut un prélat catholique portugais, évêque de Guarda depuis sa nomination en 1922 jusqu'à sa mort. Il fonda aussi la Ligue des servantes de Jésus. Le procès de sa béatification conduisit le pape François, le 3 juin 2013, à le déclarer vénérable, en reconnaissance de l'héroïcité de ses vertus."
+  },
+  "wd-joaquin-royo-perez-q4396767": {
+   "bio": "Joachim Royo (en espagnol : Joaquín Royo Pérez ; nom chinois : 华雅敬 ; 1691 – 28 octobre 1748) fut un missionnaire catholique espagnol en Chine au XVIIIe siècle. Il mourut martyr en 1748 et fut plus tard canonisé par l'Église."
+  },
+  "wd-john-baptist-yi-kwang-nyol-q6220606": {
+   "bio": "Jean-Baptiste Yi Kwang-nyol (v. 1800 – 20 juillet 1839) fut l'un des 103 martyrs de Corée. Sa fête tombe le 20 juillet, et on le vénère aussi avec les autres martyrs coréens le 20 septembre."
+  },
+  "wd-john-calybite-q1959875": {
+   "bio": "Jean Calybite (ou Jean Calabite, Calibita, Chalybita, Calabytes, Kalabytes, Kalybites, Kalyvitis ; en grec : Ἰωάννης ὁ Καλυβίτης ; mort vers 450) fut un moine et ermite grec, vénéré comme saint par l'Église orthodoxe et par l'Église catholique. Il quitta sa maison très jeune et fut plusieurs années moine à Jérusalem."
+  },
+  "wd-john-hardon-q9283759": {
+   "bio": "John Anthony Hardon (18 juin 1914 – 30 décembre 2000) fut un prêtre jésuite, écrivain, professeur et théologien américain. Un procès en béatification ayant été ouvert pour lui en 2005, l'Église catholique le reconnaît comme serviteur de Dieu."
+  },
+  "wd-john-lloyd-q14918258": {
+   "bio": "Philip Evans, S.J., et John Lloyd furent des prêtres catholiques gallois, mis à mort dans les suites du prétendu complot papiste. Ils comptent parmi les quarante martyrs d'Angleterre et du pays de Galles."
+  },
+  "wd-john-of-tobolsk-q247164": {
+   "bio": "Jean de Tobolsk (en russe : Иоанн Тобольский ; 1651-1715), né Ioann Maksimovitch Vassilkovski (en ukrainien : Іван Максимович Васильківський), fut un maître, un écrivain et un clerc d'origine cosaque ukrainienne, archevêque orthodoxe russe de Tchernihiv et de Novgorod-Seversk, puis métropolite de Tobolsk et de toute la Sibérie."
+  },
+  "wd-john-of-tufara-q18812016": {
+   "bio": "Jean de Tufara (en italien : Giovanni da Tufara ; en latin : Ioannes de Tuphária), appelé aussi Jean l'Ermite (en italien : Giovanni Eremita ; 1084 – 14 novembre 1170), fut un ermite italien, fondateur de monastère, et un saint de l'Église catholique. Il est le patron de Tufara, sa ville natale, et de Foiano di Val Fortore, où il mourut."
+  },
+  "wd-john-the-iberian-q1269209": {
+   "bio": "Jean l'Ibère (en géorgien : იოანე მთაწმინდელი ; mort vers 1002) fut un moine géorgien et un saint orthodoxe, vénéré pour sa piété et pour la conduite qu'il exerça au mont Athos. Il fut l'un des fondateurs du monastère d'Iviron, grand foyer de la culture monastique géorgienne sur l'Athos."
+  },
+  "wd-josaphat-chichkov-q6279177": {
+   "bio": "Robert-Matthieu Chichkov (9 février 1884 – 11 novembre 1952) fut un prêtre, recteur et enseignant bulgare, fusillé par le gouvernement communiste au pouvoir. Il est vénéré comme bienheureux par l'Église catholique."
+  },
+  "wd-jose-maria-gran-cirera-q83880810": {
+   "bio": "José María Gran Cirera (né le 27 avril 1945 à Barcelone, mort le 4 juin 1980 à Xeixojbitz, département du Quiché) fut un prêtre catholique espagnol en mission au Guatemala, missionnaire du Sacré-Cœur, martyr, victime de la guerre civile guatémaltèque, et bienheureux de l'Église catholique."
+  },
+  "wd-josep-samso-i-elias-q3513656": {
+   "bio": "Josep Samsó Elías (17 janvier 1887 – 1er septembre 1936) fut un prêtre catholique espagnol tué pendant la guerre civile. On le connut d'abord comme un étudiant brillant, qui excella dans ses études puis dans sa charge pastorale ; curé en plusieurs endroits, il fut surtout réputé pour ses cours de catéchisme, tenus parmi les meilleurs du pays. Il aimait les célébrations liturgiques solennelles et employa ses ressources à mieux orner l'intérieur de son église."
+  },
+  "wd-joseph-marie-robles-hurtado-q3810524": {
+   "bio": "José María Robles Hurtado (3 mai 1888 – 26 juin 1927) fut un prêtre mexicain, l'un des nombreux prêtres martyrisés pendant la guerre des Cristeros."
+  },
+  "wd-joseph-muller-q106595": {
+   "bio": "Joseph Müller (19 août 1894 – 11 septembre 1944) fut un prêtre catholique allemand et un adversaire du régime nazi. Il fut jugé par le Tribunal du peuple et exécuté à la prison de Brandebourg-Görden."
+  },
+  "wd-joseph-the-hesychast-q62120145": {
+   "bio": "Joseph l'Hésychaste (en grec : Ιωσήφ ο Ησυχαστής ; né Fragkiskos Kottis ; 12 février 1897 – 15 août 1959) fut un moine et un ancien orthodoxe grec, qui conduisit un petit groupe de moines au mont Athos. Il fut canonisé par le patriarcat œcuménique de Constantinople en 2020. Sa fête se célèbre le 16 août."
+  },
+  "wd-joseph-von-freising-q474132": {
+   "bio": "Joseph de Freising (mort le 17 janvier 764), appelé aussi Joseph de Vérone, fut évêque de Freising de 747 ou 748 jusqu'à sa mort."
+  },
+  "wd-joseph-yuan-zaide-q4533488": {
+   "bio": "Joseph Yuan (nom chinois : 袁在德 ; 1766-1817) fut un prêtre et un martyr chinois du XIXe siècle."
+  },
+  "wd-josephine-leroux-q11731825": {
+   "bio": "Joséphine Leroux (23 janvier 1747 – 23 octobre 1794), née Anne-Josepha Leroux, fut une clarisse française, exécutée pendant la Révolution française."
+  },
+  "wd-jozef-achilles-pucha-a-q6320410": {
+   "bio": "Józef Achilles Puchała, O.F.M. Conv. (18 mars 1911 – 19 juillet 1943), fut un frère franciscain conventuel polonais du couvent d'Iwieniec (Ivyanets), torturé et tué par les nazis pendant la Seconde Guerre mondiale, et béatifié par le pape Jean-Paul II le 13 juin 1999."
+  },
+  "wd-jozef-czempiel-q4508863": {
+   "bio": "Józef Czempiel (né le 21 septembre 1883 à Piekary Śląskie – 4 mai 1942) fut un prêtre catholique polonais et un militant. Il fut assassiné au camp de concentration de Dachau. Le 13 juin 1999, il figurait parmi les 108 martyrs polonais de la Seconde Guerre mondiale béatifiés à Varsovie par le pape Jean-Paul II."
+  },
+  "wd-jozef-kurzawa-q4244693": {
+   "bio": "Józef Kurzawa (1910-1940) fut un prêtre catholique polonais. Il fut fusillé. Il est l'un des 108 martyrs de la Seconde Guerre mondiale béatifiés par le pape Jean-Paul II en 1999."
+  },
+  "wd-jozef-ulma-q15477989": {
+   "bio": "La famille Ulma (en polonais : Rodzina Ulmów), ou Józef et Wiktoria Ulma avec leurs sept enfants (en polonais : Józef i Wiktoria Ulmowie z siedmiorgiem Dzieci), était une famille catholique polonaise de Markowa, en Pologne, qui, sous l'occupation allemande pendant la Seconde Guerre mondiale, tenta de sauver des familles juives polonaises en les cachant dans sa propre maison pendant la Shoah. Les parents et leurs enfants furent exécutés sommairement pour cela, le 24 mars 1944."
+  },
+  "wd-jozefa-krizina-bojanc-q3500286": {
+   "bio": "Sœur M. Krizina Bojanc, F.D.C. (14 mai 1885 – 15 décembre 1941), baptisée Jožefa, fut une religieuse, agricultrice et martyre slovène. Sœur de l'Institut des Filles de la divine Charité, elle est l'une des cinq bienheureuses martyres de la Drina."
+  },
+  "wd-juan-de-santo-tomas-alcover-figueras-q4063485": {
+   "bio": "Jean Alcober (en espagnol : Juan Alcober Figuera ; nom chinois : 费若望 ; 1694 – 28 octobre 1748) fut un frère dominicain et un missionnaire espagnol en Chine au XVIIIe siècle. Il mourut en 1748 et fut finalement canonisé."
+  },
+  "wd-julia-rodzinska-q3553656": {
+   "bio": "Maria Julia Rodzińska, O.P. (née Stanisława Maria Józefa Rodzińska ; 16 mars 1899 – 20 février 1945), fut une sœur dominicaine polonaise, vénérée comme bienheureuse dans l'Église catholique."
+  },
+  "wd-julian-de-cuenca-q1395103": {
+   "bio": "Julien de Cuenca (v. 1127 – 28 janvier 1208), appelé aussi saint Julien, fut un prélat catholique espagnol, évêque de Cuenca de 1196 jusqu'à sa mort. Il fut aussi professeur et prédicateur, en même temps que simple ermite."
+  },
+  "wd-julian-of-sora-q1712147": {
+   "bio": "Saint Julien de Sora fut un martyr de Sora, dans le Latium, en Italie. Dalmate de naissance, il fut torturé puis décapité par des soldats romains à Sora, alors qu'il se rendait en Campanie, sous le règne de l'empereur Antonin le Pieux. L'Église catholique le commémore le 27 janvier, et l'Église orthodoxe le 28 juillet (ancien style) ou le 11 août (nouveau style)."
+  },
+  "wd-justin-of-chieti-q3771735": {
+   "bio": "Saint Justin de Chieti (en italien : San Giustino di Chieti) est vénéré comme un ancien évêque de Chieti, en Italie. La date de sa mort varie : on la donne tantôt au IIIe, tantôt au IVe, tantôt au VIe siècle. Aucun témoignage historique antérieur au XVe siècle n'atteste son existence."
+  },
+  "wd-juvenaly-of-alaska-q4533590": {
+   "bio": "Juvénal d'Alaska (en russe : Иеромонах Ювена́лий ; 1761, Iekaterinbourg, Russie – 1796, Kuinerrak, Alaska), protomartyr d'Amérique, fut un hiéromartyr russe et un membre du premier groupe de missionnaires orthodoxes venus des monastères de Valaam et de Konevets pour évangéliser les habitants de l'Alaska. Il mourut en 1796 alors qu'il évangélisait les Esquimaux yupiks du continent alaskien. Sa fête se célèbre le 2 juillet ; on le commémore aussi avec tous les saints d'Alaska (24 septembre) et avec les premiers martyrs de la terre d'Amérique (12 décembre)."
+  },
+  "wd-karol-herman-stepien-q4444781": {
+   "bio": "Karol Hermann Stępień, O.F.M. Conv. (21 octobre 1910 – 19 juillet 1943), fut un prêtre franciscain conventuel polonais, martyrisé par les nazis pendant la Seconde Guerre mondiale."
+  },
+  "wd-kirion-ii-q2561426": {
+   "bio": "Saint Kyrion II (en géorgien : კირიონ II ; 10 novembre 1855 – 26 juin 1918) fut une figure religieuse et un historien géorgien, premier catholicos-patriarche de toute la Géorgie après le rétablissement de l'indépendance (autocéphalie) de l'Église orthodoxe géorgienne à l'égard de l'Église orthodoxe russe, en 1917, jusqu'à son assassinat en 1918. Il fut canonisé par le Saint-Synode géorgien en 2002."
+  },
+  "wd-kozma-zografski-q12283310": {
+   "bio": "Cosmas le Zographite, ou Kozma Zografski (en bulgare : Козма Зографски), fut un saint bulgare du Moyen Âge, vénéré dans l'Église orthodoxe. Il naquit dans la seconde moitié du XIIIe siècle à Tarnovo, capitale de l'Empire bulgare, dans une famille noble. Il reçut une solide instruction et parlait couramment le grec."
+  },
+  "wd-laureana-franco-q104897297": {
+   "bio": "Laureana Franco (4 juillet 1936 – 17 octobre 2011), connue aussi sous le nom de « Ka Luring Franco », fut une catéchiste catholique philippine et un membre de la Légion de Marie, qui voua sa vie au service de son diocèse et de ses pauvres. Sa cause de béatification est instruite par le diocèse de Pasig."
+  },
+  "wd-lazare-de-milan-q3828269": {
+   "bio": "Lazare (en italien : Lazzaro) fut archevêque de Milan de 438 à 449. Il est honoré comme saint dans les Églises catholique et orthodoxe, et sa fête tombe le 11 février."
+  },
+  "wd-leo-de-montefeltro-q21208636": {
+   "bio": "Saint Léon de Montefeltro (v. 275-366), autrement Leone de Montefeltro (en italien : San Leo di Montefeltro, San Leone di Montefeltro), fut le premier évêque de Montefeltro, à partir de 301. La tradition en fait à l'origine un tailleur de pierre venu de Dalmatie."
+  },
+  "wd-leon-wetmanski-q4110022": {
+   "bio": "Leon Wetmański (10 avril 1886 – 1941) fut un évêque auxiliaire catholique polonais du diocèse de Płock, tué au camp de concentration de Soldau. Il fut béatifié en 1999 parmi les 108 bienheureux martyrs polonais."
+  },
+  "wd-lidano-d-antena-q3832033": {
+   "bio": "Lidan fut un abbé bénédictin, à qui l'on attribue l'assèchement des marais Pontins, en Italie, et la fondation de l'abbaye de Sezze, dans les États pontificaux. Il mourut au Mont-Cassin, en 1118, de mort naturelle."
+  },
+  "wd-luca-spicola-q3838286": {
+   "bio": "Luc Spicola (v. 1425-1490) fut un prêtre catholique italien de l'ordre des Frères prêcheurs."
+  },
+  "wd-lucerius-q6696473": {
+   "bio": "Lucerius (mort en 740) fut le troisième abbé de Farfa, successeur d'Aunepert en 724 au plus tard. Originaire de Provence, il avait été élevé à Farfa par Thomas de Maurienne, le premier abbé. Son abbatiat fut pour le monastère un temps de croissance et d'expansion."
+  },
+  "wd-lucius-de-choire-q1878414": {
+   "bio": "Lucius de Coire (en allemand : Lucius von Chur ou Luzius von Chur) est un saint suisse légendaire, prêtre et évêque. Il naquit en Bretagne insulaire ou, plus vraisemblablement, dans le Prättigau, en Suisse, et mourut au Ve ou au VIe siècle, sans doute à Coire. Selon des sources dignes de foi, Lucius fut missionnaire en Rhétie."
+  },
+  "wd-ludovico-sabbatini-q3839142": {
+   "bio": "Ludovico Sabbatini (30 août 1650 – 11 juin 1724) fut un prêtre et un éducateur religieux italien, béatifié par l'Église catholique en 1765. On le vénère le 11 juin, jour de sa mort."
+  },
+  "wd-ludwik-mzyk-q7224947": {
+   "bio": "Ludwik Mzyk (22 avril 1905 – 20 février 1940) fut un prêtre de la Société du Verbe-Divin, l'un des 108 bienheureux martyrs polonais béatifiés le 13 juin 1999 par le pape Jean-Paul II à Varsovie."
+  },
+  "wd-luigi-beltrame-quattrocchi-q13586473": {
+   "bio": "Luigi Beltrame Quattrocchi (12 janvier 1880 – 9 novembre 1951) et Maria Corsini (24 juin 1884 – 26 août 1965) furent deux laïcs catholiques italiens mariés, premier couple béatifié ensemble, en 2001. Selon le pape Jean-Paul II, ils vécurent « une vie ordinaire de manière extraordinaire ». Leur fête tombe le 25 novembre, anniversaire de leur mariage."
+  },
+  "wd-luis-obdulio-arroyo-navarro-q51029610": {
+   "bio": "Luis Navarro, T.O.F.S. (21 juin 1950 – 1er juillet 1981), fut un missionnaire catholique guatémaltèque, voué à la catéchèse et à l'évangélisation parmi les gens de son pays. Il était membre de l'ordre franciscain séculier. Assassiné en 1981, il est vénéré par les catholiques, et sa béatification, approuvée par le pape François, fut célébrée à Izabal, au Guatemala, le 27 octobre 2018."
+  },
+  "wd-luisa-guidotti-mistrali-q18812033": {
+   "bio": "Luisa Guidotti Mistrali (16 mai 1932 – 6 juillet 1979) fut une laïque catholique italienne, en mission en Rhodésie. Elle était membre de l'Association des missions médicales féminines. Elle soigna les malades dans plusieurs hôpitaux de Rhodésie, et l'on remarqua qu'elle prit un jour soin de la mère de Robert Mugabe."
+  },
+  "wd-luke-thaumaturgus-q2497353": {
+   "bio": "Luc de Stiris, appelé aussi Luc, Luc le Jeune, Luc d'Hellade ou Luc le Thaumaturge (en grec : Λουκάς ό θαυματουργός ; 896-953), fut un saint byzantin du Xe siècle, qui vécut dans les thèmes d'Hellade et du Péloponnèse, en Grèce, et fonda le monastère d'Hosios Loukas (« le vénérable Luc ») sur les pentes de l'Hélicon, entre Delphes et Livadia, près des côtes du golfe de Corinthe, en Béotie. Il fut l'un des premiers saints que l'on vit s'élever de terre en prière."
+  },
+  "wd-lupus-of-novae-q7234164": {
+   "bio": "Saint Loup de Novae (en roumain : Sfântul Lup) est un saint dace ou romain, qui fut un temps le serviteur de saint Démétrios de Thessalonique. On le fête le 23 août."
+  },
+  "wd-magno-di-oderzo-q887137": {
+   "bio": "Saint Magne d'Oderzo (en italien : San Magno di Oderzo) fut un saint italien du VIIe siècle, remarquable pour avoir fondé quelques-unes des plus anciennes églises de Venise. Évêque d'Oderzo, il gagna Venise en 638 à cause de l'invasion lombarde de l'Italie. Il y fonda les églises des Santi Apostoli, de San Pietro di Castello, de Santa Maria Formosa, de Santa Giustina, de San Giovanni in Bragora, de San Zaccaria, de San Salvador et de l'Angelo San Raffaele."
+  },
+  "wd-mamilian-of-palermo-q1249745": {
+   "bio": "Saint Mamilien (Mamilianus) de Palerme, qu'on vénère avec Nymphe, Eustoce, Procule et Golbodée, fut un évêque de Palerme au Ve siècle."
+  },
+  "wd-mansueto-savelli-q3818636": {
+   "bio": "Mansuet (en latin : Mansuetus ; en italien : Mansueto) fut archevêque de Milan de 676 à 685. Il est honoré comme saint dans l'Église catholique."
+  },
+  "wd-mantius-of-evora-q4280505": {
+   "bio": "Mance d'Évora (en portugais : São Manços) fut, selon la légende, le premier évêque de Lisbonne et d'Évora, au Ier siècle. Certaines versions de sa légende en font l'un des disciples de Jésus-Christ, envoyé prêcher l'Évangile en Lusitanie."
+  },
+  "wd-manuel-gomez-gonzalez-q10324195": {
+   "bio": "Manuel Gómez González (29 mai 1877 – 21 mai 1924) fut un prêtre missionnaire espagnol et un martyr catholique, qui vécut au Brésil."
+  },
+  "wd-manuel-morales-q12967680": {
+   "bio": "Manuel Morales Cervantes fut un laïc mexicain tué pendant la guerre des Cristeros. Militant catholique au temps de la politique anticléricale du président Plutarco Elías Calles, il fut capturé par les forces gouvernementales et exécuté pour avoir refusé d'abjurer ses engagements. Il fut canonisé par le pape Jean-Paul II le 21 mai 2000, parmi les 25 saints de la guerre des Cristeros."
+  },
+  "wd-manuel-seco-gutierrez-q3819183": {
+   "bio": "Manuel Seco Gutiérrez (4 octobre 1912, Celada Marlantes – 9 octobre 1934, Turón), connu sous le nom de saint Anicet Adolphe, fut l'un des martyrs de Turón, ces frères des Écoles chrétiennes assassinés en 1934 pendant la persécution religieuse de la révolution des Asturies, en Espagne. Il était le plus jeune des éducateurs de l'école Notre-Dame-de-Covadonga, à Turón."
+  },
+  "wd-marcien-de-syracuse-q728245": {
+   "bio": "Marcien, ou Marcianus (Antioche de Syrie, Ier siècle – Syracuse), fut un évêque et un martyr, vénéré comme saint par l'Église catholique et par l'Église orthodoxe. Selon la tradition, Marcien fut le premier évêque de Syracuse, et un disciple de l'apôtre Pierre. On le tient pour le premier évêque d'Occident, puisqu'il arriva en Sicile alors que l'apôtre était encore à Antioche."
+  },
+  "wd-margaret-of-the-blessed-sacrament-q6760077": {
+   "bio": "Marguerite du Saint-Sacrement, O.C.D. (6 mars 1590 à Paris – 24 mai 1660 à Paris), fut une carmélite déchaussée française. Elle était la seconde fille de Marie de l'Incarnation, qui introduisit en France la réforme de l'ordre du Carmel."
+  },
+  "wd-margherita-colonna-q606835": {
+   "bio": "Margherita Colonna (v. 1255 – 30 décembre 1280) fut un membre de la famille Colonna, qui tint pendant des siècles une place notable dans l'histoire d'Italie. Elle fut béatifiée par le pape Pie IX, après l'approbation de son culte en 1847."
+  },
+  "wd-marguerite-d-ypres-q42377953": {
+   "bio": "Marguerite d'Ypres (1216-1237) fut une visionnaire, ascète, pénitente et flagellante flamande. Elle fut l'une de ces nombreuses laïques du XIIIe siècle qui menèrent une vie de dévotion, à l'exemple de Marie d'Oignies. Appelées mulieres religiosae ou mulieres sanctae, quelques-unes se rassemblèrent en béguinages, tandis que bien d'autres vivaient chez elles, pratiquant la pauvreté volontaire, la chasteté, la prière, le jeûne et la pénitence — une manière de vivre qu'on appelait la vita apostolica, à l'imitation du Christ."
+  },
+  "wd-maria-corsini-q3847211": {
+   "bio": "Luigi Beltrame Quattrocchi (12 janvier 1880 – 9 novembre 1951) et Maria Corsini (24 juin 1884 – 26 août 1965) furent deux laïcs catholiques italiens mariés, premier couple béatifié ensemble, en 2001. Selon le pape Jean-Paul II, ils vécurent « une vie ordinaire de manière extraordinaire ». Leur fête tombe le 25 novembre, anniversaire de leur mariage."
+  },
+  "wd-maria-de-los-angeles-ginard-marti-q2882003": {
+   "bio": "Ángela Ginard Martí (3 avril 1894 – 26 août 1936), en religion Maria de los Ángeles, fut une religieuse espagnole de la congrégation des Sœurs zélatrices du culte eucharistique. Elle souffrit le martyre en 1936, tuée au début de la guerre civile espagnole, et fut béatifiée en 2005."
+  },
+  "wd-maria-teresa-ferragut-roig-q11769195": {
+   "bio": "María Teresa Ferragut Roig (14 janvier 1853 – 25 octobre 1936) fut une laïque catholique espagnole et une martyre, tuée près d'Alzira, dans la province de Valence, pendant les persécutions anticléricales de l'Espagne républicaine, au début de la guerre civile. Elle fut béatifiée en 2001 par le pape Jean-Paul II, dans le groupe des 233 martyrs espagnols reconnus tués en haine de la foi."
+  },
+  "wd-maria-toribia-q3544243": {
+   "bio": "Maria Toribia (morte en 1175) fut une paysanne espagnole que l'on croit avoir été l'épouse de saint Isidore. On la connaît en Espagne sous le nom de Santa María de la Cabeza (« sainte Marie de la Tête »)."
+  },
+  "wd-mariana-de-jesus-torres-q60835965": {
+   "bio": "Mariana Francisca de Jesús Torres y Berriochoa, O.I.C. (1563, Biscaye – 16 janvier 1635, Quito), fut abbesse du monastère des Conceptionnistes de Quito de 1594 à 1635."
+  },
+  "wd-mariano-arciero-q129098": {
+   "bio": "Mariano Arciero (26 février 1707 – 16 février 1788) fut un prêtre catholique italien. Prêtre à Naples, il y exerça à la fois comme pasteur et comme théologien ; on l'appela plus tard l'« apôtre de la Calabre », pour son apostolat infatigable et son travail d'évangélisation. Sa béatification fut célébrée le 24 juin 2012."
+  },
+  "wd-marin-de-cesaree-q1083918": {
+   "bio": "Marin de Césarée (en grec : Μαρῖνος) fut un soldat romain et un martyr chrétien."
+  },
+  "wd-marina-de-aguas-santas-q2664456": {
+   "bio": "Marine d'Aguas Santas (dite aussi Marine d'Ourense ; v. 120-135) fut une vierge et martyre chrétienne d'Aguas Santas, dans la province d'Ourense. Le récit de sa vie, tel qu'il nous est parvenu, mêle le fait et la légende."
+  },
+  "wd-mark-ji-tianxing-q4505419": {
+   "bio": "Marc Ji Tianxiang fut un laïc catholique et un médecin chinois. Il fut martyrisé pendant la révolte des Boxers ; il avait été opiomane. Il fut canonisé en 2000 par le pape Jean-Paul II."
+  },
+  "wd-martha-mother-of-simeon-stylites-the-you-q682665": {
+   "bio": "Sainte Marthe (en grec : Ἁγία Μάρθα ; morte en 551) fut la mère de Siméon Stylite le Jeune. On la vénère dans l'Église orthodoxe le 4 juillet, et dans l'Église catholique le 5 juillet."
+  },
+  "wd-matrona-of-barcelona-q3822117": {
+   "bio": "Matrone de Barcelone, ou Matrone de Thessalonique (en catalan : Madrona), est une sainte de l'Église catholique et de l'Église orthodoxe. Elle fut reconnue sainte avant l'institution des procédures de canonisation. Elle vécut au IIIe ou au IVe siècle."
+  },
+  "wd-matryona-nikonova-q443157": {
+   "bio": "Matrone Dimitrievna Nikonova (en russe : Блаженная Матро́на Дими́триевна Ни́конова (Московская) ; 1881 ou 1885 – 2 mai 1952) est une sainte canonisée de l'Église orthodoxe russe, que l'on dit avoir eu dès la petite enfance les dons de prophétie, de vision spirituelle et de guérison."
+  },
+  "wd-matthieu-guimera-q11771482": {
+   "bio": "Matteo da Gimara, O.F.M. (connu aussi sous le nom de Matthieu d'Agrigente ; v. 1376 – 7 janvier 1450), fut un prélat catholique italien et un profès de l'ordre des Frères mineurs. Il fut évêque d'Agrigente du 17 septembre 1442 jusqu'à sa démission, au milieu de l'année 1445."
+  },
+  "wd-maurelio-di-voghenza-q3852410": {
+   "bio": "Maurèle de Voghenza (en italien : San Maurelio ; mort le 7 mai 644) fut un prêtre syrien devenu évêque de Voghenza. Il est vénéré comme saint par l'Église catholique."
+  },
+  "wd-maurus-xaverius-herbst-q1911701": {
+   "bio": "Maurus Xaverius Herbst, ou Florian Johann Friedrich Herbst (14 septembre 1701 – 4 avril 1757), fut un abbé bénédictin allemand. Il naquit à Pleinfeld, de Franz Herbst (mort en 1731) et d'Anna Maria Clara Herbst, née Gulden. En 1704, sa ville natale de Pleinfeld était sous occupation française, pendant la guerre de Succession d'Espagne."
+  },
+  "wd-mawgan-q4304989": {
+   "bio": "Mawgan et Meugan (ou Meigant ; en latin : Mauganus) sont les noms d'un seul ou de deux saints brittoniques, qui vécurent au Ve ou au VIe siècle. Les deux noms sont largement attestés dans la toponymie et les dédicaces d'églises — Mawgan en Cornouailles et en Bretagne, Meugan au pays de Galles —, mais on ne sait s'ils désignent une seule et même personne. Les paroisses de St Mawgan et de Mawgan-in-Meneage, en Cornouailles, tirent leur nom de Mauganus."
+  },
+  "wd-maxime-sandovitch-q1988094": {
+   "bio": "Maxime Timoféïevitch Sandovitch (en russe : Максим Тимофеевич Сандович ; en polonais : Maksym Sandowicz, Maksym Gorlicki ; 1er février 1888 – 6 août 1914) est un néomartyr et un saint orthodoxe. Il fut canonisé sous le nom de Maxime de Gorlice, avec le titre de hiéromartyr."
+  },
+  "wd-mel-of-ardagh-q3854232": {
+   "bio": "Mél d'Ardagh, dont le nom s'écrit aussi Mel ou Moel, fut un saint irlandais du Ve siècle, neveu de saint Patrick. Il était le fils de Conis et de Darerca, sœur de Patrick. Sainte Darerca était appelée la « mère des saints », parce que la plupart de ses enfants — dix-sept fils et deux filles — entrèrent en religion, que beaucoup furent reconnus saints par la suite, et que plusieurs de ses fils devinrent évêques."
+  },
+  "wd-melangell-q7225389": {
+   "bio": "Melangell (en latin : Monacella, littéralement « petite moniale ») fut une ermite et abbesse galloise. Elle vécut peut-être au VIIe ou au VIIIe siècle, mais les dates précises sont incertaines."
+  },
+  "wd-methode-q470621": {
+   "bio": "Cyrille (en grec : Κύριλλος ; né Constantin ; 826-869) et Méthode (Μεθόδιος ; né Michel ; 815-885) étaient frères, théologiens chrétiens et missionnaires byzantins. Pour avoir évangélisé les premiers Slaves, on les connaît comme les « apôtres des Slaves ». On leur attribue la création de l'alphabet glagolitique, premier alphabet employé pour transcrire le vieux slave d'église."
+  },
+  "wd-micha-piaszczynski-q2805660": {
+   "bio": "Michał Piaszczyński (1er novembre 1885 – 18 décembre 1940) fut un prêtre catholique polonais, arrêté par les nazis et tué au camp de concentration de Sachsenhausen. Il fut béatifié comme martyr par le pape Jean-Paul II le 13 juin 1999."
+  },
+  "wd-michael-blagievsky-q4297170": {
+   "bio": "Michel Blagievski (de son nom de naissance Michel Ioannovitch Kobozev ; en russe : Михаи́л Иоа́ннович Ко́бозев ; 4 février 1874, Spas-Leonovchtchina, gouvernement de Moscou – 23 décembre 1937, Riajsk, oblast de Riazan) fut un archiprêtre russe exécuté par les bolcheviks, et canonisé par l'Église orthodoxe russe en 2005 comme néomartyr."
+  },
+  "wd-moluag-q7401926": {
+   "bio": "Saint Moluag (v. 510-592 ; appelé aussi Lua, Luan, Luanus, Lugaidh, Moloag, Molluog, Molua, Murlach, Malew) fut un missionnaire écossais, contemporain de saint Colomba, qui évangélisa les Pictes d'Écosse au VIe siècle. Il était le saint patron d'Argyll, comme l'atteste une charte de 1544 du comte d'Argyll, qui dit : « en l'honneur de Dieu tout-puissant, de la bienheureuse Vierge et de saint Moloc, notre patron »."
+  },
+  "wd-monica-naisen-q6900028": {
+   "bio": "Les martyrs du Japon (en japonais : 日本の殉教者, Nihon no junkyōsha) furent des missionnaires et des fidèles chrétiens persécutés et exécutés, pour la plupart sous le shogunat Tokugawa, au XVIIe siècle. Plus de quatre cents martyrs du Japon ont été béatifiés par l'Église catholique, et quarante-deux ont été canonisés."
+  },
+  "wd-moses-the-hungarian-q61399": {
+   "bio": "Moïse le Hongrois (en russe : Моисей Угрин ; en hongrois : Magyar Mózes ; mort le 26 juillet 1043) fut un moine de la Rus' de Kiev, d'origine hongroise. Il est vénéré comme saint le 26 juillet par l'Église orthodoxe."
+  },
+  "wd-munditia-q437390": {
+   "bio": "Sainte Munditia (ou Mundita) est vénérée comme martyre chrétienne."
+  },
+  "wd-nath-i-of-achonry-q2472139": {
+   "bio": "Nath Í, ou Crumnathy (actif au VIe siècle), fut un saint irlandais des premiers temps, fondateur d'un monastère à Achonry, dans le comté de Sligo. On le dit né dans la baronnie de Leyney, dans l'actuel comté de Sligo."
+  },
+  "wd-nathalie-de-nicomedie-q1869249": {
+   "bio": "Adrien de Nicomédie, appelé aussi saint Adrien (en grec : Ἁδριανὸς Νικομηδείας ; mort le 4 mars 306), fut un garde herculien de l'empereur romain Galère. Converti au christianisme avec sa femme Natalie (Ναταλία), Adrien fut martyrisé à Nicomédie, en Asie Mineure (Turquie). Il fut pendant des siècles le principal saint militaire de l'Europe du Nord, après le seul saint Georges, et on le vénère beaucoup en Flandre, en Allemagne et dans le nord de la France."
+  },
+  "wd-nicodeme-de-mammola-q1403934": {
+   "bio": "Saint Nicodème de Mammola (ou de Cirò ; en italien : San Nicodemo da Cirò ; v. 900 – 25 mars 990) est vénéré comme saint en Calabre. Son lieu de naissance exact est inconnu, mais on l'a identifié à Ypsicron (l'actuelle Cirò)."
+  },
+  "wd-nicolas-paglia-q26246988": {
+   "bio": "Nicola Paglia, O.P. (1197 – 16 février 1256), fut un prêtre catholique italien et un membre de l'ordre des Prêcheurs. Il se fit dominicain après avoir entendu prêcher saint Dominique à Bologne. Il montra dans sa charge un zèle pastoral hors du commun, et fut notamment provincial des dominicains à Rome."
+  },
+  "wd-nicolo-politi-q3876580": {
+   "bio": "Nicolò Politi (3 août 1117 – 17 août 1167) fut un moine et ermite catholique italien, entré chez les basiliens. Né de parents nobles, il s'enfuit pour se faire moine lorsque ceux-ci arrangèrent son mariage, à dix-sept ans. Il passa les décennies suivantes dans une grotte de montagne, revenant chaque fin de semaine au couvent basilien pour recevoir les sacrements, avant de regagner sa grotte."
+  },
+  "wd-nikita-stolpnik-q2394159": {
+   "bio": "Nicétas (Nikita) le Stylite fut un moine du XIIe siècle, dans la Rus' de Kiev, fondateur du monastère Saint-Nicétas, sur la rive orientale du lac Plechtcheïevo, en Zalessié. Il fut plus tard canonisé dans l'Église orthodoxe."
+  },
+  "wd-novat-q436718": {
+   "bio": "Novat (mort vers 151) est un saint des premiers temps chrétiens. Sa fête tombe le 20 juin."
+  },
+  "wd-noyale-q17984768": {
+   "bio": "Noyale (en latin : Noyala), appelée aussi Noaluen, fut une sainte celte à demi légendaire du Ve siècle, vierge et martyre. Elle est très populaire en Bretagne comme en Cornouailles, où on la commémore à Newlyn East. Selon la légende, c'est là qu'un figuier poussant du mur sud de l'église naquit du bâton de Noyale."
+  },
+  "wd-oengus-of-tallaght-q4531809": {
+   "bio": "Óengus mac Óengobann, mieux connu comme saint Óengus de Tallaght ou Óengus le Culdée, fut un évêque, un réformateur et un écrivain irlandais, en activité dans le premier quart du IXe siècle, à qui l'on attribue le Félire Óengusso (« Martyrologe d'Óengus ») et peut-être le Martyrologe de Tallaght. Peu de chose de sa vie et de sa carrière est attesté de façon sûre."
+  },
+  "wd-olga-michael-q7086632": {
+   "bio": "Olinka « Olga » Arrsamquq Michael (en russe : Ольга Аррсамкук Майкл ; née Arrsamquq, le 3 février 1916 – 8 novembre 1979), connue sous les noms d'Olga Michael, Olga d'Alaska, Olga de Kwethluk ou Matouchka Olga (en russe : матушка Ольга), fut une sage-femme, matouchka et sainte orthodoxe amérindienne d'Alaska. En 2025, elle devint la première femme d'Amérique du Nord, et la première personne yupik, canonisée comme sainte orthodoxe. Olga Arrsamquq naquit à Kwethluk, en Alaska, de parents amérindiens du peuple yupik, en 1916."
+  },
+  "wd-ollegaire-q1633681": {
+   "bio": "Olégaire Bonestruga (du germanique Oldegar ; en latin : Ollegarius, Oligarius ; en catalan : Oleguer ; en espagnol : Olegario ; 1060 – 6 mars 1137) fut évêque de Barcelone à partir de 1116 et archevêque de Tarragone de 1118 jusqu'à sa mort. Intime de Raimond-Bérenger III, comte de Barcelone, il accompagna souvent celui-ci dans ses entreprises militaires. Olégaire fut canonisé en 1675 ; son principal sanctuaire et son tombeau se trouvent dans la chapelle latérale du Christ de Lépante, à la cathédrale de Barcelone."
+  },
+  "wd-ottone-frangipane-q3887342": {
+   "bio": "Ottone Frangipane (1040 – 23 mars 1127), appelé aussi saint Otton, fut un moine bénédictin et un ermite. Il est le saint patron d'Ariano Irpino et du diocèse d'Ariano Irpino-Lacedonia."
+  },
+  "wd-ovidio-de-braga-q2666814": {
+   "bio": "Ovide (en portugais : Santo Ovídio), appelé aussi saint Audit, fut le troisième évêque de Braga ; c'est un saint portugais."
+  },
+  "wd-paola-renata-carboni-q7132100": {
+   "bio": "Paola Renata Carboni (21 février 1908 – 11 septembre 1927) fut une adolescente italienne. Au cours de son procès en béatification, elle fut déclarée vénérable en 1993."
+  },
+  "wd-parasceve-de-rome-q2488959": {
+   "bio": "Sainte Parascève de Rome (ou Parasceva) est vénérée comme martyre chrétienne du IIe siècle. Elle fut arrêtée à plusieurs reprises pour son christianisme, et finit décapitée par le gouverneur romain Tarasius. On l'invoque pour la guérison des maux des yeux."
+  },
+  "wd-pardo-di-larino-q3895784": {
+   "bio": "Saint Pard (en italien : San Pardo ; VIe-VIIe siècle) est un saint catholique lié à Larino, en Italie. La cathédrale de Larino lui est dédiée."
+  },
+  "wd-parisius-q7137478": {
+   "bio": "Parisius (en italien : Parisio) fut un moine camaldule et un directeur spirituel. On croit qu'il naquit en 1160, à Trévise ou à Bologne. À douze ans, il entra dans l'ordre camaldule."
+  },
+  "wd-paternien-de-fano-q3940570": {
+   "bio": "Paternien, ou Paternianus (en italien : San Paterniano), est le nom d'un saint italien. Natif de Fermo, il s'enfuit dans les montagnes pendant les persécutions de Dioclétien contre les chrétiens, puis fut nommé évêque de Fano par le pape Sylvestre Ier. (On le confond souvent avec Parthénien, évêque de Bologne, également commémoré le 12 juillet.)"
+  },
+  "wd-paul-and-ninety-companions-q7154563": {
+   "bio": "Paul et ses compagnons (morts en 1240) furent des martyrs dominicains. Hongrois de naissance, Paul alla étudier le droit à l'université de Bologne, où saint Dominique le persuada d'entrer dans son ordre des Frères prêcheurs."
+  },
+  "wd-paul-of-tammah-q3894629": {
+   "bio": "Paul de Tammah (en copte : Ⲁⲃⲃⲁ Ⲡⲁⲩⲗⲉ ⲡⲓⲣⲉⲙⲧⲁⲙⲙⲟϩ ; mort le 17 octobre 415) fut un saint égyptien qui vécut aux IVe et Ve siècles. Il est vénéré comme saint dans les Églises orthodoxes orientales."
+  },
+  "wd-paul-tong-viet-buong-q10805177": {
+   "bio": "Paul Tống Viết Bường (v. 1773-1833) fut un martyr du Viêt Nam, décapité le 23 octobre 1833. Il fut béatifié par le pape Léon XIII en 1900."
+  },
+  "wd-paulin-d-antioche-q436391": {
+   "bio": "Paulin fut un saint des premiers temps chrétiens qui, avec un prêtre, un diacre et un soldat — dont les noms se sont perdus —, souffrit le martyre en 67. Selon la sainte Tradition, Paulin naquit dans la ville d'Antioche. On croit qu'il fut converti par Pierre, rencontré à Antioche, et envoyé par lui à Lucques."
+  },
+  "wd-pavel-djidjov-q7155590": {
+   "bio": "Pavel Djidjov (19 juillet 1919 – 3 octobre 1952) fut un théologien bulgare, exécuté après un procès-spectacle et béatifié par le pape Jean-Paul II en 2002. On le commémore le 11 novembre."
+  },
+  "wd-pedro-de-rates-q938320": {
+   "bio": "Pierre de Rates (en portugais : Pedro de Rates), connu aussi sous le nom de Pierre de Braga, est traditionnellement tenu pour le premier évêque de Braga, entre les années 45 et 60. La tradition veut que Jacques le Majeur lui ait ordonné de prêcher la foi chrétienne, et que Pierre de Rates ait été martyrisé en tentant de convertir les habitants du nord du Portugal. L'ancien bréviaire de Braga (Breviarium Bracarense) et le bréviaire d'Évora tiennent Pierre de Rates pour un disciple de Jacques, et le disent avoir prêché à Braga."
+  },
+  "wd-pelagie-d-antioche-q14309964": {
+   "bio": "Pélagie la Vierge (en grec ancien : Πελαγία ; morte en 303), appelée aussi Pélagie d'Antioche, fut une sainte chrétienne, vierge et martyre, qui se jeta dans la mort pendant la persécution de Dioclétien, plutôt que d'offrir un sacrifice public aux dieux païens à la demande de soldats romains, ou de subir « quelque chose d'innommable (car elle était vierge) » — ce qu'on comprend d'ordinaire comme une tentative de viol. Elle est vénérée comme sainte dans l'Église orthodoxe et dans l'Église catholique."
+  },
+  "wd-pelino-di-brindisi-q3898895": {
+   "bio": "Saint Pélin, ou Pélin de Brindisi (en italien : San Pelino ; v. 620 – 5 décembre 662), fut un moine basilien, puis évêque de Brindisi, en Italie, martyrisé à Corfinio et mis au nombre des saints en 668."
+  },
+  "wd-peter-vasquez-q20030304": {
+   "bio": "Pedro Vásquez, O.P., appelé aussi Pierre Vásquez (1591 – 25 août 1624), fut un frère dominicain, prêtre catholique et missionnaire espagnol, mort martyr au Japon. Il fut béatifié en juillet 1867 par le pape Pie IX."
+  },
+  "wd-petro-verhun-q327411": {
+   "bio": "Petro Verhun (en ukrainien : Петро Вергун) fut un prêtre gréco-catholique ukrainien et un martyr. Il appartenait à l'Église catholique ukrainienne, Église uniate qui garde le rite byzantin tout en étant unie à l'Église catholique romaine, et il est vénéré comme bienheureux dans l'Église catholique. Sa fête tombe le 7 février."
+  },
+  "wd-philippe-d-agire-q3745364": {
+   "bio": "Philippe d'Agira (appelé aussi Argirò, Aggira, Agirone, Agirya ou Argira) fut un clerc des premiers temps chrétiens. Deux récits parallèles courent sur ce saint, qui donnent deux époques possibles pour sa vie. Traditionnellement, d'après des écrits attribués à Athanase d'Alexandrie, on tient Philippe d'Agira pour un saint du Ier siècle, né en l'an 40 en Cappadoce (l'actuelle Turquie) et mort hiéromartyr le 12 mai 103."
+  },
+  "wd-philippe-de-gortyne-q3295117": {
+   "bio": "Saint Philippe de Gortyne (en grec : Φίλιππος ; mort en 180) fut évêque de Gortyne, en Crète. On ne sait presque rien de lui, sinon qu'il écrivit un traité, aujourd'hui perdu, contre les gnostiques. Apologiste des premiers temps chrétiens, il écrivit contre Marcion, au temps de Marc Aurèle."
+  },
+  "wd-philoumenos-of-jacob-s-well-q83507": {
+   "bio": "Philoumenos (Hasapis) du Puits de Jacob (en grec : Φιλούμενος Χασάπης ; Φιλούμενος ο Κύπριος ; ou Φιλούμενος Ορουντιώτης ; 15 octobre 1913 – 29 novembre 1979) fut l'higoumène du monastère orthodoxe grec du Puits de Jacob, près de la ville de Naplouse (Neapolis), en Cisjordanie. Il fut assassiné le 29 novembre 1979 par un Israélien juif atteint de troubles mentaux."
+  },
+  "wd-phocas-de-sinope-q1270192": {
+   "bio": "Le hiéromartyr Phocas (en grec : Φωκάς) naquit dans la ville de Sinope, au nord de l'Anatolie. Sa vie et sa légende résultent peut-être de la fusion de trois hommes du même nom : un Phocas d'Antioche, Phocas, évêque de Sinope, et Phocas le Jardinier. Seul le dernier paraît authentique."
+  },
+  "wd-pier-pettinaio-q3902948": {
+   "bio": "Pietro Pettinaio (v. 1189 – 4 décembre 1289) fut un membre italien du tiers ordre de Saint-François, peigneur de son métier. On le connut autant pour son état que pour sa décision de garder le silence tout en vivant parmi les franciscains."
+  },
+  "wd-pierius-q2335606": {
+   "bio": "Pierius fut un prêtre chrétien, et probablement le chef de l'école catéchétique d'Alexandrie, conjointement avec Achillas. Il fut en activité tandis que Théonas était évêque d'Alexandrie, et mourut à Rome après 309. Le Martyrologe romain le commémore le 4 novembre."
+  },
+  "wd-pierre-d-anagni-q7177910": {
+   "bio": "Pierre d'Anagni (mort le 3 août 1105) fut un moine bénédictin, un évêque et un légat pontifical. Né à Salerne, il entra chez les bénédictins et s'y distingua si bien comme moine que le pape Grégoire VII le fit évêque d'Anagni. Évêque, il releva la vie spirituelle de la ville et entreprit la reconstruction de sa cathédrale."
+  },
+  "wd-pierre-de-juilly-q7177921": {
+   "bio": "Pierre de Juilly (mort en 1136) fut un moine bénédictin et un prédicateur renommé. Né en Angleterre, il entra à l'abbaye de Molesme, monastère bénédictin de Bourgogne. Il y fit la connaissance de saint Étienne Harding."
+  },
+  "wd-pierre-l-aleout-q2562095": {
+   "bio": "Pierre l'Aléoute (en russe : Пётр Алеу́т), né Cungagnaq (l'orthographe varie ; en russe : Чукагнак ; mort en 1815), est vénéré comme martyr et saint par l'Église orthodoxe. Natif de l'île Kodiak (alutiiq ou sugpiaq), il reçut le nom chrétien de Pierre lorsqu'il fut baptisé dans la foi orthodoxe par les moines de la mission de saint Herman, active dans le Nord. En 1815, il aurait été capturé par des soldats espagnols près de San Pedro, torturé et tué là ou dans les environs."
+  },
+  "wd-pierre-marie-stanislas-guerin-du-rocher-q946200": {
+   "bio": "Pierre Guérin du Rocher naquit à Sainte-Honorine-la-Guillaume en 1731. Il était prêtre jésuite. Il enseigna la philosophie à Bourges en 1762, puis voyagea en Italie, en Allemagne et en Pologne, élaborant des théories d'exégèse biblique qui contredisaient les Encyclopédistes."
+  },
+  "wd-piotr-dankowski-q4154944": {
+   "bio": "Piotr Edward Dańkowski (né le 21 juin 1908 à Jordanów, mort le 3 avril 1942 à Auschwitz) est un saint catholique polonais, l'un des 108 martyrs de la Seconde Guerre mondiale béatifiés par le pape Jean-Paul II. Il est le saint patron des clercs et des prêtres de l'archidiocèse de Cracovie."
+  },
+  "wd-pontius-de-carthage-q713373": {
+   "bio": "Pontius, ou Pontius le Diacre (mort au milieu du IIIe siècle), fut un saint chrétien et un auteur latin de Carthage. Il fut diacre auprès de Cyprien de Carthage (v. 200-258) et écrivit la Vita Cypriani (« Vie de Cyprien ») peu après la mort de celui-ci."
+  },
+  "wd-potenciana-de-villanueva-q3817824": {
+   "bio": "Potenciana (en latin : Potentiana) fut une vierge et recluse espagnole, peut-être emmurée, morte probablement au XVIe siècle, et dont le culte s'est répandu d'Espagne vers d'autres régions d'Europe."
+  },
+  "wd-prudencio-q3822661": {
+   "bio": "Prudence de Tarazona (en espagnol : Prudencio de Tarazona ou San Prudencio ; en basque : [San] Prudentzio) fut un anachorète et un clerc basque du VIe siècle, évêque de Tarazona. Il est le saint patron de Nájera et de l'Alava depuis le milieu du XVIIe siècle. Sa fête tombe le 28 avril."
+  },
+  "wd-psalmodius-q3815654": {
+   "bio": "Saint Psalmode, appelé aussi Psalmet, Sauman ou Saumay, fut un ermite chrétien du VIIe siècle. On le suppose né dans une famille noble de Scotia ; il devint tout jeune disciple de saint Brendan. Psalmode, dont le nom celte d'origine est inconnu, se serait perdu en mer — dans l'Atlantique, peut-être — pendant trois jours, alors qu'il était enfant."
+  },
+  "wd-raimondo-zanfogni-q7299262": {
+   "bio": "Raymond de Plaisance (1139 ou 1140 – 26 juillet 1200), dit le Palmier ou Zanfogni, fut un pèlerin et un religieux catholique qui exerça la charité envers les pauvres et les malades. Son surnom de « Palmier » vient de son pèlerinage à Jérusalem, d'où il rapporta la palme d'usage. On appelait un tel pèlerin Palmarius ou Palmerius (en italien : Palmario ou Palmerio)."
+  },
+  "wd-rainerio-di-cagli-q1364656": {
+   "bio": "Rainier de Split (mort en 1180) fut un moine camaldule italien. Il devint évêque de Cagli, de 1156 à 1175, puis archevêque de Split. Il fut lapidé pour avoir « défendu les droits de l'Église » dans un litige de terres."
+  },
+  "wd-raoul-q7293731": {
+   "bio": "Raoul, fondateur de l'abbaye de Vaucelles, ou saint Raoul (appelé aussi San Raul, saint Radolphe, dom Rodulphe ou Raoul de Vaucelles ; mort vers 1151), est un saint de l'Église catholique, fondateur du célèbre monastère de Vaucelles, en France. Raoul était un moine bénédictin anglais qui se fit disciple de saint Bernard."
+  },
+  "wd-raynald-de-nocera-umbra-q606926": {
+   "bio": "Raynald fut un moine bénédictin et un évêque de Nocera Umbra. Il naquit vers 1150 au village de Postignano, près de Nocera Umbra, en Italie, de parents d'origine allemande. Il entra en 1199 au monastère de Santa Maria di Vallemergo, qui appartenait à la congrégation bénédictine de Fonte Avellana, en même temps que Trasimundus, futur évêque de Senigallia."
+  },
+  "wd-renatus-andrieux-q924056": {
+   "bio": "René Andrieux, S.J. (1742-1792), fut un jésuite français. Il fut l'une des victimes des massacres de Septembre, et fut béatifié en 1926."
+  },
+  "wd-renaud-de-concoregio-q3935960": {
+   "bio": "Rinaldo da Concorezzo (1245 – 18 août 1321) fut un prêtre et un archevêque catholique italien, évêque de Vicence de 1296 jusqu'à sa nomination, en 1303, comme archevêque de Ravenne-Cervia, charge qu'il garda jusqu'à sa mort. Il fut un proche confident du pape Boniface VIII avant l'élection de celui-ci, et il est connu pour avoir tenté d'obtenir la réhabilitation des Templiers. Sa béatification fut formellement confirmée le 18 août 1852 par le pape Pie IX, qui approuva le culte local et durable dont il était l'objet."
+  },
+  "wd-richard-de-vaucelles-q7330242": {
+   "bio": "Richard de Vaucelles fut un moine cistercien anglais, que saint Bernard nomma second abbé de l'abbaye de Vaucelles, en France. Il est reconnu saint, et fêté le 28 janvier."
+  },
+  "wd-richard-langley-q7327251": {
+   "bio": "Richard Langley (mort le 1er décembre 1586) fut un laïc catholique anglais, condamné pour avoir donné asile à des prêtres catholiques. Martyr catholique, il fut béatifié en 1929."
+  },
+  "wd-richard-whiting-q3934900": {
+   "bio": "Richard Whiting, O.S.B. (1461 – 15 novembre 1539), fut un moine anglais et le dernier abbé de Glastonbury. Il gouvernait l'abbaye au temps de la dissolution des monastères (1536-1541), sous le roi Henri VIII d'Angleterre. Le roi le fit pendre, éviscérer et écarteler après l'avoir fait condamner pour trahison, parce qu'il était demeuré fidèle à Rome."
+  },
+  "wd-rita-josefa-pujalte-sanchez-q3937229": {
+   "bio": "Rita Josefa Pujalte Sánchez, connue en religion sous le nom de Rita de Notre-Dame-des-Douleurs (18 février 1853 – 20 juillet 1936), fut une religieuse espagnole et supérieure générale des Sœurs de la charité du Sacré-Cœur de Jésus. Elle fut exécutée dans les premiers jours de la guerre civile espagnole, puis déclarée martyre et béatifiée par le pape Jean-Paul II en 1998."
+  },
+  "wd-romedius-q45360": {
+   "bio": "Saint Romède (en italien : San Romedio). Bien que fils d'un gentilhomme, il se retira jeune dans une grotte pour y méditer. Après la mort de ses parents, il donna tous ses biens et s'établit au Val di Non (en allemand : Nonstal), dans le Trentin."
+  },
+  "wd-rose-chretien-de-neuville-q7367608": {
+   "bio": "Rose Chrétien de la Neuville, O.C.D. (1741 – 17 juillet 1794), fut une carmélite déchaussée française, tuée pendant la Révolution française. Elle fut béatifiée en 1906 parmi les martyres de Compiègne."
+  },
+  "wd-rupert-von-bingen-q632383": {
+   "bio": "Saint Rupert de Bingen (712-732) fut un saint catholique allemand. Fils de Berthe de Bingen, noble chrétienne, il avait pour père un païen nommé Robolaus (Robold). Après la mort de celui-ci, l'enfant fut élevé dans la foi chrétienne par sa mère."
+  },
+  "wd-sabas-reyes-salazar-q3944219": {
+   "bio": "Sabás Reyes Salazar (3 décembre 1883 – 13 avril 1927) fut un vicaire catholique mexicain, l'un des nombreux prêtres martyrisés pendant la guerre des Cristeros. Il fut canonisé par le pape Jean-Paul II le 21 mai 2000, parmi les martyrs de cette guerre."
+  },
+  "wd-sabinus-d-hermopolis-q7396202": {
+   "bio": "Sabin d'Hermopolis (connu aussi sous les noms d'Abibus et de Phanas) fut un procurateur, peut-être évêque, et un martyr chrétien d'Hermopolis, en Égypte. Pendant la persécution de Dioclétien, il se cacha avec plusieurs autres chrétiens dans une cabane. Leur présence fut finalement révélée aux autorités par quelqu'un dont l'identité demeure incertaine."
+  },
+  "wd-safta-brancoveanu-q23807480": {
+   "bio": "Safta Brâncoveanu (1776, Iași – 11 août 1857, monastère de Văratec, județ de Neamț) fut une noble et une philanthrope roumaine."
+  },
+  "wd-saint-apostle-the-young-q68972847": {
+   "bio": "Apostolos le Nouveau (en grec : Άγιος Απόστολος ο Νέος) naquit à Ágios Lavréndios de Magnésie, au Pélion, en Grèce, en 1667. Son père s'appelait Costas Stamatiou (Κώστας Σταματίου) et sa mère Mélo (Μελώ). À quinze ans, il devint orphelin."
+  },
+  "wd-saint-bashnouna-q7401025": {
+   "bio": "Bashnouna (en copte : ⲡⲓϣⲉⲛⲛⲟⲩϥⲓ, Pišennoufi ; mort le 19 mai 1164) fut un saint et un martyr copte. Selon son hagiographie, Bashnouna était moine au monastère de saint Macaire le Grand, à Scété. Il fut arrêté par les autorités fatimides sous le califat d'Al-'Āḍid, et menacé de mort s'il ne se convertissait pas à l'islam."
+  },
+  "wd-saint-bassian-q1289858": {
+   "bio": "Bassien de Lodi (en italien : Bassiano di Lodi ; en latin : Bassianus Laudensis ; v. 320-413) fut un saint italien, patron de Lodi, de Bassano del Grappa et de Pizzighettone, en Italie."
+  },
+  "wd-saint-benjamin-of-petrograd-q3513340": {
+   "bio": "Benjamin de Petrograd (en russe : Вениамин Петроградский ; 29 avril [17 avril, ancien style] 1873 – 13 août [31 juillet, ancien style] 1922), né Vassili Pavlovitch Kazanski (Василий Павлович Казанский), fut un hiéromartyr de la persécution antireligieuse soviétique, évêque de l'Église orthodoxe russe, puis métropolite de Petrograd et de Gdov, de 1917 à 1922."
+  },
+  "wd-saint-berach-q818654": {
+   "bio": "Saint Berach de Termonbarry (mort en 595) fut un saint irlandais célèbre, dont on honore encore la mémoire dans le comté de Roscommon. Il fut disciple de saint Kevin."
+  },
+  "wd-saint-berthaire-q3638904": {
+   "bio": "Bertaire (en italien : San Bertario di Montecassino ; v. 810-883) fut un abbé bénédictin du Mont-Cassin, vénéré comme saint et martyr. Issu de la noblesse lombarde, il fit jeune homme un pèlerinage au Mont-Cassin, du temps de l'abbatiat de Bassacius, et résolut à la suite de cela de se faire moine."
+  },
+  "wd-saint-caradoc-q7401077": {
+   "bio": "Caradoc, ou Caradog (mort en 1124), fut un prêtre gallois retiré du monde, largement révéré pour sa sainteté. Une enquête sur ses titres à la sainteté fut ordonnée en 1200 ; elle n'aboutit pas, mais on le vénère depuis longtemps comme s'il avait été canonisé par le pape. Avant la canonisation des Quarante Martyrs, en 1970, on le tenait pour le dernier Gallois devenu saint."
+  },
+  "wd-saint-darius-q3702549": {
+   "bio": "Saint Darius (ou Dario) est un saint des Églises orthodoxes orientales, de l'Église orthodoxe et de l'Église catholique. Sa fête se célèbre le 21 octobre (ou le 19 décembre dans l'Église catholique)."
+  },
+  "wd-saint-elian-q4411544": {
+   "bio": "Elian fut un saint qui fonda une église dans le nord du pays de Galles, vers l'an 450. Sa fête tombe le 13 janvier."
+  },
+  "wd-saint-emmanuel-q3724017": {
+   "bio": "Saint Emmanuel (mort vers 304) fut arrêté et exécuté à Sirmium, dans l'actuelle Serbie, avec quarante-deux autres martyrs — parmi lesquels Quadrat (Codratus) et Théodoce —, en 304, pendant la persécution de Dioclétien contre les chrétiens. Leur fête tombe le 26 mars."
+  },
+  "wd-saint-flaive-q7401233": {
+   "bio": "Saint Flavit (ou Flaive) fut un prêtre et un ermite du haut Moyen Âge. Il naquit au milieu du VIe siècle en Lombardie. En 568, il fut emmené en Champagne comme prisonnier de guerre, et son maître le fit intendant de son château."
+  },
+  "wd-saint-fulk-q3747052": {
+   "bio": "Saint Fulk fut un pèlerin anglais, béatifié pour l'aide qu'il porta sans compter aux pestiférés, au péril de sa propre vie. Il se rendait à Rome, au XIIe siècle, lorsqu'il s'arrêta à Santopadre, ou Castrofuli, dans le sud de l'Italie, pour secourir des pestiférés. Il mourut de la peste, fut béatifié et pris pour saint patron de Castrofuli."
+  },
+  "wd-saint-georges-le-martyr-de-sofia-q3406940": {
+   "bio": "Georges de Kratovo (en serbe : Ђорђе Кратовац ; en macédonien : Ѓорѓи Кратовски), appelé aussi Georges le Nouveau de Sofia (en bulgare : Георги Софийски Нови), fut un écrivain et un orfèvre slave du Sud, orthodoxe, originaire de Kratovo, brûlé vif par les Turcs ottomans pour avoir refusé de se convertir à l'islam. Il est vénéré comme saint dans l'Église orthodoxe, sous le titre de néomartyr."
+  },
+  "wd-saint-gervasi-s-of-patras-q12874965": {
+   "bio": "Gervasios Paraskevopoulos (en grec : Γερβάσιος Παρασκευόπουλος), connu comme saint Gervasios de Patras (1877 – 30 juin 1964), fut un prêtre, théologien et moine grec. En 2023, il fut proclamé saint de l'Église orthodoxe."
+  },
+  "wd-saint-iakovos-tsalikis-q43979834": {
+   "bio": "Iakovos Tsalikis (en grec : Ιάκωβος Ευβοίας ; 5 novembre 1920 – 21 novembre 1991), appelé aussi Iakovos d'Eubée, ou saint Jacques Tsalikis, fut un saint grec de l'Église orthodoxe, né en terre ottomane. Il fut higoumène du monastère de saint David l'Ancien."
+  },
+  "wd-saint-ilar-q18691847": {
+   "bio": "Un saint Ilar (en latin : Hilarus ou Elerius) figure parmi les saints du pays de Galles au VIe siècle ; il a probablement donné son nom à Llanilar, en Ceredigion, et à l'ancien centaine d'Ilar. Sa fête est diversement fixée aux 13, 14 ou 15 janvier, mais elle n'est plus observée ni par l'Église anglicane ni par l'Église catholique au pays de Galles."
+  },
+  "wd-saint-irmgardis-q444949": {
+   "bio": "Sainte Irmgardis, ou sainte Irmgard de Süchteln (1000 – 1065, ou 1082-1089, à Cologne, en Allemagne), fut une sainte du Moyen Âge et comtesse souveraine d'Aspel (Allemagne) de 1013 à 1085. Ses reliques sont conservées dans un sarcophage, à l'autel de la cathédrale de Cologne. Connue aussi sous le nom de sainte Irmgardis de Cologne, les sources la montrent comtesse régnante ; après la mort de ses parents, elle distribua sa fortune aux hôpitaux, aux églises et aux institutions charitables."
+  },
+  "wd-saint-libertine-q7401646": {
+   "bio": "Saint Libertin (ou Libertinus ; en italien : San Libertino) est vénéré comme martyr chrétien et comme le premier évêque d'Agrigente, en Sicile. Selon la tradition, saint Pierre l'envoya à Agrigente pour y répandre le christianisme, au Ier siècle. Il se peut toutefois qu'il ait vécu plus tard, au IIIe siècle, et qu'il ait été martyrisé pendant les persécutions de Dèce ou de Dioclétien."
+  },
+  "wd-saint-margaret-of-england-q7401763": {
+   "bio": "Sainte Marguerite d'Angleterre (morte en 1192) naquit en Hongrie, d'une Anglaise apparentée à Thomas Becket, l'archevêque de Cantorbéry assassiné. Devenue grande, Marguerite emmena sa mère en pèlerinage à Jérusalem, et toutes deux s'établirent ensuite à Bethléem, où elles menèrent une vie austère de pénitence. Sa mère mourut là, en Terre sainte."
+  },
+  "wd-saint-markella-q12872901": {
+   "bio": "Sainte Markella, ou Marcelle (en grec : Μαρκέλλα), fut une habitante de Chio au XIVe siècle, canonisée par l'Église orthodoxe grecque. Sa fête se célèbre le 22 juillet."
+  },
+  "wd-saint-paris-q3895860": {
+   "bio": "Saint Paris, ou Paris de Teano (en italien : San Paride di Teano ; en latin : Sanctus Paridis ; mort en 346), fut ordonné évêque de Teano par le pape Sylvestre Ier. Sa fête tombe le 5 août ; on le vénère dans l'Église orthodoxe et dans l'Église catholique."
+  },
+  "wd-saint-serapia-q682282": {
+   "bio": "Sérapie fut une sainte romaine, esclave et martyre, appelée aussi Séraphie ou Séraphima de Syrie. Elle naquit à Antioche à la fin du Ier siècle, de parents chrétiens. Fuyant la persécution de l'empereur Hadrien, elle passa en Italie et s'y établit."
+  },
+  "wd-saint-solus-q50803": {
+   "bio": "Saint Solus (appelé aussi Sualo, Sola ; mort vers 790-794) fut un moine anglais, établi en Allemagne."
+  },
+  "wd-saint-venera-q3949261": {
+   "bio": "Sainte Vénère (Veneranda, Veneria, Venerina, Parascève) est vénérée comme martyre chrétienne du IIe siècle. On sait peu de chose de cette sainte. La tradition fixe la date de sa mort au 26 juillet 143."
+  },
+  "wd-saint-xenia-the-righteous-of-rome-q468997": {
+   "bio": "Xénia la Juste de Rome (en grec : Ξένια της Ρώμης) fut une sainte du Ve siècle, honorée par plusieurs Églises chrétiennes, dont l'orthodoxe et la catholique. Née Eusébie, elle était la fille unique d'un riche sénateur de Rome. Elle s'enfuit avec deux servantes qui lui étaient dévouées, pour échapper à un mariage arrangé."
+  },
+  "wd-sainte-hildegonde-q1479733": {
+   "bio": "Hildegonde (v. 1130-1183) fut une abbesse prémontrée. Née dans la noblesse, elle avait pour père le comte Hermann de Lidtberg et pour mère la comtesse Hedwige."
+  },
+  "wd-saints-maccabees-q2359988": {
+   "bio": "La femme aux sept fils fut une martyre juive, dont il est question au deuxième livre des Maccabées, chapitre 7, dans les livres deutérocanoniques, et dont le quatrième livre des Maccabées développe l'histoire. Elle et ses sept fils furent arrêtés pendant la persécution du judaïsme entreprise par le roi Antiochos IV Épiphane. On leur ordonna de manger du porc, et de violer ainsi la loi juive, dans le cadre de cette campagne."
+  },
+  "wd-salvi-huix-i-miralpeix-q3824969": {
+   "bio": "Salvi Huix Miralpéix (en espagnol : Salvio Huix Miralpéix ; 22 décembre 1877 – 5 août 1936) fut un clerc catholique catalan, évêque de Lérida de 1935 à 1936. L'un des treize évêques tués en zone républicaine pendant la guerre civile espagnole, il a été reconnu martyr par l'Église catholique et béatifié le 13 octobre 2013, parmi les 522 martyrs espagnols."
+  },
+  "wd-sampson-de-constantinople-q3780774": {
+   "bio": "Sampson l'Hospitalier (en grec : Σαμψὼν ὁ φιλόξενος ; mort vers 530) fut un habitant de Constantinople qui voua son temps au service des pauvres de la ville. Il est vénéré comme saint dans les Églises d'Orient comme dans l'Église catholique."
+  },
+  "wd-san-marolo-q3947636": {
+   "bio": "Marolus (en italien : Marolo) fut archevêque de Milan de 408 à 423. Il est honoré comme saint dans l'Église catholique, et sa fête tombe le 23 avril."
+  },
+  "wd-sant-atto-q2876246": {
+   "bio": "Atton de Pistoia, ou saint Atton (en portugais : Santo Atão ; v. 1070 – 22 mai 1153), fut un évêque catholique et un profès de l'ordre de Vallombreuse, évêque de Pistoia, et un historiographe réputé."
+  },
+  "wd-santa-sotere-q3949254": {
+   "bio": "Sainte Sotère (en italien : Santa Sotere ; morte en 304) fut une vierge et martyre chrétienne romaine, mise à mort pour sa foi au début du IVe siècle. Elle est vénérée comme sainte dans l'Église orthodoxe et dans l'Église catholique, respectivement le 10 et le 11 février."
+  },
+  "wd-saturius-q3824785": {
+   "bio": "Saint Saturius de Soria (en espagnol : San Saturio ; 493-568) est un saint ermite d'Espagne. Né à Soria, Saturius se voua, selon la tradition chrétienne, à une vie de solitude et de prière. Il prit soin de ses parents jusqu'à leur mort, puis donna son héritage aux pauvres et, à quarante ans, se retira dans une grotte de la colline de Santa Ana (ou Peñalba)."
+  },
+  "wd-saturnin-de-cagliari-q1747656": {
+   "bio": "Saint Saturnin de Cagliari (en italien : San Saturnino, Saturno) est vénéré comme le saint patron de Cagliari. Selon la tradition chrétienne, Saturnin fut un martyr du lieu même, tué à Cagliari sur l'ordre du gouverneur Barbarus. La légende veut qu'il ait été décapité pour avoir refusé d'offrir des sacrifices à Jupiter, pendant les persécutions de Dioclétien contre les chrétiens."
+  },
+  "wd-saturninus-de-carthage-q3950853": {
+   "bio": "Saturnin de Carthage fut un martyr chrétien d'Afrique du Nord, tué par Maximien en 304, après avoir été exilé à Rome pendant la persécution de Dèce, comme le dit une inscription que lui dédia le pape Damase Ier. Il fut enseveli dans la catacombe de Trason, sur la via Salaria. Le Chronographe de Filocalus, de 354, y enregistre sa sépulture au 29 novembre."
+  },
+  "wd-serafino-morazzone-q3078645": {
+   "bio": "Serafino Morazzone (1er février 1747 – 13 avril 1822) fut un prêtre catholique italien. Simple curé à Lecco depuis son ordination, en 1773, jusqu'à sa mort, il se fit remarquer des fidèles par sa sainteté personnelle et son attachement aux sacrements. Son procès en béatification s'ouvrit en 1864, mais fut interrompu par des difficultés survenues à Milan, et la cause demeura inactive jusqu'à sa reprise dans les années 1950."
+  },
+  "wd-serapion-the-sindonite-q3955787": {
+   "bio": "Sérapion le Sindonite (IIIe siècle – 356) fut un moine chrétien d'Égypte, tenu pour saint par l'Église orthodoxe, les Églises orthodoxes orientales et l'Église catholique. Sa fête tombe le 7 avril dans l'Église orthodoxe."
+  },
+  "wd-severe-de-barcelone-q2074676": {
+   "bio": "Sévère de Barcelone (en catalan : Sant Sever ; en espagnol : San Severo) est vénéré comme saint par les Églises catholique et orthodoxe. Sa légende le dit évêque de Barcelone, martyrisé pendant la persécution de Dioclétien contre les chrétiens, en 304. Le détail de sa vie et de sa mort est incertain et d'une historicité douteuse."
+  },
+  "wd-severe-de-naples-q1054025": {
+   "bio": "Saint Sévère (en italien : San Severo di Napoli ; mort en 409) fut un évêque de Naples aux IVe et Ve siècles. On le tient pour le onzième évêque catholique légitime de Naples, et le douzième au total, successeur de Maxime. Son épiscopat s'étendit de février 363 au 29 avril 409, date traditionnelle de sa mort."
+  },
+  "wd-severian-baranyk-q119040": {
+   "bio": "Severian Stefan Baranyk (en ukrainien : Северіян Бараник ; 18 juillet 1889 – juin 1941 environ) fut un prêtre gréco-catholique ukrainien et un martyr. Il naquit à Uhnów, en Galicie autrichienne (aujourd'hui Ouhniv, en Ukraine)."
+  },
+  "wd-severin-de-sanseverino-q3958514": {
+   "bio": "Les saints Séverin de Sanseverino (ou de Septempeda ; mort en 550) et Victorin de Camerino (mort en 543) étaient frères ; ils furent évêques et ermites au VIe siècle."
+  },
+  "wd-shio-of-mgvime-q3652056": {
+   "bio": "Shio de Mgvimé (en géorgien : შიო მღვიმელი, littéralement « Shio de la grotte »), parfois appelé Siméon de Mgvimé, fut au VIe siècle un anachorète, un père du désert, un thaumaturge, et l'un des treize apôtres assyriens du royaume géorgien d'Ibérie. Il est vénéré comme le saint qui introduisit dans l'Église géorgienne la notion d'une vie ascétique rigoureuse."
+  },
+  "wd-shtjefen-kurti-q3303576": {
+   "bio": "Shtjefën Kurti (24 décembre 1898 – 20 octobre 1971) fut un prêtre catholique albanais, tué pendant la persécution communiste. Il exerça son ministère à une époque troublée pour son pays, où la répression communiste imposa l'athéisme d'État et des règles strictes qui empêchaient les clercs de remplir leur charge. Kurti continua d'exercer comme prêtre lorsqu'on avait besoin de lui, ce qui lui valut d'être arrêté sous l'accusation de collusion avec des espions."
+  },
+  "wd-sibillina-biscossi-q768577": {
+   "bio": "Sibylline Biscossi (1287 – 19 mars 1367) fut une moniale dominicaine, recluse et mystique italienne."
+  },
+  "wd-silvester-of-troina-q7516923": {
+   "bio": "Sylvestre de Troina fut un moine basilien, entré d'abord au monastère de Bari, en Italie, mais qui s'enfuit lorsqu'on voulut le faire abbé. Il vécut ensuite le reste de sa vie en ermite. Ce saint Sylvestre est le patron de la ville sicilienne de Troina, où il serait enseveli, dans l'église San Silvestro."
+  },
+  "wd-simon-rinalducci-q7519652": {
+   "bio": "Simon Rinalducci de Todi fut un célèbre frère augustin et prédicateur italien du XIIIe siècle."
+  },
+  "wd-sperandia-q7576345": {
+   "bio": "Sperandia (ou Sperandea ; 1216 – 11 septembre 1276) est vénérée comme sainte par l'Église catholique."
+  },
+  "wd-st-demetria-q3705279": {
+   "bio": "Démétrie de Rome (morte en 362) fut une vierge et martyre des premiers temps chrétiens, vénérée comme sainte. Le Martyrologe romain la mentionne au 21 juin."
+  },
+  "wd-stanis-aw-kostka-starowieyski-q1862565": {
+   "bio": "Stanisław Kostka Starowieyski (1895-1941) est un bienheureux polonais de l'Église catholique, militant de l'action ecclésiale, sociale et charitable, et camérier pontifical. Il servit dans l'armée austro-hongroise pendant la Première Guerre mondiale, puis dans les forces armées polonaises pendant les guerres polono-ukrainienne et polono-soviétique, de 1918 à 1920. Il mourut au camp de concentration de Dachau et fut béatifié en 1999."
+  },
+  "wd-stanis-aw-kubista-q591517": {
+   "bio": "Stanisław Kubista (27 septembre 1898 – 26 avril 1940) fut un martyr de la Société du Verbe-Divin. Il fut béatifié par le pape Jean-Paul II le 13 juin 1999, parmi les 108 martyrs polonais de la Seconde Guerre mondiale."
+  },
+  "wd-stefano-gobbi-q2338442": {
+   "bio": "Stefano Gobbi (22 mars 1930 – 29 juin 2011) fut un prêtre catholique et un mystique italien. Il fonda un mouvement catholique répandu dans le monde entier, le Mouvement sacerdotal marial, à la suite de ce qu'il rapporta comme une locution intérieure reçue en 1972, au sanctuaire de Notre-Dame de Fátima."
+  },
+  "wd-stylianos-de-paphlagonie-q36786": {
+   "bio": "Stylien de Paphlagonie (en latin : Stylianus ; en grec : Στυλιανός), appelé aussi Stylien l'Ermite, ou Stylianos, est vénéré comme un saint originaire d'Adrianopolis, dans la province de Paphlagonie (aujourd'hui en Turquie)."
+  },
+  "wd-teneu-q4454645": {
+   "bio": "Teneu (ou Thenew ; en latin : Theneva ; encore Tannoch, Thaney, Thanea, Denw) est une sainte chrétienne légendaire, vénérée à Glasgow, en Écosse, au Moyen Âge. La tradition en fait une princesse brittonique du VIe siècle, de l'ancien royaume de Gododdin (dans ce qui devint le Lothian), et la mère de saint Mungo, apôtre des Bretons du Strathclyde et fondateur de la ville de Glas Ghu (Glasgow). Elle et son fils passent pour les patrons conjoints de la ville, et le St Enoch Square de Glasgow marquerait l'emplacement d'une chapelle médiévale qui lui était dédiée, bâtie sur sa tombe ou tout près."
+  },
+  "wd-thaddeus-liu-q4271306": {
+   "bio": "Thaddée Liu (nom chinois : 劉瑞庭 ; 1773-1823) fut un prêtre et un martyr chinois du XIXe siècle."
+  },
+  "wd-thaddeus-mccarthy-q365996": {
+   "bio": "Tadhg Mac Cárthaigh (latinisé et anglicisé en Thaddeus McCarthy ; v. 1455 – 25 octobre 1492) fut un ecclésiastique irlandais. Il fut évêque sans jamais gouverner son siège, bien qu'il eût été nommé à deux d'entre eux : évêque de Ross, en Irlande, en 1482, et évêque de Cork et Cloyne en 1490."
+  },
+  "wd-theodore-de-tabenne-q770191": {
+   "bio": "Théodore de Tabenne (v. 314-368), appelé aussi abba Théodore et Théodore le Sanctifié, fut le successeur spirituel de Pachôme, et joua un rôle décisif pour empêcher la première fédération monastique cénobitique chrétienne de se défaire après la mort de son fondateur."
+  },
+  "wd-theodoret-of-antioch-q3650770": {
+   "bio": "Saint Théodoret d'Antioche, ou saint Théodorit d'Uzès (en grec : Θεοδώρητος, « donné de Dieu » ; mort le 22 octobre 362), fut un prêtre chrétien syrien de langue grecque, mort martyr à Antioche sous le règne de l'empereur Julien l'Apostat. Sa vie n'est rapportée que par des ouvrages apologétiques. Ses reliques furent plus tard portées à Uzès, dans le midi de la France, et déposées dans la cathédrale, qui lui est dédiée."
+  },
+  "wd-therapont-of-white-lake-q2023897": {
+   "bio": "Thérapont de Belozersk (1331 – 27 mai 1426) (en russe : Ферапонт Бело(е)зерский), appelé aussi Thérapont de Mojaïsk, et dans le siècle Feodor Poskotchine, fut un moine orthodoxe russe à qui l'on doit la fondation du monastère de Ferapontov, dans le nord de la Russie — aujourd'hui près de Kirillov, dans l'oblast de Vologda — et du monastère Loujetski, à Mojaïsk, près de Moscou. Il est vénéré comme saint par l'Église orthodoxe russe."
+  },
+  "wd-thiemo-q2420809": {
+   "bio": "Thiemo (Thimo, appelé aussi Dietmar ou Theodemarus ; v. 1040 – 28 septembre 1101 ou 1102) fut archevêque de Salzbourg de 1090 jusqu'à sa mort."
+  },
+  "wd-thomais-d-alexandrie-q9359120": {
+   "bio": "Thomaïs d'Alexandrie (en arabe : تمادة الإسكندرية ; née au Ve siècle) fut une sainte et martyre chrétienne égyptienne ; on l'honore et on la fête dans l'Église catholique et dans l'Église orthodoxe le 14 avril."
+  },
+  "wd-thorfinn-of-hamar-q2664215": {
+   "bio": "Thorfinn de Hamar (mort en 1285) fut l'évêque de l'ancien diocèse de Hamar, dans la Norvège médiévale."
+  },
+  "wd-tikhon-de-kalouga-q3991170": {
+   "bio": "Tikhon de Kalouga (mort le 16 juin 1492) fut un higoumène et un saint orthodoxe russe. Il grandit à Moscou et reçut la tonsure monastique dans sa jeunesse. Il gagna ensuite une forêt près de Medin, en pays de Kalouga, et vécut dans le creux d'un chêne."
+  },
+  "wd-tomas-de-zumarraga-q20030905": {
+   "bio": "Thomas de Zumárraga y Lazcano (en espagnol : Tomás de Zumárraga y Lazcano ; 9 mars 1577 – 12 septembre 1622) fut un frère dominicain, prêtre catholique, missionnaire et martyr du Japon, d'origine espagnole. Il fut béatifié en mai 1867 par le pape Pie IX."
+  },
+  "wd-totnan-de-wurtzbourg-q885035": {
+   "bio": "Saint Totnan (VIIe siècle – 8 juillet 689) fut un apôtre irlandais de la Franconie. Né en Irlande, il fut martyrisé à Wurtzbourg en 689, avec saint Colman et saint Kilian. En 686, il s'était rendu à Rome avec Kilian, Colman et neuf autres chrétiens."
+  },
+  "wd-trillo-q6695484": {
+   "bio": "Saint Trillo est le saint patron et le fondateur des églises de Llandrillo, dans le Denbighshire, et de Llandrillo yn Rhos, à Rhos-on-Sea, dans le comté de Conwy, au pays de Galles. Selon l'Enwogion Cymru, Trillo fut un saint qui vécut au début du VIe siècle. Il était l'un des fils d'Ithel Hael."
+  },
+  "wd-triphyllius-q16206143": {
+   "bio": "Saint Triphyllius (en grec : Τριφύλλιος ; on écrit aussi Tryphillius, Triphylius) naquit à Constantinople au début du IVe siècle. Il fit son droit à l'école de Beyrouth. Il se convertit au christianisme et fut nommé évêque de Nicosie."
+  },
+  "wd-tudno-q3398315": {
+   "bio": "Saint Tudno est le saint patron de Llandudno — dont le nom vient du sien — et le fondateur de l'église paroissiale d'origine, située sur la presqu'île du Great Orme."
+  },
+  "wd-tychon-q3991188": {
+   "bio": "Tychon d'Amathonte (appelé aussi Tychonas, Tikhon, Tycho ; en grec : Άγιος Τύχωνας ; mort en 425) fut évêque d'Amathonte, dans l'île de Chypre. Il est vénéré comme saint par les chrétiens catholiques comme par les orthodoxes."
+  },
+  "wd-tydfil-q2062366": {
+   "bio": "Sainte Tydfil (en gallois : Tudful ; martyrisée vers 480) est la dédicataire légendaire de Merthyr Tydfil, au pays de Galles. La vieille église paroissiale de Sainte-Tydfil, à Merthyr Tydfil, lui est dédiée, et passe pour occuper le lieu de sa mort."
+  },
+  "wd-ugo-abate-q9005319": {
+   "bio": "Hugues de Noara, ou de Novare, appelé aussi Ugo de Novare et Hugo de Novare, fut un moine cistercien et un disciple de Bernard de Clairvaux. Français de naissance, il fut le premier abbé de l'abbaye de Novara, en Sicile, où il demeura jusqu'à sa mort, en 1170."
+  },
+  "wd-ugolino-da-gualdo-cattaneo-q1876799": {
+   "bio": "Ugolino da Gualdo Cattaneo (1200 – 1er janvier 1260) fut un religieux profès et un frère catholique italien de l'ordre de Saint-Augustin. Il est surtout connu pour avoir fondé, en 1258, un couvent augustin à Gualdo Cattaneo, dont il fut le prieur jusqu'à sa mort. Il mena une vie spirituelle rigoureuse, avec des austérités qui comprenaient de fréquents temps de silence strict et de jeûne."
+  },
+  "wd-uliana-olshanky-q11495938": {
+   "bio": "Juliana Olchanskaïa (v. 1525 – v. 1540 ; en ukrainien : Юліанія Юріївна Ольшанська Дубровицька) fut un membre de la famille noble des Olchanski, devenue sainte dans l'Église orthodoxe."
+  },
+  "wd-umiliana-de-cerchi-q4003536": {
+   "bio": "Umiliana de' Cerchi (1219 – 19 mai 1246) fut une veuve catholique italienne et un membre du tiers ordre de Saint-François. Elle venait de la famille Cerchi, marchands en vue, et fut mariée au milieu de son adolescence dans le cadre d'une alliance politique montée par son père ambitieux ; son mari mourut plus tard, et elle s'enfuit pour se faire franciscaine lorsque son père la pressa d'accepter un second mariage."
+  },
+  "wd-ursicinus-of-ravenna-q434874": {
+   "bio": "Ursicin de Ravenne (en italien : Sant'Ursicino ; mort vers 67) est vénéré comme martyr par l'Église catholique."
+  },
+  "wd-utto-q368032": {
+   "bio": "Le bienheureux Utto fut le premier abbé de l'abbaye bavaroise de Metten, de l'ordre de Saint-Benoît. Sa fête se célèbre le 3 octobre."
+  },
+  "wd-valero-de-zaragoza-q1393825": {
+   "bio": "Saint Valère de Saragosse (en espagnol : San Valero ; en aragonais : Sant Valero ; mort en 315) est le saint patron de Saragosse. Il fut évêque de cette ville de 290 jusqu'à sa mort. Il assista au concile d'Elvire."
+  },
+  "wd-vasily-of-pavlovsky-posad-q4104448": {
+   "bio": "Basile de Pavlovski Possad, né Vassili Griaznov (1816 – 16 février 1869), appelé aussi le saint Vassili, est un saint russe, glorifié en 1999 pour avoir mené une vie juste."
+  },
+  "wd-venance-de-camerino-q4210004": {
+   "bio": "Venance de Camerino (en italien : San Venanzio, connu aussi sous le nom de saint Wigand ; mort le 18 mai 251 ou 253) est le saint patron de Camerino et de Raiano, en Italie. La tradition chrétienne veut qu'il ait eu quinze ans lorsqu'il fut torturé, puis décapité à Camerino pendant les persécutions de Dèce. Dix autres chrétiens furent martyrisés avec lui, parmi lesquels le prêtre Porphyre, son précepteur, et Léonce, évêque de Camerino."
+  },
+  "wd-venerio-q1432734": {
+   "bio": "Vénère (en italien : Venerio ; né au IVe siècle – mort le 4 mai 408) fut archevêque de Milan de 400 (ou 401) à 408. Il est honoré comme saint dans l'Église catholique, et sa fête tombe le 6 mai."
+  },
+  "wd-venturino-da-bergamo-q4009777": {
+   "bio": "Venturin de Bergame (9 avril 1304 – 28 mars 1346) fut un prédicateur dominicain italien. Sa cause de béatification n'en est qu'à ses premiers stades."
+  },
+  "wd-viator-of-bergamo-q4011034": {
+   "bio": "Saint Viateur de Bergame (en italien : Viatore di Bergamo ; mort en 370) est vénéré comme le deuxième évêque de Bergame. La tradition en fait le successeur de saint Narnus sur ce siège. On tient que son épiscopat dura de 343 à 370."
+  },
+  "wd-vicente-vilar-david-q6161375": {
+   "bio": "Vicente Vilar David (28 juin 1889 – 14 février 1937) fut un ingénieur espagnol, au temps de la guerre civile des années 1930, dans une période d'anticléricalisme intense. Comme travailleur, il s'efforça de se conformer à la doctrine sociale de la foi chrétienne et d'en répandre les valeurs sur son lieu de travail et parmi ses collègues. Il fut tué pour avoir aidé des prêtres et des religieux à échapper à la persécution des républicains pendant la guerre."
+  },
+  "wd-vicinio-di-sarsina-q4011186": {
+   "bio": "Saint Vicinius, ou saint Vicinius de Sarsina (en italien : San Vicinio di Sarsina ; mort en 330), fut le premier évêque de Sarsina, et il est vénéré comme saint catholique."
+  },
+  "wd-victor-de-capoue-q7926487": {
+   "bio": "Victor de Capoue (en latin : Victor Capuanus ; mort en 554) fut un évêque de Capoue, en Italie, au VIe siècle."
+  },
+  "wd-victoria-diez-bustos-de-molina-q9093431": {
+   "bio": "Victoria Díez Bustos de Molina (11 novembre 1903 – 12 août 1936) fut une catholique espagnole, membre de l'Institution thérésienne. Institutrice, elle fut très aimée de ses élèves pour sa foi profonde, son ardeur et le soin qu'elle mettait à l'instruction des enfants. Elle fut béatifiée le 10 octobre 1993."
+  },
+  "wd-victorian-of-asan-q3571418": {
+   "bio": "Saint Victorien d'Asan (en espagnol : San Vitorián de Asan ; en aragonais : San Beturián ; mort vers 560) fut un saint espagnol. Natif d'Italie, il y fonda des monastères et des hospices avant de séjourner brièvement en France."
+  },
+  "wd-victorin-de-camerino-q11954702": {
+   "bio": "Les saints Séverin de Sanseverino (ou de Septempeda ; mort en 550) et Victorin de Camerino (mort en 543) étaient frères ; ils furent évêques et ermites au VIe siècle."
+  },
+  "wd-vidal-q28517345": {
+   "bio": "Vidal est un saint de l'Église catholique, qui vécut au IIIe siècle. Sous la domination romaine dans la péninsule Ibérique, saint Vidal naquit à Complutum (aujourd'hui Alcalá de Henares), au IIIe siècle. Il était le fils de Natal le Confesseur, qui vivait à Rome au temps du pape Zéphyrin."
+  },
+  "wd-viridiane-q3949268": {
+   "bio": "Véridienne (Virginia Margaret del Mazziere ; 1182 – 1er février 1242) est une sainte italienne. Après avoir fait les pèlerinages de Saint-Jacques-de-Compostelle et de Rome, elle se fit recluse."
+  },
+  "wd-vissarion-of-the-agathonos-q7936396": {
+   "bio": "Vissarion de l'Agathonos (en grec : Άγιος Βησσαρίων ο Αγαθωνίτης ; de son nom séculier Andreas Korkoliakos ; 1908 – 22 janvier 1991) fut un moine et un saint orthodoxe grec du monastère de l'Agathonos, près de Lamía, en Grèce centrale. Il se fit moine à l'adolescence, et ceux qui le connurent virent en lui un clerc d'une bonté singulière, tout d'esprit humanitaire. Le vénérable ancien Vissarion fut canonisé le 14 juin 2022 par le Saint-Synode du patriarcat œcuménique, et l'Église le commémore le 22 janvier."
+  },
+  "wd-vitale-d-assisi-q4014944": {
+   "bio": "Vital d'Assise (en italien : San Vitale d'Assisi ; 1295 – 31 mai 1370) fut un ermite et un moine italien."
+  },
+  "wd-vitaliy-bajrak-q4075668": {
+   "bio": "Vitaliy Bayrak (en ukrainien : Віталій Байрак), parfois appelé Volodymyr Bayrak (24 février 1907 – 21 avril 1946), fut un prêtre catholique ukrainien et un martyr. Né à Szajkowce, en Galicie autrichienne (aujourd'hui Shvaikivtsi, près de Ternopil, en Ukraine), il entra dans un monastère basilien en 1924 et fut ordonné prêtre le 13 août 1933. Il fut nommé supérieur du monastère de Drohobytch, à la place de Yakym Senkivskyi."
+  },
+  "wd-vizelin-q67557": {
+   "bio": "Vicelin (en allemand : Vizelin ; 1086 – 12 décembre 1154) fut un évêque allemand d'Oldenbourg, en Holstein, que l'on tenait pour l'apôtre du Holstein. On l'appelait aussi apôtre des Obodrites et des Wendes, et son nom s'écrit encore Vicelinus, Vincelin, Wissel, Witzel."
+  },
+  "wd-vladimir-de-novgorod-q58355": {
+   "bio": "Vladimir Iaroslavitch (en russe : Владимир Ярославич ; en vieux norrois : Valdamarr Jarizleifsson ; 1020 – 4 octobre 1052) fut prince de Novgorod de 1036 jusqu'à sa mort, en 1052. Il était le fils aîné de Iaroslav le Sage et d'Ingegerd Olofsdotter, fille d'Olof Skötkonung, roi de Suède. Il est vénéré comme saint dans l'Église orthodoxe, et sa fête tombe le 4 octobre."
+  },
+  "wd-volodymyr-pryjma-q2042224": {
+   "bio": "Volodymyr Pryjma (en ukrainien : Володимир Прийма ; 17 juillet 1906 – 26 juin 1941) fut un maître de chœur gréco-catholique ukrainien et un martyr."
+  },
+  "wd-vukasin-mandrapa-q13360733": {
+   "bio": "Vukašin Mandrapa (en cyrillique serbe : Вукашин Мандрапа ; mort en 1942 ou 1943), appelé aussi Vukašin de Klepci (en serbe : Вукашин Клепачки), est vénéré comme un saint orthodoxe serbe, que l'on dit assassiné au camp de concentration de Jasenovac. Son existence historique est contestée, faute de preuves : la seule source qui l'atteste est le récit de Nedo Zec, neurologue prisonnier du camp."
+  },
+  "wd-wendreda-q52504396": {
+   "bio": "Wendreda, appelée aussi Wendreth, fut une moniale, guérisseuse et sainte anglo-saxonne, peut-être du VIIe siècle. On la dit, sans certitude, fille du roi Anna d'Est-Anglie, roi chrétien, ce qui ferait d'elle la sœur d'Étheldrède, abbesse d'Ely, de Sexburge, abbesse de Minster-in-Sheppey, et d'Ethelburge, abbesse de Faremoutiers — toutes saintes plus connues —, et la demi-sœur de Sæthryth, également abbesse de Faremoutiers. On associe Wendreda à March, dans l'île d'Ely, et à Exning, dans le Suffolk."
+  },
+  "wd-wiktoria-ulma-q9374220": {
+   "bio": "La famille Ulma (en polonais : Rodzina Ulmów), ou Józef et Wiktoria Ulma avec leurs sept enfants (en polonais : Józef i Wiktoria Ulmowie z siedmiorgiem Dzieci), était une famille catholique polonaise de Markowa, en Pologne, qui, sous l'occupation allemande pendant la Seconde Guerre mondiale, tenta de sauver des familles juives polonaises en les cachant dans sa propre maison pendant la Shoah. Les parents et leurs enfants furent exécutés sommairement pour cela, le 24 mars 1944."
+  },
+  "wd-wilfrido-della-gherardesca-q4019823": {
+   "bio": "Walfrid, Uualefred, ou Galfrido della Gherardesca, fut un saint du VIIIe siècle, originaire de Pise, en Italie."
+  },
+  "wd-william-of-perth-q8020899": {
+   "bio": "Saint Guillaume de Perth (mort vers 1201), appelé aussi saint Guillaume de Rochester ou saint Liam, fut un saint écossais martyrisé en Angleterre. Il est le saint patron des enfants adoptés."
+  },
+  "wd-zacchaeus-of-jerusalem-q139797": {
+   "bio": "Zachée de Jérusalem, appelé aussi Zacharie (mort en 116), fut un saint chrétien du IIe siècle, vénéré par les Églises catholique et orthodoxe. Il fut le quatrième évêque de Jérusalem. Sa fête tombe le 23 août."
+  },
+  "wd-zofia-olelkowicz-q2427693": {
+   "bio": "Zofia Radziwiłł, née Olelkowicz, dite aussi Zofia de Sloutsk (en lituanien : Sofija Olelkaitė-Radvilienė ; en polonais : Zofia Olelkowiczówna ; 1er mai 1585 – 19 mars 1612), est une sainte orthodoxe polono-lituanienne. Elle fut la dernière descendante de la famille Olelkowicz-Słucki — princes de Sloutsk et de Kopyl —, issue du grand-duc de Lituanie Algirdas. Elle fut canonisée par l'Église orthodoxe en 1983."
+  },
+  "wd-zoilus-de-cordoue-q3816961": {
+   "bio": "Saint Zoïle (mort en 304) est vénéré comme saint par l'Église orthodoxe et par l'Église catholique. La tradition chrétienne veut qu'il ait été un jeune homme martyrisé avec dix-neuf autres à Cordoue, en Espagne, pendant la Grande Persécution, sous Dioclétien."
+  },
+  "wd-zosime-de-palestine-q2993862": {
+   "bio": "Zosime de Palestine (en grec : Ζωσιμᾶς ; en arabe : زوسيماس الفلسطيني) est commémoré comme un saint de Palestine. Sa fête tombe le 4 avril."
+  }
+ },
+ "ecartees": {
+  "note": "Cinq fiches n'ont pas été traduites, et il vaut mieux le dire que de laisser croire à un oubli. Dans chaque cas le texte anglais ne parle pas du saint de la fiche : le traduire aurait donné un récit faux, mais en français, donc plus crédible. Sans traduction, la fiche reste ce qu'elle était — sans biographie —, ce qui est la situation honnête. Ce sont des défauts de l'import, à corriger à la source.",
+  "wd-agustin-caloca-cortes-q4694658": "porte mot pour mot la biographie de Cristóbal Magallanes : l'article anglais d'Agustín Caloca redirige vers celui de Magallanes.",
+  "wd-albina-of-caesarea-q2176682": "l'article rapporté traite du prénom Albina et de la déesse étrusque de l'aurore, non de la sainte.",
+  "wd-archippos-q276575": "l'article rapporté est celui d'Archippos, poète athénien de la Comédie ancienne, et non du saint Archippe.",
+  "wd-gwen-ferch-cynyr-q24635388": "l'article rapporté décrit Morval, paroisse rurale de Cornouailles, sans rapport avec la sainte.",
+  "wd-theophane-graptos-q7782265": "l'extrait est tronqué au milieu d'une phrase (« Theodorus (ca. 775 – ca. 842) and Theophanes (ca. ») et ne dit rien."
+ }
+}

@@ -76,6 +76,7 @@ export default {
     mine: 'Ficha adicionada localmente',
     confirmRemove: 'Eliminar definitivamente esta ficha?',
     back: 'Voltar aos resultados',
+    translated: 'Traduzido do inglês, a partir do artigo da Wikipédia citado nas fontes.',
   },
   add: {
     namePlaceholder: 'Francisco de Assis',
