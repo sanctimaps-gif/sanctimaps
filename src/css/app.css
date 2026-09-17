@@ -996,6 +996,16 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: var(--accent);
   filter: brightness(1.1);
 }
+/* Un lien peut porter `.btn` — celui de la lettre quotidienne, par exemple.
+   Il lui manque alors ce qu'un bouton a d'office : le bloc, le texte centré,
+   et l'absence de soulignement. */
+a.btn {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
 .btn--ghost { background: none; }
 .btn--ghost.is-active { border-color: var(--accent); color: var(--accent); }
 .btn--danger { border-color: var(--accent); color: var(--accent); background: none; }

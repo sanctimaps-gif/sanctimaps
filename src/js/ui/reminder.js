@@ -1,3 +1,7 @@
+import {
+  activerArrierePlan, apercuDuJour, arrierePlanConnu, desactiverArrierePlan,
+  etatArrierePlan, onArrierePlanChange,
+} from '../background.js';
 import { buildDailyReminders, downloadCalendar } from '../calendar.js';
 import { formatDay, getLanguage, t } from '../i18n.js';
 import { field, fill, h, select } from './dom.js';
@@ -13,10 +17,13 @@ import { field, fill, h, select } from './dom.js';
  *   ans, avec une alarme à l'heure choisie ; une fois ajouté, c'est le
  *   téléphone qui prévient, hors ligne, sans compte et sans que l'application
  *   soit ouverte.
+ * - **Le réveil en arrière-plan.** Le navigateur réveille lui-même le service
+ *   worker, à peu près une fois par jour, et celui-ci écrit la notification —
+ *   sans serveur et sans que rien sorte de l'appareil. Il y faut Chrome et
+ *   l'application posée sur l'écran d'accueil, et c'est le navigateur qui
+ *   choisit l'heure.
  * - **La notification du navigateur.** Elle ne peut se produire que si la page
- *   tourne. Un site statique n'a derrière lui ni serveur ni service de
- *   notification : il n'a aucun moyen de réveiller un appareil éteint, et
- *   prétendre le contraire serait mentir.
+ *   tourne. C'est le dernier recours, et le moins fiable.
  */
 
 const KEY = 'sanctimaps.reminder.v1';
@@ -48,8 +55,50 @@ export class ReminderPanel {
     this.atlas = atlas;
     this.state = read();
     this.root = h('div', { class: 'reminder' });
+    /** Où en est le réveil quotidien ; connu de façon asynchrone. */
+    this.fond = 'inconnu';
+    this.message = '';
     this.render();
     this.watch();
+    this.suivreArrierePlan();
+  }
+
+  /**
+   * L'état du réveil se demande au navigateur, donc il arrive après coup.
+   *
+   * La partie se dessine d'abord sans lui — on n'attend pas pour montrer le
+   * reste des réglages — puis se redessine quand la réponse vient, et chaque
+   * fois qu'elle change.
+   */
+  suivreArrierePlan() {
+    const relire = async () => {
+      const etat = await etatArrierePlan();
+      if (etat === this.fond) return;
+      this.fond = etat;
+      this.render();
+    };
+    relire();
+    this.stopArrierePlan = onArrierePlanChange(relire);
+  }
+
+  async basculerArrierePlan(voulu) {
+    if (!voulu) {
+      await desactiverArrierePlan();
+      this.message = '';
+      this.fond = await etatArrierePlan();
+      this.render();
+      return;
+    }
+    const reponse = await activerArrierePlan();
+    this.message = reponse === 'refuse' ? t('reminder.backgroundRefused') : '';
+    this.fond = await etatArrierePlan();
+    this.render();
+  }
+
+  async apercu() {
+    const reponse = await apercuDuJour();
+    this.message = reponse === 'envoye' ? '' : t('reminder.backgroundRefused');
+    this.render();
   }
 
   save() {
@@ -176,6 +225,29 @@ export class ReminderPanel {
       }),
       h('p', { class: 'field__hint', text: t('reminder.calendarHint') }),
 
+      // Le réveil en arrière-plan : pas de serveur, mais des conditions, et
+      // elles se disent toutes plutôt que de laisser croire à une promesse.
+      h('h3', { class: 'field__label', text: t('reminder.background') }),
+      this.fond === 'actif' || this.fond === 'possible'
+        ? h('label', { class: 'check' },
+          h('input', {
+            type: 'checkbox',
+            checked: this.fond === 'actif',
+            onchange: (e) => this.basculerArrierePlan(e.target.checked),
+          }),
+          h('span', { text: t('reminder.backgroundOn') }))
+        : null,
+      h('p', { class: 'field__hint', text: t(`reminder.background.${this.fond}`) }),
+      this.fond === 'actif'
+        ? h('button', {
+          class: 'btn btn--ghost',
+          type: 'button',
+          text: t('reminder.backgroundPreview'),
+          onclick: () => this.apercu(),
+        })
+        : null,
+      this.message ? h('p', { class: 'notice notice--pending', text: this.message }) : null,
+
       // La notification du navigateur ne vaut que page ouverte : le dire est
       // la moitié du réglage.
       h('label', { class: 'check' },
@@ -193,6 +265,17 @@ export class ReminderPanel {
       permission === 'unsupported'
         ? h('p', { class: 'notice notice--error', text: t('reminder.unsupported') })
         : null,
+
+      // Le quatrième chemin, et le seul qui ne dépende ni du navigateur ni de
+      // l'appareil : la lettre est un fichier réécrit chaque matin, dont
+      // chacun s'abonne où il veut. La page dit comment.
+      h('h3', { class: 'field__label', text: t('reminder.letter') }),
+      h('p', { class: 'field__hint', text: t('reminder.letterHint') }),
+      h('a', {
+        class: 'btn btn--ghost',
+        href: new URL('lettre.html', document.baseURI).href,
+        text: t('reminder.letter'),
+      }),
     ]);
   }
 }

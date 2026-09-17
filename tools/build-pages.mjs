@@ -223,6 +223,7 @@ function page({ title, description, canonical, up, crumbs, body, jsonld, trail, 
 <meta name="theme-color" content="#f8eede">
 <meta property="og:image" content="${canonical.replace(/\/(saints|pays|lieux|calendrier|epoques)\/.*$/, "")}/icons/icon-512.png">
 <meta name="twitter:card" content="summary">
+<link rel="alternate" type="application/atom+xml" title="SanctiMaps — le saint du jour" href="${r}feed.xml">
 <link rel="stylesheet" href="${r}src/css/page.css">
 <script>
 // Le thème choisi sur la carte vaut aussi ici, et se pose avant le premier
@@ -244,6 +245,7 @@ ${blocs.map((b) => `<script type="application/ld+json">${JSON.stringify(b)}</scr
       <a href="${r}lieux/index.html">Par lieu</a>
       <a href="${r}epoques/index.html">Par siècle</a>
       <a href="${r}calendrier/index.html">Calendrier</a>
+      <a href="${r}lettre.html">La lettre</a>
     </nav>
   </div>
 </header>
@@ -833,6 +835,62 @@ ${MOIS.map((mois, i) => {
   });
 }
 
+/**
+ * La page d'abonnement à la lettre quotidienne.
+ *
+ * Elle dit ce qu'un site sans serveur peut et ne peut pas : il publie un flux,
+ * il ne tient pas de fichier d'adresses. Le lecteur choisit alors son moyen —
+ * un lecteur de flux, un relais vers sa boîte, le calendrier de son téléphone,
+ * ou l'application posée sur son écran d'accueil.
+ */
+function feedPage(ctx) {
+  const { base, byDay } = ctx;
+  const url = `${base}/lettre.html`;
+  const body = `<h1>Recevoir le saint du jour</h1>
+<p class="lede">Chaque matin, les saints fêtés ce jour-là, avec leur lieu de naissance,
+leurs dates et leur biographie — ${esc(nombre(byDay))} jours de l’année pourvus.</p>
+
+<h2>Par flux, dans votre lecteur</h2>
+<p>L’adresse à donner à votre lecteur de nouvelles :</p>
+<p><a class="go" href="../feed.xml">${esc(`${base}/feed.xml`)}</a></p>
+<p class="note">C’est un flux Atom, régénéré chaque matin. Il porte les quatorze
+derniers jours : vous abonner aujourd’hui vous rend aussi la quinzaine écoulée.</p>
+
+<h2>Par courriel</h2>
+<p>SanctiMaps ne tient pas de fichier d’adresses, et n’en tiendra pas : le site
+est fait de fichiers posés sur un hébergement, sans serveur pour recueillir
+quoi que ce soit. Recueillir des adresses demanderait une machine à tenir, des
+clés, et la garde de données personnelles qui ne nous regardent pas.</p>
+<p>Pour recevoir la lettre dans votre boîte, passez donc par un relais de votre
+choix — il en existe de gratuits, qui transforment un flux en courriel
+quotidien. Donnez-lui l’adresse ci-dessus. Votre abonnement reste alors chez
+vous, et le site n’apprend ni qui lit, ni combien.</p>
+
+<h2>Sur le téléphone</h2>
+<p>Deux autres chemins, dans <a href="../index.html">les réglages de la carte</a> :
+le <strong>calendrier du téléphone</strong>, qui garde les fêtes de l’année et
+sonne à l’heure que vous fixez, hors ligne et sans compte ; et le
+<strong>réveil en arrière-plan</strong>, une fois l’application posée sur
+l’écran d’accueil, où le navigateur annonce lui-même le saint du jour.</p>
+
+<h2>Ce que la lettre contient</h2>
+<p>Pour chaque saint fêté : son nom, ses dates, sa ville et son pays de
+naissance, sa notice, et sa biographie quand nous l’avons — rapportée de
+Wikipédia, avec l’adresse de l’article. Tout est lisible dans le lecteur,
+sans avoir à venir sur le site.</p>`;
+
+  return page({
+    title: 'Recevoir le saint du jour — la lettre quotidienne | SanctiMaps',
+    description: 'Chaque matin, les saints fêtés ce jour-là avec leur biographie : '
+      + 'par flux Atom, par courriel via un relais, ou par le calendrier du téléphone.',
+    canonical: url,
+    up: 0,
+    crumbs: '<a href="index.html">Carte</a> › La lettre',
+    trail: [['SanctiMaps', `${base}/`], ['La lettre', url]],
+    body,
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Marche
 // ---------------------------------------------------------------------------
@@ -991,11 +1049,37 @@ function main() {
     files.push([`calendrier/${slug(dayLabel(key))}.html`, dayPage(key, list, ctx)]);
   }
   files.push(['calendrier/index.html', calendarIndex(byDay, ctx)]);
+  files.push(['lettre.html', feedPage({ base: options.base, byDay: byDay.size })]);
+
+  // Le calendrier en abrégé, pour le service worker.
+  //
+  // Réveillé une fois par jour en arrière-plan, il doit savoir qui l'on fête
+  // sans télécharger les cinq mégaoctets du corpus : on ne lui donne donc que
+  // le nom, la ville, le pays et l'adresse de la fiche. Deux cents kilooctets
+  // au lieu de cinq mille, et il n'a besoin de rien d'autre pour écrire une
+  // notification.
+  const calendrier = {};
+  for (const [key, list] of [...byDay.entries()].sort()) {
+    calendrier[key] = {
+      // L'adresse de la page du jour : « 17-septembre », non « 09-17 ». La
+      // notification se clique, et doit tomber sur une page qui existe.
+      u: slug(dayLabel(key)),
+      s: list.map((saint) => ({
+        n: saint.name.fr,
+        v: saint.city,
+        p: countryName(saint.country),
+        s: slugs.get(saint.id),
+      })),
+    };
+  }
+  files.push([join('data', 'generated', 'calendar.json'), JSON.stringify(calendrier)]);
 
   // Le plan du site : la liste complète, pour qui préfère la lire d'un coup
   // plutôt que de suivre les liens de proche en proche.
-  const urls = ['', 'saints/index.html', 'pays/index.html', 'calendrier/index.html',
-    ...files.map(([path]) => path).filter((p) => !p.endsWith('index.html'))];
+  const urls = ['', 'saints/index.html', 'pays/index.html', 'lieux/index.html',
+    'epoques/index.html', 'calendrier/index.html', 'lettre.html',
+    ...files.map(([path]) => path)
+      .filter((p) => !p.endsWith('index.html') && !p.endsWith('.json'))];
   files.push(['sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `<url><loc>${esc(`${options.base}/${u}`)}</loc></url>`).join('\n')}

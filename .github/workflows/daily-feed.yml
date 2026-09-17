@@ -1,0 +1,86 @@
+# La lettre quotidienne, réécrite chaque matin.
+#
+# Un flux Atom n'est vivant que si son entrée la plus récente est celle du
+# jour : c'est à cela qu'un lecteur reconnaît qu'il y a du neuf. Le fichier est
+# donc regénéré tous les matins et versé au dépôt, ce qui le republie.
+#
+# Le travail est minuscule — lire le corpus, écrire quatre-vingt-dix
+# kilooctets —, et ne touche qu'un seul fichier : ni les cinq mille pages ni
+# les données ne sont refaites.
+name: Écrire la lettre quotidienne
+
+on:
+  schedule:
+    # 5 h 10 UTC, soit 6 h 10 ou 7 h 10 à Paris selon la saison : la lettre est
+    # prête avant que personne ne la demande. La minute n'est pas ronde à
+    # dessein — GitHub étale mal les tâches lancées à l'heure juste.
+    - cron: "10 5 * * *"
+  workflow_dispatch:
+    inputs:
+      jours:
+        description: "Nombre de jours dans le flux"
+        required: false
+        default: "14"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: daily-feed
+  cancel-in-progress: false
+
+jobs:
+  lettre:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # Aucune dépendance n'est nécessaire : l'outil ne lit que des fichiers
+      # du dépôt et n'écrit qu'un flux.
+      - name: Écrire le flux
+        run: |
+          set -euo pipefail
+          node tools/build-feed.mjs --jours "${{ inputs.jours || '14' }}" | tee /tmp/feed.log
+
+      - name: Verser au dépôt
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add feed.xml
+          if git diff --cached --quiet; then
+            echo "Le flux n'a pas bougé : rien à verser."
+            exit 0
+          fi
+          jour=$(date -u +%d/%m/%Y)
+          git commit -m "Lettre du ${jour}" -m "$(cat /tmp/feed.log)"
+          git push origin HEAD:${{ github.ref_name }}
+
+      # Un envoi fait avec le jeton du dépôt ne réveille pas les autres
+      # ateliers : la reconstruction du site se demande donc explicitement.
+      - name: Demander la reconstruction du site
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" \
+            && echo "Reconstruction demandée."
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Lettre quotidienne'
+            echo '```'
+            cat /tmp/feed.log 2>/dev/null || echo "la lettre n'a pas été écrite"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -75,11 +75,21 @@ export function onLanguageChange(fn) {
   return () => listeners.delete(fn);
 }
 
+/**
+ * Descend un chemin pointé dans un dictionnaire.
+ *
+ * Une clef peut être pointée dans le fichier lui-même : les cinq états du
+ * réveil sont écrits `'background.actif'` et consorts, à côté de `background`
+ * qui est le titre. Le chemin ne se creuse donc pas toujours jusqu'au bout — à
+ * chaque étage, on regarde d'abord si le reste du chemin est là d'un bloc.
+ */
 function lookup(bundle, path) {
   let node = bundle;
-  for (const part of path) {
-    if (node == null) return undefined;
-    node = node[part];
+  for (let i = 0; i < path.length; i += 1) {
+    if (node == null || typeof node !== 'object') return undefined;
+    const reste = path.slice(i).join('.');
+    if (reste in node) return node[reste];
+    node = node[path[i]];
   }
   return node;
 }

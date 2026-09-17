@@ -88,7 +88,7 @@ montre n'existe qu'une fois le code exécuté. Un moteur de recherche n'avait
 donc qu'une page à indexer — l'accueil — pour quatre mille six cents saints, et
 chercher « saint Odilon de Cluny » ne menait nulle part ici.
 
-À côté de la carte vivent maintenant **5 664 pages de HTML servi tel quel** :
+À côté de la carte vivent maintenant **5 668 pages de HTML servi tel quel** :
 
 | | |
 | --- | --- |
@@ -209,7 +209,7 @@ cercle, goutte, carré arrondi — et ne garantit que les quatre cinquièmes du
 centre. La carte entière y perdrait son bord doré ; l'emblème seul, posé au
 milieu d'un grand carré crème, ne craint aucune découpe.
 
-Le tout est déclaré dans `index.html`, dans chacune des 5 664 pages générées et
+Le tout est déclaré dans `index.html`, dans chacune des 5 668 pages générées et
 dans `site.webmanifest`, qui fait de la carte une application installable — nom,
 couleur de fond, et trois raccourcis vers le calendrier, les saints et les pays.
 
@@ -416,22 +416,68 @@ télécharger derrière le dos du lecteur serait un abus.
 
 ### Être prévenu chaque jour
 
-Dans **Paramètres → Rappel quotidien**, deux chemins — et ils ne valent pas la
-même chose. Le dire est la moitié du réglage :
+Dans **Paramètres → Rappel quotidien**, quatre chemins — et ils ne valent pas
+la même chose. Le dire est la moitié du réglage :
 
 | | Ce que ça fait | Ce que ça vaut |
 | --- | --- | --- |
 | **Calendrier du téléphone** | Produit un fichier `.ics` : un événement par jour pourvu — 365 aujourd'hui —, répétés tous les ans, chacun avec une alarme à l'heure choisie. | **C'est le chemin qui atteint vraiment le téléphone.** Une fois le fichier ouvert sur l'appareil, c'est l'agenda qui prévient — hors ligne, sans compte, sans que l'application soit ouverte. |
+| **Réveil en arrière-plan** | Le navigateur réveille lui-même le service worker environ une fois par jour ; celui-ci lit le calendrier abrégé et écrit la notification. | Sans serveur et sans que rien sorte de l'appareil — mais **Chrome et ses dérivés seulement**, **l'application posée sur l'écran d'accueil**, et **c'est le navigateur qui choisit l'heure**. |
 | **Notification du navigateur** | Demande la permission, puis annonce le saint du jour à l'heure dite. | Seulement **tant que cette page est ouverte**. |
+| **La lettre quotidienne** | Un flux Atom réécrit chaque matin, avec les saints du jour et leur biographie entière. | Marche partout, sans permission ni installation — mais c'est au lecteur d'aller le chercher, ou de le faire suivre par courriel. Voir [la lettre](#la-lettre-quotidienne). |
 
-Un site statique n'a derrière lui ni serveur ni service de notification : il
-n'a aucun moyen de réveiller un appareil éteint, et prétendre le contraire
-serait mentir. Le calendrier, lui, le peut, parce que c'est le téléphone qui
-garde les événements et déclenche l'alarme.
+Ce qu'aucun de ces chemins ne fait : réveiller un appareil éteint. Seul **Web
+Push** y parvient, et il suppose un serveur qui garde la liste des abonnés et
+pousse un message chaque matin. Ce site est fait de fichiers posés sur un
+hébergement statique ; lui adjoindre une machine pour cela seul, avec ses clés
+et sa base d'adresses, n'est pas un détail d'implémentation. Le calendrier du
+téléphone, lui, y arrive sans personne — parce que c'est l'appareil qui garde
+les événements et déclenche l'alarme.
 
 L'heure est écrite en temps *flottant* — ni `Z`, ni fuseau : la notification
 tombe à sept heures là où l'on se trouve, et non à sept heures de Paris quand
 on est à Montréal.
+
+Le réveil en arrière-plan repose sur la **synchronisation périodique**
+(`periodicSync`), inscrite sous l'étiquette `saint-du-jour` pour une journée
+d'intervalle. Le service worker ne télécharge alors pas le corpus — cinq
+mégaoctets — mais `data/generated/calendar.json`, un calendrier abrégé de
+375 ko qui ne porte qu'un nom, une ville, un pays et une adresse par saint.
+L'étiquette de la notification porte le jour (`saint-du-jour-09-17`) : deux
+réveils le même jour ne font qu'une annonce. Le clic ouvre la page du jour, en
+réutilisant l'onglet déjà ouvert plutôt que d'en empiler un.
+
+Les cinq états possibles sont dits en clair dans les réglages, plutôt que de
+laisser une case cochée qui ne ferait rien : *inconnu* (le navigateur ne sait
+pas), *à installer* (l'application n'est pas sur l'écran d'accueil), *refusé*
+(les notifications sont bloquées), *possible* et *actif*. Quand il est actif,
+un bouton **Voir ce que ça donne** montre tout de suite l'annonce du jour —
+sans quoi il faudrait attendre un jour pour savoir si le réglage a pris.
+
+### La lettre quotidienne
+
+Chaque matin, `.github/workflows/daily-feed.yml` réécrit `feed.xml` et le verse
+au dépôt, ce qui le republie. Une entrée par jour, la plus récente en tête, et
+dans chacune **tous les saints fêtés ce jour-là avec leur biographie entière** —
+la lettre elle-même, lisible dans le lecteur, non une amorce qui renverrait au
+site. Quatorze jours sont gardés : qui s'abonne aujourd'hui, ou revient après
+une semaine, retrouve ce qu'il a manqué.
+
+```
+node tools/build-feed.mjs                 # la quinzaine écoulée
+node tools/build-feed.mjs --jours 3
+node tools/build-feed.mjs --date 2026-12-25
+```
+
+La page [`lettre.html`](lettre.html) explique comment s'y abonner — par un
+lecteur de flux, ou par courriel via un relais au choix du lecteur.
+
+Pourquoi un flux et non de vrais courriels : une lettre par courriel demande un
+endroit où recueillir les adresses — donc un serveur qui accepte un formulaire —
+et un expéditeur qui parte chaque matin — donc un compte chez un routeur, une
+clé, et la responsabilité d'un fichier d'adresses. Le flux, lui, ne demande
+rien : le fichier est posé à côté des autres, chacun s'y abonne où il veut, et
+le site n'apprend ni qui lit ni combien.
 
 ## La recherche
 
@@ -980,10 +1026,11 @@ src/js/locales/*.js      douze paquets de traductions
 src/js/map/projection.js projection Mercator, partagée avec la génération
 src/js/map/view.js       rendu SVG, cadrages, zoom et déplacement bornés
 src/js/ui/daily.js       saint du jour : l'horloge, le corpus, rien d'autre
-src/js/ui/reminder.js    rappel quotidien : agenda du téléphone, notification
+src/js/ui/reminder.js    rappel quotidien : agenda, réveil, notification, lettre
+src/js/background.js     le réveil quotidien, et les cinq états qu'il peut prendre
 src/js/install.js        installation sur l'écran d'accueil, et le service worker
 src/js/ui/install.js     la partie « Ajouter à l'écran d'accueil » des réglages
-sw.js                    réseau d'abord, cache en secours
+sw.js                    réseau d'abord, cache en secours, et le réveil quotidien
 src/js/wiki.js           recherche sur Wikidata et Wikipédia, depuis le navigateur
 src/js/ui/*.js           panneau, recherche, fiche, formulaire, modération,
                          assistant, compte, bandeau
@@ -997,6 +1044,10 @@ data/generated/          données produites par build:data (versionnées)
 tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/
 tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus
 tools/make-icons.mjs     les icônes du site, tirées du logo
+tools/build-feed.mjs     la lettre quotidienne, au format Atom
+feed.xml                 la lettre elle-même, réécrite chaque matin
+lettre.html              comment s'y abonner
+data/generated/calendar.json  calendrier abrégé, lu par le service worker
 tools/lib/png.mjs        lire et écrire un PNG avec le seul zlib de Node
 data/brand/logo.png      le logo d'origine
 icons/                   icônes produites, servies telles quelles
@@ -1004,7 +1055,7 @@ saints/ pays/ lieux/ calendrier/  pages générées, servies telles quelles (ver
 tools/import-saints.mjs  import de masse depuis Wikidata
 tools/enrich-bios.mjs    biographies des fiches écrites à la main
 tools/lib/wikimedia.mjs  ce que les deux outils Wikimedia ont en commun
-.github/workflows/       les deux, lancés d'un clic depuis GitHub
+.github/workflows/       import et contrôles à la demande ; la lettre chaque matin
 tools/ai.mjs             consigne et schéma des fiches, côté serveur
 tools/providers.mjs      adaptateurs de fournisseur (openai, ollama, anthropic)
 tools/build-data.mjs     génération des données
