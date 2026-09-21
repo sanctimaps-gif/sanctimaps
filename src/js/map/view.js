@@ -337,11 +337,44 @@ export class MapView {
     this.zoomAround({ x: vp.w / 2, y: vp.h / 2 }, factor, this.transform);
   }
 
-  /** Revient au cadrage d'arrivée du pays ouvert. */
-  refit() {
+  /**
+   * Revient au cadrage d'arrivée du pays ouvert : le pays tout entier.
+   *
+   * `animate` est faux quand la carte vient de changer de taille — la fiche
+   * s'ouvre, le clavier se lève, l'écran pivote : on recadre sur-le-champ,
+   * parce qu'une animation déclenchée par un redimensionnement donne une carte
+   * qui flotte au lieu de suivre sa case.
+   */
+  refit({ animate = true } = {}) {
     const country = this.atlas.countryById.get(this.countryId);
     if (!country) return;
-    this.animateTo(this.frame(country.focus, { padding: 0.07 }));
+    const target = this.frame(country.focus, { padding: 0.07 });
+    // L'échelle d'arrivée dépend de la place disponible : elle change avec
+    // elle, sans quoi « la carte est-elle au cadrage du pays ? » se jugerait
+    // sur une mesure périmée.
+    this.fitScale = target.k;
+    if (animate) this.animateTo(target); else this.apply(target);
+  }
+
+  /**
+   * Oublie les mesures gardées en cache.
+   *
+   * La taille de la carte et l'encombrement de ce qui est posé dessus ne sont
+   * relus qu'au redimensionnement — les relire à chaque image coûterait un
+   * recalcul de mise en page par transformation écrite. Quand c'est
+   * l'application qui change la place disponible, comme en ouvrant la fiche du
+   * tiers du bas, elle doit le dire : le `ResizeObserver` ne s'en apercevra
+   * qu'à l'image suivante, une fois le cadrage déjà calculé de travers.
+   */
+  remeasure() {
+    this.vp = null;
+    this.reserved = null;
+  }
+
+  /** La carte montre-t-elle le pays tout entier, ou le lecteur a-t-il zoomé ? */
+  atFullCountry() {
+    return this.mode === 'country' && this.fitScale
+      && this.transform.k <= this.fitScale * 1.02;
   }
 
   /**
@@ -711,8 +744,14 @@ export class MapView {
     else if (this.mode === 'continent') {
       const bbox = this.atlas.continentById.get(this.continentId).bbox;
       this.apply(this.frame(bbox, { cover: true, padding: 0.03 }));
+    } else if (this.atFullCountry()) {
+      // La carte montrait le pays tout entier : elle doit le montrer encore.
+      // C'est par là que passe l'ouverture et la fermeture de la fiche, qui
+      // prend le tiers du bas : sans ce recadrage, le pays déborderait par le
+      // bas et l'on perdrait justement les croix qu'on voulait garder en vue.
+      this.refit({ animate: false });
     } else {
-      // En vue pays on préserve le zoom en cours, quitte à le recadrer.
+      // Le lecteur a zoomé : son échelle est un choix, on la préserve.
       this.apply({ ...this.transform });
     }
     this.refreshOverlay();
@@ -817,6 +856,44 @@ export class MapView {
         !!marker.group?.some((s) => s.id === saintId),
       );
     }
+  }
+
+  /**
+   * Ramène le saint mis en avant dans la partie de la carte restée visible.
+   *
+   * La fiche prend le tiers du bas : la carte rétrécit d'autant, et la croix
+   * qu'on vient d'ouvrir peut se retrouver hors du cadre. On la ramène — en
+   * déplaçant seulement, jamais en zoomant : le lecteur a choisi son échelle,
+   * ce n'est pas à nous de la reprendre. Et on ne bouge que s'il le faut, pour
+   * qu'ouvrir une fiche ne fasse pas sauter la carte sans raison.
+   */
+  revealSaint(saintId) {
+    if (this.mode !== 'country') return;
+    // Une transition est en cours — on arrive du monde, elle cadre le pays
+    // entier et le saint est dedans. L'interrompre pour le recentrer donnerait
+    // un vol coupé net au milieu.
+    if (this.animation) return;
+    const saint = this.atlas.byId?.get(saintId);
+    if (!saint) return;
+
+    // Au cadrage du pays, tout est déjà sous les yeux — et `onResize` va s'en
+    // charger quand il constatera le rétrécissement. Il n'y a à déplacer que
+    // lorsque le lecteur a zoomé, et que sa croix peut sortir du cadre.
+    if (this.atFullCountry()) return;
+
+    const vp = this.viewport();
+    const { k, x: tx, y: ty } = this.transform;
+    const sx = saint.x * k + tx;
+    const sy = saint.y * k + ty;
+
+    // Une croix collée au bord est visible sans être lisible : on lui garde
+    // de quoi montrer son médaillon et une part de son nom.
+    const marge = 48;
+    const dx = Math.min(0, vp.w - marge - sx) + Math.max(0, marge - sx);
+    const dy = Math.min(0, vp.h - marge - sy) + Math.max(0, marge - sy);
+    if (!dx && !dy) return;
+
+    this.animateTo({ k, x: tx + dx, y: ty + dy });
   }
 
   syncCountryClasses() {
@@ -1042,7 +1119,15 @@ export class MapView {
       // Un médaillon : disque clair pour détacher le repère de la carte,
       // écusson coloré, croix blanche. Trois pièces plutôt qu'une image, pour
       // qu'il suive le thème et l'état de la fiche sans autre ressource.
+      //
+      // Devant elles, un disque invisible qui ne sert qu'à recevoir le doigt.
+      // L'écusson fait quinze pixels de côté : viser juste y demande une
+      // précision que la main n'a pas, et manquer coûtait cher — le clic
+      // tombait sur la carte, et l'on quittait le pays. Le rayon est celui du
+      // regroupement, de sorte que deux cibles voisines ne se disputent pas
+      // plus de place qu'elles n'en occupent déjà.
       node.append(
+        el('circle', { class: 'marker__hit', r: CLUSTER_RADIUS * 0.8 }),
         el('circle', { class: 'marker__halo', r: 13 }),
         el('circle', { class: 'marker__ring', r: 10.5 }),
         el('rect', { class: 'marker__badge', x: -7.5, y: -7.5, width: 15, height: 15, rx: 4.5 }),
@@ -1438,10 +1523,18 @@ export class MapView {
       this.handlers.onCountry?.(shape.dataset.country);
       return;
     }
-    // Sous un fond de tuiles, tout l'écran est de la carte : un clic « à côté »
-    // n'existe plus, et le prendre pour un retour ferait remonter d'un niveau
-    // au moindre tapotement. On revient alors par le fil d'Ariane ou Échap.
-    if (this.tilesWanted()) return;
+    // Un clic « à côté » ne vaut pas un retour, et ce pour deux raisons.
+    //
+    // Sous un fond de tuiles, d'abord : tout l'écran est de la carte, il n'y a
+    // plus de « à côté » du tout.
+    //
+    // En vue pays ensuite, et c'est le cas grave. L'écran y est couvert de
+    // croix serrées ; un doigt qui en manque une de vingt pixels tombait sur
+    // la mer, et la mer faisait remonter au continent — le pays disparaissait
+    // avec ses quatre cents saints. On appuyait sur un saint, tous les autres
+    // s'effaçaient : c'était ce geste-là, non un défaut d'affichage. On revient
+    // par le fil d'Ariane, qui est toujours à l'écran, ou par Échap.
+    if (this.tilesWanted() || this.mode === 'country') return;
     this.handlers.onBackground?.();
   }
 

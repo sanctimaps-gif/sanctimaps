@@ -31,6 +31,7 @@ export default {
     moderate: 'Revisione',
     assistant: 'Assistente',
     settings: 'Impostazioni',
+    detail: 'Scheda del santo',
   },
   menu: {
     daily: 'Chi si festeggia oggi',

@@ -31,6 +31,7 @@ export default {
     moderate: 'Recensio',
     assistant: 'Adiutor',
     settings: 'Optiones',
+    detail: 'Scheda sancti',
   },
   menu: {
     daily: 'Quis hodie celebretur',

@@ -33,6 +33,7 @@ export default {
     moderate: 'Modération',
     assistant: 'Assistant',
     settings: 'Paramètres',
+    detail: 'Fiche du saint',
   },
   menu: {
     daily: 'Qui est fêté aujourd’hui',

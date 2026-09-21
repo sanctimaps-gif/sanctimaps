@@ -31,6 +31,7 @@ export default {
     moderate: 'Revisión',
     assistant: 'Asistente',
     settings: 'Ajustes',
+    detail: 'Ficha del santo',
   },
   menu: {
     daily: 'Quién se celebra hoy',

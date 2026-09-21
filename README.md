@@ -510,6 +510,47 @@ clé, et la responsabilité d'un fichier d'adresses. Le flux, lui, ne demande
 rien : le fichier est posé à côté des autres, chacun s'y abonne où il veut, et
 le site n'apprend ni qui lit ni combien.
 
+## L'écran en trois bandes
+
+De haut en bas : la carte tient les deux tiers, la fiche du saint ouvert le
+tiers du bas. Ce n'est pas un panneau posé par-dessus — la carte rétrécit pour
+de bon, son `ResizeObserver` s'en aperçoit et elle se recadre dans ce qui lui
+reste. On lit donc la biographie sans perdre de vue le pays et ses croix.
+
+La fiche était dans le tiroir latéral, qui recouvre la carte sur un téléphone :
+l'ouvrir cachait le pays et ses quarante-huit repères derrière un panneau de
+neuf dixièmes d'écran. Rien n'avait été retiré, mais on ne voyait plus rien —
+ce qui revient au même pour qui regarde.
+
+**La carte garde ce qu'elle montrait.** Si elle était au cadrage du pays — le
+pays tout entier —, elle le reste dans les deux tiers qui lui restent, sans
+quoi le sud déborderait sous la fiche. Si le lecteur avait zoomé, son échelle
+est un choix : on n'y touche pas, on se contente d'amener la croix ouverte dans
+la partie visible, par un déplacement et jamais par un zoom. Quand la fiche
+s'ouvre au terme d'un vol depuis le monde, elle s'ouvre **avant** le vol :
+le cadrage doit être calculé sur les deux tiers, non sur la hauteur d'avant.
+
+### Le geste qui faisait tout disparaître
+
+« Quand on appuie sur un saint, les autres saints du pays disparaissent. » Ils
+ne disparaissaient pas : on quittait le pays.
+
+En vue pays, un clic qui ne touchait ni un repère ni un tracé était pris pour
+un « clic à côté », et remontait au continent — le pays s'effaçait alors avec
+ses quatre cents croix. Or l'écusson d'un repère fait quinze pixels de côté :
+un doigt qui le manque de vingt pixels tombe sur la mer. Le geste que l'on
+croyait faire — ouvrir un saint — produisait l'inverse.
+
+Deux remèdes, tous deux vérifiés au navigateur :
+
+| | |
+| --- | --- |
+| **Une cible à la taille du doigt** | Un disque invisible de vingt-et-un pixels de rayon, devant le médaillon, reçoit le clic. À vingt pixels du centre, on ouvrait la carte ; on ouvre maintenant le saint. |
+| **Le fond ne fait plus reculer** | En vue pays, un clic « à côté » ne remonte plus d'un niveau. On revient par le fil d'Ariane, toujours à l'écran, ou par Échap — qui ferme d'abord la fiche, et ne remonte qu'ensuite. |
+
+La règle du fond valait déjà sous un fond de tuiles, et pour la même raison :
+quand tout l'écran est de la carte, il n'y a plus de « à côté ».
+
 ## La recherche
 
 Une seule barre. On y écrit ce qu'on a en tête, dans n'importe quel ordre :
@@ -1059,6 +1100,7 @@ src/js/locales/*.js      douze paquets de traductions
 src/js/map/projection.js projection Mercator, partagée avec la génération
 src/js/map/view.js       rendu SVG, cadrages, zoom et déplacement bornés
 src/js/ui/daily.js       saint du jour : l'horloge, le corpus, rien d'autre
+src/js/ui/fiche.js       la fiche du tiers du bas, et sa place face à la carte
 src/js/ui/reminder.js    rappel quotidien : agenda, réveil, notification, lettre
 src/js/background.js     le réveil quotidien, et les cinq états qu'il peut prendre
 src/js/install.js        installation sur l'écran d'accueil, et le service worker

@@ -31,6 +31,7 @@ export default {
     moderate: 'Prüfung',
     assistant: 'Assistent',
     settings: 'Einstellungen',
+    detail: 'Heiligenblatt',
   },
   menu: {
     daily: 'Wer heute gefeiert wird',

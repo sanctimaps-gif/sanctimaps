@@ -31,6 +31,7 @@ export default {
     moderate: 'المراجعة',
     assistant: 'المساعد',
     settings: 'الإعدادات',
+    detail: 'بطاقة القديس',
   },
   menu: {
     daily: 'من يُحتفل به اليوم',

@@ -136,25 +136,11 @@ export class Sidebar {
     this.sync();
   }
 
-  showDetail(saint) {
-    this.panels.detail.show(saint);
-    this.section = 'detail';
-    this.open = true;
-    this.sync();
-    this.body.scrollTop = 0;
-  }
-
-  backToSearch() {
-    this.section = 'search';
-    this.sync();
-  }
-
   viewFor(name) {
     if (name === 'daily') return this.panels.daily.root;
     if (name === 'add') return this.panels.add.root;
     if (name === 'moderate') return this.panels.moderate.root;
     if (name === 'assistant') return this.panels.assistant.root;
-    if (name === 'detail') return this.panels.detail.root;
     if (name === 'settings') return this.settingsView;
     return this.panels.search.root;
   }
@@ -194,9 +180,7 @@ export class Sidebar {
   sync() {
     const names = this.entries().map((e) => e.key);
     // Un changement de rôle peut retirer sous les pieds la partie ouverte.
-    if (this.section && this.section !== 'detail' && !names.includes(this.section)) {
-      this.section = null;
-    }
+    if (this.section && !names.includes(this.section)) this.section = null;
 
     this.panel.classList.toggle('is-open', this.open);
     this.panel.classList.toggle('is-menu', !this.section);
@@ -223,7 +207,7 @@ export class Sidebar {
     // Le fil de retour ne s'affiche que dans une partie : au sommaire, il n'y
     // a nulle part où remonter.
     if (this.section) {
-      const key = this.section === 'detail' ? 'search' : this.section;
+      const key = this.section;
       fill(this.crumb, [h('button', {
         class: 'panel__back',
         type: 'button',

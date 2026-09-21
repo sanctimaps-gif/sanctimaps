@@ -31,6 +31,7 @@ export default {
     moderate: '审核',
     assistant: '助手',
     settings: '设置',
+    detail: '圣人条目',
   },
   menu: {
     daily: '今日纪念何人',

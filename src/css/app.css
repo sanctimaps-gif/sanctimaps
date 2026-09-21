@@ -209,10 +209,23 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* --------------------------------------------------------------- La carte */
 
+/* L'écran en trois bandes : la carte tient les deux du haut, la fiche celle
+   du bas. Sans fiche ouverte, la carte a tout. C'est un vrai partage de la
+   place, non un panneau posé par-dessus : la carte rétrécit pour de bon, son
+   `ResizeObserver` s'en aperçoit, et elle se recadre dans ce qui lui reste. */
+.workspace {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+}
+
 .stage {
   position: relative;
   flex: 1 1 auto;
   min-width: 0;
+  min-height: 0;
   overflow: hidden;
 }
 
@@ -379,6 +392,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .marker--saint.is-user .marker__badge { fill: var(--user); }
 .marker--saint.is-user .marker__halo { fill: var(--user); }
+
+/* La cible du doigt : invisible, mais elle reçoit les clics. `pointer-events:
+   all` plutôt que la valeur par défaut, qui demande un remplissage peint —
+   un disque transparent n'en a pas. */
+.marker__hit {
+  fill: none;
+  pointer-events: all;
+}
 
 .marker--saint:hover .marker__halo,
 .marker--saint.is-active .marker__halo { opacity: 0.3; }
@@ -708,6 +729,61 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: var(--panel);
   clip-path: polygon(42% 8%, 58% 8%, 58% 34%, 84% 34%, 84% 50%, 58% 50%, 58% 92%, 42% 92%, 42% 50%, 16% 50%, 16% 34%, 42% 34%);
 }
+
+/* ------------------------------------------------ La fiche, tiers du bas */
+
+/* Un tiers de la hauteur, pas davantage : la carte doit rester la pièce
+   maîtresse, et c'est pour la voir qu'on a sorti la fiche du tiroir. Elle
+   défile à l'intérieur plutôt que de s'agrandir. */
+.fiche {
+  flex: 0 0 33.3333%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border-block-start: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  z-index: 15;
+}
+
+/* `display: flex` l'emporterait sur la feuille du navigateur : sans ce
+   rappel, l'attribut `hidden` ne cacherait rien et la bande resterait. */
+.fiche[hidden] { display: none; }
+
+.fiche__head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 0.35rem;
+  border-block-end: 1px solid var(--line);
+}
+
+/* Le nom reste en tête pendant qu'on fait défiler la biographie : un tiers
+   d'écran ne montre pas trois cents mots d'un coup, et une fiche dont on ne
+   voit plus le titre devient un texte sans sujet. */
+.fiche__name {
+  margin: 0;
+  font-family: var(--font);
+  font-size: 1.1rem;
+  line-height: 1.2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fiche__close { margin-inline-start: auto; align-self: center; }
+
+.fiche__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.6rem 1rem 1rem;
+}
+
+/* Le nom est déjà dans l'en-tête, qui ne défile pas : le répéter en tête du
+   corps le ferait lire deux fois et volerait une ligne à la biographie. */
+.fiche__body .detail__name { display: none; }
 
 /* -------------------------------------------------------- Panneau latéral */
 

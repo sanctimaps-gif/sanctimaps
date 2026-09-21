@@ -31,6 +31,7 @@ export default {
     moderate: 'Проверка',
     assistant: 'Помощник',
     settings: 'Настройки',
+    detail: 'Карточка святого',
   },
   menu: {
     daily: 'Кого сегодня вспоминают',

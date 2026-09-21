@@ -105,10 +105,22 @@ try {
   </div>
 </header>
 
+<!--
+  L'écran se partage en trois bandes, de haut en bas.
+
+  Les deux premières sont la carte, la troisième la fiche du saint ouvert. Une
+  fiche qui recouvrait tout l'écran — ce qu'elle faisait sur un téléphone —
+  donnait à croire que les autres saints avaient disparu : ils étaient là,
+  derrière le panneau. La carte garde donc ses deux tiers, et l'on lit la
+  biographie sans perdre de vue le pays et ses croix.
+-->
 <div class="app" id="app">
-  <main class="stage" id="stage">
-    <div class="map-host" id="map-host"></div>
-  </main>
+  <div class="workspace">
+    <main class="stage" id="stage">
+      <div class="map-host" id="map-host"></div>
+    </main>
+    <section class="fiche" id="fiche" hidden></section>
+  </div>
 </div>
 
 <div class="loader" id="loader">

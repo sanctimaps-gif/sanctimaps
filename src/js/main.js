@@ -10,6 +10,7 @@ import { enregistrerServiceWorker } from './install.js';
 import { InstallPanel } from './ui/install.js';
 import { ReminderPanel } from './ui/reminder.js';
 import { DetailPanel } from './ui/detail.js';
+import { FicheBar } from './ui/fiche.js';
 import { SearchPanel } from './ui/search.js';
 import { apply as applyTheme } from './theme.js';
 import { Sidebar } from './ui/sidebar.js';
@@ -20,6 +21,7 @@ const loaderText = document.getElementById('loader-text');
 const stage = document.getElementById('stage');
 const mapHost = document.getElementById('map-host');
 const app = document.getElementById('app');
+const ficheHost = document.getElementById('fiche');
 
 applyTheme();
 // Avant tout le reste : c'est lui qui rend la carte installable, et qui la
@@ -42,7 +44,12 @@ async function start() {
   const searchPanel = new SearchPanel(atlas, { onSelect: (id) => openSaint(id, { fly: true }) });
 
   const detailPanel = new DetailPanel(atlas, {
-    onBack: () => sidebar.backToSearch(),
+    // « Retour aux résultats » ferme la fiche et rouvre la recherche : la fiche
+    // ne vit plus dans le tiroir, les deux ne sont plus au même endroit.
+    onBack: () => {
+      fiche.close();
+      sidebar.showTab('search');
+    },
     onLocate: (saint) => flyToSaint(saint),
     onEdit: (saint) => {
       addPanel.edit(saint);
@@ -50,8 +57,11 @@ async function start() {
     },
     onRemove: (saint) => {
       atlas.deleteSaint(saint.id);
+      // La fiche parlerait d'un saint que le corpus ne connaît plus : elle se
+      // ferme avant le rafraîchissement, qui la relirait.
+      fiche.close();
       refreshAll();
-      sidebar.backToSearch();
+      sidebar.showTab('search');
     },
     onStatus: (saint, status) => {
       atlas.setStatus(saint.id, status);
@@ -80,8 +90,15 @@ async function start() {
     onCancelPick: () => map.cancelPick(),
   });
 
+  // Le tiers du bas : la fiche du saint ouvert, la carte gardant les deux
+  // autres. Elle est construite avant les panneaux qui l'ouvrent.
+  const fiche = new FicheBar(ficheHost, detailPanel, {
+    onClose: () => map.highlightSaint(null),
+    onName: (saint, lang) => atlas.saintName(saint, lang),
+  });
+
   const moderationPanel = new ModerationPanel(atlas, {
-    onOpen: (saint) => { map.highlightSaint(saint.id); sidebar.showDetail(saint); },
+    onOpen: (saint) => { map.highlightSaint(saint.id); showFiche(saint); },
     onStatus: (saint, status) => {
       atlas.setStatus(saint.id, status);
       refreshAll();
@@ -155,6 +172,7 @@ async function start() {
     assistantPanel.render();
     topBar.render();
     sidebar.sync();
+    fiche.refresh();
   }
 
   // -------------------------------------------------------------------------
@@ -169,12 +187,16 @@ async function start() {
     topBar.set({ mode: map.mode, continentId: map.continentId, countryId: map.countryId });
   }
 
+  // Quitter le pays laisse la fiche sans son point sur la carte : elle parlerait
+  // d'un saint qu'on ne voit plus. Elle se referme donc avec lui.
   function goWorld() {
+    fiche.close();
     map.showWorld();
     syncChrome();
   }
 
   function goContinent(id) {
+    fiche.close();
     map.showContinent(id);
     syncChrome();
   }
@@ -208,20 +230,42 @@ async function start() {
     if (map.countryId !== countryId) goCountry(countryId);
   }
 
+  /**
+   * Ouvre la fiche dans le tiers du bas, et dégage la carte pour qu'on la voie.
+   *
+   * Sur petit écran le tiroir recouvre la carte : il se referme, puisque c'est
+   * la fiche qui prend le relais. Puis la croix du saint est ramenée dans les
+   * deux tiers restés visibles — elle pouvait se trouver juste là où la fiche
+   * vient de se poser.
+   */
+  function showFiche(saint) {
+    fiche.show(saint);
+    if (!isWide()) sidebar.setOpen(false);
+    // La carte vient de perdre un tiers de sa hauteur : elle doit le savoir
+    // avant que quoi que ce soit ne recalcule un cadrage.
+    map.remeasure();
+    map.revealSaint(saint.id);
+  }
+
   function openSaint(id, { fly = false } = {}) {
     const saint = atlas.byId.get(id);
     if (!saint) return;
     if (fly) flyToSaint(saint);
     else {
       map.highlightSaint(saint.id);
-      sidebar.showDetail(saint);
+      showFiche(saint);
     }
   }
 
   function flyToSaint(saint) {
+    // La fiche s'ouvre **avant** le vol, et l'ordre compte : c'est elle qui
+    // prend le tiers du bas, et le cadrage du pays doit être calculé sur les
+    // deux tiers qui restent. Dans l'autre sens, le vol visait la hauteur
+    // d'avant et le pays débordait par le bas en arrivant — on perdait les
+    // croix du sud, celles-là mêmes qu'on voulait garder sous les yeux.
+    showFiche(saint);
     flyTo(saint.country);
     map.highlightSaint(saint.id);
-    sidebar.showDetail(saint);
     syncChrome();
   }
 
@@ -231,6 +275,13 @@ async function start() {
       map.cancelPick();
       addPanel.picking = false;
       addPanel.render();
+      return;
+    }
+    // Échap ferme d'abord ce qui est ouvert par-dessus, et ne remonte d'un
+    // niveau qu'ensuite : sinon une fiche qu'on voulait seulement refermer
+    // faisait quitter le pays, et toutes ses croix avec lui.
+    if (fiche.open) {
+      fiche.close();
       return;
     }
     goBack();
@@ -243,6 +294,7 @@ async function start() {
 
   onLanguageChange(() => {
     sidebar.retranslate();
+    fiche.retranslate();
     topBar.render();
     map.setLanguage(getLanguage());
   });

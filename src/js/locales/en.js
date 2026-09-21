@@ -31,6 +31,7 @@ export default {
     moderate: 'Review',
     assistant: 'Assistant',
     settings: 'Settings',
+    detail: 'Saint’s entry',
   },
   menu: {
     daily: 'Who is celebrated today',

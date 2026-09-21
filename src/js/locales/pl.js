@@ -31,6 +31,7 @@ export default {
     moderate: 'Przegląd',
     assistant: 'Asystent',
     settings: 'Ustawienia',
+    detail: 'Karta świętego',
   },
   menu: {
     daily: 'Kogo dziś się wspomina',

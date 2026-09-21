@@ -31,6 +31,7 @@ export default {
     moderate: 'Nazicht',
     assistant: 'Assistent',
     settings: 'Instellingen',
+    detail: 'Fiche van de heilige',
   },
   menu: {
     daily: 'Wie vandaag gevierd wordt',
