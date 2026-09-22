@@ -609,9 +609,18 @@ quel agenda, sans compte ni service tiers.
 | **Utilisateur** | En plus : proposer des saints, soumis à validation. |
 | **Administrateur** | En plus : ajouter, modifier, supprimer, et approuver ou refuser les propositions. |
 
-Le rôle se choisit dans la partie **Compte** du tiroir. Le code administrateur au premier
-lancement est `sanctimaps` ; l'application signale tant qu'il n'a pas été
-changé, ce qui se fait depuis le même onglet.
+Le rôle se choisit dans la partie **Compte** du tiroir. Le code administrateur
+au premier lancement est `laurier-encens-9038` ; l'application le rappelle tant
+qu'il n'a pas été changé, ce qui se fait depuis le même onglet.
+
+**Comment on réinitialise un code oublié.** Le code choisi n'existe nulle part
+ailleurs que dans le navigateur de l'administrateur, rangé sous la clef
+`sanctimaps.adminCode.v<n>` et sous forme d'empreinte : aucun serveur ne le
+détient, et personne ne peut le relire — pas même en lisant ce dépôt. Le seul
+moyen de l'effacer à distance est donc d'incrémenter le numéro de version de
+cette clef dans `src/js/auth.js` : tous les navigateurs oublient alors ce qui
+y était rangé et retombent sur le code d'origine. L'ancienne clef est effacée
+au passage.
 
 > **Ce n'est pas un dispositif de sécurité.** Le contrôle des rôles s'exécute
 > dans le navigateur du visiteur, qui peut toujours le contourner par la

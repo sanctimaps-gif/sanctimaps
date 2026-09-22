@@ -9,10 +9,30 @@
  */
 
 const SESSION_KEY = 'sanctimaps.session.v1';
-const CODE_KEY = 'sanctimaps.adminCode.v1';
 
-/** Code administrateur au premier lancement ; modifiable ensuite. */
-export const DEFAULT_ADMIN_CODE = 'sanctimaps';
+/**
+ * Où le code choisi par l'administrateur est rangé, dans son propre navigateur.
+ *
+ * Le numéro de version est le seul moyen de réinitialiser le code à distance :
+ * il n'existe aucun serveur qui le détiendrait, et personne d'autre que le
+ * navigateur de l'administrateur ne sait ce qu'il a choisi. En changer fait
+ * oublier l'ancien code partout, et l'application retombe sur celui d'origine
+ * ci-dessous. L'ancienne clef est effacée au passage, pour ne pas laisser
+ * traîner une empreinte qui ne sert plus.
+ */
+const CODE_KEY = 'sanctimaps.adminCode.v2';
+const OLD_CODE_KEYS = ['sanctimaps.adminCode.v1'];
+
+/**
+ * Code administrateur au premier lancement ; modifiable ensuite.
+ *
+ * Il est écrit ici, donc dans le JavaScript publié, donc lisible par qui ouvre
+ * la page. Ce n'est pas un oubli : un site sans serveur ne peut garder aucun
+ * secret, et l'avertissement en tête de ce fichier vaut d'abord pour cette
+ * ligne. Le code sépare les rôles et évite les fausses manœuvres — il ne
+ * protège rien, et il ne peut pas.
+ */
+export const DEFAULT_ADMIN_CODE = 'laurier-encens-9038';
 
 export const VISITOR = 'visitor';
 export const USER = 'user';
@@ -49,6 +69,9 @@ async function fingerprint(code) {
   const digest = await crypto.subtle.digest('SHA-256', bytes);
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
+
+// Le code d'avant la réinitialisation n'a plus d'emploi : on ne le garde pas.
+for (const vieille of OLD_CODE_KEYS) write(vieille, null);
 
 function loadSession() {
   const raw = read(SESSION_KEY);
