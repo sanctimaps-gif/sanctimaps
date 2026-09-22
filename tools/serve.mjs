@@ -161,9 +161,16 @@ function serveFile(req, res) {
     res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' }).end('Introuvable');
     return;
   }
+  // Un dossier répond par son `index.html`, et une adresse sans barre finale
+  // renvoie vers celle qui l'a — c'est ce que fait l'hébergement en
+  // production, et sans cela `/saints/saint-maurice` marcherait en ligne mais
+  // pas ici, ce qui est la pire façon de s'en apercevoir.
   if (stat.isDirectory()) {
-    res.writeHead(403).end('Forbidden');
-    return;
+    if (!requested.endsWith('/')) {
+      res.writeHead(301, { location: `${encodeURI(requested)}/${url.search}` }).end();
+      return;
+    }
+    return serveFile({ url: `${encodeURI(requested)}index.html`, headers: req.headers }, res);
   }
 
   const type = TYPES[extname(target)] || 'application/octet-stream';

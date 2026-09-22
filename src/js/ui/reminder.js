@@ -273,7 +273,7 @@ export class ReminderPanel {
       h('p', { class: 'field__hint', text: t('reminder.letterHint') }),
       h('a', {
         class: 'btn btn--ghost',
-        href: new URL('lettre.html', document.baseURI).href,
+        href: new URL('lettre/', document.baseURI).href,
         text: t('reminder.letter'),
       }),
     ]);

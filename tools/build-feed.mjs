@@ -101,7 +101,7 @@ function main() {
       // lecteur de flux ne doit pas prendre celle de cette année pour un
       // doublon de l'an dernier.
       id: `${options.base}/feed/${date.getFullYear()}-${clefDuJour(date)}`,
-      lien: `${options.base}/calendrier/${slug(lettre.jour)}.html`,
+      lien: `${options.base}/calendrier/${slug(lettre.jour)}/`,
       corps: lettre.html,
     });
   }

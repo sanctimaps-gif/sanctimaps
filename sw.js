@@ -134,7 +134,7 @@ async function annoncerLeJour() {
     // Le même jour ne se réannonce pas : le navigateur peut réveiller deux
     // fois, et l'étiquette datée fait que la seconde remplace la première.
     renotify: false,
-    data: { url: `./calendrier/${entree.u}.html`, jour },
+    data: { url: `./calendrier/${entree.u}/`, jour },
   });
 }
 

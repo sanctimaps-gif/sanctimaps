@@ -20,9 +20,23 @@
  *
  * ## Trois familles, et le maillage qui les tient
  *
- *   saints/<nom>.html          la fiche : dates, lieu, fête, biographie, sources
- *   pays/<pays>.html           les saints nés dans ce pays
- *   calendrier/<jour>.html     les saints fêtés ce jour-là
+ *   saints/<nom>/              la fiche : dates, lieu, fête, biographie, sources
+ *   saints/saint-<prenom>/     tous ceux qui portent ce prénom
+ *   pays/<pays>/               les saints nés dans ce pays
+ *   calendrier/<jour>/         les saints fêtés ce jour-là
+ *
+ * ## Des adresses sans extension
+ *
+ * Chaque page est un `index.html` dans un dossier à son nom, et non un fichier
+ * `<nom>.html` : l'adresse s'écrit alors `sanctimaps.fr/saints/maurice-d-agaune`,
+ * sans `.html` à la fin. C'est ce qu'on dicte, ce qu'on recopie dans un message
+ * et ce qu'un moteur de recherche montre — et c'est la seule forme qui marche
+ * telle quelle sur n'importe quel hébergement statique, là où l'omission de
+ * l'extension dépend ailleurs de la configuration du serveur.
+ *
+ * Les anciennes adresses en `.html` ne disparaissent pas pour autant : chacune
+ * laisse une page de renvoi qui mène à la nouvelle. Un lien partagé il y a six
+ * mois continue de tomber sur la bonne fiche.
  *
  * Une page isolée n'est jamais trouvée : chaque fiche renvoie à son pays, à
  * son jour de fête et à quelques saints voisins ; chaque index renvoie aux
@@ -177,6 +191,11 @@ const dayLabel = (key) => formatFeast(key);
  */
 function page({ title, description, canonical, up, crumbs, body, jsonld, trail, items }) {
   const r = '../'.repeat(up);
+  // La racine du site, retrouvée en remontant de l'adresse canonique autant de
+  // dossiers que les liens relatifs en remontent. C'est de là que pend
+  // l'image de partage, qui doit être absolue.
+  const segments = canonical.replace(/\/+$/, '').split('/');
+  const racine = up ? segments.slice(0, -up).join('/') : segments.join('/');
   // Le fil d'Ariane est écrit deux fois : en clair pour le lecteur, en
   // JSON-LD pour le moteur, qui en tire la place de la page dans le site.
   const blocs = [
@@ -223,7 +242,7 @@ function page({ title, description, canonical, up, crumbs, body, jsonld, trail, 
 <link rel="apple-touch-icon" sizes="180x180" href="${r}icons/apple-touch-icon.png">
 <link rel="manifest" href="${r}site.webmanifest">
 <meta name="theme-color" content="#f8eede">
-<meta property="og:image" content="${canonical.replace(/\/(saints|pays|lieux|calendrier|epoques)\/.*$/, "")}/icons/icon-512.png">
+<meta property="og:image" content="${esc(racine)}/icons/icon-512.png">
 <meta name="twitter:card" content="summary">
 <link rel="alternate" type="application/atom+xml" title="SanctiMaps — le saint du jour" href="${r}feed.xml">
 <link rel="stylesheet" href="${r}src/css/page.css">
@@ -242,12 +261,12 @@ ${blocs.map((b) => `<script type="application/ld+json">${JSON.stringify(b)}</scr
     <a class="top__brand" href="${r}index.html">SanctiMaps</a>
     <nav class="top__nav">
       <a href="${r}index.html">La carte</a>
-      <a href="${r}saints/index.html">Tous les saints</a>
-      <a href="${r}pays/index.html">Par pays</a>
-      <a href="${r}lieux/index.html">Par lieu</a>
-      <a href="${r}epoques/index.html">Par siècle</a>
-      <a href="${r}calendrier/index.html">Calendrier</a>
-      <a href="${r}lettre.html">La lettre</a>
+      <a href="${r}saints/">Tous les saints</a>
+      <a href="${r}pays/">Par pays</a>
+      <a href="${r}lieux/">Par lieu</a>
+      <a href="${r}epoques/">Par siècle</a>
+      <a href="${r}calendrier/">Calendrier</a>
+      <a href="${r}lettre/">La lettre</a>
     </nav>
   </div>
 </header>
@@ -392,11 +411,11 @@ function centuryLabel(n) {
 function saintPage(saint, ctx) {
   const {
     base, slugs, paysSlugs, lieuxSlugs, countryName, deSuffix, placeHref,
-    sameCountry, sameDay, geo, compte, siecleSlug,
+    sameCountry, sameDay, geo, compte, siecleSlug, prenomDe,
   } = ctx;
   const lieu = placeHref(saint);
   const name = saint.name.fr || saint.name.en;
-  const url = `${base}/saints/${slugs.get(saint.id)}.html`;
+  const url = `${base}/saints/${slugs.get(saint.id)}/`;
   const feast = formatFeast(saint.feast);
   const pays = countryName(saint.country);
   const life = lifeLine(saint);
@@ -414,6 +433,9 @@ function saintPage(saint, ctx) {
 
   const voisins = sameCountry(saint);
   const jour = sameDay(saint);
+  // Le prénom, quand d'autres le portent : c'est la question qu'on se pose en
+  // arrivant ici depuis « saint Maurice », et la page qui y répond.
+  const homonymes = prenomDe(saint);
 
   // Le lieu que le nom désigne, quand ce n'est pas celui de la naissance : sans
   // lui, « Nazaire de Milan, né à Rome » a l'air d'une faute.
@@ -449,19 +471,20 @@ function saintPage(saint, ctx) {
 ${desc ? `<p class="bio">${esc(desc)}</p>\n` : ''}${bio ? `<h2>Biographie</h2>\n<p class="bio">${esc(bio)}</p>\n` : ''}${bio && saint.traduit ? `<p class="note">Biographie traduite de l’anglais, d’après l’article de Wikipédia cité en source.</p>\n` : ''}
 <h2>Repères</h2>
 <dl class="facts">
-${fact('Fête', `<a href="../calendrier/${esc(slug(dayLabel(saint.feast)))}.html">${esc(feast)}</a>`)}${fact('Naissance', saint.born != null ? esc(formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })) : '')}${fact('Mort', saint.died != null ? esc(formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })) : '')}${fact(place, `${lieu ? `<a href="${esc(lieu)}">${esc(saint.city)}</a>` : esc(saint.city)}`
-    + ` — <a href="../pays/${esc(paysSlugs.get(saint.country))}.html">${esc(pays)}</a>`)}${fact('Époque', epoque ? `<a href="../epoques/${esc(siecleSlug(centuryOf(siecle)))}.html">${esc(epoque)}</a>` : '')}${fact('Qualités', (saint.titles || []).map((k) => esc(titleLabel(k, saint.sex))).join(', '))}${fact('Saint patron de', esc(patronage))}${fact('Lieu associé', associe
-    ? (associeHref ? `<a href="../lieux/${esc(lieuxSlugs.get(associeHref))}.html">${esc(associe)}</a>` : esc(associe))
+${fact('Fête', `<a href="../../calendrier/${esc(slug(dayLabel(saint.feast)))}/">${esc(feast)}</a>`)}${fact('Naissance', saint.born != null ? esc(formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })) : '')}${fact('Mort', saint.died != null ? esc(formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })) : '')}${fact(place, `${lieu ? `<a href="${esc(lieu)}">${esc(saint.city)}</a>` : esc(saint.city)}`
+    + ` — <a href="../../pays/${esc(paysSlugs.get(saint.country))}/">${esc(pays)}</a>`)}${fact('Époque', epoque ? `<a href="../../epoques/${esc(siecleSlug(centuryOf(siecle)))}/">${esc(epoque)}</a>` : '')}${fact('Qualités', (saint.titles || []).map((k) => esc(titleLabel(k, saint.sex))).join(', '))}${fact('Saint patron de', esc(patronage))}${fact('Lieu associé', associe
+    ? (associeHref ? `<a href="../../lieux/${esc(lieuxSlugs.get(associeHref))}/">${esc(associe)}</a>` : esc(associe))
       + ' <span class="note">(le nom désigne ce lieu ; la carte porte celui de la naissance)</span>' : '')}</dl>
 ${flou ? `<p class="note">${esc(saint.city)} est une contrée, non une ville : c’est tout ce que la source dit du lieu, et le point de la carte n’en donne que le centre.</p>\n` : ''}
 ${locator(saint, geo.get(saint.country))}
 
 <p class="situe">${esc(situe)}</p>
 
-<a class="go" href="../index.html?saint=${encodeURIComponent(saint.id)}">Voir ${saint.sex === 'f' ? 'cette sainte' : 'ce saint'} sur la carte</a>
+<a class="go" href="../../index.html?saint=${encodeURIComponent(saint.id)}">Voir ${saint.sex === 'f' ? 'cette sainte' : 'ce saint'} sur la carte</a>
+${homonymes ? `<p class="note">${esc(`${nombre(homonymes.list.length - 1)} autre${homonymes.list.length > 2 ? 's' : ''} saint${homonymes.feminin ? 'e' : ''}${homonymes.list.length > 2 ? 's' : ''} de la carte porte${homonymes.list.length > 2 ? 'nt' : ''} le prénom ${homonymes.nom}`)} : <a href="../${esc(homonymes.slug)}/">${esc(homonymes.titre.charAt(0).toLowerCase() + homonymes.titre.slice(1))}</a>.</p>\n` : ''}
 
-${voisins.length ? `<h2>Autres saints ${deSuffix(saint.country)}</h2>\n<ul class="cards">\n${voisins.map((v) => card(`${slugs.get(v.id)}.html`, v.name.fr, `${v.city} · ${formatFeast(v.feast)}`)).join('')}</ul>\n<p><a href="../pays/${esc(paysSlugs.get(saint.country))}.html">Tous les saints ${esc(deSuffix(saint.country))}</a></p>\n` : ''}
-${jour.length ? `<h2>Fêtés le ${esc(feast)}</h2>\n<ul class="cards">\n${jour.map((v) => card(`${slugs.get(v.id)}.html`, v.name.fr, `${v.city} · ${countryName(v.country)}`)).join('')}</ul>\n` : ''}
+${voisins.length ? `<h2>Autres saints ${deSuffix(saint.country)}</h2>\n<ul class="cards">\n${voisins.map((v) => card(`../${slugs.get(v.id)}/`, v.name.fr, `${v.city} · ${formatFeast(v.feast)}`)).join('')}</ul>\n<p><a href="../../pays/${esc(paysSlugs.get(saint.country))}/">Tous les saints ${esc(deSuffix(saint.country))}</a></p>\n` : ''}
+${jour.length ? `<h2>Fêtés le ${esc(feast)}</h2>\n<ul class="cards">\n${jour.map((v) => card(`../${slugs.get(v.id)}/`, v.name.fr, `${v.city} · ${countryName(v.country)}`)).join('')}</ul>\n` : ''}
 ${saint.sources?.length ? `<p class="sources">Sources : ${saint.sources.map((s) => `<a href="${esc(s.url)}" rel="noreferrer">${esc(s.label)}</a>`).join(' · ')}</p>\n` : ''}`;
 
   const jsonld = {
@@ -488,9 +511,9 @@ ${saint.sources?.length ? `<p class="sources">Sources : ${saint.sources.map((s) 
     title: `${called(saint)} — fête le ${feast} | SanctiMaps`,
     description: summary(bio || desc || lede),
     canonical: url,
-    up: 1,
-    crumbs: `<a href="../index.html">Carte</a> › <a href="index.html">Saints</a> › ${esc(name)}`,
-    trail: [['SanctiMaps', `${base}/`], ['Saints', `${base}/saints/index.html`], [name, url]],
+    up: 2,
+    crumbs: `<a href="../../index.html">Carte</a> › <a href="../">Saints</a> › ${esc(name)}`,
+    trail: [['SanctiMaps', `${base}/`], ['Saints', `${base}/saints/`], [name, url]],
     body,
     jsonld,
   });
@@ -502,7 +525,7 @@ function countryPage(iso, list, ctx) {
   const nom = countryName(iso);
   const de = deSuffix(iso);
   const titre = `Saints ${de}`;
-  const url = `${base}/pays/${paysSlugs.get(iso)}.html`;
+  const url = `${base}/pays/${paysSlugs.get(iso)}/`;
   // Les chiffres d'un pays, tirés de ses seules fiches : ils disent en trois
   // lignes ce qu'une liste de mille noms ne montre pas.
   const siecles = [...new Set(list.map((s) => centuryOf(s.born ?? s.died)).filter((n) => n != null))]
@@ -518,27 +541,27 @@ function countryPage(iso, list, ctx) {
 
 <dl class="facts">
 ${fact('Saints recensés', esc(nombre(list.length)))}${fact('Époques', siecles.length
-    ? `du <a href="../epoques/${esc(siecleSlug(siecles[0]))}.html">${esc(centuryLabel(siecles[0]))}</a>`
-      + ` au <a href="../epoques/${esc(siecleSlug(siecles[siecles.length - 1]))}.html">${esc(centuryLabel(siecles[siecles.length - 1]))}</a>` : '')}${fact('Jours de fête pourvus', esc(`${nombre(jours)} jours de l’année`))}${fact('Avec une biographie', esc(nombre(avecBio)))}${fact('Avec un patronage', patrons ? esc(nombre(patrons)) : '')}</dl>
+    ? `du <a href="../../epoques/${esc(siecleSlug(siecles[0]))}/">${esc(centuryLabel(siecles[0]))}</a>`
+      + ` au <a href="../../epoques/${esc(siecleSlug(siecles[siecles.length - 1]))}/">${esc(centuryLabel(siecles[siecles.length - 1]))}</a>` : '')}${fact('Jours de fête pourvus', esc(`${nombre(jours)} jours de l’année`))}${fact('Avec une biographie', esc(nombre(avecBio)))}${fact('Avec un patronage', patrons ? esc(nombre(patrons)) : '')}</dl>
 
 ${villes.length ? `<h2>Les villes les mieux pourvues</h2>\n<ul class="cards">\n${villes.slice(0, 8)
-    .map(([key, saints]) => card(`../lieux/${lieuxSlugs.get(key)}.html`,
+    .map(([key, saints]) => card(`../../lieux/${lieuxSlugs.get(key)}/`,
       placeName(key.split('|')[1]), `${saints.length} saints`)).join('')}</ul>\n` : ''}
-<a class="go" href="../index.html">Ouvrir la carte</a>
+<a class="go" href="../../index.html">Ouvrir la carte</a>
 <ul class="cards">
-${list.map((s) => card(`../saints/${slugs.get(s.id)}.html`, s.name.fr, `${s.city} · ${formatFeast(s.feast)} · ${lifeLine(s) || '?'}`)).join('')}</ul>
+${list.map((s) => card(`../../saints/${slugs.get(s.id)}/`, s.name.fr, `${s.city} · ${formatFeast(s.feast)} · ${lifeLine(s) || '?'}`)).join('')}</ul>
 ${villes.length > 8 ? `<h2>Tous les lieux ${esc(de)}</h2>\n<ul class="cards">\n${villes
-    .map(([key, saints]) => card(`../lieux/${lieuxSlugs.get(key)}.html`,
+    .map(([key, saints]) => card(`../../lieux/${lieuxSlugs.get(key)}/`,
       placeName(key.split('|')[1]), `${saints.length} saints`)).join('')}</ul>\n` : ''}`;
 
   return page({
     title: `${titre} — ${nombre(list.length)} saints recensés | SanctiMaps`,
     description: `Les ${list.length} saints ${de} recensés par SanctiMaps : leur ville de naissance, leurs dates et leur jour de fête.`,
     canonical: url,
-    up: 1,
-    crumbs: `<a href="../index.html">Carte</a> › <a href="index.html">Pays</a> › ${esc(nom)}`,
-    trail: [['SanctiMaps', `${base}/`], ['Pays', `${base}/pays/index.html`], [titre, url]],
-    items: list.slice(0, 100).map((s) => [s.name.fr, `${base}/saints/${slugs.get(s.id)}.html`]),
+    up: 2,
+    crumbs: `<a href="../../index.html">Carte</a> › <a href="../">Pays</a> › ${esc(nom)}`,
+    trail: [['SanctiMaps', `${base}/`], ['Pays', `${base}/pays/`], [titre, url]],
+    items: list.slice(0, 100).map((s) => [s.name.fr, `${base}/saints/${slugs.get(s.id)}/`]),
     body,
     jsonld: {
       '@context': 'https://schema.org',
@@ -553,7 +576,7 @@ function dayPage(key, list, ctx) {
   const { base, slugs, paysSlugs, countryName, deSuffix, voisinsDuJour } = ctx;
   const label = dayLabel(key);
   const [veille, demain] = voisinsDuJour(key);
-  const url = `${base}/calendrier/${slug(label)}.html`;
+  const url = `${base}/calendrier/${slug(label)}/`;
   // Les pays d'où viennent les saints du jour : un jour de fête est aussi une
   // géographie, et c'est par là qu'on passe d'une date à une carte.
   const pays = new Map();
@@ -565,26 +588,26 @@ function dayPage(key, list, ctx) {
     + `${rangs.length > 1 ? `, venus de ${nombre(rangs.length)} pays` : ''}. `
     + `Chacun avec son lieu de naissance et sa fiche.`)}</p>
 <ul class="cards">
-${list.map((s) => card(`../saints/${slugs.get(s.id)}.html`, s.name.fr, `${s.city} · ${countryName(s.country)}`)).join('')}</ul>
+${list.map((s) => card(`../../saints/${slugs.get(s.id)}/`, s.name.fr, `${s.city} · ${countryName(s.country)}`)).join('')}</ul>
 
 <h2>D’où viennent-ils</h2>
 <ul class="cards">
-${rangs.map(([iso, k]) => card(`../pays/${paysSlugs.get(iso)}.html`, `Saints ${deSuffix(iso)}`,
+${rangs.map(([iso, k]) => card(`../../pays/${paysSlugs.get(iso)}/`, `Saints ${deSuffix(iso)}`,
     `${k} fêté${k > 1 ? 's' : ''} ce jour · ${countryName(iso)}`)).join('')}</ul>
 
-<p class="note">La veille et le lendemain : <a href="${esc(slug(dayLabel(veille)))}.html">${esc(dayLabel(veille))}</a>
- · <a href="${esc(slug(dayLabel(demain)))}.html">${esc(dayLabel(demain))}</a></p>
-<a class="go" href="../index.html">Ouvrir la carte</a>`;
+<p class="note">La veille et le lendemain : <a href="../${esc(slug(dayLabel(veille)))}/">${esc(dayLabel(veille))}</a>
+ · <a href="../${esc(slug(dayLabel(demain)))}/">${esc(dayLabel(demain))}</a></p>
+<a class="go" href="../../index.html">Ouvrir la carte</a>`;
 
   return page({
     title: `Saint du ${label} — les saints fêtés ce jour | SanctiMaps`,
     description: summary(`Les saints fêtés le ${label} : ${list.slice(0, 8).map((s) => s.name.fr).join(', ')}.`),
     canonical: url,
-    up: 1,
-    crumbs: `<a href="../index.html">Carte</a> › <a href="index.html">Calendrier</a> › ${esc(label)}`,
-    trail: [['SanctiMaps', `${base}/`], ['Calendrier', `${base}/calendrier/index.html`],
+    up: 2,
+    crumbs: `<a href="../../index.html">Carte</a> › <a href="../">Calendrier</a> › ${esc(label)}`,
+    trail: [['SanctiMaps', `${base}/`], ['Calendrier', `${base}/calendrier/`],
       [`Saints fêtés le ${label}`, url]],
-    items: list.map((s) => [s.name.fr, `${base}/saints/${slugs.get(s.id)}.html`]),
+    items: list.map((s) => [s.name.fr, `${base}/saints/${slugs.get(s.id)}/`]),
     body,
     jsonld: {
       '@context': 'https://schema.org',
@@ -593,6 +616,123 @@ ${rangs.map(([iso, k]) => card(`../pays/${paysSlugs.get(iso)}.html`, `Saints ${d
       url,
     },
   });
+}
+
+// ---------------------------------------------------------------------------
+// Les prénoms
+// ---------------------------------------------------------------------------
+
+/**
+ * Ce qui, dans un nom, sépare le prénom du reste.
+ *
+ * « Maurice d'Agaune », « Thérèse de Lisieux », « Léon le Grand » : le nom d'un
+ * saint est presque toujours un prénom suivi d'un lieu, d'un surnom ou d'une
+ * maison. Tout ce qui suit l'un de ces mots-outils ne fait plus partie du
+ * prénom.
+ */
+const COUPE_PRENOM = /\s(?:d'|l'|de |du |des |di |da |dal |del |della |dos |das |von |van |of |the |le |la |les |en |dit |dite |au |aux |sur |y )/i;
+
+/** Le titre déjà présent dans le nom : « Sainte Sophie » se lit « Sophie ». */
+const TITRE_EN_TETE = /^(?:saints?|saintes?|ste?s?\.?)\s+/i;
+
+/**
+ * Les prénoms sous lesquels on peut chercher un saint — un, ou deux.
+ *
+ * C'est par le prénom qu'on cherche un saint quand on ne connaît pas son lieu :
+ * on tape « saint Maurice », pas « Maurice d'Agaune ». Le premier mot du nom
+ * suffit donc, et il rassemble les trois Maurice de la carte — d'Agaune,
+ * Duault et Tornay — sur la même page.
+ *
+ * Quand deux mots précèdent le lieu, le second fait un prénom de plus :
+ * « Maurice Tornay » et « Marie Madeleine » se cherchent aussi entiers, et l'on
+ * ne sait pas d'avance si ce second mot est un nom de famille ou la suite du
+ * prénom. Les deux adresses existent ; c'est le lecteur qui choisit.
+ */
+function prenomsDe(saint) {
+  const nom = String(saint.name.fr || '')
+    .replace(TITRE_EN_TETE, '')
+    .split(/[,(]/)[0]
+    .replace(/\s+[IVXLC]+$/, '')            // « Louis IX » -> « Louis »
+    .trim();
+  const tete = nom.split(COUPE_PRENOM)[0].trim();
+  const mots = tete.split(/\s+/).filter(Boolean);
+  const sortie = [];
+  for (const forme of [mots[0], mots.length > 1 ? `${mots[0]} ${mots[1]}` : null]) {
+    if (!forme || forme.length < 3) continue;
+    if (TITRE_EN_TETE.test(`${forme} `)) continue;
+    sortie.push(forme);
+  }
+  return sortie;
+}
+
+/**
+ * La page d'un prénom : tous ceux qui le portent.
+ *
+ * Elle n'existe que pour les prénoms portés par plusieurs saints — c'est là
+ * qu'elle sert, en levant l'ambiguïté que la recherche laisse. Pour un prénom
+ * unique, l'adresse existe quand même, mais elle renvoie droit à la fiche.
+ */
+function prenomPage(entree, ctx) {
+  const { base, slugs, countryName, siecleSlug } = ctx;
+  const { nom, list, titre, feminin } = entree;
+  const url = `${base}/saints/${entree.slug}/`;
+  const siecles = [...new Set(list.map((s) => centuryOf(s.born ?? s.died)).filter((n) => n != null))]
+    .sort((a, b) => a - b);
+  const pays = [...new Set(list.map((s) => countryName(s.country)))];
+
+  const body = `<h1>${esc(titre)}</h1>
+<p class="lede">${esc(`${nombre(list.length)} saint${feminin ? 'e' : ''}s de la carte portent le prénom ${nom}`
+    + `${pays.length > 1 ? `, ${feminin ? 'venues' : 'venus'} de ${nombre(pays.length)} pays` : `, ${feminin ? 'toutes venues' : 'tous venus'} ${du(pays[0])}`}`
+    + `${siecles.length > 1 ? `, du ${centuryLabel(siecles[0])} au ${centuryLabel(siecles[siecles.length - 1])}` : ''}. `
+    + `Chacun${feminin ? 'e' : ''} avec ses dates, son lieu et son jour de fête.`)}</p>
+<ul class="cards">
+${list.map((s) => card(`../${slugs.get(s.id)}/`, s.name.fr,
+    `${[s.city, countryName(s.country), formatFeast(s.feast)].filter(Boolean).join(' · ')}`)).join('')}</ul>
+${siecles.length ? `<p class="note">Époques représentées : ${siecles
+    .map((n) => `<a href="../../epoques/${esc(siecleSlug(n))}/">${esc(centuryLabel(n))}</a>`)
+    .join(', ')}.</p>\n` : ''}
+<p><a href="../">Tous les saints de la carte</a></p>`;
+
+  return page({
+    title: `${titre} — ${nombre(list.length)} saint${feminin ? 'e' : ''}s | SanctiMaps`,
+    description: summary(`Les ${list.length} saint${feminin ? 'e' : ''}s prénommé${feminin ? 'e' : ''}s ${nom} `
+      + `recensé${feminin ? 'e' : ''}s par SanctiMaps : ${list.slice(0, 8).map((s) => s.name.fr).join(', ')}.`),
+    canonical: url,
+    up: 2,
+    crumbs: `<a href="../../index.html">Carte</a> › <a href="../">Saints</a> › ${esc(nom)}`,
+    trail: [['SanctiMaps', `${base}/`], ['Saints', `${base}/saints/`], [titre, url]],
+    items: list.map((s) => [s.name.fr, `${base}/saints/${slugs.get(s.id)}/`]),
+    body,
+  });
+}
+
+/**
+ * Une page de renvoi : l'adresse répond encore, et mène à la bonne.
+ *
+ * Les pages ont changé d'adresse — `saints/x.html` est devenu `saints/x/` —, et
+ * un lien mis en signet ou cité ailleurs ne doit pas tomber dans le vide pour
+ * autant. Le renvoi est immédiat, le lien canonique désigne la nouvelle
+ * adresse, et `noindex` évite qu'un moteur garde les deux.
+ *
+ * C'est aussi ce qui fait répondre `saints/saint-maurice` quand un seul saint
+ * porte ce prénom : l'adresse existe, elle mène à sa fiche.
+ */
+function renvoi({ titre, vers, canonical }) {
+  return `<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(titre)} | SanctiMaps</title>
+<link rel="canonical" href="${esc(canonical)}">
+<meta name="robots" content="noindex, follow">
+<meta http-equiv="refresh" content="0; url=${esc(vers)}">
+</head>
+<body>
+<p>Cette page a changé d’adresse : <a href="${esc(vers)}">${esc(titre)}</a>.</p>
+</body>
+</html>
+`;
 }
 
 /**
@@ -619,33 +759,47 @@ function letterPage(letter, list, ctx) {
   const body = `<h1>Les saints en ${esc(letter)}</h1>
 <p class="lede">${esc(`${list.length} saint${list.length > 1 ? 's' : ''} dont le nom commence par ${letter}.`)}</p>
 <ul class="cards">
-${list.map((s) => card(`${slugs.get(s.id)}.html`, s.name.fr,
+${list.map((s) => card(`../${slugs.get(s.id)}/`, s.name.fr,
     `${s.city} · ${formatFeast(s.feast)}`)).join('')}</ul>
-<p><a href="index.html">Retour à l’index alphabétique</a></p>`;
+<p><a href="../">Retour à l’index alphabétique</a></p>`;
 
   return page({
     title: `Les saints en ${letter} — ${list.length} fiches | SanctiMaps`,
     description: summary(`Les saints dont le nom commence par ${letter} : `
       + `${list.slice(0, 10).map((s) => s.name.fr).join(', ')}.`),
-    canonical: `${base}/saints/lettre-${letter.toLowerCase()}.html`,
-    up: 1,
-    crumbs: `<a href="../index.html">Carte</a> › <a href="index.html">Saints</a> › ${esc(letter)}`,
+    canonical: `${base}/saints/lettre-${letter.toLowerCase()}/`,
+    up: 2,
+    crumbs: `<a href="../../index.html">Carte</a> › <a href="../">Saints</a> › ${esc(letter)}`,
     body,
   });
 }
 
 function saintsIndex(saints, groups, ctx) {
-  const { base } = ctx;
+  const { base, prenoms } = ctx;
+  // Les prénoms les plus portés : c'est l'autre façon de chercher un saint —
+  // « saint Maurice » plutôt que « Maurice d'Agaune » —, et c'est par là que
+  // les pages de prénom sont atteintes.
+  const tete = [...prenoms.entries()]
+    .filter(([, p]) => p.list.length > 1)
+    .sort((a, b) => b[1].list.length - a[1].list.length)
+    .slice(0, 60);
   const body = `<h1>Tous les saints de la carte</h1>
 <p class="lede">${esc(`${saints.length} saints recensés, rangés par initiale. Chaque nom mène à sa fiche : dates, lieu de naissance, jour de fête et biographie.`)}</p>
 <ul class="cards">
-${[...groups.entries()].map(([l, list]) => card(`lettre-${l.toLowerCase()}.html`,
-    `Les saints en ${l}`, `${list.length} fiche${list.length > 1 ? 's' : ''}`)).join('')}</ul>`;
+${[...groups.entries()].map(([l, list]) => card(`lettre-${l.toLowerCase()}/`,
+    `Les saints en ${l}`, `${list.length} fiche${list.length > 1 ? 's' : ''}`)).join('')}</ul>
+
+<h2>Les prénoms les plus portés</h2>
+<p class="lede">Plusieurs saints portent le même prénom, et on les cherche
+souvent ainsi. Chaque prénom mène à la liste de ceux qui le portent.</p>
+<ul class="cards">
+${tete.map(([, p]) => card(`${p.slug}/`, p.titre,
+    `${p.list.length} saints`)).join('')}</ul>`;
 
   return page({
     title: `Tous les saints — ${nombre(saints.length)} fiches | SanctiMaps`,
     description: `La liste alphabétique des ${saints.length} saints recensés par SanctiMaps, chacun avec sa fiche : dates, lieu de naissance, fête et biographie.`,
-    canonical: `${base}/saints/index.html`,
+    canonical: `${base}/saints/`,
     up: 1,
     crumbs: '<a href="../index.html">Carte</a> › Saints',
     body,
@@ -680,7 +834,7 @@ function placePage(key, list, ctx) {
   const [iso, city] = key.split('|');
   const nom = placeName(city);
   const titre = `Les saints ${du(city)}`;
-  const url = `${base}/lieux/${lieuxSlugs.get(key)}.html`;
+  const url = `${base}/lieux/${lieuxSlugs.get(key)}/`;
   const siecles = [...new Set(list.map((s) => centuryOf(s.born ?? s.died)).filter((n) => n != null))]
     .sort((a, b) => a - b);
 
@@ -690,23 +844,23 @@ function placePage(key, list, ctx) {
     + `${siecles.length > 1 ? `, du ${centuryLabel(siecles[0])} au ${centuryLabel(siecles[siecles.length - 1])}` : ''}. `
     + `Pour chacun : ses dates, son jour de fête et sa fiche détaillée.`)}</p>
 ${siecles.length ? `<p class="note">Époques représentées : ${siecles
-    .map((n) => `<a href="../epoques/${esc(siecleSlug(n))}.html">${esc(centuryLabel(n))}</a>`)
+    .map((n) => `<a href="../../epoques/${esc(siecleSlug(n))}/">${esc(centuryLabel(n))}</a>`)
     .join(', ')}.</p>\n` : ''}
-<a class="go" href="../index.html">Ouvrir la carte</a>
+<a class="go" href="../../index.html">Ouvrir la carte</a>
 <ul class="cards">
-${list.map((s) => card(`../saints/${slugs.get(s.id)}.html`, s.name.fr,
+${list.map((s) => card(`../../saints/${slugs.get(s.id)}/`, s.name.fr,
     `${formatFeast(s.feast)} · ${lifeLine(s) || '?'}`)).join('')}</ul>
-<p><a href="../pays/${esc(paysSlugs.get(iso))}.html">Tous les saints ${esc(deSuffix(iso))}</a></p>`;
+<p><a href="../../pays/${esc(paysSlugs.get(iso))}/">Tous les saints ${esc(deSuffix(iso))}</a></p>`;
 
   return page({
     title: `${titre} — ${nombre(list.length)} saints | SanctiMaps`,
     description: summary(`Les ${list.length} saints nés ${du(city)} (${countryName(iso)}) : `
       + `${list.slice(0, 8).map((s) => s.name.fr).join(', ')}.`),
     canonical: url,
-    up: 1,
-    crumbs: `<a href="../index.html">Carte</a> › <a href="index.html">Lieux</a> › ${esc(nom)}`,
-    trail: [['SanctiMaps', `${base}/`], ['Lieux', `${base}/lieux/index.html`], [titre, url]],
-    items: list.slice(0, 100).map((s) => [s.name.fr, `${base}/saints/${slugs.get(s.id)}.html`]),
+    up: 2,
+    crumbs: `<a href="../../index.html">Carte</a> › <a href="../">Lieux</a> › ${esc(nom)}`,
+    trail: [['SanctiMaps', `${base}/`], ['Lieux', `${base}/lieux/`], [titre, url]],
+    items: list.slice(0, 100).map((s) => [s.name.fr, `${base}/saints/${slugs.get(s.id)}/`]),
     body,
     jsonld: {
       '@context': 'https://schema.org',
@@ -725,14 +879,14 @@ function placesIndex(byPlace, ctx) {
   const body = `<h1>Les saints, lieu par lieu</h1>
 <p class="lede">${esc(`${rows.length} villes et régions comptent au moins deux saints nés là. Rome en compte ${rows[0][1].length} à elle seule.`)}</p>
 <ul class="cards">
-${rows.map(([key, list]) => card(`${lieuxSlugs.get(key)}.html`,
+${rows.map(([key, list]) => card(`${lieuxSlugs.get(key)}/`,
     `Les saints ${du(key.split('|')[1])}`,
     `${countryName(key.split('|')[0])} · ${list.length} saints`)).join('')}</ul>`;
 
   return page({
     title: `Les saints par lieu — ${rows.length} villes | SanctiMaps`,
     description: `Les lieux de naissance des saints recensés par SanctiMaps : ${rows.length} villes et régions qui en comptent au moins deux.`,
-    canonical: `${base}/lieux/index.html`,
+    canonical: `${base}/lieux/`,
     up: 1,
     crumbs: '<a href="../index.html">Carte</a> › Lieux',
     body,
@@ -749,7 +903,7 @@ ${rows.map(([key, list]) => card(`${lieuxSlugs.get(key)}.html`,
 function centuryPage(n, list, ctx) {
   const { base, slugs, countryName, siecleSlug } = ctx;
   const titre = `Les saints du ${centuryLabel(n)}`;
-  const url = `${base}/epoques/${siecleSlug(n)}.html`;
+  const url = `${base}/epoques/${siecleSlug(n)}/`;
   const pays = new Map();
   for (const s of list) pays.set(s.country, (pays.get(s.country) || 0) + 1);
   const tete = [...pays.entries()].sort((a, b) => b[1] - a[1]).slice(0, 6);
@@ -757,9 +911,9 @@ function centuryPage(n, list, ctx) {
   const body = `<h1>${esc(titre)}</h1>
 <p class="lede">${esc(`${list.length} saints de la carte sont nés au ${centuryLabel(n)}`
     + `${tete.length ? `, surtout ${tete.map(([iso, k]) => `${countryName(iso)} (${k})`).join(', ')}` : ''}.`)}</p>
-<a class="go" href="../index.html">Ouvrir la carte</a>
+<a class="go" href="../../index.html">Ouvrir la carte</a>
 <ul class="cards">
-${list.slice(0, 400).map((s) => card(`../saints/${slugs.get(s.id)}.html`, s.name.fr,
+${list.slice(0, 400).map((s) => card(`../../saints/${slugs.get(s.id)}/`, s.name.fr,
     `${s.city} · ${countryName(s.country)} · ${formatFeast(s.feast)}`)).join('')}</ul>
 ${list.length > 400 ? `<p class="note">Les 400 plus anciens sont listés ici ; les ${list.length - 400} autres se trouvent par les pages de pays.</p>\n` : ''}`;
 
@@ -768,10 +922,10 @@ ${list.length > 400 ? `<p class="note">Les 400 plus anciens sont listés ici ; l
     description: summary(`Les ${list.length} saints du ${centuryLabel(n)} recensés par SanctiMaps, `
       + `avec leur lieu de naissance et leur jour de fête.`),
     canonical: url,
-    up: 1,
-    crumbs: `<a href="../index.html">Carte</a> › <a href="index.html">Époques</a> › ${esc(centuryLabel(n))}`,
-    trail: [['SanctiMaps', `${base}/`], ['Époques', `${base}/epoques/index.html`], [titre, url]],
-    items: list.slice(0, 100).map((s) => [s.name.fr, `${base}/saints/${slugs.get(s.id)}.html`]),
+    up: 2,
+    crumbs: `<a href="../../index.html">Carte</a> › <a href="../">Époques</a> › ${esc(centuryLabel(n))}`,
+    trail: [['SanctiMaps', `${base}/`], ['Époques', `${base}/epoques/`], [titre, url]],
+    items: list.slice(0, 100).map((s) => [s.name.fr, `${base}/saints/${slugs.get(s.id)}/`]),
     body,
   });
 }
@@ -783,13 +937,13 @@ function centuriesIndex(byCentury, ctx) {
 <p class="lede">${esc(`Du ${centuryLabel(rows[0][0])} au ${centuryLabel(rows[rows.length - 1][0])}, `
     + `les saints de la carte rangés par époque.`)}</p>
 <ul class="cards">
-${rows.map(([n, list]) => card(`${siecleSlug(n)}.html`, centuryLabel(n),
+${rows.map(([n, list]) => card(`${siecleSlug(n)}/`, centuryLabel(n),
     `${list.length} saint${list.length > 1 ? 's' : ''}`)).join('')}</ul>`;
 
   return page({
     title: 'Les saints par siècle — de l’Antiquité à nos jours | SanctiMaps',
     description: 'Les saints recensés par SanctiMaps rangés par siècle, du premier siècle à aujourd’hui.',
-    canonical: `${base}/epoques/index.html`,
+    canonical: `${base}/epoques/`,
     up: 1,
     crumbs: '<a href="../index.html">Carte</a> › Époques',
     body,
@@ -803,13 +957,13 @@ function countriesIndex(byCountry, ctx) {
   const body = `<h1>Les saints, pays par pays</h1>
 <p class="lede">${esc(`${rows.length} pays comptent au moins un saint recensé. Le classement suit le nombre de fiches, de l’Italie au Pakistan.`)}</p>
 <ul class="cards">
-${rows.map(([iso, list]) => card(`${paysSlugs.get(iso)}.html`, `Saints ${deSuffix(iso)}`,
+${rows.map(([iso, list]) => card(`${paysSlugs.get(iso)}/`, `Saints ${deSuffix(iso)}`,
     `${countryName(iso)} · ${list.length} fiche${list.length > 1 ? 's' : ''}`)).join('')}</ul>`;
 
   return page({
     title: `Les saints par pays — ${rows.length} pays | SanctiMaps`,
     description: `Les saints recensés par SanctiMaps, classés par pays de naissance : ${rows.length} pays, de l’Italie au Pakistan.`,
-    canonical: `${base}/pays/index.html`,
+    canonical: `${base}/pays/`,
     up: 1,
     crumbs: '<a href="../index.html">Carte</a> › Pays',
     body,
@@ -824,13 +978,13 @@ ${MOIS.map((mois, i) => {
     const days = [...byDay.keys()].filter((k) => Number(k.split('-')[0]) === i + 1).sort();
     if (!days.length) return '';
     return `<h2>${esc(mois.charAt(0).toUpperCase() + mois.slice(1))}</h2>\n<ul class="letters">\n${days
-      .map((k) => `  <li><a href="${esc(slug(dayLabel(k)))}.html">${esc(k.split('-')[1])}</a></li>\n`).join('')}</ul>\n`;
+      .map((k) => `  <li><a href="${esc(slug(dayLabel(k)))}/">${esc(k.split('-')[1])}</a></li>\n`).join('')}</ul>\n`;
   }).join('')}`;
 
   return page({
     title: 'Calendrier des saints — le saint de chaque jour | SanctiMaps',
     description: 'Le saint du jour, jour par jour : les fêtes du calendrier des saints de l’Église catholique.',
-    canonical: `${base}/calendrier/index.html`,
+    canonical: `${base}/calendrier/`,
     up: 1,
     crumbs: '<a href="../index.html">Carte</a> › Calendrier',
     body,
@@ -847,7 +1001,7 @@ ${MOIS.map((mois, i) => {
  */
 function feedPage(ctx) {
   const { base, byDay } = ctx;
-  const url = `${base}/lettre.html`;
+  const url = `${base}/lettre/`;
   const body = `<h1>Recevoir le saint du jour</h1>
 <p class="lede">Chaque matin, les saints fêtés ce jour-là, avec leur lieu de naissance,
 leurs dates et leur biographie — ${esc(nombre(byDay))} jours de l’année pourvus.</p>
@@ -886,8 +1040,8 @@ sans avoir à venir sur le site.</p>`;
     description: 'Chaque matin, les saints fêtés ce jour-là avec leur biographie : '
       + 'par flux Atom, par courriel via un relais, ou par le calendrier du téléphone.',
     canonical: url,
-    up: 0,
-    crumbs: '<a href="index.html">Carte</a> › La lettre',
+    up: 1,
+    crumbs: '<a href="../index.html">Carte</a> › La lettre',
     trail: [['SanctiMaps', `${base}/`], ['La lettre', url]],
     body,
   });
@@ -978,6 +1132,67 @@ function main() {
   const siecleSlug = (n) => `${Math.abs(n)}${Math.abs(n) === 1 ? 'er' : 'e'}-siecle`
     + `${n < 0 ? '-av-jc' : ''}`;
 
+  // -------------------------------------------------------------------------
+  // Les prénoms
+  // -------------------------------------------------------------------------
+  //
+  // On cherche « saint Maurice », et la carte ne connaît que « Maurice
+  // d'Agaune » : l'adresse qu'on tape ne menait alors nulle part. Chaque prénom
+  // reçoit donc la sienne — `saints/saint-maurice` —, qui liste ceux qui le
+  // portent quand ils sont plusieurs, et mène droit à la fiche quand il est
+  // seul.
+  //
+  // Le genre décide du préfixe : « sainte-therese » pour un prénom que seules
+  // des femmes portent, « saint-maurice » sinon. L'autre forme existe quand
+  // même, en renvoi — personne ne devrait avoir à deviner laquelle écrire.
+  const parPrenom = new Map();
+  for (const saint of sorted) {
+    for (const nom of prenomsDe(saint)) {
+      const clef = slug(nom);
+      if (!parPrenom.has(clef)) parPrenom.set(clef, { nom, list: [] });
+      parPrenom.get(clef).list.push(saint);
+    }
+  }
+
+  // Une adresse de prénom ne prend jamais la place d'une fiche : « Sainte
+  // Sophie » porte le titre dans son nom même, et sa fiche s'appelle déjà
+  // `saints/sainte-sophie`. La fiche garde son adresse ; le prénom passe son
+  // tour.
+  const prisesParFiches = new Set(slugs.values());
+  const prenoms = new Map();
+  let volees = 0;
+  for (const [clef, entree] of parPrenom) {
+    const feminin = entree.list.every((s) => s.sex === 'f');
+    const juste = `${feminin ? 'sainte' : 'saint'}-${clef}`;
+    const autre = `${feminin ? 'saint' : 'sainte'}-${clef}`;
+    // « Sainte Blandine » porte le titre dans son nom : sa fiche occupe déjà
+    // `saints/sainte-blandine`, et elle la garde — c'est bien elle qu'on
+    // cherche en écrivant cela. La liste des Blandine se range alors sous
+    // l'autre graphie, plutôt que de n'exister nulle part.
+    const adresse = prisesParFiches.has(juste) ? autre : juste;
+    if (prisesParFiches.has(adresse)) { volees += 1; continue; }
+    prenoms.set(clef, {
+      ...entree,
+      feminin,
+      slug: adresse,
+      // L'autre graphie, quand elle est libre : « saint-therese » doit répondre
+      // comme « sainte-therese », et l'on ne sait pas laquelle sera écrite.
+      alias: adresse === juste && !prisesParFiches.has(autre) ? autre : null,
+      titre: `Les saint${feminin ? 'e' : ''}s prénommé${feminin ? 'e' : ''}s ${entree.nom}`,
+    });
+  }
+  // La page de prénom qu'une fiche mentionne : la mieux pourvue de celles où
+  // elle figure. « Maurice Tornay » renvoie ainsi aux trois Maurice, et non à
+  // la page qui ne porterait que lui.
+  const prenomParSaint = new Map();
+  for (const entree of prenoms.values()) {
+    if (entree.list.length < 2) continue;
+    for (const s of entree.list) {
+      const deja = prenomParSaint.get(s.id);
+      if (!deja || deja.list.length < entree.list.length) prenomParSaint.set(s.id, entree);
+    }
+  }
+
   const ctx = {
     base: options.base,
     slugs,
@@ -997,10 +1212,12 @@ function main() {
     countryName,
     deSuffix,
     lieuxSlugs,
+    prenoms,
+    prenomDe: (saint) => prenomParSaint.get(saint.id) || null,
     // La page du lieu, quand il en a une : un saint né dans un village qu'il
     // est seul à porter n'a pas de page de lieu, et son nom reste du texte.
     placeHref: (saint) => (lieuxSlugs.has(`${saint.country}|${saint.city}`)
-      ? `../lieux/${lieuxSlugs.get(`${saint.country}|${saint.city}`)}.html` : null),
+      ? `../../lieux/${lieuxSlugs.get(`${saint.country}|${saint.city}`)}/` : null),
     /**
      * La veille et le lendemain d'un jour de fête, pourvus l'un et l'autre.
      *
@@ -1026,32 +1243,84 @@ function main() {
       .filter((s) => s.id !== saint.id).slice(0, 12),
   };
 
+  // Chaque page est l'`index.html` d'un dossier à son nom : l'adresse s'écrit
+  // alors sans extension. Les anciennes, en `.html`, restent en renvoi — elles
+  // sont dans `renvois`, à part, pour que le plan du site les ignore.
   const files = [];
+  const renvois = [];
+  /** Une page, et le renvoi que son ancienne adresse laisse derrière elle. */
+  const publier = (dossier, nom, corps, titre) => {
+    files.push([`${dossier}/${nom}/index.html`, corps]);
+    renvois.push([`${dossier}/${nom}.html`, renvoi({
+      titre,
+      vers: `${nom}/`,
+      canonical: `${options.base}/${dossier}/${nom}/`,
+    })]);
+  };
+
   for (const saint of sorted) {
-    files.push([`saints/${slugs.get(saint.id)}.html`, saintPage(saint, ctx)]);
+    publier('saints', slugs.get(saint.id), saintPage(saint, ctx), called(saint));
   }
   const groups = letterGroups(sorted);
   for (const [letter, list] of groups) {
-    files.push([`saints/lettre-${letter.toLowerCase()}.html`, letterPage(letter, list, ctx)]);
+    publier('saints', `lettre-${letter.toLowerCase()}`, letterPage(letter, list, ctx),
+      `Les saints en ${letter}`);
   }
   files.push(['saints/index.html', saintsIndex(sorted, groups, ctx)]);
+
+  // Les prénoms : une page pour ceux que plusieurs saints portent, un renvoi
+  // vers la fiche pour les autres. Dans les deux cas l'adresse répond, ce qui
+  // est tout ce qu'on lui demande.
+  for (const entree of prenoms.values()) {
+    if (entree.list.length > 1) {
+      files.push([`saints/${entree.slug}/index.html`, prenomPage(entree, ctx)]);
+      if (entree.alias) {
+        renvois.push([`saints/${entree.alias}/index.html`, renvoi({
+          titre: entree.titre,
+          vers: `../${entree.slug}/`,
+          canonical: `${options.base}/saints/${entree.slug}/`,
+        })]);
+      }
+    } else {
+      // Un seul porteur : l'adresse mène à sa fiche, et l'autre graphie n'est
+      // pas écrite — deux mille huit cents renvois de plus pour un prénom que
+      // presque personne ne cherche au mauvais genre.
+      const seul = entree.list[0];
+      const cible = slugs.get(seul.id);
+      renvois.push([`saints/${entree.slug}/index.html`, renvoi({
+        titre: called(seul),
+        vers: `../${cible}/`,
+        canonical: `${options.base}/saints/${cible}/`,
+      })]);
+    }
+  }
+
   for (const [iso, list] of byCountry) {
-    files.push([`pays/${paysSlugs.get(iso)}.html`, countryPage(iso, list, ctx)]);
+    publier('pays', paysSlugs.get(iso), countryPage(iso, list, ctx),
+      `Saints ${deSuffix(iso)}`);
   }
   files.push(['pays/index.html', countriesIndex(byCountry, ctx)]);
   for (const [key, list] of byPlace) {
-    files.push([`lieux/${lieuxSlugs.get(key)}.html`, placePage(key, list, ctx)]);
+    publier('lieux', lieuxSlugs.get(key), placePage(key, list, ctx),
+      `Les saints ${du(key.split('|')[1])}`);
   }
   files.push(['lieux/index.html', placesIndex(byPlace, ctx)]);
   for (const [n, list] of byCentury) {
-    files.push([`epoques/${siecleSlug(n)}.html`, centuryPage(n, list, ctx)]);
+    publier('epoques', siecleSlug(n), centuryPage(n, list, ctx),
+      `Les saints du ${centuryLabel(n)}`);
   }
   files.push(['epoques/index.html', centuriesIndex(byCentury, ctx)]);
   for (const [key, list] of byDay) {
-    files.push([`calendrier/${slug(dayLabel(key))}.html`, dayPage(key, list, ctx)]);
+    publier('calendrier', slug(dayLabel(key)), dayPage(key, list, ctx),
+      `Saints fêtés le ${dayLabel(key)}`);
   }
   files.push(['calendrier/index.html', calendarIndex(byDay, ctx)]);
-  files.push(['lettre.html', feedPage({ base: options.base, byDay: byDay.size })]);
+  files.push(['lettre/index.html', feedPage({ base: options.base, byDay: byDay.size })]);
+  renvois.push(['lettre.html', renvoi({
+    titre: 'Recevoir le saint du jour',
+    vers: 'lettre/',
+    canonical: `${options.base}/lettre/`,
+  })]);
 
   // Le calendrier en abrégé, pour le service worker.
   //
@@ -1078,10 +1347,14 @@ function main() {
 
   // Le plan du site : la liste complète, pour qui préfère la lire d'un coup
   // plutôt que de suivre les liens de proche en proche.
-  const urls = ['', 'saints/index.html', 'pays/index.html', 'lieux/index.html',
-    'epoques/index.html', 'calendrier/index.html', 'lettre.html',
-    ...files.map(([path]) => path)
-      .filter((p) => !p.endsWith('index.html') && !p.endsWith('.json'))];
+  //
+  // Les adresses sont celles des dossiers, sans `index.html` à la fin : c'est
+  // la forme qu'on partage et celle que les pages déclarent canonique, et le
+  // plan ne doit pas en proposer une seconde pour la même page. Les renvois n'y
+  // figurent pas — ils portent `noindex` et n'ont rien à faire indexer.
+  const urls = ['', ...files.map(([path]) => path)
+    .filter((p) => p.endsWith('index.html'))
+    .map((p) => p.slice(0, -'index.html'.length))];
   files.push(['sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.map((u) => `<url><loc>${esc(`${options.base}/${u}`)}</loc></url>`).join('\n')}
@@ -1089,10 +1362,15 @@ ${urls.map((u) => `<url><loc>${esc(`${options.base}/${u}`)}</loc></url>`).join('
 `]);
   files.push(['robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${options.base}/sitemap.xml\n`]);
 
-  const octets = files.reduce((n, [, body]) => n + Buffer.byteLength(body), 0);
-  console.log(`Pages : ${sorted.length} saints, ${byCountry.size} pays, ${byPlace.size} lieux,`
-    + ` ${byDay.size} jours, ${byCentury.size} siècles`);
-  console.log(`  ${files.length} fichiers, ${(octets / 1024 / 1024).toFixed(1)} Mo`);
+  const tout = [...files, ...renvois];
+  const octets = tout.reduce((n, [, body]) => n + Buffer.byteLength(body), 0);
+  console.log(`Pages : ${sorted.length} saints, ${prenoms.size} prénoms, ${byCountry.size} pays,`
+    + ` ${byPlace.size} lieux, ${byDay.size} jours, ${byCentury.size} siècles`);
+  console.log(`  ${files.length} pages et ${renvois.length} renvois,`
+    + ` ${(octets / 1024 / 1024).toFixed(1)} Mo`);
+  if (volees) {
+    console.log(`  ${volees} prénoms sans page : les deux graphies sont déjà des fiches`);
+  }
   if (manquants.size) {
     console.log(`  sans complément français : ${[...manquants].join(', ')} — voyez data/reference/pays-de.json`);
   }
@@ -1105,12 +1383,21 @@ ${urls.map((u) => `<url><loc>${esc(`${options.base}/${u}`)}</loc></url>`).join('
   // Les dossiers sont refaits à neuf : un saint renommé laisserait sinon son
   // ancienne page derrière lui, et le plan du site pointerait sur deux
   // adresses pour un même homme.
-  for (const dir of ['saints', 'pays', 'calendrier', 'lieux', 'epoques']) {
+  for (const dir of ['saints', 'pays', 'calendrier', 'lieux', 'epoques', 'lettre']) {
     rmSync(join(ROOT, dir), { recursive: true, force: true });
     mkdirSync(join(ROOT, dir), { recursive: true });
   }
-  for (const [path, body] of files) writeFileSync(join(ROOT, path), body);
-  console.log(`\nÉcrit à la racine du site : saints/, pays/, lieux/, calendrier/, sitemap.xml, robots.txt`);
+  // Chaque page vit dans son propre dossier : il faut le créer avant d'écrire.
+  // On retient ceux déjà faits — cinq mille appels au système pour cinq mille
+  // pages, c'est le genre de détail qui double le temps d'un import.
+  const faits = new Set();
+  for (const [path, body] of tout) {
+    const dir = dirname(join(ROOT, path));
+    if (!faits.has(dir)) { mkdirSync(dir, { recursive: true }); faits.add(dir); }
+    writeFileSync(join(ROOT, path), body);
+  }
+  console.log(`\nÉcrit à la racine du site : saints/, pays/, lieux/, calendrier/, epoques/,`
+    + ` lettre/, sitemap.xml, robots.txt`);
 }
 
 main();

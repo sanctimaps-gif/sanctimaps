@@ -88,17 +88,39 @@ montre n'existe qu'une fois le code exécuté. Un moteur de recherche n'avait
 donc qu'une page à indexer — l'accueil — pour quatre mille six cents saints, et
 chercher « saint Odilon de Cluny » ne menait nulle part ici.
 
-À côté de la carte vivent maintenant **5 668 pages de HTML servi tel quel** :
+À côté de la carte vivent maintenant **6 322 pages de HTML servi tel quel** :
 
 | | |
 | --- | --- |
-| `saints/<nom>.html` | 4 628 fiches : dates, lieu, fête, biographie, sources |
-| `saints/lettre-<x>.html` | l'index alphabétique, coupé par initiale |
-| `pays/<pays>.html` | les saints nés dans ce pays — 91 pages |
-| `lieux/<ville>.html` | les saints nés là — 523 villes qui en comptent au moins deux |
-| `epoques/<n>e-siecle.html` | les saints d'un siècle — 27 pages |
-| `calendrier/<jour>.html` | les saints fêtés ce jour-là — 365 pages |
+| `saints/<nom>/` | 4 628 fiches : dates, lieu, fête, biographie, sources |
+| `saints/saint-<prénom>/` | 656 prénoms : tous ceux qui le portent |
+| `saints/lettre-<x>/` | l'index alphabétique, coupé par initiale |
+| `pays/<pays>/` | les saints nés dans ce pays — 91 pages |
+| `lieux/<ville>/` | les saints nés là — 523 villes qui en comptent au moins deux |
+| `epoques/<n>e-siecle/` | les saints d'un siècle — 27 pages |
+| `calendrier/<jour>/` | les saints fêtés ce jour-là — 365 pages |
+| `lettre/` | comment recevoir le saint du jour |
 | `sitemap.xml`, `robots.txt` | la liste complète, pour qui préfère la lire d'un coup |
+
+**Des adresses sans extension.** Chaque page est l'`index.html` d'un dossier à
+son nom : l'adresse s'écrit `sanctimaps.fr/saints/maurice-d-agaune`, et non
+`…/maurice-d-agaune.html`. C'est ce qu'on dicte, ce qu'on recopie dans un
+message et ce qu'un moteur de recherche montre — et c'est la seule forme qui
+marche telle quelle sur n'importe quel hébergement statique, là où l'omission
+de l'extension dépend ailleurs de la configuration du serveur. Les anciennes
+adresses en `.html` n'ont pas disparu pour autant : **10 146 pages de renvoi**
+mènent de chacune à la nouvelle, en `noindex` et avec le lien canonique qui
+va — un lien partagé il y a six mois tombe toujours sur la bonne fiche.
+
+**Une page par prénom.** On cherche « saint Maurice », et la carte ne connaît
+que « Maurice d'Agaune » : l'adresse qu'on tape ne menait nulle part.
+`saints/saint-maurice` existe maintenant, et rassemble les trois Maurice de la
+carte — d'Agaune, Duault et Tornay. Quand deux mots précèdent le lieu, le nom
+entier fait une adresse de plus : `saints/saint-maurice-tornay` mène droit à sa
+fiche. Le genre décide du préfixe — `sainte-therese` pour un prénom que seules
+des femmes portent —, et l'autre graphie répond quand même. Un prénom que porte
+un seul saint n'a pas de page à lui : son adresse renvoie à la fiche, qui dit
+déjà tout ce qu'elle aurait dit.
 
 **Le maillage compte autant que les pages.** Une page isolée n'est jamais
 trouvée : chaque fiche renvoie à son pays, à son lieu de naissance, à son jour
@@ -240,7 +262,7 @@ cercle, goutte, carré arrondi — et ne garantit que les quatre cinquièmes du
 centre. La carte entière y perdrait son bord doré ; l'emblème seul, posé au
 milieu d'un grand carré crème, ne craint aucune découpe.
 
-Le tout est déclaré dans `index.html`, dans chacune des 5 668 pages générées et
+Le tout est déclaré dans `index.html`, dans chacune des 6 322 pages générées et
 dans `site.webmanifest`, qui fait de la carte une application installable — nom,
 couleur de fond, et trois raccourcis vers le calendrier, les saints et les pays.
 
@@ -502,7 +524,7 @@ node tools/build-feed.mjs --jours 3
 node tools/build-feed.mjs --date 2026-12-25
 ```
 
-La page [`lettre.html`](lettre.html) explique comment s'y abonner — par un
+La page [`lettre/`](lettre/) explique comment s'y abonner — par un
 lecteur de flux, ou par courriel via un relais au choix du lecteur.
 
 Le flux ne demande rien : le fichier est posé à côté des autres, chacun s'y
@@ -1280,7 +1302,7 @@ data/generated/          données produites par build:data (versionnées)
 data/generated/saints.json       les fiches allégées : de quoi dessiner et chercher
 data/generated/saints-texts.json les textes longs, chargés après la carte
 tools/lib/corpus.mjs     recolle les deux, pour les outils qui lisent le corpus
-tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/
+tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/, lettre/
 tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus
 tools/make-icons.mjs     les icônes du site, tirées du logo
 tools/build-feed.mjs     la lettre quotidienne, au format Atom
@@ -1288,12 +1310,12 @@ tools/send-letter.mjs    la même lettre, remise à un routeur de courriel
 tools/lib/lettre.mjs     le texte de la lettre, écrit une fois pour les deux
 tools/lib/mailers.mjs    Brevo, Resend, Mailjet : ce qui change de l'un à l'autre
 feed.xml                 la lettre elle-même, réécrite chaque matin
-lettre.html              comment s'y abonner
+lettre/index.html        comment s'y abonner
 data/generated/calendar.json  calendrier abrégé, lu par le service worker
 tools/lib/png.mjs        lire et écrire un PNG avec le seul zlib de Node
 data/brand/logo.png      le logo d'origine
 icons/                   icônes produites, servies telles quelles
-saints/ pays/ lieux/ calendrier/  pages générées, servies telles quelles (versionnées)
+saints/ pays/ lieux/ calendrier/  pages générées, un dossier par adresse (versionnées)
 tools/import-saints.mjs  import de masse depuis Wikidata
 tools/enrich-bios.mjs    biographies des fiches écrites à la main
 tools/lib/wikimedia.mjs  ce que les deux outils Wikimedia ont en commun

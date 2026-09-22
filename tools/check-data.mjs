@@ -209,8 +209,16 @@ ok(`${bundles.length} langues, toutes complètes (${reference.size} clés)`);
 const pagesDir = join(ROOT, 'saints');
 if (existsSync(pagesDir)) {
   const published = saints.filter((s) => (s.status ?? 'published') === 'published');
-  const fiches = readdirSync(pagesDir).filter((f) => f.endsWith('.html')
-    && f !== 'index.html' && !f.startsWith('lettre-'));
+
+  // Chaque page vit dans un dossier à son nom : l'adresse s'écrit sans
+  // extension. Une fiche se reconnaît à son JSON-LD — c'est la seule marque
+  // qui la distingue à coup sûr d'une page de prénom ou d'un renvoi, dont les
+  // noms de dossier voisinent avec les siens.
+  const dossiers = readdirSync(pagesDir, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && existsSync(join(pagesDir, d.name, 'index.html')))
+    .map((d) => `saints/${d.name}/index.html`);
+  const fiches = dossiers.filter((rel) => readFileSync(join(ROOT, rel), 'utf8')
+    .includes('"@type":"Person"'));
   if (fiches.length !== published.length) {
     fail(`pages : ${fiches.length} fiches écrites pour ${published.length} saints publiés`);
   }
@@ -218,23 +226,34 @@ if (existsSync(pagesDir)) {
   const sitemap = readFileSync(join(ROOT, 'sitemap.xml'), 'utf8');
   const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
   const base = locs[0].replace(/\/$/, '');
+  /** Un fichier, ou l'`index.html` du dossier que l'adresse désigne. */
+  const fichierDe = (rel) => {
+    const chemin = join(ROOT, rel);
+    if (rel.endsWith('/') || rel === '') return join(chemin, 'index.html');
+    return chemin;
+  };
   let morts = 0;
   for (const loc of locs) {
     const rel = loc.slice(base.length).replace(/^\//, '');
-    if (rel && !existsSync(join(ROOT, rel))) { morts += 1; if (morts < 4) fail(`plan du site : ${rel} n'existe pas`); }
+    if (!existsSync(fichierDe(rel))) { morts += 1; if (morts < 4) fail(`plan du site : ${rel} n'existe pas`); }
   }
   if (morts >= 4) fail(`plan du site : ${morts} adresses sans fichier`);
 
-  // Les liens internes, vus depuis une poignée de pages tirées au hasard :
-  // les relire toutes coûterait une minute pour la même certitude.
+  // Une adresse de dossier qui ne porterait pas d'`index.html` répondrait par
+  // une liste de fichiers, ou par rien du tout selon l'hébergeur : le plan du
+  // site le dirait, mais les liens entre pages, eux, sont relatifs et n'y
+  // passent pas. On les vérifie donc de la même manière, depuis une poignée de
+  // pages tirées au hasard — les relire toutes coûterait une minute pour la
+  // même certitude.
   const echantillon = ['saints/index.html', 'pays/index.html', 'calendrier/index.html',
-    'lieux/index.html', 'pays/france.html', 'lieux/rome.html',
-    ...fiches.filter((_, i) => i % 97 === 0).map((f) => `saints/${f}`)];
+    'lieux/index.html', 'epoques/index.html', 'lettre/index.html',
+    'pays/france/index.html', 'lieux/rome/index.html',
+    ...fiches.filter((_, i) => i % 97 === 0)];
   let brises = 0;
   for (const rel of echantillon) {
     const html = readFileSync(join(ROOT, rel), 'utf8');
     for (const [, href] of html.matchAll(/href="([^"#?:]+)"/g)) {
-      const cible = join(dirname(join(ROOT, rel)), href);
+      const cible = fichierDe(join(dirname(rel), href) + (href.endsWith('/') ? '/' : ''));
       if (!existsSync(cible)) { brises += 1; if (brises < 4) fail(`lien brisé dans ${rel} : ${href}`); }
     }
   }

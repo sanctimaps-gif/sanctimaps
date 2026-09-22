@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recevoir le saint du jour — la lettre quotidienne | SanctiMaps</title>
+<meta name="description" content="Chaque matin, les saints fêtés ce jour-là avec leur biographie : par flux Atom, par courriel via un relais, ou par le calendrier du téléphone.">
+<link rel="canonical" href="https://sanctimaps.fr/lettre/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Recevoir le saint du jour — la lettre quotidienne | SanctiMaps">
+<meta property="og:description" content="Chaque matin, les saints fêtés ce jour-là avec leur biographie : par flux Atom, par courriel via un relais, ou par le calendrier du téléphone.">
+<meta property="og:url" content="https://sanctimaps.fr/lettre/">
+<meta property="og:site_name" content="SanctiMaps">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="../favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" type="image/png" sizes="16x16" href="../icons/icon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../icons/icon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../icons/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="../icons/apple-touch-icon.png">
+<link rel="manifest" href="../site.webmanifest">
+<meta name="theme-color" content="#f8eede">
+<meta property="og:image" content="https://sanctimaps.fr/icons/icon-512.png">
+<meta name="twitter:card" content="summary">
+<link rel="alternate" type="application/atom+xml" title="SanctiMaps — le saint du jour" href="../feed.xml">
+<link rel="stylesheet" href="../src/css/page.css">
+<script>
+// Le thème choisi sur la carte vaut aussi ici, et se pose avant le premier
+// rendu : une page claire qui vire au sombre après coup se voit.
+try {
+  var saved = localStorage.getItem('sanctimaps.theme.v1');
+  if (saved === 'light' || saved === 'dark') document.documentElement.setAttribute('data-theme', saved);
+} catch (e) { /* sans stockage, on suit le navigateur */ }
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"SanctiMaps","item":"https://sanctimaps.fr/"},{"@type":"ListItem","position":2,"name":"La lettre","item":"https://sanctimaps.fr/lettre/"}]}</script>
+</head>
+<body>
+<header class="top">
+  <div class="top__in">
+    <a class="top__brand" href="../index.html">SanctiMaps</a>
+    <nav class="top__nav">
+      <a href="../index.html">La carte</a>
+      <a href="../saints/">Tous les saints</a>
+      <a href="../pays/">Par pays</a>
+      <a href="../lieux/">Par lieu</a>
+      <a href="../epoques/">Par siècle</a>
+      <a href="../calendrier/">Calendrier</a>
+      <a href="../lettre/">La lettre</a>
+    </nav>
+  </div>
+</header>
+<div class="wrap">
+<nav class="crumbs"><a href="../index.html">Carte</a> › La lettre</nav>
+<h1>Recevoir le saint du jour</h1>
+<p class="lede">Chaque matin, les saints fêtés ce jour-là, avec leur lieu de naissance,
+leurs dates et leur biographie — 365 jours de l’année pourvus.</p>
+
+<h2>Par flux, dans votre lecteur</h2>
+<p>L’adresse à donner à votre lecteur de nouvelles :</p>
+<p><a class="go" href="../feed.xml">https://sanctimaps.fr/feed.xml</a></p>
+<p class="note">C’est un flux Atom, régénéré chaque matin. Il porte les quatorze
+derniers jours : vous abonner aujourd’hui vous rend aussi la quinzaine écoulée.</p>
+
+<h2>Par courriel</h2>
+<p>SanctiMaps ne tient pas de fichier d’adresses, et n’en tiendra pas : le site
+est fait de fichiers posés sur un hébergement, sans serveur pour recueillir
+quoi que ce soit. Recueillir des adresses demanderait une machine à tenir, des
+clés, et la garde de données personnelles qui ne nous regardent pas.</p>
+<p>Pour recevoir la lettre dans votre boîte, passez donc par un relais de votre
+choix — il en existe de gratuits, qui transforment un flux en courriel
+quotidien. Donnez-lui l’adresse ci-dessus. Votre abonnement reste alors chez
+vous, et le site n’apprend ni qui lit, ni combien.</p>
+
+<h2>Sur le téléphone</h2>
+<p>Deux autres chemins, dans <a href="../index.html">les réglages de la carte</a> :
+le <strong>calendrier du téléphone</strong>, qui garde les fêtes de l’année et
+sonne à l’heure que vous fixez, hors ligne et sans compte ; et le
+<strong>réveil en arrière-plan</strong>, une fois l’application posée sur
+l’écran d’accueil, où le navigateur annonce lui-même le saint du jour.</p>
+
+<h2>Ce que la lettre contient</h2>
+<p>Pour chaque saint fêté : son nom, ses dates, sa ville et son pays de
+naissance, sa notice, et sa biographie quand nous l’avons — rapportée de
+Wikipédia, avec l’adresse de l’article. Tout est lisible dans le lecteur,
+sans avoir à venir sur le site.</p>
+<footer class="foot">
+  <p>SanctiMaps — carte mondiale des saints de l’Église catholique.
+  Données de <a href="https://www.wikidata.org/" rel="noreferrer">Wikidata</a> (CC0)
+  et de <a href="https://fr.wikipedia.org/" rel="noreferrer">Wikipédia</a> (CC BY-SA).</p>
+</footer>
+</div>
+</body>
+</html>

@@ -109,7 +109,7 @@ export function lettreDuJour(date, { base, corpus, i18n }) {
     const bio = pickText(saint.bio, 'fr');
     const notice = pickText(saint.desc, 'fr');
     const dates = vie(saint, { formatYear });
-    const url = `${base}/saints/${slugs.get(saint.id)}.html`;
+    const url = `${base}/saints/${slugs.get(saint.id)}/`;
     const reperes = [dates, saint.city, countryName(saint.country)].filter(Boolean).join(' · ');
 
     html.push(`<h3><a href="${esc(url)}">${esc(saint.name.fr)}</a></h3>`);
@@ -123,7 +123,7 @@ export function lettreDuJour(date, { base, corpus, i18n }) {
     texte.push(url, '');
   }
 
-  const pageDuJour = `${base}/calendrier/${slug(jour)}.html`;
+  const pageDuJour = `${base}/calendrier/${slug(jour)}/`;
   html.push(`<p><a href="${esc(pageDuJour)}">Voir la page du ${esc(jour)}</a>`
     + ` · <a href="${esc(`${base}/`)}">La carte</a></p>`);
   texte.push(`Voir la page du ${jour} : ${pageDuJour}`, `La carte : ${base}/`);
