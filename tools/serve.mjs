@@ -24,6 +24,7 @@
 
 import { createServer } from 'node:http';
 import { createReadStream, statSync } from 'node:fs';
+import { createGzip } from 'node:zlib';
 import { extname, join, normalize, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -165,8 +166,28 @@ function serveFile(req, res) {
     return;
   }
 
+  const type = TYPES[extname(target)] || 'application/octet-stream';
+
+  // On compresse ce qui est du texte, comme le fait l'hébergement en
+  // production. Sans cela, mesurer le temps de chargement ici ne dirait rien
+  // de ce que vit un lecteur : le corpus fait cinq mégaoctets sur le disque et
+  // un mégaoctet et demi sur le fil.
+  const compressible = /^(text\/|application\/(json|javascript|xml|manifest))/.test(type);
+  const accepte = /\bgzip\b/.test(req.headers['accept-encoding'] || '');
+
+  if (compressible && accepte && stat.size > 1024) {
+    res.writeHead(200, {
+      'content-type': type,
+      'content-encoding': 'gzip',
+      vary: 'accept-encoding',
+      'cache-control': 'no-cache',
+    });
+    createReadStream(target).pipe(createGzip()).pipe(res);
+    return;
+  }
+
   res.writeHead(200, {
-    'content-type': TYPES[extname(target)] || 'application/octet-stream',
+    'content-type': type,
     'content-length': stat.size,
     'cache-control': 'no-cache',
   });

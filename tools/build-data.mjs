@@ -616,7 +616,40 @@ if (errors.length) {
 }
 
 saints.sort((a, b) => (a.born ?? a.died) - (b.born ?? b.died));
-writeFileSync(join(OUT, 'saints.json'), JSON.stringify({ saints }));
+
+/**
+ * Le corpus part en deux fichiers, et c'est une question de temps d'attente.
+ *
+ * Les trois champs de texte long — la biographie, la notice, les sources —
+ * font à eux seuls les trois quarts du corpus : trois mégaoctets et demi sur
+ * quatre et demi. Or aucun des trois ne sert à dessiner la carte ni à
+ * chercher : ils ne paraissent qu'une fois une fiche ouverte. Les charger
+ * avant le premier dessin, c'était faire attendre la carte pour du texte que
+ * le lecteur ne demandait pas encore.
+ *
+ * « saints.json » ne porte donc plus que ce qu'il faut pour placer les croix
+ * et pour chercher — le patronage y reste, la recherche l'indexe. Les textes
+ * vont dans « saints-texts.json », que l'application va chercher une fois la
+ * carte à l'écran et fond dans les fiches à son arrivée.
+ */
+const CHAMPS_LOURDS = ['bio', 'desc', 'sources'];
+
+const leger = [];
+const textes = {};
+for (const saint of saints) {
+  const allege = { ...saint };
+  const part = {};
+  for (const champ of CHAMPS_LOURDS) {
+    if (allege[champ] === undefined) continue;
+    part[champ] = allege[champ];
+    delete allege[champ];
+  }
+  leger.push(allege);
+  if (Object.keys(part).length) textes[saint.id] = part;
+}
+
+writeFileSync(join(OUT, 'saints.json'), JSON.stringify({ saints: leger }));
+writeFileSync(join(OUT, 'saints-texts.json'), JSON.stringify(textes));
 
 const perCountry = new Set(saints.map((s) => s.country));
 const perContinent = new Map();

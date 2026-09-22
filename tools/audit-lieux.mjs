@@ -30,6 +30,8 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { lireCorpus } from './lib/corpus.mjs';
+
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const GEN = join(ROOT, 'data', 'generated');
 
@@ -80,7 +82,7 @@ function placeInName(name) {
 }
 
 const detail = process.argv.includes('--detail');
-const saints = JSON.parse(readFileSync(join(GEN, 'saints.json'), 'utf8')).saints;
+const saints = lireCorpus();
 const names = JSON.parse(readFileSync(join(GEN, 'country-names.json'), 'utf8'));
 const paysFr = new Set(Object.values(names).map((n) => fold(n.fr)));
 

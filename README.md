@@ -631,6 +631,77 @@ Deux remèdes, tous deux vérifiés au navigateur :
 La règle du fond valait déjà sous un fond de tuiles, et pour la même raison :
 quand tout l'écran est de la carte, il n'y a plus de « à côté ».
 
+## Le temps de chargement
+
+Avant que la carte paraisse, l'application téléchargeait **cinq mégaoctets et
+demi** : treize secondes en 4G, trente en 3G. Elle en télécharge aujourd'hui
+**584 kilooctets**, et la carte est là en deux secondes.
+
+| Avant la carte | Avant | Après |
+| --- | --- | --- |
+| Octets transférés | 5 751 ko | **584 ko** |
+| 4G (4 Mb/s) | 12 952 ms | **2 112 ms** |
+| 3G (1,6 Mb/s) | 29 595 ms | **4 596 ms** |
+
+Mesuré au navigateur, réseau bridé par le protocole de mise au point de
+Chrome, sur un écran de téléphone.
+
+### Ce qui pesait, et ce qu'on en a fait
+
+Le corpus faisait à lui seul quatre-vingt-treize pour cent du chargement. En le
+pesant champ par champ, trois d'entre eux en font les trois quarts :
+
+```
+bio        2 258 ko  46,5 %
+sources      921 ko  19,0 %
+desc         328 ko   6,8 %
+                     ——————
+                      72,3 %
+```
+
+Or aucun des trois ne sert à dessiner la carte ni à chercher : ils ne
+paraissent qu'une fois une fiche ouverte. `build:data` écrit donc deux
+fichiers : `saints.json`, qui ne porte plus que de quoi placer les croix et
+chercher — le patronage y reste, la recherche l'indexe —, et
+`saints-texts.json`, que l'application va chercher **une fois la carte à
+l'écran**.
+
+Les textes se fondent alors dans les fiches déjà en place, sur les objets
+eux-mêmes : tout ce qui en tient une — la carte, la recherche, une fiche
+ouverte — voit le récit apparaître sans rien redemander. Une fiche ouverte dans
+la seconde qui suit l'arrivée montre son nom, ses dates et son lieu, puis se
+complète sous les yeux. Une fiche retouchée localement garde ce que
+l'administrateur y a écrit : sa version l'emporte.
+
+Le réservoir de l'assistant — `candidates.json`, 69 ko — ne part plus au
+démarrage non plus : seul un administrateur l'ouvre, et il est demandé au
+premier examen du réservoir.
+
+### Ce que les outils y gagnent, et ce qu'ils y perdent
+
+Rien, et c'est vérifié : `tools/lib/corpus.mjs` recolle les deux fichiers, et
+tous les outils passent par lui. Le flux régénéré et les 4 628 fiches statiques
+sont identiques au caractère près à ceux d'avant la coupure.
+
+### Le serveur de développement compresse
+
+`npm start` sert désormais le texte en gzip, comme l'hébergement en production.
+Sans cela, mesurer le temps de chargement en local ne disait rien de ce que vit
+un lecteur : le corpus fait cinq mégaoctets sur le disque et un mégaoctet et
+demi sur le fil.
+
+### Ce qui reste à gagner
+
+Deux postes, mesurés, que je n'ai pas touchés :
+
+- **Les douze fichiers de langue** partent tous au démarrage — 190 ko bruts,
+  une cinquantaine compressés — alors qu'un seul s'affiche. Les charger à la
+  demande suppose de rendre `setLanguage` asynchrone, ce qui touche une pièce
+  que tout le reste appelle.
+- **Le code de l'administrateur** — `admin.js`, `wiki.js`, `expert.js`,
+  `addForm.js`, 66 ko bruts — part pour tout le monde. Un `import()` au premier
+  affichage du panneau le réserverait à qui l'ouvre.
+
 ## La recherche
 
 Une seule barre. On y écrit ce qu'on a en tête, dans n'importe quel ordre :
@@ -1206,6 +1277,9 @@ data/reference/exonymes.json graphies acceptées pour les localités
 data/saints/biographies.json biographies rapportées pour les fiches écrites à la main
 data/saints/traductions.json biographies traduites de l'anglais, et les cinq écartées
 data/generated/          données produites par build:data (versionnées)
+data/generated/saints.json       les fiches allégées : de quoi dessiner et chercher
+data/generated/saints-texts.json les textes longs, chargés après la carte
+tools/lib/corpus.mjs     recolle les deux, pour les outils qui lisent le corpus
 tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/
 tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus
 tools/make-icons.mjs     les icônes du site, tirées du logo

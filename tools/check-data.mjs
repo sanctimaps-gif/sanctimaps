@@ -11,6 +11,8 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { lireCorpus } from './lib/corpus.mjs';
+
 import { WORLD_SIZE, project, unproject } from '../src/js/map/projection.js';
 import { centuryOf } from '../src/js/data.js';
 
@@ -60,7 +62,7 @@ ok('projection réversible');
 
 // --- Saints -----------------------------------------------------------------
 
-const { saints } = read('saints.json');
+const saints = lireCorpus();
 const { candidates } = read('candidates.json');
 const names = read('country-names.json');
 
@@ -206,7 +208,7 @@ ok(`${bundles.length} langues, toutes complètes (${reference.size} clés)`);
  */
 const pagesDir = join(ROOT, 'saints');
 if (existsSync(pagesDir)) {
-  const published = read('saints.json').saints.filter((s) => (s.status ?? 'published') === 'published');
+  const published = saints.filter((s) => (s.status ?? 'published') === 'published');
   const fiches = readdirSync(pagesDir).filter((f) => f.endsWith('.html')
     && f !== 'index.html' && !f.startsWith('lettre-'));
   if (fiches.length !== published.length) {

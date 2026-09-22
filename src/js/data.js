@@ -73,7 +73,7 @@ function readStore() {
  * corpus d'origine en effaçant simplement cette couche.
  */
 export class Atlas {
-  constructor({ world, countryNames, saints, candidates }) {
+  constructor({ world, countryNames, saints }) {
     this.worldSize = world.worldSize;
     this.bounds = world.bounds;
     this.continents = world.continents;
@@ -84,13 +84,91 @@ export class Atlas {
     this.continentById = new Map(this.continents.map((c) => [c.id, c]));
     this.baseSaints = saints.saints.map((s) => ({ ...s, status: PUBLISHED }));
     this.baseById = new Map(this.baseSaints.map((s) => [s.id, s]));
-    this.candidates = candidates.candidates;
+
+    // Les deux morceaux qui ne servent pas au premier dessin, et qu'on ne
+    // télécharge donc pas avant lui. Voir `ensureTexts` et `ensureCandidates`.
+    this.candidates = [];
+    this.textsPromise = null;
+    this.candidatesPromise = null;
+    this.textsListeners = new Set();
 
     this.store = readStore();
     this.placeCache = new Map();
     this.detailCache = new Map();
     this.viewerRole = 'visitor';
     this.reindex();
+  }
+
+  // -- ce qui arrive après la carte ------------------------------------------
+
+  /**
+   * Va chercher les textes longs — biographie, notice, sources.
+   *
+   * Ils font les trois quarts du corpus et ne paraissent qu'une fois une fiche
+   * ouverte : les attendre avant le premier dessin, c'était faire patienter la
+   * carte pour du texte que le lecteur n'avait pas demandé. Ils arrivent donc
+   * après, et se fondent dans les fiches déjà en place.
+   *
+   * Le fondu se fait **sur les objets eux-mêmes**, non sur des copies : tout ce
+   * qui tient déjà une fiche — la carte, la recherche, une fiche ouverte — voit
+   * le texte apparaître sans rien redemander. Une fiche retouchée localement
+   * garde ce que l'administrateur y a écrit : sa version l'emporte.
+   */
+  ensureTexts() {
+    if (!this.textsPromise) {
+      this.textsPromise = getJSON(`${BASE}/saints-texts.json`)
+        .then((textes) => {
+          for (const saint of this.baseSaints) {
+            const part = textes[saint.id];
+            if (!part) continue;
+            for (const [champ, valeur] of Object.entries(part)) {
+              if (saint[champ] === undefined) saint[champ] = valeur;
+            }
+          }
+          this.textsReady = true;
+          // Les fiches retouchées sont des copies : elles ne verraient rien.
+          this.reindex();
+          for (const fn of this.textsListeners) fn();
+          return true;
+        })
+        .catch(() => {
+          // Sans les textes, les fiches restent lisibles : nom, dates, lieu,
+          // fête. Mieux vaut une fiche sans récit qu'une carte qui refuse de
+          // s'ouvrir parce qu'un fichier manque.
+          this.textsPromise = null;
+          return false;
+        });
+    }
+    return this.textsPromise;
+  }
+
+  /** Prévenu quand les textes sont là, pour redessiner ce qui les montre. */
+  onTextsReady(fn) {
+    if (this.textsReady) fn();
+    this.textsListeners.add(fn);
+    return () => this.textsListeners.delete(fn);
+  }
+
+  /**
+   * Va chercher le réservoir de fiches candidates.
+   *
+   * Il ne sert qu'à l'assistant, que seul un administrateur ouvre : le charger
+   * pour tout le monde, c'était soixante-dix kilooctets demandés à chaque
+   * visiteur pour un écran qu'il ne verra jamais.
+   */
+  ensureCandidates() {
+    if (!this.candidatesPromise) {
+      this.candidatesPromise = getJSON(`${BASE}/candidates.json`)
+        .then((data) => {
+          this.candidates = data.candidates;
+          return this.candidates;
+        })
+        .catch(() => {
+          this.candidatesPromise = null;
+          return [];
+        });
+    }
+    return this.candidatesPromise;
   }
 
   // -- couche locale ---------------------------------------------------------
@@ -298,12 +376,20 @@ export class Atlas {
   }
 }
 
+/**
+ * Ce qu'il faut avoir pour dessiner la carte, et rien de plus.
+ *
+ * Trois fichiers, et trois seulement : les contours du monde, le nom des pays,
+ * et les fiches allégées. Les textes longs et le réservoir de l'assistant
+ * viennent après, quand on en a besoin — voir `ensureTexts` et
+ * `ensureCandidates`. Le corpus complet pesait un mégaoctet et demi compressé
+ * avant que rien ne s'affiche ; il en pèse trois cents kilooctets.
+ */
 export async function loadAtlas() {
-  const [world, countryNames, saints, candidates] = await Promise.all([
+  const [world, countryNames, saints] = await Promise.all([
     getJSON(`${BASE}/world.json`),
     getJSON(`${BASE}/country-names.json`),
     getJSON(`${BASE}/saints.json`),
-    getJSON(`${BASE}/candidates.json`),
   ]);
-  return new Atlas({ world, countryNames, saints, candidates });
+  return new Atlas({ world, countryNames, saints });
 }

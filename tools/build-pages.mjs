@@ -43,6 +43,8 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { lireCorpus } from './lib/corpus.mjs';
+
 // L'internationalisation de l'application sert ici telle quelle : les pages
 // doivent dire les dates dans les mêmes mots que la carte — « IIe siècle » et
 // non « vers 200 ». Elle attend un document ; on lui en donne l'ombre.
@@ -899,7 +901,7 @@ function main() {
   const options = parseArgs(process.argv.slice(2));
   if (options.help) { console.log(HELP); return; }
 
-  const saints = JSON.parse(readFileSync(join(GEN, 'saints.json'), 'utf8')).saints;
+  const saints = lireCorpus();
   const names = JSON.parse(readFileSync(join(GEN, 'country-names.json'), 'utf8'));
   const de = JSON.parse(readFileSync(join(ROOT, 'data', 'reference', 'pays-de.json'), 'utf8')).de;
   const world = JSON.parse(readFileSync(join(GEN, 'world.json'), 'utf8'));

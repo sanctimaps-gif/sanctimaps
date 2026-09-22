@@ -14,6 +14,8 @@ import { readFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { lireCorpus } from './corpus.mjs';
+
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const GEN = join(ROOT, 'data', 'generated');
 
@@ -44,7 +46,7 @@ export const clefDuJour = (date) => `${String(date.getMonth() + 1).padStart(2, '
  * Une lettre qui renverrait à des adresses inventées ne vaudrait rien.
  */
 export function chargerCorpus() {
-  const saints = JSON.parse(readFileSync(join(GEN, 'saints.json'), 'utf8')).saints
+  const saints = lireCorpus()
     .filter((s) => (s.status ?? 'published') === 'published');
   const noms = JSON.parse(readFileSync(join(GEN, 'country-names.json'), 'utf8'));
   const countryName = (iso) => noms[iso]?.fr || iso;

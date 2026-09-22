@@ -302,6 +302,16 @@ async function start() {
   map.setLanguage(getLanguage());
   goWorld();
 
+  // La carte est là ; les textes longs peuvent venir maintenant. Ils se
+  // fondent dans les fiches à leur arrivée, et l'on redessine ce qui les
+  // montre — une fiche ouverte entre-temps se complète sous les yeux.
+  atlas.ensureTexts();
+  atlas.onTextsReady(() => {
+    detailPanel.refresh();
+    fiche.refresh();
+    dailyPanel.render();
+  });
+
   // Une adresse peut nommer un saint : « ?saint=blandine ». C'est par là
   // qu'arrive un lecteur venu d'une page de fiche ou d'un moteur de recherche,
   // et la carte doit alors s'ouvrir sur ce saint plutôt que sur le monde.

@@ -146,6 +146,11 @@ export class AssistantPanel {
       this.availability = status;
       this.render();
     });
+    // « Combien de fiches sans biographie » se compte sur les textes longs, qui
+    // arrivent après la carte. Tant qu'ils ne sont pas là, le compte serait
+    // celui d'un corpus entièrement muet : on redessine quand ils arrivent.
+    this.atlas.ensureTexts();
+    this.stopTexts = this.atlas.onTextsReady(() => this.render());
   }
 
   setSource(source) {
@@ -398,7 +403,15 @@ export class AssistantPanel {
     this.render();
   }
 
-  scan() {
+  /**
+   * Passe le réservoir au crible.
+   *
+   * Le réservoir n'est pas chargé au démarrage : il ne sert qu'ici, et seul un
+   * administrateur y vient. On l'attend donc au premier examen, une fois, et
+   * les suivants partent aussitôt.
+   */
+  async scan() {
+    if (!this.atlas.candidates.length) await this.atlas.ensureCandidates();
     this.review = reviewPool(this.atlas, this.handled);
     this.render();
   }
