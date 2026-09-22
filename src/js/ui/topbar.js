@@ -1,7 +1,23 @@
 import { formatNumber, t } from '../i18n.js';
 import { h } from './dom.js';
 
-/** Fil d'Ariane, indice de navigation, sélecteur de continent et légende. */
+/**
+ * Fil d'Ariane, compte des saints du pays ouvert, et légende.
+ *
+ * ## Ce qui n'y est plus
+ *
+ * Trois choses encombraient le haut de la carte et en ont été retirées : la
+ * consigne « Choisissez un continent », le cartouche « 4 628 saints recensés
+ * dans 91 pays », et la rangée de pastilles Europe / Afrique / Asie…
+ *
+ * Elles disaient ou faisaient ce que la carte dit ou fait déjà mieux
+ * qu'elles : on choisit un continent en le touchant, et le nombre de saints
+ * se lit sur les pages d'index. Sur un téléphone, elles prenaient trois
+ * bandes de la hauteur utile et recouvraient l'Atlantique nord.
+ *
+ * Reste le compte du pays ouvert — « 1 094 saints ici » —, qui n'est écrit
+ * nulle part ailleurs et qu'on ne peut pas deviner en regardant.
+ */
 export class TopBar {
   constructor(host, atlas, { onWorld, onContinent }) {
     this.atlas = atlas;
@@ -11,12 +27,10 @@ export class TopBar {
 
     this.trail = h('nav', { class: 'trail', 'aria-label': 'fil d’Ariane' });
     this.hint = h('p', { class: 'hint' });
-    this.chips = h('div', { class: 'continents' });
-    this.tally = h('p', { class: 'tally' });
     this.legend = h('div', { class: 'legend' });
 
     host.append(
-      h('header', { class: 'topbar' }, this.trail, this.hint, this.tally, this.chips),
+      h('header', { class: 'topbar' }, this.trail, this.hint),
       this.legend,
     );
     this.render();
@@ -53,29 +67,17 @@ export class TopBar {
     }
     this.trail.replaceChildren(...crumbs);
 
+    // Combien de saints dans le pays ouvert. Au monde et au continent, il n'y
+    // a rien à dire que la carte ne montre : on se tait plutôt que de poser
+    // une consigne sur l'Atlantique.
     if (mode === 'country') {
       const n = this.atlas.saintsIn(countryId).length;
       this.hint.textContent = n === 0 ? t('misc.noneHere')
         : n === 1 ? t('misc.saintHere') : t('misc.saintsHere', { n: formatNumber(n) });
     } else {
-      this.hint.textContent = mode === 'world' ? t('nav.hintWorld') : t('nav.hintContinent');
+      this.hint.textContent = '';
     }
-
-    // Compteur d'ensemble, à la manière d'un cartouche de carte : il dit d'un
-    // coup d'œil ce que le corpus couvre, avant même d'avoir cliqué.
-    const total = this.atlas.saints.length;
-    const countries = new Set(this.atlas.saints.map((s) => s.country)).size;
-    this.tally.textContent = t('misc.counted', {
-      n: formatNumber(total), c: formatNumber(countries),
-    });
-    this.tally.hidden = mode !== 'world';
-
-    this.chips.replaceChildren(...this.atlas.continents.map((continent) => h('button', {
-      class: `chip chip--action${continent.id === continentId ? ' is-active' : ''}`,
-      type: 'button',
-      text: t(`continent.${continent.id}`),
-      onclick: () => this.onContinent(continent.id),
-    })));
+    this.hint.hidden = mode !== 'country';
 
     this.legend.replaceChildren(
       h('h2', { class: 'legend__title', text: t('legend.title') }),

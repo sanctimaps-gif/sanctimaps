@@ -7,8 +7,6 @@ export default {
   nav: {
     world: 'Welt',
     back: 'Zurück',
-    hintWorld: 'Wählen Sie einen Kontinent',
-    hintContinent: 'Wählen Sie ein Land',
     hintCountry: 'Zoomen Sie für Dörfer; tippen Sie auf einen Punkt für den Eintrag',
   },
   continent: {
@@ -317,7 +315,6 @@ export default {
     birthplace: 'Geburt eines Heiligen',
   },
   misc: {
-    counted: '{n} Heilige in {c} Ländern verzeichnet',
     circa: 'um',
     century: '{n}. Jahrhundert',
     millennium: '{n}. Jahrtausend',

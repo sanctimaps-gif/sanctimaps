@@ -100,7 +100,13 @@ body {
 
 button, input, select, textarea { font: inherit; color: inherit; }
 
+/* `position: relative` n'est pas un détail : sans lui, le bouton du tiroir et
+   le tiroir lui-même — tous deux posés en absolu — se calaient sur la page
+   entière et non sur la partie carte. Les trois traits du menu venaient alors
+   se poser sur le titre, qu'ils recouvraient à moitié. Ils tiennent désormais
+   le coin haut-gauche de la carte, sous le bandeau. */
 .app {
+  position: relative;
   display: flex;
   flex: 1 1 auto;
   min-height: 0;
@@ -457,24 +463,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: rgb(36 32 27 / 72%);
   padding: 0.2rem 0.7rem;
   border-radius: 999px;
-}
-
-/* Cartouche de couverture : combien de saints, dans combien de pays. */
-.tally {
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--panel);
-  background: rgb(36 32 27 / 82%);
-  padding: 0.2rem 0.7rem;
-  border-radius: 999px;
-  font-variant-numeric: tabular-nums;
-}
-
-.continents {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-inline-start: auto;
 }
 
 /* ------------------------------------------- Choix parmi plusieurs saints */
@@ -1095,20 +1083,6 @@ a.btn {
   background: var(--paper);
 }
 
-.chip--action {
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  background: var(--panel);
-}
-
-.chip--action:hover { background: var(--accent-soft); }
-
-.chip--action.is-active {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
-}
-
 .chips {
   list-style: none;
   display: flex;
@@ -1337,20 +1311,6 @@ a.btn {
 
 .zoom__btn { width: 2.9rem; height: 2.9rem; }
   .scale { inset-block-end: 0.6rem; }
-
-  /* Les continents défilent sur une seule ligne plutôt que d'empiler
-     trois rangées de puces au-dessus de la carte. */
-  .continents {
-    margin-inline-start: 0;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-    max-width: 100%;
-    padding-bottom: 0.2rem;
-  }
-
-  .continents::-webkit-scrollbar { display: none; }
-  .chip--action { white-space: nowrap; }
 
   .label--country .label__text { font-size: 0.72rem; }
 }

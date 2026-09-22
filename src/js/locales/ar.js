@@ -7,8 +7,6 @@ export default {
   nav: {
     world: 'العالم',
     back: 'رجوع',
-    hintWorld: 'اختر قارة',
-    hintContinent: 'اختر بلدًا',
     hintCountry: 'قرّب لرؤية القرى، وانقر نقطة لفتح البطاقة',
   },
   continent: {
@@ -317,7 +315,6 @@ export default {
     birthplace: 'مولد قدّيس',
   },
   misc: {
-    counted: '{n} قدّيسًا في {c} بلدًا',
     circa: 'نحو',
     century: 'القرن {n}',
     millennium: 'الألفية {n}',

@@ -7,8 +7,6 @@ export default {
   nav: {
     world: 'World',
     back: 'Back',
-    hintWorld: 'Choose a continent',
-    hintContinent: 'Choose a country',
     hintCountry: 'Zoom in for villages; tap a point to open an entry',
   },
   continent: {
@@ -317,7 +315,6 @@ export default {
     birthplace: 'Birthplace of a saint',
   },
   misc: {
-    counted: '{n} saints recorded in {c} countries',
     circa: 'c.',
     century: '{o} century',
     millennium: '{o} millennium',

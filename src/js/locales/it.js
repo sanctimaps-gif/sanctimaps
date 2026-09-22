@@ -7,8 +7,6 @@ export default {
   nav: {
     world: 'Mondo',
     back: 'Indietro',
-    hintWorld: 'Scegli un continente',
-    hintContinent: 'Scegli un paese',
     hintCountry: 'Ingrandisci per vedere i villaggi; tocca un punto per aprire una scheda',
   },
   continent: {
@@ -317,7 +315,6 @@ export default {
     birthplace: 'Nascita di un santo',
   },
   misc: {
-    counted: '{n} santi censiti in {c} paesi',
     circa: 'ca.',
     century: '{r} secolo',
     millennium: '{r} millennio',

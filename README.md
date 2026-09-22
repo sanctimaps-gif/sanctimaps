@@ -275,10 +275,12 @@ dans 91 pays » — avant même le premier clic. Il s'efface dès qu'on descend
 d'une échelle, où le compte devient celui du pays ouvert.
 
 Le déplacement est borné à chaque échelle : on ne peut pas dériver
-indéfiniment hors de la carte. La touche `Échap` remonte d'un niveau — de
-même qu'un clic sur la mer, tant qu'aucun fond de rues n'est posé ; le fil
-d'Ariane et les puces de continents permettent d'aller directement où l'on
-veut.
+indéfiniment hors de la carte. La touche `Échap` remonte d'un niveau — et, au
+monde comme au continent, un clic sur la mer aussi, tant qu'aucun fond de rues
+n'est posé. En vue pays il ne le fait plus : l'écran y est couvert de croix
+serrées, et un doigt qui en manquait une remontait au continent, emportant le
+pays et ses quatre cents saints. Le fil d'Ariane permet d'aller directement où
+l'on veut.
 
 ### Zoomer, une fois un pays ouvert
 
@@ -529,6 +531,24 @@ est un choix : on n'y touche pas, on se contente d'amener la croix ouverte dans
 la partie visible, par un déplacement et jamais par un zoom. Quand la fiche
 s'ouvre au terme d'un vol depuis le monde, elle s'ouvre **avant** le vol :
 le cadrage doit être calculé sur les deux tiers, non sur la hauteur d'avant.
+
+### Ce qui a été retiré du haut de la carte
+
+Trois choses encombraient le bandeau et n'y sont plus : la consigne
+« Choisissez un continent », le cartouche « 4 628 saints recensés dans 91
+pays », et la rangée de pastilles Europe / Afrique / Asie… Sur un téléphone,
+elles occupaient trois bandes de la hauteur utile et recouvraient l'Atlantique
+nord ; elles disaient ou faisaient ce que la carte dit ou fait déjà — on
+choisit un continent en le touchant, et les chiffres du corpus sont écrits en
+toutes lettres dans le bandeau de titre, au-dessus.
+
+Reste le compte du pays ouvert — « 1 094 saints recensés » —, qui n'est écrit
+nulle part ailleurs et qu'on ne peut pas deviner en regardant.
+
+Au même endroit, le bouton du tiroir se posait **sur le titre de la page**,
+qu'il masquait à moitié. Il était pourtant placé « en haut à gauche » : mais
+son conteneur n'était pas positionné, de sorte que l'absolu se calait sur la
+page entière au lieu de la partie carte. Une déclaration manquait, une seule.
 
 ### Le geste qui faisait tout disparaître
 
@@ -1172,8 +1192,15 @@ France montre la métropole et la Corse, pas l'Atlantique jusqu'à la Guyane.
 
 Les 234 tracés de pays ne sont pas dans l'ordre de tabulation : les y mettre
 rendrait le parcours au clavier inutilisable. L'accès sans souris passe par la
-recherche, le fil d'Ariane et les puces de continents ; les points de naissance
-des saints, eux, sont focalisables et s'ouvrent avec `Entrée`.
+recherche — où l'on écrit un pays, un siècle, une date ou un nom — et par le
+fil d'Ariane ; les points de naissance des saints, eux, sont focalisables et
+s'ouvrent avec `Entrée`.
+
+**Une réserve, et il faut la dire** : les puces de continents qui bordaient le
+haut de la carte ont été retirées, et avec elles le seul moyen d'aller
+directement à un continent sans souris. On y arrive encore par la recherche —
+écrire « Italie » ouvre le pays, donc l'Europe — mais c'est un détour. Si la
+place manque au-dessus de la carte, la place ne manque pas dans le tiroir.
 
 ## Sources
 

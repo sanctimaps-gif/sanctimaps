@@ -7,8 +7,6 @@ export default {
   nav: {
     world: 'Orbis',
     back: 'Retro',
-    hintWorld: 'Continentem elige',
-    hintContinent: 'Regionem elige',
     hintCountry: 'Propius accede ut vicos videas; punctum tange ut schedam aperias',
   },
   continent: {
@@ -317,7 +315,6 @@ export default {
     birthplace: 'Nativitas sancti',
   },
   misc: {
-    counted: 'Sancti {n} in {c} regionibus descripti',
     circa: 'circa',
     century: 'saeculum {r}',
     millennium: 'millennium {r}',

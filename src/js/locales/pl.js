@@ -7,8 +7,6 @@ export default {
   nav: {
     world: 'Świat',
     back: 'Wstecz',
-    hintWorld: 'Wybierz kontynent',
-    hintContinent: 'Wybierz kraj',
     hintCountry: 'Przybliż, aby zobaczyć wsie; dotknij punktu, aby otworzyć kartę',
   },
   continent: {
@@ -317,7 +315,6 @@ export default {
     birthplace: 'Narodziny świętego',
   },
   misc: {
-    counted: 'Świętych: {n}, w {c} krajach',
     circa: 'ok.',
     century: '{r} wiek',
     millennium: '{r} tysiąclecie',

@@ -7,8 +7,6 @@ export default {
   nav: {
     world: 'Wereld',
     back: 'Terug',
-    hintWorld: 'Kies een werelddeel',
-    hintContinent: 'Kies een land',
     hintCountry: 'Zoom in voor dorpen; tik op een punt voor een fiche',
   },
   continent: {
@@ -317,7 +315,6 @@ export default {
     birthplace: 'Geboorte van een heilige',
   },
   misc: {
-    counted: '{n} heiligen opgetekend in {c} landen',
     circa: 'ca.',
     century: '{n}e eeuw',
     millennium: '{n}e millennium',

@@ -7,8 +7,6 @@ export default {
   nav: {
     world: '世界',
     back: '返回',
-    hintWorld: '请选择一个洲',
-    hintContinent: '请选择一个国家',
     hintCountry: '放大可见村镇；点击标记查看资料',
   },
   continent: {
@@ -317,7 +315,6 @@ export default {
     birthplace: '圣人出生地',
   },
   misc: {
-    counted: '已收录 {c} 个国家的 {n} 位圣人',
     circa: '约',
     century: '{n}世纪',
     millennium: '{n}千年',

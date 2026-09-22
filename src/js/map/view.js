@@ -601,7 +601,7 @@ export class MapView {
     if (this.reserved) return this.reserved;
     const vp = this.viewport();
     this.reserved = [];
-    for (const el of document.querySelectorAll('.trail, .hint, .tally, .continents, .legend, .zoom, .scale, .attribution')) {
+    for (const el of document.querySelectorAll('.trail, .hint, .legend, .zoom, .scale, .attribution')) {
       if (el.hidden || !el.offsetParent) continue;
       const r = el.getBoundingClientRect();
       if (!r.width) continue;

@@ -7,8 +7,6 @@ export default {
   nav: {
     world: 'Мир',
     back: 'Назад',
-    hintWorld: 'Выберите континент',
-    hintContinent: 'Выберите страну',
     hintCountry: 'Приблизьте, чтобы увидеть сёла; коснитесь точки, чтобы открыть карточку',
   },
   continent: {
@@ -317,7 +315,6 @@ export default {
     birthplace: 'Место рождения святого',
   },
   misc: {
-    counted: 'Святых: {n}, в {c} странах',
     circa: 'ок.',
     century: '{r} век',
     millennium: '{r} тысячелетие',
