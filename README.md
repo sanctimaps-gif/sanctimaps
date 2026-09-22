@@ -505,12 +505,72 @@ node tools/build-feed.mjs --date 2026-12-25
 La page [`lettre.html`](lettre.html) explique comment s'y abonner — par un
 lecteur de flux, ou par courriel via un relais au choix du lecteur.
 
-Pourquoi un flux et non de vrais courriels : une lettre par courriel demande un
-endroit où recueillir les adresses — donc un serveur qui accepte un formulaire —
-et un expéditeur qui parte chaque matin — donc un compte chez un routeur, une
-clé, et la responsabilité d'un fichier d'adresses. Le flux, lui, ne demande
-rien : le fichier est posé à côté des autres, chacun s'y abonne où il veut, et
-le site n'apprend ni qui lit ni combien.
+Le flux ne demande rien : le fichier est posé à côté des autres, chacun s'y
+abonne où il veut, et le site n'apprend ni qui lit ni combien.
+
+### La même lettre, par courriel
+
+`tools/send-letter.mjs` compose la lettre du jour et la remet à un routeur de
+courriel ; `.github/workflows/daily-letter-mail.yml` l'appelle chaque matin, à
+5 h 40 UTC — une vingtaine de minutes après l'écriture du flux, de sorte que ce
+qui part par courriel dit exactement ce que le flux publie.
+
+**Le texte est écrit une seule fois**, dans `tools/lib/lettre.mjs`, et les deux
+le lisent. Deux rédactions séparées auraient divergé au premier changement —
+l'une dirait « et 12 autres », l'autre « et 12 de plus » —, et le lecteur abonné
+aux deux s'en apercevrait. Le courriel part en HTML **et** en texte brut : un
+message qui n'apporte que du HTML finit plus volontiers dans les indésirables.
+
+Trois routeurs sont prévus, tous par HTTP et sans aucune dépendance — le seul
+`fetch` de Node suffit, comme pour les fournisseurs de modèle :
+
+| | |
+| --- | --- |
+| **Brevo** | maison française, 300 courriels par jour gratuitement |
+| **Resend** | la plus simple à mettre en route, 3 000 par mois |
+| **Mailjet** | maison française également, 6 000 par mois |
+
+Rien ne part tant que les secrets ne sont pas posés : l'atelier le dit et
+s'arrête, sans échouer.
+
+```
+npm run send:letter -- --essai              # composer et montrer, sans envoyer
+npm run send:letter -- --essai --date 2026-12-25
+npm run send:letter                         # envoyer pour de bon
+```
+
+Les réglages vivent dans les secrets du dépôt — jamais dans le code :
+`MAIL_API_KEY`, `MAIL_FROM`, `MAIL_TO`, et `MAIL_API_SECRET` pour Mailjet seul.
+Le routeur se devine de la clé lorsqu'on ne le nomme pas.
+
+**Chaque destinataire reçoit son propre message.** Mettre dix adresses dans un
+même champ « à » les montre toutes à chacun ; une lettre n'a pas à révéler qui
+la reçoit. Une erreur sur l'un n'arrête pas les autres, et le compte rendu dit
+ce qui est parti et ce qui a échoué.
+
+**L'adresse d'expédition doit appartenir à un domaine vérifié** par le routeur,
+avec les enregistrements SPF et DKIM qu'il indique. Sans cela le courriel part
+quand même — et arrive dans les indésirables, ou nulle part. Ce n'est pas une
+formalité : c'est la moitié du travail.
+
+### Ce que cette lettre ne fait pas
+
+Elle ne tient **pas de liste d'abonnés**. Les adresses sont écrites à la main
+dans un secret du dépôt. Cela convient pour soi et pour quelques personnes qui
+l'ont demandé ; cela ne convient pas à une lettre publique, et il vaut mieux
+dire pourquoi que de le laisser découvrir :
+
+- **Recueillir des adresses** demande un formulaire, donc un endroit qui reçoit
+  — ce qu'un site de fichiers statiques n'a pas.
+- **Le désabonnement** doit être immédiat et sans condition. Un lien qui marche
+  suppose quelque chose qui l'écoute.
+- **Le consentement** se prouve : qui s'est abonné, quand, et comment. Le RGPD
+  ne s'accommode pas d'un fichier tenu de mémoire.
+
+Ces trois choses sont le métier des services de lettres d'information. Le jour
+où la lettre s'ouvre au public, c'est à l'un d'eux qu'il faut confier la liste
+— pas à un secret de dépôt. En attendant, chaque envoi porte de quoi se
+désabonner : une réponse suffit, et elle arrive à quelqu'un.
 
 ## L'écran en trois bandes
 
@@ -1150,6 +1210,9 @@ tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, ca
 tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus
 tools/make-icons.mjs     les icônes du site, tirées du logo
 tools/build-feed.mjs     la lettre quotidienne, au format Atom
+tools/send-letter.mjs    la même lettre, remise à un routeur de courriel
+tools/lib/lettre.mjs     le texte de la lettre, écrit une fois pour les deux
+tools/lib/mailers.mjs    Brevo, Resend, Mailjet : ce qui change de l'un à l'autre
 feed.xml                 la lettre elle-même, réécrite chaque matin
 lettre.html              comment s'y abonner
 data/generated/calendar.json  calendrier abrégé, lu par le service worker

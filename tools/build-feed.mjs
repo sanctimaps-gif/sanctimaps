@@ -27,27 +27,24 @@
  * avoir à cliquer — pas une amorce qui renverrait au site.
  */
 
-import { readFileSync, writeFileSync } from 'node:fs';
+import { writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+
+import {
+  adressePublique, chargerCorpus, clefDuJour, esc, lettreDuJour, slug,
+} from './lib/lettre.mjs';
 
 globalThis.localStorage ??= { getItem: () => null, setItem: () => {} };
 globalThis.document ??= { documentElement: {} };
 
-const { formatFeast, formatYear, pickText, setLanguage } = await import('../src/js/i18n.js');
-setLanguage('fr');
+const i18n = await import('../src/js/i18n.js');
+i18n.setLanguage('fr');
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const GEN = join(ROOT, 'data', 'generated');
 
 const DEFAULTS = {
-  base: (() => {
-    try {
-      const nom = readFileSync(join(ROOT, 'CNAME'), 'utf8').trim();
-      if (nom) return `https://${nom}`;
-    } catch { /* pas de domaine propre */ }
-    return 'https://sanctimaps-gif.github.io/sanctimaps';
-  })(),
+  base: adressePublique(),
   // Quatorze jours : un lecteur qui s'abonne aujourd'hui, ou qui revient après
   // une semaine de vacances, retrouve ce qu'il a manqué. Au-delà, le flux
   // grossit sans servir.
@@ -78,81 +75,14 @@ function parseArgs(argv) {
   return options;
 }
 
-const esc = (text) => String(text ?? '')
-  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-  .replace(/"/g, '&quot;').replace(/'/g, '&apos;');
-
-const slug = (text) => String(text ?? '')
-  .normalize('NFD').replace(/\p{Diacritic}/gu, '').replace(/[’']/g, '-')
-  .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-
-const clef = (date) => `${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
-
-/** Les dates d'un saint, dites d'un trait. */
-function vie(saint) {
-  const ne = saint.born != null
-    ? formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec }) : null;
-  const mort = saint.died != null
-    ? formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec }) : null;
-  if (ne && mort) return `${ne} – ${mort}`;
-  return ne || mort || '';
-}
-
-/**
- * Le corps d'une entrée : un jour de fête, tous ses saints.
- *
- * C'est du HTML, parce qu'un lecteur de flux sait l'afficher et qu'une liste
- * de quinze saints en texte brut serait illisible. Il reste simple — des
- * titres, des paragraphes, des liens — pour passer partout, y compris dans un
- * courriel produit par un relais.
- */
-function corpsDuJour(list, { base, slugs, countryName, jour }) {
-  const parts = [`<p>${esc(`${list.length} saint${list.length > 1 ? 's' : ''} au calendrier du ${jour}.`)}</p>`];
-
-  for (const saint of list) {
-    const bio = pickText(saint.bio, 'fr');
-    const notice = pickText(saint.desc, 'fr');
-    const dates = vie(saint);
-    const url = `${base}/saints/${slugs.get(saint.id)}.html`;
-    parts.push(`<h3><a href="${esc(url)}">${esc(saint.name.fr)}</a></h3>`);
-    parts.push(`<p><em>${esc([dates, saint.city, countryName(saint.country)].filter(Boolean).join(' · '))}</em></p>`);
-    if (notice) parts.push(`<p>${esc(notice)}</p>`);
-    if (bio) parts.push(`<p>${esc(bio)}</p>`);
-  }
-
-  parts.push(`<p><a href="${esc(`${base}/calendrier/${slug(jour)}.html`)}">Voir la page du ${esc(jour)}</a>`
-    + ` · <a href="${esc(`${base}/`)}">La carte</a></p>`);
-  return parts.join('\n');
-}
-
 function main() {
   const options = parseArgs(process.argv.slice(2));
   if (options.help) { console.log(HELP); return; }
 
-  const saints = JSON.parse(readFileSync(join(GEN, 'saints.json'), 'utf8')).saints
-    .filter((s) => (s.status ?? 'published') === 'published');
-  const names = JSON.parse(readFileSync(join(GEN, 'country-names.json'), 'utf8'));
-  const countryName = (iso) => names[iso]?.fr || iso;
-
-  // Les adresses des fiches sont celles des pages : le flux doit renvoyer aux
-  // mêmes, et non en inventer. On refait donc le même calcul, dans le même
-  // ordre — alphabétique — que `build-pages.mjs`.
-  const tries = [...saints].sort((a, b) => a.name.fr.localeCompare(b.name.fr, 'fr'));
-  const vus = new Map();
-  const slugs = new Map();
-  for (const saint of tries) {
-    const base = slug(saint.name.fr) || 'saint';
-    const n = (vus.get(base) || 0) + 1;
-    vus.set(base, n);
-    slugs.set(saint.id, n === 1 ? base : `${base}-${n}`);
-  }
-
-  const parJour = new Map();
-  for (const saint of saints) {
-    if (!parJour.has(saint.feast)) parJour.set(saint.feast, []);
-    parJour.get(saint.feast).push(saint);
-  }
-  for (const list of parJour.values()) list.sort((a, b) => a.name.fr.localeCompare(b.name.fr, 'fr'));
+  // Le corpus et le texte de la lettre viennent de `lib/lettre.mjs`, que le
+  // courriel lit aussi : deux rédactions séparées auraient divergé au premier
+  // changement, et le lecteur abonné aux deux s'en serait aperçu.
+  const corpus = chargerCorpus();
 
   const aujourdhui = options.date ? new Date(`${options.date}T09:00:00Z`) : new Date();
   aujourdhui.setHours(9, 0, 0, 0);
@@ -161,20 +91,18 @@ function main() {
   for (let i = 0; i < options.jours; i += 1) {
     const date = new Date(aujourdhui);
     date.setDate(date.getDate() - i);
-    const list = parJour.get(clef(date)) || [];
-    if (!list.length) continue;
-    const jour = formatFeast(clef(date));
+    const lettre = lettreDuJour(date, { base: options.base, corpus, i18n });
+    if (!lettre) continue;
     entrees.push({
       date,
-      jour,
-      titre: `Saints du ${jour} — ${list.map((s) => s.name.fr).slice(0, 3).join(', ')}`
-        + (list.length > 3 ? `, et ${list.length - 3} autres` : ''),
+      jour: lettre.jour,
+      titre: lettre.titre,
       // L'identifiant porte l'année : la même fête revient tous les ans, et un
       // lecteur de flux ne doit pas prendre celle de cette année pour un
       // doublon de l'an dernier.
-      id: `${options.base}/feed/${date.getFullYear()}-${clef(date)}`,
-      lien: `${options.base}/calendrier/${slug(jour)}.html`,
-      corps: corpsDuJour(list, { base: options.base, slugs, countryName, jour }),
+      id: `${options.base}/feed/${date.getFullYear()}-${clefDuJour(date)}`,
+      lien: `${options.base}/calendrier/${slug(lettre.jour)}.html`,
+      corps: lettre.html,
     });
   }
 

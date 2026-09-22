@@ -1,0 +1,83 @@
+# La lettre du jour, envoyée par courriel.
+#
+# Elle ne part que si les secrets sont posés : tant que « MAIL_API_KEY » est
+# vide, l'atelier s'arrête en le disant, sans échouer. On peut donc verser ce
+# fichier au dépôt avant d'avoir choisi un routeur.
+#
+# Les secrets à poser dans Réglages → Secrets and variables → Actions :
+#
+#   MAIL_API_KEY     la clé du routeur (Brevo, Resend ou Mailjet)
+#   MAIL_API_SECRET  le second jeton, pour Mailjet seul
+#   MAIL_FROM        « SanctiMaps <lettre@sanctimaps.fr> »
+#   MAIL_TO          les adresses, séparées par des virgules
+#
+# Aucune de ces valeurs n'est écrite dans le dépôt : les secrets ne sont
+# lisibles ni dans le code, ni dans les journaux, où GitHub les masque.
+name: Envoyer la lettre du jour
+
+on:
+  schedule:
+    # 5 h 40 UTC, soit une vingtaine de minutes après l'écriture du flux : la
+    # lettre envoyée dit exactement ce que le flux publie, et non l'inverse.
+    - cron: "40 5 * * *"
+  workflow_dispatch:
+    inputs:
+      essai:
+        description: "Composer sans envoyer"
+        type: boolean
+        default: true
+      date:
+        description: "Jour à envoyer (AAAA-MM-JJ, vide = aujourd'hui)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-letter-mail
+  cancel-in-progress: false
+
+jobs:
+  lettre:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      MAIL_PROVIDER: ${{ secrets.MAIL_PROVIDER }}
+      MAIL_API_KEY: ${{ secrets.MAIL_API_KEY }}
+      MAIL_API_SECRET: ${{ secrets.MAIL_API_SECRET }}
+      MAIL_FROM: ${{ secrets.MAIL_FROM }}
+      MAIL_TO: ${{ secrets.MAIL_TO }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      # Rien à installer : l'outil ne lit que des fichiers du dépôt et ne parle
+      # au routeur qu'avec le « fetch » de Node.
+      - name: Envoyer
+        run: |
+          set -euo pipefail
+          if [ -z "${MAIL_API_KEY}" ]; then
+            echo "Aucun routeur configuré : le secret MAIL_API_KEY est vide."
+            echo "La lettre n'est pas envoyée. Voir l'en-tête de ce fichier."
+            exit 0
+          fi
+          args=""
+          if [ "${{ inputs.essai }}" = "true" ]; then args="$args --essai"; fi
+          if [ -n "${{ inputs.date }}" ]; then args="$args --date ${{ inputs.date }}"; fi
+          node tools/send-letter.mjs $args | tee /tmp/lettre.log
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Lettre du jour, par courriel'
+            echo '```'
+            cat /tmp/lettre.log 2>/dev/null || echo "rien n'a été envoyé"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
