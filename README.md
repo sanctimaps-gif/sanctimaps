@@ -238,37 +238,57 @@ dix-sept ans à Manille, il est serviteur de Dieu, sa cause est ouverte depuis
 La source sûre est la propriété **P411** de Wikidata. L'importateur
 l'interrogeait déjà — c'est même sa condition d'entrée, puisqu'il ne retient
 que les fiches qui en portent une — mais il s'en servait pour filtrer et la
-jetait ensuite. `tools/import-statuts.mjs` va la rechercher, pour les
-4 587 fiches qui ont un identifiant Wikidata, et la dépose dans
-`data/saints/statuts.json` ; l'atelier **« Relever les statuts de
-canonisation »** le lance depuis l'onglet Actions. Ce n'est pas un réimport :
-refaire les quatre mille trois cents fiches pour ajouter un mot rouvrirait les
-noms, les dates et les lieux, et une correction ne doit pas coûter une révision
-générale.
+jetait ensuite. `tools/import-statuts.mjs` va la rechercher, et l'atelier
+**« Relever les statuts de canonisation »** le lance depuis l'onglet Actions.
+Ce n'est pas un réimport : refaire les quatre mille trois cents fiches pour
+ajouter un mot rouvrirait les noms, les dates et les lieux, et une correction
+ne doit pas coûter une révision générale. Dix-sept secondes de requêtes, un
+seul fichier touché.
 
-En attendant, la génération lit ce que les fiches disent d'elles-mêmes. La
+| | |
+| ---: | --- |
+| 2 902 | saints |
+| 1 240 | bienheureux |
+| 305 | vénérables |
+| 44 | serviteurs de Dieu |
+| 98 | sans degré connu |
+
+**Ces chiffres sont la mesure de l'erreur** : mille deux cent quarante
+bienheureux et trois cents vénérables étaient appelés « saint ».
+
+L'Orient ne dit pas « saint » mais la *classe* du saint : hiéromartyr pour un
+évêque martyrisé, thaumaturge pour un faiseur de miracles, mégalomartyr,
+stylite, égal-aux-apôtres, porte-passion, juste, croyant droit. Deux cent
+trente fiches ne portaient que cela et restaient sans degré — c'est ce qui
+privait saint Nicolas de Myre, sainte Catherine d'Alexandrie et saint Laurent
+de Rome de leur titre. Ces classes sont reconnues ; `prelate`, qui est un rang
+dans la hiérarchie et non un degré, ne l'est pas : un prélat peut n'être que
+vénérable.
+
+Quand la source se tait, la génération lit ce que la fiche dit d'elle-même. La
 notice de Wikidata nomme souvent le degré — « saint catholique », « Filipino
 Servant of God » —, et la biographie le raconte — « déclaré saint par l'Église
 catholique », « béatifié en 1888 ». On n'y cherche que la formule, jamais le
 mot nu : un récit qui mentionne « les saints de son temps » ne canonise
 personne, et « ordre de Saint-Benoît » ne fait pas un saint de tous les
-bénédictins. **2 900 fiches sur 4 589** sont ainsi renseignées.
+bénédictins. Une fiche peut enfin porter son degré en propre, et **la main
+l'emporte sur tout le reste** : c'est par là qu'on rend son titre à un saint
+des premiers siècles, qu'aucune congrégation n'a canonisé pour la raison qu'il
+n'en existait pas encore.
 
-**Les 1 689 autres ne portent aucun titre.** C'est le point de toute
+**Ce qui reste sans degré ne porte aucun titre.** C'est le point de toute
 l'affaire : le nom nu est la seule chose vraie qu'on puisse écrire d'une fiche
 dont on ignore le degré, et il vaut mieux sous-dire que canoniser quelqu'un par
-défaut. Bède et Maximilien Kolbe sont ainsi sans titre jusqu'à la première
-relève, bien qu'ils soient canonisés l'un et l'autre — c'est la limite assumée
-de la méthode, et elle se corrige d'un clic sur l'atelier.
+défaut.
 
 Le degré paraît dans la fiche de la carte (ligne « Reconnaissance »), en tête
 de chaque page de saint, dans la liste du jour et dans la lettre quotidienne :
 
 ```
-- Adomnán
+- Saint Adomnán
 - Bienheureuse Bernardyna Maria Jabłońska
 - Serviteur de Dieu Darwin Ramos
-- Sainte Élisabeth
+- Vénérable Elena Duglioli
 - Saint Pio de Pietrelcina
 ```
 

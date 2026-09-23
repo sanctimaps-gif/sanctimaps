@@ -782,8 +782,13 @@ if (ecartes.size) {
 
 // Le statut se pose après la fusion : deux fiches du même homme ne doivent pas
 // se disputer son degré, et c'est la fiche gardée qui porte la notice fondue.
-const comptes = { source: 0, notice: 0, inconnu: 0 };
+const comptes = { fiche: 0, source: 0, notice: 0, inconnu: 0 };
 for (const saint of saints) {
+  // Un degré écrit dans la fiche l'emporte sur tout : la main passe avant la
+  // machine, ici comme pour les biographies. C'est par là qu'on rend son titre
+  // à un saint des premiers siècles, qu'aucune congrégation n'a canonisé parce
+  // qu'il n'en existait pas — Wikidata n'a alors rien à dire de lui.
+  if (saint.statut) { saint.statutDe = 'fiche'; comptes.fiche += 1; continue; }
   const importe = statutsImportes[saint.id];
   if (importe) { saint.statut = importe; saint.statutDe = 'source'; comptes.source += 1; continue; }
   const devine = statutDeLaNotice(saint);

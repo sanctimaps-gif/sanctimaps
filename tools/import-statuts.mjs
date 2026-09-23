@@ -63,15 +63,29 @@ function parseArgs(argv) {
 /**
  * Le degré, tiré du nom anglais que Wikidata donne à l'élément de statut.
  *
- * Les libellés sont peu nombreux et stables — « saint », « blessed »,
- * « venerable », « Servant of God » —, mais Wikidata en porte des variantes :
- * « canonized saint », « martyr saint ». On reconnaît le mot, pas la chaîne
- * entière, et l'ordre compte : « canonized » l'emporte sur « beatified », que
- * la notice d'un canonisé mentionne encore souvent.
+ * Les libellés latins sont peu nombreux et stables — « saint », « blessed »,
+ * « venerable », « Servant of God » — avec quelques variantes : « canonized
+ * saint », « Beato ». On reconnaît le mot, pas la chaîne entière, et l'ordre
+ * compte : « canonized » l'emporte sur « beatified », que la notice d'un
+ * canonisé mentionne encore souvent.
+ *
+ * L'Orient, lui, ne dit pas « saint » mais la *classe* du saint : hiéromartyr
+ * pour un évêque martyrisé, thaumaturge pour un faiseur de miracles,
+ * mégalomartyr, stylite, égal-aux-apôtres, porte-passion, juste, croyant
+ * droit… Deux cent trente fiches du corpus ne portaient que cela, et
+ * restaient sans degré alors que toutes ces classes sont des classes de
+ * saints. Les reconnaître, c'est rendre son titre à saint Nicolas de Myre,
+ * à sainte Catherine d'Alexandrie et à saint Laurent de Rome.
+ *
+ * Ce qui reste non reconnu le reste : « prelate » est un rang dans la
+ * hiérarchie, non un degré de reconnaissance, et un prélat peut n'être que
+ * vénérable.
  */
+const ORIENT = /hieromartyr|great martyr|new martyr|reverend martyr|thaumaturg|stylite|equal[- ]to[- ]apostles|passion bearer|right-believing|righteous|confessor of the faith|\bapostle\b/i;
+
 const DEGRES = [
   ['saint', /\bsaint\b|\bcanoniz|\bcanonis/i],
-  ['bienheureux', /\bblessed\b|\bbeatif/i],
+  ['bienheureux', /\bblessed\b|\bbeatif|\bbeat[oa]\b/i],
   ['venerable', /\bvenerable\b/i],
   ['serviteur', /servant of god/i],
 ];
@@ -82,6 +96,7 @@ function degreDe(label) {
   // l'inversion coûterait cher le jour où un libellé dirait les deux.
   if (DEGRES[3][1].test(texte)) return 'serviteur';
   for (const [nom, motif] of DEGRES) if (motif.test(texte)) return nom;
+  if (ORIENT.test(texte)) return 'saint';
   return null;
 }
 
