@@ -107,6 +107,21 @@ export function t(key, params = {}) {
   return String(value).replace(/\{(\w+)\}/g, (m, name) => (name in params ? params[name] : m));
 }
 
+/**
+ * Le degré de reconnaissance par l'Église, accordé au genre.
+ *
+ * Quatre valeurs — `serviteur`, `venerable`, `bienheureux`, `saint` — et une
+ * cinquième possibilité, qui est de ne rien rendre : une fiche dont le corpus
+ * ignore le degré n'en porte aucun. Écrire « saint » par défaut reviendrait à
+ * canoniser quatre mille personnes d'un trait de code, dont certaines n'ont
+ * qu'une cause ouverte.
+ */
+export function degreLabel(degre, sex) {
+  if (!degre) return '';
+  const value = t(`degre.${degre}`, { sex });
+  return value === `degre.${degre}` ? '' : value;
+}
+
 /** Titre d'un saint, accordé au genre lorsque la langue le demande. */
 export function titleLabel(titleKey, sex) {
   return t(`title.${titleKey}`, { sex });

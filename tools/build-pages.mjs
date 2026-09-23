@@ -65,7 +65,7 @@ import { lireCorpus } from './lib/corpus.mjs';
 globalThis.localStorage ??= { getItem: () => null, setItem: () => {} };
 globalThis.document ??= { documentElement: {} };
 
-const { formatFeast, formatYear, pickText, setLanguage, titleLabel } = await import('../src/js/i18n.js');
+const { degreLabel, formatFeast, formatYear, pickText, setLanguage, titleLabel } = await import('../src/js/i18n.js');
 const { centuryOf } = await import('../src/js/data.js');
 setLanguage('fr');
 
@@ -296,16 +296,24 @@ const card = (href, name, meta) => `  <li><a href="${esc(href)}"><b>${esc(name)}
 // ---------------------------------------------------------------------------
 
 /**
- * « Saint » ou « Sainte » devant le nom — sauf quand il y est déjà.
+ * Le nom précédé de son degré — et rien devant, quand on ne le sait pas.
  *
- * Cent vingt fiches portent le titre dans leur nom même : « Sainte Sophie »,
- * « Saint Amadour ». Le préfixer sans regarder donnerait « Sainte Sainte
- * Sophie », et sur la page comme dans le titre de l'onglet.
+ * L'Église distingue quatre degrés, et la page les disait tous « saint ». Le
+ * 23 septembre, Darwin Ramos arrivait ainsi en « saint Darwin Ramos » : il est
+ * serviteur de Dieu, sa cause est ouverte depuis 2019, et aucune source ne dit
+ * autre chose. Une fiche dont le corpus ignore le degré ne porte donc aucun
+ * titre : le nom nu est la seule chose vraie qu'on puisse en écrire.
+ *
+ * Cent vingt fiches portent déjà le titre dans leur nom même — « Sainte
+ * Sophie », « Saint Amadour » : le préfixer sans regarder donnerait « Sainte
+ * Sainte Sophie », sur la page comme dans le titre de l'onglet.
  */
 function called(saint) {
   const name = saint.name.fr || saint.name.en;
-  if (/^(saints?|sainte?s?|ste?s?\.?)\s/i.test(name)) return name;
-  return `${saint.sex === 'f' ? 'Sainte' : 'Saint'} ${name}`;
+  const degre = degreLabel(saint.statut, saint.sex);
+  if (!degre) return name;
+  if (/^(saints?|saintes?|bienheureux|bienheureuse|v[ée]n[ée]rable|ste?s?\.?)\s/i.test(name)) return name;
+  return `${degre} ${name}`;
 }
 
 /** L'accord au féminin, pour « fêtée », « née », « morte ». */
@@ -471,7 +479,7 @@ function saintPage(saint, ctx) {
 ${desc ? `<p class="bio">${esc(desc)}</p>\n` : ''}${bio ? `<h2>Biographie</h2>\n<p class="bio">${esc(bio)}</p>\n` : ''}${bio && saint.traduit ? `<p class="note">Biographie traduite de l’anglais, d’après l’article de Wikipédia cité en source.</p>\n` : ''}
 <h2>Repères</h2>
 <dl class="facts">
-${fact('Fête', `<a href="../../calendrier/${esc(slug(dayLabel(saint.feast)))}/">${esc(feast)}</a>`)}${fact('Naissance', saint.born != null ? esc(formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })) : '')}${fact('Mort', saint.died != null ? esc(formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })) : '')}${fact(place, `${lieu ? `<a href="${esc(lieu)}">${esc(saint.city)}</a>` : esc(saint.city)}`
+${fact('Reconnaissance', esc(degreLabel(saint.statut, saint.sex)))}${fact('Fête', `<a href="../../calendrier/${esc(slug(dayLabel(saint.feast)))}/">${esc(feast)}</a>`)}${fact('Naissance', saint.born != null ? esc(formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })) : '')}${fact('Mort', saint.died != null ? esc(formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })) : '')}${fact(place, `${lieu ? `<a href="${esc(lieu)}">${esc(saint.city)}</a>` : esc(saint.city)}`
     + ` — <a href="../../pays/${esc(paysSlugs.get(saint.country))}/">${esc(pays)}</a>`)}${fact('Époque', epoque ? `<a href="../../epoques/${esc(siecleSlug(centuryOf(siecle)))}/">${esc(epoque)}</a>` : '')}${fact('Qualités', (saint.titles || []).map((k) => esc(titleLabel(k, saint.sex))).join(', '))}${fact('Saint patron de', esc(patronage))}${fact('Lieu associé', associe
     ? (associeHref ? `<a href="../../lieux/${esc(lieuxSlugs.get(associeHref))}/">${esc(associe)}</a>` : esc(associe))
       + ' <span class="note">(le nom désigne ce lieu ; la carte porte celui de la naissance)</span>' : '')}</dl>
@@ -588,7 +596,7 @@ function dayPage(key, list, ctx) {
     + `${rangs.length > 1 ? `, venus de ${nombre(rangs.length)} pays` : ''}. `
     + `Chacun avec son lieu de naissance et sa fiche.`)}</p>
 <ul class="cards">
-${list.map((s) => card(`../../saints/${slugs.get(s.id)}/`, s.name.fr, `${s.city} · ${countryName(s.country)}`)).join('')}</ul>
+${list.map((s) => card(`../../saints/${slugs.get(s.id)}/`, called(s), `${s.city} · ${countryName(s.country)}`)).join('')}</ul>
 
 <h2>D’où viennent-ils</h2>
 <ul class="cards">

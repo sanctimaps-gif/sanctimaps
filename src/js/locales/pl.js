@@ -58,6 +58,7 @@ export default {
     rejected: 'Odrzucona',
   },
   detail: {
+    degre: 'Uznanie',
     patronage: 'Patron',
     birth: 'Narodziny',
     death: 'Śmierć',
@@ -336,6 +337,12 @@ export default {
     system: 'Systemowy',
     light: 'Jasny',
     dark: 'Ciemny',
+  },
+  degre: {
+    saint: ['Święty', 'Święta'],
+    bienheureux: ['Błogosławiony', 'Błogosławiona'],
+    venerable: ['Czcigodny', 'Czcigodna'],
+    serviteur: ['Sługa Boży', 'Służebnica Boża'],
   },
   title: {
     abbess: 'Ksieni',

@@ -179,17 +179,17 @@ décision qui n'appartient pas à un programme — mais il compte, et il nomme :
 
 ```
 CE QUI DEMANDE UNE MEILLEURE SOURCE
-    30   0,6 %  sans lieu de naissance du tout
-   173   3,7 %  un pays entier tient lieu de ville
-   271   5,9 %  une région ou une province tient lieu de ville
+    28   0,6 %  sans lieu de naissance du tout
+   171   3,7 %  un pays entier tient lieu de ville
+   270   5,9 %  une région ou une province tient lieu de ville
 
 CE QUI DEMANDE UNE FORME FRANÇAISE
-   264   5,7 %  nom resté dans une autre langue
-  1871  40,4 %  sans notice en français
-   790  17,1 %  sans biographie en français
+   263   5,7 %  nom resté dans une autre langue
+  1864  40,6 %  sans notice en français
+   777  16,9 %  sans biographie en français
 
 CE QUI N’EST PAS UNE FAUTE
-  1271  27,5 %  le nom désigne un autre lieu que la naissance
+  1257  27,4 %  le nom désigne un autre lieu que la naissance
 ```
 
 Cette dernière ligne mérite qu'on s'y arrête, parce qu'elle a l'air d'une
@@ -198,6 +198,79 @@ on le vénère, non celui où il est né : Nazaire **de Milan** est né à Rome,
 Pancrace **de Taormine** à Antioche, Ovídio **de Braga** en Sicile. La carte,
 elle, porte le lieu de naissance. Les deux sont exacts ; c'est la fiche qui
 devait le dire, et elle le dit maintenant.
+
+### Les doublons, et ce qui leur ressemble
+
+Le corpus vient de deux endroits : deux cent quatre-vingt-cinq fiches écrites à
+la main, quatre mille trois cent quarante-trois importées de Wikidata. Rien
+n'empêchait l'une de redire ce que l'autre disait déjà, et rien ne pouvait le
+voir : **« Padre Pio » et « Pio de Pietrelcina » sont le même capucin**, l'un
+sous son nom d'usage, l'autre sous son nom de canonisation. Sur la carte, deux
+croix se posaient au même endroit ; dans la lettre du 23 septembre, le même
+homme revenait deux fois.
+
+`npm run audit:doublons` rapproche et note — nom, années, jour de fête, lieu,
+et le fait que les deux fiches viennent de corpus différents. Il ne fusionne
+rien : savoir que Jacques de Zébédée est Jacques le Majeur, ou qu'Élisabeth
+d'Aragon régna sur le Portugal, n'est pas affaire de seuil. Ce qu'un humain a
+tranché vit dans `data/reference/doublons.json`, que la génération applique :
+
+| | |
+| --- | --- |
+| `doublons` | **39 fusions.** L'identifiant gardé reçoit ce que l'autre savait de plus — une biographie, des sources, un titre, une langue de son nom — et ne perd rien de ce qu'il avait. |
+| `ressemblances` | **9 groupes gardés distincts**, et pourquoi. Les seize carmélites de Compiègne, les filles de Nicolas II, les martyrs de Chine du 9 juillet 1900 : même jour, même lieu, même année de mort, des personnes différentes. |
+
+C'est le gros du bruit, et c'est pourquoi la date de **naissance** pèse ici
+plus lourd que celle de la mort. Quatre mille six cent vingt-huit fiches sont
+devenues quatre mille cinq cent quatre-vingt-neuf ; au seuil suivant, il ne
+reste que des compagnons de martyre.
+
+### Qui est saint, et qui ne l'est pas
+
+L'Église distingue quatre degrés — **serviteur de Dieu** dès l'ouverture de la
+cause, **vénérable** quand les vertus héroïques sont reconnues,
+**bienheureux** après la béatification, **saint** après la canonisation — et
+les pages les disaient tous « saint ». Le 23 septembre, Darwin Ramos arrivait
+ainsi en troisième position sous le nom de « saint Darwin Ramos » : mort à
+dix-sept ans à Manille, il est serviteur de Dieu, sa cause est ouverte depuis
+2019, et aucune source ne dit autre chose.
+
+La source sûre est la propriété **P411** de Wikidata. L'importateur
+l'interrogeait déjà — c'est même sa condition d'entrée, puisqu'il ne retient
+que les fiches qui en portent une — mais il s'en servait pour filtrer et la
+jetait ensuite. `tools/import-statuts.mjs` va la rechercher, pour les
+4 587 fiches qui ont un identifiant Wikidata, et la dépose dans
+`data/saints/statuts.json` ; l'atelier **« Relever les statuts de
+canonisation »** le lance depuis l'onglet Actions. Ce n'est pas un réimport :
+refaire les quatre mille trois cents fiches pour ajouter un mot rouvrirait les
+noms, les dates et les lieux, et une correction ne doit pas coûter une révision
+générale.
+
+En attendant, la génération lit ce que les fiches disent d'elles-mêmes. La
+notice de Wikidata nomme souvent le degré — « saint catholique », « Filipino
+Servant of God » —, et la biographie le raconte — « déclaré saint par l'Église
+catholique », « béatifié en 1888 ». On n'y cherche que la formule, jamais le
+mot nu : un récit qui mentionne « les saints de son temps » ne canonise
+personne, et « ordre de Saint-Benoît » ne fait pas un saint de tous les
+bénédictins. **2 900 fiches sur 4 589** sont ainsi renseignées.
+
+**Les 1 689 autres ne portent aucun titre.** C'est le point de toute
+l'affaire : le nom nu est la seule chose vraie qu'on puisse écrire d'une fiche
+dont on ignore le degré, et il vaut mieux sous-dire que canoniser quelqu'un par
+défaut. Bède et Maximilien Kolbe sont ainsi sans titre jusqu'à la première
+relève, bien qu'ils soient canonisés l'un et l'autre — c'est la limite assumée
+de la méthode, et elle se corrige d'un clic sur l'atelier.
+
+Le degré paraît dans la fiche de la carte (ligne « Reconnaissance »), en tête
+de chaque page de saint, dans la liste du jour et dans la lettre quotidienne :
+
+```
+- Adomnán
+- Bienheureuse Bernardyna Maria Jabłońska
+- Serviteur de Dieu Darwin Ramos
+- Sainte Élisabeth
+- Saint Pio de Pietrelcina
+```
 
 ### Les biographies traduites
 
@@ -1304,6 +1377,10 @@ data/generated/saints-texts.json les textes longs, chargés après la carte
 tools/lib/corpus.mjs     recolle les deux, pour les outils qui lisent le corpus
 tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/, lettre/
 tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus
+tools/audit-doublons.mjs deux fiches pour la même personne, et ce qui leur ressemble
+data/reference/doublons.json  les fusions tranchées, et les ressemblances gardées
+tools/import-statuts.mjs le statut de canonisation, relevé sur Wikidata (P411)
+data/saints/statuts.json      serviteur, vénérable, bienheureux ou saint, par fiche
 tools/make-icons.mjs     les icônes du site, tirées du logo
 tools/build-feed.mjs     la lettre quotidienne, au format Atom
 tools/send-letter.mjs    la même lettre, remise à un routeur de courriel

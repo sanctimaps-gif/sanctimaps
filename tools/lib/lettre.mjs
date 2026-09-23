@@ -93,10 +93,19 @@ function vie(saint, { formatYear }) {
  */
 export function lettreDuJour(date, { base, corpus, i18n }) {
   const { parJour, slugs, countryName } = corpus;
-  const { formatFeast, formatYear, pickText } = i18n;
+  const { degreLabel, formatFeast, formatYear, pickText } = i18n;
   const jour = formatFeast(clefDuJour(date));
   const list = parJour.get(clefDuJour(date)) || [];
   if (!list.length) return null;
+
+  // Le degré devant le nom, quand le corpus le sait : tout le monde n'est pas
+  // saint, et la lettre ne doit pas canoniser un serviteur de Dieu en passant.
+  const nomme = (s) => {
+    const degre = degreLabel(s.statut, s.sex);
+    if (!degre) return s.name.fr;
+    if (/^(saints?|saintes?|bienheureux|bienheureuse|v[ée]n[ée]rable|ste?s?\.?)\s/i.test(s.name.fr)) return s.name.fr;
+    return `${degre} ${s.name.fr}`;
+  };
 
   const noms = list.map((s) => s.name.fr);
   const titre = `Saints du ${jour} — ${noms.slice(0, 3).join(', ')}`
@@ -112,12 +121,12 @@ export function lettreDuJour(date, { base, corpus, i18n }) {
     const url = `${base}/saints/${slugs.get(saint.id)}/`;
     const reperes = [dates, saint.city, countryName(saint.country)].filter(Boolean).join(' · ');
 
-    html.push(`<h3><a href="${esc(url)}">${esc(saint.name.fr)}</a></h3>`);
+    html.push(`<h3><a href="${esc(url)}">${esc(nomme(saint))}</a></h3>`);
     html.push(`<p><em>${esc(reperes)}</em></p>`);
     if (notice) html.push(`<p>${esc(notice)}</p>`);
     if (bio) html.push(`<p>${esc(bio)}</p>`);
 
-    texte.push(saint.name.fr, reperes);
+    texte.push(nomme(saint), reperes);
     if (notice) texte.push(notice);
     if (bio) texte.push(bio);
     texte.push(url, '');

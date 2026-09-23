@@ -58,6 +58,7 @@ export default {
     rejected: 'Отклонена',
   },
   detail: {
+    degre: 'Признание',
     patronage: 'Покровитель',
     birth: 'Рождение',
     death: 'Смерть',
@@ -336,6 +337,12 @@ export default {
     system: 'Системное',
     light: 'Светлое',
     dark: 'Тёмное',
+  },
+  degre: {
+    saint: ['Святой', 'Святая'],
+    bienheureux: ['Блаженный', 'Блаженная'],
+    venerable: ['Досточтимый', 'Досточтимая'],
+    serviteur: ['Слуга Божий', 'Раба Божия'],
   },
   title: {
     abbess: 'Аббатиса',

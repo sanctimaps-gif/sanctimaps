@@ -58,6 +58,7 @@ export default {
     rejected: 'Reiecta',
   },
   detail: {
+    degre: 'Agnitio',
     patronage: 'Patronus',
     birth: 'Natus',
     death: 'Mortuus',
@@ -336,6 +337,12 @@ export default {
     system: 'Ex systemate',
     light: 'Lucida',
     dark: 'Obscura',
+  },
+  degre: {
+    saint: ['Sanctus', 'Sancta'],
+    bienheureux: ['Beatus', 'Beata'],
+    venerable: 'Venerabilis',
+    serviteur: ['Servus Dei', 'Serva Dei'],
   },
   title: {
     abbess: 'Abbatissa',

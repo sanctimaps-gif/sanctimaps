@@ -532,6 +532,10 @@ const errors = [];
 // Les patronages vivent dans leur propre fichier : ils s'ajoutent à des
 // centaines de fiches sans qu'il faille rouvrir chacune d'elles.
 const PATRONAGE_FILE = 'patronages.json';
+// Le statut de canonisation, relevé par `import-statuts.mjs`. Il se lit plus
+// bas, une fois les fiches fondues, mais son nom doit être connu ici : c'est
+// un fichier du dossier des saints qui ne contient pas de saints.
+const STATUT_FILE = 'statuts.json';
 const patronages = JSON.parse(readFileSync(join(SAINTS_DIR, PATRONAGE_FILE), 'utf8')).patronage;
 
 // Les biographies rapportées de Wikipédia pour les fiches écrites à la main
@@ -555,7 +559,8 @@ try {
 } catch { /* pas de traductions : les fiches concernées restent sans récit */ }
 
 for (const file of readdirSync(SAINTS_DIR)
-  .filter((f) => f.endsWith('.json') && f !== PATRONAGE_FILE && f !== BIO_FILE && f !== TRAD_FILE)
+  .filter((f) => f.endsWith('.json')
+    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE].includes(f))
   .sort()) {
   const raw = JSON.parse(readFileSync(join(SAINTS_DIR, file), 'utf8'));
   for (const s of raw.saints) {
@@ -597,6 +602,169 @@ for (const file of readdirSync(SAINTS_DIR)
     saints.push(record);
   }
 }
+
+// ---------------------------------------------------------------------------
+// Le statut : saint, bienheureux, vénérable, serviteur de Dieu
+// ---------------------------------------------------------------------------
+
+/**
+ * Tout le monde n'est pas saint, et la carte le disait quand même.
+ *
+ * L'Église distingue quatre degrés : serviteur de Dieu dès l'ouverture de la
+ * cause, vénérable quand les vertus héroïques sont reconnues, bienheureux
+ * après la béatification, saint après la canonisation. Darwin Ramos, mort à
+ * dix-sept ans à Manille, est serviteur de Dieu ; les pages l'appelaient
+ * « saint Darwin Ramos », ce qu'aucune source ne dit et que l'Église
+ * n'a pas dit non plus.
+ *
+ * La source sûre est la propriété P411 de Wikidata, que `import-statuts.mjs`
+ * va chercher et dépose dans `data/saints/statuts.json`. Tant qu'elle manque,
+ * on lit la notice — Wikidata écrit « saint catholique », « Filipino Servant
+ * of God » —, et l'on ne retient que ce qui y est dit en toutes lettres. Ce
+ * qui reste muet le reste : une fiche sans statut ne porte aucun titre, ce qui
+ * est la seule chose vraie qu'on puisse en écrire.
+ */
+let statutsImportes = {};
+try {
+  statutsImportes = JSON.parse(readFileSync(join(SAINTS_DIR, STATUT_FILE), 'utf8')).statuts || {};
+} catch { /* pas encore importés : la notice fera ce qu'elle peut */ }
+
+/**
+ * « Saint-Benoît », « ordre de Saint-François » : un nom propre, pas un statut.
+ *
+ * Sans cela, « moine de l'ordre de Saint-Benoît » ferait un saint de tous les
+ * bénédictins du corpus.
+ */
+const NOM_PROPRE = /saintes?[- ](?=[A-ZÉÈÀÂÎÔÛ])|saints?[- ](?=[A-ZÉÈÀÂÎÔÛ])/g;
+
+const DITS = [
+  // Le plus haut degré d'abord : un canonisé a été béatifié avant, et sa
+  // notice le dit parfois encore. C'est la canonisation qui compte.
+  ['saint', /\bsaints?\b|\bsaintes?\b|canonis[ée]e?s?\b|canonized\b/i],
+  ['bienheureux', /bienheureu|b[ée]atifi|beatifi|(?:^|[,;·]\s*|\band\s+)(?:[a-zé]+\s+)?blessed\b(?![\s-]*(?:in|by|are|is|was|were|with|on|at|the|sacrament|virgin))/i],
+  ['venerable', /\bv[ée]n[ée]rables?\b/i],
+  ['serviteur', /serviteurs? de dieu|servantes? de dieu|servants? of god/i],
+];
+
+/**
+ * Ce que la biographie dit, quand la notice ne dit rien.
+ *
+ * La notice de Wikidata tient en cinq mots et nomme souvent le statut ; celle
+ * des fiches écrites à la main est une phrase de présentation — « Capucin
+ * stigmatisé de San Giovanni Rotondo » — qui n'en dit rien. La biographie,
+ * elle, raconte : « déclaré saint par l'Église catholique », « béatifié en
+ * 1888 ».
+ *
+ * On n'y cherche donc que le verbe, jamais le mot nu : un récit qui mentionne
+ * « les saints de son temps » ne canonise personne.
+ */
+const RACONTE = [
+  ['saint', /canonis[ée]|canonized|(?:d[ée]clar|reconnu|proclam|v[ée]n[ée]r)[ée]?e?s? (?:comme |)saintes?\b|is (?:a |)(?:catholic |christian |roman catholic |)saint\b|as a saint\b/i],
+  ['bienheureux', /b[ée]atifi|beatified|(?:d[ée]clar|reconnu|proclam|v[ée]n[ée]r)[ée]?e?s? (?:comme |)bienheureu/i],
+];
+
+/** Ce que la fiche dit de son statut, ou rien quand elle n'en dit rien. */
+function statutDeLaNotice(saint) {
+  const notice = [saint.desc?.fr, saint.desc?.en].filter(Boolean).join(' · ').replace(NOM_PROPRE, '');
+  // « Servant of God » passe avant « saint » : la formule entière l'emporte sur
+  // le mot isolé, et l'on ne canonise personne par inadvertance.
+  if (notice) {
+    if (DITS[3][1].test(notice)) return 'serviteur';
+    for (const [nom, motif] of DITS) if (motif.test(notice)) return nom;
+  }
+  const recit = [saint.bio?.fr, saint.bio?.en].filter(Boolean).join(' · ').replace(NOM_PROPRE, '');
+  if (recit) {
+    if (DITS[3][1].test(recit)) return 'serviteur';
+    for (const [nom, motif] of RACONTE) if (motif.test(recit)) return nom;
+  }
+  return null;
+}
+
+// ---------------------------------------------------------------------------
+// Les doublons
+// ---------------------------------------------------------------------------
+
+/**
+ * Deux fiches pour la même personne n'en font plus qu'une.
+ *
+ * Le corpus vient de deux endroits, et rien n'empêchait l'un de redire ce que
+ * l'autre disait déjà : « Padre Pio » et « Pio de Pietrelcina » sont le même
+ * capucin, l'un sous son nom d'usage, l'autre sous son nom de canonisation.
+ * Sur la carte cela faisait deux croix au même endroit, et dans la lettre du
+ * jour deux fois le même homme.
+ *
+ * On ne supprime pas : on verse. La fiche gardée reçoit ce que l'autre savait
+ * de plus — une biographie, des sources, un titre, une langue de son nom —, et
+ * ne perd rien de ce qu'elle avait. La table est écrite à la main, parce que
+ * décider que deux noms désignent la même personne n'est pas une affaire de
+ * seuil : `tools/audit-doublons.mjs` propose, un humain tranche.
+ */
+const DOUBLONS_FILE = join(ROOT, 'data', 'reference', 'doublons.json');
+let doublons = [];
+try {
+  doublons = JSON.parse(readFileSync(DOUBLONS_FILE, 'utf8')).doublons || [];
+} catch { /* pas de table : le corpus reste tel quel */ }
+
+/** Ce qui manque à la fiche gardée, et que l'écartée savait. */
+function verser(garde, ecarte) {
+  const vide = (v) => v == null || v === '' || (Array.isArray(v) && !v.length);
+  for (const [clef, valeur] of Object.entries(ecarte)) {
+    // L'identité, la place et le calendrier de la fiche gardée sont les siens :
+    // ils ont été choisis, et une fusion n'a pas à les rediscuter.
+    if (['id', 'x', 'y', 'lat', 'lng', 'city', 'country', 'feast', 'source'].includes(clef)) continue;
+    if (clef === 'sources') {
+      const vues = new Set((garde.sources || []).map((s) => s.url));
+      garde.sources = [...(garde.sources || []),
+        ...valeur.filter((s) => !vues.has(s.url) && vues.add(s.url))];
+    } else if (clef === 'titles') {
+      garde.titles = [...new Set([...(garde.titles || []), ...valeur])].sort();
+    } else if (valeur && typeof valeur === 'object' && !Array.isArray(valeur)) {
+      // Les champs par langue — nom, notice, biographie, patronage — se
+      // complètent langue par langue : un français écrit à la main reste, un
+      // anglais qui manquait arrive.
+      const fusion = { ...valeur, ...garde[clef] };
+      for (const [lang, texte] of Object.entries(valeur)) {
+        if (vide(fusion[lang])) fusion[lang] = texte;
+      }
+      garde[clef] = fusion;
+    } else if (vide(garde[clef])) {
+      garde[clef] = valeur;
+    }
+  }
+}
+
+const parId = new Map(saints.map((s) => [s.id, s]));
+const ecartes = new Set();
+for (const { garde, ecarte } of doublons) {
+  const a = parId.get(garde);
+  const b = parId.get(ecarte);
+  if (!a) { errors.push(`doublons.json — identifiant gardé inconnu : ${garde}`); continue; }
+  if (!b) { errors.push(`doublons.json — identifiant écarté inconnu : ${ecarte}`); continue; }
+  if (ecartes.has(garde)) { errors.push(`doublons.json — ${garde} est gardé ici et écarté ailleurs`); continue; }
+  verser(a, b);
+  ecartes.add(ecarte);
+}
+if (ecartes.size) {
+  const avant = saints.length;
+  for (let i = saints.length - 1; i >= 0; i -= 1) if (ecartes.has(saints[i].id)) saints.splice(i, 1);
+  console.log(`Doublons : ${avant - saints.length} fiches fondues dans la leur`);
+}
+
+// Le statut se pose après la fusion : deux fiches du même homme ne doivent pas
+// se disputer son degré, et c'est la fiche gardée qui porte la notice fondue.
+const comptes = { source: 0, notice: 0, inconnu: 0 };
+for (const saint of saints) {
+  const importe = statutsImportes[saint.id];
+  if (importe) { saint.statut = importe; saint.statutDe = 'source'; comptes.source += 1; continue; }
+  const devine = statutDeLaNotice(saint);
+  if (devine) { saint.statut = devine; saint.statutDe = 'notice'; comptes.notice += 1; }
+  else comptes.inconnu += 1;
+}
+for (const id of Object.keys(statutsImportes)) {
+  if (!parId.has(id) && !ecartes.has(id)) errors.push(`${STATUT_FILE} — identifiant inconnu : ${id}`);
+}
+console.log(`Statuts : ${comptes.source} de Wikidata, ${comptes.notice} lus dans la notice,`
+  + ` ${comptes.inconnu} inconnus`);
 
 for (const id of Object.keys(patronages)) {
   if (!ids.has(id)) errors.push(`${PATRONAGE_FILE} — identifiant inconnu : ${id}`);

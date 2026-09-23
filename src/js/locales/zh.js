@@ -58,6 +58,7 @@ export default {
     rejected: '已退回',
   },
   detail: {
+    degre: '教会认可',
     patronage: '主保',
     birth: '出生',
     death: '逝世',
@@ -336,6 +337,12 @@ export default {
     system: '跟随系统',
     light: '浅色',
     dark: '深色',
+  },
+  degre: {
+    saint: '圣',
+    bienheureux: '真福',
+    venerable: '可敬者',
+    serviteur: '天主之仆',
   },
   title: {
     abbess: '女隐修院院长',

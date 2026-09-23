@@ -1,0 +1,98 @@
+# Relève le statut de canonisation de chaque fiche, puis publie.
+#
+# À lancer depuis l'onglet « Actions » du dépôt. Le travail se fait sur une
+# machine de GitHub, qui a accès à Internet — Wikidata n'est pas joignable
+# depuis partout —, et le résultat est versé dans le dépôt, ce qui redéploie
+# le site.
+#
+# C'est l'atelier à lancer une fois, puis de loin en loin : une cause qui
+# avance change un statut, et une béatification ne se produit pas deux fois par
+# semaine. Il ne touche qu'un fichier — `data/saints/statuts.json` —, ne
+# réécrit ni les noms ni les dates, et ne peut donc pas rouvrir le corpus en
+# entier pour corriger un mot.
+name: Relever les statuts de canonisation
+
+on:
+  workflow_dispatch:
+    inputs:
+      lot:
+        description: "Identifiants par requête"
+        required: false
+        default: "250"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: import-statuts
+  cancel-in-progress: false
+
+jobs:
+  statuts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Installer les jeux de données sources
+        run: npm ci
+
+      - name: Interroger Wikidata
+        run: |
+          set -euo pipefail
+          node tools/import-statuts.mjs --lot "${{ inputs.lot }}" | tee /tmp/statuts.log
+
+      # Rien n'est publié sans être passé par les mêmes contrôles que le reste.
+      - name: Régénérer et contrôler
+        run: |
+          set -euo pipefail
+          npm run build:data | tee /tmp/build.log
+          npm run build:pages | tee /tmp/pages.log
+          node tools/build-feed.mjs | tee /tmp/feed.log
+          npm run check
+
+      - name: Verser au dépôt
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/saints/statuts.json data/generated saints pays lieux calendrier epoques \
+            lettre lettre.html sitemap.xml robots.txt feed.xml
+          if git diff --cached --quiet; then
+            echo "Rien de neuf : les statuts sont déjà à jour."
+            exit 0
+          fi
+          releves=$(grep -oE 'Statuts relevés : [0-9]+ fiches' /tmp/statuts.log | head -1 \
+            || echo "Statuts relevés")
+          git commit -m "${releves}" -m "$(cat /tmp/statuts.log)"
+          git push origin HEAD:${{ github.ref_name }}
+
+      # Un envoi fait avec le jeton du dépôt ne réveille pas les autres
+      # ateliers : la reconstruction du site se demande donc explicitement.
+      - name: Demander la reconstruction du site
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" \
+            && echo "Reconstruction demandée."
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Statuts de canonisation'
+            echo '```'
+            cat /tmp/statuts.log 2>/dev/null || echo "la relève n'a pas abouti"
+            echo '```'
+            grep -E 'Statuts|saints.json' /tmp/build.log 2>/dev/null || true
+          } >> "$GITHUB_STEP_SUMMARY"

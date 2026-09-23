@@ -58,6 +58,7 @@ export default {
     rejected: 'Geweigerd',
   },
   detail: {
+    degre: 'Erkenning',
     patronage: 'Beschermheilige van',
     birth: 'Geboorte',
     death: 'Overlijden',
@@ -336,6 +337,12 @@ export default {
     system: 'Systeem',
     light: 'Licht',
     dark: 'Donker',
+  },
+  degre: {
+    saint: 'Heilige',
+    bienheureux: 'Zalige',
+    venerable: 'Eerbiedwaardige',
+    serviteur: ['Dienaar Gods', 'Dienares Gods'],
   },
   title: {
     abbess: 'Abdis',

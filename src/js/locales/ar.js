@@ -58,6 +58,7 @@ export default {
     rejected: 'مرفوضة',
   },
   detail: {
+    degre: 'الاعتراف',
     patronage: 'شفيع',
     birth: 'الولادة',
     death: 'الوفاة',
@@ -336,6 +337,12 @@ export default {
     system: 'النظام',
     light: 'فاتحة',
     dark: 'داكنة',
+  },
+  degre: {
+    saint: ['القديس', 'القديسة'],
+    bienheureux: ['الطوباوي', 'الطوباوية'],
+    venerable: ['المكرَّم', 'المكرَّمة'],
+    serviteur: ['خادم الله', 'خادمة الله'],
   },
   title: {
     abbess: 'رئيسة دير',

@@ -58,6 +58,7 @@ export default {
     rejected: 'Respinta',
   },
   detail: {
+    degre: 'Riconoscimento',
     patronage: 'Patrono di',
     birth: 'Nascita',
     death: 'Morte',
@@ -336,6 +337,12 @@ export default {
     system: 'Sistema',
     light: 'Chiaro',
     dark: 'Scuro',
+  },
+  degre: {
+    saint: ['San', 'Santa'],
+    bienheureux: ['Beato', 'Beata'],
+    venerable: 'Venerabile',
+    serviteur: ['Servo di Dio', 'Serva di Dio'],
   },
   title: {
     abbess: 'Badessa',

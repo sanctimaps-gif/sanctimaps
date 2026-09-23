@@ -58,6 +58,7 @@ export default {
     rejected: 'Rejected',
   },
   detail: {
+    degre: 'Recognition',
     patronage: 'Patron saint of',
     birth: 'Born',
     death: 'Died',
@@ -336,6 +337,12 @@ export default {
     system: 'System',
     light: 'Light',
     dark: 'Dark',
+  },
+  degre: {
+    saint: 'Saint',
+    bienheureux: 'Blessed',
+    venerable: 'Venerable',
+    serviteur: ['Servant of God', 'Servant of God'],
   },
   title: {
     abbess: 'Abbess',
