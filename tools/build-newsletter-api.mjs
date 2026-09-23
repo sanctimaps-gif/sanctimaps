@@ -65,6 +65,8 @@ function score(saint) {
   const bio = i18n.pickText(saint.bio, 'fr') || '';
   const desc = i18n.pickText(saint.desc, 'fr') || '';
   let points = 0;
+  // Les saints canonisés passent devant les bienheureux, vénérables et serviteurs de Dieu.
+  points += { saint: 40, bienheureux: 20, venerable: 5 }[saint.statut] || 0;
   if (!saint.source) points += 100;            // fiche écrite à la main
   if (saint.patronage) points += 30;
   if (bio) points += 20 + Math.min(bio.length, 600) / 60;
@@ -130,6 +132,8 @@ function main() {
       life: vie(saint),
       place: [saint.city, countryName(saint.country)].filter(Boolean).join(', ') || null,
       patronage: i18n.pickText(saint.patronage, 'fr') || null,
+      status: saint.statut || null,
+      status_label: i18n.degreLabel(saint.statut, saint.sex) || null,
     }));
 
     writeFileSync(join(OUT, `${day}.json`), `${JSON.stringify({
