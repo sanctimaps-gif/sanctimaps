@@ -1,0 +1,112 @@
+# Cherche une biographie aux fiches qui n'en ont aucune, puis publie.
+#
+# À lancer depuis l'onglet « Actions » du dépôt. Le travail se fait sur une
+# machine de GitHub, qui a accès à Internet — Wikidata et Wikipédia ne sont pas
+# joignables depuis tous les réseaux.
+#
+# L'import de masse ne demandait que deux articles, le français et l'anglais.
+# Sept cent soixante-douze fiches n'en ont dans aucune des deux, et ce n'est pas
+# un hasard : ce sont des martyrs d'Espagne, d'Italie, de Chine, de Pologne et
+# de Corée, dont la vie est écrite dans leur langue. Cet atelier va la chercher
+# où elle est.
+#
+# Il ne traduit pas : la carte n'affiche que le français, et la traduction
+# s'écrit à la main dans data/saints/traductions.json. Ce qu'il rapporte en est
+# la matière.
+name: Compléter les biographies
+
+on:
+  workflow_dispatch:
+    inputs:
+      langues:
+        description: "Langues à interroger, séparées par des virgules (vide = toutes)"
+        required: false
+        default: ""
+      lot:
+        description: "Identifiants par requête"
+        required: false
+        default: "200"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: completer-bios
+  cancel-in-progress: false
+
+jobs:
+  bios:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Installer les jeux de données sources
+        run: npm ci
+
+      - name: Chercher les biographies manquantes
+        run: |
+          set -euo pipefail
+          # Des « if » et non des « && » : sous `set -e`, un test qui échoue en
+          # fin de ligne arrêterait le script.
+          args=(--lot "${{ inputs.lot }}")
+          if [ -n "${{ inputs.langues }}" ]; then
+            args+=(--langues "${{ inputs.langues }}")
+          fi
+          node tools/completer-bios.mjs "${args[@]}" | tee /tmp/bios.log
+
+      - name: Régénérer et contrôler
+        run: |
+          set -euo pipefail
+          npm run build:data | tee /tmp/build.log
+          npm run build:pages | tee /tmp/pages.log
+          node tools/build-feed.mjs | tee /tmp/feed.log
+          npm run check
+          npm run audit:lieux | tee /tmp/audit.log
+
+      - name: Verser au dépôt
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/saints/bios-importees.json data/generated saints pays lieux calendrier \
+            epoques lettre lettre.html sitemap.xml robots.txt feed.xml
+          if git diff --cached --quiet; then
+            echo "Rien de neuf : aucune biographie de plus."
+            exit 0
+          fi
+          rapportees=$(grep -oE '^[0-9]+ biographies rapportées' /tmp/bios.log | head -1 \
+            || echo "Des biographies")
+          git commit -m "${rapportees}" -m "$(cat /tmp/bios.log)"
+          git push origin HEAD:${{ github.ref_name }}
+
+      - name: Demander la reconstruction du site
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" \
+            && echo "Reconstruction demandée."
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Biographies manquantes'
+            echo '```'
+            cat /tmp/bios.log 2>/dev/null || echo "la recherche n'a pas abouti"
+            echo '```'
+            echo '## Ce que vaut le corpus après coup'
+            echo '```'
+            cat /tmp/audit.log 2>/dev/null || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

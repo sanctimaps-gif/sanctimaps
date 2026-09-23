@@ -272,6 +272,35 @@ de chaque page de saint, dans la liste du jour et dans la lettre quotidienne :
 - Saint Pio de Pietrelcina
 ```
 
+### Les sept cent soixante-douze sans récit
+
+L'import de masse ne demandait à Wikidata que deux articles : le français et
+l'anglais. C'est ce qui s'affiche, et cela couvrait quatre fiches sur cinq. Le
+cinquième cinquième n'a d'article dans aucune des deux — et ce n'est pas un
+hasard :
+
+```
+ESP 248   ITA 130   CHN 72   POL 52   FRA 47   KOR 30   RUS 28   TUR 22
+```
+
+Deux cent quarante-huit martyrs de la guerre d'Espagne, cent trente Italiens,
+soixante-douze Chinois de 1900, cinquante-deux Polonais, trente Coréens. **Leur
+vie est écrite**, mais en espagnol, en italien, en polonais, en coréen. C'est
+la question qui était trop étroite, non la source qui est muette.
+
+`tools/completer-bios.mjs` la repose en vingt-trois langues, d'une seule
+requête par lot — on demande tous les articles d'un élément et l'on lit le
+domaine de chacun, plutôt qu'une requête par langue —, et dépose ce qu'il
+trouve dans `data/saints/bios-importees.json` avec l'adresse de chaque article.
+L'atelier **« Compléter les biographies »** le lance depuis l'onglet Actions ;
+il lui faut Internet, que Wikidata n'accorde pas depuis tous les réseaux.
+
+Il ne traduit pas, et c'est délibéré. La carte n'affiche que le français : une
+biographie espagnole reste invisible tant qu'elle n'est pas traduite à la main
+dans `traductions.json`, comme l'ont été les cinq cent trente-huit biographies
+anglaises. Ce que l'outil rapporte, c'est la matière de cette traduction — et,
+en attendant, une fiche qui sait où l'on parle d'elle.
+
 ### Les biographies traduites
 
 Cinq cent quarante-trois fiches n'avaient de récit qu'en anglais. La carte
@@ -1381,6 +1410,8 @@ tools/audit-doublons.mjs deux fiches pour la même personne, et ce qui leur ress
 data/reference/doublons.json  les fusions tranchées, et les ressemblances gardées
 tools/import-statuts.mjs le statut de canonisation, relevé sur Wikidata (P411)
 data/saints/statuts.json      serviteur, vénérable, bienheureux ou saint, par fiche
+tools/completer-bios.mjs une biographie pour les fiches qui n'en ont dans aucune des deux langues
+data/saints/bios-importees.json  ce qu'il rapporte, langue par langue
 tools/make-icons.mjs     les icônes du site, tirées du logo
 tools/build-feed.mjs     la lettre quotidienne, au format Atom
 tools/send-letter.mjs    la même lettre, remise à un routeur de courriel

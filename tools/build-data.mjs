@@ -536,6 +536,10 @@ const PATRONAGE_FILE = 'patronages.json';
 // bas, une fois les fiches fondues, mais son nom doit être connu ici : c'est
 // un fichier du dossier des saints qui ne contient pas de saints.
 const STATUT_FILE = 'statuts.json';
+// Les biographies rapportées des Wikipédia autres que la française et
+// l'anglaise, par `completer-bios.mjs`. Même remarque : ce n'est pas un
+// fichier de saints.
+const BIOS_IMPORTEES_FILE = 'bios-importees.json';
 const patronages = JSON.parse(readFileSync(join(SAINTS_DIR, PATRONAGE_FILE), 'utf8')).patronage;
 
 // Les biographies rapportées de Wikipédia pour les fiches écrites à la main
@@ -558,9 +562,21 @@ try {
   traductions = JSON.parse(readFileSync(join(SAINTS_DIR, TRAD_FILE), 'utf8')).traductions || {};
 } catch { /* pas de traductions : les fiches concernées restent sans récit */ }
 
+// Les biographies allées chercher dans les autres Wikipédia — l'espagnole,
+// l'italienne, la polonaise, la coréenne — pour les fiches qui n'avaient de
+// récit dans aucune des deux langues que l'import demandait. Elles ne
+// s'affichent pas telles quelles : la carte ne montre que le français, et
+// c'est `traductions.json` qui les y fait entrer une à une. Elles servent
+// d'abord à savoir où l'on parle de ces saints-là.
+let biosImportees = {};
+try {
+  biosImportees = JSON.parse(readFileSync(join(SAINTS_DIR, BIOS_IMPORTEES_FILE), 'utf8'))
+    .biographies || {};
+} catch { /* pas encore cherchées */ }
+
 for (const file of readdirSync(SAINTS_DIR)
   .filter((f) => f.endsWith('.json')
-    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE].includes(f))
+    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, BIOS_IMPORTEES_FILE].includes(f))
   .sort()) {
   const raw = JSON.parse(readFileSync(join(SAINTS_DIR, file), 'utf8'));
   for (const s of raw.saints) {
@@ -588,6 +604,20 @@ for (const file of readdirSync(SAINTS_DIR)
     if (rapportee && !s.bio) {
       record.bio = rapportee.bio;
       record.sources = [...(s.sources || []), ...rapportee.sources];
+    }
+
+    // Les biographies venues des autres langues comblent langue par langue, et
+    // n'écrasent rien : une fiche qui a déjà son récit français le garde.
+    const ailleurs = biosImportees[s.id];
+    if (ailleurs?.bio) {
+      const fusion = { ...record.bio };
+      for (const [lang, texte] of Object.entries(ailleurs.bio)) {
+        if (!fusion[lang]) fusion[lang] = texte;
+      }
+      record.bio = fusion;
+      const vues = new Set((record.sources || []).map((src) => src.url));
+      record.sources = [...(record.sources || []),
+        ...(ailleurs.sources || []).filter((src) => !vues.has(src.url) && vues.add(src.url))];
     }
 
     // La traduction ne comble qu'un manque : elle n'écrase jamais un français
@@ -771,6 +801,9 @@ for (const id of Object.keys(patronages)) {
 }
 for (const id of Object.keys(biographies)) {
   if (!ids.has(id)) errors.push(`${BIO_FILE} — identifiant inconnu : ${id}`);
+}
+for (const id of Object.keys(biosImportees)) {
+  if (!ids.has(id)) errors.push(`${BIOS_IMPORTEES_FILE} — identifiant inconnu : ${id}`);
 }
 for (const [id, t] of Object.entries(traductions)) {
   if (!ids.has(id)) errors.push(`${TRAD_FILE} — identifiant inconnu : ${id}`);
