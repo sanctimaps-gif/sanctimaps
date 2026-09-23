@@ -1000,6 +1000,55 @@ ${MOIS.map((mois, i) => {
 }
 
 /**
+ * Les réglages de la newsletter par courriel (data/newsletter.json).
+ *
+ * `abonnement` est l'adresse du script Google qui reçoit les inscriptions
+ * (voir newsletter/LISEZMOI.md). Tant qu'elle est vide, la page garde son
+ * ancien texte : le site ne recueille aucune adresse.
+ */
+function lireReglagesNewsletter() {
+  try {
+    const reglages = JSON.parse(readFileSync(join(ROOT, 'data', 'newsletter.json'), 'utf8'));
+    const adresse = String(reglages.abonnement || '').trim();
+    return { abonnement: /^https:\/\/script\.google\.com\/macros\/s\/[\w-]+\/exec$/.test(adresse) ? adresse : '' };
+  } catch {
+    return { abonnement: '' };
+  }
+}
+
+function sectionCourriel({ abonnement }) {
+  if (!abonnement) {
+    return `<h2>Par courriel</h2>
+<p>SanctiMaps ne tient pas de fichier d’adresses, et n’en tiendra pas : le site
+est fait de fichiers posés sur un hébergement, sans serveur pour recueillir
+quoi que ce soit. Recueillir des adresses demanderait une machine à tenir, des
+clés, et la garde de données personnelles qui ne nous regardent pas.</p>
+<p>Pour recevoir la lettre dans votre boîte, passez donc par un relais de votre
+choix — il en existe de gratuits, qui transforment un flux en courriel
+quotidien. Donnez-lui l’adresse ci-dessus. Votre abonnement reste alors chez
+vous, et le site n’apprend ni qui lit, ni combien.</p>`;
+  }
+  const champ = 'display:block;width:100%;max-width:420px;padding:.55em .7em;margin:.3em 0 .9em;'
+    + 'border:1px solid currentColor;border-radius:6px;font:inherit;background:transparent;color:inherit';
+  return `<h2>Par courriel</h2>
+<p>Recevez chaque matin la newsletter de SanctiMaps dans votre boîte.
+Un e-mail vous demandera de confirmer votre inscription.</p>
+<form class="abonnement" method="post" action="${esc(abonnement)}">
+  <label>Adresse e-mail<input type="email" name="email" required maxlength="254" autocomplete="email" style="${champ}"></label>
+  <label>Prénom (facultatif)<input type="text" name="prenom" maxlength="80" autocomplete="given-name" style="${champ}"></label>
+  <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none">
+  <input type="hidden" name="source" value="sanctimaps.fr/lettre">
+  <p class="note">J’accepte de recevoir chaque jour par e-mail la newsletter de SanctiMaps.
+  Je peux me désinscrire à tout moment via le lien présent dans chaque e-mail.</p>
+  <p><button type="submit" class="go" style="cursor:pointer;font:inherit">Je m’inscris</button></p>
+</form>
+<p class="note">Vos données (adresse, prénom facultatif, dates d’inscription et de
+confirmation) servent uniquement à l’envoi de la newsletter. Elles sont conservées
+dans un tableur Google privé et ne sont jamais cédées. Chaque e-mail contient un lien
+pour se désinscrire et, si vous le souhaitez, supprimer toutes vos données.</p>`;
+}
+
+/**
  * La page d'abonnement à la lettre quotidienne.
  *
  * Elle dit ce qu'un site sans serveur peut et ne peut pas : il publie un flux,
@@ -1010,6 +1059,7 @@ ${MOIS.map((mois, i) => {
 function feedPage(ctx) {
   const { base, byDay } = ctx;
   const url = `${base}/lettre/`;
+  const courriel = sectionCourriel(lireReglagesNewsletter());
   const body = `<h1>Recevoir le saint du jour</h1>
 <p class="lede">Chaque matin, les saints fêtés ce jour-là, avec leur lieu de naissance,
 leurs dates et leur biographie — ${esc(nombre(byDay))} jours de l’année pourvus.</p>
@@ -1020,15 +1070,7 @@ leurs dates et leur biographie — ${esc(nombre(byDay))} jours de l’année pou
 <p class="note">C’est un flux Atom, régénéré chaque matin. Il porte les quatorze
 derniers jours : vous abonner aujourd’hui vous rend aussi la quinzaine écoulée.</p>
 
-<h2>Par courriel</h2>
-<p>SanctiMaps ne tient pas de fichier d’adresses, et n’en tiendra pas : le site
-est fait de fichiers posés sur un hébergement, sans serveur pour recueillir
-quoi que ce soit. Recueillir des adresses demanderait une machine à tenir, des
-clés, et la garde de données personnelles qui ne nous regardent pas.</p>
-<p>Pour recevoir la lettre dans votre boîte, passez donc par un relais de votre
-choix — il en existe de gratuits, qui transforment un flux en courriel
-quotidien. Donnez-lui l’adresse ci-dessus. Votre abonnement reste alors chez
-vous, et le site n’apprend ni qui lit, ni combien.</p>
+${courriel}
 
 <h2>Sur le téléphone</h2>
 <p>Deux autres chemins, dans <a href="../index.html">les réglages de la carte</a> :
