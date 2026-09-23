@@ -798,8 +798,8 @@ for (const saint of saints) {
 for (const id of Object.keys(statutsImportes)) {
   if (!parId.has(id) && !ecartes.has(id)) errors.push(`${STATUT_FILE} — identifiant inconnu : ${id}`);
 }
-console.log(`Statuts : ${comptes.source} de Wikidata, ${comptes.notice} lus dans la notice,`
-  + ` ${comptes.inconnu} inconnus`);
+console.log(`Statuts : ${comptes.source} de Wikidata, ${comptes.fiche} écrits dans la fiche,`
+  + ` ${comptes.notice} lus dans la notice, ${comptes.inconnu} inconnus`);
 
 for (const id of Object.keys(patronages)) {
   if (!ids.has(id)) errors.push(`${PATRONAGE_FILE} — identifiant inconnu : ${id}`);

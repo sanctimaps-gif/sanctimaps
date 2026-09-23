@@ -247,13 +247,13 @@ seul fichier touché.
 
 | | |
 | ---: | --- |
-| 2 902 | saints |
-| 1 240 | bienheureux |
-| 305 | vénérables |
+| 2 979 | saints |
+| 1 236 | bienheureux |
+| 301 | vénérables |
 | 44 | serviteurs de Dieu |
-| 98 | sans degré connu |
+| 29 | sans degré connu |
 
-**Ces chiffres sont la mesure de l'erreur** : mille deux cent quarante
+**Ces chiffres sont la mesure de l'erreur** : mille deux cent trente-six
 bienheureux et trois cents vénérables étaient appelés « saint ».
 
 L'Orient ne dit pas « saint » mais la *classe* du saint : hiéromartyr pour un
@@ -264,6 +264,12 @@ privait saint Nicolas de Myre, sainte Catherine d'Alexandrie et saint Laurent
 de Rome de leur titre. Ces classes sont reconnues ; `prelate`, qui est un rang
 dans la hiérarchie et non un degré, ne l'est pas : un prélat peut n'être que
 vénérable.
+
+**Les vingt-neuf qui restent sont presque tous des patriarches d'Orient** —
+Constantinople, Antioche, Alexandrie, Kiev — dont Wikidata ne dit que
+« prelate ». On ne leur invente pas de degré : les nommer saints demanderait
+une source que nous n'avons pas, et c'est précisément l'erreur qu'on vient de
+corriger.
 
 Quand la source se tait, la génération lit ce que la fiche dit d'elle-même. La
 notice de Wikidata nomme souvent le degré — « saint catholique », « Filipino
@@ -315,11 +321,22 @@ trouve dans `data/saints/bios-importees.json` avec l'adresse de chaque article.
 L'atelier **« Compléter les biographies »** le lance depuis l'onglet Actions ;
 il lui faut Internet, que Wikidata n'accorde pas depuis tous les réseaux.
 
-Il ne traduit pas, et c'est délibéré. La carte n'affiche que le français : une
-biographie espagnole reste invisible tant qu'elle n'est pas traduite à la main
-dans `traductions.json`, comme l'ont été les cinq cent trente-huit biographies
-anglaises. Ce que l'outil rapporte, c'est la matière de cette traduction — et,
-en attendant, une fiche qui sait où l'on parle d'elle.
+**Six cent soixante-dix-neuf** des sept cent soixante-douze ont ainsi retrouvé
+un récit :
+
+```
+pl 369   it 247   ru 235   es 141   ca 76   cs 61   de 46   pt 33
+ko 25    uk 24    el 19    la 19    nl 17   ro 10   sl 6    hr 5
+```
+
+Aucune en français, et c'était couru : ce sont exactement les fiches pour
+lesquelles Wikipédia n'a pas d'article français. Elles ne s'affichent donc pas
+encore — la carte n'affiche que le français, et une biographie polonaise reste
+invisible tant qu'elle n'est pas traduite à la main dans `traductions.json`,
+comme l'ont été les cinq cent trente-huit biographies anglaises. **L'outil ne
+traduit pas, et c'est délibéré** : ce qu'il rapporte est la matière de cette
+traduction — et, en attendant, une fiche qui sait où l'on parle d'elle, avec
+l'attribution que la licence CC BY-SA exige avant toute reprise.
 
 ### Les biographies traduites
 
