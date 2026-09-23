@@ -108,6 +108,35 @@ export function t(key, params = {}) {
 }
 
 /**
+ * Le nom d'une langue, avec ce qui doit le précéder.
+ *
+ * « Traduit de l'anglais », mais « traduit du polonais » : l'élision n'est pas
+ * une coquetterie, elle se voit. Le français, l'italien, l'espagnol et le
+ * portugais veulent l'article contracté ; les autres langues gardent leur
+ * préposition dans la phrase et ne reçoivent ici que le nom nu.
+ *
+ * Les noms viennent du navigateur, qui les connaît toutes dans toutes les
+ * langues. Le latin n'est pas une locale : on lui rend les noms anglais, qui
+ * sont ce qu'un lecteur de latin déchiffre le plus aisément.
+ */
+export function languePhrase(code) {
+  if (!code) return '';
+  let nom = code;
+  try {
+    nom = new Intl.DisplayNames([current === 'la' ? 'en' : current], { type: 'language' })
+      .of(code) || code;
+  } catch { /* le navigateur ne connaît pas cette langue : son code fera l'affaire */ }
+  const voyelle = /^[aàâäeéèêëiîïoôöuùûüh]/i.test(nom);
+  switch (current) {
+    case 'fr': return voyelle ? `de l’${nom}` : `du ${nom}`;
+    case 'it': return voyelle ? `dall’${nom}` : `dal ${nom}`;
+    case 'es': return `del ${nom}`;
+    case 'pt': return `do ${nom}`;
+    default: return nom;
+  }
+}
+
+/**
  * Le degré de reconnaissance par l'Église, accordé au genre.
  *
  * Quatre valeurs — `serviteur`, `venerable`, `bienheureux`, `saint` — et une

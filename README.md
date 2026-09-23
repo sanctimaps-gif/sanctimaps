@@ -186,7 +186,7 @@ CE QUI DEMANDE UNE MEILLEURE SOURCE
 CE QUI DEMANDE UNE FORME FRANÇAISE
    263   5,7 %  nom resté dans une autre langue
   1864  40,6 %  sans notice en français
-   777  16,9 %  sans biographie en français
+    98   2,1 %  sans biographie en français
 
 CE QUI N’EST PAS UNE FAUTE
   1257  27,4 %  le nom désigne un autre lieu que la naissance
@@ -330,21 +330,32 @@ ko 25    uk 24    el 19    la 19    nl 17   ro 10   sl 6    hr 5
 ```
 
 Aucune en français, et c'était couru : ce sont exactement les fiches pour
-lesquelles Wikipédia n'a pas d'article français. Elles ne s'affichent donc pas
-encore — la carte n'affiche que le français, et une biographie polonaise reste
-invisible tant qu'elle n'est pas traduite à la main dans `traductions.json`,
-comme l'ont été les cinq cent trente-huit biographies anglaises. **L'outil ne
-traduit pas, et c'est délibéré** : ce qu'il rapporte est la matière de cette
-traduction — et, en attendant, une fiche qui sait où l'on parle d'elle, avec
-l'attribution que la licence CC BY-SA exige avant toute reprise.
+lesquelles Wikipédia n'a pas d'article français. **L'outil ne traduit pas, et
+c'est délibéré** : la carte n'affiche que le français, et ce qu'il rapporte est
+la matière d'une traduction faite à la main — les six cent soixante-dix-neuf
+l'ont été depuis, une à une, et se lisent maintenant sur la carte. Voyez
+[les biographies traduites](#les-biographies-traduites-en-vingt-deux-langues).
 
-### Les biographies traduites
+### Les biographies traduites, en vingt-deux langues
 
-Cinq cent quarante-trois fiches n'avaient de récit qu'en anglais. La carte
-n'affichant que le français, elles paraissaient sans biographie — l'information
-existait, mais personne ne la voyait. **Cinq cent trente-huit sont maintenant
-traduites**, et la part des fiches pourvues d'une biographie française passe de
-71 % à **83 %** (3 838 sur 4 628).
+Mille deux cent dix-sept fiches n'avaient de récit qu'en une autre langue que le
+français. La carte n'affichant que le français, elles paraissaient sans
+biographie — l'information existait, mais personne ne la voyait. **Toutes sont
+maintenant traduites**, et la part des fiches pourvues d'une biographie
+française passe de 71 % à **97,9 %** : il n'en reste que quatre-vingt-dix-huit
+sans récit, sur quatre mille cinq cent quatre-vingt-neuf.
+
+```
+en 537   pl 234   it 183   es 119   ru 37   ko 21   de 17   ca 15
+pt 12    el 10    cs 7     ro 7     sl 4    nl 4    vi 3    uk 2
+hr 2     la 1     zh 1
+```
+
+Les cinq cent trente-sept premières venaient de l'anglais. Les six cent
+soixante-dix-neuf autres sont celles que `completer-bios.mjs` est allé chercher
+là où Wikipédia les avait écrites — chez les martyrs d'Espagne, d'Italie, de
+Chine, de Pologne et de Corée, dont personne n'avait écrit la vie en français ni
+en anglais.
 
 Les traductions vivent dans `data/saints/traductions.json`, à part du corpus et
 pour une raison précise : un réimport réécrit `wikidata.json` d'un bloc, et
@@ -353,21 +364,24 @@ traduction ne comble qu'un manque — elle n'écrase jamais un français trouvé
 source — et le jour où l'article français paraît sur Wikipédia, l'import le
 rapporte et la traduction s'efface d'elle-même.
 
-**Chaque fiche traduite le dit.** La licence de Wikipédia (CC BY-SA) demande
-qu'une modification soit signalée, et une traduction en est une : la fiche porte
-« traduit de l'anglais, d'après l'article de Wikipédia cité en source », et la
-source anglaise reste jointe. Le lecteur sait ainsi que la tournure française
-n'est pas celle d'une source française.
+**Chaque fiche traduite dit de quelle langue.** La licence de Wikipédia
+(CC BY-SA) demande qu'une modification soit signalée, et une traduction en est
+une : la fiche porte « traduit du polonais », « traduit de l'italien »,
+« traduit du coréen », d'après l'article cité en source, qui reste joint. Le
+champ `de` de chaque traduction nomme cette langue, et l'élision suit —
+« de l'anglais » mais « du polonais », ce qui se voit quand on s'en dispense.
+Les douze langues de l'interface ont chacune leur tournure, et le nom de la
+langue vient du navigateur, qui les connaît toutes.
 
-**Cinq fiches n'ont pas été traduites, et le fichier dit pourquoi.** Dans chaque
-cas, le texte anglais ne parle pas du saint de la fiche : Agustín Caloca Cortés
-porte mot pour mot la biographie de Cristóbal Magallanes — l'article anglais
-redirige de l'un vers l'autre —, Albina de Césarée a reçu l'article du prénom
-*Albina* et de la déesse étrusque de l'aurore, Archippos celui du poète comique
-athénien, Gwen ferch Cynyr celui d'une paroisse rurale de Cornouailles, et
-l'extrait de Théophane Graptos est tronqué au milieu d'une phrase. Traduire
-aurait donné un récit faux, mais en français, donc plus crédible. Ce sont des
-défauts de l'import, à corriger à la source.
+**Cinq fiches anglaises n'ont pas été traduites, et le fichier dit pourquoi.**
+Dans chaque cas, le texte ne parlait pas du saint de la fiche : Agustín Caloca
+Cortés portait mot pour mot la biographie de Cristóbal Magallanes — l'article
+anglais redirige de l'un vers l'autre —, Albina de Césarée avait reçu l'article
+du prénom *Albina* et de la déesse étrusque de l'aurore, Archippos celui du
+poète comique athénien, Gwen ferch Cynyr celui d'une paroisse rurale de
+Cornouailles, et l'extrait de Théophane Graptos était tronqué au milieu d'une
+phrase. Traduire aurait donné un récit faux, mais en français, donc plus
+crédible. Ce sont des défauts de l'import, à corriger à la source.
 
 `build:data` corrige au passage ce qu'il peut : quand le libellé français de
 Wikidata n'est pas français — « Natale di Milano », « Hroznata von Ovenec » —

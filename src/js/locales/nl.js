@@ -76,7 +76,7 @@ export default {
     mine: 'Lokaal toegevoegde fiche',
     confirmRemove: 'Deze fiche definitief verwijderen?',
     back: 'Terug naar de resultaten',
-    translated: 'Vertaald uit het Engels, naar het in de bronnen genoemde Wikipedia-artikel.',
+    translated: 'Vertaald uit het {langue}, naar het in de bronnen genoemde Wikipedia-artikel.',
   },
   add: {
     namePlaceholder: 'Franciscus van Assisi',

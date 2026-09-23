@@ -76,7 +76,7 @@ export default {
     mine: '本地添加的条目',
     confirmRemove: '确定永久删除此条目吗？',
     back: '返回搜索结果',
-    translated: '译自英文，依据来源中所引的维基百科条目。',
+    translated: '译自{langue}，依据来源中所引的维基百科条目。',
   },
   add: {
     namePlaceholder: '亚西西的方济各',

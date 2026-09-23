@@ -626,7 +626,10 @@ for (const file of readdirSync(SAINTS_DIR)
     const traduite = traductions[s.id];
     if (traduite?.bio && !record.bio?.fr) {
       record.bio = { ...record.bio, fr: traduite.bio };
-      record.traduit = 'en';
+      // La langue d'origine, et non « anglais » d'office : les biographies
+      // venues du polonais, de l'italien ou du russe sont désormais la
+      // majorité, et la licence demande qu'on dise de quoi l'on a traduit.
+      record.traduit = traduite.de || 'en';
     }
 
     saints.push(record);

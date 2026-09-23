@@ -78,7 +78,7 @@ export default {
     mine: 'Fiche ajoutée localement',
     confirmRemove: 'Supprimer définitivement cette fiche ?',
     back: 'Retour aux résultats',
-    translated: 'Traduit de l’anglais, d’après l’article de Wikipédia cité en source.',
+    translated: 'Traduit {langue}, d’après l’article de Wikipédia cité en source.',
   },
   add: {
     namePlaceholder: 'François d’Assise',

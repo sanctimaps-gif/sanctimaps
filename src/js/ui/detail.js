@@ -1,6 +1,6 @@
 import { PENDING, PUBLISHED, REJECTED } from '../data.js';
 import { can } from '../auth.js';
-import { degreLabel, formatFeast, formatYear, getLanguage, pickText, t, titleLabel } from '../i18n.js';
+import { degreLabel, formatFeast, formatYear, getLanguage, languePhrase, pickText, t, titleLabel } from '../i18n.js';
 import { fill, h } from './dom.js';
 
 function row(label, value) {
@@ -76,7 +76,10 @@ export class DetailPanel {
       // une traduction en est une. Le lecteur, lui, sait ainsi que la tournure
       // française n'est pas celle d'une source française.
       biography && saint.traduit && lang === 'fr'
-        ? h('p', { class: 'detail__traduit', text: t('detail.translated') })
+        ? h('p', {
+          class: 'detail__traduit',
+          text: t('detail.translated', { langue: languePhrase(saint.traduit) }),
+        })
         : null,
       h('dl', { class: 'sheet' },
         // Le degré de reconnaissance, quand le corpus le sait : tout le monde
