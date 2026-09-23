@@ -14,7 +14,10 @@
     "build:icons": "node tools/make-icons.mjs",
     "import:saints": "node tools/import-saints.mjs",
     "enrich:bios": "node tools/enrich-bios.mjs",
-    "send:letter": "node tools/send-letter.mjs"
+    "send:letter": "node tools/send-letter.mjs",
+    "audit:doublons": "node tools/audit-doublons.mjs",
+    "import:statuts": "node tools/import-statuts.mjs",
+    "completer:bios": "node tools/completer-bios.mjs"
   },
   "devDependencies": {
     "all-the-cities": "^3.1.0",

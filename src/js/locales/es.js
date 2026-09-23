@@ -58,6 +58,7 @@ export default {
     rejected: 'Rechazada',
   },
   detail: {
+    degre: 'Reconocimiento',
     patronage: 'Patrón de',
     birth: 'Nacimiento',
     death: 'Muerte',
@@ -75,7 +76,7 @@ export default {
     mine: 'Ficha añadida localmente',
     confirmRemove: '¿Eliminar definitivamente esta ficha?',
     back: 'Volver a los resultados',
-    translated: 'Traducido del inglés, a partir del artículo de Wikipedia citado en las fuentes.',
+    translated: 'Traducido {langue}, a partir del artículo de Wikipedia citado en las fuentes.',
   },
   add: {
     namePlaceholder: 'Francisco de Asís',
@@ -336,6 +337,12 @@ export default {
     system: 'Sistema',
     light: 'Claro',
     dark: 'Oscuro',
+  },
+  degre: {
+    saint: ['San', 'Santa'],
+    bienheureux: ['Beato', 'Beata'],
+    venerable: 'Venerable',
+    serviteur: ['Siervo de Dios', 'Sierva de Dios'],
   },
   title: {
     abbess: 'Abadesa',

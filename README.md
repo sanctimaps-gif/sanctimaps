@@ -179,17 +179,17 @@ décision qui n'appartient pas à un programme — mais il compte, et il nomme :
 
 ```
 CE QUI DEMANDE UNE MEILLEURE SOURCE
-    30   0,6 %  sans lieu de naissance du tout
-   173   3,7 %  un pays entier tient lieu de ville
-   271   5,9 %  une région ou une province tient lieu de ville
+    28   0,6 %  sans lieu de naissance du tout
+   171   3,7 %  un pays entier tient lieu de ville
+   270   5,9 %  une région ou une province tient lieu de ville
 
 CE QUI DEMANDE UNE FORME FRANÇAISE
-   264   5,7 %  nom resté dans une autre langue
-  1871  40,4 %  sans notice en français
-   790  17,1 %  sans biographie en français
+   263   5,7 %  nom resté dans une autre langue
+  1864  40,6 %  sans notice en français
+    98   2,1 %  sans biographie en français
 
 CE QUI N’EST PAS UNE FAUTE
-  1271  27,5 %  le nom désigne un autre lieu que la naissance
+  1257  27,4 %  le nom désigne un autre lieu que la naissance
 ```
 
 Cette dernière ligne mérite qu'on s'y arrête, parce qu'elle a l'air d'une
@@ -199,13 +199,163 @@ Pancrace **de Taormine** à Antioche, Ovídio **de Braga** en Sicile. La carte,
 elle, porte le lieu de naissance. Les deux sont exacts ; c'est la fiche qui
 devait le dire, et elle le dit maintenant.
 
-### Les biographies traduites
+### Les doublons, et ce qui leur ressemble
 
-Cinq cent quarante-trois fiches n'avaient de récit qu'en anglais. La carte
-n'affichant que le français, elles paraissaient sans biographie — l'information
-existait, mais personne ne la voyait. **Cinq cent trente-huit sont maintenant
-traduites**, et la part des fiches pourvues d'une biographie française passe de
-71 % à **83 %** (3 838 sur 4 628).
+Le corpus vient de deux endroits : deux cent quatre-vingt-cinq fiches écrites à
+la main, quatre mille trois cent quarante-trois importées de Wikidata. Rien
+n'empêchait l'une de redire ce que l'autre disait déjà, et rien ne pouvait le
+voir : **« Padre Pio » et « Pio de Pietrelcina » sont le même capucin**, l'un
+sous son nom d'usage, l'autre sous son nom de canonisation. Sur la carte, deux
+croix se posaient au même endroit ; dans la lettre du 23 septembre, le même
+homme revenait deux fois.
+
+`npm run audit:doublons` rapproche et note — nom, années, jour de fête, lieu,
+et le fait que les deux fiches viennent de corpus différents. Il ne fusionne
+rien : savoir que Jacques de Zébédée est Jacques le Majeur, ou qu'Élisabeth
+d'Aragon régna sur le Portugal, n'est pas affaire de seuil. Ce qu'un humain a
+tranché vit dans `data/reference/doublons.json`, que la génération applique :
+
+| | |
+| --- | --- |
+| `doublons` | **39 fusions.** L'identifiant gardé reçoit ce que l'autre savait de plus — une biographie, des sources, un titre, une langue de son nom — et ne perd rien de ce qu'il avait. |
+| `ressemblances` | **9 groupes gardés distincts**, et pourquoi. Les seize carmélites de Compiègne, les filles de Nicolas II, les martyrs de Chine du 9 juillet 1900 : même jour, même lieu, même année de mort, des personnes différentes. |
+
+C'est le gros du bruit, et c'est pourquoi la date de **naissance** pèse ici
+plus lourd que celle de la mort. Quatre mille six cent vingt-huit fiches sont
+devenues quatre mille cinq cent quatre-vingt-neuf ; au seuil suivant, il ne
+reste que des compagnons de martyre.
+
+### Qui est saint, et qui ne l'est pas
+
+L'Église distingue quatre degrés — **serviteur de Dieu** dès l'ouverture de la
+cause, **vénérable** quand les vertus héroïques sont reconnues,
+**bienheureux** après la béatification, **saint** après la canonisation — et
+les pages les disaient tous « saint ». Le 23 septembre, Darwin Ramos arrivait
+ainsi en troisième position sous le nom de « saint Darwin Ramos » : mort à
+dix-sept ans à Manille, il est serviteur de Dieu, sa cause est ouverte depuis
+2019, et aucune source ne dit autre chose.
+
+La source sûre est la propriété **P411** de Wikidata. L'importateur
+l'interrogeait déjà — c'est même sa condition d'entrée, puisqu'il ne retient
+que les fiches qui en portent une — mais il s'en servait pour filtrer et la
+jetait ensuite. `tools/import-statuts.mjs` va la rechercher, et l'atelier
+**« Relever les statuts de canonisation »** le lance depuis l'onglet Actions.
+Ce n'est pas un réimport : refaire les quatre mille trois cents fiches pour
+ajouter un mot rouvrirait les noms, les dates et les lieux, et une correction
+ne doit pas coûter une révision générale. Dix-sept secondes de requêtes, un
+seul fichier touché.
+
+| | |
+| ---: | --- |
+| 2 979 | saints |
+| 1 236 | bienheureux |
+| 301 | vénérables |
+| 44 | serviteurs de Dieu |
+| 29 | sans degré connu |
+
+**Ces chiffres sont la mesure de l'erreur** : mille deux cent trente-six
+bienheureux et trois cents vénérables étaient appelés « saint ».
+
+L'Orient ne dit pas « saint » mais la *classe* du saint : hiéromartyr pour un
+évêque martyrisé, thaumaturge pour un faiseur de miracles, mégalomartyr,
+stylite, égal-aux-apôtres, porte-passion, juste, croyant droit. Deux cent
+trente fiches ne portaient que cela et restaient sans degré — c'est ce qui
+privait saint Nicolas de Myre, sainte Catherine d'Alexandrie et saint Laurent
+de Rome de leur titre. Ces classes sont reconnues ; `prelate`, qui est un rang
+dans la hiérarchie et non un degré, ne l'est pas : un prélat peut n'être que
+vénérable.
+
+**Les vingt-neuf qui restent sont presque tous des patriarches d'Orient** —
+Constantinople, Antioche, Alexandrie, Kiev — dont Wikidata ne dit que
+« prelate ». On ne leur invente pas de degré : les nommer saints demanderait
+une source que nous n'avons pas, et c'est précisément l'erreur qu'on vient de
+corriger.
+
+Quand la source se tait, la génération lit ce que la fiche dit d'elle-même. La
+notice de Wikidata nomme souvent le degré — « saint catholique », « Filipino
+Servant of God » —, et la biographie le raconte — « déclaré saint par l'Église
+catholique », « béatifié en 1888 ». On n'y cherche que la formule, jamais le
+mot nu : un récit qui mentionne « les saints de son temps » ne canonise
+personne, et « ordre de Saint-Benoît » ne fait pas un saint de tous les
+bénédictins. Une fiche peut enfin porter son degré en propre, et **la main
+l'emporte sur tout le reste** : c'est par là qu'on rend son titre à un saint
+des premiers siècles, qu'aucune congrégation n'a canonisé pour la raison qu'il
+n'en existait pas encore.
+
+**Ce qui reste sans degré ne porte aucun titre.** C'est le point de toute
+l'affaire : le nom nu est la seule chose vraie qu'on puisse écrire d'une fiche
+dont on ignore le degré, et il vaut mieux sous-dire que canoniser quelqu'un par
+défaut.
+
+Le degré paraît dans la fiche de la carte (ligne « Reconnaissance »), en tête
+de chaque page de saint, dans la liste du jour et dans la lettre quotidienne :
+
+```
+- Saint Adomnán
+- Bienheureuse Bernardyna Maria Jabłońska
+- Serviteur de Dieu Darwin Ramos
+- Vénérable Elena Duglioli
+- Saint Pio de Pietrelcina
+```
+
+### Les sept cent soixante-douze sans récit
+
+L'import de masse ne demandait à Wikidata que deux articles : le français et
+l'anglais. C'est ce qui s'affiche, et cela couvrait quatre fiches sur cinq. Le
+cinquième cinquième n'a d'article dans aucune des deux — et ce n'est pas un
+hasard :
+
+```
+ESP 248   ITA 130   CHN 72   POL 52   FRA 47   KOR 30   RUS 28   TUR 22
+```
+
+Deux cent quarante-huit martyrs de la guerre d'Espagne, cent trente Italiens,
+soixante-douze Chinois de 1900, cinquante-deux Polonais, trente Coréens. **Leur
+vie est écrite**, mais en espagnol, en italien, en polonais, en coréen. C'est
+la question qui était trop étroite, non la source qui est muette.
+
+`tools/completer-bios.mjs` la repose en vingt-trois langues, d'une seule
+requête par lot — on demande tous les articles d'un élément et l'on lit le
+domaine de chacun, plutôt qu'une requête par langue —, et dépose ce qu'il
+trouve dans `data/saints/bios-importees.json` avec l'adresse de chaque article.
+L'atelier **« Compléter les biographies »** le lance depuis l'onglet Actions ;
+il lui faut Internet, que Wikidata n'accorde pas depuis tous les réseaux.
+
+**Six cent soixante-dix-neuf** des sept cent soixante-douze ont ainsi retrouvé
+un récit :
+
+```
+pl 369   it 247   ru 235   es 141   ca 76   cs 61   de 46   pt 33
+ko 25    uk 24    el 19    la 19    nl 17   ro 10   sl 6    hr 5
+```
+
+Aucune en français, et c'était couru : ce sont exactement les fiches pour
+lesquelles Wikipédia n'a pas d'article français. **L'outil ne traduit pas, et
+c'est délibéré** : la carte n'affiche que le français, et ce qu'il rapporte est
+la matière d'une traduction faite à la main — les six cent soixante-dix-neuf
+l'ont été depuis, une à une, et se lisent maintenant sur la carte. Voyez
+[les biographies traduites](#les-biographies-traduites-en-vingt-deux-langues).
+
+### Les biographies traduites, en vingt-deux langues
+
+Mille deux cent dix-sept fiches n'avaient de récit qu'en une autre langue que le
+français. La carte n'affichant que le français, elles paraissaient sans
+biographie — l'information existait, mais personne ne la voyait. **Toutes sont
+maintenant traduites**, et la part des fiches pourvues d'une biographie
+française passe de 71 % à **97,9 %** : il n'en reste que quatre-vingt-dix-huit
+sans récit, sur quatre mille cinq cent quatre-vingt-neuf.
+
+```
+en 537   pl 234   it 183   es 119   ru 37   ko 21   de 17   ca 15
+pt 12    el 10    cs 7     ro 7     sl 4    nl 4    vi 3    uk 2
+hr 2     la 1     zh 1
+```
+
+Les cinq cent trente-sept premières venaient de l'anglais. Les six cent
+soixante-dix-neuf autres sont celles que `completer-bios.mjs` est allé chercher
+là où Wikipédia les avait écrites — chez les martyrs d'Espagne, d'Italie, de
+Chine, de Pologne et de Corée, dont personne n'avait écrit la vie en français ni
+en anglais.
 
 Les traductions vivent dans `data/saints/traductions.json`, à part du corpus et
 pour une raison précise : un réimport réécrit `wikidata.json` d'un bloc, et
@@ -214,21 +364,24 @@ traduction ne comble qu'un manque — elle n'écrase jamais un français trouvé
 source — et le jour où l'article français paraît sur Wikipédia, l'import le
 rapporte et la traduction s'efface d'elle-même.
 
-**Chaque fiche traduite le dit.** La licence de Wikipédia (CC BY-SA) demande
-qu'une modification soit signalée, et une traduction en est une : la fiche porte
-« traduit de l'anglais, d'après l'article de Wikipédia cité en source », et la
-source anglaise reste jointe. Le lecteur sait ainsi que la tournure française
-n'est pas celle d'une source française.
+**Chaque fiche traduite dit de quelle langue.** La licence de Wikipédia
+(CC BY-SA) demande qu'une modification soit signalée, et une traduction en est
+une : la fiche porte « traduit du polonais », « traduit de l'italien »,
+« traduit du coréen », d'après l'article cité en source, qui reste joint. Le
+champ `de` de chaque traduction nomme cette langue, et l'élision suit —
+« de l'anglais » mais « du polonais », ce qui se voit quand on s'en dispense.
+Les douze langues de l'interface ont chacune leur tournure, et le nom de la
+langue vient du navigateur, qui les connaît toutes.
 
-**Cinq fiches n'ont pas été traduites, et le fichier dit pourquoi.** Dans chaque
-cas, le texte anglais ne parle pas du saint de la fiche : Agustín Caloca Cortés
-porte mot pour mot la biographie de Cristóbal Magallanes — l'article anglais
-redirige de l'un vers l'autre —, Albina de Césarée a reçu l'article du prénom
-*Albina* et de la déesse étrusque de l'aurore, Archippos celui du poète comique
-athénien, Gwen ferch Cynyr celui d'une paroisse rurale de Cornouailles, et
-l'extrait de Théophane Graptos est tronqué au milieu d'une phrase. Traduire
-aurait donné un récit faux, mais en français, donc plus crédible. Ce sont des
-défauts de l'import, à corriger à la source.
+**Cinq fiches anglaises n'ont pas été traduites, et le fichier dit pourquoi.**
+Dans chaque cas, le texte ne parlait pas du saint de la fiche : Agustín Caloca
+Cortés portait mot pour mot la biographie de Cristóbal Magallanes — l'article
+anglais redirige de l'un vers l'autre —, Albina de Césarée avait reçu l'article
+du prénom *Albina* et de la déesse étrusque de l'aurore, Archippos celui du
+poète comique athénien, Gwen ferch Cynyr celui d'une paroisse rurale de
+Cornouailles, et l'extrait de Théophane Graptos était tronqué au milieu d'une
+phrase. Traduire aurait donné un récit faux, mais en français, donc plus
+crédible. Ce sont des défauts de l'import, à corriger à la source.
 
 `build:data` corrige au passage ce qu'il peut : quand le libellé français de
 Wikidata n'est pas français — « Natale di Milano », « Hroznata von Ovenec » —
@@ -1304,6 +1457,12 @@ data/generated/saints-texts.json les textes longs, chargés après la carte
 tools/lib/corpus.mjs     recolle les deux, pour les outils qui lisent le corpus
 tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/, lettre/
 tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus
+tools/audit-doublons.mjs deux fiches pour la même personne, et ce qui leur ressemble
+data/reference/doublons.json  les fusions tranchées, et les ressemblances gardées
+tools/import-statuts.mjs le statut de canonisation, relevé sur Wikidata (P411)
+data/saints/statuts.json      serviteur, vénérable, bienheureux ou saint, par fiche
+tools/completer-bios.mjs une biographie pour les fiches qui n'en ont dans aucune des deux langues
+data/saints/bios-importees.json  ce qu'il rapporte, langue par langue
 tools/make-icons.mjs     les icônes du site, tirées du logo
 tools/build-feed.mjs     la lettre quotidienne, au format Atom
 tools/send-letter.mjs    la même lettre, remise à un routeur de courriel

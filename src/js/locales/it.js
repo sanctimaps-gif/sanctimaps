@@ -58,6 +58,7 @@ export default {
     rejected: 'Respinta',
   },
   detail: {
+    degre: 'Riconoscimento',
     patronage: 'Patrono di',
     birth: 'Nascita',
     death: 'Morte',
@@ -75,7 +76,7 @@ export default {
     mine: 'Scheda aggiunta localmente',
     confirmRemove: 'Eliminare definitivamente questa scheda?',
     back: 'Torna ai risultati',
-    translated: 'Tradotto dall’inglese, dall’articolo di Wikipedia citato nelle fonti.',
+    translated: 'Tradotto {langue}, dall’articolo di Wikipedia citato nelle fonti.',
   },
   add: {
     namePlaceholder: 'Francesco d’Assisi',
@@ -336,6 +337,12 @@ export default {
     system: 'Sistema',
     light: 'Chiaro',
     dark: 'Scuro',
+  },
+  degre: {
+    saint: ['San', 'Santa'],
+    bienheureux: ['Beato', 'Beata'],
+    venerable: 'Venerabile',
+    serviteur: ['Servo di Dio', 'Serva di Dio'],
   },
   title: {
     abbess: 'Badessa',

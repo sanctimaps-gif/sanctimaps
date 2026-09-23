@@ -58,6 +58,7 @@ export default {
     rejected: 'مرفوضة',
   },
   detail: {
+    degre: 'الاعتراف',
     patronage: 'شفيع',
     birth: 'الولادة',
     death: 'الوفاة',
@@ -75,7 +76,7 @@ export default {
     mine: 'بطاقة مضافة محليًا',
     confirmRemove: 'حذف هذه البطاقة نهائيًا؟',
     back: 'العودة إلى النتائج',
-    translated: 'مترجم من الإنجليزية، عن مقالة ويكيبيديا المذكورة في المصادر.',
+    translated: 'مترجم عن {langue}، عن مقالة ويكيبيديا المذكورة في المصادر.',
   },
   add: {
     namePlaceholder: 'فرنسيس الأسيزي',
@@ -336,6 +337,12 @@ export default {
     system: 'النظام',
     light: 'فاتحة',
     dark: 'داكنة',
+  },
+  degre: {
+    saint: ['القديس', 'القديسة'],
+    bienheureux: ['الطوباوي', 'الطوباوية'],
+    venerable: ['المكرَّم', 'المكرَّمة'],
+    serviteur: ['خادم الله', 'خادمة الله'],
   },
   title: {
     abbess: 'رئيسة دير',

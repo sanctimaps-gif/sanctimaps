@@ -58,6 +58,7 @@ export default {
     rejected: '已退回',
   },
   detail: {
+    degre: '教会认可',
     patronage: '主保',
     birth: '出生',
     death: '逝世',
@@ -75,7 +76,7 @@ export default {
     mine: '本地添加的条目',
     confirmRemove: '确定永久删除此条目吗？',
     back: '返回搜索结果',
-    translated: '译自英文，依据来源中所引的维基百科条目。',
+    translated: '译自{langue}，依据来源中所引的维基百科条目。',
   },
   add: {
     namePlaceholder: '亚西西的方济各',
@@ -336,6 +337,12 @@ export default {
     system: '跟随系统',
     light: '浅色',
     dark: '深色',
+  },
+  degre: {
+    saint: '圣',
+    bienheureux: '真福',
+    venerable: '可敬者',
+    serviteur: '天主之仆',
   },
   title: {
     abbess: '女隐修院院长',

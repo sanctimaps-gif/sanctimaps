@@ -58,6 +58,7 @@ export default {
     rejected: 'Geweigerd',
   },
   detail: {
+    degre: 'Erkenning',
     patronage: 'Beschermheilige van',
     birth: 'Geboorte',
     death: 'Overlijden',
@@ -75,7 +76,7 @@ export default {
     mine: 'Lokaal toegevoegde fiche',
     confirmRemove: 'Deze fiche definitief verwijderen?',
     back: 'Terug naar de resultaten',
-    translated: 'Vertaald uit het Engels, naar het in de bronnen genoemde Wikipedia-artikel.',
+    translated: 'Vertaald uit het {langue}, naar het in de bronnen genoemde Wikipedia-artikel.',
   },
   add: {
     namePlaceholder: 'Franciscus van Assisi',
@@ -336,6 +337,12 @@ export default {
     system: 'Systeem',
     light: 'Licht',
     dark: 'Donker',
+  },
+  degre: {
+    saint: 'Heilige',
+    bienheureux: 'Zalige',
+    venerable: 'Eerbiedwaardige',
+    serviteur: ['Dienaar Gods', 'Dienares Gods'],
   },
   title: {
     abbess: 'Abdis',

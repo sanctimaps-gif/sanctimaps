@@ -58,6 +58,7 @@ export default {
     rejected: 'Reiecta',
   },
   detail: {
+    degre: 'Agnitio',
     patronage: 'Patronus',
     birth: 'Natus',
     death: 'Mortuus',
@@ -75,7 +76,7 @@ export default {
     mine: 'Scheda hic addita',
     confirmRemove: 'Hanc schedam in perpetuum delere?',
     back: 'Ad inventa redire',
-    translated: 'Ex Anglico conversum, secundum commentarium Vicipaediae in fontibus laudatum.',
+    translated: 'Ex lingua {langue} conversum, secundum commentarium Vicipaediae in fontibus laudatum.',
   },
   add: {
     namePlaceholder: 'Franciscus Assisiensis',
@@ -336,6 +337,12 @@ export default {
     system: 'Ex systemate',
     light: 'Lucida',
     dark: 'Obscura',
+  },
+  degre: {
+    saint: ['Sanctus', 'Sancta'],
+    bienheureux: ['Beatus', 'Beata'],
+    venerable: 'Venerabilis',
+    serviteur: ['Servus Dei', 'Serva Dei'],
   },
   title: {
     abbess: 'Abbatissa',

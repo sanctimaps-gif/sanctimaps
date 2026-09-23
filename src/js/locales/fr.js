@@ -60,6 +60,7 @@ export default {
     rejected: 'Refusée',
   },
   detail: {
+    degre: 'Reconnaissance',
     patronage: 'Saint patron de',
     birth: 'Naissance',
     death: 'Mort',
@@ -77,7 +78,7 @@ export default {
     mine: 'Fiche ajoutée localement',
     confirmRemove: 'Supprimer définitivement cette fiche ?',
     back: 'Retour aux résultats',
-    translated: 'Traduit de l’anglais, d’après l’article de Wikipédia cité en source.',
+    translated: 'Traduit {langue}, d’après l’article de Wikipédia cité en source.',
   },
   add: {
     namePlaceholder: 'François d’Assise',
@@ -338,6 +339,17 @@ export default {
     system: 'Système',
     light: 'Clair',
     dark: 'Sombre',
+  },
+  // Le degré de reconnaissance par l'Église : serviteur de Dieu à l'ouverture
+  // de la cause, vénérable quand les vertus héroïques sont reconnues,
+  // bienheureux après la béatification, saint après la canonisation. Une fiche
+  // dont on ignore le degré n'en porte aucun — c'est la seule chose vraie
+  // qu'on puisse en écrire.
+  degre: {
+    saint: ['Saint', 'Sainte'],
+    bienheureux: ['Bienheureux', 'Bienheureuse'],
+    venerable: 'Vénérable',
+    serviteur: ['Serviteur de Dieu', 'Servante de Dieu'],
   },
   title: {
     abbess: 'Abbesse',

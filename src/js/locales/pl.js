@@ -58,6 +58,7 @@ export default {
     rejected: 'Odrzucona',
   },
   detail: {
+    degre: 'Uznanie',
     patronage: 'Patron',
     birth: 'Narodziny',
     death: 'Śmierć',
@@ -75,7 +76,7 @@ export default {
     mine: 'Karta dodana lokalnie',
     confirmRemove: 'Trwale usunąć tę kartę?',
     back: 'Powrót do wyników',
-    translated: 'Przetłumaczone z angielskiego, na podstawie artykułu z Wikipedii podanego w źródłach.',
+    translated: 'Przetłumaczone z: {langue}, na podstawie artykułu z Wikipedii podanego w źródłach.',
   },
   add: {
     namePlaceholder: 'Franciszek z Asyżu',
@@ -336,6 +337,12 @@ export default {
     system: 'Systemowy',
     light: 'Jasny',
     dark: 'Ciemny',
+  },
+  degre: {
+    saint: ['Święty', 'Święta'],
+    bienheureux: ['Błogosławiony', 'Błogosławiona'],
+    venerable: ['Czcigodny', 'Czcigodna'],
+    serviteur: ['Sługa Boży', 'Służebnica Boża'],
   },
   title: {
     abbess: 'Ksieni',

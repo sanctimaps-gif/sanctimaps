@@ -58,6 +58,7 @@ export default {
     rejected: 'Abgelehnt',
   },
   detail: {
+    degre: 'Anerkennung',
     patronage: 'Schutzpatron von',
     birth: 'Geburt',
     death: 'Tod',
@@ -75,7 +76,7 @@ export default {
     mine: 'Lokal hinzugefügter Eintrag',
     confirmRemove: 'Diesen Eintrag endgültig löschen?',
     back: 'Zurück zu den Ergebnissen',
-    translated: 'Aus dem Englischen übersetzt, nach dem in den Quellen genannten Wikipedia-Artikel.',
+    translated: 'Aus {langue} übersetzt, nach dem in den Quellen genannten Wikipedia-Artikel.',
   },
   add: {
     namePlaceholder: 'Franz von Assisi',
@@ -336,6 +337,12 @@ export default {
     system: 'System',
     light: 'Hell',
     dark: 'Dunkel',
+  },
+  degre: {
+    saint: ['Heiliger', 'Heilige'],
+    bienheureux: ['Seliger', 'Selige'],
+    venerable: ['Ehrwürdiger', 'Ehrwürdige'],
+    serviteur: ['Diener Gottes', 'Dienerin Gottes'],
   },
   title: {
     abbess: 'Äbtissin',

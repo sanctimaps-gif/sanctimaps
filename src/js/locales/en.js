@@ -58,6 +58,7 @@ export default {
     rejected: 'Rejected',
   },
   detail: {
+    degre: 'Recognition',
     patronage: 'Patron saint of',
     birth: 'Born',
     death: 'Died',
@@ -75,7 +76,7 @@ export default {
     mine: 'Entry added locally',
     confirmRemove: 'Permanently delete this entry?',
     back: 'Back to results',
-    translated: 'Translated from English, after the Wikipedia article cited in the sources.',
+    translated: 'Translated from {langue}, after the Wikipedia article cited in the sources.',
   },
   add: {
     namePlaceholder: 'Francis of Assisi',
@@ -336,6 +337,12 @@ export default {
     system: 'System',
     light: 'Light',
     dark: 'Dark',
+  },
+  degre: {
+    saint: 'Saint',
+    bienheureux: 'Blessed',
+    venerable: 'Venerable',
+    serviteur: ['Servant of God', 'Servant of God'],
   },
   title: {
     abbess: 'Abbess',
