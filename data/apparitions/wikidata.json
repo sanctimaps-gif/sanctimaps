@@ -9,7 +9,7 @@
     "fr": "Apparition mariale de Saragosse",
     "en": "coming of the Virgin Mary to St. James the Great in Zaragoza"
    },
-   "city": "province de Saragosse",
+   "city": "Tarraconaise",
    "country": "ESP",
    "lat": 41.65,
    "lng": -0.8833,
@@ -147,7 +147,7 @@
     "fr": "Our Lady of Ortiga",
     "en": "Our Lady of Ortiga"
    },
-   "city": "Fátima",
+   "city": "Ourém",
    "country": "PRT",
    "lat": 39.6056,
    "lng": -8.6261,
@@ -200,7 +200,7 @@
     "fr": "Notre-Dame de la Médaille-miraculeuse",
     "en": "Our Lady of Grace (Miraculous Medal)"
    },
-   "city": "7e arrondissement de Paris",
+   "city": "chapelle Notre-Dame-de-la-Médaille-miraculeuse",
    "country": "FRA",
    "lat": 48.8508,
    "lng": 2.3229,
@@ -416,7 +416,7 @@
     "fr": "Apparitions mariales de Gietrzwałd",
     "en": "Marian apparitions of Gietrzwałd"
    },
-   "city": "province de Prusse",
+   "city": "Gietrzwałd",
    "country": "POL",
    "lat": 53.7475,
    "lng": 20.2356,
@@ -447,7 +447,7 @@
     "fr": "Apparition mariale de Knock",
     "en": "Marian apparition of Knock"
    },
-   "city": "comté de Mayo",
+   "city": "Knock",
    "country": "IRL",
    "lat": 53.7923,
    "lng": -8.9194,
@@ -507,7 +507,7 @@
     "fr": "Saint Mary of Sorrows of Castelpetroso",
     "en": "Saint Mary of Sorrows of Castelpetroso"
    },
-   "city": "province d'Isernia",
+   "city": "Castelpetroso",
    "country": "ITA",
    "lat": 41.5667,
    "lng": 14.35,
@@ -579,7 +579,7 @@
     "fr": "apparitions de Pontevedra",
     "en": "Pontevedra apparitions"
    },
-   "city": "province de Pontevedra",
+   "city": "Pontevedra",
    "country": "ESP",
    "lat": 42.4336,
    "lng": -8.6475,
@@ -617,7 +617,7 @@
     "fr": "Notre-Dame des Larmes",
     "en": "Our Lady of Tears"
    },
-   "city": "Campinas",
+   "city": "São Paulo",
    "country": "BRA",
    "lat": -22.9009,
    "lng": -47.0573,
@@ -827,7 +827,7 @@
    "name": {
     "fr": "Apparitions mariales d'Akita"
    },
-   "city": "Japon",
+   "city": "Akita Prefecture",
    "country": "JPN",
    "lat": 39.7186,
    "lng": 140.1025,
@@ -857,7 +857,7 @@
     "fr": "Apparitions mariales de Betania",
     "en": "Marian apparitions of Betania"
    },
-   "city": "Municipio Urdaneta",
+   "city": "Cúa",
    "country": "VEN",
    "lat": 10.0742,
    "lng": -66.9283,
@@ -888,7 +888,7 @@
    "name": {
     "fr": "Apparitions mariales de Kibeho"
    },
-   "city": "Kibeho Sector",
+   "city": "Kibeho",
    "country": "RWA",
    "lat": -2.6489,
    "lng": 29.5533,
