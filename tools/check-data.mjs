@@ -100,11 +100,10 @@ ok(`${placeCount} localités réparties sur ${placeFiles.length} fichiers de pay
 /**
  * Le second corpus de la carte, celui que la bascule montre.
  *
- * Il est vide pour l'instant, et le contrôle passe sur un corpus vide : c'est un
- * fait, non une anomalie — la bascule le dit à l'écran. Ce qui est vérifié ici
- * vaut donc pour le jour où il se remplira, et surtout : qu'aucune apparition ne
- * porte l'identifiant d'un saint. Une adresse ne peut désigner qu'une chose, et
- * « ?saint=… » comme les pages d'index en dépendent.
+ * Le contrôle passe sur un corpus vide : c'est un cas admis, non une anomalie —
+ * la bascule le dit alors à l'écran. Ce qu'il vérifie surtout, c'est qu'aucune
+ * apparition ne porte l'identifiant d'un saint : une adresse ne peut désigner
+ * qu'une chose, et « ?saint=… » comme les pages d'index en dépendent.
  */
 const { apparitions } = read('apparitions.json');
 const APPROBATIONS = new Set(['reconnue', 'en-cours', 'non-reconnue']);
@@ -338,6 +337,9 @@ if (existsSync(accueil)) {
     'siècles': siecles.size,
     'jours de fête': new Set(published.map((s) => s.feast)).size,
     'biographies en français': published.filter((s) => s.bio?.fr).length,
+    // Le second corpus est annoncé lui aussi : il grossira, et le nombre écrit
+    // à la main vieillirait sans que rien ne le dise.
+    'apparitions mariales': apparitions.length,
   };
   // « <b>4 589</b> saints » : on relit le nombre qui précède chaque étiquette,
   // l'espace fine insécable comprise.

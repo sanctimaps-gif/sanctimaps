@@ -1072,7 +1072,8 @@ pour se désinscrire et, si vous le souhaitez, supprimer toutes vos données.</p
  */
 function aboutPage(ctx) {
   const { base, compteurs } = ctx;
-  const { saints, pays, lieux, siecles, jours, bio, sansBio, traduites } = compteurs;
+  const { saints, pays, lieux, siecles, jours, bio, sansBio, traduites,
+    apparitions, apparitionsPays, apparitionsReconnues } = compteurs;
   const url = `${base}/a-propos/`;
   const body = `<h1>À propos de SanctiMaps</h1>
 <p class="lede">SanctiMaps place sur une carte du monde les saints, les
@@ -1083,7 +1084,17 @@ au Viêt Nam, pour voir qui a vécu là.</p>
 
 <h2>Ce que la carte contient</h2>
 <dl class="facts">
-${fact('Saints recensés', esc(nombre(saints)))}${fact('Pays', esc(nombre(pays)))}${fact('Villes et régions', esc(nombre(lieux)))}${fact('Siècles couverts', esc(nombre(siecles)))}${fact('Jours de fête pourvus', esc(nombre(jours)))}${fact('Biographies en français', esc(nombre(bio)))}</dl>
+${fact('Saints recensés', esc(nombre(saints)))}${fact('Pays', esc(nombre(pays)))}${fact('Villes et régions', esc(nombre(lieux)))}${fact('Siècles couverts', esc(nombre(siecles)))}${fact('Jours de fête pourvus', esc(nombre(jours)))}${fact('Biographies en français', esc(nombre(bio)))}${apparitions ? fact('Apparitions recensées', esc(nombre(apparitions))) : ''}</dl>
+
+${apparitions ? `<h2>Les apparitions</h2>
+<p>La carte porte un second corpus, que l’on affiche à la place des saints par
+une bascule en haut de l’écran : <strong>${esc(nombre(apparitions))} apparitions</strong>
+mariales et christiques dans ${esc(nombre(apparitionsPays))} pays, de Saragosse
+à Medjugorje. ${esc(nombre(apparitionsReconnues))} d’entre elles ont été
+reconnues par l’Église — Lourdes en 1862, Fátima en 1930, Kibeho en 2001 —, et
+la fiche le dit : reconnue, examen en cours, non reconnue, ou rien lorsque
+l’Église ne s’est pas prononcée. Une apparition n’est pas un saint : elle porte
+une année et un lieu, non deux dates et un lieu de naissance.</p>` : ''}
 
 <p>Chaque fiche porte les dates, le lieu de naissance, le jour de fête, l’époque,
 les qualités — évêque, martyre, docteur de l’Église —, le patronage, la
@@ -1190,6 +1201,12 @@ function main() {
   const names = JSON.parse(readFileSync(join(GEN, 'country-names.json'), 'utf8'));
   const de = JSON.parse(readFileSync(join(ROOT, 'data', 'reference', 'pays-de.json'), 'utf8')).de;
   const world = JSON.parse(readFileSync(join(GEN, 'world.json'), 'utf8'));
+  // Le second corpus : il n'a pas encore de pages à lui, mais la page
+  // d'à-propos doit pouvoir dire ce que la carte porte — toute la carte.
+  let apparitions = [];
+  try {
+    apparitions = JSON.parse(readFileSync(join(GEN, 'apparitions.json'), 'utf8')).apparitions || [];
+  } catch { /* corpus absent : la page n'en dira rien */ }
 
   const countryName = (iso) => names[iso]?.fr || iso;
   const manquants = new Set();
@@ -1356,6 +1373,9 @@ function main() {
       bio: published.filter((s) => s.bio?.fr).length,
       sansBio: published.filter((s) => !s.bio?.fr).length,
       traduites: published.filter((s) => s.traduit).length,
+      apparitions: apparitions.length,
+      apparitionsPays: new Set(apparitions.map((a) => a.country)).size,
+      apparitionsReconnues: apparitions.filter((a) => a.approbation === 'reconnue').length,
     },
     // La page du lieu, quand il en a une : un saint né dans un village qu'il
     // est seul à porter n'a pas de page de lieu, et son nom reste du texte.

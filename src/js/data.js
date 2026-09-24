@@ -93,8 +93,9 @@ export class Atlas {
     // la carte montre ; tout ce qui ne connaît que les saints — la recherche, le
     // saint du jour, le rappel, la modération — continue de lire `saints`.
     //
-    // Le corpus est vide pour l'instant : la carte le dit alors en clair plutôt
-    // que de laisser chercher des repères qui n'existent pas.
+    // Un corpus vide reste possible — le fichier peut manquer —, et la carte le
+    // dit alors en clair plutôt que de laisser chercher des repères qui
+    // n'existent pas.
     this.corpus = 'saints';
     this.apparitions = (apparitions?.apparitions || [])
       .map((a) => ({ ...a, status: PUBLISHED, kind: 'apparition' }));

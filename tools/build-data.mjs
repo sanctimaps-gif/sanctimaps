@@ -903,10 +903,11 @@ console.log(`  candidates.json : ${candidates.length} fiches candidates`);
  * qui n'est pas celui des causes de canonisation — Lourdes et Fátima sont
  * reconnues, Medjugorje ne l'est pas.
  *
- * Le dossier est vide pour l'instant : la bascule existe, le corpus reste à
- * écrire. Un fichier vide est ici un fait, non un oubli — la carte le dit à
- * l'écran plutôt que de laisser le lecteur chercher des repères qui n'existent
- * pas. Le format est décrit dans `data/apparitions/README.md`.
+ * Le dossier tient ce que `import-apparitions.mjs` rapporte de Wikidata, ce
+ * qu'on y a écrit à la main faute de coordonnées là-bas, et la table
+ * d'approbation. Un corpus vide reste un cas admis : la carte le dit alors à
+ * l'écran plutôt que de laisser chercher des repères qui n'existent pas. Le
+ * format est décrit dans `data/apparitions/README.md`.
  */
 const APPA_DIR = join(ROOT, 'data', 'apparitions');
 const APPA_REQUIS = ['id', 'name', 'country', 'city', 'lat', 'lng', 'annee'];

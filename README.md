@@ -875,10 +875,17 @@ les deux à la fois. Deux boutons collés en haut de la carte, « Saints » et
 « Apparitions », disent lequel des deux est à l'écran et font passer de l'un à
 l'autre.
 
-**Le second corpus est vide pour l'instant**, et cela se lit en toutes lettres :
-« Aucune apparition n'est encore recensée : le corpus est en cours d'écriture ».
-Une carte sans un seul repère ressemble trop à une carte en panne, et le lecteur
-chercherait à Lourdes ou à Fátima ce qui n'y est pas encore.
+Le second corpus porte **quarante apparitions dans vingt-trois pays**, de
+Saragosse — an 39 — à Assiout en l'an 2000 : Guadalupe, Le Laus, La Salette,
+Lourdes, Pontmain, Knock, Fátima, Beauraing, Banneux, Akita, Kibeho,
+Medjugorje. Vingt-deux d'entre elles ont été reconnues par l'Église, deux ne
+l'ont pas été, une est à l'examen, et les quinze autres ne portent aucun mot :
+l'Église ne s'est pas prononcée, et la fiche omet alors la ligne.
+
+Tant qu'il était vide, la carte le disait en toutes lettres — « Aucune
+apparition n'est encore recensée » —, et elle le dira de nouveau si le fichier
+venait à manquer : une carte sans un seul repère ressemble trop à une carte en
+panne.
 
 Une apparition n'est pas un saint, et sa fiche ne fait pas semblant de l'être :
 
