@@ -414,32 +414,41 @@ async function main() {
 
   // ---- Le tri -------------------------------------------------------------
 
+  // Ce qui est écarté l'est **nommément**. Un compte — « vingt-deux sans
+  // coordonnées » — ne dit pas si l'on vient de perdre une apparition obscure
+  // ou Lourdes : c'est en lisant les noms qu'on décide s'il faut écrire la
+  // fiche à la main.
   const ecartes = { coord: 0, pays: 0, cadre: 0, ville: 0, annee: 0, nom: 0, doublon: 0 };
+  const perdus = [];
   const pris = [];
   const vus = new Set();
   for (const vue of parQid.values()) {
     const nomFr = vue.nameFr || vue.nameEn;
-    if (!nomFr) { ecartes.nom += 1; continue; }
+    const ecarter = (raison) => {
+      ecartes[raison] += 1;
+      perdus.push({ raison, nom: nomFr || '(sans nom)', qid: vue.qid });
+    };
+    if (!nomFr) { ecarter('nom'); continue; }
 
     const point = pointOf(vue.coord);
-    if (!point) { ecartes.coord += 1; continue; }
+    if (!point) { ecarter('coord'); continue; }
     const [lng, lat] = point;
-    if (Math.abs(lat) > 85 || Math.abs(lng) > 180) { ecartes.coord += 1; continue; }
+    if (Math.abs(lat) > 85 || Math.abs(lng) > 180) { ecarter('coord'); continue; }
 
     const iso = vue.iso;
     const country = iso ? pays.get(iso) : null;
-    if (!country) { ecartes.pays += 1; continue; }
-    if (!insideBox(country, lng, lat, world.worldSize)) { ecartes.cadre += 1; continue; }
+    if (!country) { ecarter('pays'); continue; }
+    if (!insideBox(country, lng, lat, world.worldSize)) { ecarter('cadre'); continue; }
 
     const ville = vue.villeFr || vue.villeEn || vue.lieuFr || vue.lieuEn;
-    if (!ville) { ecartes.ville += 1; continue; }
+    if (!ville) { ecarter('ville'); continue; }
 
     const annee = yearOf(vue.debut);
-    if (annee == null) { ecartes.annee += 1; continue; }
+    if (annee == null) { ecarter('annee'); continue; }
     const anneeFin = yearOf(vue.fin);
 
     const id = slug(nomFr, vue.qid);
-    if (vus.has(id)) { ecartes.doublon += 1; continue; }
+    if (vus.has(id)) { ecarter('doublon'); continue; }
     vus.add(id);
 
     const fiche = {
@@ -499,7 +508,11 @@ async function main() {
   console.log(`\n${pris.length} apparitions retenues sur ${parQid.size}.`);
   console.log('Écartées :');
   for (const [raison, n] of Object.entries(ecartes)) {
-    if (n) console.log(`  ${raison.padEnd(9)} ${n}`);
+    if (!n) continue;
+    console.log(`  ${raison.padEnd(9)} ${n}`);
+    for (const p of perdus.filter((x) => x.raison === raison)) {
+      console.log(`      ${p.nom} (${p.qid})`);
+    }
   }
   const parPays = new Map();
   for (const f of pris) parPays.set(f.country, (parPays.get(f.country) || 0) + 1);
