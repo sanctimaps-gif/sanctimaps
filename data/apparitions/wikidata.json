@@ -9,7 +9,7 @@
     "fr": "Apparition mariale de Saragosse",
     "en": "coming of the Virgin Mary to St. James the Great in Zaragoza"
    },
-   "city": "Tarraconaise",
+   "city": "Zaragoza",
    "country": "ESP",
    "lat": 41.65,
    "lng": -0.8833,
@@ -33,7 +33,7 @@
    "name": {
     "fr": "Apparitions de Notre-Dame de Grâces"
    },
-   "city": "Var",
+   "city": "Cotignac",
    "country": "FRA",
    "lat": 43.5286,
    "lng": 6.1494,
@@ -392,7 +392,7 @@
     "fr": "Marpingen apparitions",
     "en": "Marpingen apparitions"
    },
-   "city": "Saint-Wendel",
+   "city": "Marpingen",
    "country": "DEU",
    "lat": 49.4496,
    "lng": 7.0664,
@@ -617,7 +617,7 @@
     "fr": "Notre-Dame des Larmes",
     "en": "Our Lady of Tears"
    },
-   "city": "São Paulo",
+   "city": "Campinas",
    "country": "BRA",
    "lat": -22.9009,
    "lng": -47.0573,
@@ -827,7 +827,7 @@
    "name": {
     "fr": "Apparitions mariales d'Akita"
    },
-   "city": "Akita Prefecture",
+   "city": "préfecture d'Akita",
    "country": "JPN",
    "lat": 39.7186,
    "lng": 140.1025,
@@ -955,7 +955,7 @@
    "name": {
     "fr": "apparitions mariales de San Nicolás"
    },
-   "city": "San Nicolás",
+   "city": "San Nicolás de los Arroyos",
    "country": "ARG",
    "lat": -33.3333,
    "lng": -60.2167,
@@ -986,7 +986,7 @@
     "fr": "apparitions of the Virgin Mary in Assiut",
     "en": "apparitions of the Virgin Mary in Assiut"
    },
-   "city": "Assiout",
+   "city": "Asyut",
    "country": "EGY",
    "lat": 27.1869,
    "lng": 31.1714,
