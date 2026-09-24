@@ -1,3 +1,131 @@
 {
-  "apparitions": []
+  "note": "Les apparitions écrites à la main : celles que l’import ne sait pas placer, faute de coordonnées sur Wikidata, et qu’une carte des apparitions ne peut pas ne pas porter. Chaque fiche ne dit que ce dont on est sûr — un lieu, une année, une phrase — et rien de plus : ni récit, ni source reprise d’ailleurs. Les identifiants ne portent pas de numéro Wikidata, c’est ce qui les distingue des importées ; le jour où l’élément Wikidata reçoit ses coordonnées, l’import en fera une seconde fiche, et « doublons.json » tranchera.",
+  "apparitions": [
+    {
+      "id": "ap-notre-dame-du-bon-succes-quito",
+      "name": {
+        "fr": "Notre-Dame du Bon Succès",
+        "en": "Our Lady of Good Success",
+        "es": "Nuestra Señora del Buen Suceso"
+      },
+      "city": "Quito",
+      "country": "ECU",
+      "lat": -0.2205,
+      "lng": -78.5123,
+      "annee": 1594,
+      "desc": {
+        "fr": "Apparitions à la mère Mariana de Jesús Torres, au monastère de l’Immaculée Conception."
+      }
+    },
+    {
+      "id": "ap-notre-dame-de-siluva",
+      "name": { "fr": "Notre-Dame de Šiluva", "en": "Our Lady of Šiluva", "lt": "Šiluvos Dievo Motina" },
+      "city": "Šiluva",
+      "country": "LTU",
+      "lat": 55.5286,
+      "lng": 23.2333,
+      "annee": 1608,
+      "desc": {
+        "fr": "Apparition à des bergers, dans une Lituanie alors passée à la Réforme."
+      }
+    },
+    {
+      "id": "ap-notre-dame-de-coromoto-guanare",
+      "name": { "fr": "Notre-Dame de Coromoto", "es": "Nuestra Señora de Coromoto" },
+      "city": "Guanare",
+      "country": "VEN",
+      "lat": 9.0422,
+      "lng": -69.7419,
+      "annee": 1652,
+      "desc": {
+        "fr": "Apparition au cacique des Cospes, dont la conversion suivit. Patronne du Venezuela."
+      }
+    },
+    {
+      "id": "ap-notre-dame-de-toute-aide-querrien",
+      "name": { "fr": "Notre-Dame de Toute Aide", "en": "Our Lady of All Help" },
+      "city": "La Prénessaye",
+      "country": "FRA",
+      "lat": 48.2833,
+      "lng": -2.7167,
+      "annee": 1652,
+      "desc": {
+        "fr": "Apparitions à Jeanne Courtel, jeune bergère sourde et muette, au village de Querrien."
+      }
+    },
+    {
+      "id": "ap-notre-dame-du-laus",
+      "name": { "fr": "Notre-Dame du Laus", "en": "Our Lady of Laus" },
+      "city": "Saint-Étienne-le-Laus",
+      "country": "FRA",
+      "lat": 44.5306,
+      "lng": 6.1436,
+      "annee": 1664,
+      "anneeFin": 1718,
+      "desc": {
+        "fr": "Cinquante-quatre années d’apparitions à Benoîte Rencurel, bergère des Hautes-Alpes."
+      }
+    },
+    {
+      "id": "ap-notre-dame-de-la-vang",
+      "name": { "fr": "Notre-Dame de La Vang", "en": "Our Lady of La Vang", "vi": "Đức Mẹ La Vang" },
+      "city": "La Vang",
+      "country": "VNM",
+      "lat": 16.7414,
+      "lng": 107.0364,
+      "annee": 1798,
+      "desc": {
+        "fr": "Apparition à des catholiques réfugiés en forêt pendant la persécution des Tây Sơn."
+      }
+    },
+    {
+      "id": "ap-notre-dame-du-bon-secours-champion",
+      "name": { "fr": "Notre-Dame du Bon Secours", "en": "Our Lady of Good Help" },
+      "city": "Champion",
+      "country": "USA",
+      "lat": 44.5433,
+      "lng": -87.8942,
+      "annee": 1859,
+      "desc": {
+        "fr": "Apparitions à Adèle Brise, dans le Wisconsin : les seules reconnues aux États-Unis."
+      }
+    },
+    {
+      "id": "ap-apparitions-de-beauraing",
+      "name": { "fr": "Apparitions de Beauraing", "en": "Our Lady of Beauraing" },
+      "city": "Beauraing",
+      "country": "BEL",
+      "lat": 50.1108,
+      "lng": 4.9564,
+      "annee": 1932,
+      "anneeFin": 1933,
+      "desc": {
+        "fr": "Trente-trois apparitions à cinq enfants, au jardin du pensionnat, près d’une aubépine."
+      }
+    },
+    {
+      "id": "ap-notre-dame-de-cuapa",
+      "name": { "fr": "Notre-Dame de Cuapa", "es": "Virgen de Cuapa" },
+      "city": "San Francisco de Cuapa",
+      "country": "NIC",
+      "lat": 12.2667,
+      "lng": -85.1333,
+      "annee": 1980,
+      "desc": {
+        "fr": "Apparitions à Bernardo Martínez, sacristain du village, à la veille de la guerre civile."
+      }
+    },
+    {
+      "id": "ap-apparitions-de-medjugorje",
+      "name": { "fr": "Apparitions de Medjugorje", "en": "Our Lady of Medjugorje" },
+      "city": "Medjugorje",
+      "country": "BIH",
+      "lat": 43.1908,
+      "lng": 17.6789,
+      "annee": 1981,
+      "desc": {
+        "fr": "Apparitions rapportées depuis 1981 par six jeunes gens d’Herzégovine."
+      }
+    }
+  ]
 }

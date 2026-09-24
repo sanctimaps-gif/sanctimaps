@@ -946,6 +946,43 @@ for (const file of readdirSync(APPA_DIR)
 }
 
 /**
+ * Deux éléments pour une apparition, et deux croix au même endroit.
+ *
+ * Wikidata tient souvent l'événement — « Apparitions mariales de Kibeho » — et
+ * le vocable sous lequel on la prie — « Notre-Dame de Kibeho » — comme deux
+ * éléments distincts. Ce sont deux articles, non deux apparitions. La table
+ * dit lequel on garde et pourquoi ; l'écarté y verse ce qu'il avait de plus,
+ * par la même fonction que les doublons de saints, puis disparaît.
+ */
+const APPA_DOUBLONS_FILE = 'doublons.json';
+let appaDoublons = [];
+try {
+  appaDoublons = JSON.parse(readFileSync(join(APPA_DIR, APPA_DOUBLONS_FILE), 'utf8')).doublons || [];
+} catch { /* pas de table : le corpus reste tel quel */ }
+
+const appaParId = new Map(apparitions.map((a) => [a.id, a]));
+const appaEcartes = new Set();
+for (const { garde, ecarte } of appaDoublons) {
+  const a = appaParId.get(garde);
+  const b = appaParId.get(ecarte);
+  if (!a) { appaErrors.push(`${APPA_DOUBLONS_FILE} — identifiant gardé inconnu : ${garde}`); continue; }
+  if (!b) { appaErrors.push(`${APPA_DOUBLONS_FILE} — identifiant écarté inconnu : ${ecarte}`); continue; }
+  if (appaEcartes.has(garde)) {
+    appaErrors.push(`${APPA_DOUBLONS_FILE} — ${garde} est gardé ici et écarté ailleurs`);
+    continue;
+  }
+  verser(a, b);
+  appaEcartes.add(ecarte);
+}
+if (appaEcartes.size) {
+  const avant = apparitions.length;
+  for (let i = apparitions.length - 1; i >= 0; i -= 1) {
+    if (appaEcartes.has(apparitions[i].id)) apparitions.splice(i, 1);
+  }
+  console.log(`Apparitions : ${avant - apparitions.length} fiches fondues dans la leur`);
+}
+
+/**
  * Ce que l'Église a dit, quand elle l'a dit.
  *
  * Wikidata ne porte pas l'approbation de façon fiable, et l'importateur ne pose
@@ -966,8 +1003,15 @@ try {
 const appaComptes = { main: 0, texte: 0, muet: 0 };
 const inemployes = new Set(reglesApprobation.map((r) => r.motif));
 for (const apparition of apparitions) {
-  const nom = fold(apparition.name?.fr || apparition.name?.en || apparition.name || '');
-  const cible = `${nom} ${fold(apparition.city || '')}`;
+  // Le motif s'éprouve contre le **nom seul**, jamais contre la localité :
+  // « Notre-Dame de l'Ortigue », apparue à Fátima en 1758, n'est pas celle de
+  // 1917, et la reconnaissance de l'une n'est pas celle de l'autre. Un lieu
+  // porte plusieurs apparitions ; un nom n'en porte qu'une.
+  // L'identifiant est joint au nom : il est tiré du nom pour une fiche
+  // importée, mais une fiche écrite à la main y ajoute son lieu, ce qui permet
+  // de distinguer deux vocables homonymes — il y a des dizaines de
+  // « Notre-Dame du Bon Secours », une seule à Champion.
+  const cible = `${fold(apparition.name?.fr || apparition.name?.en || apparition.name || '')} ${fold(apparition.id)}`;
   const regle = reglesApprobation.find((r) => {
     try { return new RegExp(r.motif, 'i').test(cible); } catch { return false; }
   });

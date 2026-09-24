@@ -1,0 +1,25 @@
+{
+  "note": "Wikidata tient souvent deux éléments pour une même apparition : l’événement (« Apparitions mariales de Kibeho ») et le vocable sous lequel on la prie (« Notre-Dame de Kibeho »). Ce sont deux articles, non deux apparitions, et deux croix au même endroit sur la carte. On garde celle qui porte le plus — un récit, une fête, une localité nommée —, l’autre y verse ce qu’elle avait de plus, et disparaît. Chaque fusion porte sa raison ; « build-data » annonce les lignes qui ne trouvent plus leur fiche.",
+  "doublons": [
+    {
+      "garde": "ap-apparitions-mariales-de-la-rue-du-bac-q95562824",
+      "ecarte": "ap-notre-dame-de-la-medaille-miraculeuse-q95561576",
+      "pourquoi": "Paris, 1830. L’événement et la médaille qui en est née. La fiche gardée nomme la rue plutôt que l’arrondissement."
+    },
+    {
+      "garde": "ap-notre-dame-de-pontmain-q581454",
+      "ecarte": "ap-apparition-mariale-de-pontmain-q91181009",
+      "pourquoi": "Pontmain, 1871. Le vocable porte le récit dans deux langues et le jour de fête ; l’événement n’a ni l’un ni l’autre."
+    },
+    {
+      "garde": "ap-notre-dame-de-lipa-q16962194",
+      "ecarte": "ap-lipa-apparition-q25560953",
+      "pourquoi": "Lipa, Philippines, 1948. Le vocable porte le récit et la fête ; l’autre élément est vide."
+    },
+    {
+      "garde": "ap-notre-dame-de-kibeho-q182578",
+      "ecarte": "ap-apparitions-mariales-de-kibeho-q106591529",
+      "pourquoi": "Kibeho, Rwanda, 1981. Le vocable porte le récit dans deux langues et nomme la localité, non le secteur administratif."
+    }
+  ]
+}

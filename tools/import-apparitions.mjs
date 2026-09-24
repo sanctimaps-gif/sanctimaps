@@ -249,6 +249,31 @@ function approbationDe(texte) {
   return null;
 }
 
+/**
+ * Une division administrative n'est pas une localité.
+ *
+ * `P131` remonte la hiérarchie des territoires, et Wikidata s'y arrête où elle
+ * veut : Lourdes pour les apparitions de Lourdes, mais « le Japon » pour celles
+ * d'Akita, « la province de Prusse » pour Gietrzwałd, « la Mayenne » pour
+ * Pontmain. Sur une fiche, « Lieu : Japon » ne situe personne.
+ *
+ * Ces libellés-là se reconnaissent : ils commencent par le mot de la division.
+ * Quand le premier candidat en est un, on descend au suivant — le nom du lieu
+ * lui-même, qui est une grotte, une chapelle ou un hameau, mais qui situe.
+ */
+const DIVISION = /^(?:la |le |les |l['’])?(?:province|provincia|région|region|regione|district|comt[ée]|county|municip|d[ée]partement|departamento|governorate|pr[ée]fecture|canton|vo[ïi]vodie|oblast|arrondissement|secteur|sector|commune de|state of|[ée]tat d)/i;
+
+/** Le nom du pays ne situe rien non plus : c'est le pays, on le sait déjà. */
+function localite(vue, nomsDuPays = []) {
+  const candidats = [vue.villeLFr, vue.villeFr, vue.lieuFr, vue.villeLEn, vue.villeEn, vue.lieuEn]
+    .map((v) => String(v || '').trim()).filter(Boolean);
+  const pays = new Set(nomsDuPays.map((n) => fold(n)));
+  const bon = candidats.find((c) => !DIVISION.test(c) && !pays.has(fold(c))
+    // « 7e arrondissement de Paris » commence par un chiffre, non par le mot.
+    && !/^\d+(?:er|e|ème)\b/i.test(c));
+  return bon || candidats.find((c) => !pays.has(fold(c))) || '';
+}
+
 /** Le point tombe-t-il dans le cadre du pays annoncé, à 8 % près ? */
 function insideBox(country, lng, lat, worldSize) {
   const x = ((lng + 180) / 360) * worldSize;
@@ -336,6 +361,9 @@ async function main() {
 
   const world = JSON.parse(readFileSync(join(ROOT, 'data', 'generated', 'world.json'), 'utf8'));
   const pays = new Map(world.countries.map((c) => [c.id, c]));
+  // Les noms de pays, pour ne pas écrire « Lieu : Japon » sur la fiche d'une
+  // apparition japonaise : c'est le pays, il est déjà dit à la ligne d'après.
+  const nomsPays = JSON.parse(readFileSync(join(ROOT, 'data', 'generated', 'country-names.json'), 'utf8'));
 
   const classes = await chercherClasses(options);
   if (!classes.length) throw new Error('aucune classe d’apparition trouvée : rien à importer');
@@ -376,8 +404,7 @@ async function main() {
     vue.coord = premier(vue.coord, vue.coordL);
     vue.iso = premier(vue.iso, vue.isoL);
     vue.debut = premier(premier(vue.quand, vue.ouvre), vue.fonde);
-    vue.villeFr = premier(vue.villeFr, vue.villeLFr);
-    vue.villeEn = premier(vue.villeEn, vue.villeLEn);
+    vue.ville = localite(vue, Object.values(nomsPays[vue.iso] || {}));
   }
   console.log(`${parQid.size} apparitions distinctes.`);
 
@@ -440,7 +467,7 @@ async function main() {
     if (!country) { ecarter('pays'); continue; }
     if (!insideBox(country, lng, lat, world.worldSize)) { ecarter('cadre'); continue; }
 
-    const ville = vue.villeFr || vue.villeEn || vue.lieuFr || vue.lieuEn;
+    const ville = vue.ville;
     if (!ville) { ecarter('ville'); continue; }
 
     const annee = yearOf(vue.debut);

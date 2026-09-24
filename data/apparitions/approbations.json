@@ -30,7 +30,7 @@
       "valeur": "reconnue",
       "pourquoi": "Lourdes, 1858. Reconnue par l’évêque de Tarbes en 1862." },
 
-    { "motif": "good help",
+    { "motif": "good help|bon secours.*champion",
       "valeur": "reconnue",
       "pourquoi": "Champion, Wisconsin, 1859. Reconnue par l’évêque de Green Bay en 2010 — la première des États-Unis." },
 
@@ -38,7 +38,7 @@
       "valeur": "reconnue",
       "pourquoi": "Pontmain, 1871. Reconnue par l’évêque de Laval en 1875." },
 
-    { "motif": "gietrzwald",
+    { "motif": "gietrzwa",
       "valeur": "reconnue",
       "pourquoi": "Gietrzwałd, Pologne, 1877. Reconnue en 1977." },
 
