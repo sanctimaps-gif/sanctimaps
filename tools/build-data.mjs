@@ -911,10 +911,13 @@ console.log(`  candidates.json : ${candidates.length} fiches candidates`);
 const APPA_DIR = join(ROOT, 'data', 'apparitions');
 const APPA_REQUIS = ['id', 'name', 'country', 'city', 'lat', 'lng', 'annee'];
 const APPROBATIONS = new Set(['reconnue', 'en-cours', 'non-reconnue']);
+const APPROBATION_FILE = 'approbations.json';
 const apparitions = [];
 const appaErrors = [];
 const appaIds = new Set();
-for (const file of readdirSync(APPA_DIR).filter((f) => f.endsWith('.json')).sort()) {
+for (const file of readdirSync(APPA_DIR)
+  .filter((f) => f.endsWith('.json') && f !== APPROBATION_FILE)
+  .sort()) {
   const raw = JSON.parse(readFileSync(join(APPA_DIR, file), 'utf8'));
   for (const a of raw.apparitions || []) {
     const where = `${file}:${a.id ?? '?'}`;
@@ -942,10 +945,60 @@ for (const file of readdirSync(APPA_DIR).filter((f) => f.endsWith('.json')).sort
   }
 }
 
+/**
+ * Ce que l'Église a dit, quand elle l'a dit.
+ *
+ * Wikidata ne porte pas l'approbation de façon fiable, et l'importateur ne pose
+ * ce mot que lorsqu'un texte l'écrit en toutes lettres. Le reste se tranche à la
+ * main, dans `approbations.json`, où chaque ligne porte sa raison — et la main
+ * l'emporte sur la machine, jamais l'inverse.
+ *
+ * Les motifs qui n'ont servi à rien sont annoncés : un fichier d'autorité dont
+ * la moitié des lignes ne s'applique plus est un fichier qui pourrit sans
+ * qu'on le sache.
+ */
+let reglesApprobation = [];
+try {
+  reglesApprobation = JSON.parse(readFileSync(join(APPA_DIR, APPROBATION_FILE), 'utf8'))
+    .approbations || [];
+} catch { /* pas de table : ce que dit l'import fera foi */ }
+
+const appaComptes = { main: 0, texte: 0, muet: 0 };
+const inemployes = new Set(reglesApprobation.map((r) => r.motif));
+for (const apparition of apparitions) {
+  const nom = fold(apparition.name?.fr || apparition.name?.en || apparition.name || '');
+  const cible = `${nom} ${fold(apparition.city || '')}`;
+  const regle = reglesApprobation.find((r) => {
+    try { return new RegExp(r.motif, 'i').test(cible); } catch { return false; }
+  });
+  if (regle) {
+    if (!APPROBATIONS.has(regle.valeur)) {
+      appaErrors.push(`${APPROBATION_FILE} : « ${regle.motif} » vaut « ${regle.valeur} », qui n’est pas une approbation`);
+    }
+    apparition.approbation = regle.valeur;
+    apparition.approbationDe = 'main';
+    inemployes.delete(regle.motif);
+    appaComptes.main += 1;
+  } else if (apparition.approbation) {
+    apparition.approbationDe = 'texte';
+    appaComptes.texte += 1;
+  } else {
+    appaComptes.muet += 1;
+  }
+}
+
 if (appaErrors.length) {
   console.error('\nErreurs dans les fiches d’apparitions :');
   for (const e of appaErrors) console.error(`  - ${e}`);
   process.exit(1);
+}
+
+if (apparitions.length) {
+  console.log(`Approbations : ${appaComptes.main} tranchées à la main, `
+    + `${appaComptes.texte} lues dans le texte, ${appaComptes.muet} sans mot`);
+  if (inemployes.size) {
+    console.log(`  motifs sans emploi : ${[...inemployes].join(', ')}`);
+  }
 }
 
 apparitions.sort((a, b) => a.annee - b.annee);

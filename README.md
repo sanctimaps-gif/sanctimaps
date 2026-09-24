@@ -894,6 +894,35 @@ saints, bleu marial pour les apparitions. Deux formes différentes sur une même
 carte demanderaient une légende pour être lues ; une couleur se reconnaît, et la
 légende suit la bascule.
 
+### D'où viennent les apparitions
+
+De Wikidata, comme les saints, par `tools/import-apparitions.mjs` — et par
+l'atelier `Importer les apparitions`, puisque Wikidata n'est pas joignable de
+partout.
+
+Une différence avec l'importateur des saints, et elle est voulue : celui-ci ne
+recopie **aucun identifiant Wikidata de mémoire**. Un outil qui porte « les
+instances de Q1132689 » est un outil qui se trompera un jour sans le dire : le
+numéro est invérifiable à la lecture. Il *cherche* donc la classe — les éléments
+nommés « Marian apparition », « apparition of the Virgin Mary »… — et ne garde
+que ceux qui ont des instances, car une classe en a et une apparition
+particulière n'en a pas. Les classes retenues sont annoncées dans le journal
+avec leur nombre d'instances.
+
+N'entre que ce qui est plaçable : des coordonnées — celles de l'événement, ou à
+défaut celles du lieu —, un pays que la carte connaît, un point qui tombe
+vraiment dans ce pays, une localité nommée, une année. Le reste est compté et
+annoncé, non deviné.
+
+**L'approbation, elle, ne s'importe pas.** Wikidata ne la porte pas de façon
+fiable, et une carte qui déclarerait « reconnue » une apparition que l'Église n'a
+pas reconnue dirait un faux sur un sujet où le faux coûte cher. L'outil ne pose
+ce mot que lorsqu'un texte l'écrit en toutes lettres ;
+`data/apparitions/approbations.json`, écrit à la main, tranche pour celles que
+l'Église a nommées — Lourdes 1862, Fátima 1930, Kibeho 2001, Garabandal jamais —
+et chaque ligne y porte sa raison. La table l'emporte sur l'import, et les motifs
+qui ne servent à rien sont annoncés à la génération.
+
 ### Ce que la bascule ne touche pas
 
 Rien d'autre que la carte. La recherche, le saint du jour, le rappel quotidien,
@@ -1575,8 +1604,10 @@ src/js/ui/*.js           panneau, recherche, fiche, formulaire, modération,
                          assistant, compte, bandeau
 data/saints/*.json       corpus, écrit à la main
 data/saints/patronages.json  patronages, indexés par identifiant
-data/apparitions/*.json  second corpus : les apparitions reconnues (vide pour l'instant)
+data/apparitions/*.json  second corpus : les apparitions
 data/apparitions/README.md   son format, champ par champ
+data/apparitions/approbations.json  ce que l'Église en a dit, écrit à la main
+tools/import-apparitions.mjs  les apparitions, importées de Wikidata
 data/candidats/*.json    réservoir de l'assistant
 data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complètes
 data/reference/exonymes.json graphies acceptées pour les localités

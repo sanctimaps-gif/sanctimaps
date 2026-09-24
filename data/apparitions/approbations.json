@@ -1,0 +1,97 @@
+{
+  "note": "Ce que l’Église a dit des apparitions qu’elle a examinées, écrit à la main. Wikidata ne porte pas cette information de façon fiable, et une carte qui déclarerait « reconnue » une apparition que l’Église n’a pas reconnue dirait un faux sur un sujet où le faux coûte cher. Chaque ligne porte donc sa raison. Le motif est une expression régulière éprouvée, sans tenir compte des accents ni de la casse, contre « nom français + localité » ; le premier motif qui répond l’emporte, et « build-data » annonce ceux qui n’ont servi à rien.",
+  "valeurs": ["reconnue", "en-cours", "non-reconnue"],
+  "approbations": [
+    { "motif": "guadalupe",
+      "valeur": "reconnue",
+      "pourquoi": "Mexico, 1531. Le culte est approuvé de longue date ; Benoît XIV en fixe la fête en 1754." },
+
+    { "motif": "buen suceso|bon succ[eè]s|good success",
+      "valeur": "reconnue",
+      "pourquoi": "Quito, 1594. Reconnue par l’évêque de Quito." },
+
+    { "motif": "siluva",
+      "valeur": "reconnue",
+      "pourquoi": "Šiluva, Lituanie, 1608. Reconnue par le Saint-Siège." },
+
+    { "motif": "\\blaus\\b",
+      "valeur": "reconnue",
+      "pourquoi": "Saint-Étienne-le-Laus, 1664-1718. Reconnue par le diocèse de Gap en 2008." },
+
+    { "motif": "rue du bac|medaille miraculeuse|miraculous medal",
+      "valeur": "reconnue",
+      "pourquoi": "Paris, 1830. Reconnue par l’archevêché de Paris en 1836." },
+
+    { "motif": "la salette",
+      "valeur": "reconnue",
+      "pourquoi": "La Salette, 1846. Reconnue par l’évêque de Grenoble en 1851." },
+
+    { "motif": "lourdes",
+      "valeur": "reconnue",
+      "pourquoi": "Lourdes, 1858. Reconnue par l’évêque de Tarbes en 1862." },
+
+    { "motif": "good help",
+      "valeur": "reconnue",
+      "pourquoi": "Champion, Wisconsin, 1859. Reconnue par l’évêque de Green Bay en 2010 — la première des États-Unis." },
+
+    { "motif": "pontmain",
+      "valeur": "reconnue",
+      "pourquoi": "Pontmain, 1871. Reconnue par l’évêque de Laval en 1875." },
+
+    { "motif": "gietrzwald",
+      "valeur": "reconnue",
+      "pourquoi": "Gietrzwałd, Pologne, 1877. Reconnue en 1977." },
+
+    { "motif": "knock",
+      "valeur": "reconnue",
+      "pourquoi": "Knock, Irlande, 1879. Deux commissions diocésaines ont conclu en faveur des témoins." },
+
+    { "motif": "fatima",
+      "valeur": "reconnue",
+      "pourquoi": "Fátima, 1917. Reconnue par l’évêque de Leiria en 1930." },
+
+    { "motif": "beauraing",
+      "valeur": "reconnue",
+      "pourquoi": "Beauraing, Belgique, 1932-1933. Reconnue par l’évêque de Namur en 1949." },
+
+    { "motif": "banneux",
+      "valeur": "reconnue",
+      "pourquoi": "Banneux, Belgique, 1933. Reconnue par l’évêque de Liège en 1949." },
+
+    { "motif": "akita",
+      "valeur": "reconnue",
+      "pourquoi": "Akita, Japon, 1973. Reconnue par l’évêque de Niigata en 1984." },
+
+    { "motif": "betania",
+      "valeur": "reconnue",
+      "pourquoi": "Betania, Venezuela, 1976. Reconnue par l’évêque de Los Teques en 1987." },
+
+    { "motif": "cuapa",
+      "valeur": "reconnue",
+      "pourquoi": "Cuapa, Nicaragua, 1980. Reconnue par l’évêque de Juigalpa en 1982." },
+
+    { "motif": "kibeho",
+      "valeur": "reconnue",
+      "pourquoi": "Kibeho, Rwanda, 1981. Reconnue par l’évêque de Gikongoro en 2001 — trois voyantes sur huit." },
+
+    { "motif": "san nicolas",
+      "valeur": "reconnue",
+      "pourquoi": "San Nicolás de los Arroyos, Argentine, 1983. Reconnue par l’évêque du lieu en 2016." },
+
+    { "motif": "medjugorje",
+      "valeur": "en-cours",
+      "pourquoi": "Medjugorje, depuis 1981. Le Dicastère pour la doctrine de la foi a donné en 2024 un « nihil obstat » à la dévotion, sans se prononcer sur le caractère surnaturel des apparitions." },
+
+    { "motif": "garabandal",
+      "valeur": "non-reconnue",
+      "pourquoi": "San Sebastián de Garabandal, Espagne, 1961-1965. Le diocèse de Santander a conclu à l’absence d’élément surnaturel." },
+
+    { "motif": "bayside",
+      "valeur": "non-reconnue",
+      "pourquoi": "Bayside, New York, à partir de 1970. Le diocèse de Brooklyn a déclaré les apparitions dénuées de fondement." },
+
+    { "motif": "necedah",
+      "valeur": "non-reconnue",
+      "pourquoi": "Necedah, Wisconsin, 1949-1950. Le diocèse de La Crosse a interdit le culte en 1955." }
+  ]
+}

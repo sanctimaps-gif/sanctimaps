@@ -1,9 +1,17 @@
 # Les apparitions
 
 Ce dossier tient le second corpus de la carte : les apparitions mariales et
-christiques reconnues par l'Église catholique. Il est **vide pour l'instant** —
-la bascule de la carte existe, le corpus reste à écrire — et c'est dit en toutes
-lettres à l'écran plutôt que laissé à deviner devant une carte sans repères.
+christiques, celles que l'Église a reconnues comme celles qu'elle n'a pas
+reconnues. Tant qu'il est vide, la carte le dit en toutes lettres à l'écran
+plutôt que de le laisser deviner devant une carte sans repères.
+
+Trois fichiers, trois mains :
+
+| fichier | qui l'écrit |
+| --- | --- |
+| `wikidata.json` | `tools/import-apparitions.mjs`, d'un bloc. **À ne pas modifier à la main** : la prochaine collecte l'écraserait. |
+| `apparitions.json` | vous, pour ce que l'import ne sait pas placer. Une fiche écrite à la main vaut mieux qu'une fiche importée. |
+| `approbations.json` | vous, pour ce que l'Église a dit. Chaque ligne porte sa raison, et `build-data` l'emporte sur l'import. |
 
 Une apparition n'est pas un saint : elle n'est pas née et n'est pas morte, elle
 a eu lieu. Elle porte donc une **année** et non deux dates, un **lieu** et non
@@ -56,6 +64,20 @@ Autant de fichiers `.json` qu'on veut, chacun de la forme :
 corpus fautif ; `tools/check-data.mjs` le revérifie après coup. Ce qui est
 rapporté d'un texte sous licence — Wikipédia — se cite : la source n'est pas une
 politesse, c'est la condition de la reprise.
+
+## L'approbation ne s'importe pas
+
+`approbations.json` est une table d'autorité écrite à la main. Wikidata ne porte
+pas l'approbation de façon fiable, et une carte qui déclarerait « reconnue » une
+apparition que l'Église n'a pas reconnue dirait un faux sur un sujet où le faux
+coûte cher. L'importateur ne pose donc ce mot que lorsqu'un texte l'écrit en
+toutes lettres ; la table tranche pour les autres, et l'emporte sur lui.
+
+Chaque ligne y porte un motif — une expression régulière éprouvée, sans accents
+ni casse, contre « nom français + localité » —, l'une des trois valeurs, et la
+raison : quel évêque, quel dicastère, quelle année. Les motifs qui ne servent à
+rien sont annoncés à la génération : une table d'autorité dont la moitié des
+lignes ne s'applique plus pourrit sans qu'on le sache.
 
 ## Ce qui n'est pas ici
 
