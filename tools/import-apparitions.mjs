@@ -288,10 +288,21 @@ async function chercherClasses(options) {
   for (const [qid, label] of candidats) {
     let n = 0;
     try {
+      // Le compte est **borné**. Une recherche approximative ramène parfois une
+      // classe énorme — « événement », « lieu de culte » —, et compter ses
+      // instances une à une passe la minute que le service public accorde : la
+      // requête se perd, on la reprend trois fois, et la découverte des classes
+      // coûte alors plus cher que la collecte elle-même. Au-delà du plafond, le
+      // nombre exact n'apprend plus rien puisque la classe est écartée : on
+      // s'arrête donc à une unité de plus.
       const rows = await sparql(options.endpoint,
-        `SELECT (COUNT(DISTINCT ?i) AS ?n) WHERE { ?i wdt:P31/wdt:P279* wd:${qid} }`, options);
+        `SELECT (COUNT(*) AS ?n) WHERE {
+           SELECT DISTINCT ?i WHERE { ?i wdt:P31/wdt:P279* wd:${qid} } LIMIT ${PLAFOND + 1}
+         }`, options);
       n = Number(rows[0]?.n?.value || 0);
     } catch (error) {
+      // Une classe qui ne répond pas est une classe qu'on n'ajoute pas : mieux
+      // vaut une collecte plus étroite qu'une collecte qui n'aboutit jamais.
       console.warn(`  ${qid} : ${error.message}`);
     }
     const garde = n >= PLANCHER && n <= PLAFOND;
