@@ -205,6 +205,7 @@ async function start() {
   const topBar = new TopBar(stage, atlas, {
     onWorld: () => goWorld(),
     onContinent: (id) => goContinent(id),
+    onCorpus: (nom) => basculerCorpus(nom),
   });
 
   // -------------------------------------------------------------------------
@@ -225,6 +226,26 @@ async function start() {
     topBar.render();
     sidebar.sync();
     fiche.refresh();
+  }
+
+  /**
+   * La carte change de corpus : les saints, ou les apparitions.
+   *
+   * Seule la carte bouge, et c'est voulu : la recherche, le saint du jour, le
+   * rappel et la modération ne connaissent que les saints, et n'ont rien à
+   * redessiner. Ce qui doit suivre, c'est la couleur des pays, les repères
+   * posés, le compte du pays ouvert et la légende.
+   *
+   * La fiche ouverte se referme : elle parlerait d'un saint dont la croix n'est
+   * plus sur la carte — le même défaut que quitter un pays sans la fermer.
+   */
+  function basculerCorpus(nom) {
+    if (!atlas.setCorpus(nom)) return;
+    fiche.close();
+    map.highlightSaint(null);
+    map.syncCountryClasses();
+    map.refreshOverlay();
+    topBar.render();
   }
 
   // -------------------------------------------------------------------------
@@ -300,8 +321,15 @@ async function start() {
   }
 
   function openSaint(id, { fly = false } = {}) {
-    const saint = atlas.byId.get(id);
+    // Dans le corpus courant d'abord, dans l'autre ensuite : un repère cliqué
+    // sur la carte appartient au corpus affiché, mais une adresse partagée peut
+    // nommer l'un ou l'autre.
+    const saint = atlas.pointById(id);
     if (!saint) return;
+    // Un lien peut nommer une apparition quand la carte montre les saints : elle
+    // bascule alors d'elle-même, sans quoi la fiche s'ouvrirait sur un repère
+    // absent de la carte.
+    basculerCorpus(saint.kind === 'apparition' ? 'apparitions' : 'saints');
     if (fly) flyToSaint(saint);
     else {
       map.highlightSaint(saint.id);
@@ -376,7 +404,7 @@ async function start() {
   // repart.
   const asked = new URLSearchParams(location.search).get('saint');
   if (asked) {
-    if (atlas.byId.has(asked)) openSaint(asked, { fly: true });
+    if (atlas.pointById(asked)) openSaint(asked, { fly: true });
     else sidebar.showTab('search');
   }
 

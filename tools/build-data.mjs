@@ -14,6 +14,7 @@
  *   - cities/<ISO3>.json    villes et villages du pays, chargés à la volée
  *   - country-names.json    noms de pays traduits
  *   - saints.json           corpus fusionné et validé
+ *   - apparitions.json      second corpus : les apparitions reconnues
  *   - candidates.json       réservoir de fiches pour l'assistant
  *   - reference.json        fond documentaire consulté par l'assistant expert
  */
@@ -888,6 +889,68 @@ for (const file of readdirSync(CAND_DIR).filter((f) => f.endsWith('.json')).sort
 }
 writeFileSync(join(OUT, 'candidates.json'), JSON.stringify({ candidates }));
 console.log(`  candidates.json : ${candidates.length} fiches candidates`);
+
+// ---------------------------------------------------------------------------
+// Le second corpus : les apparitions
+// ---------------------------------------------------------------------------
+
+/**
+ * Les apparitions reconnues par l'Église, sur la même carte que les saints.
+ *
+ * C'est un corpus **distinct**, non une variété de saints : une apparition n'est
+ * pas née et n'est pas morte, elle a eu lieu. Elle porte donc une année et non
+ * deux dates, un lieu et non un lieu de naissance, et un degré de reconnaissance
+ * qui n'est pas celui des causes de canonisation — Lourdes et Fátima sont
+ * reconnues, Medjugorje ne l'est pas.
+ *
+ * Le dossier est vide pour l'instant : la bascule existe, le corpus reste à
+ * écrire. Un fichier vide est ici un fait, non un oubli — la carte le dit à
+ * l'écran plutôt que de laisser le lecteur chercher des repères qui n'existent
+ * pas. Le format est décrit dans `data/apparitions/README.md`.
+ */
+const APPA_DIR = join(ROOT, 'data', 'apparitions');
+const APPA_REQUIS = ['id', 'name', 'country', 'city', 'lat', 'lng', 'annee'];
+const APPROBATIONS = new Set(['reconnue', 'en-cours', 'non-reconnue']);
+const apparitions = [];
+const appaErrors = [];
+const appaIds = new Set();
+for (const file of readdirSync(APPA_DIR).filter((f) => f.endsWith('.json')).sort()) {
+  const raw = JSON.parse(readFileSync(join(APPA_DIR, file), 'utf8'));
+  for (const a of raw.apparitions || []) {
+    const where = `${file}:${a.id ?? '?'}`;
+    for (const field of APPA_REQUIS) {
+      if (a[field] === undefined || a[field] === null) appaErrors.push(`${where} — champ « ${field} » manquant`);
+    }
+    if (appaIds.has(a.id)) appaErrors.push(`${where} — identifiant en double`);
+    appaIds.add(a.id);
+    // Un identifiant partagé avec un saint casserait « ?saint= » et les deux
+    // index de pages : une adresse ne peut désigner qu'une chose.
+    if (ids.has(a.id)) appaErrors.push(`${where} — identifiant déjà porté par un saint`);
+    if (!seen.has(a.country)) appaErrors.push(`${where} — pays inconnu : ${a.country}`);
+    if (Math.abs(a.lat) > 85 || Math.abs(a.lng) > 180) appaErrors.push(`${where} — coordonnées hors limites`);
+    if (a.feast != null && !/^\d{2}-\d{2}$/.test(a.feast)) appaErrors.push(`${where} — fête mal formée : ${a.feast}`);
+    if (a.approbation != null && !APPROBATIONS.has(a.approbation)) {
+      appaErrors.push(`${where} — approbation inconnue : ${a.approbation}`);
+    }
+    if (a.anneeFin != null && a.anneeFin < a.annee) appaErrors.push(`${where} — finit avant de commencer`);
+
+    const [x, y] = project(a.lng, a.lat);
+    const shift = shiftById.get(a.country) || 0;
+    // `kind` est porté par la fiche : c'est lui qui fait dire « Lieu » et
+    // « Année » là où un saint fait dire « Naissance » et « Mort ».
+    apparitions.push({ ...a, kind: 'apparition', x: Math.round(x) + shift, y: Math.round(y) });
+  }
+}
+
+if (appaErrors.length) {
+  console.error('\nErreurs dans les fiches d’apparitions :');
+  for (const e of appaErrors) console.error(`  - ${e}`);
+  process.exit(1);
+}
+
+apparitions.sort((a, b) => a.annee - b.annee);
+writeFileSync(join(OUT, 'apparitions.json'), JSON.stringify({ apparitions }));
+console.log(`  apparitions.json : ${apparitions.length} apparitions`);
 
 // ---------------------------------------------------------------------------
 // Fond documentaire de l'assistant expert

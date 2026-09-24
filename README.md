@@ -868,6 +868,73 @@ Deux remèdes, tous deux vérifiés au navigateur :
 La règle du fond valait déjà sous un fond de tuiles, et pour la même raison :
 quand tout l'écran est de la carte, il n'y a plus de « à côté ».
 
+## Deux corpus, une bascule
+
+La carte montre les saints, ou les apparitions reconnues par l'Église — jamais
+les deux à la fois. Deux boutons collés en haut de la carte, « Saints » et
+« Apparitions », disent lequel des deux est à l'écran et font passer de l'un à
+l'autre.
+
+**Le second corpus est vide pour l'instant**, et cela se lit en toutes lettres :
+« Aucune apparition n'est encore recensée : le corpus est en cours d'écriture ».
+Une carte sans un seul repère ressemble trop à une carte en panne, et le lecteur
+chercherait à Lourdes ou à Fátima ce qui n'y est pas encore.
+
+Une apparition n'est pas un saint, et sa fiche ne fait pas semblant de l'être :
+
+| la fiche d'un saint | celle d'une apparition |
+| --- | --- |
+| Reconnaissance — saint, bienheureux, vénérable | Approbation — reconnue, examen en cours, non reconnue |
+| Naissance, Mort | Année, ou les deux bornes quand elles s'étalent |
+| Lieu de naissance | Lieu |
+
+Le repère garde en revanche la même forme : même médaillon, même écusson, même
+croix, même encombrement — seule la couleur change, rouge des martyrs pour les
+saints, bleu marial pour les apparitions. Deux formes différentes sur une même
+carte demanderaient une légende pour être lues ; une couleur se reconnaît, et la
+légende suit la bascule.
+
+### Ce que la bascule ne touche pas
+
+Rien d'autre que la carte. La recherche, le saint du jour, le rappel quotidien,
+la lettre et la modération ne connaissent que les saints : ils lisent le même
+index qu'avant, et n'ont rien à redessiner. Ce qui change, ce sont la couleur
+des pays, les repères posés, le compte du pays ouvert et la légende — quatre
+lectures, qui passent toutes par `pointsIn()` et `countryHasPoints()` au lieu de
+`saintsIn()` et `countryHasSaints()`.
+
+Deux corollaires, l'un et l'autre vérifiés au navigateur :
+
+- **la fiche ouverte se referme** au changement de corpus. Elle parlerait sinon
+  d'un saint dont la croix n'est plus sur la carte — le même défaut que quitter
+  un pays sans la fermer ;
+- **une adresse qui nomme une apparition fait basculer la carte.**
+  `?saint=notre-dame-de-lourdes` ouvre la fiche *et* passe aux apparitions, sans
+  quoi le lien mènerait à un repère absent.
+
+Les trois gestes d'administration — modifier, supprimer, modérer — disparaissent
+sur une fiche d'apparition. La couche locale est posée sur le corpus des saints :
+une retouche d'apparition y disparaîtrait sans un mot. Le second corpus se
+corrige dans `data/apparitions/`, dont le `README.md` décrit le format champ par
+champ ; `npm run build:data` le valide et refuse de produire une carte fautive,
+`npm run check` le revérifie — et vérifie surtout qu'aucune apparition ne porte
+l'identifiant d'un saint, puisqu'une adresse ne peut désigner qu'une chose.
+
+## Le bandeau se plie
+
+Le bandeau de l'accueil — le titre, la phrase, sept liens d'index, les chiffres
+du corpus, huit pays — prenait trois lignes en haut de l'écran. C'est beaucoup
+pour une application dont le sujet est la carte, et qu'on ouvre pour la carte.
+
+Il est désormais **replié** : ne reste que le titre et une flèche, et la carte
+gagne cent vingt pixels — de 159 à 39 sur un écran large. Un clic sur le titre le
+déplie, un autre le referme ; Entrée fait de même au clavier.
+
+Le pli est un `<details>` du navigateur, non un calque posé par le code, et c'est
+ce qui compte ici : **ce qu'il contient reste écrit dans la page**, servi tel
+quel, lu par un moteur de recherche qui n'exécute rien. Plier n'est pas cacher —
+les sept chemins vers les 4 589 fiches sont toujours là où un robot les lit.
+
 ## Le temps de chargement
 
 Avant que la carte paraisse, l'application téléchargeait **cinq mégaoctets et
@@ -1508,6 +1575,8 @@ src/js/ui/*.js           panneau, recherche, fiche, formulaire, modération,
                          assistant, compte, bandeau
 data/saints/*.json       corpus, écrit à la main
 data/saints/patronages.json  patronages, indexés par identifiant
+data/apparitions/*.json  second corpus : les apparitions reconnues (vide pour l'instant)
+data/apparitions/README.md   son format, champ par champ
 data/candidats/*.json    réservoir de l'assistant
 data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complètes
 data/reference/exonymes.json graphies acceptées pour les localités
@@ -1516,6 +1585,7 @@ data/saints/traductions.json biographies traduites de l'anglais, et les cinq éc
 data/generated/          données produites par build:data (versionnées)
 data/generated/saints.json       les fiches allégées : de quoi dessiner et chercher
 data/generated/saints-texts.json les textes longs, chargés après la carte
+data/generated/apparitions.json  le second corpus, validé et projeté
 tools/lib/corpus.mjs     recolle les deux, pour les outils qui lisent le corpus
 tools/build-pages.mjs    pages indexables : saints/, pays/, lieux/, epoques/, calendrier/, lettre/
 tools/audit-lieux.mjs    ce que valent les lieux et les noms du corpus

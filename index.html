@@ -60,50 +60,69 @@ try {
   quatre mille six cents pages de saints.
 -->
 <header class="intro">
-  <div class="intro__in">
-    <h1 class="intro__title">Carte mondiale des saints</h1>
-    <p class="intro__text">SanctiMaps est une carte interactive permettant de découvrir
-      les saints du monde entier, leurs lieux d’origine, leurs dates de fête et
-      différentes informations historiques.</p>
-    <nav class="intro__nav" aria-label="Index du site">
-      <a href="saints/">Tous les saints</a>
-      <a href="pays/">Par pays</a>
-      <a href="lieux/">Par lieu</a>
-      <a href="epoques/">Par siècle</a>
-      <a href="calendrier/">Calendrier</a>
-      <a href="lettre/">La lettre</a>
-      <a href="a-propos/">À propos</a>
-    </nav>
-  </div>
-
   <!--
-    Les pays les mieux pourvus, nommés ici plutôt que seulement derrière un
-    index : ce sont les premiers chemins qu'un lecteur — ou un robot — prend
-    depuis l'accueil, et ils mènent chacun à quelques centaines de fiches.
-    La liste est courte à dessein ; les quatre-vingt-onze autres sont dans
-    « Par pays ».
+    Le bandeau se plie.
+
+    Déplié, il prend deux à trois lignes en haut de l'écran — le titre, la
+    phrase, sept liens d'index, les chiffres, huit pays. C'est beaucoup pour une
+    application dont le sujet est la carte, et qu'on ouvre pour la carte. Il est
+    donc replié : ne reste que le titre et une flèche, et la carte gagne ces
+    lignes-là.
+
+    Le pli est un « details » du navigateur, non un calque posé par le code :
+    ce qu'il contient reste écrit dans la page, servi tel quel, lu par un moteur
+    de recherche qui n'exécute rien. Plier n'est pas cacher.
   -->
-  <div class="intro__in intro__in--second">
-    <h2 class="intro__sub">Découvrez les saints par pays</h2>
-    <p class="intro__chiffres">
-      <a href="saints/"><b>4 589</b> saints</a>
-      <a href="pays/"><b>91</b> pays</a>
-      <a href="lieux/"><b>509</b> lieux</a>
-      <a href="epoques/"><b>27</b> siècles</a>
-      <a href="calendrier/"><b>365</b> jours de fête</a>
-    </p>
-    <nav class="intro__pays" aria-label="Pays les mieux pourvus">
-      <a href="pays/italie/">Italie</a>
-      <a href="pays/france/">France</a>
-      <a href="pays/espagne/">Espagne</a>
-      <a href="pays/royaume-uni/">Royaume-Uni</a>
-      <a href="pays/turquie/">Turquie</a>
-      <a href="pays/pologne/">Pologne</a>
-      <a href="pays/allemagne/">Allemagne</a>
-      <a href="pays/russie/">Russie</a>
-      <a href="pays/">tous les pays →</a>
-    </nav>
-  </div>
+  <details class="intro__fold">
+    <summary class="intro__summary">
+      <h1 class="intro__title">Carte mondiale des saints</h1>
+      <span class="intro__chevron" aria-hidden="true"></span>
+    </summary>
+
+    <div class="intro__in">
+      <p class="intro__text">SanctiMaps est une carte interactive permettant de découvrir
+        les saints du monde entier, leurs lieux d’origine, leurs dates de fête et
+        différentes informations historiques.</p>
+      <nav class="intro__nav" aria-label="Index du site">
+        <a href="saints/">Tous les saints</a>
+        <a href="pays/">Par pays</a>
+        <a href="lieux/">Par lieu</a>
+        <a href="epoques/">Par siècle</a>
+        <a href="calendrier/">Calendrier</a>
+        <a href="lettre/">La lettre</a>
+        <a href="a-propos/">À propos</a>
+      </nav>
+    </div>
+
+    <!--
+      Les pays les mieux pourvus, nommés ici plutôt que seulement derrière un
+      index : ce sont les premiers chemins qu'un lecteur — ou un robot — prend
+      depuis l'accueil, et ils mènent chacun à quelques centaines de fiches.
+      La liste est courte à dessein ; les quatre-vingt-onze autres sont dans
+      « Par pays ».
+    -->
+    <div class="intro__in intro__in--second">
+      <h2 class="intro__sub">Découvrez les saints par pays</h2>
+      <p class="intro__chiffres">
+        <a href="saints/"><b>4 589</b> saints</a>
+        <a href="pays/"><b>91</b> pays</a>
+        <a href="lieux/"><b>509</b> lieux</a>
+        <a href="epoques/"><b>27</b> siècles</a>
+        <a href="calendrier/"><b>365</b> jours de fête</a>
+      </p>
+      <nav class="intro__pays" aria-label="Pays les mieux pourvus">
+        <a href="pays/italie/">Italie</a>
+        <a href="pays/france/">France</a>
+        <a href="pays/espagne/">Espagne</a>
+        <a href="pays/royaume-uni/">Royaume-Uni</a>
+        <a href="pays/turquie/">Turquie</a>
+        <a href="pays/pologne/">Pologne</a>
+        <a href="pays/allemagne/">Allemagne</a>
+        <a href="pays/russie/">Russie</a>
+        <a href="pays/">tous les pays →</a>
+      </nav>
+    </div>
+  </details>
 </header>
 
 <!--

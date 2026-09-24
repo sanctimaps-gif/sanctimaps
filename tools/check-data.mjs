@@ -95,6 +95,46 @@ let placeCount = 0;
 for (const file of placeFiles) placeCount += read(join('cities', file)).length;
 ok(`${placeCount} localités réparties sur ${placeFiles.length} fichiers de pays`);
 
+// --- Apparitions ------------------------------------------------------------
+
+/**
+ * Le second corpus de la carte, celui que la bascule montre.
+ *
+ * Il est vide pour l'instant, et le contrôle passe sur un corpus vide : c'est un
+ * fait, non une anomalie — la bascule le dit à l'écran. Ce qui est vérifié ici
+ * vaut donc pour le jour où il se remplira, et surtout : qu'aucune apparition ne
+ * porte l'identifiant d'un saint. Une adresse ne peut désigner qu'une chose, et
+ * « ?saint=… » comme les pages d'index en dépendent.
+ */
+const { apparitions } = read('apparitions.json');
+const APPROBATIONS = new Set(['reconnue', 'en-cours', 'non-reconnue']);
+const appaIds = new Set();
+for (const a of apparitions) {
+  if (appaIds.has(a.id)) fail(`apparition ${a.id} : identifiant en double`);
+  appaIds.add(a.id);
+  if (ids.has(a.id)) fail(`apparition ${a.id} : identifiant déjà porté par un saint`);
+  if (!countryIds.has(a.country)) fail(`apparition ${a.id} : pays inconnu ${a.country}`);
+  if (!names[a.country]) fail(`apparition ${a.id} : pays sans nom traduit`);
+  if (!a.name?.fr && typeof a.name !== 'string') fail(`apparition ${a.id} : nom français manquant`);
+  if (!a.city) fail(`apparition ${a.id} : lieu manquant`);
+  if (typeof a.annee !== 'number') fail(`apparition ${a.id} : année manquante`);
+  if (a.kind !== 'apparition') fail(`apparition ${a.id} : « kind » absent, la fiche la lirait comme un saint`);
+  if (a.feast != null && !/^(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(a.feast)) {
+    fail(`apparition ${a.id} : fête ${a.feast}`);
+  }
+  if (a.approbation != null && !APPROBATIONS.has(a.approbation)) {
+    fail(`apparition ${a.id} : approbation inconnue ${a.approbation}`);
+  }
+  const shift = a.x > WORLD_SIZE ? WORLD_SIZE : 0;
+  const [lng, lat] = unproject(a.x - shift, a.y);
+  if (Math.abs(lng - a.lng) > 0.01 || Math.abs(lat - a.lat) > 0.01) {
+    fail(`apparition ${a.id} : point projeté incohérent`);
+  }
+}
+ok(apparitions.length
+  ? `${apparitions.length} apparitions, distinctes des saints`
+  : 'corpus des apparitions vide, et la carte le dit');
+
 // --- Siècles ----------------------------------------------------------------
 
 for (const [year, expected] of [[1, 1], [100, 1], [101, 2], [1789, 18], [2000, 20],

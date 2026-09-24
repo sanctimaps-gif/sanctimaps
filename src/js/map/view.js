@@ -838,7 +838,7 @@ export class MapView {
       const path = el('path', {
         // Le contour fin reprend la couleur du pays : ouvrir un pays ne doit
         // pas lui faire perdre le signal « compte des saints ».
-        class: `country-detail${this.atlas.countryHasSaints(id) ? ' has-saints' : ''}`,
+        class: `country-detail${this.atlas.countryHasPoints(id) ? ' has-saints' : ''}`,
         d: detail.d,
         'fill-rule': 'evenodd',
         'vector-effect': 'non-scaling-stroke',
@@ -873,7 +873,7 @@ export class MapView {
     // entier et le saint est dedans. L'interrompre pour le recentrer donnerait
     // un vol coupé net au milieu.
     if (this.animation) return;
-    const saint = this.atlas.byId?.get(saintId);
+    const saint = this.atlas.pointById?.(saintId);
     if (!saint) return;
 
     // Au cadrage du pays, tout est déjà sous les yeux — et `onResize` va s'en
@@ -905,11 +905,11 @@ export class MapView {
     // bouge ensuite — un premier saint y est publié — sa couleur doit suivre.
     const outline = this.detailLayer.firstChild;
     if (outline && this.countryId) {
-      outline.classList.toggle('has-saints', this.atlas.countryHasSaints(this.countryId));
+      outline.classList.toggle('has-saints', this.atlas.countryHasPoints(this.countryId));
     }
     for (const country of this.atlas.countries) {
       const path = this.paths.get(country.id);
-      const has = this.atlas.countryHasSaints(country.id);
+      const has = this.atlas.countryHasPoints(country.id);
       path.classList.toggle('has-saints', has);
       path.classList.toggle('is-selected', this.mode === 'country' && country.id === this.countryId);
       path.classList.toggle(
@@ -994,7 +994,7 @@ export class MapView {
       const continent = this.atlas.continentById.get(this.continentId);
       for (const id of continent.countries) {
         const country = this.atlas.countryById.get(id);
-        const count = this.atlas.saintsIn(id).length;
+        const count = this.atlas.pointsIn(id).length;
         nodes.push(this.makeLabel({
           x: country.label[0],
           y: country.label[1],
@@ -1015,17 +1015,22 @@ export class MapView {
           priority: place.c ? 1e12 : place.p,
         }));
       }
-      this.clusters = this.clusterSaints(this.atlas.saintsIn(this.countryId));
+      this.clusters = this.clusterSaints(this.atlas.pointsIn(this.countryId));
       this.clusters.forEach((group, index) => {
         const shared = group.every((s) => s.city === group[0].city) ? group[0].city : '';
-        nodes.push(this.makeMarker({
+        const node = this.makeMarker({
           x: group.x, y: group.y, kind: 'saint', group, index,
           text: group.length === 1
             ? this.atlas.saintName(group[0], this.lang)
             : (shared || t('map.several', { n: group.length })),
           // Un groupe passe avant un saint seul : il en cache plusieurs.
           priority: 1e10 + group.length - (group[0].born ?? group[0].died ?? 0),
-        }));
+        });
+        // Une apparition garde la géométrie du repère d'un saint — même
+        // médaillon, même encombrement, mêmes priorités d'étiquette — et change
+        // de couleur : c'est la seule différence, et la légende la nomme.
+        if (group[0].kind === 'apparition') node.classList.add('marker--apparition');
+        nodes.push(node);
       });
     }
 
@@ -1454,7 +1459,8 @@ export class MapView {
       name.textContent = this.atlas.saintName(saint, this.lang);
       const meta = document.createElement('span');
       meta.className = 'picker__meta';
-      const born = saint.born ?? saint.died;
+      // Une apparition n'est pas née : c'est son année qui la situe.
+      const born = saint.born ?? saint.died ?? saint.annee;
       meta.textContent = [saint.city, born == null ? '' : String(born)]
         .filter(Boolean).join(' · ');
       row.append(name, meta);

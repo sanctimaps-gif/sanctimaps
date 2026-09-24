@@ -73,7 +73,7 @@ function readStore() {
  * corpus d'origine en effaçant simplement cette couche.
  */
 export class Atlas {
-  constructor({ world, countryNames, saints }) {
+  constructor({ world, countryNames, saints, apparitions }) {
     this.worldSize = world.worldSize;
     this.bounds = world.bounds;
     this.continents = world.continents;
@@ -84,6 +84,26 @@ export class Atlas {
     this.continentById = new Map(this.continents.map((c) => [c.id, c]));
     this.baseSaints = saints.saints.map((s) => ({ ...s, status: PUBLISHED }));
     this.baseById = new Map(this.baseSaints.map((s) => [s.id, s]));
+
+    // -- le second corpus ----------------------------------------------------
+    //
+    // Les apparitions vivent à part des saints, et c'est voulu : ce sont deux
+    // choses différentes, qu'on ne mélange pas dans un même index sous prétexte
+    // qu'elles se posent sur la même carte. La bascule choisit lequel des deux
+    // la carte montre ; tout ce qui ne connaît que les saints — la recherche, le
+    // saint du jour, le rappel, la modération — continue de lire `saints`.
+    //
+    // Le corpus est vide pour l'instant : la carte le dit alors en clair plutôt
+    // que de laisser chercher des repères qui n'existent pas.
+    this.corpus = 'saints';
+    this.apparitions = (apparitions?.apparitions || [])
+      .map((a) => ({ ...a, status: PUBLISHED, kind: 'apparition' }));
+    this.apparitionById = new Map(this.apparitions.map((a) => [a.id, a]));
+    this.apparitionsByCountry = new Map();
+    for (const a of this.apparitions) {
+      if (!this.apparitionsByCountry.has(a.country)) this.apparitionsByCountry.set(a.country, []);
+      this.apparitionsByCountry.get(a.country).push(a);
+    }
 
     // Les deux morceaux qui ne servent pas au premier dessin, et qu'on ne
     // télécharge donc pas avant lui. Voir `ensureTexts` et `ensureCandidates`.
@@ -305,6 +325,47 @@ export class Atlas {
     return this.byCountry.has(countryId);
   }
 
+  // -- le corpus que la carte montre -----------------------------------------
+  //
+  // La carte ne lit pas `saintsIn` directement : elle lit `pointsIn`, qui répond
+  // pour le corpus courant. C'est tout ce que la bascule change — les couleurs
+  // des pays, les repères posés, le compte du pays ouvert et la fiche qui
+  // s'ouvre suivent d'eux-mêmes, sans qu'aucun des deux corpus n'ait à connaître
+  // l'autre.
+
+  /** Bascule vers « saints » ou « apparitions ». Vrai si cela a changé. */
+  setCorpus(name) {
+    const voulu = name === 'apparitions' ? 'apparitions' : 'saints';
+    if (this.corpus === voulu) return false;
+    this.corpus = voulu;
+    return true;
+  }
+
+  /** Les repères du corpus courant, pour un pays. */
+  pointsIn(countryId) {
+    return this.corpus === 'apparitions'
+      ? this.apparitionsByCountry.get(countryId) || []
+      : this.saintsIn(countryId);
+  }
+
+  countryHasPoints(countryId) {
+    return this.corpus === 'apparitions'
+      ? this.apparitionsByCountry.has(countryId)
+      : this.byCountry.has(countryId);
+  }
+
+  /** Une fiche par son identifiant, dans le corpus courant puis dans l'autre. */
+  pointById(id) {
+    return this.corpus === 'apparitions'
+      ? this.apparitionById.get(id) || this.byId.get(id)
+      : this.byId.get(id) || this.apparitionById.get(id);
+  }
+
+  /** Combien de repères porte le corpus courant, tous pays confondus. */
+  pointCount() {
+    return this.corpus === 'apparitions' ? this.apparitions.length : this.saints.length;
+  }
+
   /** Nom du pays dans la langue demandée, avec repli sur l'anglais. */
   countryName(id, lang) {
     const entry = this.names[id];
@@ -386,10 +447,15 @@ export class Atlas {
  * avant que rien ne s'affiche ; il en pèse trois cents kilooctets.
  */
 export async function loadAtlas() {
-  const [world, countryNames, saints] = await Promise.all([
+  const [world, countryNames, saints, apparitions] = await Promise.all([
     getJSON(`${BASE}/world.json`),
     getJSON(`${BASE}/country-names.json`),
     getJSON(`${BASE}/saints.json`),
+    // Le second corpus est demandé avec les autres parce que la bascule doit
+    // savoir dès le premier dessin ce qu'elle a à montrer. Il ne coûte rien
+    // tant qu'il est vide, et son absence n'empêche pas la carte de s'ouvrir :
+    // la bascule dira simplement qu'aucune apparition n'est recensée.
+    getJSON(`${BASE}/apparitions.json`).catch(() => ({ apparitions: [] })),
   ]);
-  return new Atlas({ world, countryNames, saints });
+  return new Atlas({ world, countryNames, saints, apparitions });
 }

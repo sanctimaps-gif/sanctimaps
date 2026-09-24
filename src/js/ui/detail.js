@@ -30,7 +30,7 @@ export class DetailPanel {
 
   /** Reprend la fiche à jour après une modification ou un changement d'état. */
   refresh() {
-    if (this.saint) this.saint = this.atlas.byId.get(this.saint.id) || null;
+    if (this.saint) this.saint = this.atlas.pointById(this.saint.id) || null;
     this.render();
   }
 
@@ -41,6 +41,11 @@ export class DetailPanel {
       return;
     }
     const lang = getLanguage();
+    // Une apparition n'est pas un saint : elle n'est pas née et n'est pas morte,
+    // elle a eu lieu. Sa fiche dit donc une année, un lieu et un degré
+    // d'approbation là où celle d'un saint dit deux dates, un lieu de naissance
+    // et un degré de reconnaissance.
+    const appa = saint.kind === 'apparition';
     const description = pickText(saint.desc, lang);
     const patronage = pickText(saint.patronage, lang);
     const biography = pickText(saint.bio, lang);
@@ -82,19 +87,33 @@ export class DetailPanel {
         : null,
       h('dl', { class: 'sheet' },
         // Le degré de reconnaissance, quand le corpus le sait : tout le monde
-        // n'est pas saint, et la ligne ne s'écrit pas quand on l'ignore.
-        row(t('detail.degre'), degreLabel(saint.statut, saint.sex)),
+        // n'est pas saint, et la ligne ne s'écrit pas quand on l'ignore. Une
+        // apparition, elle, est reconnue par l'Église ou ne l'est pas — Lourdes
+        // et Fátima le sont, Medjugorje non —, ce qui n'est pas le même mot.
+        appa
+          ? row(t('detail.approval'), saint.approbation ? t(`approbation.${saint.approbation}`) : '')
+          : row(t('detail.degre'), degreLabel(saint.statut, saint.sex)),
         row(t('detail.patronage'), patronage),
-        row(t('detail.birth'), saint.born != null
-          ? formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })
-          : t('misc.unknown')),
-        row(t('detail.death'), saint.died != null
-          ? formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })
-          : t('misc.unknown')),
+        appa
+          // Une apparition qui s'étale sur plusieurs années porte les deux
+          // bornes ; celle d'un seul jour n'en porte qu'une.
+          ? row(t('detail.year'), saint.anneeFin && saint.anneeFin !== saint.annee
+            ? `${formatYear(saint.annee)} – ${formatYear(saint.anneeFin)}`
+            : formatYear(saint.annee))
+          : [
+            row(t('detail.birth'), saint.born != null
+              ? formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })
+              : t('misc.unknown')),
+            row(t('detail.death'), saint.died != null
+              ? formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })
+              : t('misc.unknown')),
+          ],
         // Le point porté sur la carte est presque toujours une naissance ;
         // quand c'est une mort, dire « lieu de naissance » serait une erreur.
-        row(t(saint.placeKind === 'died' ? 'detail.deathplace' : 'detail.birthplace'),
-          `${saint.city} — ${this.atlas.countryName(saint.country, lang)}`),
+        // Une apparition n'est ni l'une ni l'autre : c'est un lieu, sans plus.
+        row(t(appa ? 'detail.place'
+          : saint.placeKind === 'died' ? 'detail.deathplace' : 'detail.birthplace'),
+        `${saint.city} — ${this.atlas.countryName(saint.country, lang)}`),
         row(t('detail.feast'), formatFeast(saint.feast)),
         // Ce que le saint était : moine, évêque, martyre, docteur de l'Église.
         //
@@ -129,25 +148,29 @@ export class DetailPanel {
           text: t('detail.locate'),
           onclick: () => this.onLocate(saint),
         }),
-        can('edit') ? h('button', {
+        // Les trois gestes d'administration ne valent que pour les saints : la
+        // couche locale — ajouts, retouches, suppressions — est posée sur le
+        // corpus des saints, et une retouche d'apparition y disparaîtrait sans
+        // un mot. Le second corpus se corrige dans `data/apparitions/`.
+        can('edit') && !appa ? h('button', {
           class: 'btn',
           type: 'button',
           text: t('detail.edit'),
           onclick: () => this.onEdit(saint),
         }) : null,
-        can('moderate') && saint.status === PENDING ? h('button', {
+        can('moderate') && !appa && saint.status === PENDING ? h('button', {
           class: 'btn btn--go',
           type: 'button',
           text: t('detail.approve'),
           onclick: () => this.onStatus(saint, PUBLISHED),
         }) : null,
-        can('moderate') && saint.status === PENDING ? h('button', {
+        can('moderate') && !appa && saint.status === PENDING ? h('button', {
           class: 'btn btn--danger',
           type: 'button',
           text: t('detail.reject'),
           onclick: () => this.onStatus(saint, REJECTED),
         }) : null,
-        can('remove') ? h('button', {
+        can('remove') && !appa ? h('button', {
           class: 'btn btn--danger',
           type: 'button',
           text: t('detail.remove'),
