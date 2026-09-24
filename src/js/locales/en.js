@@ -70,7 +70,6 @@ export default {
     feast: 'Feast',
     sources: 'Sources',
     titles: 'Titles',
-    status: 'Status',
     locate: 'Show on the map',
     edit: 'Edit',
     remove: 'Delete',

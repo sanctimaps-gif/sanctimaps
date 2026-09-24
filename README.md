@@ -768,6 +768,20 @@ partie visible, par un déplacement et jamais par un zoom. Quand la fiche
 s'ouvre au terme d'un vol depuis le monde, elle s'ouvre **avant** le vol : le
 cadrage doit être calculé sur la moitié, non sur la hauteur d'avant.
 
+### Ce que la fiche disait d'inutile
+
+Le relevé de la fiche finissait sur « État : Publiée ». C'était l'état de
+modération — ce qui ne regarde que l'administrateur, et ce qui vaut « Publiée »
+pour les quatre mille cinq cent quatre-vingt-neuf fiches de la carte : une ligne
+sur sept ne disait rien. Une fiche qui n'est *pas* publiée se signale déjà en
+tête, par un bandeau qu'on ne peut pas manquer.
+
+Cette ligne porte maintenant les **qualités** — moine, évêque, martyre, docteur
+de l'Église —, qui étaient en pastilles trois centimètres plus haut et de
+nouveau plus bas sur la page du saint. Les pastilles sont parties : deux fois la
+même chose dans un panneau d'une demi-hauteur d'écran, c'était une ligne de
+biographie en moins.
+
 ### L'écran d'attente, et ce qu'il dit
 
 La carte met une à deux secondes à se peupler. Ces deux secondes-là servaient à

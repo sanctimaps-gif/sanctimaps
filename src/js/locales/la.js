@@ -70,7 +70,6 @@ export default {
     feast: 'Festum',
     sources: 'Fontes',
     titles: 'Tituli',
-    status: 'Status',
     locate: 'In mappa monstrare',
     edit: 'Mutare',
     remove: 'Delere',

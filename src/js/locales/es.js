@@ -70,7 +70,6 @@ export default {
     feast: 'Fiesta',
     sources: 'Fuentes',
     titles: 'Títulos',
-    status: 'Estado',
     locate: 'Ver en el mapa',
     edit: 'Modificar',
     remove: 'Eliminar',

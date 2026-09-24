@@ -70,7 +70,6 @@ export default {
     feast: 'Feest',
     sources: 'Bronnen',
     titles: 'Titels',
-    status: 'Status',
     locate: 'Op de kaart tonen',
     edit: 'Bewerken',
     remove: 'Verwijderen',

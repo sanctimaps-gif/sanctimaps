@@ -1083,15 +1083,6 @@ a.btn {
   background: var(--paper);
 }
 
-.chips {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.3rem;
-  padding: 0;
-  margin: 0.5rem 0;
-}
-
 .notice {
   border-radius: 8px;
   padding: 0.4rem 0.6rem;

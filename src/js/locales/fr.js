@@ -72,7 +72,6 @@ export default {
     feast: 'Fête',
     sources: 'Sources',
     titles: 'Qualités',
-    status: 'État',
     locate: 'Voir sur la carte',
     edit: 'Modifier',
     remove: 'Supprimer',

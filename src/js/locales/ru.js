@@ -70,7 +70,6 @@ export default {
     feast: 'Память',
     sources: 'Источники',
     titles: 'Титулы',
-    status: 'Состояние',
     locate: 'Показать на карте',
     edit: 'Изменить',
     remove: 'Удалить',

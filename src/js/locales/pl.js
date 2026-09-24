@@ -70,7 +70,6 @@ export default {
     feast: 'Wspomnienie',
     sources: 'Źródła',
     titles: 'Tytuły',
-    status: 'Stan',
     locate: 'Pokaż na mapie',
     edit: 'Zmień',
     remove: 'Usuń',

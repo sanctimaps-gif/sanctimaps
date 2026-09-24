@@ -70,7 +70,6 @@ export default {
     feast: 'العيد',
     sources: 'المصادر',
     titles: 'الألقاب',
-    status: 'الحالة',
     locate: 'إظهار على الخريطة',
     edit: 'تعديل',
     remove: 'حذف',

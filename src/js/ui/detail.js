@@ -65,11 +65,10 @@ export class DetailPanel {
         ? h('p', { class: `notice notice--${saint.status}`, text: t(`status.${saint.status}`) })
         : null,
       saint.local ? h('p', { class: 'notice notice--mine', text: t('detail.mine') }) : null,
-      saint.titles?.length
-        ? h('ul', { class: 'chips' }, ...saint.titles.map((key) => h('li', {
-          class: 'chip', text: titleLabel(key, saint.sex),
-        })))
-        : null,
+      // Les qualités étaient ici, en pastilles, et de nouveau plus bas dans le
+      // relevé : deux fois la même chose à trois centimètres d'écart, dans un
+      // panneau qui n'a qu'une demi-hauteur d'écran. Elles ne sont plus qu'en
+      // bas, avec les autres repères — c'est là qu'on lit une fiche.
       description ? h('p', { class: 'detail__desc', text: description }) : null,
       biography ? h('p', { class: 'detail__bio', text: biography }) : null,
       // La licence de Wikipédia demande qu'une modification soit signalée, et
@@ -97,7 +96,15 @@ export class DetailPanel {
         row(t(saint.placeKind === 'died' ? 'detail.deathplace' : 'detail.birthplace'),
           `${saint.city} — ${this.atlas.countryName(saint.country, lang)}`),
         row(t('detail.feast'), formatFeast(saint.feast)),
-        row(t('detail.status'), t(`status.${saint.status}`))),
+        // Ce que le saint était : moine, évêque, martyre, docteur de l'Église.
+        //
+        // Cette ligne disait « État : Publiée ». C'était l'état de modération de
+        // la fiche, qui ne regarde que l'administrateur — et qui vaut « Publiée »
+        // pour les quatre mille cinq cent quatre-vingt-neuf fiches de la carte :
+        // une ligne sur sept ne disait rien. Ce qui n'est *pas* publié se signale
+        // déjà en tête, par un bandeau qu'on ne peut pas manquer.
+        row(t('detail.titles'), (saint.titles || [])
+          .map((key) => titleLabel(key, saint.sex)).join(', '))),
 
       // D'où vient la fiche, quand elle vient d'ailleurs. Pour un texte repris
       // de Wikipédia, l'attribution n'est pas facultative : elle est la

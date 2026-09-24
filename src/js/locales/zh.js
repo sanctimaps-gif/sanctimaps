@@ -70,7 +70,6 @@ export default {
     feast: '瞻礼',
     sources: '来源',
     titles: '称号',
-    status: '状态',
     locate: '在地图上显示',
     edit: '修改',
     remove: '删除',
