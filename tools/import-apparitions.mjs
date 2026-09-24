@@ -41,6 +41,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { fold } from '../src/js/data.js';
+import { unproject } from '../src/js/map/projection.js';
 import { AGENT, extracts, progress, shorten, sleep, sparql } from './lib/wikimedia.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -261,17 +262,41 @@ function approbationDe(texte) {
  * Quand le premier candidat en est un, on descend au suivant — le nom du lieu
  * lui-même, qui est une grotte, une chapelle ou un hameau, mais qui situe.
  */
-const DIVISION = /^(?:la |le |les |l['’])?(?:province|provincia|région|region|regione|district|comt[ée]|county|municip|d[ée]partement|departamento|governorate|pr[ée]fecture|canton|vo[ïi]vodie|oblast|arrondissement|secteur|sector|commune de|state of|[ée]tat d)/i;
+const DIVISION = new RegExp(
+  '^(?:la |le |les |l[\'’])?(?:province|provincia|région|region|regione|district|comt[ée]|county'
+  + '|municip|d[ée]partement|departamento|governorate|pr[ée]fecture|canton|vo[ïi]vodie|oblast'
+  + '|arrondissement|secteur|sector|commune de|state of|[ée]tat d)'
+  // Et la même chose en suffixe : « Akita Prefecture », « Mayo County ».
+  + '|\\b(?:prefecture|province|county|district|region|oblast|voivodeship|state)$', 'i');
 
-/** Le nom du pays ne situe rien non plus : c'est le pays, on le sait déjà. */
-function localite(vue, nomsDuPays = []) {
+/**
+ * Le nom de la localité, tranché par les localités que la carte connaît déjà.
+ *
+ * Les libellés en division se reconnaissent souvent à leur premier mot, mais
+ * pas toujours : « le Var », « l'Isère », « la Tarraconaise », « São Paulo »
+ * sont des départements, une province romaine et un État, et rien dans leur nom
+ * ne le dit. Ce qui les distingue, c'est qu'aucune localité de ce nom ne se
+ * trouve près du point : le Var n'est pas une ville à trois kilomètres de la
+ * chapelle, São Paulo est à quatre-vingt-dix de Campinas.
+ *
+ * On préfère donc le candidat qui **est une localité connue près du point**,
+ * puis, à défaut, celui qui n'a pas l'air d'une division, puis le premier venu.
+ * Les cent treize mille localités sont déjà là, dans `data/generated/cities` :
+ * il n'y a rien à demander à personne.
+ */
+function localite(vue, { nomsDuPays = [], villes = [], lng, lat } = {}) {
   const candidats = [vue.villeLFr, vue.villeFr, vue.lieuFr, vue.villeLEn, vue.villeEn, vue.lieuEn]
     .map((v) => String(v || '').trim()).filter(Boolean);
   const pays = new Set(nomsDuPays.map((n) => fold(n)));
-  const bon = candidats.find((c) => !DIVISION.test(c) && !pays.has(fold(c))
-    // « 7e arrondissement de Paris » commence par un chiffre, non par le mot.
-    && !/^\d+(?:er|e|ème)\b/i.test(c));
-  return bon || candidats.find((c) => !pays.has(fold(c))) || '';
+  const recevable = (c) => !pays.has(fold(c)) && !/^\d+(?:er|e|ème)\b/i.test(c);
+
+  const proche = (nom) => villes.some((v) => v.nom === fold(nom)
+    && Math.hypot((v.lat - lat) * 111, (v.lng - lng) * 111 * Math.cos((lat * Math.PI) / 180)) <= 30);
+
+  return candidats.find((c) => recevable(c) && proche(c))
+    || candidats.find((c) => recevable(c) && !DIVISION.test(c))
+    || candidats.find(recevable)
+    || '';
 }
 
 /** Le point tombe-t-il dans le cadre du pays annoncé, à 8 % près ? */
@@ -365,6 +390,24 @@ async function main() {
   // apparition japonaise : c'est le pays, il est déjà dit à la ligne d'après.
   const nomsPays = JSON.parse(readFileSync(join(ROOT, 'data', 'generated', 'country-names.json'), 'utf8'));
 
+  // Les localités d'un pays, lues une fois et gardées : c'est ce qui permet de
+  // dire qu'« Isère » n'est pas une ville et que « Knock » en est une.
+  const cacheVilles = new Map();
+  const localitesDe = (iso) => {
+    if (!cacheVilles.has(iso)) {
+      let liste = [];
+      try {
+        liste = JSON.parse(readFileSync(join(ROOT, 'data', 'generated', 'cities', `${iso}.json`), 'utf8'))
+          .map((v) => {
+            const [lng, lat] = unproject(v.x, v.y);
+            return { nom: fold(v.n), lng, lat };
+          });
+      } catch { /* pays sans fichier de localités : on s'en passe */ }
+      cacheVilles.set(iso, liste);
+    }
+    return cacheVilles.get(iso);
+  };
+
   const classes = await chercherClasses(options);
   if (!classes.length) throw new Error('aucune classe d’apparition trouvée : rien à importer');
   console.log(`\nClasses retenues : ${classes.join(', ')}`);
@@ -404,7 +447,15 @@ async function main() {
     vue.coord = premier(vue.coord, vue.coordL);
     vue.iso = premier(vue.iso, vue.isoL);
     vue.debut = premier(premier(vue.quand, vue.ouvre), vue.fonde);
-    vue.ville = localite(vue, Object.values(nomsPays[vue.iso] || {}));
+    const point = pointOf(vue.coord);
+    vue.ville = point
+      ? localite(vue, {
+        nomsDuPays: Object.values(nomsPays[vue.iso] || {}),
+        villes: localitesDe(vue.iso),
+        lng: point[0],
+        lat: point[1],
+      })
+      : '';
   }
   console.log(`${parQid.size} apparitions distinctes.`);
 
