@@ -5,6 +5,9 @@ export default {
     tagline: 'Carte mondiale des saints de l’Église catholique',
     loading: 'Chargement de la carte…',
     error: 'Impossible de charger les données de la carte.',
+    ready: 'La carte est prête.',
+    seeMap: 'Voir la carte',
+    closeIntro: 'Fermer la présentation et voir la carte',
   },
   nav: {
     world: 'Monde',

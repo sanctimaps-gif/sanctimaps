@@ -3,6 +3,9 @@ export default {
     tagline: 'Weltkarte der Heiligen der katholischen Kirche',
     loading: 'Karte wird geladen…',
     error: 'Die Kartendaten konnten nicht geladen werden.',
+    ready: 'Die Karte ist bereit.',
+    seeMap: 'Zur Karte',
+    closeIntro: 'Einführung schließen und zur Karte',
   },
   nav: {
     world: 'Welt',

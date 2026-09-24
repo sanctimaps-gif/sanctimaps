@@ -1286,6 +1286,10 @@ a.btn {
   animation: pulse 1.6s ease-in-out infinite;
 }
 
+/* La croix bat tant que la carte se peuple ; elle s'arrête quand celle-ci est
+   prête, et quand le chargement a échoué. Un battement qui continue après coup
+   dirait que l'on attend encore. */
+.loader.is-ready .loader__mark,
 .loader.is-error .loader__mark { animation: none; }
 
 .loader__title {
@@ -1323,9 +1327,51 @@ a.btn {
   color: var(--ink-soft);
 }
 
+/* La croix de fermeture : « fixed » et non « absolute ».
+
+   L'écran défile sur un téléphone — le texte y tient sur un écran et demi —, et
+   une croix posée en absolu remonte avec le texte : on la cherche au coin, elle
+   n'y est plus. Fixée, elle reste au coin quoi qu'on fasse défiler.
+
+   Quarante-quatre pixels de côté au moins : c'est la cible qu'un pouce atteint
+   sans viser. */
+.loader__close {
+  position: fixed;
+  inset-block-start: calc(0.5rem + env(safe-area-inset-top));
+  inset-inline-end: calc(0.5rem + env(safe-area-inset-right));
+  z-index: 2;
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+
+.loader__close:hover { background: var(--paper); }
+
+/* La sortie du bas, pour qui vient de lire jusqu'ici : remonter chercher la
+   croix serait une corvée de plus après trois cents mots. */
+.loader__out {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  margin-block-start: 0.25rem;
+}
+
+.loader__out .btn--primary { width: auto; min-width: 12rem; }
+.loader__more { font-size: 0.94rem; }
+
 /* La feuille de l'application ne pose aucune couleur de lien : il n'y en avait
-   pas d'autre que ceux des sources, déjà traités. Celui-ci est le seul lien de
-   l'écran d'attente, et le bleu du navigateur jure avec le reste. */
+   pas d'autre que ceux des sources, déjà traités. Ceux-ci sont les seuls liens
+   de l'écran d'attente, et le bleu du navigateur jure avec le reste. */
 .loader__in a {
   color: var(--accent);
   text-underline-offset: 2px;
@@ -1344,6 +1390,13 @@ a.btn {
   .loader { padding-block: 0.75rem; }
   .loader__mark { display: none; }
   .loader__in { gap: 0.5rem; }
+  .loader__close { width: 2.25rem; height: 2.25rem; font-size: 1.3rem; }
+}
+
+/* La croix chevaucherait le texte sur un écran étroit : on lui laisse la
+   place au lieu de la lui disputer. */
+@media (max-width: 30rem) {
+  .loader__in { padding-block-start: 2rem; }
 }
 
 @keyframes pulse {

@@ -3,6 +3,9 @@ export default {
     tagline: 'Mapa świata świętych Kościoła katolickiego',
     loading: 'Wczytywanie mapy…',
     error: 'Nie udało się wczytać danych mapy.',
+    ready: 'Mapa jest gotowa.',
+    seeMap: 'Zobacz mapę',
+    closeIntro: 'Zamknij wprowadzenie i zobacz mapę',
   },
   nav: {
     world: 'Świat',

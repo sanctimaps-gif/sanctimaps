@@ -3,6 +3,9 @@ export default {
     tagline: 'Mappa mundi sanctorum Ecclesiae catholicae',
     loading: 'Mappa oneratur…',
     error: 'Data mappae onerari non potuerunt.',
+    ready: 'Tabula parata est.',
+    seeMap: 'Tabulam videre',
+    closeIntro: 'Praefationem claudere et tabulam videre',
   },
   nav: {
     world: 'Orbis',

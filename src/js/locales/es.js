@@ -3,6 +3,9 @@ export default {
     tagline: 'Mapa mundial de los santos de la Iglesia católica',
     loading: 'Cargando el mapa…',
     error: 'No se han podido cargar los datos del mapa.',
+    ready: 'El mapa está listo.',
+    seeMap: 'Ver el mapa',
+    closeIntro: 'Cerrar la presentación y ver el mapa',
   },
   nav: {
     world: 'Mundo',

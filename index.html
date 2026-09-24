@@ -134,16 +134,30 @@ try {
 
   Ce texte est écrit dans la page, non posé par le code : un moteur de recherche
   le lit sans exécuter une ligne de JavaScript, et c'est ce qui compte pour lui.
-  L'écran, lui, s'effonce dès que la carte est prête — c'est la carte qu'on est
-  venu voir, et elle reste la base de l'application. Le même texte vit aussi sur
-  « à-propos/ », page qui ne disparaît pas : un moteur qui exécute le code ne
-  verrait pas celui-ci.
+  Le même texte vit aussi sur « a-propos/ », page qui ne disparaît pas : un
+  moteur qui exécute le code ne verrait pas celui-ci.
+
+  L'écran attend qu'on le ferme. Il partait tout seul dès que la carte était
+  prête, c'est-à-dire au bout d'une seconde ou deux : personne n'avait le temps
+  de lire. La croix du coin et le bouton du bas sont donc les deux sorties, et
+  la carte se peuple derrière pendant qu'on lit.
 -->
-<div class="loader" id="loader" role="status" aria-live="polite">
+<div class="loader" id="loader" role="dialog" aria-modal="true" aria-labelledby="loader-title">
+  <!--
+    La croix de fermeture, en haut à droite.
+
+    Elle est en « position: fixed » et non « absolute » : l'écran défile sur un
+    téléphone, et une croix qui remonte avec le texte n'est plus là quand on la
+    cherche. Elle reste donc au coin, quoi qu'on fasse défiler.
+  -->
+  <button class="loader__close" id="loader-close" type="button"
+          aria-label="Fermer la présentation et voir la carte">
+    <span aria-hidden="true">×</span>
+  </button>
   <div class="loader__in">
     <p class="loader__mark" aria-hidden="true">✝</p>
-    <p class="loader__text" id="loader-text">Chargement de la carte…</p>
-    <h2 class="loader__title">La carte mondiale des saints de l’Église catholique</h2>
+    <p class="loader__text" id="loader-text" role="status" aria-live="polite">Chargement de la carte…</p>
+    <h2 class="loader__title" id="loader-title">La carte mondiale des saints de l’Église catholique</h2>
 
     <p class="loader__lede">SanctiMaps place sur une carte du monde les saints, les
       bienheureux et les vénérables de l’Église catholique : là où chacun est né,
@@ -177,6 +191,15 @@ try {
       question ? Écrivez à
       <a href="mailto:sanctimaps@gmail.com">sanctimaps@gmail.com</a> —
       c’est avec ces messages que la carte s’améliore.</p>
+
+    <!--
+      La même sortie, au bas du texte. La croix est au coin, à quoi il faut
+      remonter : qui vient de lire jusqu'ici a le geste sous la main.
+    -->
+    <p class="loader__out">
+      <button class="btn btn--primary" id="loader-go" type="button">Voir la carte</button>
+      <a class="loader__more" href="a-propos/">En savoir plus</a>
+    </p>
   </div>
 </div>
 

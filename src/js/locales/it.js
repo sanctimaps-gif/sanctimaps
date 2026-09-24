@@ -3,6 +3,9 @@ export default {
     tagline: 'Mappa mondiale dei santi della Chiesa cattolica',
     loading: 'Caricamento della mappa…',
     error: 'Impossibile caricare i dati della mappa.',
+    ready: 'La mappa è pronta.',
+    seeMap: 'Vedere la mappa',
+    closeIntro: 'Chiudere la presentazione e vedere la mappa',
   },
   nav: {
     world: 'Mondo',

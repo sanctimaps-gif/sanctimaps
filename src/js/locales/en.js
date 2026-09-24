@@ -3,6 +3,9 @@ export default {
     tagline: 'A world map of the saints of the Catholic Church',
     loading: 'Loading the map…',
     error: 'The map data could not be loaded.',
+    ready: 'The map is ready.',
+    seeMap: 'See the map',
+    closeIntro: 'Close this introduction and see the map',
   },
   nav: {
     world: 'World',

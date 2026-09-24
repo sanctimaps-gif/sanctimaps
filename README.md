@@ -776,9 +776,31 @@ qu'il contient, qu'il grandit encore, et à quelle adresse écrire —
 `sanctimaps@gmail.com`. Le texte est **écrit dans `index.html`**, non posé par
 le code : un moteur de recherche le lit sans exécuter une ligne de JavaScript.
 
-**La carte reste la base**, et l'écran s'efface dès qu'elle est prête — un fondu
-de deux dixièmes plutôt qu'une coupure, puis le nœud est retiré pour de bon : un
-calque invisible posé sur la carte intercepterait les gestes.
+**L'écran attend qu'on le ferme.** Il partait tout seul dès que la carte était
+prête, c'est-à-dire au bout d'une seconde ou deux : personne n'avait le temps de
+lire. La carte se peuple donc derrière pendant qu'on lit, le message passe de
+« Chargement de la carte… » à « La carte est prête », et l'on sort par la croix
+du coin haut-droit, par le bouton du bas, ou par Échap.
+
+Trois détails que l'usage impose :
+
+- la croix est en `position: fixed`, non `absolute`. Le texte tient sur un écran
+  et demi de téléphone : une croix posée en absolu remonte avec lui, et n'est
+  plus là quand on la cherche au coin ;
+- le même bouton est répété au bas du texte. Qui vient de lire trois cents mots
+  n'a pas à remonter chercher le coin ;
+- Échap coupe la propagation. La carte écoute la même touche pour refermer une
+  fiche ou remonter d'un niveau : sans cette coupure, elle reculerait d'un cran
+  avant même qu'on l'ait vue.
+
+Le nœud est retiré, non masqué — un calque invisible posé sur la carte
+intercepterait les gestes —, après un fondu de deux dixièmes plutôt qu'une
+coupure. Tant qu'il est ouvert, ce qu'il couvre porte `inert` : le calque arrête
+la souris, `inert` arrête la tabulation et le lecteur d'écran, sans quoi
+`aria-modal` ne serait qu'une promesse.
+
+**La carte reste la base** : rien d'autre n'est demandé que de fermer, et les
+deux sorties sont visibles sans chercher.
 
 Un écran qui disparaît ne vaut pourtant rien pour le moteur qui, lui, exécute le
 code — et c'est le cas du principal. Le même texte vit donc sur **`a-propos/`**,

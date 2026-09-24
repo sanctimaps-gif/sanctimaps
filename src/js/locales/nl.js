@@ -3,6 +3,9 @@ export default {
     tagline: 'Wereldkaart van de heiligen van de katholieke Kerk',
     loading: 'De kaart wordt geladen…',
     error: 'De kaartgegevens konden niet worden geladen.',
+    ready: 'De kaart is klaar.',
+    seeMap: 'Naar de kaart',
+    closeIntro: 'Inleiding sluiten en naar de kaart',
   },
   nav: {
     world: 'Wereld',

@@ -18,6 +18,8 @@ import { TopBar } from './ui/topbar.js';
 
 const loader = document.getElementById('loader');
 const loaderText = document.getElementById('loader-text');
+const loaderClose = document.getElementById('loader-close');
+const loaderGo = document.getElementById('loader-go');
 const stage = document.getElementById('stage');
 const mapHost = document.getElementById('map-host');
 const app = document.getElementById('app');
@@ -30,6 +32,56 @@ enregistrerServiceWorker();
 document.documentElement.lang = getLanguage();
 document.documentElement.dir = getDirection();
 loaderText.textContent = t('app.loading');
+loaderClose.setAttribute('aria-label', t('app.closeIntro'));
+loaderGo.textContent = t('app.seeMap');
+
+/**
+ * L'écran de présentation se ferme quand on le ferme, et pas avant.
+ *
+ * Il partait de lui-même dès que la carte était prête, c'est-à-dire au bout
+ * d'une seconde ou deux : personne n'avait le temps de lire. La carte se
+ * peuple donc derrière pendant qu'on lit, et l'on sort par la croix du coin,
+ * par le bouton du bas, ou par Échap.
+ *
+ * Le nœud est retiré, non masqué : il couvre tout l'écran, et un calque
+ * invisible posé sur la carte intercepterait les gestes.
+ */
+const intro = document.querySelector('.intro');
+let ferme = false;
+function fermerIntro() {
+  if (ferme) return;
+  ferme = true;
+  // Ce qui était derrière redevient atteignable : au clavier comme au lecteur
+  // d'écran. `aria-modal` seul ne ferait que le promettre.
+  app.inert = false;
+  if (intro) intro.inert = false;
+  loader.classList.add('is-done');
+  const parti = () => loader.remove();
+  loader.addEventListener('transitionend', parti, { once: true });
+  // Un navigateur qui n'anime rien — « prefers-reduced-motion », un onglet en
+  // arrière-plan — n'émet jamais l'événement : le repli n'est pas facultatif.
+  setTimeout(parti, 400);
+}
+
+// Les sorties sont branchées avant le chargement, et non après : si les
+// données ne viennent pas, le lecteur doit pouvoir refermer la présentation
+// plutôt que de rester enfermé dedans.
+loaderClose.addEventListener('click', fermerIntro);
+loaderGo.addEventListener('click', fermerIntro);
+document.addEventListener('keydown', (event) => {
+  if (event.key !== 'Escape' || ferme) return;
+  fermerIntro();
+  // La carte écoute Échap elle aussi, pour refermer une fiche ou remonter d'un
+  // niveau. Sans cette coupure, la même touche fermerait la présentation *et*
+  // ferait reculer une carte que le lecteur n'a pas encore vue.
+  event.stopImmediatePropagation();
+});
+
+// Tant que la présentation est ouverte, ce qu'elle couvre est hors d'atteinte :
+// le calque arrête la souris, `inert` arrête la tabulation et le lecteur
+// d'écran. Sans lui, `aria-modal` ne serait qu'une promesse.
+app.inert = true;
+if (intro) intro.inert = true;
 
 async function start() {
   const atlas = await loadAtlas();
@@ -328,16 +380,16 @@ async function start() {
     else sidebar.showTab('search');
   }
 
-  // L'écran d'attente s'efface plutôt que de disparaître d'un coup : une
-  // coupure nette se voit, un fondu de deux dixièmes ne se voit pas. Il est
-  // retiré ensuite, pour de bon — il porte le texte de présentation, et un
-  // calque invisible posé sur la carte intercepterait les gestes.
-  loader.classList.add('is-done');
-  const parti = () => loader.remove();
-  loader.addEventListener('transitionend', parti, { once: true });
-  // Un navigateur qui n'anime rien — « prefers-reduced-motion », un onglet en
-  // arrière-plan — n'émet jamais l'événement : le repli n'est pas facultatif.
-  setTimeout(parti, 400);
+  // La carte est prête : on le dit, et l'on n'en fait pas plus. C'est le
+  // lecteur qui décide quand il a fini de lire — la croix du coin ne mène plus
+  // à une page en chantier, et c'est tout ce qu'il avait besoin de savoir.
+  if (!ferme) {
+    loaderText.textContent = t('app.ready');
+    loader.classList.add('is-ready');
+    // Le clavier arrive sur la sortie plutôt qu'en tête d'un texte de trois
+    // cents mots : l'écran couvre tout, et rien d'autre n'y est à faire.
+    loaderClose.focus({ preventScroll: true });
+  }
 }
 
 start().catch((error) => {

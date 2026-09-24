@@ -3,6 +3,9 @@ export default {
     tagline: '天主教圣人世界地图',
     loading: '正在加载地图…',
     error: '无法加载地图数据。',
+    ready: '地图已就绪。',
+    seeMap: '查看地图',
+    closeIntro: '关闭介绍，查看地图',
   },
   nav: {
     world: '世界',
