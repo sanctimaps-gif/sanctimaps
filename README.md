@@ -88,18 +88,19 @@ montre n'existe qu'une fois le code exécuté. Un moteur de recherche n'avait
 donc qu'une page à indexer — l'accueil — pour quatre mille six cents saints, et
 chercher « saint Odilon de Cluny » ne menait nulle part ici.
 
-À côté de la carte vivent maintenant **6 322 pages de HTML servi tel quel** :
+À côté de la carte vivent maintenant **6 256 pages de HTML servi tel quel** :
 
 | | |
 | --- | --- |
 | `saints/<nom>/` | 4 628 fiches : dates, lieu, fête, biographie, sources |
-| `saints/saint-<prénom>/` | 656 prénoms : tous ceux qui le portent |
+| `saints/saint-<prénom>/` | 645 prénoms : tous ceux qui le portent |
 | `saints/lettre-<x>/` | l'index alphabétique, coupé par initiale |
 | `pays/<pays>/` | les saints nés dans ce pays — 91 pages |
 | `lieux/<ville>/` | les saints nés là — 523 villes qui en comptent au moins deux |
 | `epoques/<n>e-siecle/` | les saints d'un siècle — 27 pages |
 | `calendrier/<jour>/` | les saints fêtés ce jour-là — 365 pages |
 | `lettre/` | comment recevoir le saint du jour |
+| `a-propos/` | ce qu'est SanctiMaps, ce qui lui manque, et où écrire |
 | `sitemap.xml`, `robots.txt` | la liste complète, pour qui préfère la lire d'un coup |
 
 **Des adresses sans extension.** Chaque page est l'`index.html` d'un dossier à
@@ -108,7 +109,7 @@ son nom : l'adresse s'écrit `sanctimaps.fr/saints/maurice-d-agaune`, et non
 message et ce qu'un moteur de recherche montre — et c'est la seule forme qui
 marche telle quelle sur n'importe quel hébergement statique, là où l'omission
 de l'extension dépend ailleurs de la configuration du serveur. Les anciennes
-adresses en `.html` n'ont pas disparu pour autant : **10 146 pages de renvoi**
+adresses en `.html` n'ont pas disparu pour autant : **10 079 pages de renvoi**
 mènent de chacune à la nouvelle, en `noindex` et avec le lien canonique qui
 va — un lien partagé il y a six mois tombe toujours sur la bonne fiche.
 
@@ -415,7 +416,7 @@ cercle, goutte, carré arrondi — et ne garantit que les quatre cinquièmes du
 centre. La carte entière y perdrait son bord doré ; l'emblème seul, posé au
 milieu d'un grand carré crème, ne craint aucune découpe.
 
-Le tout est déclaré dans `index.html`, dans chacune des 6 322 pages générées et
+Le tout est déclaré dans `index.html`, dans chacune des 6 256 pages générées et
 dans `site.webmanifest`, qui fait de la carte une application installable — nom,
 couleur de fond, et trois raccourcis vers le calendrier, les saints et les pays.
 
@@ -747,10 +748,10 @@ où la lettre s'ouvre au public, c'est à l'un d'eux qu'il faut confier la liste
 — pas à un secret de dépôt. En attendant, chaque envoi porte de quoi se
 désabonner : une réponse suffit, et elle arrive à quelqu'un.
 
-## L'écran en trois bandes
+## L'écran en deux moitiés
 
-De haut en bas : la carte tient les deux tiers, la fiche du saint ouvert le
-tiers du bas. Ce n'est pas un panneau posé par-dessus — la carte rétrécit pour
+De haut en bas : la carte tient la moitié du haut, la fiche du saint ouvert
+celle du bas. Ce n'est pas un panneau posé par-dessus — la carte rétrécit pour
 de bon, son `ResizeObserver` s'en aperçoit et elle se recadre dans ce qui lui
 reste. On lit donc la biographie sans perdre de vue le pays et ses croix.
 
@@ -760,12 +761,37 @@ neuf dixièmes d'écran. Rien n'avait été retiré, mais on ne voyait plus rien
 ce qui revient au même pour qui regarde.
 
 **La carte garde ce qu'elle montrait.** Si elle était au cadrage du pays — le
-pays tout entier —, elle le reste dans les deux tiers qui lui restent, sans
-quoi le sud déborderait sous la fiche. Si le lecteur avait zoomé, son échelle
-est un choix : on n'y touche pas, on se contente d'amener la croix ouverte dans
-la partie visible, par un déplacement et jamais par un zoom. Quand la fiche
-s'ouvre au terme d'un vol depuis le monde, elle s'ouvre **avant** le vol :
-le cadrage doit être calculé sur les deux tiers, non sur la hauteur d'avant.
+pays tout entier —, elle le reste dans la moitié qui lui reste, sans quoi le
+sud déborderait sous la fiche. Si le lecteur avait zoomé, son échelle est un
+choix : on n'y touche pas, on se contente d'amener la croix ouverte dans la
+partie visible, par un déplacement et jamais par un zoom. Quand la fiche
+s'ouvre au terme d'un vol depuis le monde, elle s'ouvre **avant** le vol : le
+cadrage doit être calculé sur la moitié, non sur la hauteur d'avant.
+
+### L'écran d'attente, et ce qu'il dit
+
+La carte met une à deux secondes à se peupler. Ces deux secondes-là servaient à
+faire clignoter une croix ; elles disent maintenant ce qu'est SanctiMaps, ce
+qu'il contient, qu'il grandit encore, et à quelle adresse écrire —
+`sanctimaps@gmail.com`. Le texte est **écrit dans `index.html`**, non posé par
+le code : un moteur de recherche le lit sans exécuter une ligne de JavaScript.
+
+**La carte reste la base**, et l'écran s'efface dès qu'elle est prête — un fondu
+de deux dixièmes plutôt qu'une coupure, puis le nœud est retiré pour de bon : un
+calque invisible posé sur la carte intercepterait les gestes.
+
+Un écran qui disparaît ne vaut pourtant rien pour le moteur qui, lui, exécute le
+code — et c'est le cas du principal. Le même texte vit donc sur **`a-propos/`**,
+page générée qui ne disparaît pas, liée depuis l'en-tête des 6 256 pages et
+depuis le bandeau de l'accueil. Ses chiffres sont comptés à la génération, jamais
+écrits à la main : une page d'à-propos qui se vante à faux se remarque.
+
+Ceux de l'accueil, eux, sont écrits à la main — il le faut, puisque c'est leur
+présence sans JavaScript qui leur donne leur valeur. Une fusion de doublons en
+avait fait mentir deux sans que rien ne le dise : la page promettait 4 628 fiches
+pour 4 589, et 523 lieux pour 509. `npm run check` les relit maintenant contre le
+corpus, l'adresse de contact comprise, et échoue bruyamment plutôt que de laisser
+la page se vanter à faux.
 
 ### Ce qui a été retiré du haut de la carte
 
@@ -1435,7 +1461,7 @@ src/js/locales/*.js      douze paquets de traductions
 src/js/map/projection.js projection Mercator, partagée avec la génération
 src/js/map/view.js       rendu SVG, cadrages, zoom et déplacement bornés
 src/js/ui/daily.js       saint du jour : l'horloge, le corpus, rien d'autre
-src/js/ui/fiche.js       la fiche du tiers du bas, et sa place face à la carte
+src/js/ui/fiche.js       la fiche de la moitié du bas, et sa place face à la carte
 src/js/ui/reminder.js    rappel quotidien : agenda, réveil, notification, lettre
 src/js/background.js     le réveil quotidien, et les cinq états qu'il peut prendre
 src/js/install.js        installation sur l'écran d'accueil, et le service worker

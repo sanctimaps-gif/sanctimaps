@@ -72,6 +72,7 @@ try {
       <a href="epoques/">Par siècle</a>
       <a href="calendrier/">Calendrier</a>
       <a href="lettre/">La lettre</a>
+      <a href="a-propos/">À propos</a>
     </nav>
   </div>
 
@@ -85,9 +86,9 @@ try {
   <div class="intro__in intro__in--second">
     <h2 class="intro__sub">Découvrez les saints par pays</h2>
     <p class="intro__chiffres">
-      <a href="saints/"><b>4 628</b> saints</a>
+      <a href="saints/"><b>4 589</b> saints</a>
       <a href="pays/"><b>91</b> pays</a>
-      <a href="lieux/"><b>523</b> lieux</a>
+      <a href="lieux/"><b>509</b> lieux</a>
       <a href="epoques/"><b>27</b> siècles</a>
       <a href="calendrier/"><b>365</b> jours de fête</a>
     </p>
@@ -106,13 +107,13 @@ try {
 </header>
 
 <!--
-  L'écran se partage en trois bandes, de haut en bas.
+  L'écran se partage en deux, de haut en bas : la carte, puis la fiche du saint
+  ouvert.
 
-  Les deux premières sont la carte, la troisième la fiche du saint ouvert. Une
-  fiche qui recouvrait tout l'écran — ce qu'elle faisait sur un téléphone —
+  Une fiche qui recouvrait tout l'écran — ce qu'elle faisait sur un téléphone —
   donnait à croire que les autres saints avaient disparu : ils étaient là,
-  derrière le panneau. La carte garde donc ses deux tiers, et l'on lit la
-  biographie sans perdre de vue le pays et ses croix.
+  derrière le panneau. La carte garde donc sa moitié, et l'on lit la biographie
+  sans perdre de vue le pays et ses croix.
 -->
 <div class="app" id="app">
   <div class="workspace">
@@ -123,9 +124,60 @@ try {
   </div>
 </div>
 
-<div class="loader" id="loader">
-  <div class="loader__mark" aria-hidden="true">✝</div>
-  <p class="loader__text" id="loader-text">Chargement de la carte…</p>
+<!--
+  L'écran d'attente, et ce qu'il dit.
+
+  La carte met une à deux secondes à se peupler : quatre mille cinq cent
+  quatre-vingt-neuf fiches, deux cent trente-quatre contours de pays. Ces deux
+  secondes-là servaient à faire clignoter une croix. Elles disent maintenant ce
+  qu'est SanctiMaps, qu'il grandit encore, et à quelle adresse écrire.
+
+  Ce texte est écrit dans la page, non posé par le code : un moteur de recherche
+  le lit sans exécuter une ligne de JavaScript, et c'est ce qui compte pour lui.
+  L'écran, lui, s'effonce dès que la carte est prête — c'est la carte qu'on est
+  venu voir, et elle reste la base de l'application. Le même texte vit aussi sur
+  « à-propos/ », page qui ne disparaît pas : un moteur qui exécute le code ne
+  verrait pas celui-ci.
+-->
+<div class="loader" id="loader" role="status" aria-live="polite">
+  <div class="loader__in">
+    <p class="loader__mark" aria-hidden="true">✝</p>
+    <p class="loader__text" id="loader-text">Chargement de la carte…</p>
+    <h2 class="loader__title">La carte mondiale des saints de l’Église catholique</h2>
+
+    <p class="loader__lede">SanctiMaps place sur une carte du monde les saints, les
+      bienheureux et les vénérables de l’Église catholique : là où chacun est né,
+      le jour où on le fête, ce que l’on sait de sa vie. On y cherche un saint par
+      son nom, un pays, un siècle, une date — ou l’on se promène simplement, de
+      l’Irlande au Viêt Nam, pour voir qui a vécu là.</p>
+
+    <ul class="loader__facts">
+      <li><b>4 589</b> saints</li>
+      <li><b>91</b> pays</li>
+      <li><b>509</b> villes et régions</li>
+      <li><b>27</b> siècles</li>
+      <li><b>365</b> jours de fête</li>
+      <li><b>4 491</b> biographies en français</li>
+    </ul>
+
+    <p>Chaque fiche porte les dates, le lieu de naissance, le jour de fête,
+      l’époque, les qualités — évêque, martyre, docteur de l’Église —, le
+      patronage, la biographie et ses sources. Une lettre quotidienne raconte les
+      saints du jour, et la carte s’installe sur l’écran d’accueil d’un téléphone
+      pour se consulter hors ligne.</p>
+
+    <p class="loader__note"><strong>SanctiMaps est en constante progression.</strong>
+      Le corpus s’enrichit, les biographies se complètent, les lieux se précisent —
+      et quatre-vingt-dix-huit fiches attendent encore leur récit. Certaines
+      dates sont approximatives, certains lieux sont une contrée plutôt qu’une
+      ville : la carte le dit chaque fois plutôt que de faire croire à une
+      précision qu’elle n’a pas.</p>
+
+    <p class="loader__note">Une correction, un saint qui manque, une remarque, une
+      question ? Écrivez à
+      <a href="mailto:sanctimaps@gmail.com">sanctimaps@gmail.com</a> —
+      c’est avec ces messages que la carte s’améliore.</p>
+  </div>
 </div>
 
 <noscript>

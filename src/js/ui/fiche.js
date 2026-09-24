@@ -2,7 +2,7 @@ import { getLanguage, t } from '../i18n.js';
 import { h } from './dom.js';
 
 /**
- * La fiche du saint ouvert, dans le tiers du bas.
+ * La fiche du saint ouvert, dans la moitié du bas.
  *
  * ## Pourquoi elle n'est plus dans le tiroir
  *
@@ -12,7 +12,7 @@ import { h } from './dom.js';
  * voyait plus rien, ce qui revient au même pour qui regarde.
  *
  * La fiche occupe donc une bande au bas de l'écran, la carte garde les deux
- * tiers du haut, et l'on lit la biographie en voyant toujours où le saint est
+ * moitié du haut, et l'on lit la biographie en voyant toujours où le saint est
  * né et qui l'entoure. La carte se recadre d'elle-même : son hôte a rétréci,
  * et le `ResizeObserver` de la vue s'en charge.
  *
@@ -22,7 +22,7 @@ import { h } from './dom.js';
  * fiche ordinaire, celle-là même qui s'affichait dans le tiroir, posée telle
  * quelle dans la partie qui défile. Le nom est dans l'en-tête plutôt que dans
  * le corps pour qu'il reste lisible quand on fait défiler la biographie — un
- * tiers d'écran ne montre pas trois cents mots d'un coup.
+ * demi-écran ne montre pas toujours trois cents mots d'un coup.
  */
 export class FicheBar {
   constructor(host, detail, { onClose, onName } = {}) {

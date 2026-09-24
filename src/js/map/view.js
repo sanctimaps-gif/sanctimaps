@@ -363,7 +363,7 @@ export class MapView {
    * relus qu'au redimensionnement — les relire à chaque image coûterait un
    * recalcul de mise en page par transformation écrite. Quand c'est
    * l'application qui change la place disponible, comme en ouvrant la fiche du
-   * tiers du bas, elle doit le dire : le `ResizeObserver` ne s'en apercevra
+   * moitié du bas, elle doit le dire : le `ResizeObserver` ne s'en apercevra
    * qu'à l'image suivante, une fois le cadrage déjà calculé de travers.
    */
   remeasure() {
@@ -747,7 +747,7 @@ export class MapView {
     } else if (this.atFullCountry()) {
       // La carte montrait le pays tout entier : elle doit le montrer encore.
       // C'est par là que passe l'ouverture et la fermeture de la fiche, qui
-      // prend le tiers du bas : sans ce recadrage, le pays déborderait par le
+      // prend la moitié du bas : sans ce recadrage, le pays déborderait par le
       // bas et l'on perdrait justement les croix qu'on voulait garder en vue.
       this.refit({ animate: false });
     } else {
@@ -861,7 +861,7 @@ export class MapView {
   /**
    * Ramène le saint mis en avant dans la partie de la carte restée visible.
    *
-   * La fiche prend le tiers du bas : la carte rétrécit d'autant, et la croix
+   * La fiche prend la moitié du bas : la carte rétrécit d'autant, et la croix
    * qu'on vient d'ouvrir peut se retrouver hors du cadre. On la ramène — en
    * déplaçant seulement, jamais en zoomant : le lecteur a choisi son échelle,
    * ce n'est pas à nous de la reprendre. Et on ne bouge que s'il le faut, pour

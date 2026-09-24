@@ -267,6 +267,7 @@ ${blocs.map((b) => `<script type="application/ld+json">${JSON.stringify(b)}</scr
       <a href="${r}epoques/">Par siècle</a>
       <a href="${r}calendrier/">Calendrier</a>
       <a href="${r}lettre/">La lettre</a>
+      <a href="${r}a-propos/">À propos</a>
     </nav>
   </div>
 </header>
@@ -1056,6 +1057,86 @@ pour se désinscrire et, si vous le souhaitez, supprimer toutes vos données.</p
  * un lecteur de flux, un relais vers sa boîte, le calendrier de son téléphone,
  * ou l'application posée sur son écran d'accueil.
  */
+/**
+ * « À propos » : ce que l'écran d'attente dit, sur une page qui reste.
+ *
+ * L'accueil porte le même texte, mais dans un écran que le code retire dès que
+ * la carte est prête. Un moteur de recherche qui exécute le JavaScript — c'est
+ * le cas du principal — ne le voit donc pas ; celui qui ne l'exécute pas le
+ * voit. Écrire deux fois vaut mieux que parier sur l'un des deux, et une page
+ * d'à-propos est de toute façon ce qu'un lecteur cherche quand il veut savoir
+ * qui tient le site et à qui écrire.
+ *
+ * Les chiffres viennent du corpus, non de la main : c'est la seule façon qu'ils
+ * restent vrais après un import.
+ */
+function aboutPage(ctx) {
+  const { base, compteurs } = ctx;
+  const { saints, pays, lieux, siecles, jours, bio, sansBio, traduites } = compteurs;
+  const url = `${base}/a-propos/`;
+  const body = `<h1>À propos de SanctiMaps</h1>
+<p class="lede">SanctiMaps place sur une carte du monde les saints, les
+bienheureux et les vénérables de l’Église catholique : là où chacun est né, le
+jour où on le fête, ce que l’on sait de sa vie. On y cherche un saint par son
+nom, un pays, un siècle, une date — ou l’on se promène simplement, de l’Irlande
+au Viêt Nam, pour voir qui a vécu là.</p>
+
+<h2>Ce que la carte contient</h2>
+<dl class="facts">
+${fact('Saints recensés', esc(nombre(saints)))}${fact('Pays', esc(nombre(pays)))}${fact('Villes et régions', esc(nombre(lieux)))}${fact('Siècles couverts', esc(nombre(siecles)))}${fact('Jours de fête pourvus', esc(nombre(jours)))}${fact('Biographies en français', esc(nombre(bio)))}</dl>
+
+<p>Chaque fiche porte les dates, le lieu de naissance, le jour de fête, l’époque,
+les qualités — évêque, martyre, docteur de l’Église —, le patronage, la
+biographie et ses sources. Le degré de reconnaissance par l’Église y figure
+quand il est connu : saint, bienheureux, vénérable ou serviteur de Dieu. Une
+<a href="../lettre/">lettre quotidienne</a> raconte les saints du jour, et la
+carte s’installe sur l’écran d’accueil d’un téléphone pour se consulter hors
+ligne.</p>
+
+<h2>Par où entrer</h2>
+<ul class="cards">
+${card('../index.html', 'La carte', 'le monde, puis un continent, puis un pays')}${card('../saints/', 'Tous les saints', `${nombre(saints)} fiches, par initiale et par prénom`)}${card('../pays/', 'Par pays', `${nombre(pays)} pays`)}${card('../lieux/', 'Par lieu', `${nombre(lieux)} villes et régions`)}${card('../epoques/', 'Par siècle', `${nombre(siecles)} siècles`)}${card('../calendrier/', 'Le calendrier', `${nombre(jours)} jours de fête`)}</ul>
+
+<h2>En constante progression</h2>
+<p>SanctiMaps n’est pas fini, et ne le sera pas : le corpus s’enrichit, les
+biographies se complètent, les lieux se précisent. ${esc(nombre(traduites))}
+biographies ont été traduites en français depuis vingt-deux langues, et
+${esc(nombre(sansBio))} fiches attendent encore leur récit — leur vie n’est
+écrite dans aucune des langues que nous savons interroger.</p>
+<p class="note">Certaines dates sont approximatives, certains lieux sont une
+contrée plutôt qu’une ville. La carte le dit chaque fois plutôt que de faire
+croire à une précision qu’elle n’a pas : une fiche qui annonce « IVe siècle »
+ne prétend pas connaître l’année, et un saint « né en Cappadoce » n’est pas né
+au point exact où sa croix se pose.</p>
+
+<h2>Écrire</h2>
+<p>Une correction, un saint qui manque, une remarque, une question ? Écrivez à
+<a href="mailto:sanctimaps@gmail.com">sanctimaps@gmail.com</a> — c’est avec ces
+messages que la carte s’améliore.</p>
+
+<h2>D’où viennent les données</h2>
+<p>Les fiches viennent de <a href="https://www.wikidata.org/" rel="noreferrer">Wikidata</a>
+(domaine public, CC0) et les biographies de
+<a href="https://fr.wikipedia.org/" rel="noreferrer">Wikipédia</a> (CC BY-SA) :
+chaque fiche cite l’article dont elle est tirée, et dit de quelle langue elle a
+été traduite lorsqu’elle l’a été. Les contours des pays viennent de Natural
+Earth, les villes de GeoNames. Rien n’est recopié d’une source protégée.</p>
+
+<a class="go" href="../index.html">Ouvrir la carte</a>`;
+
+  return page({
+    title: 'À propos — la carte mondiale des saints | SanctiMaps',
+    description: `SanctiMaps, carte mondiale des saints de l’Église catholique : `
+      + `${nombre(saints)} saints de ${nombre(pays)} pays, leur lieu de naissance, `
+      + `leur jour de fête et leur biographie. En constante progression ; écrivez-nous.`,
+    canonical: url,
+    up: 1,
+    crumbs: '<a href="../index.html">Carte</a> › À propos',
+    trail: [['SanctiMaps', `${base}/`], ['À propos', url]],
+    body,
+  });
+}
+
 function feedPage(ctx) {
   const { base, byDay } = ctx;
   const url = `${base}/lettre/`;
@@ -1264,6 +1345,18 @@ function main() {
     lieuxSlugs,
     prenoms,
     prenomDe: (saint) => prenomParSaint.get(saint.id) || null,
+    // Ce que la page d'à-propos annonce : comptés ici, jamais écrits à la main,
+    // de sorte qu'un import ne laisse pas une page qui se vante à faux.
+    compteurs: {
+      saints: published.length,
+      pays: byCountry.size,
+      lieux: byPlace.size,
+      siecles: byCentury.size,
+      jours: byDay.size,
+      bio: published.filter((s) => s.bio?.fr).length,
+      sansBio: published.filter((s) => !s.bio?.fr).length,
+      traduites: published.filter((s) => s.traduit).length,
+    },
     // La page du lieu, quand il en a une : un saint né dans un village qu'il
     // est seul à porter n'a pas de page de lieu, et son nom reste du texte.
     placeHref: (saint) => (lieuxSlugs.has(`${saint.country}|${saint.city}`)
@@ -1366,6 +1459,7 @@ function main() {
   }
   files.push(['calendrier/index.html', calendarIndex(byDay, ctx)]);
   files.push(['lettre/index.html', feedPage({ base: options.base, byDay: byDay.size })]);
+  files.push(['a-propos/index.html', aboutPage(ctx)]);
   renvois.push(['lettre.html', renvoi({
     titre: 'Recevoir le saint du jour',
     vers: 'lettre/',
@@ -1433,7 +1527,7 @@ ${urls.map((u) => `<url><loc>${esc(`${options.base}/${u}`)}</loc></url>`).join('
   // Les dossiers sont refaits à neuf : un saint renommé laisserait sinon son
   // ancienne page derrière lui, et le plan du site pointerait sur deux
   // adresses pour un même homme.
-  for (const dir of ['saints', 'pays', 'calendrier', 'lieux', 'epoques', 'lettre']) {
+  for (const dir of ['saints', 'pays', 'calendrier', 'lieux', 'epoques', 'lettre', 'a-propos']) {
     rmSync(join(ROOT, dir), { recursive: true, force: true });
     mkdirSync(join(ROOT, dir), { recursive: true });
   }
@@ -1447,7 +1541,7 @@ ${urls.map((u) => `<url><loc>${esc(`${options.base}/${u}`)}</loc></url>`).join('
     writeFileSync(join(ROOT, path), body);
   }
   console.log(`\nÉcrit à la racine du site : saints/, pays/, lieux/, calendrier/, epoques/,`
-    + ` lettre/, sitemap.xml, robots.txt`);
+    + ` lettre/, a-propos/, sitemap.xml, robots.txt`);
 }
 
 main();

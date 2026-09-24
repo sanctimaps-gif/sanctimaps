@@ -90,8 +90,8 @@ async function start() {
     onCancelPick: () => map.cancelPick(),
   });
 
-  // Le tiers du bas : la fiche du saint ouvert, la carte gardant les deux
-  // autres. Elle est construite avant les panneaux qui l'ouvrent.
+  // La moitié du bas : la fiche du saint ouvert, la carte gardant l'autre.
+  // Elle est construite avant les panneaux qui l'ouvrent.
   const fiche = new FicheBar(ficheHost, detailPanel, {
     onClose: () => map.highlightSaint(null),
     onName: (saint, lang) => atlas.saintName(saint, lang),
@@ -231,17 +231,17 @@ async function start() {
   }
 
   /**
-   * Ouvre la fiche dans le tiers du bas, et dégage la carte pour qu'on la voie.
+   * Ouvre la fiche dans la moitié du bas, et dégage la carte pour qu'on la voie.
    *
    * Sur petit écran le tiroir recouvre la carte : il se referme, puisque c'est
    * la fiche qui prend le relais. Puis la croix du saint est ramenée dans les
-   * deux tiers restés visibles — elle pouvait se trouver juste là où la fiche
+   * moitié restée visible — elle pouvait se trouver juste là où la fiche
    * vient de se poser.
    */
   function showFiche(saint) {
     fiche.show(saint);
     if (!isWide()) sidebar.setOpen(false);
-    // La carte vient de perdre un tiers de sa hauteur : elle doit le savoir
+    // La carte vient de perdre la moitié de sa hauteur : elle doit le savoir
     // avant que quoi que ce soit ne recalcule un cadrage.
     map.remeasure();
     map.revealSaint(saint.id);
@@ -259,8 +259,8 @@ async function start() {
 
   function flyToSaint(saint) {
     // La fiche s'ouvre **avant** le vol, et l'ordre compte : c'est elle qui
-    // prend le tiers du bas, et le cadrage du pays doit être calculé sur les
-    // deux tiers qui restent. Dans l'autre sens, le vol visait la hauteur
+    // prend la moitié du bas, et le cadrage du pays doit être calculé sur la
+    // moitié qui reste. Dans l'autre sens, le vol visait la hauteur
     // d'avant et le pays débordait par le bas en arrivant — on perdait les
     // croix du sud, celles-là mêmes qu'on voulait garder sous les yeux.
     showFiche(saint);
@@ -328,7 +328,16 @@ async function start() {
     else sidebar.showTab('search');
   }
 
-  loader.remove();
+  // L'écran d'attente s'efface plutôt que de disparaître d'un coup : une
+  // coupure nette se voit, un fondu de deux dixièmes ne se voit pas. Il est
+  // retiré ensuite, pour de bon — il porte le texte de présentation, et un
+  // calque invisible posé sur la carte intercepterait les gestes.
+  loader.classList.add('is-done');
+  const parti = () => loader.remove();
+  loader.addEventListener('transitionend', parti, { once: true });
+  // Un navigateur qui n'anime rien — « prefers-reduced-motion », un onglet en
+  // arrière-plan — n'émet jamais l'événement : le repli n'est pas facultatif.
+  setTimeout(parti, 400);
 }
 
 start().catch((error) => {

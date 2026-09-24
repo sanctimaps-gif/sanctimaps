@@ -718,13 +718,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   clip-path: polygon(42% 8%, 58% 8%, 58% 34%, 84% 34%, 84% 50%, 58% 50%, 58% 92%, 42% 92%, 42% 50%, 16% 50%, 16% 34%, 42% 34%);
 }
 
-/* ------------------------------------------------ La fiche, tiers du bas */
+/* ------------------------------------------------ La fiche, moitié du bas */
 
-/* Un tiers de la hauteur, pas davantage : la carte doit rester la pièce
-   maîtresse, et c'est pour la voir qu'on a sorti la fiche du tiroir. Elle
-   défile à l'intérieur plutôt que de s'agrandir. */
+/* La moitié de la hauteur : l'écran se partage en deux, la carte en haut, la
+   biographie en bas. Elle défile à l'intérieur plutôt que de s'agrandir — la
+   carte garde sa moitié, et l'on ne perd jamais de vue le pays et ses croix. */
 .fiche {
-  flex: 0 0 33.3333%;
+  flex: 0 0 50%;
   min-height: 0;
   display: flex;
   flex-direction: column;
@@ -746,8 +746,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
   border-block-end: 1px solid var(--line);
 }
 
-/* Le nom reste en tête pendant qu'on fait défiler la biographie : un tiers
-   d'écran ne montre pas trois cents mots d'un coup, et une fiche dont on ne
+/* Le nom reste en tête pendant qu'on fait défiler la biographie : un demi-écran
+   ne montre pas toujours trois cents mots d'un coup, et une fiche dont on ne
    voit plus le titre devient un texte sans sujet. */
 .fiche__name {
   margin: 0;
@@ -1235,26 +1235,116 @@ a.btn {
 
 /* ------------------------------------------------------ Chargement, divers */
 
+/* ------------------------------------------- L'écran d'attente, et son texte
+
+   Deux secondes, et il disparaît : la carte est la pièce maîtresse, et c'est
+   elle qu'on est venu voir. Mais deux secondes d'écran vide sont deux secondes
+   perdues, et le même texte sert à qui arrive par un moteur de recherche. On y
+   dit donc ce qu'est SanctiMaps, qu'il grandit, et où écrire.
+
+   Il défile : sur un téléphone en paysage, le texte entier ne tient pas, et un
+   écran d'attente qui coupe sa dernière phrase a l'air cassé. */
 .loader {
   position: fixed;
   inset: 0;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Pas de « justify-content: center » : quand le texte dépasse la hauteur de
+     l'écran — un téléphone —, il coupe le haut sans qu'on puisse y remonter.
+     La marge automatique de « .loader__in » centre sans rien couper. */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.5rem 1rem calc(1.5rem + env(safe-area-inset-bottom));
   background: var(--paper);
   color: var(--ink);
   z-index: 100;
+  transition: opacity 260ms ease;
+}
+
+/* La carte est prête : l'écran s'effonce plutôt que de disparaître d'un coup,
+   ce qui se voit moins qu'une coupure. */
+.loader.is-done {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader__in {
+  width: min(42rem, 100%);
+  margin: auto;
+  display: grid;
+  gap: 0.75rem;
+  text-align: start;
 }
 
 .loader__mark {
+  margin: 0;
   font-size: 2.4rem;
+  line-height: 1;
+  text-align: center;
   color: var(--accent);
   animation: pulse 1.6s ease-in-out infinite;
 }
 
 .loader.is-error .loader__mark { animation: none; }
-.loader__text { margin: 0; }
+
+.loader__title {
+  margin: 0;
+  font-family: var(--font);
+  font-size: clamp(1.35rem, 4vw, 1.9rem);
+  line-height: 1.15;
+  text-align: center;
+}
+
+.loader__lede { margin: 0; font-size: 1.02rem; line-height: 1.55; }
+.loader__in p { margin: 0; line-height: 1.55; }
+
+.loader__facts {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 0.5rem;
+  font-size: 0.92rem;
+}
+
+.loader__facts li {
+  padding: 0.15rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+}
+
+.loader__facts b { font-variant-numeric: tabular-nums; }
+
+.loader__note {
+  font-size: 0.94rem;
+  color: var(--ink-soft);
+}
+
+/* La feuille de l'application ne pose aucune couleur de lien : il n'y en avait
+   pas d'autre que ceux des sources, déjà traités. Celui-ci est le seul lien de
+   l'écran d'attente, et le bleu du navigateur jure avec le reste. */
+.loader__in a {
+  color: var(--accent);
+  text-underline-offset: 2px;
+}
+
+.loader__text {
+  margin: 0;
+  text-align: center;
+  font-size: 0.92rem;
+  opacity: 0.8;
+}
+
+/* Sur un écran bas — un téléphone couché —, le texte prend le pas sur la
+   marge : mieux vaut lire que respirer. */
+@media (max-height: 30rem) {
+  .loader { padding-block: 0.75rem; }
+  .loader__mark { display: none; }
+  .loader__in { gap: 0.5rem; }
+}
 
 @keyframes pulse {
   0%, 100% { opacity: 0.35; }

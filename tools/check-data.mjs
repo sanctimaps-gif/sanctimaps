@@ -261,6 +261,65 @@ if (existsSync(pagesDir)) {
   ok(`${fiches.length} fiches, ${locs.length} adresses au plan du site, liens vérifiés sur ${echantillon.length} pages`);
 }
 
+// --- Les chiffres écrits à la main dans l'accueil ----------------------------
+
+/**
+ * L'accueil annonce des nombres, et les annonçait faux.
+ *
+ * Le bandeau et l'écran d'attente disent « 4 589 saints », « 91 pays »,
+ * « 509 villes et régions ». Ce sont des repères pour le lecteur et pour les
+ * moteurs de recherche, et ils sont écrits dans le fichier — il faut bien
+ * qu'ils y soient, puisque c'est leur présence sans JavaScript qui leur donne
+ * leur valeur. Mais une fusion de doublons en a fait mentir deux, sans que rien
+ * ne le dise : la page promettait quatre mille six cent vingt-huit fiches pour
+ * quatre mille cinq cent quatre-vingt-neuf.
+ *
+ * On ne les génère pas — l'accueil est écrit à la main, et le rester vaut mieux.
+ * On les relit, et le contrôle échoue bruyamment plutôt que de laisser la page
+ * se vanter à faux.
+ */
+const accueil = join(ROOT, 'index.html');
+if (existsSync(accueil)) {
+  const html = readFileSync(accueil, 'utf8');
+  const published = saints.filter((s) => (s.status ?? 'published') === 'published');
+  const villes = new Map();
+  for (const s of published) {
+    if (!s.city) continue;
+    const clef = `${s.country}|${s.city}`;
+    villes.set(clef, (villes.get(clef) || 0) + 1);
+  }
+  const siecles = new Set(published
+    .map((s) => centuryOf(s.born ?? s.died)).filter((n) => n != null));
+  const attendus = {
+    saints: published.length,
+    pays: new Set(published.map((s) => s.country)).size,
+    'villes et régions': [...villes.values()].filter((n) => n >= 2).length,
+    lieux: [...villes.values()].filter((n) => n >= 2).length,
+    'siècles': siecles.size,
+    'jours de fête': new Set(published.map((s) => s.feast)).size,
+    'biographies en français': published.filter((s) => s.bio?.fr).length,
+  };
+  // « <b>4 589</b> saints » : on relit le nombre qui précède chaque étiquette,
+  // l'espace fine insécable comprise.
+  let faux = 0;
+  for (const [label, attendu] of Object.entries(attendus)) {
+    const motif = new RegExp(`<b>([\\d\\s  ]+)</b>\\s*${label}`, 'gi');
+    for (const trouve of html.matchAll(motif)) {
+      const dit = Number(trouve[1].replace(/[^\d]/g, ''));
+      if (dit !== attendu) {
+        faux += 1;
+        fail(`index.html annonce ${dit} ${label} pour ${attendu}`);
+      }
+    }
+  }
+  // L'adresse de contact : promise au lecteur, elle ne doit pas disparaître
+  // d'un remaniement de l'écran d'attente.
+  if (!html.includes('mailto:sanctimaps@gmail.com')) {
+    fail('index.html : l’adresse de contact a disparu');
+  }
+  if (!faux) ok('les chiffres et l’adresse de contact de l’accueil disent vrai');
+}
+
 // --- Bilan ------------------------------------------------------------------
 
 if (problems.length) {
