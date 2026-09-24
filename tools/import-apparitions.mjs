@@ -51,7 +51,7 @@ const DEFAULTS = {
   wikipedia: 'https://{lang}.wikipedia.org',
   out: join(ROOT, 'data', 'apparitions', 'wikidata.json'),
   classes: [],
-  chunk: 100,
+  chunk: 40,
   pause: 300,
   bios: true,
   dryRun: false,
@@ -83,7 +83,7 @@ const HELP = `Importe les apparitions depuis Wikidata.
   --endpoint URL   point d'entrée SPARQL
   --api URL        API de Wikidata, pour la recherche des classes
   --wikipedia URL  adresse de Wikipédia, « {lang} » valant la langue
-  --chunk N        taille des lots d'identifiants (défaut : 100)
+  --chunk N        taille des lots d'identifiants (défaut : 40)
   --pause MS       attente entre deux requêtes (défaut : 300)
   --no-bios        ne pas aller chercher les récits sur Wikipédia
   --dry-run        compter sans écrire
@@ -115,12 +115,27 @@ function parseArgs(argv) {
 
 const idOf = (uri) => String(uri || '').replace(/^.*\/entity\//, '');
 
-/** Les faits, pour les instances des classes retenues. */
-const faits = (classes) => `
-SELECT ?a ?coord ?iso ?debut ?fin ?nameFr ?nameEn ?descFr ?descEn
-       ?villeFr ?villeEn ?lieuFr ?lieuEn ?feastEn WHERE {
+/**
+ * La liste des apparitions, et rien d'autre.
+ *
+ * Demander les faits en même temps que le chemin de classe — `P31/P279*` suivi
+ * de quinze OPTIONAL — a dépassé les soixante secondes du service public, trois
+ * fois de suite. C'est la leçon déjà apprise sur les saints : un chemin de
+ * propriété coûte cher, et chaque OPTIONAL le multiplie. On demande donc
+ * d'abord les identifiants, qui ne coûtent rien, puis les faits par lots
+ * d'identifiants — où le moteur part d'un ensemble déjà réduit.
+ */
+const instances = (classes) => `
+SELECT DISTINCT ?a WHERE {
   VALUES ?classe { ${classes.map((q) => `wd:${q}`).join(' ')} }
   ?a wdt:P31/wdt:P279* ?classe .
+}`;
+
+/** Les faits, pour un lot d'identifiants déjà connus. */
+const faits = (ids) => `
+SELECT ?a ?coord ?iso ?debut ?fin ?nameFr ?nameEn ?descFr ?descEn
+       ?villeFr ?villeEn ?lieuFr ?lieuEn ?feastEn WHERE {
+  VALUES ?a { ${ids.map((q) => `wd:${q}`).join(' ')} }
 
   # Les coordonnées de l'événement, ou à défaut celles du lieu où il se place :
   # Wikidata porte tantôt l'une, tantôt l'autre, et rarement les deux.
@@ -328,7 +343,17 @@ async function main() {
   if (!classes.length) throw new Error('aucune classe d’apparition trouvée : rien à importer');
   console.log(`\nClasses retenues : ${classes.join(', ')}`);
 
-  const rows = await sparql(options.endpoint, faits(classes), options);
+  const tous = [...new Set((await sparql(options.endpoint, instances(classes), options))
+    .map((row) => idOf(row.a?.value)).filter(Boolean))];
+  console.log(`${tous.length} apparitions à interroger.`);
+
+  const rows = [];
+  for (let i = 0; i < tous.length; i += options.chunk) {
+    rows.push(...await sparql(options.endpoint, faits(tous.slice(i, i + options.chunk)), options));
+    await sleep(options.pause);
+    progress(`  faits : ${Math.min(i + options.chunk, tous.length)}/${tous.length}`,
+      { done: i + options.chunk >= tous.length });
+  }
   console.log(`${rows.length} lignes de faits.`);
 
   // Une ligne par combinaison de valeurs facultatives : on rassemble par
@@ -370,9 +395,9 @@ async function main() {
   const articles = new Map();
   const bios = { fr: new Map(), en: new Map() };
   if (options.bios) {
-    const tous = [...parQid.keys()];
-    for (let i = 0; i < tous.length; i += options.chunk) {
-      const lot = tous.slice(i, i + options.chunk);
+    const avecArticle = [...parQid.keys()];
+    for (let i = 0; i < avecArticle.length; i += options.chunk) {
+      const lot = avecArticle.slice(i, i + options.chunk);
       try {
         for (const row of await sparql(options.endpoint, articlesFor(lot), options)) {
           const qid = idOf(row.a?.value);
@@ -385,8 +410,8 @@ async function main() {
         console.warn(`  articles : ${error.message}`);
       }
       await sleep(options.pause);
-      progress(`  articles : ${Math.min(i + options.chunk, tous.length)}/${tous.length}`,
-        { done: i + options.chunk >= tous.length });
+      progress(`  articles : ${Math.min(i + options.chunk, avecArticle.length)}/${avecArticle.length}`,
+        { done: i + options.chunk >= avecArticle.length });
     }
     for (const lang of ['fr', 'en']) {
       const titres = [...new Set([...articles.values()].map((a) => a[lang]).filter(Boolean))];
