@@ -131,54 +131,52 @@ SELECT DISTINCT ?a WHERE {
   ?a wdt:P31/wdt:P279* ?classe .
 }`;
 
-/** Les faits, pour un lot d'identifiants déjà connus. */
-const faits = (ids) => `
-SELECT ?a ?coord ?iso ?debut ?fin ?nameFr ?nameEn ?descFr ?descEn
-       ?villeFr ?villeEn ?lieuFr ?lieuEn ?feastEn WHERE {
+/**
+ * Les faits, un par requête.
+ *
+ * La requête unique — quarante identifiants, quinze OPTIONAL, trois COALESCE —
+ * a dépassé les soixante secondes du service public, trois fois de suite. Un
+ * OPTIONAL ne coûte pas cher tout seul ; quinze en cascade se multiplient, et
+ * le moteur renonce.
+ *
+ * Chacun de ces morceaux ne demande donc **qu'un seul fait**, sans un seul
+ * OPTIONAL : l'élément qui ne le porte pas ne rend simplement pas de ligne.
+ * C'est plus de requêtes, chacune courte et lisible, et l'on sait laquelle
+ * manque quand il en manque une. Le recollement — les coordonnées de
+ * l'événement ou à défaut celles du lieu, la commune avant le lieu-dit — se
+ * fait ici, en JavaScript, où il se relit.
+ */
+const MORCEAUX = [
+  ['coord', '?a wdt:P625 ?v .'],
+  ['coordL', '?a wdt:P276 ?l . ?l wdt:P625 ?v .'],
+  ['iso', '?a wdt:P17 ?p . ?p wdt:P298 ?v .'],
+  ['isoL', '?a wdt:P276 ?l . ?l wdt:P17 ?p . ?p wdt:P298 ?v .'],
+  // L'année : le moment, le début, ou la date de création de l'élément —
+  // dans cet ordre, du plus précis au plus vague.
+  ['quand', '?a wdt:P585 ?v .'],
+  ['ouvre', '?a wdt:P580 ?v .'],
+  ['fonde', '?a wdt:P571 ?v .'],
+  ['fin', '?a wdt:P582 ?v .'],
+  ['nameFr', '?a rdfs:label ?v . FILTER(LANG(?v) = "fr")'],
+  ['nameEn', '?a rdfs:label ?v . FILTER(LANG(?v) = "en")'],
+  ['descFr', '?a schema:description ?v . FILTER(LANG(?v) = "fr")'],
+  ['descEn', '?a schema:description ?v . FILTER(LANG(?v) = "en")'],
+  // La localité : la commune administrative d'abord — celle de l'événement,
+  // puis celle du lieu —, le lieu-dit ensuite. Une grotte nommée
+  // « Massabielle » ne situe personne ; « Lourdes », si.
+  ['villeFr', '?a wdt:P131 ?c . ?c rdfs:label ?v . FILTER(LANG(?v) = "fr")'],
+  ['villeEn', '?a wdt:P131 ?c . ?c rdfs:label ?v . FILTER(LANG(?v) = "en")'],
+  ['villeLFr', '?a wdt:P276 ?l . ?l wdt:P131 ?c . ?c rdfs:label ?v . FILTER(LANG(?v) = "fr")'],
+  ['villeLEn', '?a wdt:P276 ?l . ?l wdt:P131 ?c . ?c rdfs:label ?v . FILTER(LANG(?v) = "en")'],
+  ['lieuFr', '?a wdt:P276 ?l . ?l rdfs:label ?v . FILTER(LANG(?v) = "fr")'],
+  ['lieuEn', '?a wdt:P276 ?l . ?l rdfs:label ?v . FILTER(LANG(?v) = "en")'],
+  ['feastEn', '?a wdt:P841 ?f . ?f rdfs:label ?v . FILTER(LANG(?v) = "en")'],
+];
+
+const morceau = (ids, corps) => `
+SELECT ?a ?v WHERE {
   VALUES ?a { ${ids.map((q) => `wd:${q}`).join(' ')} }
-
-  # Les coordonnées de l'événement, ou à défaut celles du lieu où il se place :
-  # Wikidata porte tantôt l'une, tantôt l'autre, et rarement les deux.
-  OPTIONAL { ?a wdt:P625 ?coordA }
-  OPTIONAL { ?a wdt:P276 ?lieu . OPTIONAL { ?lieu wdt:P625 ?coordL } }
-  BIND(COALESCE(?coordA, ?coordL) AS ?coord)
-
-  OPTIONAL { ?a wdt:P17 ?paysA . ?paysA wdt:P298 ?isoA }
-  OPTIONAL { ?lieu wdt:P17 ?paysL . ?paysL wdt:P298 ?isoL }
-  BIND(COALESCE(?isoA, ?isoL) AS ?iso)
-
-  # L'année : le moment, le début, ou la date de création de l'élément
-  # d'événement — dans cet ordre, du plus précis au plus vague.
-  OPTIONAL { ?a wdt:P585 ?quand }
-  OPTIONAL { ?a wdt:P580 ?ouvre }
-  OPTIONAL { ?a wdt:P571 ?fonde }
-  BIND(COALESCE(?quand, ?ouvre, ?fonde) AS ?debut)
-  OPTIONAL { ?a wdt:P582 ?fin }
-
-  # La localité : la commune administrative d'abord, le lieu-dit ensuite. Une
-  # grotte nommée « Massabielle » ne situe personne ; « Lourdes », si.
-  OPTIONAL { ?a wdt:P131 ?ville }
-  OPTIONAL { ?lieu wdt:P131 ?villeL }
-  OPTIONAL { ?ville rdfs:label ?villeFr . FILTER(LANG(?villeFr) = "fr") }
-  OPTIONAL { ?ville rdfs:label ?villeEn . FILTER(LANG(?villeEn) = "en") }
-  OPTIONAL { ?lieu rdfs:label ?lieuFr . FILTER(LANG(?lieuFr) = "fr") }
-  OPTIONAL { ?lieu rdfs:label ?lieuEn . FILTER(LANG(?lieuEn) = "en") }
-
-  OPTIONAL { ?a wdt:P841 ?feast . ?feast rdfs:label ?feastEn . FILTER(LANG(?feastEn) = "en") }
-
-  OPTIONAL { ?a rdfs:label ?nameFr . FILTER(LANG(?nameFr) = "fr") }
-  OPTIONAL { ?a rdfs:label ?nameEn . FILTER(LANG(?nameEn) = "en") }
-  OPTIONAL { ?a schema:description ?descFr . FILTER(LANG(?descFr) = "fr") }
-  OPTIONAL { ?a schema:description ?descEn . FILTER(LANG(?descEn) = "en") }
-}`;
-
-/** La commune, quand elle n'est portée que par le lieu et non par l'événement. */
-const communes = (ids) => `
-SELECT ?a ?villeFr ?villeEn WHERE {
-  VALUES ?a { ${ids.map((q) => `wd:${q}`).join(' ')} }
-  ?a wdt:P276 ?lieu . ?lieu wdt:P131 ?ville .
-  OPTIONAL { ?ville rdfs:label ?villeFr . FILTER(LANG(?villeFr) = "fr") }
-  OPTIONAL { ?ville rdfs:label ?villeEn . FILTER(LANG(?villeEn) = "en") }
+  ${corps}
 }`;
 
 /** Les titres d'article, d'où l'on tirera le récit. */
@@ -347,48 +345,41 @@ async function main() {
     .map((row) => idOf(row.a?.value)).filter(Boolean))];
   console.log(`${tous.length} apparitions à interroger.`);
 
-  const rows = [];
-  for (let i = 0; i < tous.length; i += options.chunk) {
-    rows.push(...await sparql(options.endpoint, faits(tous.slice(i, i + options.chunk)), options));
-    await sleep(options.pause);
-    progress(`  faits : ${Math.min(i + options.chunk, tous.length)}/${tous.length}`,
-      { done: i + options.chunk >= tous.length });
-  }
-  console.log(`${rows.length} lignes de faits.`);
-
-  // Une ligne par combinaison de valeurs facultatives : on rassemble par
-  // élément, en gardant la première valeur non vide de chaque champ.
-  const parQid = new Map();
+  // Chaque morceau est demandé à part, par lots d'identifiants. Un morceau qui
+  // ne répond pas laisse un champ vide et n'emporte pas la collecte : mieux
+  // vaut une fiche sans jour de fête qu'une heure de travail perdue.
+  const parQid = new Map(tous.map((qid) => [qid, { qid }]));
   const premier = (a, b) => (a || b || '');
-  for (const row of rows) {
-    const qid = idOf(row.a?.value);
-    if (!qid) continue;
-    const vue = parQid.get(qid) || { qid };
-    for (const champ of ['coord', 'iso', 'debut', 'fin', 'nameFr', 'nameEn', 'descFr',
-      'descEn', 'villeFr', 'villeEn', 'lieuFr', 'lieuEn', 'feastEn']) {
-      vue[champ] = premier(vue[champ], row[champ]?.value);
+  for (const [champ, corps] of MORCEAUX) {
+    let vues = 0;
+    for (let i = 0; i < tous.length; i += options.chunk) {
+      const lot = tous.slice(i, i + options.chunk);
+      try {
+        for (const row of await sparql(options.endpoint, morceau(lot, corps), options)) {
+          const vue = parQid.get(idOf(row.a?.value));
+          if (!vue) continue;
+          vue[champ] = premier(vue[champ], row.v?.value);
+          vues += 1;
+        }
+      } catch (error) {
+        console.warn(`  ${champ} : ${error.message}`);
+      }
+      await sleep(options.pause);
     }
-    parQid.set(qid, vue);
+    console.log(`  ${champ.padEnd(9)} ${vues}`);
+  }
+
+  // Le recollement, ici plutôt que dans la requête : les coordonnées de
+  // l'événement ou à défaut celles du lieu, la commune avant le lieu-dit,
+  // le moment avant le début avant la fondation.
+  for (const vue of parQid.values()) {
+    vue.coord = premier(vue.coord, vue.coordL);
+    vue.iso = premier(vue.iso, vue.isoL);
+    vue.debut = premier(premier(vue.quand, vue.ouvre), vue.fonde);
+    vue.villeFr = premier(vue.villeFr, vue.villeLFr);
+    vue.villeEn = premier(vue.villeEn, vue.villeLEn);
   }
   console.log(`${parQid.size} apparitions distinctes.`);
-
-  // La commune manque parfois à l'événement comme au lieu-dit : on la redemande
-  // en passant par le lieu, pour ceux-là seulement.
-  const sansVille = [...parQid.values()].filter((v) => !v.villeFr && !v.villeEn).map((v) => v.qid);
-  for (let i = 0; i < sansVille.length; i += options.chunk) {
-    const lot = sansVille.slice(i, i + options.chunk);
-    try {
-      for (const row of await sparql(options.endpoint, communes(lot), options)) {
-        const vue = parQid.get(idOf(row.a?.value));
-        if (!vue) continue;
-        vue.villeFr = premier(vue.villeFr, row.villeFr?.value);
-        vue.villeEn = premier(vue.villeEn, row.villeEn?.value);
-      }
-    } catch (error) {
-      console.warn(`  communes : ${error.message}`);
-    }
-    await sleep(options.pause);
-  }
 
   // Les récits, comme pour les saints : le titre de l'article, puis son
   // introduction, réduite à trois phrases.
