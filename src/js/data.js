@@ -40,27 +40,59 @@ async function getJSON(url) {
 // Enregistrement local
 // ---------------------------------------------------------------------------
 
-const EMPTY_STORE = { version: 2, added: [], edits: {}, removed: [] };
+/**
+ * La couche locale, corpus par corpus.
+ *
+ * Les saints tiennent la racine — `added`, `edits`, `removed` —, les apparitions
+ * une couche jumelle sous `apparitions`. Deux couches plutôt qu'une seule et un
+ * champ « genre » : un identifiant retiré ne veut pas dire la même chose d'un
+ * corpus à l'autre, et l'export de l'une ne doit pas emporter l'autre.
+ *
+ * Un enregistrement écrit par une version précédente n'a pas la seconde couche :
+ * elle est alors vide, et rien n'est perdu.
+ */
+const VERSION_STORE = 3;
+
+/**
+ * Une couche neuve, et non une copie d'un modèle.
+ *
+ * Deux fonctions plutôt que deux littéraux partagés : l'étalement d'un objet ne
+ * copie que les références, de sorte qu'un `{ ...MODELE }` aurait donné deux
+ * couches qui partagent le même tableau — un saint ajouté serait alors entré
+ * dans les apparitions par la même occasion. L'essai l'a montré ; la fonction
+ * l'empêche.
+ */
+const coucheVide = () => ({ added: [], edits: {}, removed: [] });
+const storeVide = () => ({ version: VERSION_STORE, ...coucheVide(), apparitions: coucheVide() });
+
+/** Une couche relue d'un enregistrement quelconque, sans lui faire confiance. */
+function lireCouche(source) {
+  const brut = source && typeof source === 'object' ? source : {};
+  return {
+    added: Array.isArray(brut.added) ? brut.added.filter((s) => s && s.id) : [],
+    edits: brut.edits && typeof brut.edits === 'object' ? brut.edits : {},
+    removed: Array.isArray(brut.removed) ? brut.removed : [],
+  };
+}
 
 function readStore() {
   let raw;
   try {
     raw = localStorage.getItem(STORE_KEY);
   } catch {
-    return { ...EMPTY_STORE };
+    return storeVide();
   }
-  if (!raw) return { ...EMPTY_STORE };
+  if (!raw) return storeVide();
   try {
     const parsed = JSON.parse(raw);
     return {
-      version: 2,
-      added: Array.isArray(parsed.added) ? parsed.added.filter((s) => s && s.id) : [],
-      edits: parsed.edits && typeof parsed.edits === 'object' ? parsed.edits : {},
-      removed: Array.isArray(parsed.removed) ? parsed.removed : [],
+      version: VERSION_STORE,
+      ...lireCouche(parsed),
+      apparitions: lireCouche(parsed.apparitions),
     };
   } catch {
     console.warn('Enregistrement local illisible : il est ignoré.');
-    return { ...EMPTY_STORE };
+    return storeVide();
   }
 }
 
@@ -97,14 +129,9 @@ export class Atlas {
     // dit alors en clair plutôt que de laisser chercher des repères qui
     // n'existent pas.
     this.corpus = 'saints';
-    this.apparitions = (apparitions?.apparitions || [])
+    this.baseApparitions = (apparitions?.apparitions || [])
       .map((a) => ({ ...a, status: PUBLISHED, kind: 'apparition' }));
-    this.apparitionById = new Map(this.apparitions.map((a) => [a.id, a]));
-    this.apparitionsByCountry = new Map();
-    for (const a of this.apparitions) {
-      if (!this.apparitionsByCountry.has(a.country)) this.apparitionsByCountry.set(a.country, []);
-      this.apparitionsByCountry.get(a.country).push(a);
-    }
+    this.baseApparitionById = new Map(this.baseApparitions.map((a) => [a.id, a]));
 
     // Les deux morceaux qui ne servent pas au premier dessin, et qu'on ne
     // télécharge donc pas avant lui. Voir `ensureTexts` et `ensureCandidates`.
@@ -118,6 +145,7 @@ export class Atlas {
     this.detailCache = new Map();
     this.viewerRole = 'visitor';
     this.reindex();
+    this.reindexApparitions();
   }
 
   // -- ce qui arrive après la carte ------------------------------------------
@@ -215,7 +243,7 @@ export class Atlas {
   /** Qui regarde : conditionne les fiches en attente ou refusées qu'on voit. */
   setViewer(role) {
     this.viewerRole = role;
-    this.reindex();
+    this.reindexAll();
   }
 
   reindex() {
@@ -247,6 +275,42 @@ export class Atlas {
   }
 
   /**
+   * Le même travail pour le second corpus, sur sa propre couche.
+   *
+   * Deux index plutôt qu'un seul : une apparition n'est pas un saint, et les
+   * mélanger ferait apparaître Lourdes dans la recherche des saints, dans la
+   * lettre quotidienne et dans le saint du jour.
+   */
+  reindexApparitions() {
+    const couche = this.store.apparitions;
+    const removed = new Set(couche.removed);
+    const all = [];
+    for (const a of this.baseApparitions) {
+      if (removed.has(a.id)) continue;
+      const patch = couche.edits[a.id];
+      all.push(patch ? this.locate({ ...a, ...patch, edited: true }) : a);
+    }
+    for (const a of couche.added) {
+      all.push(this.locate({ ...a, local: true, kind: 'apparition' }));
+    }
+
+    this.everyApparition = all;
+    this.apparitions = all.filter((a) => this.canSee(a));
+    this.apparitionById = new Map(this.apparitions.map((a) => [a.id, a]));
+    this.apparitionsByCountry = new Map();
+    for (const a of this.apparitions) {
+      if (!this.apparitionsByCountry.has(a.country)) this.apparitionsByCountry.set(a.country, []);
+      this.apparitionsByCountry.get(a.country).push(a);
+    }
+  }
+
+  /** Les deux corpus à la fois : ce que la couche locale touche. */
+  reindexAll() {
+    this.reindex();
+    this.reindexApparitions();
+  }
+
+  /**
    * Une fiche publiée est visible de tous ; une proposition ne l'est que des
    * comptes connectés, et une fiche refusée du seul administrateur.
    */
@@ -256,33 +320,91 @@ export class Atlas {
     return this.viewerRole === 'admin' || this.viewerRole === 'user';
   }
 
+  /** Les propositions en attente, des deux corpus : la modération les voit toutes. */
   pending() {
-    return this.everySaint.filter((s) => s.status === PENDING);
+    return [...this.everySaint, ...this.everyApparition].filter((s) => s.status === PENDING);
   }
 
   // -- écritures -------------------------------------------------------------
 
-  addSaint(draft, { status = PENDING, author = '' } = {}) {
-    const id = draft.id && !this.byId.has(draft.id)
-      ? draft.id
-      : `local-${Date.now().toString(36)}-${Math.floor(Math.random() * 1e4).toString(36)}`;
-    const record = { ...draft, id, status, author, createdAt: new Date().toISOString() };
-    delete record.x;
-    delete record.y;
-    this.store.added.push(record);
-    const stored = this.persist();
-    this.reindex();
-    return { saint: this.byId.get(id), stored };
+  /**
+   * La couche d'un corpus, et l'index livré qui va avec.
+   *
+   * Tout ce qui écrit passe par ici : le genre décide de la couche, et rien
+   * d'autre ne change. C'est ce qui permet d'ajouter, de retoucher et de retirer
+   * une apparition par le même chemin qu'un saint, sans deux jeux de méthodes
+   * qui divergeraient au premier correctif.
+   */
+  couche(kind) {
+    return kind === 'apparition' ? this.store.apparitions : this.store;
   }
 
-  /** Retouche une fiche : sur place si elle est locale, en surcouche sinon. */
+  livres(kind) {
+    return kind === 'apparition' ? this.baseApparitionById : this.baseById;
+  }
+
+  /**
+   * De quel corpus relève un identifiant déjà connu.
+   *
+   * Les identifiants sont uniques d'un corpus à l'autre — `build-data` refuse
+   * une apparition qui porterait celui d'un saint —, de sorte qu'il n'y a rien
+   * à demander à l'appelant : l'identifiant suffit à savoir où écrire.
+   */
+  genreDe(id) {
+    return this.baseApparitionById.has(id)
+      || this.store.apparitions.added.some((a) => a.id === id)
+      ? 'apparition' : 'saint';
+  }
+
+  addSaint(draft, { status = PENDING, author = '', kind = 'saint' } = {}) {
+    const couche = this.couche(kind);
+    const prefixe = kind === 'apparition' ? 'local-ap' : 'local';
+    const pris = (candidat) => this.byId.has(candidat) || this.apparitionById.has(candidat);
+    const id = draft.id && !pris(draft.id)
+      ? draft.id
+      : `${prefixe}-${Date.now().toString(36)}-${Math.floor(Math.random() * 1e4).toString(36)}`;
+    const record = { ...draft, id, status, author, createdAt: new Date().toISOString() };
+    if (kind === 'apparition') record.kind = 'apparition';
+    delete record.x;
+    delete record.y;
+    couche.added.push(record);
+    const stored = this.persist();
+    this.reindexAll();
+    return { saint: this.byId.get(id) || this.apparitionById.get(id), stored };
+  }
+
+  /**
+   * Retouche une fiche : sur place si elle est locale, en surcouche sinon.
+   *
+   * La surcouche ne garde **que ce qui diffère** de la fiche livrée. Le
+   * formulaire renvoie toujours tous ses champs — c'est un formulaire —, et les
+   * enregistrer tous reviendrait à figer la fiche entière : une ville corrigée
+   * à la main gèlerait aussi la biographie, le jour de fête et les sources, que
+   * la prochaine collecte ne pourrait plus mettre à jour. Une retouche qui
+   * revient à la valeur d'origine s'efface d'elle-même.
+   */
   updateSaint(id, patch) {
-    const local = this.store.added.find((s) => s.id === id);
+    const kind = this.genreDe(id);
+    const couche = this.couche(kind);
+    const local = couche.added.find((s) => s.id === id);
     if (local) Object.assign(local, patch);
-    else if (this.baseById.has(id)) this.store.edits[id] = { ...this.store.edits[id], ...patch };
-    else return false;
+    else if (this.livres(kind).has(id)) {
+      const livree = this.livres(kind).get(id);
+      // « Absent » et « vidé » sont la même chose : un champ qu'on efface
+      // revient à la fiche livrée s'il y était déjà vide.
+      const meme = (a, b) => (a == null && b == null) || JSON.stringify(a) === JSON.stringify(b);
+      const fusion = { ...couche.edits[id] };
+      for (const [clef, valeur] of Object.entries(patch)) {
+        fusion[clef] = valeur === undefined ? null : valeur;
+      }
+      for (const clef of Object.keys(fusion)) {
+        if (meme(fusion[clef], livree[clef])) delete fusion[clef];
+      }
+      if (Object.keys(fusion).length) couche.edits[id] = fusion;
+      else delete couche.edits[id];
+    } else return false;
     this.persist();
-    this.reindex();
+    this.reindexAll();
     return true;
   }
 
@@ -291,29 +413,75 @@ export class Atlas {
   }
 
   deleteSaint(id) {
-    const before = this.store.added.length;
-    this.store.added = this.store.added.filter((s) => s.id !== id);
-    if (this.store.added.length === before) {
-      if (!this.baseById.has(id)) return false;
-      this.store.removed.push(id);
-      delete this.store.edits[id];
+    const kind = this.genreDe(id);
+    const couche = this.couche(kind);
+    const before = couche.added.length;
+    couche.added = couche.added.filter((s) => s.id !== id);
+    if (couche.added.length === before) {
+      if (!this.livres(kind).has(id)) return false;
+      couche.removed.push(id);
+      delete couche.edits[id];
     }
     this.persist();
-    this.reindex();
+    this.reindexAll();
     return true;
   }
 
-  /** Remet le corpus livré dans son état d'origine. */
+  /** Remet les corpus livrés dans leur état d'origine, les deux à la fois. */
   resetStore() {
-    this.store = { ...EMPTY_STORE, added: [], edits: {}, removed: [] };
+    this.store = storeVide();
     this.persist();
-    this.reindex();
+    this.reindexAll();
   }
 
   hasLocalChanges() {
-    return this.store.added.length > 0
-      || this.store.removed.length > 0
-      || Object.keys(this.store.edits).length > 0;
+    return [this.store, this.store.apparitions].some((c) => c.added.length > 0
+      || c.removed.length > 0
+      || Object.keys(c.edits).length > 0);
+  }
+
+  /** Y a-t-il quelque chose à verser au dépôt du côté des apparitions ? */
+  hasLocalApparitions() {
+    const c = this.store.apparitions;
+    return c.added.length > 0 || c.removed.length > 0 || Object.keys(c.edits).length > 0;
+  }
+
+  /**
+   * Ce qu'il faut verser au dépôt pour que le travail local devienne le site.
+   *
+   * La couche locale vit dans le navigateur : elle ne sort pas de cette machine,
+   * et le prochain import l'ignore. Trois fichiers la rendent durable, et ce
+   * sont exactement les trois que `build-data` relit :
+   *
+   *   - `apparitions.json`  les fiches ajoutées à la main ;
+   *   - `corrections.json`  ce qu'on a retouché d'une fiche importée — seuls les
+   *                         champs touchés, de sorte qu'un réimport garde le
+   *                         reste à jour ;
+   *   - la liste des retirées, dans le même fichier de corrections.
+   *
+   * Une retouche n'écrase donc pas la fiche importée : elle la corrige, et
+   * survit à la collecte suivante. C'est la même règle que pour les statuts et
+   * les approbations — la main l'emporte sur la machine, jamais l'inverse.
+   */
+  exportApparitions() {
+    const couche = this.store.apparitions;
+    const propre = (fiche) => {
+      const { status, author, createdAt, local, edited, x, y, kind, ...reste } = fiche;
+      return { ...reste, kind: 'apparition' };
+    };
+    return {
+      apparitions: {
+        note: 'Fiches ajoutées à la main. À verser dans data/apparitions/apparitions.json.',
+        apparitions: couche.added.map(propre),
+      },
+      corrections: {
+        note: 'Retouches et retraits de fiches importées. À verser dans'
+          + ' data/apparitions/corrections.json. Une retouche ne porte que les champs'
+          + ' touchés : le reste continue de suivre la collecte.',
+        corrections: couche.edits,
+        retirees: couche.removed.map((id) => ({ id, pourquoi: '' })),
+      },
+    };
   }
 
   // -- lectures --------------------------------------------------------------

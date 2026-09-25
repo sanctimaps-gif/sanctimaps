@@ -148,29 +148,25 @@ export class DetailPanel {
           text: t('detail.locate'),
           onclick: () => this.onLocate(saint),
         }),
-        // Les trois gestes d'administration ne valent que pour les saints : la
-        // couche locale — ajouts, retouches, suppressions — est posée sur le
-        // corpus des saints, et une retouche d'apparition y disparaîtrait sans
-        // un mot. Le second corpus se corrige dans `data/apparitions/`.
-        can('edit') && !appa ? h('button', {
+        can('edit') ? h('button', {
           class: 'btn',
           type: 'button',
           text: t('detail.edit'),
           onclick: () => this.onEdit(saint),
         }) : null,
-        can('moderate') && !appa && saint.status === PENDING ? h('button', {
+        can('moderate') && saint.status === PENDING ? h('button', {
           class: 'btn btn--go',
           type: 'button',
           text: t('detail.approve'),
           onclick: () => this.onStatus(saint, PUBLISHED),
         }) : null,
-        can('moderate') && !appa && saint.status === PENDING ? h('button', {
+        can('moderate') && saint.status === PENDING ? h('button', {
           class: 'btn btn--danger',
           type: 'button',
           text: t('detail.reject'),
           onclick: () => this.onStatus(saint, REJECTED),
         }) : null,
-        can('remove') && !appa ? h('button', {
+        can('remove') ? h('button', {
           class: 'btn btn--danger',
           type: 'button',
           text: t('detail.remove'),

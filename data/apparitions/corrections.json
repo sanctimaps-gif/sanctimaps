@@ -1,0 +1,5 @@
+{
+  "note": "Ce qu’on corrige à la main sur une fiche importée, et ce qu’on en retire. Une fiche importée est réécrite d’un bloc à chaque collecte : la retoucher dans « wikidata.json » reviendrait à la perdre au prochain import. Les retouches vivent donc ici, et ne portent que les champs touchés — le reste continue de suivre la collecte, et une ville corrigée à la main ne gèle pas la biographie. C’est le fichier que l’application exporte quand on modifie ou supprime une apparition depuis la carte : il se verse tel quel dans ce dossier.",
+  "corrections": {},
+  "retirees": []
+}

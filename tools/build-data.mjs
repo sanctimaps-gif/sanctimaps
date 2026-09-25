@@ -913,37 +913,107 @@ const APPA_DIR = join(ROOT, 'data', 'apparitions');
 const APPA_REQUIS = ['id', 'name', 'country', 'city', 'lat', 'lng', 'annee'];
 const APPROBATIONS = new Set(['reconnue', 'en-cours', 'non-reconnue']);
 const APPROBATION_FILE = 'approbations.json';
+const CORRECTION_FILE = 'corrections.json';
+const APPA_DOUBLONS_FILE = 'doublons.json';
+const APPA_TABLES = [APPROBATION_FILE, CORRECTION_FILE, APPA_DOUBLONS_FILE];
 const apparitions = [];
 const appaErrors = [];
 const appaIds = new Set();
+
+/**
+ * Ce qu'une fiche d'apparition doit dire pour entrer sur la carte.
+ *
+ * La vérification est une fonction plutôt qu'une boucle : une fiche retouchée
+ * par `corrections.json` doit être relue avec la même sévérité que celle qui
+ * sort du fichier. Une correction qui viderait la localité ou déplacerait le
+ * point hors des bornes doit échouer aussi bruyamment qu'une source fautive.
+ */
+function verifierApparition(a, where) {
+  for (const field of APPA_REQUIS) {
+    if (a[field] === undefined || a[field] === null || a[field] === '') {
+      appaErrors.push(`${where} — champ « ${field} » manquant`);
+    }
+  }
+  // Un identifiant partagé avec un saint casserait « ?saint= » et les deux
+  // index de pages : une adresse ne peut désigner qu'une chose.
+  if (ids.has(a.id)) appaErrors.push(`${where} — identifiant déjà porté par un saint`);
+  if (!seen.has(a.country)) appaErrors.push(`${where} — pays inconnu : ${a.country}`);
+  if (Math.abs(a.lat) > 85 || Math.abs(a.lng) > 180) appaErrors.push(`${where} — coordonnées hors limites`);
+  if (a.feast != null && !/^\d{2}-\d{2}$/.test(a.feast)) appaErrors.push(`${where} — fête mal formée : ${a.feast}`);
+  if (a.approbation != null && !APPROBATIONS.has(a.approbation)) {
+    appaErrors.push(`${where} — approbation inconnue : ${a.approbation}`);
+  }
+  if (a.anneeFin != null && a.anneeFin < a.annee) appaErrors.push(`${where} — finit avant de commencer`);
+}
+
+/** La fiche, placée : « kind » fait dire « Lieu » et « Année » sur la fiche. */
+const placer = (a) => {
+  const [x, y] = project(a.lng, a.lat);
+  const shift = shiftById.get(a.country) || 0;
+  return { ...a, kind: 'apparition', x: Math.round(x) + shift, y: Math.round(y) };
+};
+
 for (const file of readdirSync(APPA_DIR)
-  .filter((f) => f.endsWith('.json') && f !== APPROBATION_FILE)
+  .filter((f) => f.endsWith('.json') && !APPA_TABLES.includes(f))
   .sort()) {
   const raw = JSON.parse(readFileSync(join(APPA_DIR, file), 'utf8'));
   for (const a of raw.apparitions || []) {
     const where = `${file}:${a.id ?? '?'}`;
-    for (const field of APPA_REQUIS) {
-      if (a[field] === undefined || a[field] === null) appaErrors.push(`${where} — champ « ${field} » manquant`);
-    }
+    verifierApparition(a, where);
     if (appaIds.has(a.id)) appaErrors.push(`${where} — identifiant en double`);
     appaIds.add(a.id);
-    // Un identifiant partagé avec un saint casserait « ?saint= » et les deux
-    // index de pages : une adresse ne peut désigner qu'une chose.
-    if (ids.has(a.id)) appaErrors.push(`${where} — identifiant déjà porté par un saint`);
-    if (!seen.has(a.country)) appaErrors.push(`${where} — pays inconnu : ${a.country}`);
-    if (Math.abs(a.lat) > 85 || Math.abs(a.lng) > 180) appaErrors.push(`${where} — coordonnées hors limites`);
-    if (a.feast != null && !/^\d{2}-\d{2}$/.test(a.feast)) appaErrors.push(`${where} — fête mal formée : ${a.feast}`);
-    if (a.approbation != null && !APPROBATIONS.has(a.approbation)) {
-      appaErrors.push(`${where} — approbation inconnue : ${a.approbation}`);
-    }
-    if (a.anneeFin != null && a.anneeFin < a.annee) appaErrors.push(`${where} — finit avant de commencer`);
-
-    const [x, y] = project(a.lng, a.lat);
-    const shift = shiftById.get(a.country) || 0;
-    // `kind` est porté par la fiche : c'est lui qui fait dire « Lieu » et
-    // « Année » là où un saint fait dire « Naissance » et « Mort ».
-    apparitions.push({ ...a, kind: 'apparition', x: Math.round(x) + shift, y: Math.round(y) });
+    apparitions.push(placer(a));
   }
+}
+
+/**
+ * Ce qu'on a corrigé à la main sur une fiche importée, et ce qu'on en a retiré.
+ *
+ * Une fiche importée est réécrite d'un bloc à chaque collecte : la retoucher
+ * dans `wikidata.json` reviendrait à la perdre au prochain import. Les retouches
+ * vivent donc ici, et ne portent que les champs touchés — le reste continue de
+ * suivre la collecte, et une ville corrigée à la main ne gèle pas la biographie.
+ *
+ * C'est ce que l'application exporte quand on modifie ou supprime une apparition
+ * depuis la carte : le fichier se verse tel quel dans ce dossier.
+ */
+let appaCorrections = {};
+let appaRetirees = [];
+try {
+  const table = JSON.parse(readFileSync(join(APPA_DIR, CORRECTION_FILE), 'utf8'));
+  appaCorrections = table.corrections || {};
+  appaRetirees = table.retirees || [];
+} catch { /* pas de table : les fiches importées restent telles quelles */ }
+
+const appaParIdBrut = new Map(apparitions.map((a) => [a.id, a]));
+let corrigees = 0;
+for (const [id, patch] of Object.entries(appaCorrections)) {
+  const fiche = appaParIdBrut.get(id);
+  if (!fiche) {
+    appaErrors.push(`${CORRECTION_FILE} — identifiant inconnu : ${id}`);
+    continue;
+  }
+  Object.assign(fiche, placer({ ...fiche, ...patch }));
+  verifierApparition(fiche, `${CORRECTION_FILE}:${id}`);
+  corrigees += 1;
+}
+
+const aRetirer = new Set();
+for (const entree of appaRetirees) {
+  const id = typeof entree === 'string' ? entree : entree?.id;
+  if (!appaParIdBrut.has(id)) {
+    appaErrors.push(`${CORRECTION_FILE} — retrait d’un identifiant inconnu : ${id}`);
+    continue;
+  }
+  aRetirer.add(id);
+}
+if (aRetirer.size) {
+  for (let i = apparitions.length - 1; i >= 0; i -= 1) {
+    if (aRetirer.has(apparitions[i].id)) apparitions.splice(i, 1);
+  }
+}
+if (corrigees || aRetirer.size) {
+  console.log(`Apparitions : ${corrigees} corrigées à la main, ${aRetirer.size} retirées`);
 }
 
 /**
@@ -955,7 +1025,6 @@ for (const file of readdirSync(APPA_DIR)
  * dit lequel on garde et pourquoi ; l'écarté y verse ce qu'il avait de plus,
  * par la même fonction que les doublons de saints, puis disparaît.
  */
-const APPA_DOUBLONS_FILE = 'doublons.json';
 let appaDoublons = [];
 try {
   appaDoublons = JSON.parse(readFileSync(join(APPA_DIR, APPA_DOUBLONS_FILE), 'utf8')).doublons || [];

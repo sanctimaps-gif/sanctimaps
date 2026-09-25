@@ -5,13 +5,39 @@ christiques, celles que l'Église a reconnues comme celles qu'elle n'a pas
 reconnues. Tant qu'il est vide, la carte le dit en toutes lettres à l'écran
 plutôt que de le laisser deviner devant une carte sans repères.
 
-Trois fichiers, trois mains :
+Quatre fichiers, trois mains :
 
 | fichier | qui l'écrit |
 | --- | --- |
 | `wikidata.json` | `tools/import-apparitions.mjs`, d'un bloc. **À ne pas modifier à la main** : la prochaine collecte l'écraserait. |
 | `apparitions.json` | vous, pour ce que l'import ne sait pas placer. Une fiche écrite à la main vaut mieux qu'une fiche importée. |
+| `corrections.json` | vous, pour ce qu'on retouche ou retire d'une fiche importée. Une retouche ne porte que les champs touchés. |
 | `approbations.json` | vous, pour ce que l'Église a dit. Chaque ligne porte sa raison, et `build-data` l'emporte sur l'import. |
+
+## Modifier depuis la carte
+
+Les trois derniers fichiers s'écrivent aussi **depuis l'application**, sans
+ouvrir un éditeur de texte. Connectez-vous en administrateur, basculez la carte
+sur « Apparitions », et :
+
+- **ajouter** : la partie « Ajouter » du tiroir prend le visage du second corpus
+  — nom, année, dernière année, approbation, lieu, coordonnées, notice, récit.
+  Le point se pose au clic sur la carte ;
+- **modifier** : ouvrez la fiche, « Modifier » ;
+- **supprimer** : ouvrez la fiche, « Supprimer ».
+
+Tout cela vit d'abord dans **votre navigateur** : la carte publiée n'en sait
+rien, et la prochaine collecte non plus. Le bouton **« Exporter mes
+apparitions »**, au bas du formulaire, rend les deux fichiers à verser
+ici — `apparitions.json` pour ce qui est ajouté, `corrections.json` pour ce qui
+est retouché ou retiré. Un `npm run build:data` plus loin, c'est le corpus du
+site.
+
+La séparation a une raison : une fiche importée est réécrite d'un bloc à chaque
+collecte. Si l'on corrigeait `wikidata.json`, la correction disparaîtrait au
+prochain import. Dans `corrections.json`, elle survit — et comme elle ne porte
+que les champs touchés, une ville corrigée à la main n'empêche pas la biographie
+de continuer à suivre Wikipédia.
 
 Une apparition n'est pas un saint : elle n'est pas née et n'est pas morte, elle
 a eu lieu. Elle porte donc une **année** et non deux dates, un **lieu** et non

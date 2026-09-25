@@ -102,7 +102,7 @@ async function start() {
       fiche.close();
       sidebar.showTab('search');
     },
-    onLocate: (saint) => flyToSaint(saint),
+    onLocate: (saint) => openSaint(saint.id, { fly: true }),
     onEdit: (saint) => {
       addPanel.edit(saint);
       sidebar.showTab('add');
@@ -123,12 +123,15 @@ async function start() {
   });
 
   const addPanel = new AddPanel(atlas, {
-    onSubmit: ({ draft, editing, status, author }) => {
+    onSubmit: ({ draft, editing, status, kind, author }) => {
       if (editing) atlas.updateSaint(editing, draft);
-      else atlas.addSaint(draft, { status, author });
+      else atlas.addSaint(draft, { status, author, kind });
       refreshAll();
-      const saved = editing ? atlas.byId.get(editing) : atlas.store.added.at(-1);
-      if (saved) flyToSaint(atlas.byId.get(saved.id) || saved);
+      // La fiche qu'on vient d'écrire, relue dans le corpus où elle est entrée :
+      // c'est elle qu'on va montrer, et non le brouillon du formulaire.
+      const couche = kind === 'apparition' ? atlas.store.apparitions : atlas.store;
+      const saved = editing ? atlas.pointById(editing) : couche.added.at(-1);
+      if (saved) openSaint(saved.id, { fly: true });
     },
     onPick: () => {
       // Sur petit écran le panneau recouvre la carte : on l'escamote le temps du clic.
@@ -150,7 +153,10 @@ async function start() {
   });
 
   const moderationPanel = new ModerationPanel(atlas, {
-    onOpen: (saint) => { map.highlightSaint(saint.id); showFiche(saint); },
+    // Une proposition peut être une apparition : on passe par « openSaint »,
+    // qui bascule le corpus au besoin plutôt que d'ouvrir une fiche dont la
+    // croix n'est pas sur la carte.
+    onOpen: (saint) => openSaint(saint.id),
     onStatus: (saint, status) => {
       atlas.setStatus(saint.id, status);
       refreshAll();
@@ -246,6 +252,9 @@ async function start() {
     map.syncCountryClasses();
     map.refreshOverlay();
     topBar.render();
+    // Le formulaire change de visage avec le corpus : on ajoute une apparition
+    // quand la carte en montre, un saint quand elle montre des saints.
+    addPanel.render();
   }
 
   // -------------------------------------------------------------------------

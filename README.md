@@ -930,6 +930,42 @@ l'Église a nommées — Lourdes 1862, Fátima 1930, Kibeho 2001, Garabandal jam
 et chaque ligne y porte sa raison. La table l'emporte sur l'import, et les motifs
 qui ne servent à rien sont annoncés à la génération.
 
+### Modifier, ajouter, supprimer une apparition
+
+Depuis la carte, comme pour un saint. L'administrateur bascule sur
+« Apparitions » et la partie « Ajouter » du tiroir change de visage : nom,
+**année** et dernière année, **approbation**, lieu, coordonnées, notice, récit —
+ni genre, ni naissance, ni mort, ni qualités, ni patronage, qui ne se disent pas
+d'une apparition. La fiche ouverte porte « Modifier » et « Supprimer ».
+
+Tout cela vit dans le navigateur, sur une **couche locale jumelle** de celle des
+saints : deux couches dans le même enregistrement, non une seule et un champ
+« genre ». Un identifiant retiré ne veut pas dire la même chose d'un corpus à
+l'autre, et l'export de l'un ne doit pas emporter l'autre.
+
+**Ce qui rend le travail durable**, c'est l'export, au bas du formulaire. Il rend
+deux fichiers, qui sont exactement les deux que `build-data` relit :
+
+| fichier | ce qu'il porte |
+| --- | --- |
+| `data/apparitions/apparitions.json` | les fiches ajoutées à la main |
+| `data/apparitions/corrections.json` | ce qu'on a retouché d'une fiche importée, et ce qu'on en a retiré |
+
+La distinction n'est pas une lubie d'archiviste. Une fiche importée est
+**réécrite d'un bloc à chaque collecte** : corriger `wikidata.json` reviendrait à
+perdre la correction au prochain import. Dans `corrections.json`, elle survit.
+
+Et elle ne porte **que les champs touchés**. Le formulaire renvoie toujours tous
+ses champs — c'est un formulaire —, mais la couche ne garde que ce qui diffère de
+la fiche livrée : corriger une ville ne gèle ni la biographie, ni le jour de
+fête, ni les sources, qui continuent de suivre Wikipédia. Une retouche qui revient
+à la valeur d'origine s'efface d'elle-même.
+
+Deux garde-fous à la génération : une correction qui nomme un identifiant inconnu
+échoue bruyamment plutôt que de dormir dans le fichier, et une fiche corrigée est
+relue avec la même sévérité qu'une fiche sortie de la collecte — une correction
+qui viderait la localité ou déplacerait le point hors des bornes est refusée.
+
 ### Ce que la bascule ne touche pas
 
 Rien d'autre que la carte. La recherche, le saint du jour, le rappel quotidien,
@@ -1614,6 +1650,7 @@ data/saints/patronages.json  patronages, indexés par identifiant
 data/apparitions/*.json  second corpus : les apparitions
 data/apparitions/README.md   son format, champ par champ
 data/apparitions/approbations.json  ce que l'Église en a dit, écrit à la main
+data/apparitions/corrections.json   retouches et retraits, exportés depuis la carte
 tools/import-apparitions.mjs  les apparitions, importées de Wikidata
 data/candidats/*.json    réservoir de l'assistant
 data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complètes
