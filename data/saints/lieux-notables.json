@@ -1,0 +1,163 @@
+{
+  "note": "Les lieux que Wikidata ne porte pas. Il n'existe pas de propriété « lieu de son miracle » ni « lieu qu'il aimait » : La Verna n'est reliée à François que par une phrase de sa légende, Paray-le-Monial à Marguerite-Marie que par ce qu'elle en a écrit. Ces lieux-là sont donc écrits ici, un par un, chacun avec le texte qui l'atteste — « source » ne sort pas de ce fichier, il est là pour qu'on puisse vérifier. Trois motifs seulement : « miracle », « apparition » (ce que le saint a vu, non ce qu'on lui doit), « predilection » (le lieu où il revenait). Un lieu déjà relevé par la collecte n'est pas dédoublé : le motif le plus parlant des deux l'emporte, et c'est presque toujours la mort ou la sépulture. On n'écrit ici que ce qui manque.",
+  "lieux": {
+    "francois-assise": [
+      {
+        "nom": "La Verna",
+        "lat": 43.7078,
+        "lng": 11.9322,
+        "quoi": "miracle",
+        "source": "Bonaventure, Legenda maior, XIII, 3 — les stigmates, septembre 1224"
+      },
+      {
+        "nom": "San Damiano",
+        "lat": 43.0655,
+        "lng": 12.6206,
+        "quoi": "apparition",
+        "source": "Legenda trium sociorum, 13 — le crucifix qui parle, 1205"
+      }
+    ],
+    "claire-assise": [
+      {
+        "nom": "San Damiano",
+        "lat": 43.0655,
+        "lng": 12.6206,
+        "quoi": "predilection",
+        "source": "Legenda sanctae Clarae virginis, 10 — quarante-deux ans de clôture"
+      }
+    ],
+    "benoit-nursie": [
+      {
+        "nom": "Subiaco, le Sacro Speco",
+        "lat": 41.9186,
+        "lng": 13.1216,
+        "quoi": "predilection",
+        "source": "Grégoire le Grand, Dialogues, II, 1 — trois ans dans la grotte"
+      }
+    ],
+    "paul-tarse": [
+      {
+        "nom": "Le chemin de Damas",
+        "lat": 33.5138,
+        "lng": 36.2765,
+        "quoi": "apparition",
+        "source": "Actes des Apôtres 9, 3-9"
+      }
+    ],
+    "jeanne-arc": [
+      {
+        "nom": "Domrémy, le jardin",
+        "lat": 48.4436,
+        "lng": 5.6797,
+        "quoi": "apparition",
+        "source": "Procès de condamnation, déposition du 22 février 1431 — les voix, vers 1425"
+      }
+    ],
+    "ignace-loyola": [
+      {
+        "nom": "Manresa, la grotte",
+        "lat": 41.7233,
+        "lng": 1.8283,
+        "quoi": "predilection",
+        "source": "Récit du pèlerin, 19-30 — onze mois de retraite, 1522, d'où sortent les Exercices"
+      },
+      {
+        "nom": "Montserrat",
+        "lat": 41.5936,
+        "lng": 1.8376,
+        "quoi": "predilection",
+        "source": "Récit du pèlerin, 17-18 — la veillée d'armes, 24 mars 1522"
+      }
+    ],
+    "marguerite-marie-alacoque": [
+      {
+        "nom": "Paray-le-Monial, la chapelle de la Visitation",
+        "lat": 46.4531,
+        "lng": 4.1206,
+        "quoi": "apparition",
+        "source": "Autobiographie, 53-55 — les grandes apparitions du Sacré-Cœur, 1673-1675"
+      }
+    ],
+    "catherine-sienne": [
+      {
+        "nom": "Pise, Santa Cristina",
+        "lat": 43.7139,
+        "lng": 10.4028,
+        "quoi": "miracle",
+        "source": "Raymond de Capoue, Legenda maior, II, 6 — les stigmates, 1er avril 1375"
+      }
+    ],
+    "thomas-aquin": [
+      {
+        "nom": "Naples, San Domenico Maggiore",
+        "lat": 40.8483,
+        "lng": 14.2553,
+        "quoi": "apparition",
+        "source": "Procès de canonisation, déposition de Bartolomeo de Capoue — le crucifix qui parle, décembre 1273"
+      }
+    ],
+    "martin-tours": [
+      {
+        "nom": "Amiens",
+        "lat": 49.8942,
+        "lng": 2.2957,
+        "quoi": "apparition",
+        "source": "Sulpice Sévère, Vie de Martin, 3 — le manteau partagé, puis le songe de la nuit suivante"
+      }
+    ],
+    "antoine-egypte": [
+      {
+        "nom": "Le mont Colzim",
+        "lat": 28.9231,
+        "lng": 32.3517,
+        "quoi": "predilection",
+        "source": "Athanase, Vie d'Antoine, 49-50 — la « montagne intérieure », où il passe ses dernières années"
+      }
+    ],
+    "patrick": [
+      {
+        "nom": "Croagh Patrick",
+        "lat": 53.76,
+        "lng": -9.6597,
+        "quoi": "predilection",
+        "source": "Vita tripartita sancti Patricii — les quarante jours de jeûne sur la montagne"
+      }
+    ],
+    "philippe-neri": [
+      {
+        "nom": "Rome, les catacombes de Saint-Sébastien",
+        "lat": 41.8561,
+        "lng": 12.5164,
+        "quoi": "miracle",
+        "source": "Procès de canonisation, déposition d'Antonio Gallonio — la dilatation du cœur, vigile de Pentecôte 1544"
+      }
+    ],
+    "joseph-cupertino": [
+      {
+        "nom": "Copertino",
+        "lat": 40.2694,
+        "lng": 18.0508,
+        "quoi": "miracle",
+        "source": "Actes du procès de béatification — les lévitations, à partir de 1630"
+      }
+    ],
+    "charles-de-foucauld": [
+      {
+        "nom": "L'Assekrem",
+        "lat": 23.2667,
+        "lng": 5.6333,
+        "quoi": "predilection",
+        "source": "Lettres à Marie de Bondy, 1911 — l'ermitage du Hoggar"
+      }
+    ],
+    "jean-bosco": [
+      {
+        "nom": "Turin, le Valdocco",
+        "lat": 45.0817,
+        "lng": 7.6736,
+        "quoi": "predilection",
+        "source": "Memorie dell'Oratorio — l'oratoire de 1846, qu'il ne quittera plus"
+      }
+    ]
+  }
+}

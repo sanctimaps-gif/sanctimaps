@@ -909,31 +909,58 @@ try {
   notables = JSON.parse(readFileSync(join(SAINTS_DIR, NOTABLES_FILE), 'utf8')).lieux || {};
 } catch { /* aucun lieu écrit à la main */ }
 
-/** Deux points à moins d'un kilomètre sont le même endroit. */
-const memeEndroit = (a, b) => {
+/**
+ * Deux points assez proches sont le même endroit.
+ *
+ * Un kilomètre pour ce qui vient de la collecte, où « Assise » peut désigner la
+ * ville entière ; trois cent cinquante mètres pour ce qui est écrit à la main,
+ * dont les coordonnées visent un bâtiment. Sans cette distinction, la basilique
+ * Sainte-Claire avalait San Damiano, qui est à six cents mètres et hors les
+ * murs — deux lieux que quarante ans de clôture séparent.
+ */
+const memeEndroit = (a, b, seuil = 1) => {
   const dLat = (a.lat - b.lat) * 111;
   const dLng = (a.lng - b.lng) * 111 * Math.cos((a.lat * Math.PI) / 180);
-  return Math.hypot(dLat, dLng) < 1;
+  return Math.hypot(dLat, dLng) < seuil;
 };
+const A_LA_MAIN = 0.35;
+
+const QUOI = new Set(['sepulture', 'mort', 'apparition', 'miracle', 'predilection',
+  'fondation', 'oeuvre', 'enfance', 'formation', 'residence', 'naissance']);
+/** L'ordre de lecture : du plus parlant au plus banal. */
+const RANG_QUOI = new Map([...QUOI].map((nom, i) => [nom, i]));
+
+/**
+ * Deux motifs pour un seul endroit.
+ *
+ * Catherine Labouré a vu la Vierge rue du Bac, et elle y repose : la chapelle
+ * est les deux à la fois. Juan Diego est mort au Tepeyac, où il avait vu. Il
+ * aurait fallu choisir, et l'on aurait perdu à tous les coups la moitié de ce
+ * qui fait venir. Une croix porte donc un motif de tête — le plus parlant — et
+ * la liste des autres derrière lui.
+ */
+function fondre(place, lieu) {
+  const rangs = [place.quoi, ...(place.aussi || []), lieu.quoi, ...(lieu.aussi || [])];
+  const tries = [...new Set(rangs)].sort((a, b) => RANG_QUOI.get(a) - RANG_QUOI.get(b));
+  // Le nom suit le motif de tête : « Apparitions de Lourdes » ne doit pas
+  // s'écrire sous une croix qui annonce une sépulture.
+  const tete = tries[0] === place.quoi ? place : lieu;
+  return { ...place, ...tete, quoi: tries[0], aussi: tries.slice(1) };
+}
 
 let notablesPoses = 0;
 let notablesFondus = 0;
 for (const [id, liste] of Object.entries(notables)) {
   const releves = lieuxParSaint[id] ? [...lieuxParSaint[id]] : [];
   for (const lieu of liste) {
-    const deja = releves.findIndex((l) => memeEndroit(l, lieu));
-    if (deja >= 0) { releves[deja] = { ...releves[deja], ...lieu }; notablesFondus += 1; } else {
+    const deja = releves.findIndex((l) => memeEndroit(l, lieu, A_LA_MAIN));
+    if (deja >= 0) { releves[deja] = fondre(releves[deja], lieu); notablesFondus += 1; } else {
       releves.push(lieu);
       notablesPoses += 1;
     }
   }
   lieuxParSaint[id] = releves;
 }
-
-const QUOI = new Set(['sepulture', 'mort', 'apparition', 'miracle', 'predilection',
-  'fondation', 'oeuvre', 'enfance', 'formation', 'residence', 'naissance']);
-/** L'ordre de lecture : du plus parlant au plus banal. */
-const RANG_QUOI = new Map([...QUOI].map((nom, i) => [nom, i]));
 const lieuxSortie = {};
 let lieuxTotal = 0;
 let lieuxOrphelins = 0;
@@ -961,12 +988,14 @@ for (const [id, liste] of Object.entries(lieuxParSaint)) {
     // Le décalage est celui du pays du saint : c'est le seul qu'on connaisse
     // sans refaire une recherche par point, et il n'importe que pour les pays
     // cadrés au-delà de l'antiméridien, où le corpus compte deux fiches.
+    const aussi = (lieu.aussi || []).filter((q) => QUOI.has(q));
     const [x, y] = project(lieu.lng, lieu.lat);
     places.push({
       nom: lieu.nom,
       lat: lieu.lat,
       lng: lieu.lng,
       quoi: lieu.quoi,
+      ...(aussi.length ? { aussi } : {}),
       x: Math.round(x) + shift,
       y: Math.round(y),
     });
@@ -1298,7 +1327,7 @@ for (const [appaId, qui] of Object.entries(voyants)) {
     const nom = apparition.name?.fr || apparition.name?.en || apparition.name;
     // Le voyant est souvent mort là où il a vu : on ne repose pas deux croix au
     // même endroit, mais « Apparition » l'emporte sur « Résidence ».
-    const deja = places.findIndex((l) => memeEndroit(l, apparition));
+    const deja = places.findIndex((l) => memeEndroit(l, apparition, A_LA_MAIN));
     const lieu = {
       nom,
       lat: apparition.lat,
@@ -1308,12 +1337,12 @@ for (const [appaId, qui] of Object.entries(voyants)) {
       y: apparition.y,
     };
     if (deja >= 0) {
-      if (RANG_QUOI.get('apparition') < RANG_QUOI.get(places[deja].quoi)) places[deja] = lieu;
+      places[deja] = fondre(places[deja], lieu);
     } else {
       places.push(lieu);
       lieuxTotal += 1;
-      vus += 1;
     }
+    vus += 1;
     places.sort((a, b) => RANG_QUOI.get(a.quoi) - RANG_QUOI.get(b.quoi));
     lieuxSortie[saintId] = places;
   }

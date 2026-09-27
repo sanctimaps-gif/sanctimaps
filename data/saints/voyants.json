@@ -1,0 +1,11 @@
+{
+  "note": "Qui a vu quelle apparition. Une ligne par apparition du corpus dont le voyant est lui-même une fiche de saint : la fabrication en tire, dans la fiche du voyant, un lieu de plus — celui où il a vu. Les coordonnées ne sont pas recopiées ici, elles sont prises de l'apparition, qui reste la source. Les voyants qui ne sont pas au corpus — Mélanie Calvat et Maximin Giraud à La Salette, Estelle Faguette à Pellevoisin, Mariette Beco à Banneux, Lúcia dos Santos à Fátima et Pontevedra — n'y figurent pas : il n'y aurait pas de fiche à ouvrir au bout.",
+  "voyants": {
+    "ap-apparition-mariale-de-saragosse-q110234473": ["jacques-majeur"],
+    "ap-apparitions-mariales-de-notre-dame-de-guadal-q10860927": ["juan-diego"],
+    "ap-notre-dame-du-bon-succes-quito": ["wd-mariana-de-jesus-torres-q60835965"],
+    "ap-apparitions-mariales-de-la-rue-du-bac-q95562824": ["catherine-laboure"],
+    "ap-apparitions-de-lourdes-q1184935": ["bernadette-soubirous"],
+    "ap-apparitions-mariales-de-fatima-q9624583": ["francisco-marto", "jacinta-marto"]
+  }
+}

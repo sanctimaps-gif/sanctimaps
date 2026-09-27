@@ -158,6 +158,12 @@ if (existsSync(join(GEN, 'lieux.json'))) {
       vus.set(lieu.quoi, (vus.get(lieu.quoi) || 0) + 1);
       if (!lieu.nom) fail(`lieux.json : ${id} — un lieu sans nom`);
       if (!MOTIFS.has(lieu.quoi)) fail(`lieux.json : ${id} — motif inconnu : ${lieu.quoi}`);
+      // Un endroit peut être deux choses — la chapelle où Catherine a vu et où
+      // elle repose —, mais jamais deux fois la même, ni rien qu'on ne sache dire.
+      for (const q of lieu.aussi || []) {
+        if (!MOTIFS.has(q)) fail(`lieux.json : ${id} — second motif inconnu : ${q}`);
+        if (q === lieu.quoi) fail(`lieux.json : ${id} — ${lieu.nom} porte deux fois « ${q} »`);
+      }
       const shift = lieu.x > WORLD_SIZE ? WORLD_SIZE : 0;
       const [lng, lat] = unproject(lieu.x - shift, lieu.y);
       if (Math.abs(lng - lieu.lng) > 0.02 || Math.abs(lat - lieu.lat) > 0.02) {
