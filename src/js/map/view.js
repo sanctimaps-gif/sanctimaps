@@ -1243,7 +1243,12 @@ export class MapView {
         // Une apparition garde la géométrie du repère d'un saint — même
         // médaillon, même encombrement, mêmes priorités d'étiquette — et change
         // de couleur : c'est la seule différence, et la légende la nomme.
+        // Une apparition et un miracle gardent la géométrie du repère d'un
+        // saint — même médaillon, même encombrement, mêmes priorités
+        // d'étiquette — et changent de couleur ; le miracle change aussi de
+        // signe, une hostie au lieu d'une croix. La légende les nomme.
         if (group[0].kind === 'apparition') node.classList.add('marker--apparition');
+        if (group[0].kind === 'miracle') node.classList.add('marker--miracle');
         nodes.push(node);
       });
 
@@ -1388,6 +1393,9 @@ export class MapView {
         el('circle', { class: 'marker__ring', r: 10.5 }),
         el('rect', { class: 'marker__badge', x: -7.5, y: -7.5, width: 15, height: 15, rx: 4.5 }),
         el('path', { class: 'marker__cross', d: CROSS }),
+        // L'hostie du troisième corpus, cachée par le style tant que le repère
+        // n'est pas un miracle : un seul dessin de repère, deux signes.
+        el('circle', { class: 'marker__hostie', r: 4.4 }),
       );
       if (group.length > 1) {
         // Une pastille dit combien de saints le repère recouvre : sans elle,

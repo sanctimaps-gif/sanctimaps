@@ -134,6 +134,47 @@ ok(apparitions.length
   ? `${apparitions.length} apparitions, distinctes des saints`
   : 'corpus des apparitions vide, et la carte le dit');
 
+// --- Le troisième corpus : les miracles eucharistiques ----------------------
+
+/**
+ * Même relecture, pour le corpus de l'exposition de Carlo Acutis.
+ *
+ * Un identifiant ne peut désigner qu'une chose, quel que soit le corpus d'où il
+ * vient. Et le champ `garde` — ce qu'on peut encore aller voir — n'est pas
+ * obligatoire, mais quand il est là il doit dire quelque chose dans une langue
+ * où quelqu'un se rabattra : le français ou l'anglais.
+ */
+const { miracles } = read('miracles.json');
+const miracleIds = new Set();
+let gardes = 0;
+for (const m of miracles) {
+  if (miracleIds.has(m.id)) fail(`miracle ${m.id} : identifiant en double`);
+  miracleIds.add(m.id);
+  if (ids.has(m.id)) fail(`miracle ${m.id} : identifiant déjà porté par un saint`);
+  if (appaIds.has(m.id)) fail(`miracle ${m.id} : identifiant déjà porté par une apparition`);
+  if (!countryIds.has(m.country)) fail(`miracle ${m.id} : pays inconnu ${m.country}`);
+  if (!names[m.country]) fail(`miracle ${m.id} : pays sans nom traduit`);
+  if (!m.name?.fr && typeof m.name !== 'string') fail(`miracle ${m.id} : nom français manquant`);
+  if (!m.city) fail(`miracle ${m.id} : lieu manquant`);
+  if (typeof m.annee !== 'number') fail(`miracle ${m.id} : année manquante`);
+  if (m.kind !== 'miracle') fail(`miracle ${m.id} : « kind » absent, la fiche le lirait comme un saint`);
+  if (m.garde) {
+    gardes += 1;
+    if (!m.garde.fr && !m.garde.en) {
+      fail(`miracle ${m.id} : « garde » n'est écrit ni en français ni en anglais`);
+    }
+  }
+  const shift = m.x > WORLD_SIZE ? WORLD_SIZE : 0;
+  const [lng, lat] = unproject(m.x - shift, m.y);
+  if (Math.abs(lng - m.lng) > 0.01 || Math.abs(lat - m.lat) > 0.01) {
+    fail(`miracle ${m.id} : point projeté incohérent`);
+  }
+}
+ok(miracles.length
+  ? `${miracles.length} miracles eucharistiques sur ${new Set(miracles.map((m) => m.country)).size}`
+    + ` pays, dont ${gardes} disent ce qu'on en garde`
+  : 'corpus des miracles vide, et la carte le dit');
+
 // --- Les lieux marqués par un saint -----------------------------------------
 
 /**
@@ -416,9 +457,10 @@ if (existsSync(accueil)) {
     'siècles': siecles.size,
     'jours de fête': new Set(published.map((s) => s.feast)).size,
     'biographies en français': published.filter((s) => s.bio?.fr).length,
-    // Le second corpus est annoncé lui aussi : il grossira, et le nombre écrit
-    // à la main vieillirait sans que rien ne le dise.
+    // Les deux autres corpus sont annoncés eux aussi : ils grossiront, et le
+    // nombre écrit à la main vieillirait sans que rien ne le dise.
     'apparitions mariales': apparitions.length,
+    'miracles eucharistiques': miracles.length,
   };
   // « <b>4 589</b> saints » : on relit le nombre qui précède chaque étiquette,
   // l'espace fine insécable comprise.

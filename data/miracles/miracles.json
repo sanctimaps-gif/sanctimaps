@@ -1,0 +1,851 @@
+{
+  "note": "Le troisième corpus : les miracles eucharistiques, tels que l'exposition de Carlo Acutis les a rassemblés. Chaque fiche porte l'année, le lieu, ce qui s'est passé et ce qu'on en garde encore — car c'est souvent ce qui reste, une chair, un corporal, une hostie, qui fait qu'on y va. Écrit à la main : aucune base ne tient cette liste, et les textes sont les nôtres, non ceux de l'exposition, qui est protégée.",
+  "miracles": [
+    {
+      "id": "eu-lanciano-750",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Lanciano", "en": "Eucharistic miracle of Lanciano" },
+      "city": "Lanciano",
+      "country": "ITA",
+      "lat": 42.2306,
+      "lng": 14.3903,
+      "annee": 750,
+      "desc": {
+        "fr": "Le plus ancien de tous, et le seul qu'on ait soumis à un laboratoire. Un moine basilien qui doutait de la présence réelle vit, dit le récit, l'hostie devenir chair et le vin devenir sang.",
+        "en": "The oldest of them all, and the only one ever given to a laboratory. A Basilian monk who doubted the real presence saw, the account says, the host become flesh and the wine become blood."
+      },
+      "garde": {
+        "fr": "La chair et cinq caillots de sang, à l'église Saint-François. Analysés en 1970-1971 par le professeur Odoardo Linoli : tissu du muscle cardiaque, sang humain de groupe AB, sans trace de conservateur.",
+        "en": "The flesh and five clots of blood, in the church of Saint Francis. Analysed in 1970-71 by Professor Odoardo Linoli: heart muscle tissue, human blood of group AB, with no trace of preservative."
+      }
+    },
+    {
+      "id": "eu-bolsena-1263",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Bolsena", "en": "Eucharistic miracle of Bolsena" },
+      "city": "Bolsena",
+      "country": "ITA",
+      "lat": 42.6433,
+      "lng": 11.9856,
+      "annee": 1263,
+      "desc": {
+        "fr": "Un prêtre de Bohême, Pierre de Prague, doutait en célébrant sur le tombeau de sainte Christine ; l'hostie se mit à saigner sur le corporal.",
+        "en": "A Bohemian priest, Peter of Prague, was doubting as he celebrated over the tomb of Saint Christina; the host began to bleed onto the corporal."
+      },
+      "garde": {
+        "fr": "Le corporal taché, à la cathédrale d'Orvieto, où le pape Urbain IV séjournait. C'est de ce miracle que vient la Fête-Dieu, instituée l'année suivante, et la cathédrale d'Orvieto bâtie pour l'abriter.",
+        "en": "The stained corporal, in Orvieto cathedral, where Pope Urban IV was staying. From this miracle came the feast of Corpus Christi, instituted the following year, and Orvieto cathedral, built to house it."
+      }
+    },
+    {
+      "id": "eu-siena-1730",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Sienne", "en": "Eucharistic miracle of Siena" },
+      "city": "Sienne",
+      "country": "ITA",
+      "lat": 43.3188,
+      "lng": 11.3308,
+      "annee": 1730,
+      "desc": {
+        "fr": "Des voleurs emportèrent le ciboire de l'église Saint-François la veille de l'Assomption. Les hosties furent retrouvées trois jours plus tard dans le tronc à aumônes d'une autre église, couvertes de poussière.",
+        "en": "Thieves carried off the ciborium from the church of Saint Francis on the eve of the Assumption. The hosts were found three days later in the alms box of another church, covered in dust."
+      },
+      "garde": {
+        "fr": "Deux cent vingt-trois de ces hosties, toujours intactes après près de trois siècles, à la basilique Saint-François. Des commissions les ont examinées en 1780, 1789, 1854, 1914 et 1922 sans trouver d'explication.",
+        "en": "Two hundred and twenty-three of those hosts, still intact after nearly three centuries, in the basilica of Saint Francis. Commissions examined them in 1780, 1789, 1854, 1914 and 1922 without finding an explanation."
+      }
+    },
+    {
+      "id": "eu-santarem-1247",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Santarém", "en": "Eucharistic miracle of Santarém" },
+      "city": "Santarém",
+      "country": "PRT",
+      "lat": 39.2369,
+      "lng": -8.6857,
+      "annee": 1247,
+      "desc": {
+        "fr": "Une femme malheureuse en ménage emporta une hostie consacrée pour la porter à une devineresse. Le linge où elle l'avait cachée se mit à saigner ; elle la rapporta et l'enferma dans un coffre, d'où l'on vit sortir une lumière.",
+        "en": "An unhappily married woman took a consecrated host to carry it to a fortune-teller. The cloth she had hidden it in began to bleed; she brought it back and locked it in a chest, from which a light was seen to come."
+      },
+      "garde": {
+        "fr": "L'hostie, dans une ampoule de cristal, à l'église du Saint-Miracle, qui fut sa maison.",
+        "en": "The host, in a crystal ampoule, in the Church of the Holy Miracle, which was her house."
+      }
+    },
+    {
+      "id": "eu-ferrara-1171",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Ferrare", "en": "Eucharistic miracle of Ferrara" },
+      "city": "Ferrare",
+      "country": "ITA",
+      "lat": 44.8353,
+      "lng": 11.6199,
+      "annee": 1171,
+      "desc": {
+        "fr": "Le matin de Pâques, à la fraction du pain, le sang jaillit de l'hostie jusqu'à la petite voûte au-dessus de l'autel.",
+        "en": "On Easter morning, at the breaking of the bread, blood spurted from the host as far as the small vault above the altar."
+      },
+      "garde": {
+        "fr": "La voûte tachée, déposée et conservée à la basilique Santa Maria in Vado.",
+        "en": "The stained vault, taken down and kept in the basilica of Santa Maria in Vado."
+      }
+    },
+    {
+      "id": "eu-cascia-1330",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Cascia", "en": "Eucharistic miracle of Cascia" },
+      "city": "Cascia",
+      "country": "ITA",
+      "lat": 42.7186,
+      "lng": 13.0121,
+      "annee": 1330,
+      "desc": {
+        "fr": "Un prêtre pressé glissa une hostie consacrée entre les pages de son bréviaire pour la porter à un malade. Il la retrouva ensanglantée, et les deux pages avec elle.",
+        "en": "A priest in a hurry slipped a consecrated host between the pages of his breviary to carry it to a sick man. He found it bloodied, and the two pages with it."
+      },
+      "garde": {
+        "fr": "Les deux pages du bréviaire, au sanctuaire Sainte-Rita de Cascia.",
+        "en": "The two breviary pages, in the sanctuary of Saint Rita at Cascia."
+      }
+    },
+    {
+      "id": "eu-alatri-1228",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Alatri", "en": "Eucharistic miracle of Alatri" },
+      "city": "Alatri",
+      "country": "ITA",
+      "lat": 41.7256,
+      "lng": 13.3417,
+      "annee": 1228,
+      "desc": {
+        "fr": "Une jeune femme emporta une hostie consacrée sur le conseil d'une magicienne, qui lui promettait de ramener l'homme qu'elle aimait. Elle la cacha trois jours ; l'hostie devint chair.",
+        "en": "A young woman took a consecrated host on the advice of a sorceress, who promised to bring back the man she loved. She hid it three days; the host became flesh."
+      },
+      "garde": {
+        "fr": "Une lettre du pape Grégoire IX à l'évêque d'Alatri, datée de 1228, dit comment traiter l'affaire : c'est l'une des rares pièces contemporaines d'un miracle eucharistique.",
+        "en": "A letter from Pope Gregory IX to the bishop of Alatri, dated 1228, says how the matter is to be handled: it is one of the few contemporary documents of a Eucharistic miracle."
+      }
+    },
+    {
+      "id": "eu-offida-1273",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Offida", "en": "Eucharistic miracle of Offida" },
+      "city": "Offida",
+      "country": "ITA",
+      "lat": 42.935,
+      "lng": 13.6917,
+      "annee": 1273,
+      "desc": {
+        "fr": "Une femme du nom de Ricciarella posa une hostie consacrée sur des braises pour en faire une poudre ; l'hostie devint chair et saigna. Elle l'enterra dans l'étable, et finit par tout avouer.",
+        "en": "A woman named Ricciarella laid a consecrated host on embers to make a powder of it; the host became flesh and bled. She buried it in the stable, and at last confessed everything."
+      },
+      "garde": {
+        "fr": "Le petit reliquaire de la chair et le linge, à l'église Sainte-Augustin d'Offida.",
+        "en": "The small reliquary of the flesh and the cloth, in the church of Saint Augustine at Offida."
+      }
+    },
+    {
+      "id": "eu-torino-1453",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Turin", "en": "Eucharistic miracle of Turin" },
+      "city": "Turin",
+      "country": "ITA",
+      "lat": 45.0703,
+      "lng": 7.6869,
+      "annee": 1453,
+      "desc": {
+        "fr": "Des soldats pillards rapportaient d'Exilles un ostensoir volé sur le dos d'une mule. La bête s'abattit sur la place, le sac s'ouvrit, et l'hostie, dit le récit, se tint en l'air au-dessus de la foule jusqu'à ce que l'évêque vienne la recueillir.",
+        "en": "Plundering soldiers were bringing a stolen monstrance back from Exilles on a mule's back. The beast collapsed in the square, the sack burst open, and the host, the account says, stood in the air above the crowd until the bishop came to take it."
+      },
+      "garde": {
+        "fr": "L'église du Corpus Domini, bâtie sur la place où la mule tomba.",
+        "en": "The church of Corpus Domini, built on the square where the mule fell."
+      }
+    },
+    {
+      "id": "eu-firenze-1230",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Florence", "en": "Eucharistic miracle of Florence" },
+      "city": "Florence",
+      "country": "ITA",
+      "lat": 43.7696,
+      "lng": 11.2558,
+      "annee": 1230,
+      "desc": {
+        "fr": "Un peu de vin consacré resté au fond du calice fut retrouvé, le lendemain matin, changé en sang coagulé.",
+        "en": "A little consecrated wine left at the bottom of the chalice was found, the next morning, turned into clotted blood."
+      },
+      "garde": {
+        "fr": "Le reliquaire, à la basilique Saint-Ambroise de Florence, où la fête se célèbre encore.",
+        "en": "The reliquary, in the basilica of Sant'Ambrogio in Florence, where the feast is still kept."
+      }
+    },
+    {
+      "id": "eu-macerata-1356",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Macerata", "en": "Eucharistic miracle of Macerata" },
+      "city": "Macerata",
+      "country": "ITA",
+      "lat": 43.3007,
+      "lng": 13.4533,
+      "annee": 1356,
+      "desc": {
+        "fr": "Un prêtre qui doutait vit, en rompant l'hostie, le sang couler sur le corporal et sur ses doigts.",
+        "en": "A doubting priest saw, as he broke the host, blood run onto the corporal and onto his fingers."
+      },
+      "garde": {
+        "fr": "Le corporal, à la cathédrale de Macerata.",
+        "en": "The corporal, in Macerata cathedral."
+      }
+    },
+    {
+      "id": "eu-bagno-di-romagna-1412",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Bagno di Romagna", "en": "Eucharistic miracle of Bagno di Romagna" },
+      "city": "Bagno di Romagna",
+      "country": "ITA",
+      "lat": 43.8383,
+      "lng": 11.9694,
+      "annee": 1412,
+      "desc": {
+        "fr": "Un moine camaldule doutait de la présence réelle en célébrant ; le vin du calice se mit à bouillonner et déborda, changé en sang.",
+        "en": "A Camaldolese monk was doubting the real presence as he celebrated; the wine in the chalice began to boil up and overflowed, turned to blood."
+      },
+      "garde": {
+        "fr": "Le corporal, à la basilique Santa Maria Assunta.",
+        "en": "The corporal, in the basilica of Santa Maria Assunta."
+      }
+    },
+    {
+      "id": "eu-gruaro-1294",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Gruaro", "en": "Eucharistic miracle of Gruaro" },
+      "city": "Gruaro",
+      "country": "ITA",
+      "lat": 45.8014,
+      "lng": 12.8325,
+      "annee": 1294,
+      "desc": {
+        "fr": "Une femme lavait du linge d'autel au bord du ruisseau quand une hostie tomba d'un corporal ; en la frappant du battoir, elle en fit sortir du sang, qui teignit la nappe.",
+        "en": "A woman was washing altar linen at the stream when a host fell from a corporal; striking it with her beater, she drew blood from it, which stained the cloth."
+      },
+      "garde": {
+        "fr": "La nappe tachée, au dôme de Valvasone, qui la reçut après un procès entre les deux paroisses.",
+        "en": "The stained cloth, in the collegiate church of Valvasone, which received it after a lawsuit between the two parishes."
+      }
+    },
+    {
+      "id": "eu-rimini-1227",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Rimini", "en": "Eucharistic miracle of Rimini" },
+      "city": "Rimini",
+      "country": "ITA",
+      "lat": 44.0678,
+      "lng": 12.5695,
+      "annee": 1227,
+      "desc": {
+        "fr": "Antoine de Padoue prêchait à des hérétiques qui niaient la présence réelle. L'un d'eux proposa une épreuve : sa mule, à jeun depuis trois jours, choisirait entre l'avoine et l'ostensoir. Elle s'agenouilla, dit le récit.",
+        "en": "Anthony of Padua was preaching to heretics who denied the real presence. One of them proposed a test: his mule, kept three days without food, would choose between the oats and the monstrance. It knelt, the account says."
+      },
+      "garde": {
+        "fr": "Un petit temple, à Rimini, marque l'endroit.",
+        "en": "A small temple in Rimini marks the spot."
+      }
+    },
+    {
+      "id": "eu-morrovalle-1560",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Morrovalle", "en": "Eucharistic miracle of Morrovalle" },
+      "city": "Morrovalle",
+      "country": "ITA",
+      "lat": 43.32,
+      "lng": 13.5806,
+      "annee": 1560,
+      "desc": {
+        "fr": "Un incendie détruisit l'église des franciscains pendant la nuit. Sous les décombres et les cendres, on retrouva l'hostie intacte, le bois du tabernacle réduit en charbon autour d'elle.",
+        "en": "A fire destroyed the Franciscan church during the night. Beneath the rubble and ashes the host was found intact, the wood of the tabernacle burnt to charcoal around it."
+      },
+      "garde": {
+        "fr": "Une bulle de Pie IV, en 1560, autorisa le culte du miracle.",
+        "en": "A bull of Pius IV, in 1560, allowed the miracle to be venerated."
+      }
+    },
+    {
+      "id": "eu-patierno-1772",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de San Pietro a Patierno", "en": "Eucharistic miracle of San Pietro a Patierno" },
+      "city": "Naples",
+      "country": "ITA",
+      "lat": 40.9008,
+      "lng": 14.2544,
+      "annee": 1772,
+      "desc": {
+        "fr": "Des voleurs emportèrent deux ciboires ; on retrouva les hosties éparpillées dans un champ, sur un fumier, sans qu'aucune eût été souillée.",
+        "en": "Thieves carried off two ciboria; the hosts were found scattered in a field, on a dunghill, none of them soiled."
+      },
+      "garde": {
+        "fr": "La fête s'y célèbre encore chaque année, le dimanche qui suit le 28 janvier.",
+        "en": "The feast is still kept there each year, on the Sunday after 28 January."
+      }
+    },
+    {
+      "id": "eu-assisi-1240",
+      "kind": "miracle",
+      "name": { "fr": "Claire d'Assise et les Sarrasins", "en": "Clare of Assisi and the Saracens" },
+      "city": "Assise",
+      "country": "ITA",
+      "lat": 43.0707,
+      "lng": 12.6196,
+      "annee": 1240,
+      "desc": {
+        "fr": "Les mercenaires sarrasins de Frédéric II escaladaient déjà le mur de San Damiano. Claire, malade, se fit porter à la porte avec le ciboire ; les assaillants, dit sa Légende, redescendirent et s'enfuirent.",
+        "en": "Frederick II's Saracen mercenaries were already scaling the wall of San Damiano. Clare, ill, had herself carried to the door with the pyx; the attackers, her Legend says, climbed back down and fled."
+      },
+      "garde": {
+        "fr": "San Damiano, hors les murs d'Assise, où elle vécut quarante-deux ans.",
+        "en": "San Damiano, outside the walls of Assisi, where she lived for forty-two years."
+      }
+    },
+    {
+      "id": "eu-daroca-1239",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Daroca", "en": "Eucharistic miracle of Daroca" },
+      "city": "Daroca",
+      "country": "ESP",
+      "lat": 41.1153,
+      "lng": -1.4139,
+      "annee": 1239,
+      "desc": {
+        "fr": "Six hosties avaient été consacrées pour des capitaines qui allaient combattre ; l'attaque vint avant la communion, et le prêtre les cacha sous des pierres. Au retour, on les trouva collées au corporal par du sang.",
+        "en": "Six hosts had been consecrated for captains about to fight; the attack came before communion, and the priest hid them under stones. On their return they were found stuck to the corporal by blood."
+      },
+      "garde": {
+        "fr": "Les corporaux, à la collégiale Sainte-Marie de Daroca. On mit la relique sur une mule sans guide pour décider de la ville qui la garderait ; elle s'arrêta ici.",
+        "en": "The corporals, in the collegiate church of Saint Mary at Daroca. The relic was set on a mule with no guide to decide which town should keep it; it stopped here."
+      }
+    },
+    {
+      "id": "eu-o-cebreiro-1300",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'O Cebreiro", "en": "Eucharistic miracle of O Cebreiro" },
+      "city": "O Cebreiro",
+      "country": "ESP",
+      "lat": 42.7081,
+      "lng": -7.0428,
+      "annee": 1300,
+      "desc": {
+        "fr": "Un paysan monta à la messe malgré la tempête de neige ; le moine qui célébrait méprisait cette peine prise pour un peu de pain et de vin. L'hostie devint chair et le vin sang dans le calice.",
+        "en": "A peasant climbed to Mass through a snowstorm; the monk celebrating despised such trouble taken for a little bread and wine. The host became flesh and the wine blood in the chalice."
+      },
+      "garde": {
+        "fr": "Le calice et la patène, sur le chemin de Compostelle, à l'église Sainte-Marie-la-Royale. Isabelle la Catholique leur fit faire un reliquaire en passant par là.",
+        "en": "The chalice and paten, on the road to Compostela, in the church of Santa María la Real. Isabella the Catholic had a reliquary made for them as she passed."
+      }
+    },
+    {
+      "id": "eu-alcala-1597",
+      "kind": "miracle",
+      "name": { "fr": "Les saintes Formes d'Alcalá de Henares", "en": "The Holy Forms of Alcalá de Henares" },
+      "city": "Alcalá de Henares",
+      "country": "ESP",
+      "lat": 40.4818,
+      "lng": -3.3643,
+      "annee": 1597,
+      "desc": {
+        "fr": "Un homme rendit à un jésuite vingt-quatre hosties consacrées qu'il avait volées des années plus tôt et n'osait plus garder. On les mit de côté pour voir : elles ne se corrompirent pas.",
+        "en": "A man returned to a Jesuit twenty-four consecrated hosts he had stolen years earlier and no longer dared keep. They were set aside to see: they did not decay."
+      },
+      "garde": {
+        "fr": "Elles sont restées intactes plus de trois siècles, jusqu'à leur disparition en 1936, pendant la guerre civile.",
+        "en": "They remained intact for more than three centuries, until they disappeared in 1936, during the civil war."
+      }
+    },
+    {
+      "id": "eu-ivorra-1010",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Ivorra", "en": "Eucharistic miracle of Ivorra" },
+      "city": "Ivorra",
+      "country": "ESP",
+      "lat": 41.7739,
+      "lng": 1.4033,
+      "annee": 1010,
+      "desc": {
+        "fr": "Un prêtre qui doutait vit le calice déborder de sang, au point d'inonder les corporaux et la nappe.",
+        "en": "A doubting priest saw the chalice overflow with blood, enough to soak the corporals and the altar cloth."
+      },
+      "garde": {
+        "fr": "L'évêque d'Urgell porta les linges à Rome ; le pape Serge IV en reconnut le culte. Ils sont au sanctuaire du Saint-Mystère d'Ivorra.",
+        "en": "The bishop of Urgell carried the linens to Rome; Pope Sergius IV allowed their veneration. They are in the sanctuary of the Holy Mystery at Ivorra."
+      }
+    },
+    {
+      "id": "eu-faverney-1608",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Faverney", "en": "Eucharistic miracle of Faverney" },
+      "city": "Faverney",
+      "country": "FRA",
+      "lat": 47.7639,
+      "lng": 6.1044,
+      "annee": 1608,
+      "desc": {
+        "fr": "Un incendie prit la nuit de la Pentecôte et dévora le reposoir. Au matin, l'ostensoir était resté suspendu en l'air au-dessus des cendres ; il y demeura, dit le procès-verbal, trente-trois heures, devant la foule accourue.",
+        "en": "A fire broke out on the night of Pentecost and devoured the altar of repose. In the morning the monstrance had remained hanging in the air above the ashes; it stayed there, the record says, thirty-three hours, before the crowd that came running."
+      },
+      "garde": {
+        "fr": "Une des deux hosties, à la basilique Notre-Dame-de-la-Blanche ; l'autre fut donnée à Dole. L'enquête canonique fut ouverte sept jours après.",
+        "en": "One of the two hosts, in the basilica of Notre-Dame-de-la-Blanche; the other was given to Dole. The canonical inquiry opened seven days later."
+      }
+    },
+    {
+      "id": "eu-douai-1254",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Douai", "en": "Eucharistic miracle of Douai" },
+      "city": "Douai",
+      "country": "FRA",
+      "lat": 50.3714,
+      "lng": 3.08,
+      "annee": 1254,
+      "desc": {
+        "fr": "Une hostie tomba de la main du prêtre pendant la communion ; en se penchant pour la relever, il la vit, dit le récit, porter le visage d'un enfant.",
+        "en": "A host fell from the priest's hand during communion; bending to pick it up, he saw on it, the account says, the face of a child."
+      },
+      "garde": {
+        "fr": "La sainte Hostie de Douai, longtemps portée en procession ; elle a disparu à la Révolution.",
+        "en": "The Holy Host of Douai, long carried in procession; it was lost at the Revolution."
+      }
+    },
+    {
+      "id": "eu-avignon-1433",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Avignon", "en": "Eucharistic miracle of Avignon" },
+      "city": "Avignon",
+      "country": "FRA",
+      "lat": 43.9493,
+      "lng": 4.8055,
+      "annee": 1433,
+      "desc": {
+        "fr": "Le Rhône avait débordé et noyé le quartier. Les pénitents gris qui venaient chercher le Saint-Sacrement dans leur chapelle inondée trouvèrent, dit le récit, l'eau retirée de part et d'autre de l'autel.",
+        "en": "The Rhône had burst its banks and flooded the quarter. The Grey Penitents who came for the Blessed Sacrament in their flooded chapel found, the account says, the water drawn back on either side of the altar."
+      },
+      "garde": {
+        "fr": "La chapelle des Pénitents gris d'Avignon, où l'on fait mémoire du miracle chaque 30 novembre.",
+        "en": "The chapel of the Grey Penitents in Avignon, where the miracle is remembered every 30 November."
+      }
+    },
+    {
+      "id": "eu-bois-seigneur-isaac-1405",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Bois-Seigneur-Isaac", "en": "Eucharistic miracle of Bois-Seigneur-Isaac" },
+      "city": "Bois-Seigneur-Isaac",
+      "country": "BEL",
+      "lat": 50.6689,
+      "lng": 4.3389,
+      "annee": 1405,
+      "desc": {
+        "fr": "Une hostie laissée sur le corporal, dans la chapelle du seigneur, fut retrouvée saignant en trois endroits.",
+        "en": "A host left on the corporal in the lord's chapel was found bleeding in three places."
+      },
+      "garde": {
+        "fr": "Le corporal taché, à l'abbaye de Bois-Seigneur-Isaac ; l'évêque de Cambrai en approuva le culte en 1413.",
+        "en": "The stained corporal, in the abbey of Bois-Seigneur-Isaac; the bishop of Cambrai approved its veneration in 1413."
+      }
+    },
+    {
+      "id": "eu-herkenrode-1317",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Herkenrode", "en": "Eucharistic miracle of Herkenrode" },
+      "city": "Hasselt",
+      "country": "BEL",
+      "lat": 50.9628,
+      "lng": 5.3025,
+      "annee": 1317,
+      "desc": {
+        "fr": "Un prêtre portait le viatique à un malade sans les égards dus ; l'hostie, dit le récit, se mit à saigner dans la boîte.",
+        "en": "A priest was carrying viaticum to a sick man without due reverence; the host, the account says, began to bleed in its pyx."
+      },
+      "garde": {
+        "fr": "La relique fut confiée à l'abbaye cistercienne de Herkenrode, puis portée à Hasselt, où elle est à la cathédrale Saint-Quentin.",
+        "en": "The relic was entrusted to the Cistercian abbey of Herkenrode, then taken to Hasselt, where it is in Saint Quentin's cathedral."
+      }
+    },
+    {
+      "id": "eu-amsterdam-1345",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Amsterdam", "en": "Eucharistic miracle of Amsterdam" },
+      "city": "Amsterdam",
+      "country": "NLD",
+      "lat": 52.3676,
+      "lng": 4.8946,
+      "annee": 1345,
+      "desc": {
+        "fr": "Un mourant rendit le viatique qu'il venait de recevoir ; selon l'usage, on jeta au feu ce qu'il avait rejeté. Le lendemain, l'hostie fut retrouvée intacte dans les braises, et la main qui la prit n'en fut pas brûlée.",
+        "en": "A dying man brought up the viaticum he had just received; as custom required, what he had rejected was thrown on the fire. The next day the host was found intact among the embers, and the hand that took it was not burned."
+      },
+      "garde": {
+        "fr": "La chapelle du Miracle a brûlé en 1452, puis disparu au XIXe siècle ; la procession silencieuse, la Stille Omgang, se fait toujours dans les rues, de nuit, en mars.",
+        "en": "The Chapel of the Miracle burned in 1452, then vanished in the nineteenth century; the silent procession, the Stille Omgang, still goes through the streets by night in March."
+      }
+    },
+    {
+      "id": "eu-alkmaar-1429",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Alkmaar", "en": "Eucharistic miracle of Alkmaar" },
+      "city": "Alkmaar",
+      "country": "NLD",
+      "lat": 52.6317,
+      "lng": 4.7483,
+      "annee": 1429,
+      "desc": {
+        "fr": "Un incendie prit dans l'église Saint-Laurent ; le tabernacle brûla et l'hostie fut retrouvée intacte parmi les cendres.",
+        "en": "A fire broke out in the church of Saint Lawrence; the tabernacle burned and the host was found intact among the ashes."
+      },
+      "garde": {
+        "fr": "Le souvenir en est resté à Alkmaar, où le miracle fut longtemps fêté.",
+        "en": "The memory remained at Alkmaar, where the miracle was long celebrated."
+      }
+    },
+    {
+      "id": "eu-boxmeer-1400",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Boxmeer", "en": "Eucharistic miracle of Boxmeer" },
+      "city": "Boxmeer",
+      "country": "NLD",
+      "lat": 51.6469,
+      "lng": 5.9472,
+      "annee": 1400,
+      "desc": {
+        "fr": "Le vin consacré déborda du calice d'un prêtre qui doutait, et coula sur le corporal, changé en sang.",
+        "en": "The consecrated wine overflowed the chalice of a doubting priest and ran onto the corporal, turned to blood."
+      },
+      "garde": {
+        "fr": "La relique, à l'église Saints-Pierre-et-Paul ; la procession du Sang, la Bloedprocessie, s'y fait chaque année depuis le XVe siècle.",
+        "en": "The relic, in the church of Saints Peter and Paul; the Blood Procession, the Bloedprocessie, has gone there every year since the fifteenth century."
+      }
+    },
+    {
+      "id": "eu-boxtel-1380",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Boxtel", "en": "Eucharistic miracle of Boxtel" },
+      "city": "Boxtel",
+      "country": "NLD",
+      "lat": 51.5903,
+      "lng": 5.3272,
+      "annee": 1380,
+      "desc": {
+        "fr": "Un prêtre renversa le calice sur le corporal ; le vin, dit le récit, s'y trouva changé en sang, et les taches ne partirent pas au lavage.",
+        "en": "A priest overturned the chalice onto the corporal; the wine, the account says, was found there turned to blood, and the stains would not wash out."
+      },
+      "garde": {
+        "fr": "Le corporal, longtemps porté à Boxtel puis, aux troubles religieux, mis à l'abri à Hoogstraten, en Belgique, où il est resté.",
+        "en": "The corporal, long kept at Boxtel, then, at the religious troubles, taken for safety to Hoogstraten in Belgium, where it has remained."
+      }
+    },
+    {
+      "id": "eu-meerssen-1222",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Meerssen", "en": "Eucharistic miracle of Meerssen" },
+      "city": "Meerssen",
+      "country": "NLD",
+      "lat": 50.8917,
+      "lng": 5.75,
+      "annee": 1222,
+      "desc": {
+        "fr": "Un prêtre qui doutait vit l'hostie devenir chair et le vin devenir sang entre ses mains.",
+        "en": "A doubting priest saw the host become flesh and the wine become blood in his hands."
+      },
+      "garde": {
+        "fr": "La basilique du Saint-Sacrement de Meerssen, bâtie au XIVe siècle pour le miracle.",
+        "en": "The basilica of the Blessed Sacrament at Meerssen, built in the fourteenth century for the miracle."
+      }
+    },
+    {
+      "id": "eu-stiphout-1342",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Stiphout", "en": "Eucharistic miracle of Stiphout" },
+      "city": "Stiphout",
+      "country": "NLD",
+      "lat": 51.4867,
+      "lng": 5.6167,
+      "annee": 1342,
+      "desc": {
+        "fr": "L'église brûla ; le prêtre put reprendre l'hostie intacte au milieu du feu, sans se brûler la main.",
+        "en": "The church burned; the priest was able to take back the host intact in the middle of the fire, without burning his hand."
+      },
+      "garde": {
+        "fr": "La chapelle du Saint-Sang de Stiphout perpétue le souvenir.",
+        "en": "The Holy Blood chapel at Stiphout keeps the memory."
+      }
+    },
+    {
+      "id": "eu-wallduern-1330",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Walldürn", "en": "Eucharistic miracle of Walldürn" },
+      "city": "Walldürn",
+      "country": "DEU",
+      "lat": 49.5836,
+      "lng": 9.3697,
+      "annee": 1330,
+      "desc": {
+        "fr": "Un prêtre renversa le calice après la consécration. Le vin s'étala sur le corporal en dessinant, dit le récit, un Christ en croix entouré de onze visages couronnés d'épines. Il cacha le linge sous la pierre d'autel et n'en parla qu'à sa mort.",
+        "en": "A priest overturned the chalice after the consecration. The wine spread on the corporal, tracing, the account says, a Christ on the cross ringed by eleven faces crowned with thorns. He hid the cloth under the altar stone and spoke of it only as he died."
+      },
+      "garde": {
+        "fr": "Le corporal, à la basilique Saint-Georges ; un pèlerinage y vient depuis le XIVe siècle.",
+        "en": "The corporal, in the basilica of Saint George; a pilgrimage has come there since the fourteenth century."
+      }
+    },
+    {
+      "id": "eu-bettbrunn-1125",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Bettbrunn", "en": "Eucharistic miracle of Bettbrunn" },
+      "city": "Bettbrunn",
+      "country": "DEU",
+      "lat": 48.8639,
+      "lng": 11.7592,
+      "annee": 1125,
+      "desc": {
+        "fr": "Un berger qui ne pouvait quitter son troupeau emporta une hostie au bout de son bâton pour la voir de loin. Il la laissa tomber, et l'on ne put, dit le récit, la déplacer de cet endroit.",
+        "en": "A herdsman who could not leave his flock carried a host on the end of his staff so as to see it from afar. He let it fall, and it could not, the account says, be moved from that place."
+      },
+      "garde": {
+        "fr": "L'église de pèlerinage du Saint-Sauveur, bâtie à l'endroit même, au milieu des champs.",
+        "en": "The pilgrimage church of the Holy Saviour, built on that very spot, in the middle of the fields."
+      }
+    },
+    {
+      "id": "eu-erding-1417",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Erding", "en": "Eucharistic miracle of Erding" },
+      "city": "Erding",
+      "country": "DEU",
+      "lat": 48.3064,
+      "lng": 11.9067,
+      "annee": 1417,
+      "desc": {
+        "fr": "Un paysan emporta une hostie consacrée pour s'en faire un talisman ; pris de remords en chemin, il la jeta. On la retrouva, et elle ne se laissa pas ramener à l'église.",
+        "en": "A farmer took a consecrated host to make a charm of it; struck with remorse on the way, he threw it away. It was found, and would not be carried back to the church."
+      },
+      "garde": {
+        "fr": "L'église du Saint-Sang d'Erding, bâtie à l'endroit où on la retrouva.",
+        "en": "The Holy Blood church at Erding, built where it was found."
+      }
+    },
+    {
+      "id": "eu-augsburg-1194",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Augsbourg", "en": "Eucharistic miracle of Augsburg" },
+      "city": "Augsbourg",
+      "country": "DEU",
+      "lat": 48.3705,
+      "lng": 10.8978,
+      "annee": 1194,
+      "desc": {
+        "fr": "Une femme garda chez elle une hostie consacrée pendant cinq ans, enfermée dans de la cire. Quand on l'ouvrit devant l'évêque, elle était, dit le récit, devenue chair.",
+        "en": "A woman kept a consecrated host at home for five years, sealed in wax. When it was opened before the bishop it had, the account says, become flesh."
+      },
+      "garde": {
+        "fr": "L'église Sainte-Croix d'Augsbourg, où la relique fut vénérée jusqu'à la Réforme.",
+        "en": "The church of the Holy Cross in Augsburg, where the relic was venerated until the Reformation."
+      }
+    },
+    {
+      "id": "eu-seefeld-1384",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Seefeld", "en": "Eucharistic miracle of Seefeld" },
+      "city": "Seefeld in Tirol",
+      "country": "AUT",
+      "lat": 47.3294,
+      "lng": 11.1883,
+      "annee": 1384,
+      "desc": {
+        "fr": "Le chevalier Oswald Milser exigea, l'épée au côté, la grande hostie réservée au prêtre. Le sol, dit le récit, se déroba sous lui jusqu'aux genoux, et l'hostie devint rouge.",
+        "en": "The knight Oswald Milser demanded, sword at his side, the large host reserved for the priest. The floor, the account says, gave way beneath him up to his knees, and the host turned red."
+      },
+      "garde": {
+        "fr": "Le creux dans la dalle, devant l'autel de l'église Saint-Oswald, et l'hostie dans son ostensoir.",
+        "en": "The hollow in the flagstone before the altar of Saint Oswald's church, and the host in its monstrance."
+      }
+    },
+    {
+      "id": "eu-fiecht-1310",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Fiecht", "en": "Eucharistic miracle of Fiecht" },
+      "city": "Fiecht",
+      "country": "AUT",
+      "lat": 47.345,
+      "lng": 11.71,
+      "annee": 1310,
+      "desc": {
+        "fr": "Un prêtre qui doutait de la présence réelle vit le vin du calice se changer en sang ; il en garda le linge, et son abbé le fit garder après lui.",
+        "en": "A priest who doubted the real presence saw the wine in the chalice turn to blood; he kept the cloth, and his abbot had it kept after him."
+      },
+      "garde": {
+        "fr": "Le reliquaire du Saint-Sang, à l'abbaye bénédictine Saint-Georgenberg-Fiecht.",
+        "en": "The Holy Blood reliquary, in the Benedictine abbey of Georgenberg-Fiecht."
+      }
+    },
+    {
+      "id": "eu-ettiswil-1447",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Ettiswil", "en": "Eucharistic miracle of Ettiswil" },
+      "city": "Ettiswil",
+      "country": "CHE",
+      "lat": 47.1494,
+      "lng": 8.0075,
+      "annee": 1447,
+      "desc": {
+        "fr": "Une femme vola une hostie consacrée, prit peur et la jeta dans une haie. On la retrouva, dit le récit, brisée en sept morceaux disposés en fleur.",
+        "en": "A woman stole a consecrated host, took fright and threw it into a hedge. It was found, the account says, broken into seven pieces set out like a flower."
+      },
+      "garde": {
+        "fr": "La chapelle du Saint-Sang d'Ettiswil, bâtie à l'endroit.",
+        "en": "The Holy Blood chapel at Ettiswil, built on the spot."
+      }
+    },
+    {
+      "id": "eu-ludbreg-1411",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Ludbreg", "en": "Eucharistic miracle of Ludbreg" },
+      "city": "Ludbreg",
+      "country": "HRV",
+      "lat": 46.2544,
+      "lng": 16.62,
+      "annee": 1411,
+      "desc": {
+        "fr": "Un prêtre qui doutait vit le vin du calice changé en sang. Il fit murer la relique derrière l'autel et se tut ; on ne l'apprit qu'à sa mort.",
+        "en": "A doubting priest saw the wine in the chalice turned to blood. He had the relic walled up behind the altar and said nothing; it was learned only at his death."
+      },
+      "garde": {
+        "fr": "La relique, au sanctuaire de Ludbreg. Le parlement croate fit vœu, en 1739, d'y bâtir une chapelle si la peste cessait ; le vœu n'a été tenu qu'en 1994.",
+        "en": "The relic, in the sanctuary at Ludbreg. The Croatian parliament vowed in 1739 to build a chapel there if the plague ceased; the vow was kept only in 1994."
+      }
+    },
+    {
+      "id": "eu-sokolka-2008",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Sokółka", "en": "Eucharistic miracle of Sokółka" },
+      "city": "Sokółka",
+      "country": "POL",
+      "lat": 53.4064,
+      "lng": 23.5022,
+      "annee": 2008,
+      "desc": {
+        "fr": "Une hostie tomba pendant la communion ; on la mit à dissoudre dans l'eau, selon l'usage. Une semaine plus tard, une tache rouge y était apparue.",
+        "en": "A host fell during communion; it was put in water to dissolve, as the rule requires. A week later a red mark had appeared on it."
+      },
+      "garde": {
+        "fr": "Deux instituts de l'université de Białystok l'ont examinée séparément en 2009 : tissu de muscle cardiaque humain, intimement mêlé au pain. L'archevêque a reconnu le fait en 2009.",
+        "en": "Two institutes of the University of Białystok examined it separately in 2009: human heart muscle tissue, closely interwoven with the bread. The archbishop acknowledged the fact in 2009."
+      }
+    },
+    {
+      "id": "eu-legnica-2013",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Legnica", "en": "Eucharistic miracle of Legnica" },
+      "city": "Legnica",
+      "country": "POL",
+      "lat": 51.21,
+      "lng": 16.1619,
+      "annee": 2013,
+      "desc": {
+        "fr": "Une hostie tombée fut mise dans l'eau ; des taches rouges y parurent au bout de quelques jours.",
+        "en": "A fallen host was put in water; red marks appeared on it after a few days."
+      },
+      "garde": {
+        "fr": "Les analyses du département de médecine légale conclurent à du tissu de muscle cardiaque. L'évêque de Legnica l'a annoncé en 2016, après avis de Rome.",
+        "en": "The forensic department's analyses concluded that it was heart muscle tissue. The bishop of Legnica announced it in 2016, after consulting Rome."
+      }
+    },
+    {
+      "id": "eu-buenos-aires-1996",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Buenos Aires", "en": "Eucharistic miracle of Buenos Aires" },
+      "city": "Buenos Aires",
+      "country": "ARG",
+      "lat": -34.6037,
+      "lng": -58.3816,
+      "annee": 1996,
+      "desc": {
+        "fr": "Une hostie trouvée à terre fut mise dans l'eau au tabernacle. Les jours suivants, elle se couvrit d'une substance rouge. L'évêque auxiliaire, Jorge Bergoglio, fit photographier puis analyser.",
+        "en": "A host found on the floor was put in water in the tabernacle. In the days that followed it took on a red substance. The auxiliary bishop, Jorge Bergoglio, had it photographed and then analysed."
+      },
+      "garde": {
+        "fr": "Les analyses menées à partir de 1999, sans que les laboratoires sachent l'origine de l'échantillon, ont conclu à du muscle cardiaque humain enflammé, avec des globules blancs intacts — ce qui suppose un prélèvement sur un vivant.",
+        "en": "The analyses begun in 1999, the laboratories not being told where the sample came from, concluded that it was inflamed human heart muscle with intact white cells — which supposes a sample taken from a living body."
+      }
+    },
+    {
+      "id": "eu-tixtla-2006",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Tixtla", "en": "Eucharistic miracle of Tixtla" },
+      "city": "Tixtla",
+      "country": "MEX",
+      "lat": 17.5667,
+      "lng": -99.4,
+      "annee": 2006,
+      "desc": {
+        "fr": "Pendant une retraite paroissiale, une religieuse qui portait la communion vit une hostie s'écouler d'une substance rougeâtre.",
+        "en": "During a parish retreat, a religious sister distributing communion saw a host exude a reddish substance."
+      },
+      "garde": {
+        "fr": "L'évêque de Chilpancingo-Chilapa fit faire des études de 2009 à 2012 : sang humain, hémoglobine et ADN, tissu de muscle cardiaque. Il a reconnu le fait en 2013.",
+        "en": "The bishop of Chilpancingo-Chilapa had studies made from 2009 to 2012: human blood, haemoglobin and DNA, heart muscle tissue. He acknowledged the fact in 2013."
+      }
+    },
+    {
+      "id": "eu-betania-1991",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Betania", "en": "Eucharistic miracle of Betania" },
+      "city": "Cúa",
+      "country": "VEN",
+      "lat": 10.1667,
+      "lng": -66.8833,
+      "annee": 1991,
+      "desc": {
+        "fr": "Pendant la messe de minuit du 8 décembre, une hostie se mit à saigner entre les mains du prêtre, devant l'assemblée.",
+        "en": "During the midnight Mass of 8 December, a host began to bleed in the priest's hands, before the congregation."
+      },
+      "garde": {
+        "fr": "La relique, au sanctuaire de Betania. L'évêque de Los Teques, qui avait déjà reconnu les apparitions du lieu, a reconnu celui-ci.",
+        "en": "The relic, in the sanctuary of Betania. The bishop of Los Teques, who had already recognised the apparitions there, acknowledged this as well."
+      }
+    },
+    {
+      "id": "eu-eten-1649",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique d'Eten", "en": "Eucharistic miracle of Eten" },
+      "city": "Eten",
+      "country": "PER",
+      "lat": -6.9083,
+      "lng": -79.8667,
+      "annee": 1649,
+      "desc": {
+        "fr": "Deux fois, à trois semaines d'intervalle, on vit paraître dans l'hostie exposée, dit le récit, le visage d'un enfant.",
+        "en": "Twice, three weeks apart, there appeared in the exposed host, the account says, the face of a child."
+      },
+      "garde": {
+        "fr": "Le sanctuaire du Divin Enfant du Miracle d'Eten ; la ville en a fait son patron.",
+        "en": "The sanctuary of the Divine Child of the Miracle at Eten; the town has made him its patron."
+      }
+    },
+    {
+      "id": "eu-tumaco-1906",
+      "kind": "miracle",
+      "name": { "fr": "Miracle eucharistique de Tumaco", "en": "Eucharistic miracle of Tumaco" },
+      "city": "Tumaco",
+      "country": "COL",
+      "lat": 1.7986,
+      "lng": -78.7656,
+      "annee": 1906,
+      "desc": {
+        "fr": "Un tremblement de terre avait retiré la mer, et l'on attendait la vague. Deux prêtres descendirent sur la plage avec l'ostensoir ; la vague, dit le récit et les témoins interrogés après, s'arrêta et se retira.",
+        "en": "An earthquake had drawn the sea back, and the wave was expected. Two priests went down to the beach with the monstrance; the wave, the account and the witnesses questioned afterwards say, stopped and drew back."
+      },
+      "garde": {
+        "fr": "Rien qu'un souvenir, et les récits recueillis auprès des habitants ; la ville a été détruite par un autre raz-de-marée en 1979.",
+        "en": "Nothing but a memory, and the accounts gathered from the inhabitants; the town was destroyed by another tidal wave in 1979."
+      }
+    }
+  ]
+}

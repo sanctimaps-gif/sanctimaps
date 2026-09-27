@@ -144,7 +144,7 @@ async function start() {
       refreshAll();
       // La fiche qu'on vient d'écrire, relue dans le corpus où elle est entrée :
       // c'est elle qu'on va montrer, et non le brouillon du formulaire.
-      const couche = kind === 'apparition' ? atlas.store.apparitions : atlas.store;
+      const couche = atlas.couche(kind);
       const saved = editing ? atlas.pointById(editing) : couche.added.at(-1);
       if (saved) openSaint(saved.id, { fly: true });
     },
@@ -274,7 +274,8 @@ async function start() {
     map.refreshOverlay();
     topBar.render();
     // Le formulaire change de visage avec le corpus : on ajoute une apparition
-    // quand la carte en montre, un saint quand elle montre des saints.
+    // quand la carte en montre, un miracle quand elle montre des miracles, un
+    // saint quand elle montre des saints.
     addPanel.render();
   }
 
@@ -374,7 +375,8 @@ async function start() {
     // Un lien peut nommer une apparition quand la carte montre les saints : elle
     // bascule alors d'elle-même, sans quoi la fiche s'ouvrirait sur un repère
     // absent de la carte.
-    basculerCorpus(saint.kind === 'apparition' ? 'apparitions' : 'saints');
+    basculerCorpus(saint.kind === 'apparition' ? 'apparitions'
+      : saint.kind === 'miracle' ? 'miracles' : 'saints');
     if (fly) flyToSaint(saint);
     else {
       map.highlightSaint(saint.id);

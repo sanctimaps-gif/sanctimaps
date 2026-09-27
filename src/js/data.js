@@ -41,17 +41,35 @@ async function getJSON(url) {
 // ---------------------------------------------------------------------------
 
 /**
+ * Les trois corpus de la carte.
+ *
+ * Un nom — celui de la bascule et de la couche locale —, le genre que portent
+ * les fiches, et le préfixe des identifiants qu'on fabrique. Tout ce qui
+ * dépendait d'un « est-ce une apparition ? » se lit désormais ici : ajouter un
+ * quatrième corpus, ce serait ajouter une ligne.
+ */
+export const CORPUS = [
+  { nom: 'saints', kind: 'saint', prefixe: 'local' },
+  { nom: 'apparitions', kind: 'apparition', prefixe: 'local-ap' },
+  { nom: 'miracles', kind: 'miracle', prefixe: 'local-mi' },
+];
+const NOMS = CORPUS.map((c) => c.nom);
+const PAR_KIND = new Map(CORPUS.map((c) => [c.kind, c]));
+const PAR_NOM = new Map(CORPUS.map((c) => [c.nom, c]));
+
+/**
  * La couche locale, corpus par corpus.
  *
- * Les saints tiennent la racine — `added`, `edits`, `removed` —, les apparitions
- * une couche jumelle sous `apparitions`. Deux couches plutôt qu'une seule et un
- * champ « genre » : un identifiant retiré ne veut pas dire la même chose d'un
- * corpus à l'autre, et l'export de l'une ne doit pas emporter l'autre.
+ * Les saints tiennent la racine — `added`, `edits`, `removed` —, les deux autres
+ * corpus une couche jumelle chacun, sous leur nom. Une couche par corpus plutôt
+ * qu'une seule et un champ « genre » : un identifiant retiré ne veut pas dire la
+ * même chose d'un corpus à l'autre, et l'export de l'un ne doit pas emporter
+ * l'autre.
  *
- * Un enregistrement écrit par une version précédente n'a pas la seconde couche :
- * elle est alors vide, et rien n'est perdu.
+ * Un enregistrement écrit par une version précédente n'a pas les couches
+ * ajoutées depuis : elles sont alors vides, et rien n'est perdu.
  */
-const VERSION_STORE = 3;
+const VERSION_STORE = 4;
 
 /**
  * Une couche neuve, et non une copie d'un modèle.
@@ -63,7 +81,11 @@ const VERSION_STORE = 3;
  * l'empêche.
  */
 const coucheVide = () => ({ added: [], edits: {}, removed: [] });
-const storeVide = () => ({ version: VERSION_STORE, ...coucheVide(), apparitions: coucheVide() });
+const storeVide = () => {
+  const store = { version: VERSION_STORE, ...coucheVide() };
+  for (const { nom } of CORPUS.slice(1)) store[nom] = coucheVide();
+  return store;
+};
 
 /**
  * Distance entre deux points, en kilomètres.
@@ -98,11 +120,9 @@ function readStore() {
   if (!raw) return storeVide();
   try {
     const parsed = JSON.parse(raw);
-    return {
-      version: VERSION_STORE,
-      ...lireCouche(parsed),
-      apparitions: lireCouche(parsed.apparitions),
-    };
+    const store = { version: VERSION_STORE, ...lireCouche(parsed) };
+    for (const { nom } of CORPUS.slice(1)) store[nom] = lireCouche(parsed[nom]);
+    return store;
   } catch {
     console.warn('Enregistrement local illisible : il est ignoré.');
     return storeVide();
@@ -118,7 +138,7 @@ function readStore() {
  * corpus d'origine en effaçant simplement cette couche.
  */
 export class Atlas {
-  constructor({ world, countryNames, saints, apparitions }) {
+  constructor({ world, countryNames, saints, apparitions, miracles }) {
     this.worldSize = world.worldSize;
     this.bounds = world.bounds;
     this.continents = world.continents;
@@ -130,13 +150,14 @@ export class Atlas {
     this.baseSaints = saints.saints.map((s) => ({ ...s, status: PUBLISHED }));
     this.baseById = new Map(this.baseSaints.map((s) => [s.id, s]));
 
-    // -- le second corpus ----------------------------------------------------
+    // -- les deux autres corpus ----------------------------------------------
     //
-    // Les apparitions vivent à part des saints, et c'est voulu : ce sont deux
-    // choses différentes, qu'on ne mélange pas dans un même index sous prétexte
-    // qu'elles se posent sur la même carte. La bascule choisit lequel des deux
-    // la carte montre ; tout ce qui ne connaît que les saints — la recherche, le
-    // saint du jour, le rappel, la modération — continue de lire `saints`.
+    // Les apparitions et les miracles eucharistiques vivent à part des saints,
+    // et c'est voulu : ce sont trois choses différentes, qu'on ne mélange pas
+    // dans un même index sous prétexte qu'elles se posent sur la même carte. La
+    // bascule choisit lequel des trois la carte montre ; tout ce qui ne connaît
+    // que les saints — la recherche, le saint du jour, le rappel, la modération
+    // — continue de lire `saints`.
     //
     // Un corpus vide reste possible — le fichier peut manquer —, et la carte le
     // dit alors en clair plutôt que de laisser chercher des repères qui
@@ -145,6 +166,13 @@ export class Atlas {
     this.baseApparitions = (apparitions?.apparitions || [])
       .map((a) => ({ ...a, status: PUBLISHED, kind: 'apparition' }));
     this.baseApparitionById = new Map(this.baseApparitions.map((a) => [a.id, a]));
+    this.baseMiracles = (miracles?.miracles || [])
+      .map((m) => ({ ...m, status: PUBLISHED, kind: 'miracle' }));
+    this.baseMiracleById = new Map(this.baseMiracles.map((m) => [m.id, m]));
+
+    // Les index du corpus courant se lisent ici, sans savoir lequel c'est : la
+    // bascule ne fait que changer une clé. Chaque reindex remplit sa case.
+    this.index = { saints: {}, apparitions: {}, miracles: {} };
 
     // Les deux morceaux qui ne servent pas au premier dessin, et qu'on ne
     // télécharge donc pas avant lui. Voir `ensureTexts` et `ensureCandidates`.
@@ -165,8 +193,7 @@ export class Atlas {
     this.placeCache = new Map();
     this.detailCache = new Map();
     this.viewerRole = 'visitor';
-    this.reindex();
-    this.reindexApparitions();
+    this.reindexAll();
   }
 
   // -- ce qui arrive après la carte ------------------------------------------
@@ -295,7 +322,7 @@ export class Atlas {
       grille.set(cle, seau);
     };
     for (const saint of this.saints) {
-      if (saint.kind === 'apparition') continue;
+      if (saint.kind && saint.kind !== 'saint') continue;
       poser(saint.lat, saint.lng, saint.id, saint.city);
       for (const lieu of this.lieux[saint.id] || []) poser(lieu.lat, lieu.lng, saint.id, lieu.nom);
     }
@@ -323,7 +350,7 @@ export class Atlas {
    */
   rencontresDe(saintId) {
     const saint = this.pointById(saintId);
-    if (!saint || saint.kind === 'apparition') return [];
+    if (!saint || (saint.kind && saint.kind !== 'saint')) return [];
 
     // D'abord ce qui est écrit : l'ordre du fichier est celui de la parenté.
     const attestes = [];
@@ -455,42 +482,57 @@ export class Atlas {
       if (!continent) continue;
       this.byContinent.set(continent, (this.byContinent.get(continent) || 0) + list.length);
     }
+    this.index.saints = { liste: visible, byId: this.byId, byCountry: this.byCountry };
   }
 
   /**
-   * Le même travail pour le second corpus, sur sa propre couche.
+   * Le même travail pour un autre corpus, sur sa propre couche.
    *
-   * Deux index plutôt qu'un seul : une apparition n'est pas un saint, et les
-   * mélanger ferait apparaître Lourdes dans la recherche des saints, dans la
-   * lettre quotidienne et dans le saint du jour.
+   * Un index par corpus plutôt qu'un seul : une apparition n'est pas un saint,
+   * un miracle n'est ni l'un ni l'autre, et les mélanger ferait apparaître
+   * Lourdes dans la recherche des saints, dans la lettre quotidienne et dans le
+   * saint du jour.
    */
-  reindexApparitions() {
-    const couche = this.store.apparitions;
+  reindexAutre(nom) {
+    const { kind } = PAR_NOM.get(nom);
+    const couche = this.store[nom];
     const removed = new Set(couche.removed);
     const all = [];
-    for (const a of this.baseApparitions) {
-      if (removed.has(a.id)) continue;
-      const patch = couche.edits[a.id];
-      all.push(patch ? this.locate({ ...a, ...patch, edited: true }) : a);
+    for (const f of this[nom === 'apparitions' ? 'baseApparitions' : 'baseMiracles']) {
+      if (removed.has(f.id)) continue;
+      const patch = couche.edits[f.id];
+      all.push(patch ? this.locate({ ...f, ...patch, edited: true }) : f);
     }
-    for (const a of couche.added) {
-      all.push(this.locate({ ...a, local: true, kind: 'apparition' }));
-    }
+    for (const f of couche.added) all.push(this.locate({ ...f, local: true, kind }));
 
-    this.everyApparition = all;
-    this.apparitions = all.filter((a) => this.canSee(a));
-    this.apparitionById = new Map(this.apparitions.map((a) => [a.id, a]));
-    this.apparitionsByCountry = new Map();
-    for (const a of this.apparitions) {
-      if (!this.apparitionsByCountry.has(a.country)) this.apparitionsByCountry.set(a.country, []);
-      this.apparitionsByCountry.get(a.country).push(a);
+    const liste = all.filter((f) => this.canSee(f));
+    const byId = new Map(liste.map((f) => [f.id, f]));
+    const byCountry = new Map();
+    for (const f of liste) {
+      if (!byCountry.has(f.country)) byCountry.set(f.country, []);
+      byCountry.get(f.country).push(f);
+    }
+    this.index[nom] = { liste, byId, byCountry };
+
+    // Les noms d'avant restent : trop de code les lit, et les renommer n'aurait
+    // rien appris à personne.
+    if (nom === 'apparitions') {
+      this.everyApparition = all;
+      this.apparitions = liste;
+      this.apparitionById = byId;
+      this.apparitionsByCountry = byCountry;
+    } else {
+      this.everyMiracle = all;
+      this.miracles = liste;
+      this.miracleById = byId;
+      this.miraclesByCountry = byCountry;
     }
   }
 
-  /** Les deux corpus à la fois : ce que la couche locale touche. */
+  /** Les trois corpus à la fois : ce que la couche locale touche. */
   reindexAll() {
     this.reindex();
-    this.reindexApparitions();
+    for (const { nom } of CORPUS.slice(1)) this.reindexAutre(nom);
   }
 
   /**
@@ -519,11 +561,14 @@ export class Atlas {
    * qui divergeraient au premier correctif.
    */
   couche(kind) {
-    return kind === 'apparition' ? this.store.apparitions : this.store;
+    const nom = PAR_KIND.get(kind)?.nom || 'saints';
+    return nom === 'saints' ? this.store : this.store[nom];
   }
 
   livres(kind) {
-    return kind === 'apparition' ? this.baseApparitionById : this.baseById;
+    if (kind === 'apparition') return this.baseApparitionById;
+    if (kind === 'miracle') return this.baseMiracleById;
+    return this.baseById;
   }
 
   /**
@@ -534,26 +579,27 @@ export class Atlas {
    * à demander à l'appelant : l'identifiant suffit à savoir où écrire.
    */
   genreDe(id) {
-    return this.baseApparitionById.has(id)
-      || this.store.apparitions.added.some((a) => a.id === id)
-      ? 'apparition' : 'saint';
+    for (const { nom, kind } of CORPUS.slice(1)) {
+      if (this.livres(kind).has(id) || this.store[nom].added.some((f) => f.id === id)) return kind;
+    }
+    return 'saint';
   }
 
   addSaint(draft, { status = PENDING, author = '', kind = 'saint' } = {}) {
     const couche = this.couche(kind);
-    const prefixe = kind === 'apparition' ? 'local-ap' : 'local';
-    const pris = (candidat) => this.byId.has(candidat) || this.apparitionById.has(candidat);
+    const prefixe = PAR_KIND.get(kind)?.prefixe || 'local';
+    const pris = (candidat) => NOMS.some((n) => this.index[n].byId.has(candidat));
     const id = draft.id && !pris(draft.id)
       ? draft.id
       : `${prefixe}-${Date.now().toString(36)}-${Math.floor(Math.random() * 1e4).toString(36)}`;
     const record = { ...draft, id, status, author, createdAt: new Date().toISOString() };
-    if (kind === 'apparition') record.kind = 'apparition';
+    if (kind !== 'saint') record.kind = kind;
     delete record.x;
     delete record.y;
     couche.added.push(record);
     const stored = this.persist();
     this.reindexAll();
-    return { saint: this.byId.get(id) || this.apparitionById.get(id), stored };
+    return { saint: this.pointById(id), stored };
   }
 
   /**
@@ -618,14 +664,12 @@ export class Atlas {
   }
 
   hasLocalChanges() {
-    return [this.store, this.store.apparitions].some((c) => c.added.length > 0
-      || c.removed.length > 0
-      || Object.keys(c.edits).length > 0);
+    return NOMS.some((nom) => this.hasLocalCorpus(nom));
   }
 
-  /** Y a-t-il quelque chose à verser au dépôt du côté des apparitions ? */
-  hasLocalApparitions() {
-    const c = this.store.apparitions;
+  /** Y a-t-il quelque chose à verser au dépôt, pour ce corpus-ci ? */
+  hasLocalCorpus(nom) {
+    const c = nom === 'saints' ? this.store : this.store[nom];
     return c.added.length > 0 || c.removed.length > 0 || Object.keys(c.edits).length > 0;
   }
 
@@ -646,23 +690,30 @@ export class Atlas {
    * survit à la collecte suivante. C'est la même règle que pour les statuts et
    * les approbations — la main l'emporte sur la machine, jamais l'inverse.
    */
-  exportApparitions() {
-    const couche = this.store.apparitions;
+  exportCorpus(nom) {
+    const { kind } = PAR_NOM.get(nom);
+    const couche = this.store[nom];
     const propre = (fiche) => {
-      const { status, author, createdAt, local, edited, x, y, kind, ...reste } = fiche;
-      return { ...reste, kind: 'apparition' };
+      const { status, author, createdAt, local, edited, x, y, kind: _, ...reste } = fiche;
+      return { ...reste, kind };
     };
     return {
-      apparitions: {
-        note: 'Fiches ajoutées à la main. À verser dans data/apparitions/apparitions.json.',
-        apparitions: couche.added.map(propre),
+      fiches: {
+        nom: `${nom}.json`,
+        contenu: {
+          note: `Fiches ajoutées à la main. À verser dans data/${nom}/${nom}.json.`,
+          [nom]: couche.added.map(propre),
+        },
       },
       corrections: {
-        note: 'Retouches et retraits de fiches importées. À verser dans'
-          + ' data/apparitions/corrections.json. Une retouche ne porte que les champs'
-          + ' touchés : le reste continue de suivre la collecte.',
-        corrections: couche.edits,
-        retirees: couche.removed.map((id) => ({ id, pourquoi: '' })),
+        nom: 'corrections.json',
+        contenu: {
+          note: 'Retouches et retraits de fiches déjà au corpus. À verser dans'
+            + ` data/${nom}/corrections.json. Une retouche ne porte que les champs`
+            + ' touchés : le reste continue de suivre la collecte.',
+          corrections: couche.edits,
+          retirees: couche.removed.map((id) => ({ id, pourquoi: '' })),
+        },
       },
     };
   }
@@ -682,12 +733,12 @@ export class Atlas {
   // La carte ne lit pas `saintsIn` directement : elle lit `pointsIn`, qui répond
   // pour le corpus courant. C'est tout ce que la bascule change — les couleurs
   // des pays, les repères posés, le compte du pays ouvert et la fiche qui
-  // s'ouvre suivent d'eux-mêmes, sans qu'aucun des deux corpus n'ait à connaître
-  // l'autre.
+  // s'ouvre suivent d'eux-mêmes, sans qu'aucun des trois corpus n'ait à
+  // connaître les autres.
 
-  /** Bascule vers « saints » ou « apparitions ». Vrai si cela a changé. */
+  /** Bascule vers l'un des trois corpus. Vrai si cela a changé. */
   setCorpus(name) {
-    const voulu = name === 'apparitions' ? 'apparitions' : 'saints';
+    const voulu = NOMS.includes(name) ? name : 'saints';
     if (this.corpus === voulu) return false;
     this.corpus = voulu;
     return true;
@@ -695,27 +746,33 @@ export class Atlas {
 
   /** Les repères du corpus courant, pour un pays. */
   pointsIn(countryId) {
-    return this.corpus === 'apparitions'
-      ? this.apparitionsByCountry.get(countryId) || []
-      : this.saintsIn(countryId);
+    return this.index[this.corpus].byCountry.get(countryId) || [];
   }
 
   countryHasPoints(countryId) {
-    return this.corpus === 'apparitions'
-      ? this.apparitionsByCountry.has(countryId)
-      : this.byCountry.has(countryId);
+    return this.index[this.corpus].byCountry.has(countryId);
   }
 
-  /** Une fiche par son identifiant, dans le corpus courant puis dans l'autre. */
+  /** Une fiche par son identifiant, dans le corpus courant puis dans les autres. */
   pointById(id) {
-    return this.corpus === 'apparitions'
-      ? this.apparitionById.get(id) || this.byId.get(id)
-      : this.byId.get(id) || this.apparitionById.get(id);
+    const trouve = this.index[this.corpus].byId.get(id);
+    if (trouve) return trouve;
+    for (const nom of NOMS) {
+      if (nom === this.corpus) continue;
+      const autre = this.index[nom].byId.get(id);
+      if (autre) return autre;
+    }
+    return undefined;
   }
 
   /** Combien de repères porte le corpus courant, tous pays confondus. */
   pointCount() {
-    return this.corpus === 'apparitions' ? this.apparitions.length : this.saints.length;
+    return this.index[this.corpus].liste.length;
+  }
+
+  /** Le corpus d'où vient une fiche, par son genre. */
+  corpusDe(fiche) {
+    return PAR_KIND.get(fiche?.kind)?.nom || 'saints';
   }
 
   /** Nom du pays dans la langue demandée, avec repli sur l'anglais. */
@@ -799,15 +856,17 @@ export class Atlas {
  * avant que rien ne s'affiche ; il en pèse trois cents kilooctets.
  */
 export async function loadAtlas() {
-  const [world, countryNames, saints, apparitions] = await Promise.all([
+  const [world, countryNames, saints, apparitions, miracles] = await Promise.all([
     getJSON(`${BASE}/world.json`),
     getJSON(`${BASE}/country-names.json`),
     getJSON(`${BASE}/saints.json`),
-    // Le second corpus est demandé avec les autres parce que la bascule doit
-    // savoir dès le premier dessin ce qu'elle a à montrer. Il ne coûte rien
-    // tant qu'il est vide, et son absence n'empêche pas la carte de s'ouvrir :
-    // la bascule dira simplement qu'aucune apparition n'est recensée.
+    // Les deux autres corpus sont demandés avec les saints parce que la bascule
+    // doit savoir dès le premier dessin ce qu'elle a à montrer. Ils ne coûtent
+    // presque rien — quarante fiches, quarante-sept —, et leur absence
+    // n'empêche pas la carte de s'ouvrir : la bascule dira simplement qu'il n'y
+    // a rien de recensé.
     getJSON(`${BASE}/apparitions.json`).catch(() => ({ apparitions: [] })),
+    getJSON(`${BASE}/miracles.json`).catch(() => ({ miracles: [] })),
   ]);
-  return new Atlas({ world, countryNames, saints, apparitions });
+  return new Atlas({ world, countryNames, saints, apparitions, miracles });
 }

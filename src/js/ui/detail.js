@@ -57,13 +57,19 @@ export class DetailPanel {
     // d'approbation là où celle d'un saint dit deux dates, un lieu de naissance
     // et un degré de reconnaissance.
     const appa = saint.kind === 'apparition';
+    // Un miracle eucharistique se lit comme une apparition — une année, un lieu,
+    // un récit — et ajoute ce qu'on en garde : une chair, un corporal, une
+    // procession, ou rien. Pour un fait du XIIIe siècle, c'est souvent ce qui
+    // décide qu'on y aille.
+    const mir = saint.kind === 'miracle';
+    const date = appa || mir;
     // Les lieux marqués par ce saint, quand la table est descendue. Une
     // apparition n'en a pas : elle *est* un lieu.
-    const lieux = appa ? [] : this.atlas.lieuxDe(saint.id);
+    const lieux = date ? [] : this.atlas.lieuxDe(saint.id);
     // Et ceux qu'il a pu croiser : les liens attestés d'abord, les voisinages
     // ensuite. La table descend avec les lieux ; avant elle, il n'y a rien à
     // proposer, et le bouton ne paraît pas.
-    const croises = appa ? [] : this.atlas.rencontresDe(saint.id);
+    const croises = date ? [] : this.atlas.rencontresDe(saint.id);
     const description = pickText(saint.desc, lang);
     const patronage = pickText(saint.patronage, lang);
     const biography = pickText(saint.bio, lang);
@@ -187,11 +193,12 @@ export class DetailPanel {
         // et Fátima le sont, Medjugorje non —, ce qui n'est pas le même mot.
         appa
           ? row(t('detail.approval'), saint.approbation ? t(`approbation.${saint.approbation}`) : '')
-          : row(t('detail.degre'), degreLabel(saint.statut, saint.sex)),
+          : mir ? null : row(t('detail.degre'), degreLabel(saint.statut, saint.sex)),
         row(t('detail.patronage'), patronage),
-        appa
+        date
           // Une apparition qui s'étale sur plusieurs années porte les deux
-          // bornes ; celle d'un seul jour n'en porte qu'une.
+          // bornes ; celle d'un seul jour n'en porte qu'une. Un miracle tient
+          // dans une seule.
           ? row(t('detail.year'), saint.anneeFin && saint.anneeFin !== saint.annee
             ? `${formatYear(saint.annee)} – ${formatYear(saint.anneeFin)}`
             : formatYear(saint.annee))
@@ -206,9 +213,12 @@ export class DetailPanel {
         // Le point porté sur la carte est presque toujours une naissance ;
         // quand c'est une mort, dire « lieu de naissance » serait une erreur.
         // Une apparition n'est ni l'une ni l'autre : c'est un lieu, sans plus.
-        row(t(appa ? 'detail.place'
+        row(t(date ? 'detail.place'
           : saint.placeKind === 'died' ? 'detail.deathplace' : 'detail.birthplace'),
         `${saint.city} — ${this.atlas.countryName(saint.country, lang)}`),
+        // Ce qu'on en garde, et où : le champ propre au troisième corpus. Il
+        // vient après l'année et le lieu — on situe d'abord, on va voir ensuite.
+        mir ? row(t('detail.garde'), pickText(saint.garde, lang)) : null,
         row(t('detail.feast'), formatFeast(saint.feast)),
         // Ce que le saint était : moine, évêque, martyre, docteur de l'Église.
         //

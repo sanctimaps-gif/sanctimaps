@@ -29,6 +29,11 @@
      autres couleurs et qui se lit comme « d'autres vies, à côté de celle-ci ». */
   --croise: #6b4f8c;
   --croise-ink: #513a6b;
+  /* Les miracles eucharistiques : l'or des ostensoirs, plus sourd que le doré
+     d'un cadre, qui ne se confond ni avec le rouge des croix ni avec le bleu
+     marial. */
+  --miracle: #a8791f;
+  --miracle-ink: #7d5a15;
   --user: #2f6b4f;
   --pending: #b4741d;
   --shadow: 0 10px 30px rgb(36 32 27 / 18%);
@@ -64,6 +69,8 @@
     --lieu-ink: #8fd3ba;
     --croise: #a98cd6;
     --croise-ink: #c0aae3;
+    --miracle: #e0b95c;
+    --miracle-ink: #ecd08a;
     --user: #63b58c;
     --pending: #d9a441;
     --shadow: 0 10px 30px rgb(0 0 0 / 45%);
@@ -93,6 +100,8 @@
   --lieu-ink: #8fd3ba;
   --croise: #a98cd6;
   --croise-ink: #c0aae3;
+  --miracle: #e0b95c;
+  --miracle-ink: #ecd08a;
   --user: #63b58c;
   --pending: #d9a441;
   --shadow: 0 10px 30px rgb(0 0 0 / 45%);
@@ -497,6 +506,22 @@ button, input, select, textarea { font: inherit; color: inherit; }
    demanderaient une légende pour être lues ; une couleur se reconnaît. */
 .marker--apparition .marker__badge { fill: var(--apparition); }
 .marker--apparition .marker__halo { fill: var(--apparition); }
+
+/* Le repère d'un miracle eucharistique : le même médaillon, dans l'or des
+   ostensoirs, et une hostie au lieu d'une croix. Le signe compte autant que la
+   couleur — un daltonien lit la forme. */
+.marker__hostie { display: none; }
+
+.marker--miracle .marker__badge { fill: var(--miracle); }
+.marker--miracle .marker__halo { fill: var(--miracle); }
+.marker--miracle .marker__cross { display: none; }
+
+.marker--miracle .marker__hostie {
+  display: inline;
+  fill: none;
+  stroke: var(--panel);
+  stroke-width: 1.8;
+}
 
 /* Un lieu marqué par le saint : une perle, non une croix. Elle entoure le saint
    ouvert sans lui disputer l'œil — c'est lui qu'on est venu voir — et ne mène
@@ -924,6 +949,24 @@ button, input, select, textarea { font: inherit; color: inherit; }
   width: 0.7rem;
   height: 0.7rem;
   margin: 0 0.075rem;
+}
+
+/* Le médaillon d'un miracle : l'or, et l'hostie dessinée en creux. */
+.swatch--miracle {
+  background: var(--miracle);
+  border-radius: 4px;
+  position: relative;
+}
+
+.swatch--miracle::after {
+  content: '';
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: 0.4rem;
+  height: 0.4rem;
+  transform: translate(-50%, -50%);
+  border: 1.5px solid var(--panel);
+  border-radius: 50%;
 }
 
 /* Le médaillon d'un voisin : celui d'un saint, dans le violet des autres vies. */

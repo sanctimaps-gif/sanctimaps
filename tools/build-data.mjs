@@ -1346,6 +1346,84 @@ writeFileSync(join(OUT, 'apparitions.json'), JSON.stringify({ apparitions }));
 console.log(`  apparitions.json : ${apparitions.length} apparitions`);
 
 // ---------------------------------------------------------------------------
+// Le troisième corpus : les miracles eucharistiques
+// ---------------------------------------------------------------------------
+
+/**
+ * L'exposition de Carlo Acutis, portée sur la carte.
+ *
+ * Aucune base ne tient cette liste — ni Wikidata, ni personne —, et il n'y a
+ * donc pas d'importateur : tout est écrit à la main dans `data/miracles/`. Une
+ * fiche ressemble à une apparition — une année, un lieu, un récit — et ajoute
+ * `garde`, qui dit ce qu'on peut encore aller voir, et où. Pour un fait du
+ * XIIIe siècle, c'est souvent le plus utile ; et quand il ne reste rien, ce
+ * champ le dit aussi.
+ */
+const MIRACLES_DIR = join(ROOT, 'data', 'miracles');
+const MIRACLE_REQUIS = ['id', 'name', 'country', 'city', 'lat', 'lng', 'annee'];
+const MIRACLE_CORRECTIONS = 'corrections.json';
+const miracles = [];
+const miracleIds = new Set();
+const miracleErrors = [];
+
+for (const file of readdirSync(MIRACLES_DIR)
+  .filter((f) => f.endsWith('.json') && f !== MIRACLE_CORRECTIONS)
+  .sort()) {
+  const raw = JSON.parse(readFileSync(join(MIRACLES_DIR, file), 'utf8'));
+  for (const m of raw.miracles || []) {
+    const where = `${file}:${m.id ?? '?'}`;
+    for (const field of MIRACLE_REQUIS) {
+      if (m[field] === undefined || m[field] === null || m[field] === '') {
+        miracleErrors.push(`${where} — champ « ${field} » manquant`);
+      }
+    }
+    // Un identifiant ne peut désigner qu'une chose : « ?saint= » et les pages
+    // générées le prennent au mot, quel que soit le corpus d'où il vient.
+    if (ids.has(m.id)) miracleErrors.push(`${where} — identifiant déjà porté par un saint`);
+    if (appaIds.has(m.id)) miracleErrors.push(`${where} — identifiant déjà porté par une apparition`);
+    if (miracleIds.has(m.id)) miracleErrors.push(`${where} — identifiant en double`);
+    if (!seen.has(m.country)) miracleErrors.push(`${where} — pays inconnu : ${m.country}`);
+    if (Math.abs(m.lat) > 85 || Math.abs(m.lng) > 180) {
+      miracleErrors.push(`${where} — coordonnées hors limites`);
+    }
+    miracleIds.add(m.id);
+    const [x, y] = project(m.lng, m.lat);
+    const shift = shiftById.get(m.country) || 0;
+    miracles.push({ ...m, kind: 'miracle', x: Math.round(x) + shift, y: Math.round(y) });
+  }
+}
+
+// Ce que l'application exporte quand on retouche ou retire un miracle depuis la
+// carte : même règle que pour les apparitions, la main l'emporte.
+try {
+  const table = JSON.parse(readFileSync(join(MIRACLES_DIR, MIRACLE_CORRECTIONS), 'utf8'));
+  const parId = new Map(miracles.map((m) => [m.id, m]));
+  for (const [id, patch] of Object.entries(table.corrections || {})) {
+    const fiche = parId.get(id);
+    if (!fiche) { miracleErrors.push(`${MIRACLE_CORRECTIONS} — inconnu : ${id}`); continue; }
+    Object.assign(fiche, patch);
+    const [x, y] = project(fiche.lng, fiche.lat);
+    fiche.x = Math.round(x) + (shiftById.get(fiche.country) || 0);
+    fiche.y = Math.round(y);
+  }
+  const retirees = new Set((table.retirees || []).map((r) => r.id));
+  for (let i = miracles.length - 1; i >= 0; i -= 1) {
+    if (retirees.has(miracles[i].id)) miracles.splice(i, 1);
+  }
+} catch { /* pas de table : les fiches restent telles qu'elles sont écrites */ }
+
+if (miracleErrors.length) {
+  console.error('\nErreurs dans les fiches de miracles :');
+  for (const e of miracleErrors) console.error(`  - ${e}`);
+  process.exit(1);
+}
+
+miracles.sort((a, b) => a.annee - b.annee);
+writeFileSync(join(OUT, 'miracles.json'), JSON.stringify({ miracles }));
+console.log(`  miracles.json : ${miracles.length} miracles eucharistiques`
+  + `, ${new Set(miracles.map((m) => m.country)).size} pays`);
+
+// ---------------------------------------------------------------------------
 // Le pont entre les deux corpus : qui a vu quoi
 // ---------------------------------------------------------------------------
 

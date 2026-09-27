@@ -14,9 +14,10 @@ export const TITLE_KEYS = [
 const BLANK = {
   name: '', sex: 'm', born: '', died: '', city: '', country: '',
   lat: '', lng: '', month: '', day: '', desc: '', bio: '', patronage: '', titles: [],
-  // Le second corpus : une apparition a eu lieu une année, parfois sur
-  // plusieurs, et l'Église s'est prononcée ou non.
-  annee: '', anneeFin: '', approbation: '',
+  // Les deux autres corpus : une apparition a eu lieu une année, parfois sur
+  // plusieurs, et l'Église s'est prononcée ou non ; un miracle eucharistique a
+  // eu lieu une année, et il en reste quelque chose, ou rien.
+  annee: '', anneeFin: '', approbation: '', garde: '',
 };
 
 /** Les trois degrés d'approbation, plus le silence — qui est le cas ordinaire. */
@@ -64,7 +65,22 @@ export class AddPanel {
    * ajoute ce qu'on est en train de regarder.
    */
   get kind() {
-    return this.editingKind || (this.atlas.corpus === 'apparitions' ? 'apparition' : 'saint');
+    if (this.editingKind) return this.editingKind;
+    if (this.atlas.corpus === 'apparitions') return 'apparition';
+    if (this.atlas.corpus === 'miracles') return 'miracle';
+    return 'saint';
+  }
+
+  /**
+   * Les trois corpus se rangent en deux formes de fiche.
+   *
+   * Un saint est né, est mort, a des qualités et un patronage. Une apparition
+   * et un miracle ont eu lieu : une année, un lieu, un récit. Le formulaire
+   * suit cette coupure, et n'ajoute que ce qui distingue vraiment les deux
+   * seconds — l'approbation d'un côté, ce qu'on en garde de l'autre.
+   */
+  get date() {
+    return this.kind !== 'saint';
   }
 
   /** Charge une fiche existante dans le formulaire. */
@@ -72,12 +88,14 @@ export class AddPanel {
     const lang = getLanguage();
     const [month, day] = String(saint.feast || '').split('-');
     this.editing = saint.id;
-    this.editingKind = saint.kind === 'apparition' ? 'apparition' : 'saint';
+    this.editingKind = saint.kind === 'apparition' || saint.kind === 'miracle'
+      ? saint.kind : 'saint';
     // Les champs par langue de la fiche d'origine : le formulaire n'en montre
     // qu'une, et corriger une ville en français ne doit pas effacer le nom
     // anglais ni le récit latin.
     this.editingBase = {
       name: saint.name, desc: saint.desc, bio: saint.bio, patronage: saint.patronage,
+      garde: saint.garde,
     };
     this.message = null;
     this.values = {
@@ -85,6 +103,7 @@ export class AddPanel {
       annee: saint.annee == null ? '' : String(saint.annee),
       anneeFin: saint.anneeFin == null ? '' : String(saint.anneeFin),
       approbation: saint.approbation || '',
+      garde: typeof saint.garde === 'string' ? saint.garde : saint.garde?.[lang] || '',
       name: this.atlas.saintName(saint, lang),
       sex: saint.sex || 'm',
       born: saint.born == null ? '' : String(saint.born),
@@ -152,12 +171,18 @@ export class AddPanel {
     h('span', { text: option.label }))));
 
     const appa = this.kind === 'apparition';
-    const mienne = appa ? this.atlas.store.apparitions : this.atlas.store;
+    const mir = this.kind === 'miracle';
+    const date = this.date;
+    // Le suffixe des libellés : « add.introAppa », « add.introMir », ou rien
+    // pour un saint. Une seule variable, et les trois corpus se disent.
+    const suff = appa ? 'Appa' : mir ? 'Mir' : '';
+    const nomCouche = appa ? 'apparitions' : mir ? 'miracles' : 'saints';
+    const mienne = nomCouche === 'saints' ? this.atlas.store : this.atlas.store[nomCouche];
 
     fill(this.root, [
       this.editing
-        ? h('h2', { class: 'panel__section', text: t(appa ? 'add.editTitleAppa' : 'add.editTitle') })
-        : h('p', { class: 'add__intro', text: t(appa ? 'add.introAppa' : 'add.intro') }),
+        ? h('h2', { class: 'panel__section', text: t(`add.editTitle${suff}`) })
+        : h('p', { class: 'add__intro', text: t(`add.intro${suff}`) }),
       this.editing
         ? null
         : h('p', { class: 'add__intro', text: can('publish') ? t('add.introAdmin') : t('add.introUser') }),
@@ -165,14 +190,14 @@ export class AddPanel {
         ? h('p', { class: `notice notice--${this.message.kind}`, text: this.message.text })
         : null,
 
-      field(t('add.name'), h('input', {
+      field(t(date ? 'add.nameFait' : 'add.name'), h('input', {
         class: 'control', type: 'text', value: this.values.name,
-        placeholder: t(appa ? 'add.namePlaceholderAppa' : 'add.namePlaceholder'),
+        placeholder: t(`add.namePlaceholder${suff}`),
         oninput: this.bind('name'),
       })),
-      // Le genre ne sert qu'à accorder « saint » et « sainte » : une apparition
-      // ne s'accorde pas, et la ligne n'aurait rien à dire.
-      appa ? null : field(t('add.sex'), select(
+      // Le genre ne sert qu'à accorder « saint » et « sainte » : ni une
+      // apparition ni un miracle ne s'accordent, et la ligne n'aurait rien à dire.
+      date ? null : field(t('add.sex'), select(
         [{ value: 'm', label: t('add.male') }, { value: 'f', label: t('add.female') }],
         {
           value: this.values.sex,
@@ -181,24 +206,37 @@ export class AddPanel {
       )),
 
       // Une apparition n'est pas née et n'est pas morte : elle a eu lieu une
-      // année, parfois sur plusieurs — Le Laus a duré cinquante-quatre ans.
-      appa
+      // année, parfois sur plusieurs — Le Laus a duré cinquante-quatre ans. Un
+      // miracle eucharistique tient dans une seule année, et n'attend pas de
+      // l'Église un mot qu'elle n'a presque jamais dit.
+      date
         ? [
           h('div', { class: 'filters__row' },
             field(t('add.annee'), h('input', {
               class: 'control', type: 'number', placeholder: '1858',
               value: this.values.annee, oninput: this.bind('annee'),
             })),
-            field(t('add.anneeFin'), h('input', {
+            // Un miracle eucharistique tient dans une année : la seconde borne
+            // n'aurait rien à porter.
+            appa ? field(t('add.anneeFin'), h('input', {
               class: 'control', type: 'number', placeholder: '1858',
               value: this.values.anneeFin, oninput: this.bind('anneeFin'),
-            }))),
-          h('p', { class: 'field__hint', text: t('add.anneeHint') }),
-          field(t('add.approbation'), select(
+            })) : null),
+          appa ? h('p', { class: 'field__hint', text: t('add.anneeHint') }) : null,
+          appa ? field(t('add.approbation'), select(
             [{ value: '', label: t('add.approbationMuette') },
               ...APPROBATIONS.map((v) => ({ value: v, label: t(`approbation.${v}`) }))],
             { value: this.values.approbation, onchange: this.bind('approbation') },
-          ), t('add.approbationHint')),
+          ), t('add.approbationHint')) : null,
+          // Ce qu'on en garde : une chair, un corporal, une procession, ou
+          // rien. C'est ce champ qui dit s'il y a encore quelque chose à aller
+          // voir, et où — pour un fait du XIIIe siècle, c'est le plus utile.
+          mir ? field(t('add.garde'), h('textarea', {
+            class: 'control control--area',
+            rows: '2',
+            placeholder: t('add.gardePlaceholder'),
+            oninput: this.bind('garde'),
+          }, this.values.garde), t('add.gardeHint')) : null,
         ]
         : [
           h('div', { class: 'filters__row' },
@@ -213,9 +251,9 @@ export class AddPanel {
           h('p', { class: 'field__hint', text: t('add.yearHint') }),
         ],
 
-      field(t(appa ? 'detail.place' : 'add.city'), h('input', {
+      field(t(date ? 'detail.place' : 'add.city'), h('input', {
         class: 'control', type: 'text', value: this.values.city,
-        placeholder: t(appa ? 'add.cityPlaceholderAppa' : 'add.cityPlaceholder'),
+        placeholder: t(`add.cityPlaceholder${suff}`),
         oninput: this.bind('city'),
       })),
       field(t('add.country'), select(
@@ -251,7 +289,7 @@ export class AddPanel {
         })),
 
       h('fieldset', { class: 'group' },
-        h('legend', { class: 'group__legend', text: t(appa ? 'add.feastAppa' : 'add.feast') }),
+        h('legend', { class: 'group__legend', text: t(date ? 'add.feastAppa' : 'add.feast') }),
         h('div', { class: 'filters__row' },
           select([{ value: '', label: '—' }, ...months], {
             value: this.values.month, onchange: this.bind('month'), 'aria-label': t('add.month'),
@@ -262,12 +300,12 @@ export class AddPanel {
           }))),
 
       // Les qualités et le patronage disent ce qu'un saint était et de quoi il
-      // protège : ni l'un ni l'autre ne se dit d'une apparition.
-      appa ? null : h('fieldset', { class: 'group' },
+      // protège : ni l'un ni l'autre ne se dit d'une apparition ni d'un miracle.
+      date ? null : h('fieldset', { class: 'group' },
         h('legend', { class: 'group__legend', text: t('add.titles') }),
         titleBox),
 
-      appa ? null : field(t('add.patronage'), h('input', {
+      date ? null : field(t('add.patronage'), h('input', {
         class: 'control', type: 'text', value: this.values.patronage,
         placeholder: t('add.patronagePlaceholder'), oninput: this.bind('patronage'),
       })),
@@ -301,22 +339,22 @@ export class AddPanel {
         : null,
       h('p', {
         class: 'add__count',
-        text: t(appa ? 'add.mineCountAppa' : 'add.mineCount', { n: mienne.added.length }),
+        text: t(`add.mineCount${suff}`, { n: mienne.added.length }),
       }),
       // L'export ne paraît que s'il y a quelque chose à verser : un bouton qui
       // téléchargerait un fichier vide n'apprend rien.
-      appa && this.atlas.hasLocalApparitions()
+      date && this.atlas.hasLocalCorpus(nomCouche)
         ? [
           h('button', {
             class: 'btn btn--ghost',
             type: 'button',
-            text: t('add.exportAppa'),
-            onclick: () => this.exportApparitions(),
+            text: t(`add.export${suff}`),
+            onclick: () => this.exporterCorpus(nomCouche),
           }),
-          h('p', { class: 'field__hint', text: t('add.exportAppaHint') }),
+          h('p', { class: 'field__hint', text: t(`add.export${suff}Hint`) }),
         ]
         : null,
-      !appa && mienne.added.length
+      !date && mienne.added.length
         ? h('button', {
           class: 'btn btn--ghost',
           type: 'button',
@@ -349,7 +387,7 @@ export class AddPanel {
 
   validate() {
     const v = this.values;
-    const appa = this.kind === 'apparition';
+    const appa = this.date;
     if (!v.name.trim()) return t('add.errName');
     if (!v.country) return t('add.errCountry');
     const lat = Number(v.lat);
@@ -394,17 +432,18 @@ export class AddPanel {
     const pad = (n) => String(n).padStart(2, '0');
     const fete = v.month && v.day ? `${pad(Number(v.month))}-${pad(Number(v.day))}` : undefined;
 
-    // Une apparition ne porte ni sexe, ni naissance, ni mort, ni qualités, ni
-    // patronage : sa fiche ne dit que ce qui la concerne.
-    const draft = kind === 'apparition' ? {
+    // Une apparition ni un miracle ne portent de sexe, de naissance, de mort,
+    // de qualités ni de patronage : leur fiche ne dit que ce qui les concerne.
+    const draft = this.date ? {
       name: this.multilingue('name', v.name.trim()),
       city: v.city.trim(),
       country: v.country,
       lat: Number(v.lat),
       lng: Number(v.lng),
       annee: Number(v.annee),
-      anneeFin: v.anneeFin === '' ? undefined : Number(v.anneeFin),
-      approbation: v.approbation || undefined,
+      anneeFin: kind === 'apparition' && v.anneeFin !== '' ? Number(v.anneeFin) : undefined,
+      approbation: kind === 'apparition' ? v.approbation || undefined : undefined,
+      garde: kind === 'miracle' ? this.multilingue('garde', v.garde.trim()) : undefined,
       feast: fete,
       desc: this.multilingue('desc', v.desc.trim()),
       bio: this.multilingue('bio', v.bio.trim()),
@@ -447,13 +486,14 @@ export class AddPanel {
    *
    * Ce qui est ajouté, retouché ou retiré vit dans le navigateur : cela ne sort
    * pas de cette machine, et la prochaine collecte l'ignore. Ces deux fichiers
-   * se versent dans `data/apparitions/` et le corpus devient celui du site.
+   * se versent dans `data/<corpus>/` et le corpus devient celui du site.
    */
-  exportApparitions() {
-    const { apparitions, corrections } = this.atlas.exportApparitions();
-    if (apparitions.apparitions.length) this.telecharger('apparitions.json', apparitions);
-    if (Object.keys(corrections.corrections).length || corrections.retirees.length) {
-      this.telecharger('corrections.json', corrections);
+  exporterCorpus(nom) {
+    const { fiches, corrections } = this.atlas.exportCorpus(nom);
+    if (fiches.contenu[nom].length) this.telecharger(fiches.nom, fiches.contenu);
+    const { contenu } = corrections;
+    if (Object.keys(contenu.corrections).length || contenu.retirees.length) {
+      this.telecharger(corrections.nom, contenu);
     }
   }
 

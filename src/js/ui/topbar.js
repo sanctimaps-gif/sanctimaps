@@ -20,11 +20,11 @@ import { h } from './dom.js';
  *
  * ## La bascule
  *
- * Deux boutons collés, « Saints » et « Apparitions » : la carte ne montre
- * jamais les deux en même temps, et rien ne serait plus illisible qu'un
- * planisphère où une croix voudrait dire deux choses. Le second corpus est vide
- * pour l'instant, et cela se dit en clair sous la bascule plutôt que de laisser
- * chercher des repères qui n'existent pas.
+ * Trois boutons collés, « Saints », « Apparitions » et « Miracles » : la carte
+ * n'en montre jamais deux en même temps, et rien ne serait plus illisible qu'un
+ * planisphère où une croix voudrait dire trois choses. Un corpus vide se dirait
+ * en clair sous la bascule plutôt que de laisser chercher des repères qui
+ * n'existent pas.
  */
 export class TopBar {
   constructor(host, atlas, { onWorld, onContinent, onCorpus }) {
@@ -74,6 +74,9 @@ export class TopBar {
     const { mode, continentId, countryId } = this.state;
     const lang = document.documentElement.lang || 'fr';
     const apparitions = this.atlas.corpus === 'apparitions';
+    const miracles = this.atlas.corpus === 'miracles';
+    // Le suffixe des libellés : les trois corpus se disent d'une seule variable.
+    const suff = apparitions ? 'Apparitions' : miracles ? 'Miracles' : 'Saints';
 
     const crumbs = [h('button', {
       class: `crumb${mode === 'world' ? ' is-current' : ''}`,
@@ -101,11 +104,12 @@ export class TopBar {
     this.corpus.replaceChildren(
       this.bouton('saints', t('corpus.saints')),
       this.bouton('apparitions', t('corpus.apparitions')),
+      this.bouton('miracles', t('corpus.miracles')),
     );
 
     // Un corpus vide se dit, et ne se devine pas : une carte sans un seul
     // repère ressemble trop à une carte en panne.
-    const vide = apparitions && this.atlas.apparitions.length === 0;
+    const vide = this.atlas.pointCount() === 0;
     this.avis.textContent = vide ? t('corpus.none') : '';
     this.avis.hidden = !vide;
 
@@ -116,7 +120,9 @@ export class TopBar {
       const n = this.atlas.pointsIn(countryId).length;
       const cles = apparitions
         ? ['misc.noApparitionHere', 'misc.apparitionHere', 'misc.apparitionsHere']
-        : ['misc.noneHere', 'misc.saintHere', 'misc.saintsHere'];
+        : miracles
+          ? ['misc.noMiracleHere', 'misc.miracleHere', 'misc.miraclesHere']
+          : ['misc.noneHere', 'misc.saintHere', 'misc.saintsHere'];
       this.hint.textContent = n === 0 ? t(cles[0])
         : n === 1 ? t(cles[1]) : t(cles[2], { n: formatNumber(n) });
     } else {
@@ -127,15 +133,14 @@ export class TopBar {
     this.legend.replaceChildren(
       h('h2', { class: 'legend__title', text: t('legend.title') }),
       h('ul', { class: 'legend__list' },
-        h('li', {}, h('i', { class: 'swatch swatch--saints' }),
-          t(apparitions ? 'legend.withApparitions' : 'legend.withSaints')),
-        h('li', {}, h('i', { class: 'swatch swatch--plain' }),
-          t(apparitions ? 'legend.withoutApparitions' : 'legend.withoutSaints')),
+        h('li', {}, h('i', { class: 'swatch swatch--saints' }), t(`legend.with${suff}`)),
+        h('li', {}, h('i', { class: 'swatch swatch--plain' }), t(`legend.without${suff}`)),
         // La ligne « ville » n'a plus de sens sous un fond de tuiles : c'est
         // lui qui écrit les localités, et nous n'en posons plus aucune.
         h('li', { class: 'legend__city' }, h('i', { class: 'swatch swatch--city' }), t('legend.city')),
-        h('li', {}, h('i', { class: `swatch swatch--${apparitions ? 'apparition' : 'birth'}` }),
-          t(apparitions ? 'legend.apparition' : 'legend.birthplace')),
+        h('li', {}, h('i', {
+          class: `swatch swatch--${apparitions ? 'apparition' : miracles ? 'miracle' : 'birth'}`,
+        }), t(apparitions ? 'legend.apparition' : miracles ? 'legend.miracle' : 'legend.birthplace')),
         // La ligne des perles ne paraît que lorsqu'il y en a sur la carte : une
         // légende qui nomme ce qu'on ne voit pas est une devinette.
         this.state.lieux

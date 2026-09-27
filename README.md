@@ -1154,12 +1154,12 @@ après la carte.
   en ont besoin. La ligne de légende, elle, ne parle d'aucun saint en
   particulier : elle a été récrite sans pronom.
 
-## Deux corpus, une bascule
+## Trois corpus, une bascule
 
-La carte montre les saints, ou les apparitions reconnues par l'Église — jamais
-les deux à la fois. Deux boutons collés en haut de la carte, « Saints » et
-« Apparitions », disent lequel des deux est à l'écran et font passer de l'un à
-l'autre.
+La carte montre les saints, ou les apparitions reconnues par l'Église, ou les
+miracles eucharistiques — jamais deux à la fois. Trois boutons collés en haut de
+la carte, « Saints », « Apparitions » et « Miracles », disent lequel des trois
+est à l'écran et font passer de l'un à l'autre.
 
 Le second corpus porte **quarante apparitions dans vingt-trois pays**, de
 Saragosse — an 39 — à Assiout en l'an 2000 : Guadalupe, Le Laus, La Salette,
@@ -1183,9 +1183,80 @@ Une apparition n'est pas un saint, et sa fiche ne fait pas semblant de l'être :
 
 Le repère garde en revanche la même forme : même médaillon, même écusson, même
 croix, même encombrement — seule la couleur change, rouge des martyrs pour les
-saints, bleu marial pour les apparitions. Deux formes différentes sur une même
-carte demanderaient une légende pour être lues ; une couleur se reconnaît, et la
-légende suit la bascule.
+saints, bleu marial pour les apparitions, or des ostensoirs pour les miracles,
+qui portent en outre une hostie au lieu d'une croix : la couleur se reconnaît
+d'un coup d'œil, mais elle ne se lit pas quand on est daltonien, et le troisième
+corpus avait de la place pour un signe. La légende suit la bascule.
+
+## Les miracles eucharistiques
+
+Le troisième corpus vient de l'**exposition « Les miracles eucharistiques dans
+le monde »**, que Carlo Acutis a montée seul, sur son ordinateur, entre quatorze
+et quinze ans, et qui a fait le tour du monde après sa mort en 2006. Il est
+lui-même une fiche de cette carte, né à Londres en 1991 : la boucle se ferme.
+
+**Quarante-sept miracles, seize pays**, de Bettbrunn en 1125 à Legnica en 2013 —
+Lanciano, Bolsena, Santarém, Sienne, Daroca, Faverney, Amsterdam, Walldürn,
+Seefeld, Ludbreg, Buenos Aires, Tixtla, Sokółka. Ils sont **écrits à la main**,
+dans `data/miracles/miracles.json` : aucune base ne tient cette liste, ni
+Wikidata ni personne, et il n'y a donc pas d'importateur.
+
+### Ce qu'on en garde
+
+Une fiche de miracle ressemble à celle d'une apparition — une année, un lieu, un
+récit — et ajoute un champ qui n'existe nulle part ailleurs : **ce qu'on en
+garde**.
+
+> **CE QU'ON EN GARDE** — La chair et cinq caillots de sang, à l'église
+> Saint-François. Analysés en 1970-1971 par le professeur Odoardo Linoli : tissu
+> du muscle cardiaque, sang humain de groupe AB, sans trace de conservateur.
+
+Pour un fait du XIIIe siècle, ce n'est pas le récit qui décide qu'on y aille,
+c'est de savoir s'il reste quelque chose à voir, et où : un corporal taché, une
+hostie dans une ampoule, une procession qui se fait encore. Le champ le dit aussi
+quand il ne reste rien — les saintes Formes d'Alcalá ont disparu en 1936, la
+sainte Hostie de Douai à la Révolution.
+
+### Les textes sont les nôtres
+
+L'exposition est une œuvre, et elle est protégée. Les panneaux n'ont pas été
+recopiés : chaque notice a été réécrite d'après ce que les sources rapportent. La
+liste des lieux vient de l'exposition ; les mots n'en viennent pas.
+
+### Ce qui n'y est pas, et pourquoi
+
+L'exposition compte plus de cent trente miracles. Deux raisons à l'écart, et
+elles se disent plutôt qu'elles ne se taisent :
+
+1. **Ce dont on n'était pas sûr n'a pas été écrit.** Quand la date, le lieu exact
+   ou les coordonnées d'un village restaient douteux, la fiche n'a pas été faite
+   plutôt que d'être faite à peu près. Une carte pose un point ; elle ne peut pas
+   dire « quelque part par là ».
+
+2. **Les récits d'hostie profanée par des Juifs ont été écartés.** Plusieurs
+   miracles de la liste — Paris 1290, Bruxelles 1370, Deggendorf 1338, Ségovie
+   1410, Poznań 1399 — reposent sur une accusation portée au Moyen Âge contre des
+   communautés juives, qui a servi de prétexte à des massacres. Les historiens la
+   tiennent pour une calomnie, et l'Église l'a dit elle-même : l'archevêché de
+   Malines-Bruxelles a reconnu en 1968 que le « Sacrement de Miracle » reposait
+   sur une accusation sans fondement, et l'évêque de Ratisbonne a mis fin au
+   pèlerinage de Deggendorf en 1992 pour la même raison. Les porter sur une carte
+   comme des miracles, sans plus, reviendrait à republier l'accusation.
+
+   C'est un choix, et il se revoit : la place est faite pour ajouter ces fiches
+   avec ce qu'il faut dire autour.
+
+### Ce que le troisième corpus a changé dans le code
+
+Le passage de deux à trois a surtout consisté à **cesser de compter jusqu'à
+deux**. `data.js` portait une quinzaine de « est-ce une apparition ? » : un index
+par corpus, une couche locale par corpus, une bascule ternaire, un préfixe
+d'identifiant. Tout cela se lit maintenant dans une table de trois lignes, et un
+quatrième corpus serait une ligne de plus.
+
+L'enregistrement local passe de la version 3 à la version 4 : la couche des
+miracles s'ajoute, et un enregistrement écrit par la version d'avant la trouve
+simplement vide — rien n'est perdu.
 
 ### D'où viennent les apparitions
 
