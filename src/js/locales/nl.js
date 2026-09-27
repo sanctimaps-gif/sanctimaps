@@ -351,6 +351,17 @@ export default {
     'en-cours': 'In onderzoek',
     'non-reconnue': 'Niet erkend',
   },
+  lieux: {
+    show: 'De {n} plaatsen tonen die hij getekend heeft',
+    showOne: 'De plaats tonen die hij getekend heeft',
+    hide: 'Deze plaatsen verbergen',
+    sepulture: 'Graf',
+    mort: 'Sterfplaats',
+    fondation: 'Stichting',
+    oeuvre: 'Werk',
+    residence: 'Woonplaats',
+    naissance: 'Geboorte',
+  },
   misc: {
     circa: 'ca.',
     century: '{n}e eeuw',

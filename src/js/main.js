@@ -103,6 +103,9 @@ async function start() {
       sidebar.showTab('search');
     },
     onLocate: (saint) => openSaint(saint.id, { fly: true }),
+    // Les lieux marqués par le saint ouvert : la carte les pose et les cadre,
+    // ou les retire. La fiche, elle, se souvient de ce qu'elle a demandé.
+    onLieux: (lieux) => map.showLieux(lieux),
     onEdit: (saint) => {
       addPanel.edit(saint);
       sidebar.showTab('add');
@@ -148,7 +151,12 @@ async function start() {
   // La moitié du bas : la fiche du saint ouvert, la carte gardant l'autre.
   // Elle est construite avant les panneaux qui l'ouvrent.
   const fiche = new FicheBar(ficheHost, detailPanel, {
-    onClose: () => map.highlightSaint(null),
+    // Refermer rend la carte à tous les saints, et remporte les lieux du
+    // saint qu'on vient de quitter : ils étaient à lui.
+    onClose: () => {
+      map.highlightSaint(null);
+      map.setSolo(null);
+    },
     onName: (saint, lang) => atlas.saintName(saint, lang),
   });
 
@@ -330,6 +338,10 @@ async function start() {
    */
   function showFiche(saint) {
     fiche.show(saint);
+    // La carte ne montre plus que lui : un pays en porte jusqu'à mille cent, et
+    // lire une vie au milieu de mille croix, c'est chercher des yeux celle
+    // qu'on lit à chaque phrase.
+    map.setSolo(saint.id);
     if (!isWide()) sidebar.setOpen(false);
     // La carte vient de perdre la moitié de sa hauteur : elle doit le savoir
     // avant que quoi que ce soit ne recalcule un cadrage.
@@ -407,6 +419,14 @@ async function start() {
     detailPanel.refresh();
     fiche.refresh();
     dailyPanel.render();
+  });
+
+  // Les lieux marqués, de même : ils descendent après la carte, et la fiche
+  // ouverte entre-temps se voit offrir son bouton à leur arrivée.
+  atlas.ensureLieux();
+  atlas.onLieuxReady(() => {
+    detailPanel.render();
+    fiche.refresh();
   });
 
   // Une adresse peut nommer un saint : « ?saint=blandine ». C'est par là

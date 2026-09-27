@@ -134,6 +134,39 @@ ok(apparitions.length
   ? `${apparitions.length} apparitions, distinctes des saints`
   : 'corpus des apparitions vide, et la carte le dit');
 
+// --- Les lieux marqués par un saint -----------------------------------------
+
+/**
+ * La table des lieux, relue contre le corpus.
+ *
+ * Elle est facultative — un dépôt qui n'a pas encore fait la collecte n'est pas
+ * fautif —, mais ce qu'elle porte doit tenir : un lieu appartient à un saint
+ * qui existe, il est placé, et son motif est l'un des six. Un lieu orphelin
+ * serait une croix sans propriétaire, et un motif inconnu une ligne que la
+ * fiche ne saurait pas nommer.
+ */
+const MOTIFS = new Set(['sepulture', 'mort', 'fondation', 'oeuvre', 'residence', 'naissance']);
+if (existsSync(join(GEN, 'lieux.json'))) {
+  const { lieux } = read('lieux.json');
+  let total = 0;
+  for (const [id, liste] of Object.entries(lieux)) {
+    if (!ids.has(id)) { fail(`lieux.json : ${id} n'est pas une fiche du corpus`); continue; }
+    for (const lieu of liste) {
+      total += 1;
+      if (!lieu.nom) fail(`lieux.json : ${id} — un lieu sans nom`);
+      if (!MOTIFS.has(lieu.quoi)) fail(`lieux.json : ${id} — motif inconnu : ${lieu.quoi}`);
+      const shift = lieu.x > WORLD_SIZE ? WORLD_SIZE : 0;
+      const [lng, lat] = unproject(lieu.x - shift, lieu.y);
+      if (Math.abs(lng - lieu.lng) > 0.02 || Math.abs(lat - lieu.lat) > 0.02) {
+        fail(`lieux.json : ${id} — ${lieu.nom} mal placé`);
+      }
+    }
+  }
+  ok(total
+    ? `${total} lieux marqués, répartis sur ${Object.keys(lieux).length} saints`
+    : 'table des lieux vide, et la fiche n’offre alors rien à voir');
+}
+
 // --- Siècles ----------------------------------------------------------------
 
 for (const [year, expected] of [[1, 1], [100, 1], [101, 2], [1789, 18], [2000, 20],

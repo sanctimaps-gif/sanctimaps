@@ -351,6 +351,17 @@ export default {
     'en-cours': 'W trakcie badania',
     'non-reconnue': 'Niezatwierdzone',
   },
+  lieux: {
+    show: 'Pokaż {n} miejsc, które naznaczył',
+    showOne: 'Pokaż miejsce, które naznaczył',
+    hide: 'Ukryj te miejsca',
+    sepulture: 'Grób',
+    mort: 'Miejsce śmierci',
+    fondation: 'Fundacja',
+    oeuvre: 'Dzieło',
+    residence: 'Miejsce zamieszkania',
+    naissance: 'Narodziny',
+  },
   misc: {
     circa: 'ok.',
     century: '{r} wiek',

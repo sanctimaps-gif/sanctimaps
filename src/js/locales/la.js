@@ -351,6 +351,17 @@ export default {
     'en-cours': 'In examine',
     'non-reconnue': 'Non approbata',
   },
+  lieux: {
+    show: 'Loca ab eo signata monstrare: {n}',
+    showOne: 'Locum ab eo signatum monstrare',
+    hide: 'Haec loca abscondere',
+    sepulture: 'Sepultura',
+    mort: 'Locus mortis',
+    fondation: 'Fundatio',
+    oeuvre: 'Opus',
+    residence: 'Habitatio',
+    naissance: 'Nativitas',
+  },
   misc: {
     circa: 'circa',
     century: 'saeculum {r}',

@@ -139,6 +139,11 @@ export class Atlas {
     this.textsPromise = null;
     this.candidatesPromise = null;
     this.textsListeners = new Set();
+    // Les lieux marqués par un saint : une table à part, qui descend après la
+    // carte et n'est lue que par la fiche ouverte.
+    this.lieux = {};
+    this.lieuxPromise = null;
+    this.lieuxListeners = new Set();
 
     this.store = readStore();
     this.placeCache = new Map();
@@ -189,6 +194,52 @@ export class Atlas {
         });
     }
     return this.textsPromise;
+  }
+
+  /**
+   * Va chercher les lieux que les saints ont marqués.
+   *
+   * Sépulture, mort, fondation, œuvre, résidence : une vie ne tient pas dans le
+   * point d'une naissance. La table descend après la carte, comme les textes —
+   * elle ne sert qu'à qui ouvre une fiche et demande à voir, et rien n'oblige
+   * celui qui regarde le planisphère à la télécharger.
+   *
+   * Son absence n'est pas une panne : la fiche n'offre alors rien à voir, ce
+   * qui est vrai — on ne sait pas.
+   */
+  ensureLieux() {
+    if (!this.lieuxPromise) {
+      this.lieuxPromise = getJSON(`${BASE}/lieux.json`)
+        .then((data) => {
+          this.lieux = data.lieux || {};
+          this.lieuxReady = true;
+          for (const fn of this.lieuxListeners) fn();
+          return this.lieux;
+        })
+        .catch(() => {
+          this.lieuxPromise = null;
+          return {};
+        });
+    }
+    return this.lieuxPromise;
+  }
+
+  /** Prévenu quand les lieux sont là, pour que la fiche ouverte les propose. */
+  onLieuxReady(fn) {
+    if (this.lieuxReady) fn();
+    this.lieuxListeners.add(fn);
+    return () => this.lieuxListeners.delete(fn);
+  }
+
+  /**
+   * Les lieux d'un saint, déjà placés.
+   *
+   * Rend un tableau vide tant que la table n'est pas là : le bouton de la fiche
+   * ne paraît donc pas, et paraîtra à son arrivée. Mieux vaut un bouton qui se
+   * montre une seconde plus tard qu'un bouton qui promet une liste vide.
+   */
+  lieuxDe(saintId) {
+    return this.lieux?.[saintId] || [];
   }
 
   /** Prévenu quand les textes sont là, pour redessiner ce qui les montre. */

@@ -205,6 +205,12 @@ export class MapView {
     this.countryId = null;
     this.highlightId = null;
     this.picking = null;
+    // Le saint montré seul, et les lieux qu'il a marqués — vides tant qu'une
+    // fiche n'est pas ouverte, ce qui est l'état ordinaire de la carte.
+    this.soloId = null;
+    this.lieux = [];
+    this.lieuxBox = null;
+    this.lieuxFit = null;
 
     this.transform = { k: 1, x: 0, y: 0 };
     this.animation = null;
@@ -410,7 +416,10 @@ export class MapView {
 
   /** La carte montre-t-elle le pays tout entier, ou le lecteur a-t-il zoomé ? */
   atFullCountry() {
-    return this.mode === 'country' && this.fitScale
+    // Montrer les lieux d'un saint, c'est sortir du cadrage du pays : répondre
+    // « oui » ici ferait recadrer sur le pays au premier changement de taille,
+    // et la sépulture qu'on venait d'atteindre sortirait de l'écran.
+    return this.mode === 'country' && this.fitScale && !this.lieuxBox
       && this.transform.k <= this.fitScale * 1.02;
   }
 
@@ -680,7 +689,16 @@ export class MapView {
   domain() {
     if (this.mode === 'country') {
       const country = this.atlas.countryById.get(this.countryId);
-      return grow(country.focus, COUNTRY_SLACK);
+      const cadre = grow(country.focus, COUNTRY_SLACK);
+      // Les lieux d'un saint débordent souvent son pays de naissance : Boniface
+      // est né dans le Wessex et repose à Fulda. Tant qu'ils sont montrés, le
+      // déplacement les couvre, sinon la carte ramènerait de force en
+      // Angleterre le lecteur qu'on vient d'emmener en Hesse.
+      if (!this.lieuxBox) return cadre;
+      return [
+        Math.min(cadre[0], this.lieuxBox[0]), Math.min(cadre[1], this.lieuxBox[1]),
+        Math.max(cadre[2], this.lieuxBox[2]), Math.max(cadre[3], this.lieuxBox[3]),
+      ];
     }
     if (this.mode === 'continent') return this.atlas.continentById.get(this.continentId).bbox;
     return this.atlas.bounds;
@@ -791,6 +809,10 @@ export class MapView {
       // Le lecteur avait grossi pour viser un petit pays : son échelle est un
       // choix, et l'ouverture de la fiche n'a pas à le lui reprendre.
       this.apply({ ...this.transform });
+    } else if (this.lieuxBox) {
+      // La fiche s'ouvre ou se ferme pendant qu'on regarde des lieux : on
+      // recadre sur eux, non sur le pays.
+      this.apply(this.frame(this.lieuxBox, { padding: 0.08 }));
     } else if (this.atFullCountry()) {
       // La carte montrait le pays tout entier : elle doit le montrer encore.
       // C'est par là que passe l'ouverture et la fermeture de la fiche, qui
@@ -810,6 +832,7 @@ export class MapView {
 
   showWorld({ animate = true } = {}) {
     this.mode = 'world';
+    this.oublierSaint();
     this.closePicker();
     this.clearTiles();
     this.continentId = null;
@@ -837,6 +860,7 @@ export class MapView {
     const continent = this.atlas.continentById.get(id);
     if (!continent) return;
     this.mode = 'continent';
+    this.oublierSaint();
     this.closePicker();
     this.clearTiles();
     this.continentId = id;
@@ -855,6 +879,9 @@ export class MapView {
   async showCountry(id, { animate = true } = {}) {
     const country = this.atlas.countryById.get(id);
     if (!country) return;
+    // Changer de pays, c'est quitter le saint qu'on lisait : ses lieux
+    // n'auraient plus rien à faire sur une carte qui montre autre chose.
+    if (this.countryId !== id) this.oublierSaint();
     this.closePicker();
     if (this.countryId !== id) this.clearTiles();
     this.mode = 'country';
@@ -896,6 +923,66 @@ export class MapView {
       path.dataset.country = id;
       this.detailLayer.replaceChildren(path);
     }
+  }
+
+  /**
+   * La carte ne montre plus qu'un saint, ou les montre tous à nouveau.
+   *
+   * Un pays en porte jusqu'à mille cent, et lire une vie au milieu de mille
+   * croix, c'est chercher des yeux celle qu'on lit à chaque phrase. Le temps
+   * d'une fiche ouverte, les autres s'effacent ; ils reviennent avec sa
+   * fermeture. Les lieux marqués s'en vont avec eux : ils appartenaient au
+   * saint qu'on vient de quitter.
+   */
+  /** Efface le saint montré seul et ses lieux, sans redessiner : l'appelant le fait. */
+  oublierSaint() {
+    this.soloId = null;
+    this.lieux = [];
+    this.lieuxBox = null;
+    this.lieuxFit = null;
+  }
+
+  setSolo(saintId) {
+    if (this.soloId === saintId) return;
+    this.soloId = saintId;
+    if (!saintId) this.lieux = [];
+    this.refreshOverlay();
+  }
+
+  /**
+   * Pose sur la carte les lieux marqués par le saint ouvert, ou les retire.
+   *
+   * Le cadrage suit : montrer Canterbury sans y aller ne servirait à rien, et
+   * la sépulture d'un saint est souvent à mille kilomètres de sa naissance.
+   */
+  showLieux(lieux = [], { fit = true } = {}) {
+    this.lieux = lieux;
+    if (!lieux.length) {
+      this.lieuxBox = null;
+      this.lieuxFit = null;
+      this.refreshOverlay();
+      return;
+    }
+    // Le cadre tient le saint et ses lieux : on ne perd pas le point de départ
+    // en allant voir où la vie s'est achevée.
+    const saint = this.soloId ? this.atlas.pointById?.(this.soloId) : null;
+    const points = [...lieux, ...(saint ? [saint] : [])];
+    const xs = points.map((p) => p.x);
+    const ys = points.map((p) => p.y);
+    const marge = Math.max(4000, (Math.max(...xs) - Math.min(...xs)) * 0.15);
+    const margeY = Math.max(4000, (Math.max(...ys) - Math.min(...ys)) * 0.15);
+    // Le cadre est gardé : c'est lui qui devient le domaine de déplacement et
+    // le plancher du zoom, sans quoi la carte ramènerait de force au pays
+    // ouvert — et la sépulture d'un saint est parfois dans un autre.
+    this.lieuxBox = [
+      Math.min(...xs) - marge, Math.min(...ys) - margeY,
+      Math.max(...xs) + marge, Math.max(...ys) + margeY,
+    ];
+    this.refreshOverlay();
+    if (!fit) return;
+    const cible = this.frame(this.lieuxBox, { padding: 0.08 });
+    this.lieuxFit = cible.k;
+    this.animateTo(cible);
   }
 
   highlightSaint(saintId) {
@@ -1066,7 +1153,14 @@ export class MapView {
           priority: place.c ? 1e12 : place.p,
         }));
       }
-      this.clusters = this.clusterSaints(this.atlas.pointsIn(this.countryId));
+      // Quand une fiche est ouverte, la carte ne montre plus qu'elle.
+      //
+      // Un pays en porte jusqu'à mille cent : lire la vie de l'une au milieu de
+      // mille croix, c'est la chercher des yeux à chaque phrase. Le reste
+      // s'efface donc le temps de la lecture, et revient dès qu'on referme.
+      const tous = this.atlas.pointsIn(this.countryId);
+      const seuls = this.soloId ? tous.filter((p) => p.id === this.soloId) : tous;
+      this.clusters = this.clusterSaints(seuls);
       this.clusters.forEach((group, index) => {
         const shared = group.every((s) => s.city === group[0].city) ? group[0].city : '';
         const node = this.makeMarker({
@@ -1083,6 +1177,17 @@ export class MapView {
         if (group[0].kind === 'apparition') node.classList.add('marker--apparition');
         nodes.push(node);
       });
+
+      // Les lieux que ce saint a marqués, quand on a demandé à les voir.
+      for (const [index, lieu] of this.lieux.entries()) {
+        nodes.push(this.makeMarker({
+          x: lieu.x, y: lieu.y, kind: 'lieu', lieu, index,
+          text: lieu.nom,
+          // Après les croix : c'est le saint qu'on est venu voir, ses lieux ne
+          // font que l'entourer.
+          priority: 1e9 - index,
+        }));
+      }
     }
 
     this.overlay.replaceChildren(...nodes);
@@ -1183,10 +1288,20 @@ export class MapView {
     return group;
   }
 
-  makeMarker({ x, y, kind, text, group, index, priority, rank }) {
+  makeMarker({ x, y, kind, text, group, index, priority, rank, lieu }) {
     const node = el('g', { class: `marker marker--${kind}${rank ? ` marker--${rank.cls}` : ''}` });
     if (kind === 'city') {
       node.append(el('circle', { class: 'marker__dot', r: rank.dot }));
+    } else if (kind === 'lieu') {
+      // Un lieu marqué n'est pas un saint : pas de croix, pas de médaillon —
+      // une perle, plus discrète, qui entoure la croix sans lui disputer l'œil.
+      // Elle ne s'ouvre pas non plus : il n'y a pas de fiche derrière, et un
+      // repère qui ne mène nulle part ne doit pas se donner l'air d'un bouton.
+      node.append(
+        el('circle', { class: 'marker__halo', r: 12 }),
+        el('circle', { class: 'marker__perle', r: 6 }),
+      );
+      node.dataset.quoi = lieu.quoi;
     } else {
       // Un médaillon : disque clair pour détacher le repère de la carte,
       // écusson coloré, croix blanche. Trois pièces plutôt qu'une image, pour
@@ -1230,7 +1345,7 @@ export class MapView {
     label.textContent = text;
     node.append(label);
 
-    const item = { node, x, y, text, priority, kind, group, label, rank };
+    const item = { node, x, y, text, priority, kind, group, label, rank, lieu };
     this.markers.push(item);
     return node;
   }
@@ -1499,7 +1614,7 @@ export class MapView {
     const ground = (EQUATOR * Math.cos((this.countryLat || 0) * Math.PI / 180))
       / (WORLD_SIZE * limit);
     return [
-      this.fitScale * COUNTRY_ZOOM[0],
+      Math.min(this.fitScale, this.lieuxFit || Infinity) * COUNTRY_ZOOM[0],
       Math.min(
         this.fitScale * (this.tilesAvailable() ? COUNTRY_ZOOM_MAX_TILED : COUNTRY_ZOOM_MAX),
         Math.max(this.fitScale * COUNTRY_ZOOM[1], ground),

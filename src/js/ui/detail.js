@@ -12,19 +12,27 @@ function row(label, value) {
 
 /** Fiche détaillée d'un saint, avec les actions permises au rôle courant. */
 export class DetailPanel {
-  constructor(atlas, { onBack, onLocate, onEdit, onRemove, onStatus }) {
+  constructor(atlas, { onBack, onLocate, onEdit, onRemove, onStatus, onLieux }) {
     this.atlas = atlas;
     this.onBack = onBack;
     this.onLocate = onLocate;
     this.onEdit = onEdit;
     this.onRemove = onRemove;
     this.onStatus = onStatus;
+    this.onLieux = onLieux;
     this.saint = null;
+    // Les lieux sont-ils montrés sur la carte ? Le bouton dit l'un ou l'autre,
+    // et c'est la fiche qui s'en souvient — la carte, elle, ne fait qu'obéir.
+    this.lieuxOuverts = false;
     this.root = h('div', { class: 'detail' });
   }
 
   show(saint) {
+    const change = saint?.id !== this.saint?.id;
     this.saint = saint;
+    // Une autre fiche : ses lieux ne sont pas ceux d'avant, et rien n'est
+    // encore montré.
+    if (change) this.lieuxOuverts = false;
     this.render();
   }
 
@@ -46,6 +54,9 @@ export class DetailPanel {
     // d'approbation là où celle d'un saint dit deux dates, un lieu de naissance
     // et un degré de reconnaissance.
     const appa = saint.kind === 'apparition';
+    // Les lieux marqués par ce saint, quand la table est descendue. Une
+    // apparition n'en a pas : elle *est* un lieu.
+    const lieux = appa ? [] : this.atlas.lieuxDe(saint.id);
     const description = pickText(saint.desc, lang);
     const patronage = pickText(saint.patronage, lang);
     const biography = pickText(saint.bio, lang);
@@ -70,6 +81,35 @@ export class DetailPanel {
         ? h('p', { class: `notice notice--${saint.status}`, text: t(`status.${saint.status}`) })
         : null,
       saint.local ? h('p', { class: 'notice notice--mine', text: t('detail.mine') }) : null,
+
+      // Les lieux qu'il a marqués : le bouton se pose au-dessus du récit, à
+      // droite, et ne paraît que s'il y a quelque chose à montrer. Un bouton
+      // qui ouvrirait une liste vide ne propose rien, il déçoit.
+      lieux.length
+        ? h('p', { class: 'detail__lieux' },
+          h('button', {
+            class: `btn btn--ghost detail__lieux-btn${this.lieuxOuverts ? ' is-on' : ''}`,
+            type: 'button',
+            'aria-pressed': this.lieuxOuverts ? 'true' : 'false',
+            text: this.lieuxOuverts
+              ? t('lieux.hide')
+              : t(lieux.length === 1 ? 'lieux.showOne' : 'lieux.show', { n: lieux.length }),
+            onclick: () => {
+              this.lieuxOuverts = !this.lieuxOuverts;
+              this.onLieux?.(this.lieuxOuverts ? lieux : []);
+              this.render();
+            },
+          }))
+        : null,
+      // Ce qu'ils sont, une fois montrés : un point sur la carte ne dit pas
+      // qu'il est une sépulture.
+      this.lieuxOuverts && lieux.length
+        ? h('ul', { class: 'detail__lieux-liste' },
+          ...lieux.map((lieu) => h('li', {},
+            h('span', { class: 'detail__lieu-quoi', text: t(`lieux.${lieu.quoi}`) }),
+            h('span', { class: 'detail__lieu-nom', text: lieu.nom }))))
+        : null,
+
       // Les qualités étaient ici, en pastilles, et de nouveau plus bas dans le
       // relevé : deux fois la même chose à trois centimètres d'écart, dans un
       // panneau qui n'a qu'une demi-hauteur d'écran. Elles ne sont plus qu'en

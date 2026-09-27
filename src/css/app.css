@@ -21,6 +21,10 @@
   /* Les apparitions portent le bleu marial, les saints le rouge des martyrs :
      un coup d'œil suffit alors à savoir lequel des deux corpus est à l'écran. */
   --apparition: #2b4f8c;
+  /* Les lieux marqués par un saint : un vert sourd, qui n'est ni le rouge des
+     croix ni le bleu des apparitions, et qui laisse la croix devant. */
+  --lieu: #3f7d68;
+  --lieu-ink: #2c5a4b;
   --user: #2f6b4f;
   --pending: #b4741d;
   --shadow: 0 10px 30px rgb(36 32 27 / 18%);
@@ -52,6 +56,8 @@
     --city-soft: #7d8fa0;
     --birth: #e2685c;
     --apparition: #7fa8e8;
+    --lieu: #6fbfa3;
+    --lieu-ink: #8fd3ba;
     --user: #63b58c;
     --pending: #d9a441;
     --shadow: 0 10px 30px rgb(0 0 0 / 45%);
@@ -77,6 +83,8 @@
   --city-soft: #7d8fa0;
   --birth: #e2685c;
   --apparition: #7fa8e8;
+  --lieu: #6fbfa3;
+  --lieu-ink: #8fd3ba;
   --user: #63b58c;
   --pending: #d9a441;
   --shadow: 0 10px 30px rgb(0 0 0 / 45%);
@@ -482,6 +490,27 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .marker--apparition .marker__badge { fill: var(--apparition); }
 .marker--apparition .marker__halo { fill: var(--apparition); }
 
+/* Un lieu marqué par le saint : une perle, non une croix. Elle entoure le saint
+   ouvert sans lui disputer l'œil — c'est lui qu'on est venu voir — et ne mène
+   nulle part, d'où le curseur qui ne promet rien. */
+.marker--lieu { cursor: default; }
+.marker--lieu .marker__perle {
+  fill: var(--lieu);
+  stroke: var(--panel);
+  stroke-width: 2;
+}
+
+.marker--lieu .marker__halo {
+  fill: var(--lieu);
+  opacity: 0.18;
+}
+
+.marker--lieu .marker__label {
+  transform: translateY(1.9em);
+  font-weight: 600;
+  fill: var(--lieu-ink);
+}
+
 /* La cible du doigt : invisible, mais elle reçoit les clics. `pointer-events:
    all` plutôt que la valeur par défaut, qui demande un remplissage peint —
    un disque transparent n'en a pas. */
@@ -858,6 +887,59 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: var(--panel);
   clip-path: polygon(42% 8%, 58% 8%, 58% 34%, 84% 34%, 84% 50%, 58% 50%, 58% 92%, 42% 92%, 42% 50%, 16% 50%, 16% 34%, 42% 34%);
 }
+
+/* ------------------------------- Les lieux marqués par le saint ouvert */
+
+/* Le bouton se pose au-dessus du récit, à droite : c'est une proposition, non
+   une ligne de la fiche, et il ne doit pas couper la lecture. */
+.detail__lieux {
+  margin: 0.2rem 0 0.6rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.detail__lieux-btn {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.7rem;
+  border-color: var(--lieu);
+  color: var(--lieu-ink);
+}
+
+.detail__lieux-btn.is-on {
+  background: var(--lieu);
+  color: var(--panel);
+  border-color: var(--lieu);
+}
+
+/* Ce que les perles sont : un point sur la carte ne dit pas qu'il est une
+   sépulture. */
+.detail__lieux-liste {
+  list-style: none;
+  margin: 0 0 0.8rem;
+  padding: 0.5rem 0.7rem;
+  display: grid;
+  gap: 0.3rem;
+  background: var(--accent-soft);
+  border-radius: var(--radius);
+  font-size: 0.88rem;
+}
+
+.detail__lieux-liste li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.detail__lieu-quoi {
+  flex: none;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--lieu-ink);
+  font-family: var(--font-ui);
+}
+
+.detail__lieu-nom { color: var(--ink); }
 
 /* ------------------------------------------------ La fiche, moitié du bas */
 

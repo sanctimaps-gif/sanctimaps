@@ -351,6 +351,17 @@ export default {
     'en-cours': 'In Prüfung',
     'non-reconnue': 'Nicht anerkannt',
   },
+  lieux: {
+    show: 'Die {n} Orte zeigen, die er geprägt hat',
+    showOne: 'Den Ort zeigen, den er geprägt hat',
+    hide: 'Diese Orte ausblenden',
+    sepulture: 'Grabstätte',
+    mort: 'Sterbeort',
+    fondation: 'Gründung',
+    oeuvre: 'Wirken',
+    residence: 'Wohnort',
+    naissance: 'Geburt',
+  },
   misc: {
     circa: 'um',
     century: '{n}. Jahrhundert',

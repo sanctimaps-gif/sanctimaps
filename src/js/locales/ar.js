@@ -351,6 +351,17 @@ export default {
     'en-cours': 'قيد الدرس',
     'non-reconnue': 'غير مُقرّ',
   },
+  lieux: {
+    show: 'إظهار {n} مواضع طبعها',
+    showOne: 'إظهار الموضع الذي طبعه',
+    hide: 'إخفاء هذه المواضع',
+    sepulture: 'المدفن',
+    mort: 'موضع الوفاة',
+    fondation: 'تأسيس',
+    oeuvre: 'عمل',
+    residence: 'إقامة',
+    naissance: 'مولد',
+  },
   misc: {
     circa: 'نحو',
     century: 'القرن {n}',

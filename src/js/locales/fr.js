@@ -353,6 +353,17 @@ export default {
     'en-cours': 'Examen en cours',
     'non-reconnue': 'Non reconnue',
   },
+  lieux: {
+    show: 'Voir les {n} lieux qu’il a marqués',
+    showOne: 'Voir le lieu qu’il a marqué',
+    hide: 'Masquer ces lieux',
+    sepulture: 'Sépulture',
+    mort: 'Lieu de mort',
+    fondation: 'Fondation',
+    oeuvre: 'Œuvre',
+    residence: 'Résidence',
+    naissance: 'Naissance',
+  },
   misc: {
     circa: 'vers',
     century: '{r}{s} siècle',

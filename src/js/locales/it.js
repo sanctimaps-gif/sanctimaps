@@ -351,6 +351,17 @@ export default {
     'en-cours': 'In esame',
     'non-reconnue': 'Non approvata',
   },
+  lieux: {
+    show: 'Vedere i {n} luoghi che ha segnato',
+    showOne: 'Vedere il luogo che ha segnato',
+    hide: 'Nascondere questi luoghi',
+    sepulture: 'Sepoltura',
+    mort: 'Luogo di morte',
+    fondation: 'Fondazione',
+    oeuvre: 'Opera',
+    residence: 'Residenza',
+    naissance: 'Nascita',
+  },
   misc: {
     circa: 'ca.',
     century: '{r} secolo',

@@ -351,6 +351,17 @@ export default {
     'en-cours': 'Under examination',
     'non-reconnue': 'Not approved',
   },
+  lieux: {
+    show: 'Show the {n} places he marked',
+    showOne: 'Show the place he marked',
+    hide: 'Hide these places',
+    sepulture: 'Burial',
+    mort: 'Place of death',
+    fondation: 'Foundation',
+    oeuvre: 'Work',
+    residence: 'Residence',
+    naissance: 'Birth',
+  },
   misc: {
     circa: 'c.',
     century: '{o} century',

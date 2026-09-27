@@ -351,6 +351,17 @@ export default {
     'en-cours': '审查中',
     'non-reconnue': '未获认可',
   },
+  lieux: {
+    show: '显示他留下印记的 {n} 处地方',
+    showOne: '显示他留下印记的地方',
+    hide: '隐藏这些地方',
+    sepulture: '安葬地',
+    mort: '逝世地',
+    fondation: '创建',
+    oeuvre: '工作',
+    residence: '居所',
+    naissance: '出生',
+  },
   misc: {
     circa: '约',
     century: '{n}世纪',

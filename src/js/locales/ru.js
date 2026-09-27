@@ -351,6 +351,17 @@ export default {
     'en-cours': 'На рассмотрении',
     'non-reconnue': 'Не признано',
   },
+  lieux: {
+    show: 'Показать места, отмеченные им: {n}',
+    showOne: 'Показать место, отмеченное им',
+    hide: 'Скрыть эти места',
+    sepulture: 'Погребение',
+    mort: 'Место смерти',
+    fondation: 'Основание',
+    oeuvre: 'Труды',
+    residence: 'Место жительства',
+    naissance: 'Рождение',
+  },
   misc: {
     circa: 'ок.',
     century: '{r} век',
