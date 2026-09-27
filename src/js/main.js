@@ -109,6 +109,15 @@ async function start() {
       map.showLieux(lieux);
       topBar.set({ lieux: lieux.length > 0 });
     },
+    // Et ceux qu'il a pu croiser : mêmes croix que les autres saints, dans la
+    // couleur des voisins, et qui s'ouvrent comme eux.
+    onCroises: (saints) => {
+      map.showCroises(saints);
+      topBar.set({ croises: saints.length > 0 });
+    },
+    // Un voisin qu'on ouvre devient à son tour le saint de la carte : ses
+    // lieux, ses voisins, son cadre. C'est ainsi qu'on remonte une génération.
+    onOpen: (id) => openSaint(id, { fly: true }),
     onEdit: (saint) => {
       addPanel.edit(saint);
       sidebar.showTab('add');
@@ -159,7 +168,7 @@ async function start() {
     onClose: () => {
       map.highlightSaint(null);
       map.setSolo(null);
-      topBar.set({ lieux: false });
+      topBar.set({ lieux: false, croises: false });
     },
     onName: (saint, lang) => atlas.saintName(saint, lang),
   });
@@ -346,6 +355,9 @@ async function start() {
     // lire une vie au milieu de mille croix, c'est chercher des yeux celle
     // qu'on lit à chaque phrase.
     map.setSolo(saint.id);
+    // La légende nommait les perles et les voisins du saint précédent : la
+    // carte vient de les remporter, elle doit se taire avec eux.
+    topBar.set({ lieux: false, croises: false });
     if (!isWide()) sidebar.setOpen(false);
     // La carte vient de perdre la moitié de sa hauteur : elle doit le savoir
     // avant que quoi que ce soit ne recalcule un cadrage.

@@ -218,6 +218,7 @@ export class MapView {
     // fiche n'est pas ouverte, ce qui est l'état ordinaire de la carte.
     this.soloId = null;
     this.lieux = [];
+    this.croises = [];
     this.lieuxBox = null;
     this.lieuxFit = null;
 
@@ -953,6 +954,7 @@ export class MapView {
   oublierSaint() {
     this.soloId = null;
     this.lieux = [];
+    this.croises = [];
     this.lieuxBox = null;
     this.lieuxFit = null;
   }
@@ -961,13 +963,16 @@ export class MapView {
     // Refermer doit tout rendre, même si le saint avait déjà été oublié en
     // chemin : sans ce second test, des lieux restaient sur la carte d'un saint
     // dont la fiche était close.
-    if (this.soloId === saintId && !(saintId === null && this.lieux.length)) return;
+    if (this.soloId === saintId
+      && !(saintId === null && (this.lieux.length || this.croises.length))) return;
     this.soloId = saintId;
-    if (!saintId) {
-      this.lieux = [];
-      this.lieuxBox = null;
-      this.lieuxFit = null;
-    }
+    // Changer de saint remporte ce qui appartenait au précédent. Ouvrir un
+    // voisin depuis la fiche laissait sinon sur la carte les perles et les
+    // croix de celui qu'on venait de quitter, au nom du nouveau.
+    this.lieux = [];
+    this.croises = [];
+    this.lieuxBox = null;
+    this.lieuxFit = null;
     this.refreshOverlay();
   }
 
@@ -979,16 +984,34 @@ export class MapView {
    */
   showLieux(lieux = [], { fit = true } = {}) {
     this.lieux = lieux;
-    if (!lieux.length) {
+    this.cadrerSolo({ fit });
+  }
+
+  /**
+   * Pose sur la carte ceux que le saint ouvert a pu croiser, ou les retire.
+   *
+   * Ils paraissent dans la couleur des voisins, sous son propre repère, et
+   * s'ouvrent comme n'importe quelle croix : c'est tout l'intérêt — on lit une
+   * vie, on voit qui vivait à côté, on passe à l'autre.
+   */
+  showCroises(saints = [], { fit = true } = {}) {
+    this.croises = saints;
+    this.cadrerSolo({ fit });
+  }
+
+  /** Le cadre qui tient le saint ouvert, ses lieux et ses voisins. */
+  cadrerSolo({ fit = true } = {}) {
+    const montres = [...this.lieux, ...this.croises];
+    if (!montres.length) {
       this.lieuxBox = null;
       this.lieuxFit = null;
       this.refreshOverlay();
       return;
     }
-    // Le cadre tient le saint et ses lieux : on ne perd pas le point de départ
-    // en allant voir où la vie s'est achevée.
+    // Le cadre tient le saint et ce qu'on montre autour : on ne perd pas le
+    // point de départ en allant voir où la vie s'est achevée.
     const saint = this.soloId ? this.atlas.pointById?.(this.soloId) : null;
-    const points = [...lieux, ...(saint ? [saint] : [])];
+    const points = [...montres, ...(saint ? [saint] : [])];
     const xs = points.map((p) => p.x);
     const ys = points.map((p) => p.y);
     const marge = Math.max(4000, (Math.max(...xs) - Math.min(...xs)) * 0.15);
@@ -1182,8 +1205,32 @@ export class MapView {
       // s'efface donc le temps de la lecture, et revient dès qu'on referme.
       const tous = this.atlas.pointsIn(this.countryId);
       const seuls = this.soloId ? tous.filter((p) => p.id === this.soloId) : tous;
-      this.clusters = this.clusterSaints(seuls);
-      this.clusters.forEach((group, index) => {
+      // Ceux qu'il a pu croiser viennent après lui dans la même table de
+      // groupes : c'est elle que le clic interroge, et un repère qui ne s'y
+      // trouve pas n'ouvre rien. Ils sont regroupés à part pour garder leur
+      // couleur — à Assise, François et Claire tiennent dans le même pixel, et
+      // l'on veut voir lequel des deux on est venu lire.
+      const groupesSolo = this.clusterSaints(seuls);
+      const groupesCroises = this.soloId && this.croises.length
+        ? this.clusterSaints(this.croises) : [];
+      this.clusters = [...groupesSolo, ...groupesCroises];
+
+      groupesCroises.forEach((group, i) => {
+        const index = groupesSolo.length + i;
+        const shared = group.every((s) => s.city === group[0].city) ? group[0].city : '';
+        const node = this.makeMarker({
+          x: group.x, y: group.y, kind: 'saint', group, index,
+          text: group.length === 1
+            ? this.atlas.saintName(group[0], this.lang)
+            : (shared || t('map.several', { n: group.length })),
+          // Sous tout le reste : ce sont des voisins, non le saint qu'on lit.
+          priority: 1e8 + group.length,
+        });
+        node.classList.add('marker--croise');
+        nodes.push(node);
+      });
+
+      groupesSolo.forEach((group, index) => {
         const shared = group.every((s) => s.city === group[0].city) ? group[0].city : '';
         const node = this.makeMarker({
           x: group.x, y: group.y, kind: 'saint', group, index,

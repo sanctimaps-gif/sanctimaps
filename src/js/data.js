@@ -65,6 +65,19 @@ const VERSION_STORE = 3;
 const coucheVide = () => ({ added: [], edits: {}, removed: [] });
 const storeVide = () => ({ version: VERSION_STORE, ...coucheVide(), apparitions: coucheVide() });
 
+/**
+ * Distance entre deux points, en kilomètres.
+ *
+ * Une approximation plane : sur les vingt-cinq kilomètres qui nous intéressent,
+ * et hors des pôles, elle vaut la formule de haversine à quelques mètres près,
+ * pour un dixième du calcul — et il s'en fait des dizaines de milliers.
+ */
+function distanceKm(a, b) {
+  const dLat = (a.lat - b.lat) * 111;
+  const dLng = (a.lng - b.lng) * 111 * Math.cos((a.lat * Math.PI) / 180);
+  return Math.hypot(dLat, dLng);
+}
+
 /** Une couche relue d'un enregistrement quelconque, sans lui faire confiance. */
 function lireCouche(source) {
   const brut = source && typeof source === 'object' ? source : {};
@@ -142,8 +155,11 @@ export class Atlas {
     // Les lieux marqués par un saint : une table à part, qui descend après la
     // carte et n'est lue que par la fiche ouverte.
     this.lieux = {};
+    this.liens = {};
     this.lieuxPromise = null;
     this.lieuxListeners = new Set();
+    // La grille des lieux, bâtie au premier besoin : voir `rencontresDe`.
+    this.grille = null;
 
     this.store = readStore();
     this.placeCache = new Map();
@@ -212,6 +228,8 @@ export class Atlas {
       this.lieuxPromise = getJSON(`${BASE}/lieux.json`)
         .then((data) => {
           this.lieux = data.lieux || {};
+          this.liens = data.liens || {};
+          this.grille = null;
           this.lieuxReady = true;
           for (const fn of this.lieuxListeners) fn();
           return this.lieux;
@@ -240,6 +258,117 @@ export class Atlas {
    */
   lieuxDe(saintId) {
     return this.lieux?.[saintId] || [];
+  }
+
+  // -- qui a pu croiser qui -------------------------------------------------
+
+  /**
+   * Les bornes d'une vie, même quand on n'en connaît qu'une.
+   *
+   * Beaucoup de fiches n'ont qu'une date. On complète l'autre par soixante-dix
+   * ans — c'est une convention, elle est dite, et elle ne sert qu'à écarter les
+   * siècles : deux saints séparés par trois cents ans ne se croiseront pas
+   * quelle que soit la marge. Une fiche sans aucune date n'entre pas dans le
+   * calcul, faute de quoi tout le monde aurait pu rencontrer tout le monde.
+   */
+  static vie(saint) {
+    const { born, died } = saint;
+    if (born == null && died == null) return null;
+    return [born ?? died - 70, died ?? born + 70];
+  }
+
+  /**
+   * La grille des lieux : une case de quart de degré, tous les points dedans.
+   *
+   * Chaque saint y pose son point de carte et chacun des lieux qu'il a marqués.
+   * Elle se bâtit une fois, au premier saint dont on demande les rencontres, et
+   * dure ce que dure la table des lieux. Sans elle il faudrait comparer chaque
+   * saint aux quatre mille cinq cents autres, une fois par lieu.
+   */
+  batirGrille() {
+    const grille = new Map();
+    const poser = (lat, lng, id, nom) => {
+      if (typeof lat !== 'number' || typeof lng !== 'number') return;
+      const cle = `${Math.round(lat * 4)}/${Math.round(lng * 4)}`;
+      const seau = grille.get(cle) || [];
+      seau.push({ lat, lng, id, nom });
+      grille.set(cle, seau);
+    };
+    for (const saint of this.saints) {
+      if (saint.kind === 'apparition') continue;
+      poser(saint.lat, saint.lng, saint.id, saint.city);
+      for (const lieu of this.lieux[saint.id] || []) poser(lieu.lat, lieu.lng, saint.id, lieu.nom);
+    }
+    this.grille = grille;
+    return grille;
+  }
+
+  /**
+   * Ceux que ce saint a pu croiser.
+   *
+   * Deux sortes, et l'on ne mélange pas les deux tons :
+   *
+   * - **les liens attestés**, que Wikidata écrit noir sur blanc — Scholastique
+   *   est la sœur de Benoît, Claire la disciple de François. Ils viennent avec
+   *   la table des lieux et ne se discutent pas ;
+   * - **les rencontres possibles**, que personne n'a écrites : deux vies qui se
+   *   recouvrent d'au moins cinq ans, et un lieu qu'ils ont tous deux marqué à
+   *   moins de vingt-cinq kilomètres près. C'est une conjecture, elle se dit
+   *   comme telle — « a pu croiser » —, et le lieu partagé est nommé pour qu'on
+   *   juge sur pièce.
+   *
+   * Rome compterait des centaines de ces voisinages : on n'en garde que douze,
+   * les plus proches d'abord, puis les vies qui se recouvrent le plus longtemps.
+   * Une liste de deux cents noms ne se lit pas, et ne dit rien de plus.
+   */
+  rencontresDe(saintId) {
+    const saint = this.pointById(saintId);
+    if (!saint || saint.kind === 'apparition') return [];
+
+    // D'abord ce qui est écrit : l'ordre du fichier est celui de la parenté.
+    const attestes = [];
+    const vus = new Set([saintId]);
+    for (const lien of this.liens[saintId] || []) {
+      const autre = this.pointById(lien.id);
+      if (!autre || vus.has(lien.id)) continue;
+      vus.add(lien.id);
+      attestes.push({ saint: autre, quoi: lien.quoi, atteste: true });
+    }
+
+    const mienne = Atlas.vie(saint);
+    if (!mienne) return attestes;
+
+    const grille = this.grille || this.batirGrille();
+    const miens = [{ lat: saint.lat, lng: saint.lng, nom: saint.city },
+      ...this.lieuxDe(saintId)];
+    const possibles = new Map();
+    for (const point of miens) {
+      const ci = Math.round(point.lat * 4);
+      const cj = Math.round(point.lng * 4);
+      for (let i = ci - 1; i <= ci + 1; i += 1) {
+        for (let j = cj - 1; j <= cj + 1; j += 1) {
+          for (const autre of grille.get(`${i}/${j}`) || []) {
+            if (vus.has(autre.id) || autre.id === saintId) continue;
+            const km = distanceKm(point, autre);
+            if (km > 25) continue;
+            const fiche = this.pointById(autre.id);
+            const sienne = fiche && Atlas.vie(fiche);
+            if (!sienne) continue;
+            const ensemble = Math.min(mienne[1], sienne[1]) - Math.max(mienne[0], sienne[0]);
+            if (ensemble < 5) continue;
+            const deja = possibles.get(autre.id);
+            if (deja && deja.km <= km) continue;
+            possibles.set(autre.id, {
+              saint: fiche, quoi: 'lieu', ou: autre.nom || point.nom, km, ensemble,
+            });
+          }
+        }
+      }
+    }
+
+    return [...attestes, ...[...possibles.values()]
+      .sort((a, b) => a.km - b.km || b.ensemble - a.ensemble)
+      .slice(0, 12)];
   }
 
   /** Prévenu quand les textes sont là, pour redessiner ce qui les montre. */
@@ -309,6 +438,9 @@ export class Atlas {
 
     this.everySaint = all;
     this.byId = new Map(all.map((s) => [s.id, s]));
+    // Le corpus a bougé : la grille des lieux ne décrit plus qu'un état passé,
+    // et se rebâtira au premier besoin.
+    this.grille = null;
 
     const visible = all.filter((s) => this.canSee(s));
     this.saints = visible;

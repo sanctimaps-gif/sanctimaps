@@ -32,7 +32,9 @@ export class TopBar {
     this.onWorld = onWorld;
     this.onContinent = onContinent;
     this.onCorpus = onCorpus;
-    this.state = { mode: 'world', continentId: null, countryId: null, lieux: false };
+    this.state = {
+      mode: 'world', continentId: null, countryId: null, lieux: false, croises: false,
+    };
 
     this.trail = h('nav', { class: 'trail', 'aria-label': 'fil d’Ariane' });
     this.corpus = h('div', { class: 'corpus', role: 'group' });
@@ -138,6 +140,9 @@ export class TopBar {
         // légende qui nomme ce qu'on ne voit pas est une devinette.
         this.state.lieux
           ? h('li', {}, h('i', { class: 'swatch swatch--lieu' }), t('legend.lieu'))
+          : null,
+        this.state.croises
+          ? h('li', {}, h('i', { class: 'swatch swatch--croise' }), t('legend.croise'))
           : null),
     );
   }

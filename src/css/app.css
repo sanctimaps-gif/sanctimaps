@@ -25,6 +25,10 @@
      croix ni le bleu des apparitions, et qui laisse la croix devant. */
   --lieu: #3f7d68;
   --lieu-ink: #2c5a4b;
+  /* Ceux qu'il a pu croiser : un violet sourd, qui n'est aucune des trois
+     autres couleurs et qui se lit comme « d'autres vies, à côté de celle-ci ». */
+  --croise: #6b4f8c;
+  --croise-ink: #513a6b;
   --user: #2f6b4f;
   --pending: #b4741d;
   --shadow: 0 10px 30px rgb(36 32 27 / 18%);
@@ -58,6 +62,8 @@
     --apparition: #7fa8e8;
     --lieu: #6fbfa3;
     --lieu-ink: #8fd3ba;
+    --croise: #a98cd6;
+    --croise-ink: #c0aae3;
     --user: #63b58c;
     --pending: #d9a441;
     --shadow: 0 10px 30px rgb(0 0 0 / 45%);
@@ -85,6 +91,8 @@
   --apparition: #7fa8e8;
   --lieu: #6fbfa3;
   --lieu-ink: #8fd3ba;
+  --croise: #a98cd6;
+  --croise-ink: #c0aae3;
   --user: #63b58c;
   --pending: #d9a441;
   --shadow: 0 10px 30px rgb(0 0 0 / 45%);
@@ -493,6 +501,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* Un lieu marqué par le saint : une perle, non une croix. Elle entoure le saint
    ouvert sans lui disputer l'œil — c'est lui qu'on est venu voir — et ne mène
    nulle part, d'où le curseur qui ne promet rien. */
+/* Un voisin : le même médaillon qu'un saint, dans le violet des autres vies, et
+   un peu en retrait — c'est la vie qu'on lit qui doit rester au premier plan.
+   Il s'ouvre comme n'importe quelle croix : c'est tout l'intérêt. */
+.marker--croise .marker__badge { fill: var(--croise); }
+.marker--croise .marker__halo { fill: var(--croise); }
+.marker--croise .marker__label { fill: var(--croise-ink); }
+.marker--croise { opacity: 0.88; }
+.marker--croise:hover, .marker--croise:focus-visible { opacity: 1; }
+
 .marker--lieu { cursor: default; }
 .marker--lieu .marker__perle {
   fill: var(--lieu);
@@ -909,6 +926,13 @@ button, input, select, textarea { font: inherit; color: inherit; }
   margin: 0 0.075rem;
 }
 
+/* Le médaillon d'un voisin : celui d'un saint, dans le violet des autres vies. */
+.swatch--croise {
+  background: var(--croise);
+  border-radius: 4px;
+  position: relative;
+}
+
 /* Le repère d'une apparition : le même médaillon, dans le bleu marial. */
 .swatch--apparition {
   background: var(--apparition);
@@ -933,7 +957,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .detail__lieux {
   margin: 0.2rem 0 0.6rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: flex-end;
+  gap: 0.4rem;
 }
 
 .detail__lieux-btn {
@@ -978,6 +1004,67 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .detail__lieu-nom { color: var(--ink); }
+
+/* Le second bouton et sa liste : les voisins. Même dessin que les lieux, autre
+   couleur — on ne confond pas un endroit avec quelqu'un. */
+.detail__croises-btn {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.7rem;
+  border-color: var(--croise);
+  color: var(--croise-ink);
+}
+
+.detail__croises-btn.is-on {
+  background: var(--croise);
+  color: var(--panel);
+  border-color: var(--croise);
+}
+
+.detail__croises-liste {
+  list-style: none;
+  margin: 0 0 0.8rem;
+  padding: 0.3rem 0.35rem;
+  display: grid;
+  gap: 0.1rem;
+  background: var(--accent-soft);
+  border-radius: var(--radius);
+}
+
+/* Chaque voisin est un bouton : sa fiche s'ouvre, et la carte le suit. */
+.detail__croise {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 0.5rem;
+  align-items: baseline;
+  width: 100%;
+  text-align: start;
+  border: 0;
+  background: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.4rem;
+  cursor: pointer;
+  font: inherit;
+}
+
+.detail__croise:hover { background: var(--panel); }
+.detail__croise:focus-visible { outline: 2px solid var(--croise); outline-offset: -2px; }
+.detail__croise-nom { font-size: 0.92rem; color: var(--ink); }
+
+/* Ce qui les rapproche. Un lien attesté s'écrit en clair — « sa sœur » —, un
+   voisinage se dit du lieu qui le fonde : l'un est écrit quelque part, l'autre
+   est une possibilité, et la fiche ne doit pas les confondre. */
+.detail__croise-quoi {
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+  font-family: var(--font-ui);
+}
+
+.detail__croise-quoi.is-atteste {
+  color: var(--croise-ink);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.7rem;
+}
 
 /* ------------------------------------------------ La fiche, moitié du bas */
 
