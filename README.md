@@ -847,6 +847,49 @@ qu'il masquait à moitié. Il était pourtant placé « en haut à gauche » : m
 son conteneur n'était pas positionné, de sorte que l'absolu se calait sur la
 page entière au lieu de la partie carte. Une déclaration manquait, une seule.
 
+### Viser le Luxembourg avec un doigt
+
+Sur l'Europe entière, le Luxembourg fait **quatre pixels sur huit** ; Malte,
+Andorre et Monaco en font trois. Aucun doigt ne vise cela, et un doigt qui manque
+tombait sur le voisin. Deux remèdes, qui se complètent.
+
+**Le continent se grossit.** Le zoom libre n'existait qu'en vue pays ; il existe
+maintenant aussi au continent, à la molette, au pincement, au clavier et par les
+deux boutons — qui paraissent désormais dès ce niveau. Jusqu'à **huit fois** le
+cadrage d'arrivée, ce qui porte le Luxembourg à trente-deux pixels sur soixante
+et Andorre à dix-huit sur seize. Au-delà, on ne choisit plus un pays, on visite
+le sien : c'est la vue pays qui sert à cela. Le bouton « ⤢ » revient au continent
+entier, et le déplacement reste borné par ses limites.
+
+**Le nom devient une cible.** « Luxembourg » écrit sur la carte fait quatre-vingt-
+huit pixels sur quarante-neuf, quand le Luxembourg en fait quatre sur huit : un
+rectangle invisible posé derrière le nom reçoit le doigt et ouvre le pays. C'est
+d'ailleurs ce qu'on visait — on vise le mot, pas le contour.
+
+Deux règles étaient nécessaires pour que ce second remède ne fasse pas plus de mal
+que de bien, et l'essai au navigateur a trouvé les deux :
+
+- **le tracé l'emporte sur le mot.** « Allemagne », écrit en travers, couvre la
+  Belgique tout entière à l'échelle de l'Europe : un doigt posé sur la Belgique
+  ouvrait l'Allemagne. Qui touche une terre a visé cette terre ; le nom ne sert
+  que là où il n'y a rien d'autre à viser — la mer, ou un pays trop petit ;
+- **une étiquette masquée ne reçoit plus rien.** `pointer-events` s'hérite, mais
+  une valeur explicite sur l'enfant l'emporte : le rectangle disait « all » et
+  continuait d'intercepter le doigt sous un nom invisible. À l'échelle de
+  l'Europe, où les noms du Benelux se recouvrent tous, viser la Belgique ouvrait
+  les Pays-Bas.
+
+Un troisième défaut est tombé au passage, et il était ancien : **tout pincement
+se terminait par une tape**. Le second doigt ne marquait pas le geste comme un
+déplacement, de sorte qu'au relâchement la carte ouvrait ce que le premier doigt
+touchait — on zoomait sur l'Europe et l'on se retrouvait en Suède.
+
+Une limite assumée : le fond de carte est en basse définition — cent dix
+millions —, et à huit fois le Danemark devient un polygone à six sommets. C'est
+le prix d'un planisphère de cent soixante-dix kilooctets, et l'on grossit ici
+pour atteindre un pays, non pour en admirer les côtes ; le contour fin arrive
+quand le pays s'ouvre.
+
 ### Le geste qui faisait tout disparaître
 
 « Quand on appuie sur un saint, les autres saints du pays disparaissent. » Ils

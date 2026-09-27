@@ -271,14 +271,22 @@ async function start() {
 
   // Quitter le pays laisse la fiche sans son point sur la carte : elle parlerait
   // d'un saint qu'on ne voit plus. Elle se referme donc avec lui.
+  // Quitter un niveau ferme la fiche, qui rend à la carte la moitié du bas.
+  // Elle doit le savoir **avant** de calculer son cadrage : le
+  // `ResizeObserver` ne s'en apercevrait qu'à l'image suivante, une fois le
+  // cadrage déjà calculé sur la moitié de hauteur — le continent arrivait alors
+  // à une échelle plus petite qu'il n'aurait dû, et le bouton « ⤢ » sautait
+  // d'un quart en le recadrant pour de bon.
   function goWorld() {
     fiche.close();
+    map.remeasure();
     map.showWorld();
     syncChrome();
   }
 
   function goContinent(id) {
     fiche.close();
+    map.remeasure();
     map.showContinent(id);
     syncChrome();
   }

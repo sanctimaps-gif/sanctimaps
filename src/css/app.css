@@ -376,6 +376,25 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .label--country .label__text { font-size: 0.8rem; }
 .label--country.has-saints .label__text { font-weight: 700; }
 
+/* Le nom du pays est une cible, et la plus grande qui soit à l'échelle d'un
+   continent : « Luxembourg » fait six centimètres carrés, le Luxembourg trois
+   millimètres. Le rectangle est invisible mais reçoit le doigt — « fill: none »
+   ne suffirait pas, il faut le dire à `pointer-events`. */
+.label--country { pointer-events: auto; cursor: pointer; }
+.label__hit { fill: none; pointer-events: all; }
+.label--country:hover .label__text { fill: var(--accent); }
+
+/* Une étiquette masquée par une autre ne doit pas continuer à recevoir les
+   clics : on ne vise pas un nom qu'on ne voit pas.
+
+   Les deux lignes sont nécessaires, et c'est tout le piège : « pointer-events »
+   s'hérite, mais une valeur explicite sur l'enfant l'emporte. Le rectangle
+   disait « all », et continuait donc de recevoir le doigt sous une étiquette
+   invisible — à l'échelle de l'Europe, où les noms du Benelux se recouvrent
+   tous, viser la Belgique ouvrait les Pays-Bas. */
+.label.is-crowded,
+.label.is-crowded .label__hit { pointer-events: none; }
+
 .label__count {
   font-size: 0.68rem;
   fill: var(--accent);

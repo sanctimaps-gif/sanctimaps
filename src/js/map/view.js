@@ -23,6 +23,22 @@ const WORLD_COVER = 3.2;
  */
 const COUNTRY_ZOOM = [1, 40];
 
+/**
+ * Bornes de zoom en vue « continent ».
+ *
+ * Le Luxembourg, Malte, le Monténégro font trois millimètres sur l'Europe
+ * entière : viser un pays de cette taille avec un doigt est impossible, et un
+ * doigt qui manque tombait sur le voisin. On peut donc désormais grossir le
+ * continent jusqu'à ce que le plus petit de ses pays devienne une cible, sans
+ * changer de niveau — c'est toujours le continent qu'on regarde.
+ *
+ * Huit fois suffit : à ce grossissement, le Luxembourg fait deux centimètres et
+ * demi sur un téléphone, et la mer est encore visible autour de Malte. Au-delà,
+ * on ne choisit plus un pays, on visite le sien — et c'est la vue pays qui sert
+ * à cela.
+ */
+const CONTINENT_ZOOM = [1, 8];
+
 /** Rapport au-delà duquel on ne va pas, même pour un très grand pays. */
 const COUNTRY_ZOOM_MAX = 200;
 const COUNTRY_ZOOM_MAX_TILED = 12000;
@@ -63,6 +79,15 @@ const TILE_MARGIN = 0.1;
 
 /** Déplacement, dans la même unité, au-delà duquel le calque est recalculé. */
 const OVERLAY_REDRAW = 0.25;
+
+/**
+ * Marge de la cible autour d'un nom de pays, en pixels.
+ *
+ * Douze pixels de chaque côté : un nom de huit lettres devient une cible de
+ * cent pixels sur quarante, quand le Luxembourg en fait trois sur trois. C'est
+ * la marge qui fait la différence entre viser un mot et viser un pays.
+ */
+const LABEL_HIT_PAD = 12;
 
 /** Air réservé autour d'un nom, en pixels. Généreux : c'est le blanc entre les
  *  noms qui rend une carte lisible, bien plus que leur nombre. */
@@ -319,16 +344,18 @@ export class MapView {
 
   /** N'ouvrir les commandes qu'où le zoom existe : une fois un pays ouvert. */
   syncControls() {
-    const open = this.mode === 'country';
-    this.zoomBox.hidden = !open;
-    this.scaleBar.hidden = !open;
-    if (!open) return;
+    const pays = this.mode === 'country';
+    // Les boutons paraissent dès le continent ; la barre d'échelle, elle, se
+    // calcule à la latitude du pays ouvert et n'a rien à dire avant.
+    this.zoomBox.hidden = this.mode === 'world';
+    this.scaleBar.hidden = !pays;
+    if (this.mode === 'world') return;
     const k = this.transform.k;
     const [lo, hi] = this.zoomLimits();
     this.zoomIn.disabled = k >= hi - 1e-9;
     this.zoomOut.disabled = k <= lo + 1e-9;
     this.zoomFit.disabled = this.zoomOut.disabled;
-    this.drawScale();
+    if (pays) this.drawScale();
   }
 
   /** Zoom par palier, centré sur le milieu de l'écran. */
@@ -346,6 +373,16 @@ export class MapView {
    * qui flotte au lieu de suivre sa case.
    */
   refit({ animate = true } = {}) {
+    // Au continent, « ⤢ » revient au continent entier — il n'y a pas de raison
+    // que le bouton ne réponde qu'à un seul niveau.
+    if (this.mode === 'continent') {
+      const continent = this.atlas.continentById.get(this.continentId);
+      if (!continent) return;
+      const cadre = this.frame(continent.bbox, { cover: true, padding: 0.03 });
+      this.fitScale = cadre.k;
+      if (animate) this.animateTo(cadre); else this.apply(cadre);
+      return;
+    }
     const country = this.atlas.countryById.get(this.countryId);
     if (!country) return;
     const target = this.frame(country.focus, { padding: 0.07 });
@@ -374,6 +411,12 @@ export class MapView {
   /** La carte montre-t-elle le pays tout entier, ou le lecteur a-t-il zoomé ? */
   atFullCountry() {
     return this.mode === 'country' && this.fitScale
+      && this.transform.k <= this.fitScale * 1.02;
+  }
+
+  /** La même question au continent : est-on au cadrage d'arrivée ? */
+  atFullContinent() {
+    return this.mode === 'continent' && this.fitScale
       && this.transform.k <= this.fitScale * 1.02;
   }
 
@@ -741,9 +784,13 @@ export class MapView {
     this.reserved = null;
     this.fonts.clear();
     if (this.mode === 'world') this.apply(this.worldFrame());
-    else if (this.mode === 'continent') {
-      const bbox = this.atlas.continentById.get(this.continentId).bbox;
-      this.apply(this.frame(bbox, { cover: true, padding: 0.03 }));
+    else if (this.atFullContinent()) {
+      // Le continent était montré en entier : il doit l'être encore.
+      this.refit({ animate: false });
+    } else if (this.mode === 'continent') {
+      // Le lecteur avait grossi pour viser un petit pays : son échelle est un
+      // choix, et l'ouverture de la fiche n'a pas à le lui reprendre.
+      this.apply({ ...this.transform });
     } else if (this.atFullCountry()) {
       // La carte montrait le pays tout entier : elle doit le montrer encore.
       // C'est par là que passe l'ouverture et la fermeture de la fiche, qui
@@ -799,6 +846,9 @@ export class MapView {
     this.syncCountryClasses();
     this.refreshOverlay();
     const target = this.frame(continent.bbox, { cover: true, padding: 0.03 });
+    // L'échelle d'arrivée du continent : c'est elle qui sert de plancher au
+    // zoom, et qui dit si le lecteur a grossi ou non.
+    this.fitScale = target.k;
     if (animate) this.animateTo(target); else this.apply(target);
   }
 
@@ -1002,6 +1052,7 @@ export class MapView {
           sub: count ? String(count) : '',
           cls: `label label--country${count ? ' has-saints' : ''}`,
           priority: country.area + (count ? 1e12 : 0),
+          country: id,
         }));
       }
     } else if (this.mode === 'country') {
@@ -1101,17 +1152,33 @@ export class MapView {
     return groups;
   }
 
-  makeLabel({ x, y, text, sub, cls, priority }) {
+  /**
+   * Une étiquette de pays, et sa cible.
+   *
+   * Le nom écrit sur la carte est une bien plus grande cible que le pays
+   * lui-même : « Luxembourg » fait six centimètres carrés, le Luxembourg trois
+   * millimètres. Un rectangle invisible posé derrière le nom reçoit donc le
+   * doigt, et ouvre le pays. C'est le même geste, sur ce qu'on visait
+   * réellement — car on vise le nom, pas le contour.
+   *
+   * Le texte vit dans un groupe à lui, `label__ink` : c'est lui qu'on mesure,
+   * sans quoi le rectangle mesurerait le rectangle.
+   */
+  makeLabel({ x, y, text, sub, cls, priority, country }) {
     const group = el('g', { class: cls });
+    const hit = el('rect', { class: 'label__hit', rx: 8 });
+    const ink = el('g', { class: 'label__ink' });
     const main = el('text', { class: 'label__text', 'text-anchor': 'middle' });
     main.textContent = text;
-    group.append(main);
+    ink.append(main);
     if (sub) {
       const badge = el('text', { class: 'label__count', 'text-anchor': 'middle', dy: '1.15em' });
       badge.textContent = sub;
-      group.append(badge);
+      ink.append(badge);
     }
-    const item = { node: group, x, y, text, priority, kind: 'label' };
+    group.append(hit, ink);
+    if (country) group.dataset.country = country;
+    const item = { node: group, ink, hit, x, y, text, priority, kind: 'label' };
     this.labels.push(item);
     return group;
   }
@@ -1215,8 +1282,10 @@ export class MapView {
     if (item.metrics) return item.metrics;
     // Tout ce qui se compte par centaines passe par la mesure rapide. Les
     // étiquettes de pays, elles, sont quelques dizaines, ne servent qu'en vue
-    // continent — où le zoom est verrouillé — et portent une pastille de
-    // compte sous le nom : pour elles, la mesure exacte du tracé reste juste.
+    // continent et portent une pastille de compte sous le nom : pour elles, la
+    // mesure exacte du tracé reste juste. Elle ne change pas avec le zoom — le
+    // calque n'est pas déformé —, et le cache reste donc valable quand on
+    // grossit le continent.
     if (item.kind !== 'label') {
       const { font, h, dy } = this.fontOf(item);
       // Le médaillon d'un saint déborde son nom quand celui-ci est très court.
@@ -1225,8 +1294,8 @@ export class MapView {
       return item.metrics;
     }
     try {
-      const box = item.node.getBBox();
-      item.metrics = { w: box.width, h: box.height };
+      const box = (item.ink || item.node).getBBox();
+      item.metrics = { w: box.width, h: box.height, bx: box.x, by: box.y };
     } catch {
       const size = item.kind === 'label' ? 13 : 11;
       item.metrics = { w: item.text.length * size * 0.6, h: size * 1.5 };
@@ -1276,9 +1345,19 @@ export class MapView {
 
     const ordered = items.filter((i) => i.visible).sort((a, b) => b.priority - a.priority);
     for (const item of ordered) {
-      const { w, h, dy = 0 } = this.measure(item);
+      const { w, h, dy = 0, bx, by } = this.measure(item);
 
       item.node.setAttribute('transform', `translate(${item.sx} ${item.sy})`);
+
+      // La cible du doigt suit le nom, une fois pour toutes : ni la taille ni
+      // la position de l'étiquette ne changent avec le zoom.
+      if (item.hit && !item.hitSized && bx != null) {
+        item.hit.setAttribute('x', String(Math.round(bx - LABEL_HIT_PAD)));
+        item.hit.setAttribute('y', String(Math.round(by - LABEL_HIT_PAD)));
+        item.hit.setAttribute('width', String(Math.round(w + LABEL_HIT_PAD * 2)));
+        item.hit.setAttribute('height', String(Math.round(h + LABEL_HIT_PAD * 2)));
+        item.hitSized = true;
+      }
 
       // Un peu d'air autour de chaque nom : deux étiquettes qui se frôlent se
       // lisent presque aussi mal que deux qui se recouvrent.
@@ -1316,9 +1395,13 @@ export class MapView {
       pointers.set(event.pointerId, local(event));
       if (pointers.size === 1) {
         start = { ...local(event), transform: { ...this.transform }, moved: false, target: event.target };
-      } else if (pointers.size === 2 && this.mode === 'country') {
+      } else if (pointers.size === 2 && this.mode !== 'world') {
         const [a, b] = [...pointers.values()];
         pinch = { distance: Math.hypot(a.x - b.x, a.y - b.y), transform: { ...this.transform } };
+        // Un second doigt, et ce n'est plus une tape. Sans cette ligne, tout
+        // pincement se terminait par un clic sur ce que le premier doigt
+        // touchait : on zoomait sur l'Europe, et l'on se retrouvait en Suède.
+        if (start) start.moved = true;
       }
     });
 
@@ -1360,7 +1443,9 @@ export class MapView {
     this.svg.addEventListener('pointercancel', release);
 
     this.svg.addEventListener('wheel', (event) => {
-      if (this.mode !== 'country') return; // Le zoom libre n'existe qu'en vue pays.
+      // Le zoom libre existe au pays et au continent ; au monde, il n'y a rien
+      // de plus à voir qu'un planisphère déjà entier.
+      if (this.mode === 'world') return;
       event.preventDefault();
       const factor = Math.exp(-event.deltaY * 0.0015);
       this.zoomAround(local(event), factor, this.transform);
@@ -1383,7 +1468,7 @@ export class MapView {
         event.stopPropagation();
         return;
       }
-      if (this.mode !== 'country') return;
+      if (this.mode === 'world') return;
       if (event.ctrlKey || event.metaKey || event.altKey) return;
       // Rien ne doit se déclencher pendant qu'on écrit dans la barre de recherche.
       if (event.target.closest?.('input, textarea, select, [contenteditable]')) return;
@@ -1397,8 +1482,16 @@ export class MapView {
     window.addEventListener('keydown', this.onKey);
   }
 
-  /** Bornes absolues du zoom pour le pays ouvert. */
+  /** Bornes absolues du zoom, selon le niveau ouvert. */
   zoomLimits() {
+    // Au continent, il ne s'agit pas de descendre au sol mais de rendre un
+    // petit pays atteignable au doigt : un simple rapport au cadrage d'arrivée
+    // suffit, et la borne basse est ce cadrage même — en dessous, on verrait
+    // du vide autour d'un continent qu'on a déjà cadré au mieux.
+    if (this.mode === 'continent') {
+      const fit = this.fitScale || this.transform.k;
+      return [fit * CONTINENT_ZOOM[0], fit * CONTINENT_ZOOM[1]];
+    }
     // Sans fond de tuiles, descendre plus bas que la quarantaine de mètres par
     // pixel ne montrerait qu'un aplat : nos données s'arrêtent là. Avec, il y a
     // des rues à voir, et l'on peut aller jusqu'au niveau du pâté de maisons.
@@ -1415,7 +1508,7 @@ export class MapView {
   }
 
   zoomAround(point, factor, base) {
-    if (this.mode !== 'country' || !this.fitScale) return;
+    if (this.mode === 'world' || !this.fitScale) return;
     const [lo, hi] = this.zoomLimits();
     const k = Math.min(hi, Math.max(lo, base.k * factor));
     const ratio = k / base.k;
@@ -1424,6 +1517,25 @@ export class MapView {
       x: point.x - (point.x - base.x) * ratio,
       y: point.y - (point.y - base.y) * ratio,
     });
+  }
+
+  /**
+   * Le pays dont le tracé passe sous ce point, s'il y en a un.
+   *
+   * On interroge la pile d'éléments plutôt que la cible de l'événement : la
+   * cible est celle du dessus — une étiquette, un rectangle de visée —, et l'on
+   * cherche précisément ce qu'elle recouvre.
+   */
+  countryUnder(point) {
+    const rect = this.root.getBoundingClientRect();
+    const pile = document.elementsFromPoint?.(rect.left + point.x, rect.top + point.y) || [];
+    for (const node of pile) {
+      if (node.classList?.contains('country')) return node.dataset.country;
+      // On ne descend pas plus bas que la carte : ce qui est derrière elle
+      // n'est plus de la géographie.
+      if (node === this.svg) break;
+    }
+    return null;
   }
 
   /**
@@ -1526,7 +1638,17 @@ export class MapView {
     this.closePicker();
     const shape = target.closest?.('[data-country]');
     if (shape) {
-      this.handlers.onCountry?.(shape.dataset.country);
+      // Le nom d'un pays est une cible, mais il ne doit pas voler le doigt à
+      // son voisin. « Allemagne » écrit en travers de la carte couvre la
+      // Belgique tout entière à l'échelle de l'Europe : un doigt posé sur la
+      // Belgique ouvrait l'Allemagne, ce qui est pire que le mal qu'on
+      // soignait.
+      //
+      // La règle est donc simple : le tracé l'emporte sur le mot. Qui pose le
+      // doigt sur une terre a visé cette terre ; le nom ne sert que là où il
+      // n'y a rien d'autre à viser — la mer, ou le pays lui-même, trop petit
+      // pour être touché.
+      this.handlers.onCountry?.(this.countryUnder(point) || shape.dataset.country);
       return;
     }
     // Un clic « à côté » ne vaut pas un retour, et ce pour deux raisons.
