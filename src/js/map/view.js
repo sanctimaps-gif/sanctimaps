@@ -881,7 +881,13 @@ export class MapView {
     if (!country) return;
     // Changer de pays, c'est quitter le saint qu'on lisait : ses lieux
     // n'auraient plus rien à faire sur une carte qui montre autre chose.
-    if (this.countryId !== id) this.oublierSaint();
+    //
+    // Sauf quand c'est vers **son** pays qu'on vole : ouvrir une fiche montre
+    // d'abord le saint seul, puis vole jusqu'à lui — et cet ordre-là est voulu,
+    // la fiche prenant la moitié du bas avant que le cadrage se calcule. Sans
+    // cette réserve, le vol effaçait le saint que l'on venait d'isoler.
+    const solo = this.soloId ? this.atlas.pointById?.(this.soloId) : null;
+    if (this.countryId !== id && solo?.country !== id) this.oublierSaint();
     this.closePicker();
     if (this.countryId !== id) this.clearTiles();
     this.mode = 'country';
@@ -943,9 +949,16 @@ export class MapView {
   }
 
   setSolo(saintId) {
-    if (this.soloId === saintId) return;
+    // Refermer doit tout rendre, même si le saint avait déjà été oublié en
+    // chemin : sans ce second test, des lieux restaient sur la carte d'un saint
+    // dont la fiche était close.
+    if (this.soloId === saintId && !(saintId === null && this.lieux.length)) return;
     this.soloId = saintId;
-    if (!saintId) this.lieux = [];
+    if (!saintId) {
+      this.lieux = [];
+      this.lieuxBox = null;
+      this.lieuxFit = null;
+    }
     this.refreshOverlay();
   }
 

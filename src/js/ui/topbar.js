@@ -32,7 +32,7 @@ export class TopBar {
     this.onWorld = onWorld;
     this.onContinent = onContinent;
     this.onCorpus = onCorpus;
-    this.state = { mode: 'world', continentId: null, countryId: null };
+    this.state = { mode: 'world', continentId: null, countryId: null, lieux: false };
 
     this.trail = h('nav', { class: 'trail', 'aria-label': 'fil d’Ariane' });
     this.corpus = h('div', { class: 'corpus', role: 'group' });
@@ -133,7 +133,12 @@ export class TopBar {
         // lui qui écrit les localités, et nous n'en posons plus aucune.
         h('li', { class: 'legend__city' }, h('i', { class: 'swatch swatch--city' }), t('legend.city')),
         h('li', {}, h('i', { class: `swatch swatch--${apparitions ? 'apparition' : 'birth'}` }),
-          t(apparitions ? 'legend.apparition' : 'legend.birthplace'))),
+          t(apparitions ? 'legend.apparition' : 'legend.birthplace')),
+        // La ligne des perles ne paraît que lorsqu'il y en a sur la carte : une
+        // légende qui nomme ce qu'on ne voit pas est une devinette.
+        this.state.lieux
+          ? h('li', {}, h('i', { class: 'swatch swatch--lieu' }), t('legend.lieu'))
+          : null),
     );
   }
 }

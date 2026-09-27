@@ -871,6 +871,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
   position: relative;
 }
 
+/* La perle d'un lieu marqué : ronde, pleine, du vert des lieux. */
+.swatch--lieu {
+  background: var(--lieu);
+  border-radius: 50%;
+  width: 0.7rem;
+  height: 0.7rem;
+  margin: 0 0.075rem;
+}
+
 /* Le repère d'une apparition : le même médaillon, dans le bleu marial. */
 .swatch--apparition {
   background: var(--apparition);

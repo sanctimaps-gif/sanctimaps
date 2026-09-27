@@ -105,7 +105,10 @@ async function start() {
     onLocate: (saint) => openSaint(saint.id, { fly: true }),
     // Les lieux marqués par le saint ouvert : la carte les pose et les cadre,
     // ou les retire. La fiche, elle, se souvient de ce qu'elle a demandé.
-    onLieux: (lieux) => map.showLieux(lieux),
+    onLieux: (lieux) => {
+      map.showLieux(lieux);
+      topBar.set({ lieux: lieux.length > 0 });
+    },
     onEdit: (saint) => {
       addPanel.edit(saint);
       sidebar.showTab('add');
@@ -156,6 +159,7 @@ async function start() {
     onClose: () => {
       map.highlightSaint(null);
       map.setSolo(null);
+      topBar.set({ lieux: false });
     },
     onName: (saint, lang) => atlas.saintName(saint, lang),
   });

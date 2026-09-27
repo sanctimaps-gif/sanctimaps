@@ -911,6 +911,67 @@ Deux remèdes, tous deux vérifiés au navigateur :
 La règle du fond valait déjà sous un fond de tuiles, et pour la même raison :
 quand tout l'écran est de la carte, il n'y a plus de « à côté ».
 
+## Les lieux qu'un saint a marqués
+
+La carte pose une croix au lieu de naissance, et une vie ne tient pas dans un
+point : Ambroise est né à Trèves et repose à Milan, Thomas Becket est né à
+Londres et c'est Canterbury qui garde son sang, Paul de Tarse a marqué vingt-sept
+lieux du pourtour méditerranéen.
+
+**Ouvrir une fiche efface les autres croix.** Un pays en porte jusqu'à mille
+cent, et lire une vie au milieu de mille croix, c'est chercher des yeux celle
+qu'on lit à chaque phrase. Elles reviennent à la fermeture.
+
+**Au-dessus du récit, à droite, un bouton** — « Voir les 3 lieux qu'il a
+marqués ». Il ne paraît que s'il y en a : un bouton qui ouvrirait une liste vide
+ne propose rien, il déçoit. Pressé, il pose des perles vertes sur la carte, cadre
+le saint et ses lieux ensemble, et déplie sous lui ce que chacune est — car un
+point ne dit pas qu'il est une sépulture.
+
+### Ce qu'est un lieu marqué
+
+Six relations de Wikidata, et six seulement :
+
+| propriété | ce qu'elle dit | le mot de la fiche |
+| --- | --- | --- |
+| P119 | lieu de sépulture | Sépulture |
+| P20 | lieu de mort | Lieu de mort |
+| P112 ⁻¹ | ce qu'il a fondé | Fondation |
+| P937 | lieu de travail | Œuvre |
+| P551 | lieu de résidence | Résidence |
+| P19 | lieu de naissance | Naissance |
+
+**Les dédicaces sont exclues, et c'est le cœur de la définition.** Il y a des
+milliers d'églises Saint-Pierre, et Pierre n'en a marqué aucune : elles ont été
+marquées *par d'autres, après lui*. Un lieu marqué par le saint est un lieu où il
+a vécu, œuvré, fondé, est mort, ou repose.
+
+La collecte a rendu **5 857 lieux pour 4 206 saints**, soit 1,4 par saint ; mille
+dix-neuf en ont plus d'un. Trois mille quatre cent trente-neuf lieux de naissance
+ont été écartés : la croix y était déjà. Un lieu qui revient par deux relations —
+on meurt là où l'on vivait, on repose là où l'on est mort — ne donne qu'une perle,
+et c'est la plus parlante des deux qui la nomme.
+
+La table pèse 640 ko et **descend après la carte**, comme les textes : elle ne
+sert qu'à qui ouvre une fiche et demande à voir. Son absence n'est pas une panne —
+la fiche n'offre alors rien à voir, ce qui est vrai.
+
+### Trois choses que le cadrage imposait
+
+- **le domaine de déplacement s'élargit aux lieux.** Boniface est né dans le
+  Wessex et repose à Fulda : la carte ramenait de force en Angleterre le lecteur
+  qu'on venait d'emmener en Hesse ;
+- **le plancher du zoom suit ce même cadre**, sinon « − » refusait de montrer
+  l'ensemble qu'on venait de cadrer ;
+- **« montre-t-on le pays entier ? » répond non** tant que des lieux sont à
+  l'écran. Sans quoi l'ouverture ou la fermeture de la fiche recadrait sur le
+  pays, et la sépulture qu'on venait d'atteindre en sortait.
+
+Un défaut d'ordre a été trouvé à l'essai : ouvrir une fiche montre le saint seul,
+*puis* vole jusqu'à lui — et cet ordre est voulu, la fiche prenant la moitié du
+bas avant que le cadrage se calcule. Le vol effaçait donc le saint qu'on venait
+d'isoler, et les autres croix revenaient aussitôt.
+
 ## Deux corpus, une bascule
 
 La carte montre les saints, ou les apparitions reconnues par l'Église — jamais
@@ -1695,6 +1756,9 @@ data/apparitions/README.md   son format, champ par champ
 data/apparitions/approbations.json  ce que l'Église en a dit, écrit à la main
 data/apparitions/corrections.json   retouches et retraits, exportés depuis la carte
 tools/import-apparitions.mjs  les apparitions, importées de Wikidata
+tools/import-lieux.mjs   les lieux qu'un saint a marqués, relevés sur Wikidata
+data/saints/lieux.json   ce qu'ils rendent : sépulture, mort, fondation, œuvre, résidence
+data/generated/lieux.json    les mêmes, placés, chargés après la carte
 data/candidats/*.json    réservoir de l'assistant
 data/reference/fond-*.json   fond documentaire de l'expert, 148 fiches complètes
 data/reference/exonymes.json graphies acceptées pour les localités

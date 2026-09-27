@@ -345,6 +345,7 @@ export default {
     city: 'Town or village',
     birthplace: 'Birthplace of a saint',
     apparition: 'Site of an apparition',
+    lieu: 'Place marked by this saint',
   },
   approbation: {
     reconnue: 'Approved by the Church',

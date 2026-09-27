@@ -345,6 +345,7 @@ export default {
     city: 'مدينة أو قرية',
     birthplace: 'مولد قدّيس',
     apparition: 'موضع ظهور',
+    lieu: 'موضع طبعه هذا القدّيس',
   },
   approbation: {
     reconnue: 'أقرّته الكنيسة',

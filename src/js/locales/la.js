@@ -345,6 +345,7 @@ export default {
     city: 'Urbs vel vicus',
     birthplace: 'Nativitas sancti',
     apparition: 'Locus apparitionis',
+    lieu: 'Locus ab hoc sancto signatus',
   },
   approbation: {
     reconnue: 'Ab Ecclesia approbata',

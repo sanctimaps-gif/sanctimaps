@@ -345,6 +345,7 @@ export default {
     city: '城镇或村庄',
     birthplace: '圣人出生地',
     apparition: '显现地点',
+    lieu: '这位圣人留下印记的地方',
   },
   approbation: {
     reconnue: '教会认可',

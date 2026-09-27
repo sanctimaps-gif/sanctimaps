@@ -345,6 +345,7 @@ export default {
     city: 'Город или село',
     birthplace: 'Место рождения святого',
     apparition: 'Место явления',
+    lieu: 'Место, отмеченное этим святым',
   },
   approbation: {
     reconnue: 'Признано Церковью',

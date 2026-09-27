@@ -345,6 +345,7 @@ export default {
     city: 'Miasto lub wieś',
     birthplace: 'Narodziny świętego',
     apparition: 'Miejsce objawienia',
+    lieu: 'Miejsce naznaczone przez tego świętego',
   },
   approbation: {
     reconnue: 'Zatwierdzone przez Kościół',

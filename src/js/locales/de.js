@@ -345,6 +345,7 @@ export default {
     city: 'Stadt oder Dorf',
     birthplace: 'Geburt eines Heiligen',
     apparition: 'Ort einer Erscheinung',
+    lieu: 'Vom Heiligen geprägter Ort',
   },
   approbation: {
     reconnue: 'Von der Kirche anerkannt',

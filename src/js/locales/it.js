@@ -345,6 +345,7 @@ export default {
     city: 'Città o villaggio',
     birthplace: 'Nascita di un santo',
     apparition: 'Luogo di un’apparizione',
+    lieu: 'Luogo segnato da questo santo',
   },
   approbation: {
     reconnue: 'Approvata dalla Chiesa',

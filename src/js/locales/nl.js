@@ -345,6 +345,7 @@ export default {
     city: 'Stad of dorp',
     birthplace: 'Geboorte van een heilige',
     apparition: 'Plaats van een verschijning',
+    lieu: 'Plaats getekend door deze heilige',
   },
   approbation: {
     reconnue: 'Door de Kerk erkend',
