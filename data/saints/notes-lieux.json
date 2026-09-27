@@ -1,0 +1,643 @@
+{
+  "note": "Ce qui s'est passé là. Un motif — « Lieu de mort », « Sépulture » — dit la catégorie, non le fait : « Jeanne d'Arc, Rouen » ne dit pas le bûcher de la place du Vieux-Marché. Ces phrases-là ne sont nulle part dans Wikidata, et se tirent des sources à la main, une par une. Elles sont donc rares et choisies : les saints qu'on ouvre le plus, et les lieux qui ont quelque chose à dire. Partout ailleurs, la fiche se rabat sur une phrase construite du motif et des dates, qui ne prétend rien de plus qu'elle ne sait.\n\nChaque note vise un saint et un lieu **par son nom exact**, tel que la table des lieux l'écrit. Un nom qui ne correspond à rien arrête la fabrication : une note qui ne se pose nulle part est une note qu'on croit écrite et qui ne paraît pas.\n\n« fr » et « en » suffisent : les dix autres langues se rabattent sur l'une des deux, comme pour les biographies.",
+  "notes": {
+    "jeanne-arc": [
+      {
+        "lieu": "Rouen",
+        "texte": {
+          "fr": "Brûlée vive place du Vieux-Marché le 30 mai 1431, à dix-neuf ans, au terme d'un procès en hérésie mené par un tribunal d'Église aux ordres des Anglais. Ses cendres furent jetées à la Seine pour qu'il n'en reste rien.",
+          "en": "Burned alive in the Place du Vieux-Marché on 30 May 1431, aged nineteen, at the end of a heresy trial run by a church court in English hands. Her ashes were thrown into the Seine so that nothing would remain."
+        },
+        "source": "Procès de condamnation, sentence du 30 mai 1431"
+      },
+      {
+        "lieu": "Domrémy, le jardin",
+        "texte": {
+          "fr": "C'est dans le jardin de son père, vers treize ans, qu'elle entend pour la première fois les voix — saint Michel, sainte Catherine, sainte Marguerite. Elle le racontera à ses juges, qui voudront savoir si elles avaient des cheveux.",
+          "en": "In her father's garden, at about thirteen, she first heard the voices — Saint Michael, Saint Catherine, Saint Margaret. She told her judges so, and they asked whether they had hair."
+        },
+        "source": "Procès de condamnation, séances des 22 et 27 février 1431"
+      }
+    ],
+    "francois-assise": [
+      {
+        "lieu": "La Verna",
+        "texte": {
+          "fr": "Le 14 septembre 1224, au terme d'un carême de quarante jours sur cette montagne donnée par un seigneur toscan, il reçoit les stigmates dans une vision de séraphin. C'est le premier cas attesté de l'histoire ; il les cacha sous ses manches jusqu'à sa mort, deux ans plus tard.",
+          "en": "On 14 September 1224, after a forty-day fast on this mountain given him by a Tuscan lord, he received the stigmata in a vision of a seraph. It is the first attested case in history; he hid the wounds in his sleeves until his death two years later."
+        },
+        "source": "Bonaventure, Legenda maior, XIII, 3"
+      },
+      {
+        "lieu": "San Damiano",
+        "texte": {
+          "fr": "Devant un crucifix peint de cette église en ruine, vers 1205 : « Va, répare ma maison qui tombe en ruine. » Il comprit qu'il s'agissait des pierres et se mit à les remonter, pierre à pierre, avant de comprendre autre chose.",
+          "en": "Before a painted crucifix in this ruined church, about 1205: “Go, repair my house, which is falling down.” He took it to mean the stones, and began carrying them himself, before he understood otherwise."
+        },
+        "source": "Legenda trium sociorum, 13"
+      },
+      {
+        "lieu": "Portioncule",
+        "texte": {
+          "fr": "La petite chapelle qu'il avait relevée de ses mains et où tout avait commencé. Il demanda qu'on l'y porte pour mourir, le 3 octobre 1226, et qu'on l'étende nu sur la terre.",
+          "en": "The small chapel he had rebuilt with his own hands, where it had all begun. He asked to be carried there to die, on 3 October 1226, and laid naked on the ground."
+        },
+        "source": "Thomas de Celano, Vita prima, 109-110"
+      },
+      {
+        "lieu": "basilique Saint-François",
+        "texte": {
+          "fr": "Son corps y fut porté en 1230 et scellé sous le maître-autel, si bien caché contre les voleurs de reliques qu'on ne le retrouva qu'en 1818, après cinquante-deux nuits de fouilles.",
+          "en": "His body was brought here in 1230 and sealed beneath the high altar, hidden from relic thieves so well that it was not found again until 1818, after fifty-two nights of digging."
+        }
+      }
+    ],
+    "claire-assise": [
+      {
+        "lieu": "San Damiano",
+        "texte": {
+          "fr": "Elle y entre à dix-huit ans, en 1212, et n'en sort plus : quarante-deux ans de clôture, dont les vingt-neuf dernières malade. C'est de là qu'elle fit reculer, dit-on, les mercenaires de Frédéric II en leur montrant le ciboire.",
+          "en": "She entered at eighteen, in 1212, and never left: forty-two years of enclosure, the last twenty-nine of them ill. From here, it is said, she turned back Frederick II's mercenaries by holding up the pyx."
+        },
+        "source": "Legenda sanctae Clarae virginis, 21-22"
+      },
+      {
+        "lieu": "basilique Sainte-Claire d'Assise",
+        "texte": {
+          "fr": "Bâtie pour elle après sa mort ; son corps y fut transféré en 1260. On y garde le crucifix de San Damiano, celui qui avait parlé à François.",
+          "en": "Built for her after her death; her body was moved here in 1260. The church keeps the San Damiano crucifix — the one that spoke to Francis."
+        }
+      }
+    ],
+    "benoit-nursie": [
+      {
+        "lieu": "abbaye du Mont-Cassin",
+        "texte": {
+          "fr": "Il y fonde son monastère vers 529, sur les ruines d'un temple d'Apollon, et y écrit la Règle qui organisera la vie monastique de tout l'Occident. Il y meurt debout dans l'oratoire, soutenu par ses frères.",
+          "en": "He founded his monastery here about 529, on the ruins of a temple of Apollo, and wrote the Rule that would shape monastic life across the West. He died here standing in the oratory, held up by his brothers."
+        },
+        "source": "Grégoire le Grand, Dialogues, II, 8 et 37"
+      },
+      {
+        "lieu": "Subiaco, le Sacro Speco",
+        "texte": {
+          "fr": "Trois ans d'ermitage dans une grotte au flanc du ravin, nourri par un moine qui lui descendait du pain au bout d'une corde. Personne ne savait qui il était.",
+          "en": "Three years as a hermit in a cave on the side of the ravine, fed by a monk who lowered bread to him on a rope. No one knew who he was."
+        },
+        "source": "Grégoire le Grand, Dialogues, II, 1"
+      }
+    ],
+    "paul-tarse": [
+      {
+        "lieu": "Le chemin de Damas",
+        "texte": {
+          "fr": "Il allait arrêter des chrétiens quand une lumière le jeta à terre : « Saul, Saul, pourquoi me persécutes-tu ? » Il en resta aveugle trois jours, et se releva pour prêcher ce qu'il venait combattre.",
+          "en": "He was on his way to arrest Christians when a light threw him to the ground: “Saul, Saul, why do you persecute me?” He was blind for three days, and rose to preach what he had come to destroy."
+        },
+        "source": "Actes des Apôtres 9, 3-9"
+      },
+      {
+        "lieu": "Rome",
+        "texte": {
+          "fr": "Décapité vers 67 sous Néron, hors les murs : citoyen romain, il échappait à la croix. C'est la seule faveur que lui valut sa citoyenneté.",
+          "en": "Beheaded about 67 under Nero, outside the walls: as a Roman citizen he was spared the cross. That was the only favour his citizenship won him."
+        }
+      },
+      {
+        "lieu": "basilique Saint-Paul-hors-les-Murs",
+        "texte": {
+          "fr": "Constantin la fit bâtir sur sa tombe, à deux milles des murs, au bord de la voie d'Ostie. Le sarcophage sous l'autel a été dégagé et sondé en 2006 ; il contenait des ossements du Ier ou du IIe siècle.",
+          "en": "Constantine built it over his grave, two miles beyond the walls on the Ostian Way. The sarcophagus under the altar was uncovered and probed in 2006; it held bones from the first or second century."
+        }
+      }
+    ],
+    "pierre-apotre": [
+      {
+        "lieu": "nécropole du Vatican",
+        "texte": {
+          "fr": "Sous la basilique, un mur rouge du IIe siècle porte un graffito grec : « Pierre est ici ». Les fouilles de 1939-1949 ont dégagé la nécropole et le petit monument que les chrétiens de Rome vénéraient déjà vers 160.",
+          "en": "Beneath the basilica, a second-century red wall carries a Greek graffito: “Peter is here.” The 1939-1949 excavations uncovered the necropolis and the small monument Roman Christians already venerated about 160."
+        }
+      },
+      {
+        "lieu": "Rome",
+        "texte": {
+          "fr": "Crucifié la tête en bas, dit la tradition, dans les jardins du Vatican, lors de la persécution de Néron qui suivit l'incendie de 64.",
+          "en": "Crucified head down, tradition says, in the Vatican gardens, during Nero's persecution after the fire of 64."
+        }
+      }
+    ],
+    "thomas-aquin": [
+      {
+        "lieu": "Naples, San Domenico Maggiore",
+        "texte": {
+          "fr": "Devant le crucifix de ce couvent, en décembre 1273 : « Tu as bien écrit de moi, Thomas. Que veux-tu pour récompense ? » — « Rien d'autre que toi. » Il cessa d'écrire ce jour-là et laissa la Somme inachevée ; il mourut trois mois plus tard.",
+          "en": "Before the crucifix of this priory, in December 1273: “You have written well of me, Thomas. What reward will you have?” — “Nothing but yourself.” He stopped writing that day, left the Summa unfinished, and died three months later."
+        },
+        "source": "Procès de canonisation, déposition de Bartolomeo de Capoue"
+      },
+      {
+        "lieu": "abbaye de Fossanova",
+        "texte": {
+          "fr": "Il y meurt le 7 mars 1274, à quarante-neuf ans, en chemin vers le concile de Lyon, après avoir commenté le Cantique des cantiques aux moines qui le veillaient.",
+          "en": "He died here on 7 March 1274, aged forty-nine, on his way to the Council of Lyon, having commented on the Song of Songs for the monks who sat with him."
+        }
+      }
+    ],
+    "augustin-hippone": [
+      {
+        "lieu": "Hippone",
+        "texte": {
+          "fr": "Il y meurt le 28 août 430, à soixante-quinze ans, pendant que les Vandales assiégeaient la ville ; il avait fait écrire les psaumes de la pénitence sur le mur de sa chambre pour les lire de son lit.",
+          "en": "He died here on 28 August 430, aged seventy-five, while the Vandals besieged the city; he had had the penitential psalms written on his bedroom wall so he could read them from his bed."
+        },
+        "source": "Possidius, Vita Augustini, 28 et 31"
+      }
+    ],
+    "monique": [
+      {
+        "lieu": "Ostie",
+        "texte": {
+          "fr": "Sur le port, en attendant le bateau qui devait les ramener en Afrique. C'est à une fenêtre de cette maison qu'eut lieu avec son fils la conversation qu'on appelle l'extase d'Ostie ; elle mourut neuf jours après.",
+          "en": "At the port, waiting for the ship that was to take them back to Africa. At a window of that house she and her son had the conversation known as the vision at Ostia; she died nine days later."
+        },
+        "source": "Augustin, Confessions, IX, 10-11"
+      }
+    ],
+    "ambroise-milan": [
+      {
+        "lieu": "Milan",
+        "texte": {
+          "fr": "Gouverneur de la province, il vint calmer une élection d'évêque houleuse et la foule le réclama pour évêque ; il n'était pas même baptisé. C'est ici qu'il interdit l'église à Théodose après le massacre de Thessalonique, et qu'il baptisa Augustin.",
+          "en": "As governor of the province he came to calm a stormy episcopal election, and the crowd demanded him as bishop; he was not even baptised. Here he barred Theodosius from the church after the massacre at Thessalonica, and here he baptised Augustine."
+        }
+      },
+      {
+        "lieu": "basilique Saint-Ambroise",
+        "texte": {
+          "fr": "Il repose sous l'autel entre Gervais et Protais, les deux martyrs qu'il avait fait exhumer en 386 — il tenait à être couché entre eux.",
+          "en": "He lies beneath the altar between Gervasius and Protasius, the two martyrs he had exhumed in 386 — he had insisted on being laid between them."
+        }
+      }
+    ],
+    "therese-lisieux": [
+      {
+        "lieu": "Lisieux",
+        "texte": {
+          "fr": "Le carmel où elle entra à quinze ans, après être allée demander la permission au pape, et où elle mourut de tuberculose à vingt-quatre. Elle n'en sortit jamais, et devint patronne des missions.",
+          "en": "The Carmel she entered at fifteen, having gone to ask the pope's leave, and where she died of tuberculosis at twenty-four. She never left it, and became patron of the missions."
+        }
+      }
+    ],
+    "ignace-loyola": [
+      {
+        "lieu": "Manresa, la grotte",
+        "texte": {
+          "fr": "Onze mois de jeûne, de prière et de scrupules à s'en vouloir mourir, en 1522 ; il en sortit avec le carnet qui allait devenir les Exercices spirituels.",
+          "en": "Eleven months of fasting, prayer and scruples so fierce he thought of killing himself, in 1522; he came out with the notebook that became the Spiritual Exercises."
+        },
+        "source": "Récit du pèlerin, 19-30"
+      },
+      {
+        "lieu": "Montserrat",
+        "texte": {
+          "fr": "Veillée d'armes du 24 mars 1522 : il passa la nuit debout devant la Vierge noire, y laissa son épée et sa dague, donna ses habits à un pauvre et prit le sac d'un mendiant.",
+          "en": "Vigil of arms, 24 March 1522: he stood all night before the Black Madonna, left his sword and dagger there, gave his clothes to a poor man and took a beggar's sack."
+        },
+        "source": "Récit du pèlerin, 17-18"
+      },
+      {
+        "lieu": "église du Gesù",
+        "texte": {
+          "fr": "L'église mère de la Compagnie, bâtie après lui ; son tombeau est sous l'autel du transept gauche, dans le bronze et le lapis.",
+          "en": "The mother church of the Society, built after his death; his tomb is beneath the altar of the left transept, in bronze and lapis."
+        }
+      }
+    ],
+    "francois-xavier": [
+      {
+        "lieu": "Sancian",
+        "texte": {
+          "fr": "Une île au large de Canton, où il attendait un passeur pour entrer en Chine, fermée aux étrangers. Il y meurt de fièvre le 3 décembre 1552, à quarante-six ans, sous une cabane de branchages, avec un Chinois pour seule compagnie.",
+          "en": "An island off Canton, where he waited for a boatman to smuggle him into China, then closed to foreigners. He died there of fever on 3 December 1552, aged forty-six, under a shelter of branches, with one Chinese companion."
+        }
+      },
+      {
+        "lieu": "basilique du Bon-Jésus de Goa",
+        "texte": {
+          "fr": "Son corps, ramené de Chine et trouvé intact, y est exposé tous les dix ans. Un orteil en fut mordu par une pèlerine en 1554 ; le bras droit est à Rome.",
+          "en": "His body, brought back from China and found uncorrupted, is shown every ten years. A pilgrim bit off a toe in 1554; the right arm is in Rome."
+        }
+      }
+    ],
+    "vincent-de-paul": [
+      {
+        "lieu": "Filles de la charité",
+        "texte": {
+          "fr": "Fondées avec Louise de Marillac en 1633, sans clôture ni voile, à une époque où toute religieuse en portait : « pour monastère, les maisons des malades ; pour cellule, une chambre de louage ; pour cloître, les rues de la ville. »",
+          "en": "Founded with Louise de Marillac in 1633, without enclosure or veil, at a time when every nun had both: “for a monastery, the houses of the sick; for a cell, a rented room; for a cloister, the streets of the town.”"
+        }
+      }
+    ],
+    "jean-marie-vianney": [
+      {
+        "lieu": "basilique d'Ars",
+        "texte": {
+          "fr": "Quarante et un ans dans un village de deux cent trente âmes, où on l'avait envoyé parce qu'il avait échoué au séminaire. À la fin, il passait seize heures par jour au confessionnal, et la France entière descendait du train à Lyon pour venir le voir.",
+          "en": "Forty-one years in a village of two hundred and thirty souls, where he had been sent because he had failed at the seminary. By the end he spent sixteen hours a day hearing confessions, and all France got off the train at Lyon to come to him."
+        }
+      }
+    ],
+    "bernadette-soubirous": [
+      {
+        "lieu": "apparitions de Lourdes",
+        "texte": {
+          "fr": "Dix-huit apparitions entre le 11 février et le 16 juillet 1858, à la grotte de Massabielle, où elle était allée ramasser du bois mort. Elle avait quatorze ans, vivait dans un ancien cachot et ne savait ni lire ni le français.",
+          "en": "Eighteen apparitions between 11 February and 16 July 1858, at the grotto of Massabielle, where she had gone to gather firewood. She was fourteen, lived in a disused lock-up, and could neither read nor speak French."
+        }
+      },
+      {
+        "lieu": "Nevers",
+        "texte": {
+          "fr": "Elle entre au couvent Saint-Gildard en 1866 pour échapper aux visiteurs, et n'en sort plus. « Je ne suis bonne à rien », disait-elle ; on la mit à l'infirmerie. Elle y meurt à trente-cinq ans.",
+          "en": "She entered the convent of Saint-Gildard in 1866 to escape the visitors, and never left. “I am good for nothing,” she said; they put her in the infirmary. She died there at thirty-five."
+        }
+      }
+    ],
+    "catherine-laboure": [
+      {
+        "lieu": "chapelle Notre-Dame-de-la-Médaille-miraculeuse",
+        "texte": {
+          "fr": "La Vierge lui apparut trois fois en 1830 et lui demanda de faire frapper une médaille. Elle obéit par l'intermédiaire de son confesseur et se tut quarante-six ans : personne, dans sa communauté, ne sut que c'était elle. Son corps, retrouvé intact en 1933, est exposé sous l'autel de droite.",
+          "en": "The Virgin appeared to her three times in 1830 and asked that a medal be struck. She obeyed through her confessor and kept silent for forty-six years: no one in her community knew it was her. Her body, found uncorrupted in 1933, lies beneath the right-hand altar."
+        }
+      }
+    ],
+    "marguerite-marie-alacoque": [
+      {
+        "lieu": "Paray-le-Monial",
+        "texte": {
+          "fr": "Les grandes apparitions du Sacré-Cœur, de 1673 à 1675, dans la chapelle de la Visitation. Sa communauté la crut longtemps illuminée ; il fallut un jésuite de passage, Claude La Colombière, pour la croire.",
+          "en": "The great apparitions of the Sacred Heart, from 1673 to 1675, in the Visitation chapel. Her community long thought her deluded; it took a passing Jesuit, Claude La Colombière, to believe her."
+        },
+        "source": "Autobiographie, 53-55"
+      }
+    ],
+    "martin-tours": [
+      {
+        "lieu": "Amiens",
+        "texte": {
+          "fr": "Soldat de la garde impériale, il y partage son manteau avec un mendiant nu, un soir d'hiver, en le tranchant de son épée. La nuit suivante il voit le Christ vêtu de la moitié donnée. Il avait dix-huit ans et n'était pas baptisé.",
+          "en": "A soldier of the imperial guard, he cut his cloak in two with his sword one winter evening and gave half to a naked beggar. The next night he saw Christ wearing the half he had given. He was eighteen, and not yet baptised."
+        },
+        "source": "Sulpice Sévère, Vie de Martin, 3"
+      },
+      {
+        "lieu": "Candes-Saint-Martin",
+        "texte": {
+          "fr": "Il y meurt en visitant une paroisse, en 397. Tourangeaux et Poitevins se disputèrent le corps ; les premiers l'enlevèrent par la fenêtre et remontèrent la Loire de nuit — les arbres, dit-on, fleurirent sur leur passage, et c'est l'été de la Saint-Martin.",
+          "en": "He died here while visiting a parish, in 397. The men of Tours and of Poitiers fought over the body; those of Tours took it through the window and rowed up the Loire by night — the trees, they say, blossomed as they passed, and that is Saint Martin's summer."
+        }
+      }
+    ],
+    "nicolas-myre": [
+      {
+        "lieu": "basilique San Nicola de Bari",
+        "texte": {
+          "fr": "Des marins de Bari enlevèrent ses reliques à Myre en 1087, sous le nez des moines, pour les soustraire aux Turcs — et pour doter leur ville d'un pèlerinage. Les os suintent un liquide qu'on recueille chaque 9 mai.",
+          "en": "Sailors from Bari carried his relics off from Myra in 1087, under the monks' noses, to keep them from the Turks — and to give their own city a pilgrimage. The bones seep a liquid collected every 9 May."
+        }
+      }
+    ],
+    "antoine-padoue": [
+      {
+        "lieu": "église du Santo",
+        "texte": {
+          "fr": "Bâtie sur sa tombe dans l'année qui suivit sa mort. Quand on ouvrit le cercueil en 1263, en présence de Bonaventure, le corps était en poussière et la langue intacte : elle est montrée dans le trésor.",
+          "en": "Built over his grave within a year of his death. When the coffin was opened in 1263, before Bonaventure, the body was dust and the tongue intact: it is shown in the treasury."
+        }
+      }
+    ],
+    "catherine-sienne": [
+      {
+        "lieu": "Pise, Santa Cristina",
+        "texte": {
+          "fr": "Devant le crucifix de cette église, le 1er avril 1375, elle reçoit les stigmates. Elle demanda qu'ils restent invisibles ; ils ne parurent qu'à sa mort.",
+          "en": "Before the crucifix of this church, on 1 April 1375, she received the stigmata. She asked that they remain invisible; they appeared only at her death."
+        },
+        "source": "Raymond de Capoue, Legenda maior, II, 6"
+      },
+      {
+        "lieu": "basilique de la Minerve",
+        "texte": {
+          "fr": "Son corps repose sous le maître-autel. Sa tête, elle, fut rapportée à Sienne dans un reliquaire — les Siennois voulaient leur sainte, et l'on avait refusé de rendre le corps entier.",
+          "en": "Her body lies beneath the high altar. Her head was taken back to Siena in a reliquary — the Sienese wanted their saint, and the whole body had been refused them."
+        }
+      }
+    ],
+    "philippe-neri": [
+      {
+        "lieu": "Rome, les catacombes de Saint-Sébastien",
+        "texte": {
+          "fr": "Vigile de la Pentecôte 1544 : il y éprouve une dilatation du cœur si violente qu'elle lui rompit deux côtes. L'autopsie de 1595 constata la fracture et le cœur agrandi.",
+          "en": "Vigil of Pentecost 1544: he felt a dilation of the heart so violent that it broke two ribs. The autopsy of 1595 found the fracture and the enlarged heart."
+        },
+        "source": "Procès de canonisation, déposition d'Antonio Gallonio"
+      }
+    ],
+    "charles-de-foucauld": [
+      {
+        "lieu": "L'Assekrem",
+        "texte": {
+          "fr": "Un ermitage de pierres sèches à deux mille sept cents mètres, dans le Hoggar, qu'il monta bâtir en 1911 pour y passer l'été. Il y travaillait au premier dictionnaire touareg-français.",
+          "en": "A dry-stone hermitage at two thousand seven hundred metres in the Hoggar, which he went up to build in 1911 and where he spent the summer. There he worked on the first Tuareg-French dictionary."
+        }
+      },
+      {
+        "lieu": "Tamanrasset",
+        "texte": {
+          "fr": "Il y vivait seul depuis 1905 quand une bande armée l'enleva devant sa maison, le 1er décembre 1916 ; un garçon de garde, pris de panique, lui tira une balle dans la tête.",
+          "en": "He had lived here alone since 1905 when an armed band seized him outside his house on 1 December 1916; a boy left to guard him panicked and shot him in the head."
+        }
+      },
+      {
+        "lieu": "Béni Abbès",
+        "texte": {
+          "fr": "Sa première fraternité au Sahara, en 1901 : une chapelle de terre et un enclos qu'il appelait la Khaoua, la fraternité, et où il reçut esclaves, soldats et voyageurs.",
+          "en": "His first fraternity in the Sahara, in 1901: a chapel of earth and an enclosure he called the Khaoua, the brotherhood, where he took in slaves, soldiers and travellers alike."
+        }
+      }
+    ],
+    "jean-bosco": [
+      {
+        "lieu": "Turin",
+        "texte": {
+          "fr": "Le Valdocco, un faubourg de briqueteries et de chantiers où il ouvrit en 1846 un oratoire pour les gamins qui y travaillaient. Il y meurt en 1888 ; ils étaient devenus un ordre présent sur quatre continents.",
+          "en": "The Valdocco, a suburb of brickworks and building sites where in 1846 he opened an oratory for the boys who worked there. He died here in 1888; they had become an order on four continents."
+        }
+      }
+    ],
+    "pio-pietrelcina": [
+      {
+        "lieu": "San Giovanni Rotondo",
+        "texte": {
+          "fr": "Le 20 septembre 1918, seul dans le chœur après la messe, il y reçoit des stigmates qui saignèrent cinquante ans. Le Saint-Office lui interdit un temps de dire la messe en public ; il ne quitta jamais ce couvent.",
+          "en": "On 20 September 1918, alone in the choir after Mass, he received stigmata that bled for fifty years. The Holy Office barred him for a time from saying Mass in public; he never left this friary."
+        }
+      }
+    ],
+    "maximilien-kolbe": [
+      {
+        "lieu": "Auschwitz",
+        "texte": {
+          "fr": "En juillet 1941, après une évasion, dix hommes sont désignés pour mourir de faim. L'un d'eux crie qu'il a une femme et des enfants ; Kolbe sort du rang et prend sa place. Il vécut deux semaines dans le bunker, et fut achevé par une injection de phénol le 14 août. Il n'a pas de tombe : son corps a été brûlé.",
+          "en": "In July 1941, after an escape, ten men were picked to be starved to death. One cried out that he had a wife and children; Kolbe stepped forward and took his place. He lived a fortnight in the bunker and was finished off with an injection of phenol on 14 August. He has no grave: his body was burned."
+        }
+      }
+    ],
+    "edith-stein": [
+      {
+        "lieu": "Auschwitz",
+        "texte": {
+          "fr": "Philosophe, assistante de Husserl, juive convertie et carmélite, elle fut raflée aux Pays-Bas le 2 août 1942 en représailles d'une lettre des évêques contre les déportations, et gazée à Birkenau le 9. Elle n'a pas de tombe.",
+          "en": "A philosopher, Husserl's assistant, a Jewish convert and a Carmelite, she was seized in the Netherlands on 2 August 1942 in reprisal for a bishops' letter against the deportations, and gassed at Birkenau on the 9th. She has no grave."
+        }
+      }
+    ],
+    "francois-de-sales": [
+      {
+        "lieu": "Lyon",
+        "texte": {
+          "fr": "Il y meurt le 28 décembre 1622, d'une attaque, dans la maison du jardinier du couvent de la Visitation où il avait voulu loger pour ne déranger personne.",
+          "en": "He died here on 28 December 1622, of a stroke, in the gardener's cottage of the Visitation convent, where he had chosen to lodge so as to trouble no one."
+        }
+      }
+    ],
+    "patrick": [
+      {
+        "lieu": "Croagh Patrick",
+        "texte": {
+          "fr": "Quarante jours de jeûne au sommet, dit sa Vie, d'où il aurait chassé les serpents d'Irlande. On y monte encore pieds nus, la nuit, le dernier dimanche de juillet.",
+          "en": "Forty days of fasting on the summit, his Life says, from which he drove the snakes out of Ireland. People still climb it barefoot, by night, on the last Sunday of July."
+        },
+        "source": "Vita tripartita sancti Patricii"
+      },
+      {
+        "lieu": "Saul",
+        "texte": {
+          "fr": "La grange que lui donna le chef Díchu à son arrivée, en 432, et qui fut la première église d'Irlande ; il revint y mourir.",
+          "en": "The barn given him by the chieftain Díchu when he landed in 432, which became the first church in Ireland; he came back to die there."
+        }
+      }
+    ],
+    "colomban": [
+      {
+        "lieu": "abbaye de Bobbio",
+        "texte": {
+          "fr": "Sa dernière fondation, dans l'Apennin, en 614 : chassé de Bourgogne pour avoir reproché sa vie au roi Thierry II, il avait traversé l'Europe à pied à soixante-dix ans.",
+          "en": "His last foundation, in the Apennines, in 614: driven out of Burgundy for rebuking King Theuderic II over his life, he had crossed Europe on foot at seventy."
+        }
+      }
+    ],
+    "boniface": [
+      {
+        "lieu": "Dokkum",
+        "texte": {
+          "fr": "Tué le 5 juin 754 en Frise, à près de quatre-vingts ans, alors qu'il attendait des néophytes pour les confirmer. Il se protégea la tête avec un évangéliaire : le livre entaillé est à Fulda.",
+          "en": "Killed on 5 June 754 in Frisia, at nearly eighty, while waiting for neophytes to confirm. He shielded his head with a gospel book: the slashed volume is at Fulda."
+        }
+      },
+      {
+        "lieu": "Mayence",
+        "texte": {
+          "fr": "Archevêque et primat de Germanie : c'est d'ici qu'il réorganisa l'Église franque, fonda des évêchés et sacra Pépin le Bref.",
+          "en": "Archbishop and primate of Germany: from here he reorganised the Frankish church, founded bishoprics, and anointed Pepin the Short."
+        }
+      }
+    ],
+    "agnes-rome": [
+      {
+        "lieu": "basilique Sainte-Agnès-hors-les-Murs de Rome",
+        "texte": {
+          "fr": "Bâtie sur sa tombe, via Nomentana, par la fille de Constantin. Chaque 21 janvier, on y bénit deux agneaux dont la laine servira aux pallium des archevêques.",
+          "en": "Built over her grave on the Via Nomentana by Constantine's daughter. Every 21 January two lambs are blessed here, and their wool woven into the pallia of archbishops."
+        }
+      }
+    ],
+    "cecile": [
+      {
+        "lieu": "église Sainte-Cécile-du-Trastevere",
+        "texte": {
+          "fr": "L'église s'élève sur sa maison. En 1599, on ouvrit le sarcophage : Stefano Maderno vit le corps et le sculpta tel quel, couché sur le flanc, le cou entaillé — la statue est sous l'autel.",
+          "en": "The church stands on her house. In 1599 the sarcophagus was opened: Stefano Maderno saw the body and carved it as it lay, on its side, the neck cut — the statue is beneath the altar."
+        }
+      }
+    ],
+    "genevieve": [
+      {
+        "lieu": "église Saint-Étienne-du-Mont",
+        "texte": {
+          "fr": "On y garde ce qui reste d'elle : la Révolution a brûlé ses reliques en place de Grève en 1793 et jeté les cendres à la Seine. Il n'en subsiste qu'un fragment, dans la châsse de cuivre doré.",
+          "en": "What is left of her is kept here: the Revolution burned her relics on the Place de Grève in 1793 and threw the ashes into the Seine. Only a fragment survives, in the gilt-copper shrine."
+        }
+      },
+      {
+        "lieu": "Paris",
+        "texte": {
+          "fr": "En 451, comme la ville se vidait devant Attila, elle persuada les Parisiens de rester et de jeûner ; les Huns passèrent au sud. On la voulut noyer avant de la croire.",
+          "en": "In 451, as the city emptied before Attila, she persuaded the Parisians to stay and fast; the Huns turned south. They had wanted to drown her before they believed her."
+        }
+      }
+    ],
+    "bernard-clairvaux": [
+      {
+        "lieu": "abbaye de Clairvaux",
+        "texte": {
+          "fr": "Il y arrive à vingt-cinq ans, en 1115, avec douze compagnons, pour défricher une clairière de l'Aube. À sa mort, l'abbaye avait essaimé soixante-huit monastères et il faisait et défaisait les papes.",
+          "en": "He came here at twenty-five, in 1115, with twelve companions, to clear a glade in the Aube. By his death the abbey had sent out sixty-eight monasteries, and he was making and unmaking popes."
+        }
+      },
+      {
+        "lieu": "abbaye de Cîteaux",
+        "texte": {
+          "fr": "Il s'y présente en 1113 avec une trentaine de compagnons qu'il avait convaincus, dont quatre de ses frères et son oncle ; l'abbaye mourante en fut relevée d'un coup.",
+          "en": "He arrived in 1113 with some thirty companions he had talked round, among them four of his brothers and his uncle; the dying abbey was raised up at a stroke."
+        }
+      }
+    ],
+    "antoine-egypte": [
+      {
+        "lieu": "Le mont Colzim",
+        "texte": {
+          "fr": "La « montagne intérieure », entre le Nil et la mer Rouge, où il se retira pour fuir ses propres disciples et passa ses quarante dernières années. Le monastère Saint-Antoine y est toujours, et se dit le plus ancien du monde.",
+          "en": "The “inner mountain”, between the Nile and the Red Sea, where he withdrew to escape his own disciples and spent his last forty years. The monastery of Saint Anthony is still there, and claims to be the oldest in the world."
+        },
+        "source": "Athanase, Vie d'Antoine, 49-50"
+      }
+    ],
+    "jerome": [
+      {
+        "lieu": "Bethléem",
+        "texte": {
+          "fr": "Trente-quatre ans dans une grotte voisine de celle de la Nativité, à traduire la Bible en latin depuis l'hébreu — ce qu'on lui reprocha, tout le monde tenant le grec pour suffisant. Sa Vulgate a tenu quinze siècles.",
+          "en": "Thirty-four years in a cave next to the one of the Nativity, translating the Bible into Latin from the Hebrew — which was held against him, since everyone thought the Greek enough. His Vulgate lasted fifteen centuries."
+        }
+      }
+    ],
+    "basile-cesaree": [
+      {
+        "lieu": "Kayseri",
+        "texte": {
+          "fr": "Césarée de Cappadoce, dont il fut l'évêque. Il éleva devant la ville un quartier d'hospices, d'ateliers et d'écoles pour les pauvres, qu'on appela la Basiliade — le premier hôpital de l'histoire.",
+          "en": "Caesarea in Cappadocia, where he was bishop. Outside the city he built a quarter of hospices, workshops and schools for the poor, called the Basiliad — the first hospital in history."
+        }
+      }
+    ],
+    "juan-diego": [
+      {
+        "lieu": "Tepeyac",
+        "texte": {
+          "fr": "Quatre apparitions en décembre 1531 sur cette colline. L'évêque demandait un signe ; la Vierge lui fit cueillir des roses de Castille en plein hiver, et quand il ouvrit sa tilma devant lui, l'image y était.",
+          "en": "Four apparitions in December 1531 on this hill. The bishop asked for a sign; the Virgin had him gather Castilian roses in midwinter, and when he opened his tilma before him, the image was there."
+        }
+      }
+    ],
+    "rose-lima": [
+      {
+        "lieu": "Lima",
+        "texte": {
+          "fr": "Elle vécut dans une cabane au fond du jardin de ses parents, vendant ses broderies et ses fleurs pour nourrir les malades qu'elle y recueillait. Première sainte des Amériques.",
+          "en": "She lived in a hut at the end of her parents' garden, selling her embroidery and her flowers to feed the sick she took in there. The first saint of the Americas."
+        }
+      }
+    ],
+    "martin-porres": [
+      {
+        "lieu": "Lima",
+        "texte": {
+          "fr": "Fils d'un hidalgo espagnol et d'une affranchie noire, il ne put être que frère convers : la loi de l'ordre interdisait alors la profession aux métis. Il soignait dans le couvent hommes et bêtes, et l'on dit qu'on le vit en deux lieux à la fois.",
+          "en": "Son of a Spanish hidalgo and a freed black woman, he could only be a lay brother: the order's law then barred mixed-race men from profession. He tended men and animals alike in the priory, and was said to have been seen in two places at once."
+        }
+      }
+    ],
+    "elisabeth-hongrie": [
+      {
+        "lieu": "église Sainte-Élisabeth",
+        "texte": {
+          "fr": "Bâtie sur sa tombe à Marbourg dès 1235, quatre ans après sa mort à vingt-quatre ans : c'est la première grande église gothique d'Allemagne. Fille de roi, veuve à vingt ans, elle avait fini en robe grise à soigner les lépreux.",
+          "en": "Built over her grave at Marburg from 1235, four years after her death at twenty-four: the first great Gothic church in Germany. A king's daughter, widowed at twenty, she ended in a grey dress nursing lepers."
+        }
+      }
+    ],
+    "brigitte-suede": [
+      {
+        "lieu": "abbaye de Vadstena",
+        "texte": {
+          "fr": "L'ordre qu'elle fonda, où moines et moniales vivaient sous l'autorité d'une abbesse. Son corps fut ramené de Rome en 1374, par la route, en quatre mois.",
+          "en": "The order she founded, where monks and nuns lived under an abbess's authority. Her body was brought back from Rome in 1374, overland, in four months."
+        }
+      },
+      {
+        "lieu": "Rome",
+        "texte": {
+          "fr": "Elle y passa ses vingt-trois dernières années à réclamer le retour des papes d'Avignon, et mourut sans l'avoir vu — il eut lieu quatre ans plus tard.",
+          "en": "She spent her last twenty-three years here demanding the popes' return from Avignon, and died without seeing it — it came four years later."
+        }
+      }
+    ],
+    "joseph-cupertino": [
+      {
+        "lieu": "Copertino",
+        "texte": {
+          "fr": "Ses lévitations pendant la messe sont attestées par des dizaines de témoins au procès, dont un ambassadeur et un cardinal. Ses supérieurs finirent par lui faire dire la messe seul, dans une chapelle fermée.",
+          "en": "His levitations during Mass were attested by dozens of witnesses at his process, an ambassador and a cardinal among them. His superiors ended up making him say Mass alone, in a closed chapel."
+        }
+      }
+    ],
+    "thomas-becket": [
+      {
+        "lieu": "cathédrale de Canterbury",
+        "texte": {
+          "fr": "Assassiné dans le transept nord le 29 décembre 1170 par quatre chevaliers d'Henri II, qui avaient pris pour un ordre une phrase du roi en colère. Le lieu s'appelle encore le Martyre ; le roi vint y être fouetté par les moines.",
+          "en": "Murdered in the north transept on 29 December 1170 by four of Henry II's knights, who had taken an angry sentence of the king's for an order. The spot is still called the Martyrdom; the king came there to be scourged by the monks."
+        }
+      }
+    ],
+    "jean-baptiste": [
+      {
+        "lieu": "Macheronte",
+        "texte": {
+          "fr": "La forteresse d'Hérode Antipas, au-dessus de la mer Morte, où il fut enfermé pour avoir reproché au roi son mariage, puis décapité sur la demande d'une danseuse.",
+          "en": "Herod Antipas's fortress above the Dead Sea, where he was shut up for rebuking the king over his marriage, then beheaded at a dancer's request."
+        },
+        "source": "Flavius Josèphe, Antiquités judaïques, XVIII, 5"
+      }
+    ],
+    "andre-apotre": [
+      {
+        "lieu": "Patras",
+        "texte": {
+          "fr": "Crucifié, dit la tradition, sur une croix en forme d'X qui porte son nom et qu'on retrouve sur le drapeau écossais.",
+          "en": "Crucified, tradition says, on an X-shaped cross that bears his name and is found on the Scottish flag."
+        }
+      }
+    ],
+    "jacques-majeur": [
+      {
+        "lieu": "Jérusalem",
+        "texte": {
+          "fr": "Décapité sur l'ordre d'Hérode Agrippa vers l'an 44 : le premier des Douze à mourir, et le seul dont le Nouveau Testament raconte la mort.",
+          "en": "Beheaded by order of Herod Agrippa about the year 44: the first of the Twelve to die, and the only one whose death the New Testament tells."
+        },
+        "source": "Actes des Apôtres 12, 2"
+      },
+      {
+        "lieu": "cathédrale de Saint-Jacques-de-Compostelle",
+        "texte": {
+          "fr": "Un ermite y découvrit un tombeau vers 820, guidé par des lumières dans un champ — campus stellae, dit l'étymologie populaire. Le chemin qui y mène a fait l'Europe autant que l'Europe l'a fait.",
+          "en": "A hermit found a tomb here about 820, led by lights in a field — campus stellae, says the folk etymology. The road that leads there made Europe as much as Europe made it."
+        }
+      }
+    ]
+  }
+}

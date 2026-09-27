@@ -550,6 +550,10 @@ const NOTABLES_FILE = 'lieux-notables.json';
 const VOYANTS_FILE = 'voyants.json';
 /** Les liens attestés entre deux fiches : maître, disciple, frère, mère. */
 const LIENS_FILE = 'liens.json';
+/** Ce qui s'est passé là : une phrase par lieu, écrite à la main. */
+const NOTES_FILE = 'notes-lieux.json';
+/** Les lieux relevés qu'on refuse de montrer, avec la raison du refus. */
+const ECARTES_FILE = 'lieux-ecartes.json';
 const patronages = JSON.parse(readFileSync(join(SAINTS_DIR, PATRONAGE_FILE), 'utf8')).patronage;
 
 // Les biographies rapportées de Wikipédia pour les fiches écrites à la main
@@ -587,7 +591,8 @@ try {
 for (const file of readdirSync(SAINTS_DIR)
   .filter((f) => f.endsWith('.json')
     && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, BIOS_IMPORTEES_FILE,
-      LIEUX_FILE, NOTABLES_FILE, VOYANTS_FILE, LIENS_FILE].includes(f))
+      LIEUX_FILE, NOTABLES_FILE, VOYANTS_FILE, LIENS_FILE,
+      NOTES_FILE, ECARTES_FILE].includes(f))
   .sort()) {
   const raw = JSON.parse(readFileSync(join(SAINTS_DIR, file), 'utf8'));
   for (const s of raw.saints) {
@@ -946,6 +951,51 @@ function fondre(place, lieu) {
   // s'écrire sous une croix qui annonce une sépulture.
   const tete = tries[0] === place.quoi ? place : lieu;
   return { ...place, ...tete, quoi: tries[0], aussi: tries.slice(1) };
+}
+
+/**
+ * Ce qui s'est passé là.
+ *
+ * Un motif dit la catégorie, non le fait : « Jeanne d'Arc, Rouen, Lieu de
+ * mort » ne dit rien du bûcher de la place du Vieux-Marché. Ces phrases-là ne
+ * sont nulle part dans les données ; elles se tirent des sources une par une, et
+ * ne couvrent donc que les fiches qu'on ouvre le plus. Ailleurs, l'application
+ * construit une phrase du motif et des dates, qui ne prétend rien de plus.
+ *
+ * Et les refus : la collecte prend ce que Wikidata dit, et Wikidata se trompe
+ * parfois. Une fausseté écrite sous le nom d'un saint coûte plus cher qu'un
+ * lieu manquant.
+ */
+let notes = {};
+try {
+  notes = JSON.parse(readFileSync(join(SAINTS_DIR, NOTES_FILE), 'utf8')).notes || {};
+} catch { /* aucune note écrite */ }
+
+let refusDeLieu = {};
+try {
+  refusDeLieu = JSON.parse(readFileSync(join(SAINTS_DIR, ECARTES_FILE), 'utf8')).ecartes || {};
+} catch { /* aucun refus */ }
+
+// Le refus s'applique avant tout le reste : un lieu écarté ne doit ni paraître,
+// ni servir de point d'ancrage à un lieu écrit à la main.
+let refuses = 0;
+const refusOrphelins = [];
+for (const [id, regles] of Object.entries(refusDeLieu)) {
+  for (const regle of regles) {
+    const liste = lieuxParSaint[id] || [];
+    const avant = liste.length;
+    lieuxParSaint[id] = liste.filter((l) => l.nom !== regle.lieu);
+    if (lieuxParSaint[id].length === avant) refusOrphelins.push(`${id} → ${regle.lieu}`);
+    else refuses += avant - lieuxParSaint[id].length;
+  }
+}
+// Une règle qui ne s'applique plus n'est pas anodine : la source a peut-être
+// été corrigée, et l'on garderait sinon un refus dont plus personne ne sait
+// pourquoi il est là.
+if (refusOrphelins.length) {
+  console.error(`\n${ECARTES_FILE} — ces lieux ne sont plus relevés, la règle ne sert plus :`);
+  for (const e of refusOrphelins) console.error(`  - ${e}`);
+  process.exit(1);
 }
 
 let notablesPoses = 0;
@@ -1355,6 +1405,34 @@ if (voyantsInconnus.length) {
   process.exit(1);
 }
 
+// Les phrases écrites à la main se posent en dernier, quand les lieux ont leur
+// nom définitif : une note vise un lieu par son nom, et le nom d'une apparition
+// vue ne se fixe qu'ici.
+let notesPosees = 0;
+const notesOrphelines = [];
+for (const [id, liste] of Object.entries(notes)) {
+  const places = lieuxSortie[id] || [];
+  for (const note of liste) {
+    const place = places.find((p) => p.nom === note.lieu);
+    if (!place) {
+      // Le message porte les noms disponibles : une collecte peut avoir renommé
+      // « Rouen » en autre chose, et la correction est alors d'une ligne.
+      notesOrphelines.push(`${id} → « ${note.lieu} » ; cette fiche a : `
+        + (places.map((p) => `« ${p.nom} »`).join(', ') || 'aucun lieu'));
+      continue;
+    }
+    place.dit = note.texte;
+    notesPosees += 1;
+  }
+}
+// Une note qui ne se pose nulle part est une note qu'on croit écrite et qui ne
+// paraît pas : c'est le pire des deux mondes, et la fabrication s'arrête.
+if (notesOrphelines.length) {
+  console.error(`\n${NOTES_FILE} — ces lieux n’existent pas sous ce nom :`);
+  for (const e of notesOrphelines) console.error(`  - ${e}`);
+  process.exit(1);
+}
+
 writeFileSync(join(OUT, 'lieux.json'), JSON.stringify({
   lieux: lieuxSortie,
   liens: liensSortie,
@@ -1364,6 +1442,8 @@ console.log(`  lieux.json : ${lieuxTotal} lieux pour ${Object.keys(lieuxSortie).
   + (vus ? `, dont ${vus} apparitions vues` : ''));
 console.log(`    et ${liensTotal} liens attestés entre ${Object.keys(liensSortie).length} fiches`
   + (liensOrphelins ? `, ${liensOrphelins} orphelins écartés` : ''));
+console.log(`    ${notesPosees} lieux disent ce qui s’y est passé`
+  + (refuses ? `, ${refuses} lieux refusés à la main` : ''));
 
 // ---------------------------------------------------------------------------
 // Fond documentaire de l'assistant expert

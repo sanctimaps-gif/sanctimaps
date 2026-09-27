@@ -133,12 +133,20 @@ export class DetailPanel {
       // deux — la chapelle de la rue du Bac est une apparition et un tombeau.
       this.lieuxOuverts && lieux.length
         ? h('ul', { class: 'detail__lieux-liste' },
-          ...lieux.map((lieu) => h('li', {},
-            h('span', {
-              class: 'detail__lieu-quoi',
-              text: [lieu.quoi, ...(lieu.aussi || [])].map((q) => t(`lieux.${q}`)).join(' · '),
-            }),
-            h('span', { class: 'detail__lieu-nom', text: lieu.nom }))))
+          ...lieux.map((lieu) => {
+            // Ce qui s'y est passé, quand on le sait. Un motif dit la
+            // catégorie, non le fait : « Rouen, lieu de mort » ne dit rien du
+            // bûcher de la place du Vieux-Marché.
+            const dit = pickText(lieu.dit, lang);
+            return h('li', { class: dit ? 'is-dit' : '' },
+              h('p', { class: 'detail__lieu-tete' },
+                h('span', {
+                  class: 'detail__lieu-quoi',
+                  text: [lieu.quoi, ...(lieu.aussi || [])].map((q) => t(`lieux.${q}`)).join(' · '),
+                }),
+                h('span', { class: 'detail__lieu-nom', text: lieu.nom })),
+              dit ? h('p', { class: 'detail__lieu-dit', text: dit }) : null);
+          }))
         : null,
       // Les voisins, avec ce qui les rapproche : un lien écrit — « sa sœur »,
       // « son maître » — ou, faute de mieux, le lieu qu'ils ont en commun. La

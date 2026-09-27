@@ -989,9 +989,42 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .detail__lieux-liste li {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.detail__lieu-tete {
   display: flex;
   gap: 0.5rem;
   align-items: baseline;
+  margin: 0;
+}
+
+/* Un lieu qui a quelque chose à dire respire un peu plus que les autres, et
+   porte un filet à gauche : la liste se lit alors comme une suite de fiches
+   brèves, non comme un relevé. */
+.detail__lieux-liste li.is-dit {
+  padding: 0.25rem 0 0.35rem 0.5rem;
+  border-inline-start: 2px solid var(--lieu);
+  margin-inline-start: -0.5rem;
+}
+
+/* Ce qui s'y est passé. En retrait sous le nom, dans la fonte du récit : c'est
+   une phrase, non une étiquette de plus. */
+.detail__lieu-dit {
+  margin: 0;
+  padding-inline-start: calc(0.5rem + 4.2rem);
+  font-family: var(--font);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  text-wrap: pretty;
+}
+
+/* Sur un écran étroit, le décalage sous l'étiquette mangerait la moitié de la
+   ligne : la phrase reprend alors toute la largeur. */
+@media (width <= 34rem) {
+  .detail__lieu-dit { padding-inline-start: 0; }
 }
 
 .detail__lieu-quoi {

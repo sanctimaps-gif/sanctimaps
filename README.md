@@ -1021,6 +1021,50 @@ La table pèse 754 ko et **descend après la carte**, comme les textes : elle ne
 sert qu'à qui ouvre une fiche et demande à voir. Son absence n'est pas une panne —
 la fiche n'offre alors rien à voir, ce qui est vrai.
 
+### Ce qui s'est passé là
+
+Un motif dit la catégorie, non le fait. « Jeanne d'Arc — Rouen — Lieu de mort »
+est exact et ne dit rien : ni le bûcher de la place du Vieux-Marché, ni les
+dix-neuf ans, ni les cendres jetées à la Seine pour qu'il n'en reste rien.
+
+Soixante-quatorze lieux portent donc **une phrase**, sous le nom, dans la fonte
+du récit :
+
+> **LIEU DE MORT** Rouen
+> *Brûlée vive place du Vieux-Marché le 30 mai 1431, à dix-neuf ans, au terme
+> d'un procès en hérésie mené par un tribunal d'Église aux ordres des Anglais.
+> Ses cendres furent jetées à la Seine pour qu'il n'en reste rien.*
+
+Ces phrases ne sont **nulle part dans les données** : ni Wikidata ni aucune base
+ne porte « ce qui s'est passé ici ». Elles se tirent des sources une par une, et
+vivent dans `data/saints/notes-lieux.json` — le crucifix de San Damiano d'après
+la *Legenda trium sociorum*, la dilatation du cœur de Philippe Néri d'après
+l'autopsie de 1595, le bunker de la faim où Kolbe prend la place d'un autre.
+Quarante-cinq saints en ont, ceux qu'on ouvre le plus.
+
+**Ailleurs, la fiche se tait**, et c'est voulu : une phrase construite d'un
+gabarit — « le lieu de sa sépulture » sous l'étiquette *Sépulture* — ne dirait
+rien que l'étiquette ne dise déjà, en six mille exemplaires. Le fichier
+s'étend à la main, un lieu à la fois.
+
+Chaque note vise un saint et un lieu **par son nom exact**. Un nom qui ne
+correspond à rien arrête la fabrication, en disant quels noms cette fiche porte :
+une note qu'on croit écrite et qui ne paraît pas est le pire des deux mondes, et
+une collecte peut renommer un lieu du jour au lendemain.
+
+### Refuser un lieu
+
+La collecte prend ce que Wikidata dit, et Wikidata se trompe parfois. Elle
+donnait à Jeanne d'Arc une sépulture à la cathédrale de Winchester — or Jeanne
+d'Arc n'a pas de tombe, c'est même tout le propos du 30 mai 1431 ; Winchester
+garde le tombeau du cardinal Beaufort, qui présida son procès.
+
+`data/saints/lieux-ecartes.json` refuse ces lieux-là, chacun avec sa raison
+écrite. Une règle qui ne s'applique plus arrête aussi la fabrication : la source
+a peut-être été corrigée, et l'on garderait sinon un refus dont plus personne ne
+sait pourquoi il est là. Une fausseté écrite sous le nom d'un saint coûte plus
+cher qu'un lieu manquant.
+
 ### Trois choses que le cadrage imposait
 
 - **le domaine de déplacement s'élargit aux lieux.** Boniface est né dans le

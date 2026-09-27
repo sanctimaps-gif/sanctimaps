@@ -1,0 +1,11 @@
+{
+  "note": "Les lieux relevés qu'on refuse de montrer. La collecte prend ce que Wikidata dit, et Wikidata se trompe parfois — rarement, mais il suffit d'une fois pour écrire une fausseté sous le nom d'un saint. Chaque ligne vise un saint et un lieu par son nom exact, et porte la raison du refus. Un nom qui ne correspond plus à rien arrête la fabrication : la donnée a peut-être été corrigée à la source, et la règle n'a plus lieu d'être.",
+  "ecartes": {
+    "jeanne-arc": [
+      {
+        "lieu": "cathédrale de Winchester",
+        "raison": "Jeanne d'Arc n'a pas de tombe : ses cendres ont été jetées à la Seine le jour même, précisément pour qu'il n'en reste rien. Winchester garde le tombeau du cardinal Beaufort, qui présida son procès — d'où la confusion, sans doute."
+      }
+    ]
+  }
+}

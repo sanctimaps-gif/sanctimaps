@@ -150,6 +150,7 @@ const MOTIFS = new Set(['sepulture', 'mort', 'apparition', 'miracle', 'predilect
 if (existsSync(join(GEN, 'lieux.json'))) {
   const { lieux, liens = {} } = read('lieux.json');
   let total = 0;
+  let dits = 0;
   const vus = new Map();
   for (const [id, liste] of Object.entries(lieux)) {
     if (!ids.has(id)) { fail(`lieux.json : ${id} n'est pas une fiche du corpus`); continue; }
@@ -160,6 +161,14 @@ if (existsSync(join(GEN, 'lieux.json'))) {
       if (!MOTIFS.has(lieu.quoi)) fail(`lieux.json : ${id} — motif inconnu : ${lieu.quoi}`);
       // Un endroit peut être deux choses — la chapelle où Catherine a vu et où
       // elle repose —, mais jamais deux fois la même, ni rien qu'on ne sache dire.
+      // Une note vide, ou écrite dans une langue dont personne ne se rabat sur
+      // elle, ne paraîtrait nulle part : autant ne pas l'avoir écrite.
+      if (lieu.dit) {
+        dits += 1;
+        if (!lieu.dit.fr && !lieu.dit.en) {
+          fail(`lieux.json : ${id} — ${lieu.nom} dit quelque chose, mais ni en français ni en anglais`);
+        }
+      }
       for (const q of lieu.aussi || []) {
         if (!MOTIFS.has(q)) fail(`lieux.json : ${id} — second motif inconnu : ${q}`);
         if (q === lieu.quoi) fail(`lieux.json : ${id} — ${lieu.nom} porte deux fois « ${q} »`);
@@ -174,6 +183,7 @@ if (existsSync(join(GEN, 'lieux.json'))) {
   ok(total
     ? `${total} lieux marqués, répartis sur ${Object.keys(lieux).length} saints`
       + ` (${[...vus].sort((a, b) => b[1] - a[1]).map(([q, n]) => `${n} ${q}`).join(', ')})`
+      + `, dont ${dits} disent ce qui s’y est passé`
     : 'table des lieux vide, et la fiche n’offre alors rien à voir');
 
   /**
