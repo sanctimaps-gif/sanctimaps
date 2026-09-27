@@ -541,6 +541,9 @@ const STATUT_FILE = 'statuts.json';
 // l'anglaise, par `completer-bios.mjs`. Même remarque : ce n'est pas un
 // fichier de saints.
 const BIOS_IMPORTEES_FILE = 'bios-importees.json';
+
+/** Les lieux qu'un saint a marqués de sa vie ou de sa mort. Voir plus bas. */
+const LIEUX_FILE = 'lieux.json';
 const patronages = JSON.parse(readFileSync(join(SAINTS_DIR, PATRONAGE_FILE), 'utf8')).patronage;
 
 // Les biographies rapportées de Wikipédia pour les fiches écrites à la main
@@ -577,7 +580,8 @@ try {
 
 for (const file of readdirSync(SAINTS_DIR)
   .filter((f) => f.endsWith('.json')
-    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, BIOS_IMPORTEES_FILE].includes(f))
+    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, BIOS_IMPORTEES_FILE,
+      LIEUX_FILE].includes(f))
   .sort()) {
   const raw = JSON.parse(readFileSync(join(SAINTS_DIR, file), 'utf8'));
   for (const s of raw.saints) {
@@ -860,6 +864,76 @@ for (const saint of saints) {
 
 writeFileSync(join(OUT, 'saints.json'), JSON.stringify({ saints: leger }));
 writeFileSync(join(OUT, 'saints-texts.json'), JSON.stringify(textes));
+
+// ---------------------------------------------------------------------------
+// Les lieux marqués par un saint
+// ---------------------------------------------------------------------------
+
+/**
+ * Une vie ne tient pas dans un point.
+ *
+ * La carte pose une croix au lieu de naissance. Mais Benoît est né à Nursie et
+ * c'est au Mont-Cassin qu'il a fondé son ordre et qu'il repose ; Thomas Becket
+ * est né à Londres et c'est Canterbury qui garde son sang. `import-lieux.mjs`
+ * relève ces lieux-là — sépulture, mort, fondation, œuvre, résidence — et cette
+ * table les place.
+ *
+ * Elle part à part du corpus, et non dans les fiches : elle ne sert qu'à qui
+ * ouvre une fiche et demande à les voir, et la charger avec la carte ferait
+ * payer à tout le monde ce que peu iront chercher.
+ */
+let lieuxParSaint = {};
+try {
+  lieuxParSaint = JSON.parse(readFileSync(join(SAINTS_DIR, LIEUX_FILE), 'utf8')).lieux || {};
+} catch { /* pas encore relevés : les fiches n'offriront rien à voir */ }
+
+const QUOI = new Set(['sepulture', 'mort', 'fondation', 'oeuvre', 'residence', 'naissance']);
+const lieuxSortie = {};
+let lieuxTotal = 0;
+let lieuxOrphelins = 0;
+const parIdFinal = new Map(saints.map((s) => [s.id, s]));
+for (const [id, liste] of Object.entries(lieuxParSaint)) {
+  const saint = parIdFinal.get(id);
+  // Une fusion de doublons a pu faire disparaître la fiche : ses lieux n'ont
+  // plus personne à qui appartenir, et l'on ne les invente pas un propriétaire.
+  if (!saint) { lieuxOrphelins += liste.length; continue; }
+  const shift = shiftById.get(saint.country) || 0;
+  const places = [];
+  for (const lieu of liste) {
+    if (!lieu?.nom || typeof lieu.lat !== 'number' || typeof lieu.lng !== 'number') {
+      errors.push(`${LIEUX_FILE}:${id} — lieu incomplet`);
+      continue;
+    }
+    if (Math.abs(lieu.lat) > 85 || Math.abs(lieu.lng) > 180) {
+      errors.push(`${LIEUX_FILE}:${id} — coordonnées hors limites : ${lieu.nom}`);
+      continue;
+    }
+    if (!QUOI.has(lieu.quoi)) {
+      errors.push(`${LIEUX_FILE}:${id} — motif inconnu : ${lieu.quoi}`);
+      continue;
+    }
+    // Le décalage est celui du pays du saint : c'est le seul qu'on connaisse
+    // sans refaire une recherche par point, et il n'importe que pour les pays
+    // cadrés au-delà de l'antiméridien, où le corpus compte deux fiches.
+    const [x, y] = project(lieu.lng, lieu.lat);
+    places.push({
+      nom: lieu.nom,
+      lat: lieu.lat,
+      lng: lieu.lng,
+      quoi: lieu.quoi,
+      x: Math.round(x) + shift,
+      y: Math.round(y),
+    });
+  }
+  if (places.length) {
+    lieuxSortie[id] = places;
+    lieuxTotal += places.length;
+  }
+}
+
+writeFileSync(join(OUT, 'lieux.json'), JSON.stringify({ lieux: lieuxSortie }));
+console.log(`  lieux.json : ${lieuxTotal} lieux pour ${Object.keys(lieuxSortie).length} saints`
+  + (lieuxOrphelins ? `, ${lieuxOrphelins} orphelins écartés` : ''));
 
 const perCountry = new Set(saints.map((s) => s.country));
 const perContinent = new Map();

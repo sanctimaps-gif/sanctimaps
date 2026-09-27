@@ -1,0 +1,105 @@
+# Relève les lieux marqués par chaque saint, puis publie.
+#
+# À lancer depuis l'onglet « Actions » du dépôt. Le travail se fait sur une
+# machine de GitHub, qui a accès à Internet — Wikidata n'est pas joignable
+# depuis partout —, et le résultat est versé dans le dépôt, ce qui redéploie le
+# site.
+#
+# Il ne touche qu'un fichier, `data/saints/lieux.json`, et ne réécrit ni les
+# noms, ni les dates, ni les biographies : une collecte de lieux ne peut pas
+# rouvrir le corpus entier.
+name: Relever les lieux des saints
+
+on:
+  workflow_dispatch:
+    inputs:
+      lot:
+        description: "Identifiants par requête"
+        required: false
+        default: "120"
+      dry_run:
+        description: "Interroger et compter sans rien écrire"
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: import-lieux
+  cancel-in-progress: false
+
+jobs:
+  lieux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Installer les jeux de données sources
+        run: npm ci
+
+      - name: Interroger Wikidata
+        run: |
+          set -euo pipefail
+          args=(--lot "${{ inputs.lot }}")
+          if [ "${{ inputs.dry_run }}" = "true" ]; then args+=(--dry-run); fi
+          node tools/import-lieux.mjs "${args[@]}" | tee /tmp/lieux.log
+
+      # Rien n'est publié sans être passé par les mêmes contrôles que le reste.
+      - name: Régénérer et contrôler
+        run: |
+          set -euo pipefail
+          npm run build:data | tee /tmp/build.log
+          npm run build:pages | tee /tmp/pages.log
+          node tools/build-feed.mjs | tee /tmp/feed.log
+          npm run check
+
+      - name: Verser au dépôt
+        if: inputs.dry_run != true
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/saints/lieux.json data/generated saints pays lieux calendrier epoques \
+            lettre lettre.html sitemap.xml robots.txt feed.xml
+          if git diff --cached --quiet; then
+            echo "Rien de neuf : les lieux sont déjà à jour."
+            exit 0
+          fi
+          releve=$(grep -oE '[0-9]+ lieux pour [0-9]+ saints' /tmp/lieux.log | head -1 \
+            || echo "Lieux relevés")
+          git commit -m "${releve}" -m "$(cat /tmp/lieux.log)"
+          git push origin HEAD:${{ github.ref_name }}
+
+      # Un envoi fait avec le jeton du dépôt ne réveille pas les autres
+      # ateliers : la reconstruction du site se demande donc explicitement.
+      - name: Demander la reconstruction du site
+        if: inputs.dry_run != true
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" \
+            && echo "Reconstruction demandée."
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Lieux marqués'
+            echo '```'
+            cat /tmp/lieux.log 2>/dev/null || echo "la collecte n'a pas abouti"
+            echo '```'
+            grep -E 'lieux.json|Lieux' /tmp/build.log 2>/dev/null || true
+          } >> "$GITHUB_STEP_SUMMARY"
