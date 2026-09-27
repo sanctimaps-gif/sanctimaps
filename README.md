@@ -951,29 +951,73 @@ point ne dit pas qu'il est une sépulture.
 
 ### Ce qu'est un lieu marqué
 
-Six relations de Wikidata, et six seulement :
+Onze motifs, et onze seulement :
 
-| propriété | ce qu'elle dit | le mot de la fiche |
-| --- | --- | --- |
-| P119 | lieu de sépulture | Sépulture |
-| P20 | lieu de mort | Lieu de mort |
-| P112 ⁻¹ | ce qu'il a fondé | Fondation |
-| P937 | lieu de travail | Œuvre |
-| P551 | lieu de résidence | Résidence |
-| P19 | lieu de naissance | Naissance |
+| propriété | ce qu'elle dit | le mot de la fiche | combien |
+| --- | --- | --- | --- |
+| P119 | lieu de sépulture | Sépulture | 968 |
+| P20 | lieu de mort | Lieu de mort | 3 870 |
+| P112 ⁻¹ | ce qu'il a fondé | Fondation | 257 |
+| P937 | lieu de travail | Œuvre | 227 |
+| P69 | lieu d'études | Études | 483 |
+| P551 + P580 | résidence commencée avant dix-huit ans | Enfance | 27 |
+| P551 | lieu de résidence | Résidence | 262 |
+| P19 | lieu de naissance | Naissance | 245 |
+| à la main | ce qu'il a vu | Apparition | 13 |
+| à la main | ce qui s'y est fait | Miracle | 4 |
+| à la main | le lieu où il revenait | Lieu de prédilection | 8 |
+
+**L'enfance se déduit, et seulement quand on peut.** Wikidata n'a pas de
+propriété « a grandi ici ». Elle a des résidences, parfois datées, et des lieux
+d'études, parfois datés eux aussi. Quand cette date tombe dans les dix-huit
+premières années d'une vie dont on connaît le début, le lieu est dit *Enfance* ;
+sinon il reste *Résidence* ou *Études*. Un saint dont on ignore l'année de
+naissance n'aura jamais de lieu d'enfance ici, et c'est plus honnête qu'un « sans
+doute » posé sur une carte. Vingt-sept fiches seulement en ont un : la source est
+avare, et l'on préfère le dire.
+
+**Les miracles et les apparitions, Wikidata ne les porte pas.** Les deux prises
+possibles — l'événement notable situé (P793 + P276), l'événement dont le saint
+est participant (P710) — ramènent surtout des conciles et des canonisations ; on
+ne garde que ce dont le nom dit le miracle ou l'apparition, et cela n'a rendu
+qu'une seule ligne sur cent soixante-sept. Les autres sont donc **écrits à la
+main**, dans `data/saints/lieux-notables.json`, chacun avec le texte qui
+l'atteste : la *Legenda maior* pour les stigmates de François à La Verna, le
+procès de 1431 pour les voix de Jeanne à Domrémy, l'*Autobiographie* de
+Marguerite-Marie pour Paray-le-Monial, les *Dialogues* de Grégoire le Grand pour
+la grotte de Subiaco.
+
+**Six apparitions du corpus ont un voyant qui est lui-même une fiche** — Jacques
+à Saragosse, Juan Diego au Tepeyac, Mariana de Jesús Torres à Quito, Catherine
+Labouré rue du Bac, Bernadette à Lourdes, Francisco et Jacinta Marto à Fátima.
+`data/saints/voyants.json` fait le pont, et le lieu est **pris de l'apparition**,
+non recopié : si la carte corrige un jour les coordonnées de Fátima, la fiche des
+Marto suivra sans qu'on y touche. Les voyants qui ne sont pas au corpus — Mélanie
+Calvat à La Salette, Mariette Beco à Banneux, Lúcia dos Santos à Fátima — n'y
+figurent pas : il n'y aurait pas de fiche à ouvrir au bout.
+
+**Un endroit peut être deux choses.** La chapelle de la rue du Bac est celle où
+Catherine a vu et celle où elle repose ; le Tepeyac est où Juan Diego a vu et où
+il est mort. Choisir aurait perdu à tous les coups la moitié de ce qui fait
+venir : une perle porte donc un motif de tête — le plus parlant — et la liste des
+autres derrière lui, « Sépulture · Apparition ».
 
 **Les dédicaces sont exclues, et c'est le cœur de la définition.** Il y a des
 milliers d'églises Saint-Pierre, et Pierre n'en a marqué aucune : elles ont été
 marquées *par d'autres, après lui*. Un lieu marqué par le saint est un lieu où il
-a vécu, œuvré, fondé, est mort, ou repose.
+a grandi, étudié, vécu, œuvré, fondé, où il a vu le ciel s'ouvrir, où il est
+mort, ou repose.
 
-La collecte a rendu **5 857 lieux pour 4 206 saints**, soit 1,4 par saint ; mille
-dix-neuf en ont plus d'un. Trois mille quatre cent trente-neuf lieux de naissance
-ont été écartés : la croix y était déjà. Un lieu qui revient par deux relations —
-on meurt là où l'on vivait, on repose là où l'on est mort — ne donne qu'une perle,
-et c'est la plus parlante des deux qui la nomme.
+La collecte a rendu **6 357 lieux pour 4 216 saints**, soit 1,5 par saint ; mille
+deux cent trente-quatre en ont plus d'un. Trois mille quatre cent vingt-quatre
+lieux de naissance ont été écartés : la croix y était déjà. Un lieu qui revient
+par deux relations — on meurt là où l'on vivait, on repose là où l'on est mort —
+ne donne qu'une perle, et c'est la plus parlante des deux qui la nomme. Les lieux
+écrits à la main se fondent à trois cent cinquante mètres et non à un kilomètre :
+la basilique Sainte-Claire avalait San Damiano, qui est à six cents mètres et
+hors les murs — deux lieux que quarante ans de clôture séparent.
 
-La table pèse 640 ko et **descend après la carte**, comme les textes : elle ne
+La table pèse 754 ko et **descend après la carte**, comme les textes : elle ne
 sert qu'à qui ouvre une fiche et demande à voir. Son absence n'est pas une panne —
 la fiche n'offre alors rien à voir, ce qui est vrai.
 
@@ -992,6 +1036,79 @@ Un défaut d'ordre a été trouvé à l'essai : ouvrir une fiche montre le saint
 *puis* vole jusqu'à lui — et cet ordre est voulu, la fiche prenant la moitié du
 bas avant que le cadrage se calcule. Le vol effaçait donc le saint qu'on venait
 d'isoler, et les autres croix revenaient aussitôt.
+
+## Les saints qu'il a pu croiser
+
+Une carte de quatre mille cinq cents croix donne à croire à quatre mille cinq
+cents solitudes. Or Benoît a une sœur, Scholastique ; Thomas d'Aquin a un
+maître, Albert le Grand ; Basile le Grand a une mère, Emmélie, et trois frères
+et sœurs qui sont saints comme lui ; Thérèse de Lisieux a ses parents, Louis et
+Zélie Martin, canonisés en 2015, et sa sœur Léonie.
+
+**Un second bouton**, à côté du premier, dans le violet des autres vies : « Voir
+les 6 saints qu'il a pu croiser ». Pressé, il pose leurs croix sur la carte — la
+sienne reste seule au premier plan — et déplie la liste sous lui. Chaque nom
+s'ouvre : sa fiche prend la place, ses lieux et ses voisins à lui paraissent, et
+l'on remonte ainsi une génération.
+
+### Deux sortes, et deux tons
+
+**Les liens attestés** viennent de Wikidata, qui les écrit noir sur blanc. Neuf
+propriétés, posées des deux côtés — Wikidata n'en écrit souvent qu'un :
+
+| propriété | ce qu'elle dit | le mot de la fiche | combien |
+| --- | --- | --- | --- |
+| P1066 | élève de | Son maître | 132 |
+| P802 | a pour élève | Son disciple | 130 |
+| P22, P25 | père, mère | Son père ou sa mère | 127 |
+| P40 | enfant | Son enfant | 127 |
+| P3373 | frère ou sœur | Frère ou sœur | 226 |
+| P26 | conjoint | Son époux | 56 |
+| P1038 | parent au sens large | De sa famille | 42 |
+| P737 | influencé par | Il a inspiré ce saint | 19 + 19 |
+
+**Les deux bouts doivent être au corpus.** Deux mille neuf cent trente-deux
+liens ont été écartés pour cette seule raison : une fiche qui promet une fiche
+absente est une porte peinte. Restent **878 liens entre 526 fiches**, qui
+voyagent avec la table des lieux.
+
+**Les rencontres possibles**, elles, ne sont écrites nulle part. Deux vies qui se
+recouvrent d'au moins cinq ans, et un lieu que tous deux ont marqué à moins de
+vingt-cinq kilomètres : c'est une conjecture, et la fiche la dit comme telle —
+« a pu croiser » —, en nommant le lieu partagé pour qu'on juge sur pièce.
+Beaucoup de fiches n'ont qu'une date ; on complète l'autre par soixante-dix ans,
+convention qui ne sert qu'à écarter les siècles. Une fiche sans aucune date
+n'entre pas dans le calcul, faute de quoi tout le monde aurait pu rencontrer tout
+le monde.
+
+Trois mille cinq cent vingt-trois saints ont au moins un voisin de ce genre, six
+ou sept en moyenne. Rome en donnerait des centaines : on n'en garde que douze,
+les plus proches d'abord, puis les vies qui se recouvrent le plus longtemps. Une
+liste de deux cents noms ne se lit pas, et ne dit rien de plus.
+
+### Rien de tout cela ne pèse au téléchargement
+
+Le calcul se fait **dans le navigateur**, sur le corpus déjà en mémoire, par une
+grille au quart de degré bâtie au premier saint dont on demande les voisins et
+jetée dès que le corpus bouge. Dix mille cinq cents points à ranger, neuf cases à
+lire par lieu : c'est instantané, et cela ne coûte pas un octet de plus.
+
+Seuls les liens attestés voyagent, dans le fichier des lieux, qui descend déjà
+après la carte.
+
+### Ce que l'essai a corrigé
+
+- **changer de saint remportait mal ce qui appartenait au précédent.** Ouvrir un
+  voisin depuis la fiche laissait sur la carte les perles et les croix de celui
+  qu'on venait de quitter, désormais au nom du nouveau ;
+- **la légende ne se taisait pas** : elle continuait de nommer des perles que la
+  carte avait remportées ;
+- **quatre phrases parlaient de tout le monde au masculin.** « Voir les lieux
+  qu'il a marqués » s'affichait sous le nom de Thérèse de Lisieux. Le système de
+  traduction sait porter deux formes depuis le début — il servait aux titres et
+  aux degrés —, il sert maintenant à ces phrases-là, dans les neuf langues qui
+  en ont besoin. La ligne de légende, elle, ne parle d'aucun saint en
+  particulier : elle a été récrite sans pronom.
 
 ## Deux corpus, une bascule
 
