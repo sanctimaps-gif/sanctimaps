@@ -1,6 +1,6 @@
 {
- "source": "Wikidata (CC0), propriétés P19, P20, P112, P119, P551 et P937",
- "note": "Écrit par tools/import-lieux.mjs. Ne pas modifier à la main : le fichier est réécrit d’un bloc. « quoi » vaut sepulture, mort, fondation, oeuvre, residence ou naissance.",
+ "source": "Wikidata (CC0), propriétés P19, P20, P69, P112, P119, P276, P551, P710, P793 et P937",
+ "note": "Écrit par tools/import-lieux.mjs. Ne pas modifier à la main : le fichier est réécrit d’un bloc. Les lieux écrits à la main vivent dans lieux-notables.json, que cet outil ne touche pas. « quoi » vaut sepulture, mort, apparition, miracle, predilection, fondation, oeuvre, enfance, formation, residence, naissance.",
  "lieux": {
   "agathe": [
    {
@@ -73,6 +73,20 @@
     "lng": 9.95,
     "quoi": "oeuvre",
     "qid": "Q3185"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "alberto-hurtado": [
@@ -89,6 +103,13 @@
     "lng": -70.6876,
     "quoi": "fondation",
     "qid": "Q18396895"
+   },
+   {
+    "nom": "collège San Ignacio",
+    "lat": -33.4476,
+    "lng": -70.6564,
+    "quoi": "formation",
+    "qid": "Q5777152"
    },
    {
     "nom": "Viña del Mar",
@@ -128,6 +149,13 @@
     "lng": 14.6167,
     "quoi": "mort",
     "qid": "Q81263"
+   },
+   {
+    "nom": "Université de Naples - Frédéric-II",
+    "lat": 40.8472,
+    "lng": 14.2569,
+    "quoi": "formation",
+    "qid": "Q691851"
    },
    {
     "nom": "Naples",
@@ -406,6 +434,20 @@
     "lng": 10.0247,
     "quoi": "mort",
     "qid": "Q6231"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
+   },
+   {
+    "nom": "Université de Pavie",
+    "lat": 45.1868,
+    "lng": 9.1559,
+    "quoi": "formation",
+    "qid": "Q219317"
    }
   ],
   "antoine-padoue": [
@@ -603,6 +645,13 @@
     "lng": 3.1567,
     "quoi": "mort",
     "qid": "Q166997"
+   },
+   {
+    "nom": "apparitions de Lourdes",
+    "lat": 43.0942,
+    "lng": -0.0469,
+    "quoi": "apparition",
+    "qid": "Q1184935"
    }
   ],
   "bernard-clairvaux": [
@@ -684,6 +733,13 @@
     "lng": 8.6221,
     "quoi": "fondation",
     "qid": "Q120733594"
+   },
+   {
+    "nom": "Université de Sienne",
+    "lat": 43.3192,
+    "lng": 11.3325,
+    "quoi": "formation",
+    "qid": "Q1245999"
    }
   ],
   "bonaventure": [
@@ -693,6 +749,13 @@
     "lng": 4.835,
     "quoi": "mort",
     "qid": "Q456"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "boniface": [
@@ -1032,6 +1095,13 @@
     "lng": 12.4828,
     "quoi": "oeuvre",
     "qid": "Q220"
+   },
+   {
+    "nom": "Université de Pavie",
+    "lat": 45.1868,
+    "lng": 9.1559,
+    "quoi": "formation",
+    "qid": "Q219317"
    }
   ],
   "charles-de-foucauld": [
@@ -1048,6 +1118,27 @@
     "lng": 2.9,
     "quoi": "sepulture",
     "qid": "Q1324185"
+   },
+   {
+    "nom": "lycée Henri-Poincaré de Nancy",
+    "lat": 48.691,
+    "lng": 6.1787,
+    "quoi": "formation",
+    "qid": "Q3268712"
+   },
+   {
+    "nom": "école spéciale militaire de Saint-Cyr",
+    "lat": 47.9453,
+    "lng": -2.1522,
+    "quoi": "formation",
+    "qid": "Q1132066"
+   },
+   {
+    "nom": "lycée Sainte-Geneviève",
+    "lat": 48.8041,
+    "lng": 2.1544,
+    "quoi": "formation",
+    "qid": "Q3269151"
    },
    {
     "nom": "Berne",
@@ -1078,13 +1169,6 @@
     "qid": "Q1218"
    },
    {
-    "nom": "Alger",
-    "lat": 36.7764,
-    "lng": 3.0586,
-    "quoi": "residence",
-    "qid": "Q3561"
-   },
-   {
     "nom": "Strasbourg",
     "lat": 48.5733,
     "lng": 7.7522,
@@ -1092,11 +1176,11 @@
     "qid": "Q6602"
    },
    {
-    "nom": "Nancy",
-    "lat": 48.6928,
-    "lng": 6.1836,
+    "nom": "Alger",
+    "lat": 36.7764,
+    "lng": 3.0586,
     "quoi": "residence",
-    "qid": "Q40898"
+    "qid": "Q3561"
    },
    {
     "nom": "Fès",
@@ -1120,18 +1204,18 @@
     "qid": "Q178663"
    },
    {
-    "nom": "Saumur",
-    "lat": 47.2592,
-    "lng": -0.0781,
-    "quoi": "residence",
-    "qid": "Q193821"
-   },
-   {
     "nom": "Tlemcen",
     "lat": 34.8828,
     "lng": -1.3167,
     "quoi": "residence",
     "qid": "Q185134"
+   },
+   {
+    "nom": "Saumur",
+    "lat": 47.2592,
+    "lng": -0.0781,
+    "quoi": "residence",
+    "qid": "Q193821"
    },
    {
     "nom": "Essaouira",
@@ -1197,20 +1281,6 @@
     "qid": "Q123186764"
    },
    {
-    "nom": "Mascara",
-    "lat": 35.4,
-    "lng": 0.1333,
-    "quoi": "residence",
-    "qid": "Q545707"
-   },
-   {
-    "nom": "Sézanne",
-    "lat": 48.7189,
-    "lng": 3.7228,
-    "quoi": "residence",
-    "qid": "Q839650"
-   },
-   {
     "nom": "Tizi n'Tichka",
     "lat": 31.2858,
     "lng": -7.3808,
@@ -1230,6 +1300,20 @@
     "lng": 2.9131,
     "quoi": "residence",
     "qid": "Q2820322"
+   },
+   {
+    "nom": "Mascara",
+    "lat": 35.4,
+    "lng": 0.1333,
+    "quoi": "residence",
+    "qid": "Q545707"
+   },
+   {
+    "nom": "Sézanne",
+    "lat": 48.7189,
+    "lng": 3.7228,
+    "quoi": "residence",
+    "qid": "Q839650"
    }
   ],
   "charles-lwanga": [
@@ -1599,11 +1683,25 @@
     "qid": "Q7341"
    },
    {
-    "nom": "Wrocław",
-    "lat": 51.11,
-    "lng": 17.0325,
-    "quoi": "residence",
-    "qid": "Q1799"
+    "nom": "Université de Wrocław",
+    "lat": 51.1136,
+    "lng": 17.0333,
+    "quoi": "formation",
+    "qid": "Q315658"
+   },
+   {
+    "nom": "Université de Göttingen",
+    "lat": 51.534,
+    "lng": 9.9379,
+    "quoi": "formation",
+    "qid": "Q152838"
+   },
+   {
+    "nom": "Université de Fribourg-en-Brisgau",
+    "lat": 47.9942,
+    "lng": 7.8469,
+    "quoi": "formation",
+    "qid": "Q153987"
    },
    {
     "nom": "Münster",
@@ -1620,6 +1718,34 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "Christ's Hospital",
+    "lat": 51.0442,
+    "lng": -0.3631,
+    "quoi": "formation",
+    "qid": "Q677579"
+   },
+   {
+    "nom": "universités de Douai",
+    "lat": 50.38,
+    "lng": 3.08,
+    "quoi": "formation",
+    "qid": "Q770639"
+   },
+   {
+    "nom": "St John's College",
+    "lat": 51.7561,
+    "lng": -1.2586,
+    "quoi": "formation",
+    "qid": "Q609646"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "edouard-confesseur": [
@@ -1636,6 +1762,13 @@
     "lng": -1,
     "quoi": "oeuvre",
     "qid": "Q21"
+   },
+   {
+    "nom": "The King's School Ely",
+    "lat": 52.4,
+    "lng": 0.26,
+    "quoi": "formation",
+    "qid": "Q7744468"
    },
    {
     "nom": "Islip",
@@ -1847,13 +1980,6 @@
     "qid": "Q664371"
    },
    {
-    "nom": "Rabka-Zdrój",
-    "lat": 49.6089,
-    "lng": 19.9665,
-    "quoi": "residence",
-    "qid": "Q1005356"
-   },
-   {
     "nom": "Biała",
     "lat": 52.6058,
     "lng": 19.6525,
@@ -1887,6 +2013,13 @@
     "lng": 21.3669,
     "quoi": "residence",
     "qid": "Q7107957"
+   },
+   {
+    "nom": "Rabka-Zdrój",
+    "lat": 49.6089,
+    "lng": 19.9665,
+    "quoi": "residence",
+    "qid": "Q1005356"
    },
    {
     "nom": "Derdy",
@@ -1983,13 +2116,6 @@
     "qid": "Q913972"
    },
    {
-    "nom": "Santuario di Poggio Bustone",
-    "lat": 42.5044,
-    "lng": 12.8929,
-    "quoi": "fondation",
-    "qid": "Q25841323"
-   },
-   {
     "nom": "San Francesco",
     "lat": 41.132,
     "lng": 14.7763,
@@ -2016,6 +2142,13 @@
     "lng": 12.8284,
     "quoi": "fondation",
     "qid": "Q3949877"
+   },
+   {
+    "nom": "Santuario di Poggio Bustone",
+    "lat": 42.5044,
+    "lng": 12.8929,
+    "quoi": "fondation",
+    "qid": "Q25841323"
    }
   ],
   "francois-de-sales": [
@@ -2032,6 +2165,13 @@
     "lng": 4.835,
     "quoi": "mort",
     "qid": "Q456"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    },
    {
     "nom": "château de Sales",
@@ -2069,6 +2209,13 @@
     "lng": 16.3725,
     "quoi": "oeuvre",
     "qid": "Q1741"
+   },
+   {
+    "nom": "collège Sainte-Barbe",
+    "lat": 48.8475,
+    "lng": 2.3466,
+    "quoi": "formation",
+    "qid": "Q1110002"
    },
    {
     "nom": "Javier",
@@ -2342,6 +2489,13 @@
     "lng": 34.8392,
     "quoi": "oeuvre",
     "qid": "Q217265"
+   },
+   {
+    "nom": "Académie de Platon",
+    "lat": 37.9924,
+    "lng": 23.7081,
+    "quoi": "formation",
+    "qid": "Q193093"
    }
   ],
   "gregoire-nysse": [
@@ -2442,6 +2596,13 @@
     "qid": "Q557972"
    },
    {
+    "nom": "abbaye de Disibodenberg",
+    "lat": 49.7766,
+    "lng": 7.7012,
+    "quoi": "formation",
+    "qid": "Q565067"
+   },
+   {
     "nom": "Bermersheim vor der Höhe",
     "lat": 49.7792,
     "lng": 8.0981,
@@ -2479,6 +2640,20 @@
     "lng": 86.1825,
     "quoi": "fondation",
     "qid": "Q16949542"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
+   },
+   {
+    "nom": "université d'Alcalá",
+    "lat": 40.4829,
+    "lng": -3.3632,
+    "quoi": "formation",
+    "qid": "Q495225"
    }
   ],
   "irenee-lyon": [
@@ -2639,6 +2814,27 @@
     "lng": -4.6381,
     "quoi": "sepulture",
     "qid": "Q5722022"
+   },
+   {
+    "nom": "Université complutense de Madrid",
+    "lat": 40.449,
+    "lng": -3.727,
+    "quoi": "formation",
+    "qid": "Q219694"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
+   },
+   {
+    "nom": "université d'Alcalá",
+    "lat": 40.4829,
+    "lng": -3.3632,
+    "quoi": "formation",
+    "qid": "Q495225"
    }
   ],
   "jean-baptiste": [
@@ -2775,6 +2971,13 @@
     "lng": 13.4017,
     "quoi": "fondation",
     "qid": "Q65032266"
+   },
+   {
+    "nom": "Université de Pérouse",
+    "lat": 43.1158,
+    "lng": 12.3858,
+    "quoi": "formation",
+    "qid": "Q748085"
    }
   ],
   "jean-chrysostome": [
@@ -2834,6 +3037,13 @@
     "qid": "Q329984"
    },
    {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
+   },
+   {
     "nom": "Fontiveros",
     "lat": 40.9295,
     "lng": -4.9646,
@@ -2855,6 +3065,13 @@
     "lng": 12.4975,
     "quoi": "fondation",
     "qid": "Q915642"
+   },
+   {
+    "nom": "université de Caen-Normandie",
+    "lat": 49.1928,
+    "lng": -0.3638,
+    "quoi": "formation",
+    "qid": "Q568554"
    },
    {
     "nom": "Ri",
@@ -2949,6 +3166,13 @@
     "lng": 14.4214,
     "quoi": "mort",
     "qid": "Q1085"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    }
   ],
   "jean-paul-ii": [
@@ -3014,6 +3238,13 @@
     "lng": 19.9193,
     "quoi": "oeuvre",
     "qid": "Q11688618"
+   },
+   {
+    "nom": "Université catholique Jean-Paul-II de Lublin",
+    "lat": 51.2478,
+    "lng": 22.5447,
+    "quoi": "formation",
+    "qid": "Q175529"
    }
   ],
   "jean-xxiii": [
@@ -3051,6 +3282,20 @@
     "lng": 12.3319,
     "quoi": "oeuvre",
     "qid": "Q641"
+   },
+   {
+    "nom": "Université de Rome « La Sapienza »",
+    "lat": 41.9033,
+    "lng": 12.5158,
+    "quoi": "formation",
+    "qid": "Q209344"
+   },
+   {
+    "nom": "séminaire pontifical romain",
+    "lat": 41.8849,
+    "lng": 12.504,
+    "quoi": "formation",
+    "qid": "Q916458"
    }
   ],
   "jeanne-arc": [
@@ -3149,6 +3394,20 @@
     "qid": "Q84"
    },
    {
+    "nom": "St John's College",
+    "lat": 52.2081,
+    "lng": 0.1167,
+    "quoi": "formation",
+    "qid": "Q691283"
+   },
+   {
+    "nom": "Beverley Grammar School",
+    "lat": 53.8336,
+    "lng": -0.4395,
+    "quoi": "formation",
+    "qid": "Q4899415"
+   },
+   {
     "nom": "Yorkshire",
     "lat": 53.9583,
     "lng": -1.0833,
@@ -3198,6 +3457,20 @@
     "lng": -1.9025,
     "quoi": "oeuvre",
     "qid": "Q2256"
+   },
+   {
+    "nom": "Trinity College",
+    "lat": 51.7553,
+    "lng": -1.2569,
+    "quoi": "formation",
+    "qid": "Q73079"
+   },
+   {
+    "nom": "Great Ealing School",
+    "lat": 51.5064,
+    "lng": -0.3072,
+    "quoi": "formation",
+    "qid": "Q5599084"
    }
   ],
   "john-neumann": [
@@ -3207,6 +3480,13 @@
     "lng": -75.1636,
     "quoi": "mort",
     "qid": "Q1345"
+   },
+   {
+    "nom": "Université Charles de Prague",
+    "lat": 50.0884,
+    "lng": 14.4037,
+    "quoi": "formation",
+    "qid": "Q31519"
    }
   ],
   "josaphat-kuntsevych": [
@@ -3266,13 +3546,6 @@
     "qid": "Q220"
    },
    {
-    "nom": "Université de Navarre",
-    "lat": 42.8014,
-    "lng": -1.6597,
-    "quoi": "fondation",
-    "qid": "Q926068"
-   },
-   {
     "nom": "Université de Piura",
     "lat": -5.1767,
     "lng": -80.6346,
@@ -3301,6 +3574,13 @@
     "qid": "Q9185269"
    },
    {
+    "nom": "Colegio Mayor Belagua",
+    "lat": 42.8028,
+    "lng": -1.6608,
+    "quoi": "fondation",
+    "qid": "Q96575802"
+   },
+   {
     "nom": "Colegio Mayor Ayete",
     "lat": 43.3092,
     "lng": -1.9939,
@@ -3308,32 +3588,46 @@
     "qid": "Q140420930"
    },
    {
-    "nom": "Madrid",
-    "lat": 40.4169,
-    "lng": -3.7033,
-    "quoi": "residence",
-    "qid": "Q2807"
+    "nom": "Logroño",
+    "lat": 42.47,
+    "lng": -2.4456,
+    "quoi": "enfance",
+    "qid": "Q14325"
    },
    {
     "nom": "Saragosse",
     "lat": 41.65,
     "lng": -0.8833,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q10305"
-   },
-   {
-    "nom": "Logroño",
-    "lat": 42.47,
-    "lng": -2.4456,
-    "quoi": "residence",
-    "qid": "Q14325"
    },
    {
     "nom": "Barbastro",
     "lat": 42.0365,
     "lng": 0.1272,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q502975"
+   },
+   {
+    "nom": "université centrale de Madrid",
+    "lat": 40.4245,
+    "lng": -3.7076,
+    "quoi": "formation",
+    "qid": "Q21705070"
+   },
+   {
+    "nom": "Université pontificale du Latran",
+    "lat": 41.8853,
+    "lng": 12.5036,
+    "quoi": "formation",
+    "qid": "Q475007"
+   },
+   {
+    "nom": "Faculté de droit de l'Université de Saragosse",
+    "lat": 41.6409,
+    "lng": -0.8991,
+    "quoi": "formation",
+    "qid": "Q104176805"
    }
   ],
   "joseph": [
@@ -3375,6 +3669,13 @@
     "lng": 80.635,
     "quoi": "mort",
     "qid": "Q203197"
+   },
+   {
+    "nom": "collège Saint-Paul de Goa",
+    "lat": 15.4992,
+    "lng": 73.9185,
+    "quoi": "formation",
+    "qid": "Q2983675"
    },
    {
     "nom": "Benaulim",
@@ -3467,6 +3768,20 @@
     "lng": -99.1333,
     "quoi": "oeuvre",
     "qid": "Q170603"
+   },
+   {
+    "nom": "collège San Fernando de Mexico",
+    "lat": 19.4394,
+    "lng": -99.1486,
+    "quoi": "formation",
+    "qid": "Q5146827"
+   },
+   {
+    "nom": "Estudi General Lul·lià",
+    "lat": 39.5682,
+    "lng": 2.6489,
+    "quoi": "formation",
+    "qid": "Q9091563"
    },
    {
     "nom": "Casa del Beat Juníper Serra",
@@ -3586,6 +3901,13 @@
     "lng": -9.139,
     "quoi": "mort",
     "qid": "Q597"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    },
    {
     "nom": "Brindisi",
@@ -4125,6 +4447,20 @@
     "qid": "Q25409"
    },
    {
+    "nom": "Collegium Germanicum et Hungaricum",
+    "lat": 41.905,
+    "lng": 12.4915,
+    "quoi": "formation",
+    "qid": "Q868294"
+   },
+   {
+    "nom": "université de Graz",
+    "lat": 47.0776,
+    "lng": 15.4496,
+    "quoi": "formation",
+    "qid": "Q622683"
+   },
+   {
     "nom": "Križevci",
     "lat": 46.0333,
     "lng": 16.5333,
@@ -4249,6 +4585,13 @@
     "lng": 19.1783,
     "quoi": "sepulture",
     "qid": "Q7341"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "melchior-grodziecki": [
@@ -4309,14 +4652,14 @@
     "nom": "Skopje",
     "lat": 41.9961,
     "lng": 21.4317,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q384"
    },
    {
     "nom": "Rathfarnham",
     "lat": 53.2988,
     "lng": -6.2854,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q1317787"
    }
   ],
@@ -4329,18 +4672,18 @@
     "qid": "Q1004655"
    },
    {
-    "nom": "Bohême",
-    "lat": 49.8333,
-    "lng": 14.3333,
-    "quoi": "oeuvre",
-    "qid": "Q39193"
-   },
-   {
     "nom": "Grande-Moravie",
     "lat": 49.6034,
     "lng": 18.1528,
     "quoi": "oeuvre",
     "qid": "Q193152"
+   },
+   {
+    "nom": "Bohême",
+    "lat": 49.8333,
+    "lng": 14.3333,
+    "quoi": "oeuvre",
+    "qid": "Q39193"
    }
   ],
   "monique": [
@@ -4511,7 +4854,7 @@
     "nom": "Baume-les-Dames",
     "lat": 47.3522,
     "lng": 6.36,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q733784"
    },
    {
@@ -4582,6 +4925,13 @@
     "lng": -89.1912,
     "quoi": "mort",
     "qid": "Q3110"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    },
    {
     "nom": "Ciudad Barrios",
@@ -4701,18 +5051,18 @@
     "qid": "Q3766"
    },
    {
-    "nom": "Thessalonique",
-    "lat": 40.6403,
-    "lng": 22.9356,
-    "quoi": "residence",
-    "qid": "Q17151"
-   },
-   {
     "nom": "Syracuse",
     "lat": 37.0692,
     "lng": 15.2875,
     "quoi": "residence",
     "qid": "Q13670"
+   },
+   {
+    "nom": "Thessalonique",
+    "lat": 40.6403,
+    "lng": 22.9356,
+    "quoi": "residence",
+    "qid": "Q17151"
    },
    {
     "nom": "Éphèse",
@@ -4757,11 +5107,11 @@
     "qid": "Q134287"
    },
    {
-    "nom": "Milet",
-    "lat": 37.5302,
-    "lng": 27.2784,
+    "nom": "Sidon",
+    "lat": 33.5604,
+    "lng": 35.3753,
     "quoi": "residence",
-    "qid": "Q169460"
+    "qid": "Q163490"
    },
    {
     "nom": "Paphos",
@@ -4771,11 +5121,11 @@
     "qid": "Q180918"
    },
    {
-    "nom": "Sidon",
-    "lat": 33.5604,
-    "lng": 35.3753,
+    "nom": "Milet",
+    "lat": 37.5302,
+    "lng": 27.2784,
     "quoi": "residence",
-    "qid": "Q163490"
+    "qid": "Q169460"
    },
    {
     "nom": "Antioche",
@@ -4876,6 +5226,13 @@
     "lng": 12.4828,
     "quoi": "oeuvre",
     "qid": "Q220"
+   },
+   {
+    "nom": "Université de Rome « La Sapienza »",
+    "lat": 41.9033,
+    "lng": 12.5158,
+    "quoi": "formation",
+    "qid": "Q209344"
    }
   ],
   "paulina-vigolo": [
@@ -4979,6 +5336,13 @@
     "lng": 12.4828,
     "quoi": "mort",
     "qid": "Q220"
+   },
+   {
+    "nom": "Université de Rome « La Sapienza »",
+    "lat": 41.9033,
+    "lng": 12.5158,
+    "quoi": "formation",
+    "qid": "Q209344"
    }
   ],
   "pie-v": [
@@ -5002,6 +5366,13 @@
     "lng": 8.6812,
     "quoi": "fondation",
     "qid": "Q24942710"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "pie-x": [
@@ -5034,6 +5405,20 @@
     "lng": 7.6854,
     "quoi": "sepulture",
     "qid": "Q958699"
+   },
+   {
+    "nom": "École polytechnique de Turin",
+    "lat": 45.0631,
+    "lng": 7.6611,
+    "quoi": "formation",
+    "qid": "Q392897"
+   },
+   {
+    "nom": "Istituto sociale",
+    "lat": 45.0547,
+    "lng": 7.6316,
+    "quoi": "formation",
+    "qid": "Q3155749"
    }
   ],
   "pierre-alcantara": [
@@ -5050,6 +5435,13 @@
     "lng": -5.5777,
     "quoi": "fondation",
     "qid": "Q122305330"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
    },
    {
     "nom": "Villaturiel",
@@ -5126,6 +5518,13 @@
     "qid": "Q3004"
    },
    {
+    "nom": "université de Cologne",
+    "lat": 50.9281,
+    "lng": 6.9286,
+    "quoi": "formation",
+    "qid": "Q54096"
+   },
+   {
     "nom": "Nimègue",
     "lat": 51.8475,
     "lng": 5.8625,
@@ -5156,15 +5555,22 @@
     "lng": 5.5914,
     "quoi": "mort",
     "qid": "Q265332"
+   },
+   {
+    "nom": "Université de Lorraine",
+    "lat": 48.6962,
+    "lng": 6.1765,
+    "quoi": "formation",
+    "qid": "Q4173330"
    }
   ],
   "pio-pietrelcina": [
    {
-    "nom": "Sanctuary of Saint Mary of Graces",
-    "lat": 41.707,
-    "lng": 15.7029,
+    "nom": "Padre Pio Pilgrimage Church",
+    "lat": 41.7071,
+    "lng": 15.703,
     "quoi": "sepulture",
-    "qid": "Q3673987"
+    "qid": "Q842004"
    },
    {
     "nom": "San Giovanni Rotondo",
@@ -5302,6 +5708,13 @@
     "qid": "Q617"
    },
    {
+    "nom": "Capoue",
+    "lat": 41.1056,
+    "lng": 14.2139,
+    "quoi": "oeuvre",
+    "qid": "Q58477"
+   },
+   {
     "nom": "Louvain",
     "lat": 50.8775,
     "lng": 4.7044,
@@ -5309,11 +5722,11 @@
     "qid": "Q118958"
    },
    {
-    "nom": "Capoue",
-    "lat": 41.1056,
-    "lng": 14.2139,
-    "quoi": "oeuvre",
-    "qid": "Q58477"
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    }
   ],
   "roch": [
@@ -5580,6 +5993,20 @@
     "qid": "Q1775258"
    },
    {
+    "nom": "Université de Naples - Frédéric-II",
+    "lat": 40.8472,
+    "lng": 14.2569,
+    "quoi": "enfance",
+    "qid": "Q691851"
+   },
+   {
+    "nom": "ancienne université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q2845896"
+   },
+   {
     "nom": "Aquino",
     "lat": 41.4764,
     "lng": 13.7121,
@@ -5596,6 +6023,13 @@
     "qid": "Q29265"
    },
    {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
+   },
+   {
     "nom": "Cheapside",
     "lat": 51.5141,
     "lng": -0.0937,
@@ -5604,13 +6038,6 @@
    }
   ],
   "thomas-more": [
-   {
-    "nom": "église St. Dunstan",
-    "lat": 51.2837,
-    "lng": 1.0708,
-    "quoi": "sepulture",
-    "qid": "Q7587772"
-   },
    {
     "nom": "chapelle royale de Saint-Pierre-aux-Liens",
     "lat": 51.5086,
@@ -5626,6 +6053,13 @@
     "qid": "Q5090115"
    },
    {
+    "nom": "église St. Dunstan",
+    "lat": 51.2837,
+    "lng": 1.0708,
+    "quoi": "sepulture",
+    "qid": "Q7587772"
+   },
+   {
     "nom": "St Thomas More RC Language College",
     "lat": 51.493,
     "lng": -0.162,
@@ -5638,6 +6072,20 @@
     "lng": -0.1275,
     "quoi": "oeuvre",
     "qid": "Q84"
+   },
+   {
+    "nom": "Lincoln's Inn",
+    "lat": 51.5171,
+    "lng": -0.1146,
+    "quoi": "formation",
+    "qid": "Q69482"
+   },
+   {
+    "nom": "Magdalen College School",
+    "lat": 51.749,
+    "lng": -1.2443,
+    "quoi": "formation",
+    "qid": "Q6729834"
    }
   ],
   "thorlak": [
@@ -5737,6 +6185,27 @@
     "lng": -77.0679,
     "quoi": "fondation",
     "qid": "Q7449465"
+   },
+   {
+    "nom": "Université de Valladolid",
+    "lat": 41.6522,
+    "lng": -4.7214,
+    "quoi": "formation",
+    "qid": "Q768224"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
+   },
+   {
+    "nom": "Université de Coimbra",
+    "lat": 40.2074,
+    "lng": -8.4265,
+    "quoi": "formation",
+    "qid": "Q368643"
    }
   ],
   "venceslas": [
@@ -5799,6 +6268,13 @@
     "lng": 2.1446,
     "quoi": "fondation",
     "qid": "Q778997"
+   },
+   {
+    "nom": "université de Toulouse",
+    "lat": 43.6044,
+    "lng": 1.4436,
+    "quoi": "formation",
+    "qid": "Q578023"
    },
    {
     "nom": "Saint-Vincent-de-Paul",
@@ -6325,6 +6801,27 @@
     "lng": 7.1492,
     "quoi": "oeuvre",
     "qid": "Q702259"
+   },
+   {
+    "nom": "Université Louis-et-Maximilien de Munich",
+    "lat": 48.1508,
+    "lng": 11.5803,
+    "quoi": "formation",
+    "qid": "Q55044"
+   },
+   {
+    "nom": "université rhénane Frédéric-Guillaume de Bonn",
+    "lat": 50.7339,
+    "lng": 7.1022,
+    "quoi": "formation",
+    "qid": "Q152171"
+   },
+   {
+    "nom": "Dreikönigsgymnasium",
+    "lat": 50.967,
+    "lng": 6.9288,
+    "quoi": "formation",
+    "qid": "Q1257931"
    }
   ],
   "wd-adolphe-chatillon-q99851920": [
@@ -6538,6 +7035,27 @@
     "lng": 36.0694,
     "quoi": "sepulture",
     "qid": "Q3118"
+   },
+   {
+    "nom": "école Karl Mai",
+    "lat": 59.9398,
+    "lng": 30.2694,
+    "quoi": "enfance",
+    "qid": "Q4360202"
+   },
+   {
+    "nom": "université d'État de Saint-Pétersbourg",
+    "lat": 59.9419,
+    "lng": 30.2989,
+    "quoi": "formation",
+    "qid": "Q27621"
+   },
+   {
+    "nom": "institut théologique de Petrograd",
+    "lat": 59.9324,
+    "lng": 30.3438,
+    "quoi": "formation",
+    "qid": "Q18407834"
    }
   ],
   "wd-agapius-q1763046": [
@@ -7004,6 +7522,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "wd-alberic-crescitelli-q2664681": [
@@ -7068,6 +7593,13 @@
     "lng": 11.575,
     "quoi": "oeuvre",
     "qid": "Q1726"
+   },
+   {
+    "nom": "Académie des beaux-arts de Munich",
+    "lat": 48.1532,
+    "lng": 11.5803,
+    "quoi": "formation",
+    "qid": "Q414052"
    }
   ],
   "wd-albert-de-buxhoeveden-q60952": [
@@ -7220,6 +7752,13 @@
     "lng": 12.5683,
     "quoi": "mort",
     "qid": "Q13369"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-alberto-ramento-q3457863": [
@@ -7289,6 +7828,20 @@
     "lng": 7.7522,
     "quoi": "oeuvre",
     "qid": "Q6602"
+   },
+   {
+    "nom": "université de Vienne",
+    "lat": 48.2131,
+    "lng": 16.3597,
+    "quoi": "formation",
+    "qid": "Q165980"
+   },
+   {
+    "nom": "Giovanni Prati - Trento",
+    "lat": 46.0665,
+    "lng": 11.1244,
+    "quoi": "formation",
+    "qid": "Q3831912"
    }
   ],
   "wd-alcuin-q154332": [
@@ -7298,6 +7851,13 @@
     "lng": 0.6828,
     "quoi": "sepulture",
     "qid": "Q19817291"
+   },
+   {
+    "nom": "St Peter's School",
+    "lat": 53.9665,
+    "lng": -1.0928,
+    "quoi": "formation",
+    "qid": "Q2504619"
    }
   ],
   "wd-aldebrand-de-fossombrone-q3609071": [
@@ -7393,6 +7953,13 @@
     "lng": 11.575,
     "quoi": "mort",
     "qid": "Q1726"
+   },
+   {
+    "nom": "Université Louis-et-Maximilien de Munich",
+    "lat": 48.1508,
+    "lng": 11.5803,
+    "quoi": "formation",
+    "qid": "Q55044"
    }
   ],
   "wd-alexandre-briant-q961817": [
@@ -7402,6 +7969,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "Balliol College",
+    "lat": 51.7547,
+    "lng": -1.2578,
+    "quoi": "formation",
+    "qid": "Q805285"
    }
   ],
   "wd-alexandre-d-alexandrie-q44794": [
@@ -7556,6 +8130,20 @@
     "lng": 23.9,
     "quoi": "mort",
     "qid": "Q496557"
+   },
+   {
+    "nom": "Saint Basil College, Blaj",
+    "lat": 46.175,
+    "lng": 23.923,
+    "quoi": "formation",
+    "qid": "Q25464663"
+   },
+   {
+    "nom": "Université Loránd-Eötvös",
+    "lat": 47.4906,
+    "lng": 19.0585,
+    "quoi": "formation",
+    "qid": "Q390287"
    }
   ],
   "wd-alexei-shepelev-q4062026": [
@@ -7594,18 +8182,18 @@
   ],
   "wd-alexis-nikolaievitch-de-russie-q154045": [
    {
-    "nom": "cathédrale Pierre-et-Paul de Saint-Pétersbourg",
-    "lat": 59.9503,
-    "lng": 30.3167,
-    "quoi": "sepulture",
-    "qid": "Q736587"
-   },
-   {
     "nom": "monastère Novospassky",
     "lat": 55.7322,
     "lng": 37.6562,
     "quoi": "sepulture",
     "qid": "Q2534058"
+   },
+   {
+    "nom": "cathédrale Pierre-et-Paul de Saint-Pétersbourg",
+    "lat": 59.9503,
+    "lng": 30.3167,
+    "quoi": "sepulture",
+    "qid": "Q736587"
    },
    {
     "nom": "villa Ipatiev",
@@ -7615,18 +8203,18 @@
     "qid": "Q1381934"
    },
    {
-    "nom": "palais Alexandre",
-    "lat": 59.7211,
-    "lng": 30.3928,
-    "quoi": "residence",
-    "qid": "Q1519034"
-   },
-   {
     "nom": "palais-musée Tsarskoïe Selo",
     "lat": 59.7233,
     "lng": 30.4158,
     "quoi": "residence",
     "qid": "Q1621200"
+   },
+   {
+    "nom": "palais Alexandre",
+    "lat": 59.7211,
+    "lng": 30.3928,
+    "quoi": "residence",
+    "qid": "Q1519034"
    }
   ],
   "wd-alexis-toth-q747050": [
@@ -7814,6 +8402,13 @@
     "lng": 9.205,
     "quoi": "fondation",
     "qid": "Q115169614"
+   },
+   {
+    "nom": "Athénée pontifical Saint-Anselme",
+    "lat": 41.8829,
+    "lng": 12.4789,
+    "quoi": "formation",
+    "qid": "Q470997"
    }
   ],
   "wd-alfredo-obviar-q3546577": [
@@ -7823,6 +8418,20 @@
     "lng": 121.5833,
     "quoi": "mort",
     "qid": "Q104113"
+   },
+   {
+    "nom": "université Ateneo de Manila",
+    "lat": 14.6389,
+    "lng": 121.0778,
+    "quoi": "formation",
+    "qid": "Q533235"
+   },
+   {
+    "nom": "Université de Santo Tomas",
+    "lat": 14.6097,
+    "lng": 120.9897,
+    "quoi": "formation",
+    "qid": "Q1401524"
    }
   ],
   "wd-alfredo-parte-saiz-q23943027": [
@@ -7832,6 +8441,15 @@
     "lng": 1.5325,
     "quoi": "mort",
     "qid": "Q7393316"
+   }
+  ],
+  "wd-alfredo-versoza-q12961340": [
+   {
+    "nom": "Université de Santo Tomas",
+    "lat": 14.6097,
+    "lng": 120.9897,
+    "quoi": "formation",
+    "qid": "Q1401524"
    }
   ],
   "wd-alice-de-schaerbeek-q1860408": [
@@ -7980,6 +8598,13 @@
     "lng": 15.5167,
     "quoi": "mort",
     "qid": "Q589882"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-alojzy-liguda-q4261242": [
@@ -7998,6 +8623,13 @@
     "lng": -3.7033,
     "quoi": "mort",
     "qid": "Q2807"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
    }
   ],
   "wd-alonzo-de-barcena-q4734593": [
@@ -8009,11 +8641,11 @@
     "qid": "Q5582862"
    },
    {
-    "nom": "Baeza",
-    "lat": 37.9833,
-    "lng": -3.4667,
-    "quoi": "residence",
-    "qid": "Q488555"
+    "nom": "Université de Baeza",
+    "lat": 37.9918,
+    "lng": -3.4688,
+    "quoi": "formation",
+    "qid": "Q5679783"
    }
   ],
   "wd-aloysius-rabata-q9607681": [
@@ -8039,6 +8671,13 @@
     "lng": 120.9763,
     "quoi": "fondation",
     "qid": "Q28070593"
+   },
+   {
+    "nom": "Miriam College",
+    "lat": 14.65,
+    "lng": 121.0833,
+    "quoi": "formation",
+    "qid": "Q3547535"
    }
   ],
   "wd-alphege-q1262465": [
@@ -8213,6 +8852,13 @@
     "lng": 8,
     "quoi": "oeuvre",
     "qid": "Q8614"
+   },
+   {
+    "nom": "Theodorianum",
+    "lat": 51.7162,
+    "lng": 8.7544,
+    "quoi": "formation",
+    "qid": "Q1558249"
    }
   ],
   "wd-alvare-de-cordoue-q2777694": [
@@ -8245,6 +8891,13 @@
     "lng": -1.6656,
     "quoi": "fondation",
     "qid": "Q122459386"
+   },
+   {
+    "nom": "Université polytechnique de Madrid",
+    "lat": 40.4492,
+    "lng": -3.7281,
+    "quoi": "formation",
+    "qid": "Q25864"
    }
   ],
   "wd-alvaro-sanjuan-canet-q20898340": [
@@ -8446,6 +9099,13 @@
     "lng": -2.8014,
     "quoi": "mort",
     "qid": "Q205905"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "wd-ambrosio-kibuuka-q4741909": [
@@ -8695,18 +9355,18 @@
     "qid": "Q1381934"
    },
    {
-    "nom": "palais Alexandre",
-    "lat": 59.7211,
-    "lng": 30.3928,
-    "quoi": "residence",
-    "qid": "Q1519034"
-   },
-   {
     "nom": "palais-musée Tsarskoïe Selo",
     "lat": 59.7233,
     "lng": 30.4158,
     "quoi": "residence",
     "qid": "Q1621200"
+   },
+   {
+    "nom": "palais Alexandre",
+    "lat": 59.7211,
+    "lng": 30.3928,
+    "quoi": "residence",
+    "qid": "Q1519034"
    }
   ],
   "wd-anastasia-saguna-q137971105": [
@@ -8773,13 +9433,6 @@
     "qid": "Q679269"
    },
    {
-    "nom": "Consuegra",
-    "lat": 39.4619,
-    "lng": -3.6064,
-    "quoi": "residence",
-    "qid": "Q919046"
-   },
-   {
     "nom": "Pastrana",
     "lat": 40.4178,
     "lng": -2.9225,
@@ -8792,6 +9445,13 @@
     "lng": -3.9598,
     "quoi": "residence",
     "qid": "Q7930970"
+   },
+   {
+    "nom": "Consuegra",
+    "lat": 39.4619,
+    "lng": -3.6064,
+    "quoi": "residence",
+    "qid": "Q919046"
    }
   ],
   "wd-anastazy-pankiewicz-q4344069": [
@@ -8914,18 +9574,18 @@
     "qid": "Q956207"
    },
    {
-    "nom": "Vilnius",
-    "lat": 54.6872,
-    "lng": 25.28,
-    "quoi": "oeuvre",
-    "qid": "Q216"
-   },
-   {
     "nom": "Varsovie",
     "lat": 52.23,
     "lng": 21.0111,
     "quoi": "oeuvre",
     "qid": "Q270"
+   },
+   {
+    "nom": "Vilnius",
+    "lat": 54.6872,
+    "lng": 25.28,
+    "quoi": "oeuvre",
+    "qid": "Q216"
    },
    {
     "nom": "Pułtusk",
@@ -8961,6 +9621,13 @@
     "lng": 22.0833,
     "quoi": "oeuvre",
     "qid": "Q215633"
+   },
+   {
+    "nom": "lycée Hosianum",
+    "lat": 54.3816,
+    "lng": 19.8224,
+    "quoi": "formation",
+    "qid": "Q323209"
    }
   ],
   "wd-andre-de-crete-q372688": [
@@ -9190,6 +9857,27 @@
     "lng": 12.4828,
     "quoi": "mort",
     "qid": "Q220"
+   },
+   {
+    "nom": "School of Oriental and African Studies",
+    "lat": 51.5221,
+    "lng": -0.129,
+    "quoi": "formation",
+    "qid": "Q220144"
+   },
+   {
+    "nom": "Christ Church",
+    "lat": 51.7502,
+    "lng": -1.2558,
+    "quoi": "formation",
+    "qid": "Q745967"
+   },
+   {
+    "nom": "Ampleforth College",
+    "lat": 54.2018,
+    "lng": -1.0839,
+    "quoi": "formation",
+    "qid": "Q4748473"
    }
   ],
   "wd-andrew-tran-van-trong-q9153817": [
@@ -9242,6 +9930,13 @@
     "lng": 14.2486,
     "quoi": "mort",
     "qid": "Q2634"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-ange-de-gualdo-q3617289": [
@@ -9307,17 +10002,10 @@
     "qid": "Q24011795"
    },
    {
-    "nom": "Manille",
-    "lat": 14.5958,
-    "lng": 120.9772,
-    "quoi": "residence",
-    "qid": "Q1461"
-   },
-   {
     "nom": "La Puebla de Montalbán",
     "lat": 39.863,
     "lng": -4.3592,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q537779"
    },
    {
@@ -9326,6 +10014,13 @@
     "lng": 120.5936,
     "quoi": "residence",
     "qid": "Q39738"
+   },
+   {
+    "nom": "Manille",
+    "lat": 14.5958,
+    "lng": 120.9772,
+    "quoi": "residence",
+    "qid": "Q1461"
    },
    {
     "nom": "Almagro",
@@ -9427,6 +10122,13 @@
     "lng": 7.55,
     "quoi": "mort",
     "qid": "Q5968"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-angilbert-q539434": [
@@ -10142,6 +10844,20 @@
     "lng": 23.8947,
     "quoi": "mort",
     "qid": "Q334874"
+   },
+   {
+    "nom": "Université pontificale Saint-Thomas-d'Aquin",
+    "lat": 41.896,
+    "lng": 12.4875,
+    "quoi": "formation",
+    "qid": "Q246887"
+   },
+   {
+    "nom": "Université pontificale Urbaniana",
+    "lat": 41.8996,
+    "lng": 12.4583,
+    "quoi": "formation",
+    "qid": "Q2032536"
    }
   ],
   "wd-anton-maria-schwartz-q86031": [
@@ -10151,6 +10867,13 @@
     "lng": 16.3725,
     "quoi": "mort",
     "qid": "Q1741"
+   },
+   {
+    "nom": "Seminary of Vienna",
+    "lat": 48.222,
+    "lng": 16.3556,
+    "quoi": "formation",
+    "qid": "Q2569068"
    }
   ],
   "wd-anton-martin-slomsek-q591809": [
@@ -10167,6 +10890,13 @@
     "lng": 15.6333,
     "quoi": "mort",
     "qid": "Q1010"
+   },
+   {
+    "nom": "First Grammar School, Celje",
+    "lat": 46.2311,
+    "lng": 15.2583,
+    "quoi": "formation",
+    "qid": "Q5453059"
    }
   ],
   "wd-anton-martissa-q120735168": [
@@ -10343,6 +11073,13 @@
     "lng": 13.2921,
     "quoi": "sepulture",
     "qid": "Q1303856"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-antonio-baldinucci-q647434": [
@@ -10352,6 +11089,13 @@
     "lng": 13.4167,
     "quoi": "mort",
     "qid": "Q117178"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-antonio-da-stroncone-q26763929": [
@@ -10424,6 +11168,13 @@
     "lng": 8.5394,
     "quoi": "mort",
     "qid": "Q23700"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    }
   ],
   "wd-antonio-suarez-riu-q30014961": [
@@ -10952,6 +11703,13 @@
     "lng": 23.6569,
     "quoi": "sepulture",
     "qid": "Q140147"
+   },
+   {
+    "nom": "université de Vilnius",
+    "lat": 54.6825,
+    "lng": 25.2872,
+    "quoi": "formation",
+    "qid": "Q658192"
    }
   ],
   "wd-athanase-de-jerusalem-q8207863": [
@@ -11128,6 +11886,13 @@
     "lng": 8.173,
     "quoi": "mort",
     "qid": "Q270482"
+   },
+   {
+    "nom": "lycée Charlemagne",
+    "lat": 48.8542,
+    "lng": 2.3605,
+    "quoi": "formation",
+    "qid": "Q748307"
    }
   ],
   "wd-augustin-de-cantorbery-q32520": [
@@ -11162,6 +11927,13 @@
     "lng": 15.3333,
     "quoi": "mort",
     "qid": "Q51933"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-augustin-novello-q385253": [
@@ -11171,6 +11943,13 @@
     "lng": 11.3314,
     "quoi": "mort",
     "qid": "Q2751"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-augustin-pak-chong-won-q4342305": [
@@ -11466,6 +12245,13 @@
     "lng": 7.6333,
     "quoi": "mort",
     "qid": "Q20489"
+   },
+   {
+    "nom": "Université de Turin",
+    "lat": 45.0694,
+    "lng": 7.6889,
+    "quoi": "formation",
+    "qid": "Q499911"
    }
   ],
   "wd-babylas-d-antioche-q797915": [
@@ -11529,6 +12315,20 @@
     "lng": 10.7974,
     "quoi": "sepulture",
     "qid": "Q650678"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    }
   ],
   "wd-bar-hebraeus-q380295": [
@@ -11685,6 +12485,13 @@
     "lng": 38.7833,
     "quoi": "mort",
     "qid": "Q133026"
+   },
+   {
+    "nom": "Corps des cadets de Polotsk",
+    "lat": 55.4863,
+    "lng": 28.7646,
+    "quoi": "formation",
+    "qid": "Q2997766"
    }
   ],
   "wd-barthelemy-aiutamicristo-de-pise-q3635315": [
@@ -11703,6 +12510,13 @@
     "lng": 7.7833,
     "quoi": "mort",
     "qid": "Q19941"
+   },
+   {
+    "nom": "Université de Turin",
+    "lat": 45.0694,
+    "lng": 7.6889,
+    "quoi": "formation",
+    "qid": "Q499911"
    }
   ],
   "wd-barthelemy-de-grottaferrata-q438149": [
@@ -11748,6 +12562,13 @@
     "lng": 14.5,
     "quoi": "mort",
     "qid": "Q36471"
+   },
+   {
+    "nom": "Université de Naples - Frédéric-II",
+    "lat": 40.8472,
+    "lng": 14.2569,
+    "quoi": "formation",
+    "qid": "Q691851"
    }
   ],
   "wd-bartolome-blanco-q2817196": [
@@ -12287,6 +13108,13 @@
     "qid": "Q23987781"
    },
    {
+    "nom": "Salce",
+    "lat": 41.27,
+    "lng": -6.2188,
+    "quoi": "residence",
+    "qid": "Q24016602"
+   },
+   {
     "nom": "Arenas de San Pedro",
     "lat": 40.2087,
     "lng": -5.0911,
@@ -12299,13 +13127,6 @@
     "lng": -3.2639,
     "quoi": "residence",
     "qid": "Q24011830"
-   },
-   {
-    "nom": "Salce",
-    "lat": 41.27,
-    "lng": -6.2188,
-    "quoi": "residence",
-    "qid": "Q24016602"
    }
   ],
   "wd-benignus-q3638206": [
@@ -12417,6 +13238,13 @@
     "lng": -2.0503,
     "quoi": "mort",
     "qid": "Q201311"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-benoit-ricasoli-q18223659": [
@@ -12458,6 +13286,13 @@
     "lng": 14.7787,
     "quoi": "fondation",
     "qid": "Q3669479"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-bentivoglio-de-bonis-q16166154": [
@@ -12476,6 +13311,13 @@
     "lng": 13.4821,
     "quoi": "mort",
     "qid": "Q124554"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-berard-de-carbio-q818683": [
@@ -12593,6 +13435,13 @@
     "lng": 14.4633,
     "quoi": "mort",
     "qid": "Q681748"
+   },
+   {
+    "nom": "université catholique de Lyon",
+    "lat": 45.7514,
+    "lng": 4.8269,
+    "quoi": "formation",
+    "qid": "Q8618"
    }
   ],
   "wd-bernardin-de-feltre-q320878": [
@@ -12611,6 +13460,20 @@
     "lng": 2.3003,
     "quoi": "mort",
     "qid": "Q191066"
+   },
+   {
+    "nom": "Université pontificale du Latran",
+    "lat": 41.8853,
+    "lng": 12.5036,
+    "quoi": "formation",
+    "qid": "Q475007"
+   },
+   {
+    "nom": "Université pontificale Urbaniana",
+    "lat": 41.8996,
+    "lng": 12.4583,
+    "quoi": "formation",
+    "qid": "Q2032536"
    }
   ],
   "wd-bernardin-palaj-q15997530": [
@@ -12629,6 +13492,13 @@
     "lng": 18.1691,
     "quoi": "mort",
     "qid": "Q13386"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-bernardo-da-offida-q950854": [
@@ -12713,6 +13583,13 @@
     "lng": 11.9167,
     "quoi": "mort",
     "qid": "Q6938"
+   },
+   {
+    "nom": "Université de Wrocław",
+    "lat": 51.1136,
+    "lng": 17.0333,
+    "quoi": "formation",
+    "qid": "Q315658"
    },
    {
     "nom": "Reinickendorf",
@@ -13098,6 +13975,13 @@
     "lng": 4.3742,
     "quoi": "sepulture",
     "qid": "Q2086424"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-boniface-de-tarse-q892536": [
@@ -13318,21 +14202,21 @@
     "nom": "Chełmno",
     "lat": 53.3492,
     "lng": 18.4261,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q161962"
    },
    {
     "nom": "Pelplin",
     "lat": 53.9261,
     "lng": 18.7011,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q1027142"
    },
    {
     "nom": "Barłożno",
     "lat": 53.7857,
     "lng": 18.6117,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q2959852"
    }
   ],
@@ -13352,6 +14236,13 @@
     "lng": 21.7833,
     "quoi": "mort",
     "qid": "Q2396786"
+   },
+   {
+    "nom": "Université Jagellonne",
+    "lat": 50.0617,
+    "lng": 19.9339,
+    "quoi": "formation",
+    "qid": "Q189441"
    }
   ],
   "wd-bruna-pellesi-q953282": [
@@ -13379,6 +14270,13 @@
     "lng": 13.0167,
     "quoi": "mort",
     "qid": "Q243458"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-brunon-zembol-q3495212": [
@@ -13431,6 +14329,13 @@
     "lng": -3.7033,
     "quoi": "mort",
     "qid": "Q2807"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
    }
   ],
   "wd-buonfiglio-dei-monaldi-q116483774": [
@@ -13598,6 +14503,13 @@
     "qid": "Q54863682"
    },
    {
+    "nom": "San Severino Marche",
+    "lat": 43.2289,
+    "lng": 13.1771,
+    "quoi": "residence",
+    "qid": "Q94955"
+   },
+   {
     "nom": "Fermo",
     "lat": 43.1613,
     "lng": 13.7184,
@@ -13617,13 +14529,6 @@
     "lng": 12.6378,
     "quoi": "residence",
     "qid": "Q3860537"
-   },
-   {
-    "nom": "San Severino Marche",
-    "lat": 43.2289,
-    "lng": 13.1771,
-    "quoi": "residence",
-    "qid": "Q94955"
    }
   ],
   "wd-camilla-gentili-q26222394": [
@@ -13859,6 +14764,13 @@
     "lng": -66.05,
     "quoi": "mort",
     "qid": "Q683206"
+   },
+   {
+    "nom": "Colegio Católico Notre Dame",
+    "lat": 18.2361,
+    "lng": -66.0489,
+    "quoi": "formation",
+    "qid": "Q5142791"
    }
   ],
   "wd-carmen-garcia-moyon-q100272960": [
@@ -14300,6 +15212,13 @@
     "qid": "Q31487"
    },
    {
+    "nom": "Antaviĺ",
+    "lat": 54.57,
+    "lng": 30.4228,
+    "quoi": "enfance",
+    "qid": "Q20188990"
+   },
+   {
     "nom": "Vilnius",
     "lat": 54.6872,
     "lng": 25.28,
@@ -14333,13 +15252,6 @@
     "lng": 23.8167,
     "quoi": "residence",
     "qid": "Q181376"
-   },
-   {
-    "nom": "Antaviĺ",
-    "lat": 54.57,
-    "lng": 30.4228,
-    "quoi": "residence",
-    "qid": "Q20188990"
    },
    {
     "nom": "Abremščyna",
@@ -14501,6 +15413,20 @@
     "lng": 2.3522,
     "quoi": "mort",
     "qid": "Q90"
+   },
+   {
+    "nom": "lycée général Ferdinand Foch de Rodez",
+    "lat": 44.3496,
+    "lng": 2.5599,
+    "quoi": "formation",
+    "qid": "Q3268667"
+   },
+   {
+    "nom": "collège des Trente-Trois",
+    "lat": 48.8481,
+    "lng": 2.3478,
+    "quoi": "formation",
+    "qid": "Q55596418"
    }
   ],
   "wd-charles-de-blois-q454063": [
@@ -14542,6 +15468,13 @@
     "lng": -82.7563,
     "quoi": "mort",
     "qid": "Q1383"
+   },
+   {
+    "nom": "lycée Louis-le-Grand",
+    "lat": 48.848,
+    "lng": 2.3442,
+    "quoi": "formation",
+    "qid": "Q1059546"
    }
   ],
   "wd-charles-hyon-song-mun-q626689": [
@@ -14581,6 +15514,13 @@
     "lng": 17.2508,
     "quoi": "oeuvre",
     "qid": "Q81137"
+   },
+   {
+    "nom": "Université Charles de Prague",
+    "lat": 50.0884,
+    "lng": 14.4037,
+    "quoi": "formation",
+    "qid": "Q31519"
    }
   ],
   "wd-charles-ier-de-flandre-q378217": [
@@ -14638,6 +15578,13 @@
     "lng": 10.9928,
     "quoi": "mort",
     "qid": "Q2028"
+   },
+   {
+    "nom": "gymnasium Uhland de Tübingen",
+    "lat": 48.5178,
+    "lng": 9.0539,
+    "quoi": "formation",
+    "qid": "Q1686898"
    }
   ],
   "wd-charles-yi-gyeong-do-q97166165": [
@@ -14690,6 +15637,13 @@
     "lng": 8.4901,
     "quoi": "sepulture",
     "qid": "Q271225"
+   },
+   {
+    "nom": "Liceo Gabriello Chiabrera di Savona",
+    "lat": 44.3065,
+    "lng": 8.483,
+    "quoi": "formation",
+    "qid": "Q52753680"
    }
   ],
   "wd-chiara-corbella-petrillo-q55825850": [
@@ -14830,6 +15784,13 @@
     "lng": -4.0333,
     "quoi": "mort",
     "qid": "Q5836"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
    }
   ],
   "wd-clair-du-dauphine-q504380": [
@@ -14968,6 +15929,13 @@
     "lng": 11.2833,
     "quoi": "sepulture",
     "qid": "Q46320"
+   },
+   {
+    "nom": "Académie des beaux-arts de Venise",
+    "lat": 45.4286,
+    "lng": 12.3305,
+    "quoi": "formation",
+    "qid": "Q338505"
    }
   ],
   "wd-claudius-cayx-dumas-q2652519": [
@@ -15020,6 +15988,27 @@
     "lng": 13.3833,
     "quoi": "oeuvre",
     "qid": "Q64"
+   },
+   {
+    "nom": "Université de Fribourg",
+    "lat": 46.8062,
+    "lng": 7.1517,
+    "quoi": "formation",
+    "qid": "Q36188"
+   },
+   {
+    "nom": "Collegium Canisianum",
+    "lat": 47.2744,
+    "lng": 11.3994,
+    "quoi": "formation",
+    "qid": "Q686153"
+   },
+   {
+    "nom": "collège Stella Matutina",
+    "lat": 47.2347,
+    "lng": 9.596,
+    "quoi": "formation",
+    "qid": "Q874457"
    }
   ],
   "wd-clement-cheptytsky-q1977978": [
@@ -15029,6 +16018,20 @@
     "lng": 40.4343,
     "quoi": "mort",
     "qid": "Q240549"
+   },
+   {
+    "nom": "Université Jagellonne",
+    "lat": 50.0617,
+    "lng": 19.9339,
+    "quoi": "formation",
+    "qid": "Q189441"
+   },
+   {
+    "nom": "Collegium Canisianum",
+    "lat": 47.2744,
+    "lng": 11.3994,
+    "quoi": "formation",
+    "qid": "Q686153"
    }
   ],
   "wd-clement-d-alexandrie-q188883": [
@@ -15224,6 +16227,13 @@
     "lng": 4.7667,
     "quoi": "mort",
     "qid": "Q2719216"
+   },
+   {
+    "nom": "Holy Cross College",
+    "lat": 53.3636,
+    "lng": -6.2556,
+    "quoi": "formation",
+    "qid": "Q5885177"
    }
   ],
   "wd-come-d-etolie-q1784991": [
@@ -15233,6 +16243,13 @@
     "lng": 19.5403,
     "quoi": "mort",
     "qid": "Q6427334"
+   },
+   {
+    "nom": "Athonite Academy",
+    "lat": 40.2615,
+    "lng": 24.2449,
+    "quoi": "formation",
+    "qid": "Q4815660"
    }
   ],
   "wd-come-de-maiouma-q2496948": [
@@ -15522,6 +16539,20 @@
     "lng": 8.5519,
     "quoi": "mort",
     "qid": "Q3639"
+   },
+   {
+    "nom": "université Humboldt de Berlin",
+    "lat": 52.5181,
+    "lng": 13.3933,
+    "quoi": "formation",
+    "qid": "Q152087"
+   },
+   {
+    "nom": "Université de Pavie",
+    "lat": 45.1868,
+    "lng": 9.1559,
+    "quoi": "formation",
+    "qid": "Q219317"
    }
   ],
   "wd-conwoion-q1129276": [
@@ -15732,6 +16763,13 @@
     "lng": -2.1972,
     "quoi": "mort",
     "qid": "Q1911207"
+   },
+   {
+    "nom": "Piarists of Barbastro",
+    "lat": 42.0365,
+    "lng": 0.1236,
+    "quoi": "formation",
+    "qid": "Q47459558"
    }
   ],
   "wd-cucufa-de-barcelone-q2180902": [
@@ -16270,6 +17308,20 @@
     "qid": "Q573757"
    },
    {
+    "nom": "Collège anglais de Rome",
+    "lat": 41.8958,
+    "lng": 12.47,
+    "quoi": "formation",
+    "qid": "Q981752"
+   },
+   {
+    "nom": "King Henry VIII School Abergavenny",
+    "lat": 51.8313,
+    "lng": -3.0173,
+    "quoi": "formation",
+    "qid": "Q6411707"
+   },
+   {
     "nom": "Monmouthshire",
     "lat": 51.6667,
     "lng": -3,
@@ -16483,6 +17535,13 @@
     "lng": -6.2603,
     "quoi": "mort",
     "qid": "Q1761"
+   },
+   {
+    "nom": "ancienne université de Louvain",
+    "lat": 50.8779,
+    "lng": 4.7006,
+    "quoi": "formation",
+    "qid": "Q693380"
    }
   ],
   "wd-desire-de-bourges-q5264220": [
@@ -16621,6 +17680,13 @@
     "lng": -2.643,
     "quoi": "mort",
     "qid": "Q1110397"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-dieter-von-vestervig-q1223102": [
@@ -16655,6 +17721,13 @@
     "lng": 30.5236,
     "quoi": "oeuvre",
     "qid": "Q1899"
+   },
+   {
+    "nom": "université nationale Académie Mohyla de Kiev",
+    "lat": 50.4644,
+    "lng": 30.5197,
+    "quoi": "formation",
+    "qid": "Q1133013"
    }
   ],
   "wd-dimitri-ier-donskoi-q188995": [
@@ -16696,6 +17769,13 @@
     "lng": 11.249,
     "quoi": "mort",
     "qid": "Q152802"
+   },
+   {
+    "nom": "Institut Saint-Serge",
+    "lat": 48.8833,
+    "lng": 2.3837,
+    "quoi": "formation",
+    "qid": "Q1247117"
    }
   ],
   "wd-dimitrios-gagastathis-q135299743": [
@@ -16854,6 +17934,13 @@
     "lng": -2.7038,
     "quoi": "mort",
     "qid": "Q1769803"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-domingo-ibanez-de-erquicia-q3103212": [
@@ -17366,6 +18453,13 @@
     "lng": 3.2944,
     "quoi": "mort",
     "qid": "Q1455959"
+   },
+   {
+    "nom": "Abingdon School",
+    "lat": 51.673,
+    "lng": -1.288,
+    "quoi": "formation",
+    "qid": "Q4667847"
    }
   ],
   "wd-edmund-bojanowski-q672047": [
@@ -17377,11 +18471,18 @@
     "qid": "Q5626199"
    },
    {
-    "nom": "Berlin",
-    "lat": 52.5167,
-    "lng": 13.3833,
-    "quoi": "residence",
-    "qid": "Q64"
+    "nom": "université Humboldt de Berlin",
+    "lat": 52.5181,
+    "lng": 13.3933,
+    "quoi": "formation",
+    "qid": "Q152087"
+   },
+   {
+    "nom": "Université de Wrocław",
+    "lat": 51.1136,
+    "lng": 17.0333,
+    "quoi": "formation",
+    "qid": "Q315658"
    },
    {
     "nom": "Dresde",
@@ -17389,13 +18490,6 @@
     "lng": 13.7381,
     "quoi": "residence",
     "qid": "Q1731"
-   },
-   {
-    "nom": "Wrocław",
-    "lat": 51.11,
-    "lng": 17.0325,
-    "quoi": "residence",
-    "qid": "Q1799"
    },
    {
     "nom": "Leipzig",
@@ -17469,6 +18563,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "Trinity College",
+    "lat": 52.2069,
+    "lng": 0.1169,
+    "quoi": "formation",
+    "qid": "Q332342"
    }
   ],
   "wd-edouard-poppe-q1878710": [
@@ -17544,6 +18645,13 @@
     "lng": 11.4683,
     "quoi": "mort",
     "qid": "Q151198"
+   },
+   {
+    "nom": "grand séminaire métropolitain de Varsovie",
+    "lat": 52.2433,
+    "lng": 21.0156,
+    "quoi": "formation",
+    "qid": "Q9380885"
    }
   ],
   "wd-edward-grzyma-a-q1923977": [
@@ -17580,6 +18688,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "St John's College",
+    "lat": 51.7561,
+    "lng": -1.2586,
+    "quoi": "formation",
+    "qid": "Q609646"
    }
   ],
   "wd-edwige-de-silesie-q57520": [
@@ -18092,6 +19207,13 @@
     "lng": 125.3303,
     "quoi": "mort",
     "qid": "Q706030"
+   },
+   {
+    "nom": "Université catholique d'Amérique",
+    "lat": 38.9336,
+    "lng": -76.9986,
+    "quoi": "formation",
+    "qid": "Q179036"
    }
   ],
   "wd-emil-szramek-q2319675": [
@@ -18101,6 +19223,13 @@
     "lng": 11.4683,
     "quoi": "mort",
     "qid": "Q151198"
+   },
+   {
+    "nom": "Université de Wrocław",
+    "lat": 51.1136,
+    "lng": 17.0333,
+    "quoi": "formation",
+    "qid": "Q315658"
    }
   ],
   "wd-emilie-bicchieri-q113347": [
@@ -18198,6 +19327,13 @@
     "lng": 4.3597,
     "quoi": "mort",
     "qid": "Q42807"
+   },
+   {
+    "nom": "collège Stanislas",
+    "lat": 48.8449,
+    "lng": 2.3266,
+    "quoi": "formation",
+    "qid": "Q2983698"
    }
   ],
   "wd-emmanuel-ruiz-q3052860": [
@@ -18340,6 +19476,13 @@
     "lng": -66.5453,
     "quoi": "mort",
     "qid": "Q7260571"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-enrique-garcia-beltran-q14918043": [
@@ -18358,6 +19501,20 @@
     "lng": -58.3819,
     "quoi": "mort",
     "qid": "Q1486"
+   },
+   {
+    "nom": "collège De La Salle",
+    "lat": -34.6014,
+    "lng": -58.3954,
+    "quoi": "formation",
+    "qid": "Q2983580"
+   },
+   {
+    "nom": "école navale militaire (Argentine)",
+    "lat": -34.8436,
+    "lng": -57.8936,
+    "quoi": "formation",
+    "qid": "Q5838781"
    }
   ],
   "wd-enrique-vidaurreta-q6429953": [
@@ -18367,6 +19524,13 @@
     "lng": -4.4167,
     "quoi": "mort",
     "qid": "Q8851"
+   },
+   {
+    "nom": "collège Saint-Stanislas-Kostka",
+    "lat": 36.7214,
+    "lng": -4.362,
+    "quoi": "formation",
+    "qid": "Q5777144"
    }
   ],
   "wd-eoban-q559396": [
@@ -18882,6 +20046,13 @@
     "lng": 23.3217,
     "quoi": "mort",
     "qid": "Q472"
+   },
+   {
+    "nom": "Institut pontifical oriental",
+    "lat": 41.8971,
+    "lng": 12.5,
+    "quoi": "formation",
+    "qid": "Q176473"
    }
   ],
   "wd-eugene-de-deuil-la-barre-q3060235": [
@@ -18925,6 +20096,13 @@
     "lng": -4.0333,
     "quoi": "mort",
     "qid": "Q5836"
+   },
+   {
+    "nom": "monastère Sainte-Engrâce",
+    "lat": 41.6489,
+    "lng": -0.8829,
+    "quoi": "formation",
+    "qid": "Q3320240"
    }
   ],
   "wd-eugene-iii-q167610": [
@@ -19002,6 +20180,13 @@
     "lng": -3.7033,
     "quoi": "mort",
     "qid": "Q2807"
+   },
+   {
+    "nom": "Université de Santo Tomas",
+    "lat": 14.6097,
+    "lng": 120.9897,
+    "quoi": "formation",
+    "qid": "Q1401524"
    }
   ],
   "wd-eulalie-de-barcelone-q2456500": [
@@ -19251,6 +20436,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "Collège anglais de Rome",
+    "lat": 41.8958,
+    "lng": 12.47,
+    "quoi": "formation",
+    "qid": "Q981752"
    }
   ],
   "wd-eustachius-kugler-q96034": [
@@ -19528,6 +20720,20 @@
     "lng": 60.6128,
     "quoi": "mort",
     "qid": "Q887"
+   },
+   {
+    "nom": "académie médicale militaire S.M. Kirov",
+    "lat": 59.9572,
+    "lng": 30.3508,
+    "quoi": "formation",
+    "qid": "Q1459393"
+   },
+   {
+    "nom": "Deuxième gymnasium de Saint-Pétersbourg",
+    "lat": 59.9301,
+    "lng": 30.3151,
+    "quoi": "formation",
+    "qid": "Q4127845"
    }
   ],
   "wd-evmenios-saridakis-q131742474": [
@@ -19822,18 +21028,18 @@
     "qid": "Q1642113"
    },
    {
+    "nom": "Pastrana",
+    "lat": 40.4163,
+    "lng": -2.9246,
+    "quoi": "enfance",
+    "qid": "Q23993619"
+   },
+   {
     "nom": "Alcázar de San Juan",
     "lat": 39.3901,
     "lng": -3.2102,
     "quoi": "residence",
     "qid": "Q679269"
-   },
-   {
-    "nom": "Consuegra",
-    "lat": 39.4625,
-    "lng": -3.608,
-    "quoi": "residence",
-    "qid": "Q24017536"
    },
    {
     "nom": "Almagro",
@@ -19843,18 +21049,18 @@
     "qid": "Q23988849"
    },
    {
-    "nom": "Pastrana",
-    "lat": 40.4163,
-    "lng": -2.9246,
-    "quoi": "residence",
-    "qid": "Q23993619"
-   },
-   {
     "nom": "Arenas de San Pedro",
     "lat": 40.2087,
     "lng": -5.0911,
     "quoi": "residence",
     "qid": "Q24009277"
+   },
+   {
+    "nom": "Consuegra",
+    "lat": 39.4625,
+    "lng": -3.608,
+    "quoi": "residence",
+    "qid": "Q24017536"
    }
   ],
   "wd-felice-tantardini-q64683727": [
@@ -20090,6 +21296,13 @@
     "lng": 11.15,
     "quoi": "mort",
     "qid": "Q94801"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-ferjeux-de-besancon-q4127503": [
@@ -20115,6 +21328,20 @@
     "lng": -2.1972,
     "quoi": "mort",
     "qid": "Q1911207"
+   },
+   {
+    "nom": "Université de Saragosse",
+    "lat": 41.6425,
+    "lng": -0.9,
+    "quoi": "formation",
+    "qid": "Q633561"
+   },
+   {
+    "nom": "École Saint Thomas d'Aquin des Écoles pies de Saragosse en Espagne",
+    "lat": 41.6546,
+    "lng": -0.8848,
+    "quoi": "formation",
+    "qid": "Q8347695"
    }
   ],
   "wd-fernando-gonzalez-anon-q11697909": [
@@ -20203,6 +21430,13 @@
     "lng": 9.6375,
     "quoi": "mort",
     "qid": "Q64748"
+   },
+   {
+    "nom": "Université de Fribourg-en-Brisgau",
+    "lat": 47.9942,
+    "lng": 7.8469,
+    "quoi": "formation",
+    "qid": "Q153987"
    }
   ],
   "wd-fidelis-chojnacki-q2367131": [
@@ -20334,6 +21568,20 @@
     "lng": 43.1327,
     "quoi": "mort",
     "qid": "Q4061832"
+   },
+   {
+    "nom": "Corps des cadets de la Marine",
+    "lat": 59.995,
+    "lng": 29.756,
+    "quoi": "formation",
+    "qid": "Q2379681"
+   },
+   {
+    "nom": "Institut naval de Saint-Pétersbourg",
+    "lat": 59.9351,
+    "lng": 30.2795,
+    "quoi": "formation",
+    "qid": "Q4407686"
    }
   ],
   "wd-firmin-d-uzes-q3072905": [
@@ -20461,6 +21709,13 @@
     "lng": 0.1272,
     "quoi": "mort",
     "qid": "Q502975"
+   },
+   {
+    "nom": "Université de Valladolid",
+    "lat": 41.6522,
+    "lng": -4.7214,
+    "quoi": "formation",
+    "qid": "Q768224"
    }
   ],
   "wd-florian-de-lorch-q298845": [
@@ -20522,6 +21777,13 @@
     "lng": 9.155,
     "quoi": "mort",
     "qid": "Q6259"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-foy-d-agen-q972874": [
@@ -20634,6 +21896,20 @@
     "lng": 2.3522,
     "quoi": "oeuvre",
     "qid": "Q90"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
+   },
+   {
+    "nom": "Académie royale de Turin",
+    "lat": 45.0701,
+    "lng": 7.6889,
+    "quoi": "formation",
+    "qid": "Q3603945"
    }
   ],
   "wd-francesco-gattola-q19974638": [
@@ -20664,7 +21940,7 @@
     "nom": "Naples",
     "lat": 40.8358,
     "lng": 14.2486,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q2634"
    }
   ],
@@ -20828,6 +22104,13 @@
     "lng": 129.8796,
     "quoi": "mort",
     "qid": "Q38234"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
    }
   ],
   "wd-francisco-calvo-burillo-q10284664": [
@@ -21082,6 +22365,20 @@
     "lng": -72.0425,
     "quoi": "fondation",
     "qid": "Q112912004"
+   },
+   {
+    "nom": "Prytanée national militaire",
+    "lat": 47.7003,
+    "lng": -0.0753,
+    "quoi": "formation",
+    "qid": "Q271"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-francois-de-paule-q315640": [
@@ -21227,6 +22524,13 @@
     "lng": 2.1033,
     "quoi": "mort",
     "qid": "Q1620021"
+   },
+   {
+    "nom": "collège Stanislas",
+    "lat": 48.8449,
+    "lng": 2.3266,
+    "quoi": "formation",
+    "qid": "Q2983698"
    }
   ],
   "wd-francois-marie-de-camporosso-q934434": [
@@ -21463,6 +22767,13 @@
     "lng": 5.3764,
     "quoi": "mort",
     "qid": "Q23482"
+   },
+   {
+    "nom": "faculté de droit de Paris",
+    "lat": 48.8469,
+    "lng": 2.3447,
+    "quoi": "formation",
+    "qid": "Q3064259"
    }
   ],
   "wd-frere-arnould-q3089384": [
@@ -21472,6 +22783,13 @@
     "lng": 4.0315,
     "quoi": "sepulture",
     "qid": "Q73109442"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-frere-gerard-q559527": [
@@ -21585,18 +22903,18 @@
   ],
   "wd-frutos-q2089305": [
    {
-    "nom": "cathédrale de Ségovie",
-    "lat": 40.9502,
-    "lng": -4.1256,
-    "quoi": "sepulture",
-    "qid": "Q1499912"
-   },
-   {
     "nom": "Chapel of Saint Fructus",
     "lat": 41.3246,
     "lng": -3.8794,
     "quoi": "sepulture",
     "qid": "Q5836090"
+   },
+   {
+    "nom": "cathédrale de Ségovie",
+    "lat": 40.9502,
+    "lng": -4.1256,
+    "quoi": "sepulture",
+    "qid": "Q1499912"
    }
   ],
   "wd-fulcran-de-lodeve-q331411": [
@@ -21638,6 +22956,55 @@
     "lng": -74.0061,
     "quoi": "mort",
     "qid": "Q60"
+   },
+   {
+    "nom": "Université catholique d'Amérique",
+    "lat": 38.9336,
+    "lng": -76.9986,
+    "quoi": "formation",
+    "qid": "Q179036"
+   },
+   {
+    "nom": "Université pontificale Saint-Thomas-d'Aquin",
+    "lat": 41.896,
+    "lng": 12.4875,
+    "quoi": "formation",
+    "qid": "Q246887"
+   },
+   {
+    "nom": "université catholique de Louvain",
+    "lat": 50.8779,
+    "lng": 4.7006,
+    "quoi": "formation",
+    "qid": "Q644789"
+   },
+   {
+    "nom": "Academy of Our Lady/Spalding Institute",
+    "lat": 40.6965,
+    "lng": -89.5874,
+    "quoi": "formation",
+    "qid": "Q4671508"
+   },
+   {
+    "nom": "Peoria Notre Dame High School",
+    "lat": 40.7494,
+    "lng": -89.6042,
+    "quoi": "formation",
+    "qid": "Q7166150"
+   },
+   {
+    "nom": "Seminaries of Saint Paul",
+    "lat": 44.9405,
+    "lng": -93.1965,
+    "quoi": "formation",
+    "qid": "Q7402052"
+   },
+   {
+    "nom": "St. Viator College",
+    "lat": 41.1536,
+    "lng": -87.8761,
+    "quoi": "formation",
+    "qid": "Q7592042"
    }
   ],
   "wd-fursy-de-peronne-q771953": [
@@ -21674,6 +23041,13 @@
     "lng": 114.1586,
     "quoi": "mort",
     "qid": "Q8646"
+   },
+   {
+    "nom": "Université pontificale de Saint-Antoine",
+    "lat": 41.8892,
+    "lng": 12.5042,
+    "quoi": "formation",
+    "qid": "Q1807942"
    }
   ],
   "wd-gabriel-de-bia-ystok-q1976312": [
@@ -22241,6 +23615,20 @@
     "lng": -1.816,
     "quoi": "mort",
     "qid": "Q4885102"
+   },
+   {
+    "nom": "Trinity College",
+    "lat": 52.2069,
+    "lng": 0.1169,
+    "quoi": "formation",
+    "qid": "Q332342"
+   },
+   {
+    "nom": "Westminster School",
+    "lat": 51.4984,
+    "lng": -0.1284,
+    "quoi": "formation",
+    "qid": "Q1341516"
    }
   ],
   "wd-georges-d-amastris-q3103660": [
@@ -22492,6 +23880,13 @@
     "lng": 11.4683,
     "quoi": "mort",
     "qid": "Q151198"
+   },
+   {
+    "nom": "Université de Wrocław",
+    "lat": 51.1136,
+    "lng": 17.0333,
+    "quoi": "formation",
+    "qid": "Q315658"
    }
   ],
   "wd-gerland-d-agrigente-q2254789": [
@@ -22995,6 +24390,13 @@
     "lng": 19.5121,
     "quoi": "mort",
     "qid": "Q131638"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-giovanni-il-buono-q3768504": [
@@ -23182,6 +24584,13 @@
     "lng": 32.9,
     "quoi": "mort",
     "qid": "Q1015699"
+   },
+   {
+    "nom": "Université de Milan",
+    "lat": 45.4601,
+    "lng": 9.1947,
+    "quoi": "formation",
+    "qid": "Q46210"
    }
   ],
   "wd-giuseppe-benedetto-dusmet-q639828": [
@@ -23200,6 +24609,13 @@
     "lng": 16.3083,
     "quoi": "mort",
     "qid": "Q13486"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-giuseppe-girotti-q3108058": [
@@ -23209,6 +24625,13 @@
     "lng": 11.4683,
     "quoi": "mort",
     "qid": "Q151198"
+   },
+   {
+    "nom": "Université pontificale Saint-Thomas-d'Aquin",
+    "lat": 41.896,
+    "lng": 12.4875,
+    "quoi": "formation",
+    "qid": "Q246887"
    }
   ],
   "wd-giuseppe-maria-tomasi-q772122": [
@@ -23236,6 +24659,13 @@
     "lng": 10.4,
     "quoi": "mort",
     "qid": "Q13375"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    }
   ],
   "wd-giuseppe-tovini-q2274070": [
@@ -23245,6 +24675,20 @@
     "lng": 10.2203,
     "quoi": "mort",
     "qid": "Q6221"
+   },
+   {
+    "nom": "Université de Pavie",
+    "lat": 45.1868,
+    "lng": 9.1559,
+    "quoi": "formation",
+    "qid": "Q219317"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    }
   ],
   "wd-giuseppina-bonino-q434979": [
@@ -23544,6 +24988,13 @@
     "lng": 11.8717,
     "quoi": "sepulture",
     "qid": "Q2407092"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    }
   ],
   "wd-gregoire-d-agrigente-q9282211": [
@@ -23605,6 +25056,20 @@
     "lng": 61.7864,
     "quoi": "mort",
     "qid": "Q16487533"
+   },
+   {
+    "nom": "université de Vienne",
+    "lat": 48.2131,
+    "lng": 16.3597,
+    "quoi": "formation",
+    "qid": "Q165980"
+   },
+   {
+    "nom": "Frintaneum",
+    "lat": 48.2054,
+    "lng": 16.3673,
+    "quoi": "formation",
+    "qid": "Q447216"
    }
   ],
   "wd-gregoire-le-thaumaturge-q337537": [
@@ -23614,6 +25079,13 @@
     "lng": 36.9667,
     "quoi": "mort",
     "qid": "Q513980"
+   },
+   {
+    "nom": "École de droit de Beyrouth",
+    "lat": 33.8961,
+    "lng": 35.5045,
+    "quoi": "formation",
+    "qid": "Q1278790"
    }
   ],
   "wd-gregoire-palamas-q243787": [
@@ -23632,6 +25104,34 @@
     "lng": 19.1752,
     "quoi": "mort",
     "qid": "Q663764"
+   },
+   {
+    "nom": "Université de Varsovie",
+    "lat": 52.2403,
+    "lng": 21.0192,
+    "quoi": "formation",
+    "qid": "Q144488"
+   },
+   {
+    "nom": "université d'État de Tbilissi",
+    "lat": 41.71,
+    "lng": 44.7783,
+    "quoi": "formation",
+    "qid": "Q37008"
+   },
+   {
+    "nom": "université Humboldt de Berlin",
+    "lat": 52.5181,
+    "lng": 13.3933,
+    "quoi": "formation",
+    "qid": "Q152087"
+   },
+   {
+    "nom": "université rhénane Frédéric-Guillaume de Bonn",
+    "lat": 50.7339,
+    "lng": 7.1022,
+    "quoi": "formation",
+    "qid": "Q152171"
    }
   ],
   "wd-gregoire-pierre-xv-agagianian-q718577": [
@@ -23657,6 +25157,13 @@
     "lng": 28.9603,
     "quoi": "mort",
     "qid": "Q406"
+   },
+   {
+    "nom": "école ecclésiastique de Patmos",
+    "lat": 37.3135,
+    "lng": 26.5443,
+    "quoi": "formation",
+    "qid": "Q93064660"
    }
   ],
   "wd-gregoire-x-q161740": [
@@ -23673,6 +25180,13 @@
     "lng": 12.4828,
     "quoi": "oeuvre",
     "qid": "Q220"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-gregorio-aglipay-q981953": [
@@ -23682,6 +25196,13 @@
     "lng": 120.9772,
     "quoi": "mort",
     "qid": "Q1461"
+   },
+   {
+    "nom": "Université de Santo Tomas",
+    "lat": 14.6097,
+    "lng": 120.9897,
+    "quoi": "formation",
+    "qid": "Q1401524"
    }
   ],
   "wd-gregorio-celli-q26763935": [
@@ -23786,6 +25307,20 @@
     "lng": -1.65,
     "quoi": "mort",
     "qid": "Q10282"
+   },
+   {
+    "nom": "Université complutense de Madrid",
+    "lat": 40.449,
+    "lng": -3.727,
+    "quoi": "formation",
+    "qid": "Q219694"
+   },
+   {
+    "nom": "université centrale de Madrid",
+    "lat": 40.4245,
+    "lng": -3.7076,
+    "quoi": "formation",
+    "qid": "Q21705070"
    }
   ],
   "wd-guala-de-roniis-q2815454": [
@@ -24305,6 +25840,13 @@
     "lng": 22.2669,
     "quoi": "mort",
     "qid": "Q38511"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-henri-de-osso-y-cervello-q767708": [
@@ -24341,6 +25883,20 @@
     "lng": 28.512,
     "quoi": "mort",
     "qid": "Q19313"
+   },
+   {
+    "nom": "Vilnius St. Joseph Seminary",
+    "lat": 54.7381,
+    "lng": 25.2786,
+    "quoi": "enfance",
+    "qid": "Q1355626"
+   },
+   {
+    "nom": "Université catholique Jean-Paul-II de Lublin",
+    "lat": 51.2478,
+    "lng": 22.5447,
+    "quoi": "formation",
+    "qid": "Q175529"
    }
   ],
   "wd-henri-ii-le-pieux-q53446": [
@@ -24432,6 +25988,20 @@
     "lng": -1.0833,
     "quoi": "mort",
     "qid": "Q42462"
+   },
+   {
+    "nom": "Peterhouse",
+    "lat": 52.2009,
+    "lng": 0.1184,
+    "quoi": "formation",
+    "qid": "Q650068"
+   },
+   {
+    "nom": "Norwich School",
+    "lat": 52.6318,
+    "lng": 1.2993,
+    "quoi": "formation",
+    "qid": "Q3381488"
    }
   ],
   "wd-henryk-kaczorowski-q629561": [
@@ -24662,6 +26232,13 @@
     "lng": 16.3725,
     "quoi": "mort",
     "qid": "Q1741"
+   },
+   {
+    "nom": "Université de Zurich",
+    "lat": 47.3747,
+    "lng": 8.5483,
+    "quoi": "formation",
+    "qid": "Q206702"
    }
   ],
   "wd-hildegrin-de-chalons-q323137": [
@@ -24748,6 +26325,13 @@
     "lng": 20.5761,
     "quoi": "mort",
     "qid": "Q1019505"
+   },
+   {
+    "nom": "Académie des beaux-arts de Varsovie",
+    "lat": 52.2394,
+    "lng": 21.0158,
+    "quoi": "formation",
+    "qid": "Q414066"
    }
   ],
   "wd-honorat-de-fondi-q3882764": [
@@ -24875,6 +26459,20 @@
     "lng": 30.5236,
     "quoi": "mort",
     "qid": "Q1899"
+   },
+   {
+    "nom": "Frintaneum",
+    "lat": 48.2054,
+    "lng": 16.3673,
+    "quoi": "formation",
+    "qid": "Q447216"
+   },
+   {
+    "nom": "université de Vienne",
+    "lat": 48.2131,
+    "lng": 16.3597,
+    "quoi": "formation",
+    "qid": "Q165980"
    }
   ],
   "wd-hubert-de-liege-q159834": [
@@ -25430,6 +27028,13 @@
     "lng": 12.4828,
     "quoi": "mort",
     "qid": "Q220"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-innocent-xi-q101286": [
@@ -25439,6 +27044,13 @@
     "lng": 12.4828,
     "quoi": "mort",
     "qid": "Q220"
+   },
+   {
+    "nom": "Université de Rome « La Sapienza »",
+    "lat": 41.9033,
+    "lng": 12.5158,
+    "quoi": "formation",
+    "qid": "Q209344"
    }
   ],
   "wd-innocentius-q1399271": [
@@ -25464,6 +27076,13 @@
     "lng": 26.0978,
     "quoi": "mort",
     "qid": "Q19660"
+   },
+   {
+    "nom": "université de Vienne",
+    "lat": 48.2131,
+    "lng": 16.3597,
+    "quoi": "formation",
+    "qid": "Q165980"
    }
   ],
   "wd-ioan-suciu-q593326": [
@@ -25480,6 +27099,20 @@
     "lng": 23.8908,
     "quoi": "mort",
     "qid": "Q1433242"
+   },
+   {
+    "nom": "Saint Basil College, Blaj",
+    "lat": 46.175,
+    "lng": 23.923,
+    "quoi": "formation",
+    "qid": "Q25464663"
+   },
+   {
+    "nom": "collège Saint-Athanase",
+    "lat": 41.9081,
+    "lng": 12.4794,
+    "quoi": "formation",
+    "qid": "Q1643702"
    }
   ],
   "wd-ioasaph-of-belgorod-q1960442": [
@@ -25788,6 +27421,13 @@
     "lng": 9.155,
     "quoi": "mort",
     "qid": "Q6259"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-israel-du-limousin-q3155673": [
@@ -25822,6 +27462,13 @@
     "lng": 9.8289,
     "quoi": "mort",
     "qid": "Q8611"
+   },
+   {
+    "nom": "Université de Gênes",
+    "lat": 44.4149,
+    "lng": 8.9266,
+    "quoi": "formation",
+    "qid": "Q593321"
    }
   ],
   "wd-itte-idoberge-q259551": [
@@ -25847,6 +27494,27 @@
     "lng": 26.0978,
     "quoi": "mort",
     "qid": "Q19660"
+   },
+   {
+    "nom": "II. Rákóczi Ferenc Roman Catholic High School",
+    "lat": 46.5477,
+    "lng": 24.5707,
+    "quoi": "formation",
+    "qid": "Q20432767"
+   },
+   {
+    "nom": "Saint Basil College, Blaj",
+    "lat": 46.175,
+    "lng": 23.923,
+    "quoi": "formation",
+    "qid": "Q25464663"
+   },
+   {
+    "nom": "Pontificio Collegio Urbano de Propaganda Fide",
+    "lat": 41.8996,
+    "lng": 12.4584,
+    "quoi": "formation",
+    "qid": "Q3908287"
    }
   ],
   "wd-ivan-kharitonov-q2597622": [
@@ -25879,6 +27547,27 @@
     "lng": 15.9824,
     "quoi": "sepulture",
     "qid": "Q18889320"
+   },
+   {
+    "nom": "université de Vienne",
+    "lat": 48.2131,
+    "lng": 16.3597,
+    "quoi": "formation",
+    "qid": "Q165980"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
+   },
+   {
+    "nom": "faculté des humanités et des sciences sociales de l’université de Zagreb",
+    "lat": 45.7964,
+    "lng": 15.9716,
+    "quoi": "formation",
+    "qid": "Q3445232"
    }
   ],
   "wd-ivette-de-huy-q3156314": [
@@ -25997,6 +27686,13 @@
     "lng": 10.7911,
     "quoi": "mort",
     "qid": "Q6247"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-jacques-berthieu-q659194": [
@@ -26058,6 +27754,13 @@
     "lng": 14.2486,
     "quoi": "mort",
     "qid": "Q2634"
+   },
+   {
+    "nom": "Université de Pérouse",
+    "lat": 43.1158,
+    "lng": 12.3858,
+    "quoi": "formation",
+    "qid": "Q748085"
    }
   ],
   "wd-jacques-de-nisibe-q220017": [
@@ -26099,6 +27802,13 @@
     "lng": 14.2486,
     "quoi": "mort",
     "qid": "Q2634"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-jacques-de-voragine-q313460": [
@@ -26124,6 +27834,13 @@
     "lng": 57.4989,
     "quoi": "mort",
     "qid": "Q3929"
+   },
+   {
+    "nom": "collège Stanislas",
+    "lat": 48.8449,
+    "lng": 2.3266,
+    "quoi": "formation",
+    "qid": "Q2983698"
    }
   ],
   "wd-jacques-friteyre-durve-q2122059": [
@@ -26219,6 +27936,13 @@
     "lng": 2.3535,
     "quoi": "sepulture",
     "qid": "Q110355507"
+   },
+   {
+    "nom": "lycée La Providence d'Amiens",
+    "lat": 49.8777,
+    "lng": 2.3005,
+    "quoi": "formation",
+    "qid": "Q29889309"
    }
   ],
   "wd-jacut-de-landoac-q390440": [
@@ -26262,6 +27986,13 @@
     "lng": 16.3725,
     "quoi": "mort",
     "qid": "Q1741"
+   },
+   {
+    "nom": "Seminary of Vienna",
+    "lat": 48.222,
+    "lng": 16.3556,
+    "quoi": "formation",
+    "qid": "Q2569068"
    }
   ],
   "wd-jakob-gapp-q875921": [
@@ -26305,6 +28036,20 @@
     "lng": -91.4761,
     "quoi": "mort",
     "qid": "Q984863"
+   },
+   {
+    "nom": "Saint Mary's University of Minnesota",
+    "lat": 44.0448,
+    "lng": -91.6961,
+    "quoi": "formation",
+    "qid": "Q2212976"
+   },
+   {
+    "nom": "Cretin-Derham Hall High School",
+    "lat": 44.9251,
+    "lng": -93.1582,
+    "quoi": "formation",
+    "qid": "Q5184735"
    }
   ],
   "wd-james-yan-guodong-q4538399": [
@@ -26341,6 +28086,13 @@
     "qid": "Q208473"
    },
    {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
+   },
+   {
     "nom": "Staromieście",
     "lat": 50.6667,
     "lng": 19.5833,
@@ -26357,18 +28109,18 @@
     "qid": "Q63247854"
    },
    {
-    "nom": "Khyriv",
-    "lat": 49.5356,
-    "lng": 22.8544,
-    "quoi": "oeuvre",
-    "qid": "Q1020128"
-   },
-   {
     "nom": "Ternopil",
     "lat": 49.5667,
     "lng": 25.6,
     "quoi": "oeuvre",
     "qid": "Q156743"
+   },
+   {
+    "nom": "Khyriv",
+    "lat": 49.5356,
+    "lng": 22.8544,
+    "quoi": "oeuvre",
+    "qid": "Q1020128"
    }
   ],
   "wd-jan-blumowicz-q4088486": [
@@ -26378,6 +28130,13 @@
     "lng": 34.1,
     "quoi": "mort",
     "qid": "Q19566"
+   },
+   {
+    "nom": "Académie théologique de Moscou",
+    "lat": 56.3117,
+    "lng": 38.1311,
+    "quoi": "formation",
+    "qid": "Q841804"
    }
   ],
   "wd-jan-bula-q1681666": [
@@ -26482,6 +28241,13 @@
     "lng": 21.0111,
     "quoi": "mort",
     "qid": "Q270"
+   },
+   {
+    "nom": "université nationale polytechnique de Lviv",
+    "lat": 49.8356,
+    "lng": 24.0147,
+    "quoi": "formation",
+    "qid": "Q1817355"
    }
   ],
   "wd-jan-jakub-fernandez-q6300057": [
@@ -26527,11 +28293,18 @@
     "qid": "Q151198"
    },
    {
-    "nom": "Gniezno",
-    "lat": 52.5333,
-    "lng": 17.6,
-    "quoi": "residence",
-    "qid": "Q51432"
+    "nom": "The Archbishop's Ecclesiastical Seminary in Gniezno",
+    "lat": 52.5392,
+    "lng": 17.5922,
+    "quoi": "formation",
+    "qid": "Q11828141"
+   },
+   {
+    "nom": "Archiepiscopal Seminary of Poznań",
+    "lat": 52.4095,
+    "lng": 16.9477,
+    "quoi": "formation",
+    "qid": "Q9159328"
    },
    {
     "nom": "Ostrów Wielkopolski",
@@ -26708,6 +28481,13 @@
     "lng": 16.2592,
     "quoi": "oeuvre",
     "qid": "Q1252089"
+   },
+   {
+    "nom": "Gymnasium of Cistercian Order of Louis the Great",
+    "lat": 46.0769,
+    "lng": 18.2272,
+    "quoi": "enfance",
+    "qid": "Q435809"
    }
   ],
   "wd-janos-scheffler-q719040": [
@@ -26724,6 +28504,13 @@
     "lng": 26.0833,
     "quoi": "mort",
     "qid": "Q1019174"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-janvier-de-torres-q3947195": [
@@ -26760,6 +28547,13 @@
     "lng": -118.2437,
     "quoi": "mort",
     "qid": "Q65"
+   },
+   {
+    "nom": "Université d'État de l'Ohio",
+    "lat": 40.0006,
+    "lng": -83.0144,
+    "quoi": "formation",
+    "qid": "Q309331"
    }
   ],
   "wd-jean-1er-q160916": [
@@ -26837,6 +28631,13 @@
     "lng": -4.78,
     "quoi": "mort",
     "qid": "Q5818"
+   },
+   {
+    "nom": "université d'Alcalá",
+    "lat": 40.4829,
+    "lng": -3.3632,
+    "quoi": "formation",
+    "qid": "Q495225"
    }
   ],
   "wd-jean-baptiste-scalabrini-q1394839": [
@@ -26941,6 +28742,13 @@
     "lng": 12.9085,
     "quoi": "mort",
     "qid": "Q13145"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-jean-de-beverley-q1702263": [
@@ -26959,6 +28767,15 @@
     "lng": -0.2004,
     "quoi": "mort",
     "qid": "Q527391"
+   }
+  ],
+  "wd-jean-de-britto-q730029": [
+   {
+    "nom": "Université de Coimbra",
+    "lat": 40.2074,
+    "lng": -8.4265,
+    "quoi": "formation",
+    "qid": "Q368643"
    }
   ],
   "wd-jean-de-cologne-q2296290": [
@@ -26991,6 +28808,13 @@
     "lng": 29.7747,
     "quoi": "mort",
     "qid": "Q155863"
+   },
+   {
+    "nom": "séminaire d'Arkhangelsk",
+    "lat": 64.5305,
+    "lng": 40.5647,
+    "quoi": "formation",
+    "qid": "Q4070567"
    }
   ],
   "wd-jean-de-dukla-q59045": [
@@ -27204,6 +29028,27 @@
     "lng": 20.4275,
     "quoi": "oeuvre",
     "qid": "Q36704"
+   },
+   {
+    "nom": "Université de Belgrade",
+    "lat": 44.8186,
+    "lng": 20.4575,
+    "quoi": "formation",
+    "qid": "Q240631"
+   },
+   {
+    "nom": "université nationale de Kharkiv",
+    "lat": 50.0044,
+    "lng": 36.2283,
+    "quoi": "formation",
+    "qid": "Q1458695"
+   },
+   {
+    "nom": "Faculté de théologie orthodoxe de l'université de Belgrade",
+    "lat": 44.8159,
+    "lng": 20.4918,
+    "quoi": "formation",
+    "qid": "Q6645619"
    }
   ],
   "wd-jean-de-trau-q3768441": [
@@ -27238,6 +29083,13 @@
     "lng": 19.05,
     "quoi": "mort",
     "qid": "Q193478"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-jean-dominique-lucchesi-q18414372": [
@@ -27256,6 +29108,13 @@
     "lng": 6.9553,
     "quoi": "sepulture",
     "qid": "Q1937497"
+   },
+   {
+    "nom": "Université d'Oxford",
+    "lat": 51.755,
+    "lng": -1.255,
+    "quoi": "formation",
+    "qid": "Q34433"
    }
   ],
   "wd-jean-francois-burte-q11717465": [
@@ -27349,6 +29208,27 @@
     "lng": 7.4906,
     "quoi": "mort",
     "qid": "Q20454"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
+   },
+   {
+    "nom": "université de Montpellier",
+    "lat": 43.6145,
+    "lng": 3.8721,
+    "quoi": "formation",
+    "qid": "Q776223"
+   },
+   {
+    "nom": "Université de Turin",
+    "lat": 45.0694,
+    "lng": 7.6889,
+    "quoi": "formation",
+    "qid": "Q499911"
    }
   ],
   "wd-jean-l-agneau-q2514854": [
@@ -27433,6 +29313,13 @@
     "lng": 2.3522,
     "quoi": "oeuvre",
     "qid": "Q90"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3436,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-jean-martin-moye-q2008176": [
@@ -27460,6 +29347,13 @@
     "lng": 11.1167,
     "quoi": "mort",
     "qid": "Q3376"
+   },
+   {
+    "nom": "université d'Innsbruck",
+    "lat": 47.2631,
+    "lng": 11.3839,
+    "quoi": "formation",
+    "qid": "Q875788"
    }
   ],
   "wd-jean-paul-ier-q37278": [
@@ -27531,6 +29425,13 @@
     "qid": "Q682361"
    },
    {
+    "nom": "Holešov",
+    "lat": 49.3333,
+    "lng": 17.5783,
+    "quoi": "oeuvre",
+    "qid": "Q961325"
+   },
+   {
     "nom": "Boskovice",
     "lat": 49.4875,
     "lng": 16.66,
@@ -27538,11 +29439,18 @@
     "qid": "Q894440"
    },
    {
-    "nom": "Holešov",
-    "lat": 49.3333,
-    "lng": 17.5783,
-    "quoi": "oeuvre",
-    "qid": "Q961325"
+    "nom": "Université Charles de Prague",
+    "lat": 50.0884,
+    "lng": 14.4037,
+    "quoi": "formation",
+    "qid": "Q31519"
+   },
+   {
+    "nom": "université de Graz",
+    "lat": 47.0776,
+    "lng": 15.4496,
+    "quoi": "formation",
+    "qid": "Q622683"
    },
    {
     "nom": "Skoczów",
@@ -27840,11 +29748,11 @@
     "qid": "Q106681"
    },
    {
-    "nom": "Varsovie",
-    "lat": 52.23,
-    "lng": 21.0111,
-    "quoi": "residence",
-    "qid": "Q270"
+    "nom": "grand séminaire métropolitain de Varsovie",
+    "lat": 52.2433,
+    "lng": 21.0156,
+    "quoi": "formation",
+    "qid": "Q9380885"
    },
    {
     "nom": "Ząbki",
@@ -27859,6 +29767,13 @@
     "lng": 21.1656,
     "quoi": "residence",
     "qid": "Q9154799"
+   },
+   {
+    "nom": "Varsovie",
+    "lat": 52.23,
+    "lng": 21.0111,
+    "quoi": "residence",
+    "qid": "Q270"
    },
    {
     "nom": "Suchowola",
@@ -27882,6 +29797,13 @@
     "lng": -71.4272,
     "quoi": "mort",
     "qid": "Q2320331"
+   },
+   {
+    "nom": "Université pontificale Javeriana",
+    "lat": 4.6289,
+    "lng": -74.0649,
+    "quoi": "formation",
+    "qid": "Q1517478"
    }
   ],
   "wd-jesus-hita-q99670726": [
@@ -28054,6 +29976,13 @@
     "qid": "Q1055"
    },
    {
+    "nom": "Faculté de philosophie et de théologie de Sankt Georgen",
+    "lat": 50.0985,
+    "lng": 8.712,
+    "quoi": "formation",
+    "qid": "Q895645"
+   },
+   {
     "nom": "Osnabrück",
     "lat": 52.2789,
     "lng": 8.0431,
@@ -28086,6 +30015,15 @@
     "lng": -1.4667,
     "quoi": "mort",
     "qid": "Q492805"
+   }
+  ],
+  "wd-john-boste-q532773": [
+   {
+    "nom": "The Queen's College",
+    "lat": 51.7533,
+    "lng": -1.2511,
+    "quoi": "formation",
+    "qid": "Q73094"
    }
   ],
   "wd-john-calybite-q1959875": [
@@ -28122,6 +30060,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "wd-john-forest-q4491842": [
@@ -28131,6 +30076,22 @@
     "lng": -0.1275,
     "quoi": "mort",
     "qid": "Q84"
+   },
+   {
+    "nom": "Université d'Oxford",
+    "lat": 51.755,
+    "lng": -1.255,
+    "quoi": "formation",
+    "qid": "Q34433"
+   }
+  ],
+  "wd-john-gavan-q16838489": [
+   {
+    "nom": "Stonyhurst College",
+    "lat": 53.8469,
+    "lng": -2.4721,
+    "quoi": "formation",
+    "qid": "Q2274271"
    }
   ],
   "wd-john-hardon-q9283759": [
@@ -28140,6 +30101,20 @@
     "lng": -83.4189,
     "quoi": "mort",
     "qid": "Q1095872"
+   },
+   {
+    "nom": "Université Loyola de Chicago",
+    "lat": 41.8972,
+    "lng": -87.6239,
+    "quoi": "formation",
+    "qid": "Q1537759"
+   },
+   {
+    "nom": "Université John-Carroll",
+    "lat": 41.491,
+    "lng": -81.53,
+    "quoi": "formation",
+    "qid": "Q1666981"
    }
   ],
   "wd-john-hogg-q122925845": [
@@ -28158,6 +30133,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "Université de Cambridge",
+    "lat": 52.2054,
+    "lng": 0.1132,
+    "quoi": "formation",
+    "qid": "Q35794"
    }
   ],
   "wd-john-ingram-q600317": [
@@ -28167,6 +30149,13 @@
     "lng": -1.6,
     "quoi": "mort",
     "qid": "Q216372"
+   },
+   {
+    "nom": "New College",
+    "lat": 51.7542,
+    "lng": -1.2511,
+    "quoi": "formation",
+    "qid": "Q1376987"
    }
   ],
   "wd-john-jones-q3401261": [
@@ -28239,6 +30228,20 @@
     "lng": -4.25,
     "quoi": "mort",
     "qid": "Q4093"
+   },
+   {
+    "nom": "université de Graz",
+    "lat": 47.0776,
+    "lng": 15.4496,
+    "quoi": "formation",
+    "qid": "Q622683"
+   },
+   {
+    "nom": "université Palacký",
+    "lat": 49.5951,
+    "lng": 17.2591,
+    "quoi": "formation",
+    "qid": "Q1637611"
    }
   ],
   "wd-john-payne-q3809536": [
@@ -28257,6 +30260,13 @@
     "lng": -2.5833,
     "quoi": "mort",
     "qid": "Q23064"
+   },
+   {
+    "nom": "collège des Jésuites Anglais",
+    "lat": 50.7491,
+    "lng": 2.2581,
+    "quoi": "formation",
+    "qid": "Q5146931"
    }
   ],
   "wd-john-rigby-q6254927": [
@@ -28282,6 +30292,13 @@
     "lng": 3.0859,
     "quoi": "fondation",
     "qid": "Q2983716"
+   },
+   {
+    "nom": "St John's College",
+    "lat": 51.7561,
+    "lng": -1.2586,
+    "quoi": "formation",
+    "qid": "Q609646"
    }
   ],
   "wd-john-southworth-q3055096": [
@@ -28291,6 +30308,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "wd-john-story-q6259322": [
@@ -28300,6 +30324,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "Université d'Oxford",
+    "lat": 51.755,
+    "lng": -1.255,
+    "quoi": "formation",
+    "qid": "Q34433"
    }
   ],
   "wd-john-sullivan-q16029260": [
@@ -28334,6 +30365,13 @@
     "lng": -2.2206,
     "quoi": "mort",
     "qid": "Q1646181"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "wd-jonas-q118036": [
@@ -28375,6 +30413,13 @@
     "lng": 30.5236,
     "quoi": "mort",
     "qid": "Q1899"
+   },
+   {
+    "nom": "Université pontificale Urbaniana",
+    "lat": 41.8996,
+    "lng": 12.4583,
+    "quoi": "formation",
+    "qid": "Q2032536"
    }
   ],
   "wd-josaphata-micheline-hordashevska-q2467982": [
@@ -28434,6 +30479,13 @@
     "lng": -40.6444,
     "quoi": "mort",
     "qid": "Q2019024"
+   },
+   {
+    "nom": "Université de Coimbra",
+    "lat": 40.2074,
+    "lng": -8.4265,
+    "quoi": "formation",
+    "qid": "Q368643"
    }
   ],
   "wd-jose-de-los-sagrados-corazones-q56312044": [
@@ -28669,6 +30721,13 @@
     "lng": 11.4683,
     "quoi": "mort",
     "qid": "Q151198"
+   },
+   {
+    "nom": "Grand séminaire de Kielce",
+    "lat": 50.8669,
+    "lng": 20.6294,
+    "quoi": "formation",
+    "qid": "Q9380911"
    }
   ],
   "wd-josefa-de-san-juan-de-dios-q42881473": [
@@ -28710,6 +30769,13 @@
     "lng": 2.1389,
     "quoi": "fondation",
     "qid": "Q1854576"
+   },
+   {
+    "nom": "Piarists of Barbastro",
+    "lat": 42.0365,
+    "lng": 0.1236,
+    "quoi": "formation",
+    "qid": "Q47459558"
    }
   ],
   "wd-josep-samso-i-elias-q3513656": [
@@ -28746,6 +30812,13 @@
     "lng": 7.6761,
     "quoi": "mort",
     "qid": "Q495"
+   },
+   {
+    "nom": "Université de Turin",
+    "lat": 45.0694,
+    "lng": 7.6889,
+    "quoi": "formation",
+    "qid": "Q499911"
    }
   ],
   "wd-joseph-benoit-cottolengo-q723364": [
@@ -28778,6 +30851,20 @@
     "lng": 19.9372,
     "quoi": "oeuvre",
     "qid": "Q31487"
+   },
+   {
+    "nom": "université de Vienne",
+    "lat": 48.2131,
+    "lng": 16.3597,
+    "quoi": "formation",
+    "qid": "Q165980"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-joseph-cafasso-q1373633": [
@@ -28796,6 +30883,13 @@
     "lng": 12.4731,
     "quoi": "sepulture",
     "qid": "Q3585371"
+   },
+   {
+    "nom": "université d'Alcalá",
+    "lat": 40.4829,
+    "lng": -3.3632,
+    "quoi": "formation",
+    "qid": "Q495225"
    }
   ],
   "wd-joseph-chang-chu-gi-q11730030": [
@@ -28914,6 +31008,13 @@
     "lng": 19.1752,
     "quoi": "mort",
     "qid": "Q663764"
+   },
+   {
+    "nom": "Grand séminaire d'Ołtarzew",
+    "lat": 52.2133,
+    "lng": 20.7757,
+    "quoi": "formation",
+    "qid": "Q9380912"
    }
   ],
   "wd-joseph-kowalski-q325236": [
@@ -29054,6 +31155,20 @@
     "lng": 12.4797,
     "quoi": "sepulture",
     "qid": "Q719794"
+   },
+   {
+    "nom": "San Carlos",
+    "lat": 41.6514,
+    "lng": -0.8757,
+    "quoi": "formation",
+    "qid": "Q6102120"
+   },
+   {
+    "nom": "Royal Seminary of Nobles of Calatayud",
+    "lat": 41.3526,
+    "lng": -1.644,
+    "quoi": "formation",
+    "qid": "Q107392289"
    }
   ],
   "wd-joseph-stanek-q1340524": [
@@ -29266,6 +31381,13 @@
     "lng": 11.4683,
     "quoi": "mort",
     "qid": "Q151198"
+   },
+   {
+    "nom": "Université de Wrocław",
+    "lat": 51.1136,
+    "lng": 17.0333,
+    "quoi": "formation",
+    "qid": "Q315658"
    }
   ],
   "wd-jozef-negro-maroto-q20029258": [
@@ -29291,6 +31413,20 @@
     "lng": 22.7842,
     "quoi": "mort",
     "qid": "Q208473"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
+   },
+   {
+    "nom": "Université pontificale du Latran",
+    "lat": 41.8853,
+    "lng": 12.5036,
+    "quoi": "formation",
+    "qid": "Q475007"
    }
   ],
   "wd-jozef-straszewski-q4443532": [
@@ -29415,6 +31551,20 @@
     "lng": -98.1989,
     "quoi": "fondation",
     "qid": "Q4903485"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
+   },
+   {
+    "nom": "université d'Alcalá",
+    "lat": 40.4829,
+    "lng": -3.3632,
+    "quoi": "formation",
+    "qid": "Q495225"
    }
   ],
   "wd-juan-de-prado-q3810942": [
@@ -29424,6 +31574,13 @@
     "lng": -7.9811,
     "quoi": "mort",
     "qid": "Q101625"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
    }
   ],
   "wd-juan-de-ribera-q1650331": [
@@ -29433,6 +31590,13 @@
     "lng": -0.3733,
     "quoi": "sepulture",
     "qid": "Q4984364"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
    }
   ],
   "wd-juan-de-santo-tomas-alcover-figueras-q4063485": [
@@ -29485,11 +31649,11 @@
     "qid": "Q8851"
    },
    {
-    "nom": "El Burgo",
-    "lat": 36.7897,
-    "lng": -4.9478,
-    "quoi": "residence",
-    "qid": "Q1623964"
+    "nom": "Seminario Diocesano",
+    "lat": 36.7336,
+    "lng": -4.4122,
+    "quoi": "formation",
+    "qid": "Q9075927"
    },
    {
     "nom": "Yunquera",
@@ -29497,6 +31661,13 @@
     "lng": -4.9205,
     "quoi": "residence",
     "qid": "Q1647764"
+   },
+   {
+    "nom": "El Burgo",
+    "lat": 36.7897,
+    "lng": -4.9478,
+    "quoi": "residence",
+    "qid": "Q1623964"
    }
   ],
   "wd-juan-francisco-barahona-martin-q98148737": [
@@ -29708,6 +31879,13 @@
     "qid": "Q24017536"
    },
    {
+    "nom": "Université pontificale de Saint-Antoine",
+    "lat": 41.8892,
+    "lng": 12.5042,
+    "quoi": "formation",
+    "qid": "Q1807942"
+   },
+   {
     "nom": "Rome",
     "lat": 41.8931,
     "lng": 12.4828,
@@ -29722,18 +31900,18 @@
     "qid": "Q23987781"
    },
    {
-    "nom": "Arenas de San Pedro",
-    "lat": 40.2087,
-    "lng": -5.0911,
-    "quoi": "residence",
-    "qid": "Q24009277"
-   },
-   {
     "nom": "Mazarete",
     "lat": 41.0011,
     "lng": -2.1598,
     "quoi": "residence",
     "qid": "Q120173016"
+   },
+   {
+    "nom": "Arenas de San Pedro",
+    "lat": 40.2087,
+    "lng": -5.0911,
+    "quoi": "residence",
+    "qid": "Q24009277"
    }
   ],
   "wd-julian-of-sora-q1712147": [
@@ -29877,6 +32055,13 @@
     "lng": -3.5053,
     "quoi": "mort",
     "qid": "Q1013081"
+   },
+   {
+    "nom": "Prytanée national militaire",
+    "lat": 47.7003,
+    "lng": -0.0753,
+    "quoi": "formation",
+    "qid": "Q271"
    }
   ],
   "wd-julienne-de-nicomedie-q241423": [
@@ -29982,6 +32167,27 @@
     "lng": -73.9675,
     "quoi": "fondation",
     "qid": "Q12311382"
+   },
+   {
+    "nom": "Université d'Édimbourg",
+    "lat": 55.9474,
+    "lng": -3.1872,
+    "quoi": "formation",
+    "qid": "Q160302"
+   },
+   {
+    "nom": "Université Makerere",
+    "lat": 0.335,
+    "lng": 32.5675,
+    "quoi": "formation",
+    "qid": "Q261506"
+   },
+   {
+    "nom": "université de Fort Hare",
+    "lat": -32.7875,
+    "lng": 26.8475,
+    "quoi": "formation",
+    "qid": "Q2005511"
    }
   ],
   "wd-jurgis-matulaitis-q559765": [
@@ -29998,6 +32204,20 @@
     "lng": 23.9333,
     "quoi": "mort",
     "qid": "Q4115712"
+   },
+   {
+    "nom": "Grand séminaire de Kielce",
+    "lat": 50.8669,
+    "lng": 20.6294,
+    "quoi": "formation",
+    "qid": "Q9380911"
+   },
+   {
+    "nom": "Catholic University of Applied Sciences Freiburg",
+    "lat": 48.0039,
+    "lng": 7.8575,
+    "quoi": "formation",
+    "qid": "Q1736342"
    }
   ],
   "wd-just-de-bretenieres-q3190300": [
@@ -30093,6 +32313,13 @@
     "lng": 19.8833,
     "quoi": "mort",
     "qid": "Q208015"
+   },
+   {
+    "nom": "Faculté de théologie orthodoxe de l'université de Belgrade",
+    "lat": 44.8159,
+    "lng": 20.4918,
+    "quoi": "formation",
+    "qid": "Q6645619"
    }
   ],
   "wd-justine-de-padoue-q288295": [
@@ -30223,6 +32450,13 @@
     "lng": 23.3217,
     "quoi": "mort",
     "qid": "Q472"
+   },
+   {
+    "nom": "Institut pontifical oriental",
+    "lat": 41.8971,
+    "lng": 12.5,
+    "quoi": "formation",
+    "qid": "Q176473"
    }
   ],
   "wd-karl-leisner-q62949": [
@@ -30244,7 +32478,7 @@
     "nom": "Clèves",
     "lat": 51.79,
     "lng": 6.14,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q6842"
    }
   ],
@@ -30264,6 +32498,13 @@
     "lng": 26.7311,
     "quoi": "mort",
     "qid": "Q21632023"
+   },
+   {
+    "nom": "université de Lviv",
+    "lat": 49.8405,
+    "lng": 24.0225,
+    "quoi": "formation",
+    "qid": "Q80207"
    }
   ],
   "wd-karolina-kozkowna-q2537197": [
@@ -30300,6 +32541,20 @@
     "lng": 11.4683,
     "quoi": "mort",
     "qid": "Q151198"
+   },
+   {
+    "nom": "Université de Varsovie",
+    "lat": 52.2403,
+    "lng": 21.0192,
+    "quoi": "formation",
+    "qid": "Q144488"
+   },
+   {
+    "nom": "université d'Innsbruck",
+    "lat": 47.2631,
+    "lng": 11.3839,
+    "quoi": "formation",
+    "qid": "Q875788"
    }
   ],
   "wd-kazimierz-sykulski-q2193118": [
@@ -30488,6 +32743,13 @@
     "lng": 21.0111,
     "quoi": "mort",
     "qid": "Q270"
+   },
+   {
+    "nom": "Université Jagellonne",
+    "lat": 50.0617,
+    "lng": 19.9339,
+    "quoi": "formation",
+    "qid": "Q189441"
    }
   ],
   "wd-ladislas-ier-de-hongrie-q26486": [
@@ -30635,6 +32897,13 @@
     "lng": 16.3725,
     "quoi": "mort",
     "qid": "Q1741"
+   },
+   {
+    "nom": "université de Vienne",
+    "lat": 48.2131,
+    "lng": 16.3597,
+    "quoi": "formation",
+    "qid": "Q165980"
    }
   ],
   "wd-laud-de-coutances-q3218578": [
@@ -31071,6 +33340,13 @@
     "lng": 20.1639,
     "quoi": "sepulture",
     "qid": "Q513698"
+   },
+   {
+    "nom": "Académie théologique de Saint-Pétersbourg",
+    "lat": 59.9175,
+    "lng": 30.3831,
+    "quoi": "formation",
+    "qid": "Q1499053"
    }
   ],
   "wd-leonard-de-noblac-q558148": [
@@ -31523,6 +33799,13 @@
     "lng": -1.5194,
     "quoi": "mort",
     "qid": "Q191765"
+   },
+   {
+    "nom": "séminaire de Bayonne",
+    "lat": 43.4933,
+    "lng": -1.4874,
+    "quoi": "formation",
+    "qid": "Q38775519"
    }
   ],
   "wd-louis-francois-le-brun-q83259330": [
@@ -31600,6 +33883,13 @@
     "lng": 112.3735,
     "quoi": "mort",
     "qid": "Q1023910"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-louis-zephirin-moreau-q2496468": [
@@ -31998,6 +34288,13 @@
     "lng": 11.4683,
     "quoi": "mort",
     "qid": "Q151198"
+   },
+   {
+    "nom": "Université Jagellonne",
+    "lat": 50.0617,
+    "lng": 19.9339,
+    "quoi": "formation",
+    "qid": "Q189441"
    }
   ],
   "wd-ludwik-mzyk-q7224947": [
@@ -32093,6 +34390,13 @@
     "lng": 9.037,
     "quoi": "mort",
     "qid": "Q40862"
+   },
+   {
+    "nom": "Université de Rome « La Sapienza »",
+    "lat": 41.9033,
+    "lng": 12.5158,
+    "quoi": "formation",
+    "qid": "Q209344"
    }
   ],
   "wd-luigi-maria-palazzolo-q2650537": [
@@ -32111,6 +34415,13 @@
     "lng": 12.7667,
     "quoi": "mort",
     "qid": "Q243210"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-luigi-scrosoppi-q114492": [
@@ -32147,6 +34458,13 @@
     "lng": -2.135,
     "quoi": "mort",
     "qid": "Q15098"
+   },
+   {
+    "nom": "Université pontificale Saint-Thomas-d'Aquin",
+    "lat": 41.896,
+    "lng": 12.4875,
+    "quoi": "formation",
+    "qid": "Q246887"
    }
   ],
   "wd-luis-llado-teixido-q47545056": [
@@ -32199,6 +34517,13 @@
     "lng": 130.3702,
     "quoi": "mort",
     "qid": "Q847594"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
    }
   ],
   "wd-luisa-guidotti-mistrali-q18812033": [
@@ -32235,6 +34560,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "wd-luke-thaumaturgus-q2497353": [
@@ -32699,6 +35031,13 @@
     "lng": -3.6691,
     "quoi": "mort",
     "qid": "Q2003054"
+   },
+   {
+    "nom": "Université de Valladolid",
+    "lat": 41.6522,
+    "lng": -4.7214,
+    "quoi": "formation",
+    "qid": "Q768224"
    }
   ],
   "wd-manuel-borras-ferre-q9027643": [
@@ -32733,6 +35072,13 @@
     "lng": 12.4291,
     "quoi": "fondation",
     "qid": "Q2120442"
+   },
+   {
+    "nom": "Université de Valence",
+    "lat": 39.4791,
+    "lng": -0.3591,
+    "quoi": "formation",
+    "qid": "Q383568"
    }
   ],
   "wd-manuel-gonzalez-y-garcia-q2012633": [
@@ -32785,6 +35131,13 @@
     "lng": -2.643,
     "quoi": "mort",
     "qid": "Q1110397"
+   },
+   {
+    "nom": "Faculté de philosophie et de lettres (Université de Grenade)",
+    "lat": 37.1912,
+    "lng": -3.5943,
+    "quoi": "formation",
+    "qid": "Q5854915"
    }
   ],
   "wd-manuel-morales-q12967680": [
@@ -33019,7 +35372,7 @@
     "nom": "Pastrana",
     "lat": 40.4163,
     "lng": -2.9246,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q23993619"
    },
    {
@@ -33060,6 +35413,13 @@
     "lng": 4.5147,
     "quoi": "mort",
     "qid": "Q235739"
+   },
+   {
+    "nom": "séminaire Saint-Irénée",
+    "lat": 45.7421,
+    "lng": 4.7821,
+    "quoi": "formation",
+    "qid": "Q18343335"
    }
   ],
   "wd-marcellin-q160373": [
@@ -33198,6 +35558,20 @@
     "lng": 11.55,
     "quoi": "mort",
     "qid": "Q6537"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
+   },
+   {
+    "nom": "Université de Pérouse",
+    "lat": 43.1158,
+    "lng": 12.3858,
+    "quoi": "formation",
+    "qid": "Q748085"
    }
   ],
   "wd-marcolin-de-forli-q3290191": [
@@ -33947,6 +36321,13 @@
     "lng": 0.9237,
     "quoi": "mort",
     "qid": "Q372836"
+   },
+   {
+    "nom": "Université de Barcelone",
+    "lat": 41.3867,
+    "lng": 2.1639,
+    "quoi": "formation",
+    "qid": "Q219615"
    }
   ],
   "wd-maria-nieves-sanchez-fernandez-q106834941": [
@@ -34688,6 +37069,13 @@
     "lng": -3.7033,
     "quoi": "mort",
     "qid": "Q2807"
+   },
+   {
+    "nom": "Université complutense de Madrid",
+    "lat": 40.449,
+    "lng": -3.727,
+    "quoi": "formation",
+    "qid": "Q219694"
    }
   ],
   "wd-marie-eugene-de-l-enfant-jesus-q3291767": [
@@ -34923,6 +37311,13 @@
     "lng": 13.1688,
     "quoi": "mort",
     "qid": "Q159483"
+   },
+   {
+    "nom": "Institut Saint-Serge",
+    "lat": 48.8833,
+    "lng": 2.3837,
+    "quoi": "formation",
+    "qid": "Q1247117"
    }
   ],
   "wd-marie-therese-bonzel-q1695005": [
@@ -35169,6 +37564,20 @@
     "lng": -87.95,
     "quoi": "mort",
     "qid": "Q37836"
+   },
+   {
+    "nom": "université pontificale catholique du Chili",
+    "lat": -33.4411,
+    "lng": -70.6407,
+    "quoi": "formation",
+    "qid": "Q1129925"
+   },
+   {
+    "nom": "Instituto Alonso de Ercilla",
+    "lat": -33.4371,
+    "lng": -70.6666,
+    "quoi": "formation",
+    "qid": "Q5142775"
    }
   ],
   "wd-mario-vergara-q3849228": [
@@ -35275,6 +37684,13 @@
     "lng": 2.1879,
     "quoi": "mort",
     "qid": "Q13927"
+   },
+   {
+    "nom": "université catholique de Louvain",
+    "lat": 50.8779,
+    "lng": 4.7006,
+    "quoi": "formation",
+    "qid": "Q644789"
    }
   ],
   "wd-marti-tarres-i-puigpelat-q20876312": [
@@ -35311,6 +37727,13 @@
     "lng": 129.8796,
     "quoi": "mort",
     "qid": "Q38234"
+   },
+   {
+    "nom": "université d'Alcalá",
+    "lat": 40.4829,
+    "lng": -3.3632,
+    "quoi": "formation",
+    "qid": "Q495225"
    }
   ],
   "wd-martin-de-vertou-q3295693": [
@@ -35345,6 +37768,13 @@
     "lng": -3.7749,
     "quoi": "mort",
     "qid": "Q24011795"
+   },
+   {
+    "nom": "Université pontificale de Saint-Antoine",
+    "lat": 41.8892,
+    "lng": 12.5042,
+    "quoi": "formation",
+    "qid": "Q1807942"
    },
    {
     "nom": "Rome",
@@ -35659,6 +38089,20 @@
     "lng": 73.9185,
     "quoi": "oeuvre",
     "qid": "Q2983675"
+   },
+   {
+    "nom": "Université de Rome « La Sapienza »",
+    "lat": 41.9033,
+    "lng": 12.5158,
+    "quoi": "enfance",
+    "qid": "Q209344"
+   },
+   {
+    "nom": "collège romain",
+    "lat": 41.8987,
+    "lng": 12.4806,
+    "quoi": "formation",
+    "qid": "Q2157592"
    }
   ],
   "wd-matthew-feng-de-q4493816": [
@@ -35740,6 +38184,13 @@
     "lng": -3.5286,
     "quoi": "mort",
     "qid": "Q1775896"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-maurice-tornay-q117799": [
@@ -35928,11 +38379,11 @@
   ],
   "wd-maximien-de-ravenne-q1281783": [
    {
-    "nom": "cathédrale de Ravenne",
+    "nom": "chapelle archiépiscopale",
     "lat": 44.4156,
-    "lng": 12.1966,
+    "lng": 12.1978,
     "quoi": "sepulture",
-    "qid": "Q2942769"
+    "qid": "Q600062"
    }
   ],
   "wd-maximilien-de-theveste-q1737567": [
@@ -36089,18 +38540,18 @@
     "qid": "Q1218"
    },
    {
-    "nom": "Empire byzantin",
-    "lat": 41.0125,
-    "lng": 28.98,
-    "quoi": "oeuvre",
-    "qid": "Q12544"
-   },
-   {
     "nom": "Rome antique",
     "lat": 41.89,
     "lng": 12.48,
     "quoi": "oeuvre",
     "qid": "Q1747689"
+   },
+   {
+    "nom": "Empire byzantin",
+    "lat": 41.0125,
+    "lng": 28.98,
+    "quoi": "oeuvre",
+    "qid": "Q12544"
    },
    {
     "nom": "Hispanie",
@@ -36169,6 +38620,13 @@
     "lng": 36.2239,
     "quoi": "sepulture",
     "qid": "Q578671"
+   },
+   {
+    "nom": "Académie théologique de Saint-Pétersbourg",
+    "lat": 59.9175,
+    "lng": 30.3831,
+    "quoi": "formation",
+    "qid": "Q1499053"
    }
   ],
   "wd-melitta-q1919427": [
@@ -36363,6 +38821,27 @@
     "lng": -73.0825,
     "quoi": "mort",
     "qid": "Q1561061"
+   },
+   {
+    "nom": "collège Antoine-Girouard",
+    "lat": 45.6339,
+    "lng": -72.943,
+    "quoi": "formation",
+    "qid": "Q2983562"
+   },
+   {
+    "nom": "Université de Niagara",
+    "lat": 43.1379,
+    "lng": -79.0378,
+    "quoi": "formation",
+    "qid": "Q3551657"
+   },
+   {
+    "nom": "St. Mary's Seminary and University",
+    "lat": 39.3623,
+    "lng": -76.6381,
+    "quoi": "formation",
+    "qid": "Q7590435"
    }
   ],
   "wd-michael-maleinos-q975412": [
@@ -36488,6 +38967,27 @@
     "lng": 23.1687,
     "quoi": "sepulture",
     "qid": "Q761"
+   },
+   {
+    "nom": "Université de Varsovie",
+    "lat": 52.2403,
+    "lng": 21.0192,
+    "quoi": "formation",
+    "qid": "Q144488"
+   },
+   {
+    "nom": "université de Vilnius",
+    "lat": 54.6825,
+    "lng": 25.2872,
+    "quoi": "formation",
+    "qid": "Q658192"
+   },
+   {
+    "nom": "Vilnius St. Joseph Seminary",
+    "lat": 54.7381,
+    "lng": 25.2786,
+    "quoi": "formation",
+    "qid": "Q1355626"
    }
   ],
   "wd-michele-carcano-q3856542": [
@@ -36533,18 +39033,18 @@
     "qid": "Q954114"
    },
    {
-    "nom": "Pinsk",
-    "lat": 52.1153,
-    "lng": 26.1031,
-    "quoi": "residence",
-    "qid": "Q204150"
+    "nom": "Séminaire supérieur de Pinsk",
+    "lat": 52.1126,
+    "lng": 26.1086,
+    "quoi": "formation",
+    "qid": "Q21393951"
    },
    {
-    "nom": "Navahroudak",
-    "lat": 53.5992,
-    "lng": 25.8256,
-    "quoi": "residence",
-    "qid": "Q278743"
+    "nom": "Université de Varsovie",
+    "lat": 52.2403,
+    "lng": 21.0192,
+    "quoi": "formation",
+    "qid": "Q144488"
    },
    {
     "nom": "Braslaw",
@@ -36552,6 +39052,13 @@
     "lng": 27.0333,
     "quoi": "residence",
     "qid": "Q628623"
+   },
+   {
+    "nom": "Navahroudak",
+    "lat": 53.5992,
+    "lng": 25.8256,
+    "quoi": "residence",
+    "qid": "Q278743"
    },
    {
     "nom": "Drohiczyn",
@@ -36575,18 +39082,18 @@
     "qid": "Q954610"
    },
    {
-    "nom": "Louninets",
-    "lat": 52.2486,
-    "lng": 26.8036,
-    "quoi": "residence",
-    "qid": "Q956132"
-   },
-   {
     "nom": "Sitcy",
     "lat": 54.9242,
     "lng": 27.5365,
     "quoi": "residence",
     "qid": "Q4421183"
+   },
+   {
+    "nom": "Louninets",
+    "lat": 52.2486,
+    "lng": 26.8036,
+    "quoi": "residence",
+    "qid": "Q956132"
    },
    {
     "nom": "Krykaly",
@@ -36630,6 +39137,13 @@
     "lng": 129.9583,
     "quoi": "mort",
     "qid": "Q385591"
+   },
+   {
+    "nom": "collège Saint-Paul de Goa",
+    "lat": 15.4992,
+    "lng": 73.9185,
+    "quoi": "formation",
+    "qid": "Q2983675"
    }
   ],
   "wd-miguel-febres-cordero-q1358473": [
@@ -36739,6 +39253,13 @@
     "lng": 14.1156,
     "quoi": "mort",
     "qid": "Q1277422"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-misha-samuil-q4298364": [
@@ -36980,6 +39501,13 @@
     "lng": 24.0316,
     "quoi": "mort",
     "qid": "Q36036"
+   },
+   {
+    "nom": "Université pontificale Urbaniana",
+    "lat": 41.8996,
+    "lng": 12.4583,
+    "quoi": "formation",
+    "qid": "Q2032536"
    }
   ],
   "wd-nahum-q1981722": [
@@ -37032,6 +39560,13 @@
     "lng": -0.4406,
     "quoi": "mort",
     "qid": "Q23042"
+   },
+   {
+    "nom": "Université de Barcelone",
+    "lat": 41.3867,
+    "lng": 2.1639,
+    "quoi": "formation",
+    "qid": "Q219615"
    }
   ],
   "wd-narcisse-de-gerone-q828609": [
@@ -37050,6 +39585,13 @@
     "lng": 11.4683,
     "quoi": "mort",
     "qid": "Q151198"
+   },
+   {
+    "nom": "lycée Sainte-Marie-Madeleine",
+    "lat": 52.4033,
+    "lng": 16.9386,
+    "quoi": "formation",
+    "qid": "Q3268941"
    }
   ],
   "wd-narcyz-turchan-q4466456": [
@@ -37077,6 +39619,13 @@
     "lng": 13.1688,
     "quoi": "mort",
     "qid": "Q159483"
+   },
+   {
+    "nom": "Université Adam-Mickiewicz de Poznań",
+    "lat": 52.4047,
+    "lng": 16.9155,
+    "quoi": "formation",
+    "qid": "Q348402"
    }
   ],
   "wd-nath-i-of-achonry-q2472139": [
@@ -37138,6 +39687,13 @@
     "lng": 23.4842,
     "quoi": "fondation",
     "qid": "Q27974422"
+   },
+   {
+    "nom": "Varvákeion",
+    "lat": 38.0011,
+    "lng": 23.7664,
+    "quoi": "formation",
+    "qid": "Q3562272"
    }
   ],
   "wd-nectaire-d-optina-q4316701": [
@@ -37226,6 +39782,13 @@
     "lng": 11.3314,
     "quoi": "mort",
     "qid": "Q2751"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-niceforo-de-jesus-y-maria-q24296918": [
@@ -37267,6 +39830,34 @@
     "lng": 73.1167,
     "quoi": "mort",
     "qid": "Q484706"
+   },
+   {
+    "nom": "université de Vienne",
+    "lat": 48.2131,
+    "lng": 16.3597,
+    "quoi": "formation",
+    "qid": "Q165980"
+   },
+   {
+    "nom": "Frintaneum",
+    "lat": 48.2054,
+    "lng": 16.3673,
+    "quoi": "formation",
+    "qid": "Q447216"
+   },
+   {
+    "nom": "université d'Innsbruck",
+    "lat": 47.2631,
+    "lng": 11.3839,
+    "quoi": "formation",
+    "qid": "Q875788"
+   },
+   {
+    "nom": "Collegium Canisianum",
+    "lat": 47.2744,
+    "lng": 11.3994,
+    "quoi": "formation",
+    "qid": "Q686153"
    }
   ],
   "wd-nicetas-de-medicion-q261374": [
@@ -37310,6 +39901,27 @@
     "lng": -1.259,
     "quoi": "sepulture",
     "qid": "Q11125244"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
+   },
+   {
+    "nom": "Royal Grammar School",
+    "lat": 54.9829,
+    "lng": -1.6089,
+    "quoi": "formation",
+    "qid": "Q7374234"
+   },
+   {
+    "nom": "Pembroke College",
+    "lat": 52.2017,
+    "lng": 0.1192,
+    "quoi": "formation",
+    "qid": "Q956501"
    }
   ],
   "wd-nicodeme-de-mammola-q1403934": [
@@ -37444,6 +40056,13 @@
     "lng": 139.7655,
     "quoi": "fondation",
     "qid": "Q2660430"
+   },
+   {
+    "nom": "Académie théologique de Saint-Pétersbourg",
+    "lat": 59.9175,
+    "lng": 30.3831,
+    "quoi": "formation",
+    "qid": "Q1499053"
    }
   ],
   "wd-nicolas-ier-q170503": [
@@ -37646,11 +40265,11 @@
     "qid": "Q2742"
    },
    {
-    "nom": "Copenhague",
-    "lat": 55.6761,
-    "lng": 12.5689,
-    "quoi": "residence",
-    "qid": "Q1748"
+    "nom": "Université de Copenhague",
+    "lat": 55.6797,
+    "lng": 12.5725,
+    "quoi": "formation",
+    "qid": "Q186285"
    }
   ],
   "wd-nicolau-factor-q2293488": [
@@ -37696,6 +40315,13 @@
     "lng": 26.7225,
     "quoi": "mort",
     "qid": "Q13972"
+   },
+   {
+    "nom": "Riga Seminary",
+    "lat": 56.9419,
+    "lng": 24.1375,
+    "quoi": "formation",
+    "qid": "Q4394521"
    }
   ],
   "wd-nikolai-pospelov-q101444551": [
@@ -37705,6 +40331,22 @@
     "lng": 37.5943,
     "quoi": "sepulture",
     "qid": "Q1018007"
+   },
+   {
+    "nom": "séminaire de la Théophanie de Vladimir",
+    "lat": 56.1312,
+    "lng": 40.4131,
+    "quoi": "formation",
+    "qid": "Q4113251"
+   }
+  ],
+  "wd-nikolai-riourikov-q116193309": [
+   {
+    "nom": "Nizhny Novgorod Theological Seminary",
+    "lat": 56.3229,
+    "lng": 43.9777,
+    "quoi": "formation",
+    "qid": "Q4318622"
    }
   ],
   "wd-nikolaj-velimirovic-q566764": [
@@ -37721,6 +40363,13 @@
     "lng": -75.4164,
     "quoi": "mort",
     "qid": "Q1895463"
+   },
+   {
+    "nom": "Université de Berne",
+    "lat": 46.95,
+    "lng": 7.437,
+    "quoi": "formation",
+    "qid": "Q659080"
    }
   ],
   "wd-nikolaus-gross-q68294": [
@@ -38167,6 +40816,13 @@
     "lng": 127.5364,
     "quoi": "mort",
     "qid": "Q6934"
+   },
+   {
+    "nom": "Académie théologique de Saint-Pétersbourg",
+    "lat": 59.9175,
+    "lng": 30.3831,
+    "quoi": "formation",
+    "qid": "Q1499053"
    }
   ],
   "wd-opportune-de-montreuil-q1561994": [
@@ -38410,6 +41066,13 @@
     "lng": -0.3642,
     "quoi": "mort",
     "qid": "Q2839376"
+   },
+   {
+    "nom": "Université de Valence",
+    "lat": 39.4791,
+    "lng": -0.3591,
+    "quoi": "formation",
+    "qid": "Q383568"
    }
   ],
   "wd-pacien-de-barcelone-q920309": [
@@ -38482,6 +41145,13 @@
     "lng": 26.2014,
     "quoi": "mort",
     "qid": "Q598550"
+   },
+   {
+    "nom": "université nationale Académie Mohyla de Kiev",
+    "lat": 50.4644,
+    "lng": 30.5197,
+    "quoi": "formation",
+    "qid": "Q1133013"
    }
   ],
   "wd-palatia-q54578083": [
@@ -38766,14 +41436,14 @@
     "nom": "Torrehermosa",
     "lat": 41.2384,
     "lng": -2.1275,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q663442"
    },
    {
     "nom": "Alconchel de Ariza",
     "lat": 41.2041,
     "lng": -2.1221,
-    "quoi": "residence",
+    "quoi": "enfance",
     "qid": "Q745043"
    },
    {
@@ -39042,6 +41712,13 @@
     "lng": 7.6,
     "quoi": "mort",
     "qid": "Q14849"
+   },
+   {
+    "nom": "Université Louis-et-Maximilien de Munich",
+    "lat": 48.1508,
+    "lng": 11.5803,
+    "quoi": "formation",
+    "qid": "Q55044"
    }
   ],
   "wd-paul-lang-fu-q4253695": [
@@ -39207,6 +41884,13 @@
     "lng": 86.09,
     "quoi": "mort",
     "qid": "Q6076"
+   },
+   {
+    "nom": "Académie théologique de Moscou",
+    "lat": 56.3117,
+    "lng": 38.1311,
+    "quoi": "formation",
+    "qid": "Q841804"
    }
   ],
   "wd-paulina-borowik-q4094239": [
@@ -39300,6 +41984,13 @@
     "lng": -3.3789,
     "quoi": "mort",
     "qid": "Q1645555"
+   },
+   {
+    "nom": "Université Mount St. Mary's",
+    "lat": 39.682,
+    "lng": -77.353,
+    "quoi": "formation",
+    "qid": "Q6923804"
    }
   ],
   "wd-pedro-bautista-blasquez-q58990": [
@@ -39341,6 +42032,13 @@
     "lng": -0.9,
     "quoi": "fondation",
     "qid": "Q633561"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-pedro-de-duenas-q9057728": [
@@ -39391,6 +42089,20 @@
     "lng": -0.8845,
     "quoi": "sepulture",
     "qid": "Q5912632"
+   },
+   {
+    "nom": "couvent des Piaristes à Peralta de la Sal",
+    "lat": 41.9933,
+    "lng": 0.387,
+    "quoi": "formation",
+    "qid": "Q47461941"
+   },
+   {
+    "nom": "monastère Santa María la Real d'Irache",
+    "lat": 42.6501,
+    "lng": -2.0432,
+    "quoi": "formation",
+    "qid": "Q1725740"
    }
   ],
   "wd-pedro-gambin-q109253204": [
@@ -39409,6 +42121,13 @@
     "lng": -8.6444,
     "quoi": "mort",
     "qid": "Q824122"
+   },
+   {
+    "nom": "Université de Palencia",
+    "lat": 42.0142,
+    "lng": -4.5363,
+    "quoi": "formation",
+    "qid": "Q509909"
    }
   ],
   "wd-pedro-maria-ramirez-ramos-q20015724": [
@@ -39700,6 +42419,13 @@
     "lng": 103.9167,
     "quoi": "mort",
     "qid": "Q103565"
+   },
+   {
+    "nom": "université libre ukrainienne",
+    "lat": 48.1636,
+    "lng": 11.5094,
+    "quoi": "formation",
+    "qid": "Q646136"
    }
   ],
   "wd-petroc-de-bodmin-q534049": [
@@ -39827,6 +42553,13 @@
     "lng": -0.1275,
     "quoi": "mort",
     "qid": "Q84"
+   },
+   {
+    "nom": "St John's College",
+    "lat": 52.2081,
+    "lng": 0.1167,
+    "quoi": "formation",
+    "qid": "Q691283"
    }
   ],
   "wd-philip-zhang-zhihe-q4515460": [
@@ -39845,6 +42578,13 @@
     "lng": 12.4069,
     "quoi": "mort",
     "qid": "Q20579"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-philippe-berruyer-q2087530": [
@@ -40072,6 +42812,20 @@
     "lng": 12.4828,
     "quoi": "oeuvre",
     "qid": "Q220"
+   },
+   {
+    "nom": "Université de Rome « La Sapienza »",
+    "lat": 41.9033,
+    "lng": 12.5158,
+    "quoi": "enfance",
+    "qid": "Q209344"
+   },
+   {
+    "nom": "séminaire pontifical romain",
+    "lat": 41.8849,
+    "lng": 12.504,
+    "quoi": "formation",
+    "qid": "Q916458"
    }
   ],
   "wd-pier-pettinaio-q3902948": [
@@ -40205,6 +42959,13 @@
     "lng": -75.5253,
     "quoi": "mort",
     "qid": "Q657461"
+   },
+   {
+    "nom": "Université pontificale Javeriana",
+    "lat": 4.6289,
+    "lng": -74.0649,
+    "quoi": "formation",
+    "qid": "Q1517478"
    }
   ],
   "wd-pierre-claverie-q304556": [
@@ -40277,6 +43038,13 @@
     "lng": 59.2167,
     "quoi": "mort",
     "qid": "Q133010"
+   },
+   {
+    "nom": "Académie théologique de Moscou",
+    "lat": 56.3117,
+    "lng": 38.1311,
+    "quoi": "formation",
+    "qid": "Q841804"
    }
   ],
   "wd-pierre-de-luxembourg-q481358": [
@@ -40295,6 +43063,13 @@
     "lng": 13.7184,
     "quoi": "mort",
     "qid": "Q13139"
+   },
+   {
+    "nom": "Université de Pérouse",
+    "lat": 43.1158,
+    "lng": 12.3858,
+    "quoi": "formation",
+    "qid": "Q748085"
    }
   ],
   "wd-pierre-de-moscou-q1652445": [
@@ -40356,6 +43131,13 @@
     "lng": 9.1374,
     "quoi": "mort",
     "qid": "Q40869"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-pierre-dumoulin-borie-q568014": [
@@ -40381,6 +43163,13 @@
     "lng": 2.3522,
     "quoi": "mort",
     "qid": "Q90"
+   },
+   {
+    "nom": "collège Sainte-Barbe",
+    "lat": 48.8475,
+    "lng": 2.3466,
+    "quoi": "formation",
+    "qid": "Q1110002"
    }
   ],
   "wd-pierre-friedhofen-q66706": [
@@ -40634,6 +43423,13 @@
     "lng": 13.3613,
     "quoi": "mort",
     "qid": "Q2656"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-pietro-igneo-aldobrandini-q1187748": [
@@ -40785,6 +43581,13 @@
     "lng": -5.6617,
     "quoi": "mort",
     "qid": "Q1615442"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-placido-riccardi-q2097903": [
@@ -41081,6 +43884,13 @@
     "qid": "Q48338"
    },
    {
+    "nom": "Institut de théologie orthodoxe de Halki",
+    "lat": 40.8822,
+    "lng": 29.095,
+    "quoi": "formation",
+    "qid": "Q692970"
+   },
+   {
     "nom": "Tyane",
     "lat": 37.8234,
     "lng": 34.5705,
@@ -41374,6 +44184,13 @@
     "lng": 12.4291,
     "quoi": "fondation",
     "qid": "Q2120442"
+   },
+   {
+    "nom": "Ushaw College",
+    "lat": 54.7882,
+    "lng": -1.6612,
+    "quoi": "formation",
+    "qid": "Q3552548"
    }
   ],
   "wd-rafael-sanchez-garcia-q28105201": [
@@ -41399,6 +44216,20 @@
     "lng": 11.8373,
     "quoi": "mort",
     "qid": "Q47036"
+   },
+   {
+    "nom": "Université de Pise",
+    "lat": 43.7165,
+    "lng": 10.3985,
+    "quoi": "formation",
+    "qid": "Q645663"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-raimondo-zanfogni-q7299262": [
@@ -41453,6 +44284,27 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "collège d'Eton",
+    "lat": 51.4917,
+    "lng": -0.6094,
+    "quoi": "formation",
+    "qid": "Q192088"
+   },
+   {
+    "nom": "Collège anglais de Rome",
+    "lat": 41.8958,
+    "lng": 12.47,
+    "quoi": "formation",
+    "qid": "Q981752"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "wd-ramiro-de-leon-q5485649": [
@@ -41534,6 +44386,13 @@
     "qid": "Q212856"
    },
    {
+    "nom": "Académie biélorusse d'Agronomie",
+    "lat": 54.2964,
+    "lng": 30.9892,
+    "quoi": "formation",
+    "qid": "Q2385041"
+   },
+   {
     "nom": "Saint-Pétersbourg",
     "lat": 59.95,
     "lng": 30.3167,
@@ -41591,6 +44450,13 @@
     "lng": 11.0775,
     "quoi": "mort",
     "qid": "Q2090"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
    }
   ],
   "wd-raymond-de-durban-q176391": [
@@ -41835,6 +44701,13 @@
     "lng": 1.3122,
     "quoi": "mort",
     "qid": "Q179224"
+   },
+   {
+    "nom": "Université d'Oxford",
+    "lat": 51.755,
+    "lng": -1.255,
+    "quoi": "formation",
+    "qid": "Q34433"
    }
   ],
   "wd-richard-de-saint-vanne-q3431374": [
@@ -41873,6 +44746,13 @@
     "qid": "Q496368"
    },
    {
+    "nom": "Université de Cambridge",
+    "lat": 52.2054,
+    "lng": 0.1132,
+    "quoi": "formation",
+    "qid": "Q35794"
+   },
+   {
     "nom": "Overton",
     "lat": 52.969,
     "lng": -2.9351,
@@ -41898,6 +44778,15 @@
     "qid": "Q42462"
    }
   ],
+  "wd-richard-martin-q7402135": [
+   {
+    "nom": "Université d'Oxford",
+    "lat": 51.755,
+    "lng": -1.255,
+    "quoi": "formation",
+    "qid": "Q34433"
+   }
+  ],
   "wd-richard-pampuri-q120768": [
    {
     "nom": "Lombardie",
@@ -41921,6 +44810,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "Corpus Christi College",
+    "lat": 52.2029,
+    "lng": 0.1182,
+    "quoi": "formation",
+    "qid": "Q536282"
    }
   ],
   "wd-richard-rolle-q2345308": [
@@ -41937,6 +44833,20 @@
     "lng": -1.6667,
     "quoi": "oeuvre",
     "qid": "Q1934075"
+   },
+   {
+    "nom": "Université d'Oxford",
+    "lat": 51.755,
+    "lng": -1.255,
+    "quoi": "formation",
+    "qid": "Q34433"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-richard-thirkeld-q7329438": [
@@ -41955,6 +44865,13 @@
     "lng": -2.7175,
     "quoi": "mort",
     "qid": "Q210891"
+   },
+   {
+    "nom": "Université de Cambridge",
+    "lat": 52.2054,
+    "lng": 0.1132,
+    "quoi": "formation",
+    "qid": "Q35794"
    }
   ],
   "wd-richard-yaxley-q21547554": [
@@ -41964,6 +44881,13 @@
     "lng": -1.2578,
     "quoi": "mort",
     "qid": "Q34217"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "wd-richarde-q235655": [
@@ -42043,6 +44967,15 @@
     "qid": "Q663013"
    }
   ],
+  "wd-robert-anderton-q7341520": [
+   {
+    "nom": "Brasenose College",
+    "lat": 51.7532,
+    "lng": -1.2547,
+    "quoi": "formation",
+    "qid": "Q899030"
+   }
+  ],
   "wd-robert-d-arbrissel-q1346861": [
    {
     "nom": "abbaye de Fontevraud",
@@ -42107,6 +45040,13 @@
     "lng": -2.8014,
     "quoi": "mort",
     "qid": "Q205905"
+   },
+   {
+    "nom": "Brasenose College",
+    "lat": 51.7532,
+    "lng": -1.2547,
+    "quoi": "formation",
+    "qid": "Q899030"
    }
   ],
   "wd-robert-schuman-q15981": [
@@ -42130,6 +45070,48 @@
     "lng": 7.7522,
     "quoi": "oeuvre",
     "qid": "Q6602"
+   },
+   {
+    "nom": "Université Louis-et-Maximilien de Munich",
+    "lat": 48.1508,
+    "lng": 11.5803,
+    "quoi": "formation",
+    "qid": "Q55044"
+   },
+   {
+    "nom": "université Humboldt de Berlin",
+    "lat": 52.5181,
+    "lng": 13.3933,
+    "quoi": "formation",
+    "qid": "Q152087"
+   },
+   {
+    "nom": "université rhénane Frédéric-Guillaume de Bonn",
+    "lat": 50.7339,
+    "lng": 7.1022,
+    "quoi": "formation",
+    "qid": "Q152171"
+   },
+   {
+    "nom": "université de Strasbourg",
+    "lat": 48.5803,
+    "lng": 7.7644,
+    "quoi": "formation",
+    "qid": "Q157575"
+   },
+   {
+    "nom": "Athénée de Luxembourg",
+    "lat": 49.6039,
+    "lng": 6.1108,
+    "quoi": "formation",
+    "qid": "Q545334"
+   },
+   {
+    "nom": "lycée Fabert de Metz",
+    "lat": 49.123,
+    "lng": 6.1726,
+    "quoi": "formation",
+    "qid": "Q3268665"
    }
   ],
   "wd-robert-southwell-q1380904": [
@@ -42487,6 +45469,13 @@
     "lng": -74.0061,
     "quoi": "mort",
     "qid": "Q60"
+   },
+   {
+    "nom": "Université du Maine",
+    "lat": 44.8994,
+    "lng": -68.6681,
+    "quoi": "formation",
+    "qid": "Q1307345"
    }
   ],
   "wd-rose-kim-no-sa-q9325784": [
@@ -42584,6 +45573,20 @@
     "lng": 11.5683,
     "quoi": "sepulture",
     "qid": "Q251948"
+   },
+   {
+    "nom": "Université Eberhard-Karl de Tübingen",
+    "lat": 48.525,
+    "lng": 9.0589,
+    "quoi": "formation",
+    "qid": "Q153978"
+   },
+   {
+    "nom": "Université de Fribourg",
+    "lat": 46.8062,
+    "lng": 7.1517,
+    "quoi": "formation",
+    "qid": "Q36188"
    }
   ],
   "wd-rupert-von-bingen-q632383": [
@@ -42896,6 +45899,13 @@
     "lng": 30.114,
     "quoi": "fondation",
     "qid": "Q62066317"
+   },
+   {
+    "nom": "Académie théologique de Saint-Pétersbourg",
+    "lat": 59.9175,
+    "lng": 30.3831,
+    "quoi": "formation",
+    "qid": "Q1499053"
    }
   ],
   "wd-saint-berach-q818654": [
@@ -43939,6 +46949,13 @@
   ],
   "wd-sancja-szymkowiak-q3948087": [
    {
+    "nom": "Université Adam-Mickiewicz de Poznań",
+    "lat": 52.4047,
+    "lng": 16.9155,
+    "quoi": "formation",
+    "qid": "Q348402"
+   },
+   {
     "nom": "Możdżanów",
     "lat": 51.5,
     "lng": 17.55,
@@ -44041,6 +47058,13 @@
     "lng": -2.135,
     "quoi": "mort",
     "qid": "Q15098"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-sara-la-noire-q238261": [
@@ -44745,6 +47769,13 @@
     "lng": -3.7033,
     "quoi": "mort",
     "qid": "Q2807"
+   },
+   {
+    "nom": "Université de Salamanque",
+    "lat": 40.9614,
+    "lng": -5.6667,
+    "quoi": "formation",
+    "qid": "Q308963"
    }
   ],
   "wd-simon-qin-chunfu-q4505791": [
@@ -44890,6 +47921,13 @@
     "lng": -83.0475,
     "quoi": "mort",
     "qid": "Q12439"
+   },
+   {
+    "nom": "Saint Francis de Sales Seminary",
+    "lat": 42.9803,
+    "lng": -87.8654,
+    "quoi": "formation",
+    "qid": "Q7587994"
    }
   ],
   "wd-soledad-torres-acosta-q459189": [
@@ -45053,18 +48091,18 @@
     "qid": "Q277965"
    },
    {
-    "nom": "Sachsenhausen",
-    "lat": 52.7781,
-    "lng": 13.24,
-    "quoi": "residence",
-    "qid": "Q319883"
-   },
-   {
     "nom": "Nysa",
     "lat": 50.4714,
     "lng": 17.3339,
     "quoi": "residence",
     "qid": "Q815721"
+   },
+   {
+    "nom": "Sachsenhausen",
+    "lat": 52.7781,
+    "lng": 13.24,
+    "quoi": "residence",
+    "qid": "Q319883"
    },
    {
     "nom": "Nowy Port",
@@ -45177,6 +48215,13 @@
     "lng": 12.4893,
     "quoi": "sepulture",
     "qid": "Q1354667"
+   },
+   {
+    "nom": "Akademisches Gymnasium",
+    "lat": 48.2015,
+    "lng": 16.3766,
+    "quoi": "formation",
+    "qid": "Q414936"
    }
   ],
   "wd-stanley-rother-q2377024": [
@@ -45186,6 +48231,13 @@
     "lng": -91.2299,
     "quoi": "mort",
     "qid": "Q168622"
+   },
+   {
+    "nom": "Université Mount St. Mary's",
+    "lat": 39.682,
+    "lng": -77.353,
+    "quoi": "formation",
+    "qid": "Q6923804"
    }
   ],
   "wd-stefan-nemanja-q298612": [
@@ -45274,6 +48326,15 @@
     "qid": "Q42936"
    }
   ],
+  "wd-stephen-khitrov-q109793320": [
+   {
+    "nom": "Пермская духовная семинария",
+    "lat": 58.0156,
+    "lng": 56.2334,
+    "quoi": "enfance",
+    "qid": "Q4351509"
+   }
+  ],
   "wd-stephen-kim-sou-hwan-q233889": [
    {
     "nom": "Séoul",
@@ -45281,6 +48342,20 @@
     "lng": 126.99,
     "quoi": "mort",
     "qid": "Q8684"
+   },
+   {
+    "nom": "Sangji University",
+    "lat": 37.3699,
+    "lng": 127.9286,
+    "quoi": "formation",
+    "qid": "Q625111"
+   },
+   {
+    "nom": "université Sophia",
+    "lat": 35.6842,
+    "lng": 139.7319,
+    "quoi": "formation",
+    "qid": "Q1153094"
    }
   ],
   "wd-stephen-of-nicaea-q2344428": [
@@ -45396,6 +48471,20 @@
     "lng": 12.9085,
     "quoi": "mort",
     "qid": "Q13145"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
+   },
+   {
+    "nom": "Université de Padoue",
+    "lat": 45.42,
+    "lng": 11.87,
+    "quoi": "formation",
+    "qid": "Q193510"
    }
   ],
   "wd-sylvestre-ier-q47149": [
@@ -45539,6 +48628,13 @@
     "lng": 23.7167,
     "quoi": "mort",
     "qid": "Q411080"
+   },
+   {
+    "nom": "Piarist High School, Timișoara",
+    "lat": 45.7529,
+    "lng": 21.2218,
+    "quoi": "formation",
+    "qid": "Q1413977"
    }
   ],
   "wd-tadeusz-dulny-q2703915": [
@@ -45571,6 +48667,13 @@
     "lng": 129.8796,
     "quoi": "mort",
     "qid": "Q38234"
+   },
+   {
+    "nom": "Nagasaki Medical College",
+    "lat": 32.7862,
+    "lng": 129.8652,
+    "quoi": "formation",
+    "qid": "Q11652417"
    }
   ],
   "wd-takla-haymanot-q2915175": [
@@ -45787,6 +48890,20 @@
     "lng": 22.7136,
     "quoi": "mort",
     "qid": "Q146456"
+   },
+   {
+    "nom": "Collegium Germanicum et Hungaricum",
+    "lat": 41.905,
+    "lng": 12.4915,
+    "quoi": "formation",
+    "qid": "Q868294"
+   },
+   {
+    "nom": "collège Russicum",
+    "lat": 41.8969,
+    "lng": 12.5006,
+    "quoi": "formation",
+    "qid": "Q1543496"
    }
   ],
   "wd-teodoryk-balat-q4076189": [
@@ -45805,6 +48922,13 @@
     "lng": 56.2489,
     "quoi": "mort",
     "qid": "Q915"
+   },
+   {
+    "nom": "Saratov Orthodox Theological Seminary",
+    "lat": 51.5256,
+    "lng": 46.0273,
+    "quoi": "formation",
+    "qid": "Q4408429"
    }
   ],
   "wd-teofilius-matulionis-q1987005": [
@@ -45911,6 +49035,20 @@
     "lng": 11.4436,
     "quoi": "mort",
     "qid": "Q1547244"
+   },
+   {
+    "nom": "Université de Pavie",
+    "lat": 45.1868,
+    "lng": 9.1559,
+    "quoi": "formation",
+    "qid": "Q219317"
+   },
+   {
+    "nom": "Université de Turin",
+    "lat": 45.0694,
+    "lng": 7.6889,
+    "quoi": "formation",
+    "qid": "Q499911"
    }
   ],
   "wd-tesauro-beccaria-q543168": [
@@ -45929,6 +49067,13 @@
     "lng": 35.9219,
     "quoi": "mort",
     "qid": "Q2288"
+   },
+   {
+    "nom": "Académie théologique de Moscou",
+    "lat": 56.3117,
+    "lng": 38.1311,
+    "quoi": "formation",
+    "qid": "Q841804"
    }
   ],
   "wd-thaddee-d-edesse-q2478007": [
@@ -46374,6 +49519,13 @@
     "lng": 42.1044,
     "quoi": "mort",
     "qid": "Q4129936"
+   },
+   {
+    "nom": "séminaire d'Orel",
+    "lat": 52.9643,
+    "lng": 36.0986,
+    "quoi": "formation",
+    "qid": "Q4336853"
    }
   ],
   "wd-theophano-martinakia-q2461901": [
@@ -46616,6 +49768,20 @@
     "lng": -0.1019,
     "quoi": "mort",
     "qid": "Q1822183"
+   },
+   {
+    "nom": "collège d'Eton",
+    "lat": 51.4917,
+    "lng": -0.6094,
+    "quoi": "formation",
+    "qid": "Q192088"
+   },
+   {
+    "nom": "collège anglais de Douai",
+    "lat": 50.3696,
+    "lng": 3.0859,
+    "quoi": "formation",
+    "qid": "Q2983716"
    }
   ],
   "wd-thomas-choe-pil-gong-q105725214": [
@@ -46695,6 +49861,13 @@
     "lng": -0.3764,
     "quoi": "mort",
     "qid": "Q8818"
+   },
+   {
+    "nom": "université d'Alcalá",
+    "lat": 40.4829,
+    "lng": -3.3632,
+    "quoi": "formation",
+    "qid": "Q495225"
    }
   ],
   "wd-thomas-garnet-q2157314": [
@@ -46704,6 +49877,27 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "Stonyhurst College",
+    "lat": 53.8469,
+    "lng": -2.4721,
+    "quoi": "formation",
+    "qid": "Q2274271"
+   },
+   {
+    "nom": "collège des Jésuites Anglais",
+    "lat": 50.7491,
+    "lng": 2.2581,
+    "quoi": "formation",
+    "qid": "Q5146931"
+   },
+   {
+    "nom": "The College of Richard Collyer",
+    "lat": 51.071,
+    "lng": -0.324,
+    "quoi": "formation",
+    "qid": "Q7726775"
    }
   ],
   "wd-thomas-holford-q4926301": [
@@ -46722,6 +49916,15 @@
     "lng": -0.55,
     "quoi": "mort",
     "qid": "Q180057"
+   }
+  ],
+  "wd-thomas-marshall-q7792185": [
+   {
+    "nom": "Université d'Oxford",
+    "lat": 51.755,
+    "lng": -1.255,
+    "quoi": "formation",
+    "qid": "Q34433"
    }
   ],
   "wd-thomas-percy-q2701365": [
@@ -46758,6 +49961,13 @@
     "lng": 7.7664,
     "quoi": "mort",
     "qid": "Q269831"
+   },
+   {
+    "nom": "Université de Gênes",
+    "lat": 44.4149,
+    "lng": 8.9266,
+    "quoi": "formation",
+    "qid": "Q593321"
    }
   ],
   "wd-thomas-shen-jihe-q644988": [
@@ -46776,6 +49986,13 @@
     "lng": -0.164,
     "quoi": "mort",
     "qid": "Q1362341"
+   },
+   {
+    "nom": "collège des Jésuites Anglais",
+    "lat": 50.7491,
+    "lng": 2.2581,
+    "quoi": "formation",
+    "qid": "Q5146931"
    }
   ],
   "wd-thorfinn-of-hamar-q2664215": [
@@ -46855,6 +50072,13 @@
     "lng": 37.6175,
     "quoi": "mort",
     "qid": "Q649"
+   },
+   {
+    "nom": "Académie théologique de Saint-Pétersbourg",
+    "lat": 59.9175,
+    "lng": 30.3831,
+    "quoi": "formation",
+    "qid": "Q1499053"
    }
   ],
   "wd-tikhon-de-zadonsk-q1358788": [
@@ -46882,6 +50106,20 @@
     "lng": 23.8947,
     "quoi": "mort",
     "qid": "Q334874"
+   },
+   {
+    "nom": "Université pontificale Saint-Thomas-d'Aquin",
+    "lat": 41.896,
+    "lng": 12.4875,
+    "quoi": "formation",
+    "qid": "Q246887"
+   },
+   {
+    "nom": "Saint Basil College, Blaj",
+    "lat": 46.175,
+    "lng": 23.923,
+    "quoi": "formation",
+    "qid": "Q25464663"
    }
   ],
   "wd-titus-zeman-q16064436": [
@@ -46891,6 +50129,13 @@
     "lng": 17.1093,
     "quoi": "mort",
     "qid": "Q1780"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-tomas-capdevila-miro-q47240156": [
@@ -46927,6 +50172,20 @@
     "lng": -3.3643,
     "quoi": "mort",
     "qid": "Q46940"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
+   },
+   {
+    "nom": "Université complutense de Madrid",
+    "lat": 40.449,
+    "lng": -3.727,
+    "quoi": "formation",
+    "qid": "Q219694"
    }
   ],
   "wd-tommaso-acerbis-q3992871": [
@@ -46999,6 +50258,13 @@
     "lng": 33.365,
     "quoi": "mort",
     "qid": "Q3856"
+   },
+   {
+    "nom": "École de droit de Beyrouth",
+    "lat": 33.8961,
+    "lng": 35.5045,
+    "quoi": "formation",
+    "qid": "Q1278790"
    }
   ],
   "wd-trojan-de-saintes-q2631290": [
@@ -47294,6 +50560,13 @@
     "lng": 12.4828,
     "quoi": "oeuvre",
     "qid": "Q220"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-ursan-q2501466": [
@@ -47507,6 +50780,27 @@
     "lng": 23.8908,
     "quoi": "mort",
     "qid": "Q1433242"
+   },
+   {
+    "nom": "université de Vienne",
+    "lat": 48.2131,
+    "lng": 16.3597,
+    "quoi": "formation",
+    "qid": "Q165980"
+   },
+   {
+    "nom": "Université Loránd-Eötvös",
+    "lat": 47.4906,
+    "lng": 19.0585,
+    "quoi": "formation",
+    "qid": "Q390287"
+   },
+   {
+    "nom": "Saint Basil College, Blaj",
+    "lat": 46.175,
+    "lng": 23.923,
+    "quoi": "formation",
+    "qid": "Q25464663"
    }
   ],
   "wd-valero-de-zaragoza-q1393825": [
@@ -47543,6 +50837,20 @@
     "lng": 21.2333,
     "quoi": "mort",
     "qid": "Q26119"
+   },
+   {
+    "nom": "Université Comenius de Bratislava",
+    "lat": 48.1412,
+    "lng": 17.1159,
+    "quoi": "formation",
+    "qid": "Q31392"
+   },
+   {
+    "nom": "Université Charles de Prague",
+    "lat": 50.0884,
+    "lng": 14.4037,
+    "quoi": "formation",
+    "qid": "Q31519"
    }
   ],
   "wd-vasile-aftenie-q1346181": [
@@ -47864,6 +51172,13 @@
     "qid": "Q1642113"
    },
    {
+    "nom": "Pastrana",
+    "lat": 40.4178,
+    "lng": -2.9225,
+    "quoi": "enfance",
+    "qid": "Q1655081"
+   },
+   {
     "nom": "Madrid",
     "lat": 40.4169,
     "lng": -3.7033,
@@ -47878,25 +51193,18 @@
     "qid": "Q537779"
    },
    {
-    "nom": "Olmeda del Rey",
-    "lat": 39.8081,
-    "lng": -2.0828,
-    "quoi": "residence",
-    "qid": "Q1647692"
-   },
-   {
-    "nom": "Pastrana",
-    "lat": 40.4178,
-    "lng": -2.9225,
-    "quoi": "residence",
-    "qid": "Q1655081"
-   },
-   {
     "nom": "Belmonte",
     "lat": 39.5593,
     "lng": -2.7038,
     "quoi": "residence",
     "qid": "Q1769803"
+   },
+   {
+    "nom": "Olmeda del Rey",
+    "lat": 39.8081,
+    "lng": -2.0828,
+    "quoi": "residence",
+    "qid": "Q1647692"
    },
    {
     "nom": "Almagro",
@@ -47906,18 +51214,18 @@
     "qid": "Q10954432"
    },
    {
-    "nom": "Alcázar de San Juan",
-    "lat": 39.2788,
-    "lng": -3.2639,
-    "quoi": "residence",
-    "qid": "Q24011830"
-   },
-   {
     "nom": "Consuegra",
     "lat": 39.4625,
     "lng": -3.608,
     "quoi": "residence",
     "qid": "Q24017536"
+   },
+   {
+    "nom": "Alcázar de San Juan",
+    "lat": 39.2788,
+    "lng": -3.2639,
+    "quoi": "residence",
+    "qid": "Q24011830"
    }
   ],
   "wd-victor-de-marseille-q1374522": [
@@ -47959,6 +51267,13 @@
     "lng": 4.3343,
     "quoi": "fondation",
     "qid": "Q124477874"
+   },
+   {
+    "nom": "Collège Saint-Joseph d'Alost",
+    "lat": 50.9372,
+    "lng": 4.0413,
+    "quoi": "enfance",
+    "qid": "Q2327757"
    }
   ],
   "wd-victoria-diez-bustos-de-molina-q9093431": [
@@ -48047,6 +51362,13 @@
     "lng": 17.6313,
     "quoi": "sepulture",
     "qid": "Q1030709"
+   },
+   {
+    "nom": "Collegium Canisianum",
+    "lat": 47.2744,
+    "lng": 11.3994,
+    "quoi": "formation",
+    "qid": "Q686153"
    }
   ],
   "wd-vincens-prenushi-q2527373": [
@@ -48117,6 +51439,20 @@
     "lng": 20.3003,
     "quoi": "sepulture",
     "qid": "Q1775407"
+   },
+   {
+    "nom": "Université de Bologne",
+    "lat": 44.4939,
+    "lng": 11.3428,
+    "quoi": "formation",
+    "qid": "Q131262"
+   },
+   {
+    "nom": "université de Paris",
+    "lat": 48.8486,
+    "lng": 2.3433,
+    "quoi": "formation",
+    "qid": "Q209842"
    }
   ],
   "wd-vincent-marie-strambi-q966615": [
@@ -48144,6 +51480,20 @@
     "lng": 106,
     "quoi": "mort",
     "qid": "Q622778"
+   },
+   {
+    "nom": "Colegio de San Juan de Letran",
+    "lat": 14.5932,
+    "lng": 120.9767,
+    "quoi": "formation",
+    "qid": "Q1108074"
+   },
+   {
+    "nom": "Université de Santo Tomas",
+    "lat": 14.6097,
+    "lng": 120.9897,
+    "quoi": "formation",
+    "qid": "Q1401524"
    }
   ],
   "wd-vincenza-gerosa-q457274": [
@@ -48322,6 +51672,13 @@
     "qid": "Q1668146"
    },
    {
+    "nom": "Theodorianum",
+    "lat": 51.7162,
+    "lng": 8.7544,
+    "quoi": "formation",
+    "qid": "Q1558249"
+   },
+   {
     "nom": "Basse-Saxe",
     "lat": 52.7561,
     "lng": 9.3931,
@@ -48410,6 +51767,13 @@
     "qid": "Q484706"
    },
    {
+    "nom": "Université Jagellonne",
+    "lat": 50.0617,
+    "lng": 19.9339,
+    "quoi": "formation",
+    "qid": "Q189441"
+   },
+   {
     "nom": "Tcheliabinsk",
     "lat": 55.15,
     "lng": 61.4,
@@ -48429,13 +51793,6 @@
     "lng": 25.3244,
     "quoi": "residence",
     "qid": "Q7550"
-   },
-   {
-    "nom": "Cracovie",
-    "lat": 50.0614,
-    "lng": 19.9372,
-    "quoi": "residence",
-    "qid": "Q31487"
    },
    {
     "nom": "Semeï",
@@ -48480,13 +51837,6 @@
     "qid": "Q740832"
    },
    {
-    "nom": "Sucha Beskidzka",
-    "lat": 49.7403,
-    "lng": 19.5886,
-    "quoi": "residence",
-    "qid": "Q745005"
-   },
-   {
     "nom": "Jmerynka",
     "lat": 49.0425,
     "lng": 28.0992,
@@ -48494,11 +51844,11 @@
     "qid": "Q956117"
    },
    {
-    "nom": "Rabka-Zdrój",
-    "lat": 49.6089,
-    "lng": 19.9665,
+    "nom": "Sucha Beskidzka",
+    "lat": 49.7403,
+    "lng": 19.5886,
     "quoi": "residence",
-    "qid": "Q1005356"
+    "qid": "Q745005"
    },
    {
     "nom": "Nikolayevka, Saransk, Republic of Mordovia",
@@ -48506,6 +51856,13 @@
     "lng": 45.1444,
     "quoi": "residence",
     "qid": "Q4320349"
+   },
+   {
+    "nom": "Rabka-Zdrój",
+    "lat": 49.6089,
+    "lng": 19.9665,
+    "quoi": "residence",
+    "qid": "Q1005356"
    },
    {
     "nom": "Pisary",
@@ -48529,6 +51886,13 @@
     "lng": 13.2624,
     "quoi": "mort",
     "qid": "Q154498"
+   },
+   {
+    "nom": "Université Adam-Mickiewicz de Poznań",
+    "lat": 52.4047,
+    "lng": 16.9155,
+    "quoi": "formation",
+    "qid": "Q348402"
    }
   ],
   "wd-w-adys-aw-goral-q2604923": [
@@ -48583,6 +51947,15 @@
     "lng": 3.9167,
     "quoi": "mort",
     "qid": "Q1129"
+   }
+  ],
+  "wd-walburge-q160686": [
+   {
+    "nom": "Wimborne Minster",
+    "lat": 50.804,
+    "lng": -1.978,
+    "quoi": "formation",
+    "qid": "Q535233"
    }
   ],
   "wd-walembert-z-cambrai-q76560804": [
@@ -48807,6 +52180,13 @@
     "qid": "Q499565"
    },
    {
+    "nom": "St John's College",
+    "lat": 52.2081,
+    "lng": 0.1167,
+    "quoi": "formation",
+    "qid": "Q691283"
+   },
+   {
     "nom": "Anvers",
     "lat": 51.2211,
     "lng": 4.3997,
@@ -48936,6 +52316,13 @@
     "lng": 2.1769,
     "quoi": "mort",
     "qid": "Q1492"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "formation",
+    "qid": "Q467025"
    }
   ],
   "wd-xenia-de-saint-petersbourg-q260590": [
@@ -49245,6 +52632,13 @@
     "lng": 19.2633,
     "quoi": "mort",
     "qid": "Q512073"
+   },
+   {
+    "nom": "Université pontificale grégorienne",
+    "lat": 41.8989,
+    "lng": 12.4847,
+    "quoi": "enfance",
+    "qid": "Q467025"
    }
   ],
   "wd-zosime-de-palestine-q2993862": [
@@ -49395,6 +52789,13 @@
     "lng": -3.4106,
     "quoi": "mort",
     "qid": "Q469225"
+   },
+   {
+    "nom": "université d'Orléans",
+    "lat": 47.8455,
+    "lng": 1.9339,
+    "quoi": "formation",
+    "qid": "Q13334"
    }
   ],
   "zelie-martin": [

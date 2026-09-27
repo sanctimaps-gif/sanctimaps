@@ -1,0 +1,4570 @@
+{
+ "source": "Wikidata (CC0), propriétés P22, P25, P26, P40, P737, P802, P1038, P1066 et P3373",
+ "note": "Écrit par tools/import-liens.mjs. Ne pas modifier à la main : le fichier est réécrit d’un bloc. « quoi » vaut maitre, disciple, parent, enfant, fratrie, conjoint, famille, influence, inspire.",
+ "liens": {
+  "agnes-boheme": [
+   {
+    "id": "elisabeth-hongrie",
+    "quoi": "famille"
+   }
+  ],
+  "albert-le-grand": [
+   {
+    "id": "wd-jourdain-de-saxe-q60790",
+    "quoi": "maitre"
+   },
+   {
+    "id": "thomas-aquin",
+    "quoi": "disciple"
+   },
+   {
+    "id": "augustin-hippone",
+    "quoi": "influence"
+   }
+  ],
+  "alphonse-liguori": [
+   {
+    "id": "wd-giovan-giuseppe-della-croce-q1093725",
+    "quoi": "maitre"
+   }
+  ],
+  "ambroise-milan": [
+   {
+    "id": "wd-sainte-marcelline-q299955",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-satyr-de-milan-q2245450",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "augustin-hippone",
+    "quoi": "inspire"
+   }
+  ],
+  "andre-apotre": [
+   {
+    "id": "pierre-apotre",
+    "quoi": "fratrie"
+   }
+  ],
+  "anselme-aoste": [
+   {
+    "id": "wd-lanfranc-q317098",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-yves-de-chartres-q124775",
+    "quoi": "maitre"
+   },
+   {
+    "id": "thomas-aquin",
+    "quoi": "inspire"
+   }
+  ],
+  "antoine-egypte": [
+   {
+    "id": "wd-isaac-de-dalmatie-q705202",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-macaire-d-alexandrie-q2743919",
+    "quoi": "disciple"
+   }
+  ],
+  "athanase-alexandrie": [
+   {
+    "id": "wd-alexandre-d-alexandrie-q44794",
+    "quoi": "maitre"
+   }
+  ],
+  "augustin-hippone": [
+   {
+    "id": "wd-prosper-d-aquitaine-q454652",
+    "quoi": "disciple"
+   },
+   {
+    "id": "monique",
+    "quoi": "parent"
+   },
+   {
+    "id": "ambroise-milan",
+    "quoi": "influence"
+   },
+   {
+    "id": "albert-le-grand",
+    "quoi": "inspire"
+   },
+   {
+    "id": "thomas-aquin",
+    "quoi": "inspire"
+   },
+   {
+    "id": "wd-boece-q102851",
+    "quoi": "inspire"
+   }
+  ],
+  "basile-cesaree": [
+   {
+    "id": "gregoire-nazianze",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-macrine-l-ancienne-q263970",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-emmelie-q2186180",
+    "quoi": "parent"
+   },
+   {
+    "id": "gregoire-nysse",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "macrine-jeune",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-pierre-de-sebaste-q1246057",
+    "quoi": "fratrie"
+   }
+  ],
+  "bede": [
+   {
+    "id": "wd-benoit-biscop-q552201",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-ceolfrith-q1054504",
+    "quoi": "maitre"
+   }
+  ],
+  "benoit-nursie": [
+   {
+    "id": "wd-maur-q380345",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-placide-du-mont-cassin-q2026066",
+    "quoi": "disciple"
+   },
+   {
+    "id": "scholastique",
+    "quoi": "fratrie"
+   }
+  ],
+  "bernard-clairvaux": [
+   {
+    "id": "wd-baudouin-q1155146",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-alethe-de-montbard-q2840712",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-gerard-de-clairvaux-q2280669",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-nivard-de-clairvaux-q11938866",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-ombeline-de-jully-q1636776",
+    "quoi": "fratrie"
+   }
+  ],
+  "boniface": [
+   {
+    "id": "wd-gregoire-d-utrecht-q1545233",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-saint-sturm-q280476",
+    "quoi": "disciple"
+   }
+  ],
+  "brigitte-suede": [
+   {
+    "id": "catherine-vadstena",
+    "quoi": "enfant"
+   }
+  ],
+  "bruno-chartreux": [
+   {
+    "id": "wd-urbain-ii-q30578",
+    "quoi": "disciple"
+   }
+  ],
+  "canut-iv": [
+   {
+    "id": "wd-charles-ier-de-flandre-q378217",
+    "quoi": "enfant"
+   }
+  ],
+  "carlo-acutis": [
+   {
+    "id": "dominique-savio",
+    "quoi": "influence"
+   },
+   {
+    "id": "louis-gonzague",
+    "quoi": "influence"
+   },
+   {
+    "id": "wd-tarcisius-de-rome-q370210",
+    "quoi": "influence"
+   }
+  ],
+  "catherine-vadstena": [
+   {
+    "id": "brigitte-suede",
+    "quoi": "parent"
+   }
+  ],
+  "cecile": [
+   {
+    "id": "wd-valerien-de-rome-q3554331",
+    "quoi": "conjoint"
+   }
+  ],
+  "cesaire-arles": [
+   {
+    "id": "wd-cesarie-d-arles-q3010531",
+    "quoi": "fratrie"
+   }
+  ],
+  "claire-assise": [
+   {
+    "id": "wd-ortolana-d-assise-q11799354",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-agnes-d-assise-q394693",
+    "quoi": "fratrie"
+   }
+  ],
+  "colomba-iona": [
+   {
+    "id": "wd-finien-de-clonard-q622095",
+    "quoi": "maitre"
+   }
+  ],
+  "colomban": [
+   {
+    "id": "wd-comgall-de-bangor-q1282428",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-del-de-lure-q3021418",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-eustache-de-luxeuil-q666473",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-gall-de-suisse-q180936",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-mirin-de-paisley-q726939",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-ursan-q2501466",
+    "quoi": "disciple"
+   }
+  ],
+  "cyrille-thessalonique": [
+   {
+    "id": "methode-thessalonique",
+    "quoi": "fratrie"
+   }
+  ],
+  "david-galles": [
+   {
+    "id": "wd-aidan-de-ferns-q404099",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-finbarr-de-cork-q287916",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-isfael-q13129278",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-saint-theleau-q680538",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-sainte-nonne-q2487289",
+    "quoi": "parent"
+   }
+  ],
+  "dominique-guzman": [
+   {
+    "id": "wd-joana-d-aza-q764050",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-manes-de-guzman-q532119",
+    "quoi": "fratrie"
+   }
+  ],
+  "dominique-savio": [
+   {
+    "id": "carlo-acutis",
+    "quoi": "inspire"
+   }
+  ],
+  "elisabeth-hongrie": [
+   {
+    "id": "wd-gertrude-d-altenberg-q442889",
+    "quoi": "enfant"
+   },
+   {
+    "id": "agnes-boheme",
+    "quoi": "famille"
+   }
+  ],
+  "elisabeth-portugal": [
+   {
+    "id": "wd-constance-de-hohenstaufen-q286537",
+    "quoi": "parent"
+   }
+  ],
+  "ephrem-syrien": [
+   {
+    "id": "wd-jacques-de-nisibe-q220017",
+    "quoi": "maitre"
+   }
+  ],
+  "etienne-hongrie": [
+   {
+    "id": "wd-emeric-de-hongrie-q359259",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-gisele-de-baviere-q232039",
+    "quoi": "conjoint"
+   }
+  ],
+  "francisco-marto": [
+   {
+    "id": "jacinta-marto",
+    "quoi": "fratrie"
+   }
+  ],
+  "francois-assise": [
+   {
+    "id": "wd-angel-hernandez-ranera-de-diego-q124609146",
+    "quoi": "inspire"
+   },
+   {
+    "id": "wd-benigno-prieto-del-pozo-q124669848",
+    "quoi": "inspire"
+   },
+   {
+    "id": "wd-federico-herrera-bermejo-q124663029",
+    "quoi": "inspire"
+   },
+   {
+    "id": "wd-julian-navio-colado-q124662010",
+    "quoi": "inspire"
+   },
+   {
+    "id": "wd-marcelino-ovejero-gomez-q124671686",
+    "quoi": "inspire"
+   },
+   {
+    "id": "wd-martin-lozano-tello-q81620161",
+    "quoi": "inspire"
+   },
+   {
+    "id": "wd-victor-chumillas-q6165430",
+    "quoi": "inspire"
+   }
+  ],
+  "gertrude-nivelles": [
+   {
+    "id": "wd-itte-idoberge-q259551",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-pepin-de-landen-q313373",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-bavon-de-gand-q457903",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-begge-d-andenne-q266765",
+    "quoi": "fratrie"
+   }
+  ],
+  "gregoire-le-grand": [
+   {
+    "id": "wd-sylvie-de-rome-q1088039",
+    "quoi": "parent"
+   },
+   {
+    "id": "thomas-aquin",
+    "quoi": "inspire"
+   }
+  ],
+  "gregoire-nazianze": [
+   {
+    "id": "basile-cesaree",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-amphiloque-d-iconium-q474872",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-gregoire-l-ancien-q935447",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-nonna-de-nazianze-q925470",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-gorgonia-de-nazianze-q3556557",
+    "quoi": "fratrie"
+   }
+  ],
+  "gregoire-nysse": [
+   {
+    "id": "wd-emmelie-q2186180",
+    "quoi": "parent"
+   },
+   {
+    "id": "basile-cesaree",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "macrine-jeune",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-pierre-de-sebaste-q1246057",
+    "quoi": "fratrie"
+   }
+  ],
+  "hildegarde-bingen": [
+   {
+    "id": "wd-jutta-von-sponheim-q447185",
+    "quoi": "maitre"
+   }
+  ],
+  "ignace-antioche": [
+   {
+    "id": "jean-evangeliste",
+    "quoi": "maitre"
+   }
+  ],
+  "irenee-lyon": [
+   {
+    "id": "polycarpe",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-hippolyte-de-rome-q207113",
+    "quoi": "disciple"
+   }
+  ],
+  "isidore-laboureur": [
+   {
+    "id": "wd-maria-toribia-q3544243",
+    "quoi": "conjoint"
+   }
+  ],
+  "isidore-seville": [
+   {
+    "id": "wd-braule-de-saragosse-q849117",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-florence-de-carthagene-q2626436",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-fulgence-de-carthagene-q2616176",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-leandre-de-seville-q577125",
+    "quoi": "fratrie"
+   }
+  ],
+  "jacinta-marto": [
+   {
+    "id": "francisco-marto",
+    "quoi": "fratrie"
+   }
+  ],
+  "jacques-majeur": [
+   {
+    "id": "jean-evangeliste",
+    "quoi": "fratrie"
+   }
+  ],
+  "jean-baptiste": [
+   {
+    "id": "wd-elisabeth-q235849",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-zacharie-q139464",
+    "quoi": "parent"
+   },
+   {
+    "id": "marie",
+    "quoi": "famille"
+   }
+  ],
+  "jean-bosco": [
+   {
+    "id": "wd-margherita-occhiena-q434620",
+    "quoi": "parent"
+   }
+  ],
+  "jean-chrysostome": [
+   {
+    "id": "wd-nil-du-sinai-q770938",
+    "quoi": "disciple"
+   }
+  ],
+  "jean-damascene": [
+   {
+    "id": "wd-come-de-maiouma-q2496948",
+    "quoi": "fratrie"
+   }
+  ],
+  "jean-evangeliste": [
+   {
+    "id": "ignace-antioche",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-papias-d-hierapolis-q273053",
+    "quoi": "disciple"
+   },
+   {
+    "id": "jacques-majeur",
+    "quoi": "fratrie"
+   }
+  ],
+  "jerome": [
+   {
+    "id": "wd-blesille-de-rome-q457835",
+    "quoi": "disciple"
+   }
+  ],
+  "joseph": [
+   {
+    "id": "wd-jacques-le-juste-q26925",
+    "quoi": "enfant"
+   },
+   {
+    "id": "marie",
+    "quoi": "conjoint"
+   },
+   {
+    "id": "wd-anne-q164294",
+    "quoi": "famille"
+   },
+   {
+    "id": "wd-joachim-q314700",
+    "quoi": "famille"
+   }
+  ],
+  "laurent-de-rome": [
+   {
+    "id": "wd-orens-d-auch-q928522",
+    "quoi": "fratrie"
+   }
+  ],
+  "leopold-autriche": [
+   {
+    "id": "wd-otton-de-freising-q435942",
+    "quoi": "enfant"
+   }
+  ],
+  "louis-gonzague": [
+   {
+    "id": "carlo-acutis",
+    "quoi": "inspire"
+   }
+  ],
+  "louis-ix": [
+   {
+    "id": "wd-isabelle-de-france-q236952",
+    "quoi": "fratrie"
+   }
+  ],
+  "louis-martin": [
+   {
+    "id": "therese-lisieux",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-leonie-martin-q11349467",
+    "quoi": "enfant"
+   },
+   {
+    "id": "zelie-martin",
+    "quoi": "conjoint"
+   }
+  ],
+  "macrine-jeune": [
+   {
+    "id": "wd-emmelie-q2186180",
+    "quoi": "parent"
+   },
+   {
+    "id": "basile-cesaree",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "gregoire-nysse",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-pierre-de-sebaste-q1246057",
+    "quoi": "fratrie"
+   }
+  ],
+  "marguerite-ecosse": [
+   {
+    "id": "wd-david-ier-d-ecosse-q216787",
+    "quoi": "enfant"
+   }
+  ],
+  "marguerite-hongrie": [
+   {
+    "id": "wd-kinga-de-pologne-q233012",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-yolande-de-pologne-q833920",
+    "quoi": "fratrie"
+   }
+  ],
+  "marie": [
+   {
+    "id": "wd-anne-q164294",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-joachim-q314700",
+    "quoi": "parent"
+   },
+   {
+    "id": "joseph",
+    "quoi": "conjoint"
+   },
+   {
+    "id": "jean-baptiste",
+    "quoi": "famille"
+   },
+   {
+    "id": "wd-elisabeth-q235849",
+    "quoi": "famille"
+   }
+  ],
+  "methode-thessalonique": [
+   {
+    "id": "cyrille-thessalonique",
+    "quoi": "fratrie"
+   }
+  ],
+  "monique": [
+   {
+    "id": "augustin-hippone",
+    "quoi": "enfant"
+   }
+  ],
+  "pacome": [
+   {
+    "id": "wd-theodore-de-tabenne-q770191",
+    "quoi": "disciple"
+   }
+  ],
+  "patrick": [
+   {
+    "id": "wd-germain-d-auxerre-q442516",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-darerca-q3016039",
+    "quoi": "famille"
+   }
+  ],
+  "paul-chong-hasang": [
+   {
+    "id": "wd-cecile-yu-so-sa-q4533462",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-jeong-yak-jong-q11270126",
+    "quoi": "parent"
+   }
+  ],
+  "paul-tarse": [
+   {
+    "id": "timothee",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-lydie-de-thyatire-q292282",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-silas-q312376",
+    "quoi": "disciple"
+   },
+   {
+    "id": "thomas-aquin",
+    "quoi": "inspire"
+   }
+  ],
+  "pierre-apotre": [
+   {
+    "id": "wd-evode-q709251",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-petronille-de-rome-q463600",
+    "quoi": "enfant"
+   },
+   {
+    "id": "andre-apotre",
+    "quoi": "fratrie"
+   }
+  ],
+  "pierre-damien": [
+   {
+    "id": "wd-jean-de-lodi-q3768421",
+    "quoi": "disciple"
+   }
+  ],
+  "polycarpe": [
+   {
+    "id": "irenee-lyon",
+    "quoi": "disciple"
+   }
+  ],
+  "scholastique": [
+   {
+    "id": "benoit-nursie",
+    "quoi": "fratrie"
+   }
+  ],
+  "teresa-los-andes": [
+   {
+    "id": "therese-lisieux",
+    "quoi": "influence"
+   }
+  ],
+  "therese-lisieux": [
+   {
+    "id": "louis-martin",
+    "quoi": "parent"
+   },
+   {
+    "id": "zelie-martin",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-leonie-martin-q11349467",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "teresa-los-andes",
+    "quoi": "inspire"
+   }
+  ],
+  "thomas-aquin": [
+   {
+    "id": "albert-le-grand",
+    "quoi": "maitre"
+   },
+   {
+    "id": "anselme-aoste",
+    "quoi": "influence"
+   },
+   {
+    "id": "augustin-hippone",
+    "quoi": "influence"
+   },
+   {
+    "id": "gregoire-le-grand",
+    "quoi": "influence"
+   },
+   {
+    "id": "paul-tarse",
+    "quoi": "influence"
+   },
+   {
+    "id": "wd-boece-q102851",
+    "quoi": "influence"
+   }
+  ],
+  "timothee": [
+   {
+    "id": "paul-tarse",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-pudentienne-q268087",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-aaron-d-aleth-q2501319": [
+   {
+    "id": "wd-maclou-q468195",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-acace-de-byzance-q3982149": [
+   {
+    "id": "wd-melece-ier-d-antioche-q433452",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-adalard-q348198": [
+   {
+    "id": "wd-paschase-radbert-q654858",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-adalbert-de-magdebourg-q77394": [
+   {
+    "id": "wd-adalbert-de-prague-q243427",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-adalbert-de-prague-q243427": [
+   {
+    "id": "wd-adalbert-de-magdebourg-q77394",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-radzim-gaudenty-q32414",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-adelbert-van-egmond-q2292236": [
+   {
+    "id": "wd-ecgberht-de-ripon-q764523",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-adeline-de-mortain-q17143191": [
+   {
+    "id": "wd-vital-de-savigny-q1117753",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-adrien-de-cantorbery-q1274084": [
+   {
+    "id": "wd-jean-de-beverley-q1702263",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-adrien-de-nicomedie-q374822": [
+   {
+    "id": "wd-nathalie-de-nicomedie-q1869249",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-agape-of-thessaloniki-q390480": [
+   {
+    "id": "wd-irene-de-thessalonique-q264096",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-agathe-kwon-chin-i-q9141916": [
+   {
+    "id": "wd-madeleine-han-yong-i-q4495365",
+    "quoi": "parent"
+   }
+  ],
+  "wd-agathe-yi-q9141962": [
+   {
+    "id": "wd-augustino-yi-kwang-hon-q4260678",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-barbara-kwon-hui-q9165465",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-john-baptist-yi-kwang-nyol-q6220606",
+    "quoi": "famille"
+   }
+  ],
+  "wd-agnes-d-assise-q394693": [
+   {
+    "id": "wd-ortolana-d-assise-q11799354",
+    "quoi": "parent"
+   },
+   {
+    "id": "claire-assise",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-agnes-de-poitiers-q732637": [
+   {
+    "id": "wd-radegonde-q236974",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-aidan-de-ferns-q404099": [
+   {
+    "id": "david-galles",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-finien-de-clonard-q622095",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-aidan-q132148": [
+   {
+    "id": "wd-cedd-q1052577",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-chad-de-mercie-q742311",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-wilfrid-q719721",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-alberik-i-q1347216": [
+   {
+    "id": "wd-gregoire-d-utrecht-q1545233",
+    "quoi": "famille"
+   }
+  ],
+  "wd-albert-de-jerusalem-q714267": [
+   {
+    "id": "wd-saint-berthold-q828129",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-alcuin-q154332": [
+   {
+    "id": "wd-hildegrin-de-chalons-q323137",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-raban-maur-q160441",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-aldegonde-de-maubeuge-q271330": [
+   {
+    "id": "wd-walbert-iv-q2002344",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-waudru-de-mons-q436732",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-alethe-de-montbard-q2840712": [
+   {
+    "id": "bernard-clairvaux",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-gerard-de-clairvaux-q2280669",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-nivard-de-clairvaux-q11938866",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-ombeline-de-jully-q1636776",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-alexandre-d-alexandrie-q44794": [
+   {
+    "id": "athanase-alexandrie",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-alexis-falconieri-q2559608": [
+   {
+    "id": "wd-julienne-falconieri-q292196",
+    "quoi": "famille"
+   }
+  ],
+  "wd-alexis-nikolaievitch-de-russie-q154045": [
+   {
+    "id": "wd-alix-de-hesse-darmstadt-q152094",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-nicolas-ii-de-russie-q40787",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-anastasia-nikolaievna-de-russie-q151130",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-maria-nikolaievna-de-russie-q155422",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-olga-nikolaievna-de-russie-q113584",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-tatiana-nikolaievna-de-russie-q158148",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-alix-de-hesse-darmstadt-q152094": [
+   {
+    "id": "wd-alexis-nikolaievitch-de-russie-q154045",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-anastasia-nikolaievna-de-russie-q151130",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-maria-nikolaievna-de-russie-q155422",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-olga-nikolaievna-de-russie-q113584",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-tatiana-nikolaievna-de-russie-q158148",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-elisabeth-de-hesse-darmstadt-q58063",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-nicolas-ii-de-russie-q40787",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-allgo-q20558584": [
+   {
+    "id": "wd-gildas-le-sage-q352995",
+    "quoi": "parent"
+   }
+  ],
+  "wd-amalberge-de-maubeuge-q269386": [
+   {
+    "id": "wd-germer-de-fly-q3104253",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-gudule-de-bruxelles-q267660",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-renelde-de-saintes-q463631",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-amateur-d-auxerre-q2670157": [
+   {
+    "id": "wd-germain-d-auxerre-q442516",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-ame-de-remiremont-q2462380": [
+   {
+    "id": "wd-eustache-de-luxeuil-q666473",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-amedee-ix-q373236": [
+   {
+    "id": "wd-louise-de-savoie-q450894",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-amphien-q4779600": [
+   {
+    "id": "wd-edesios-q4687473",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-amphiloque-d-iconium-q474872": [
+   {
+    "id": "gregoire-nazianze",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-anastase-ier-q134682": [
+   {
+    "id": "wd-innocent-ier-q134694",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-anastase-le-sinaite-q473291": [
+   {
+    "id": "wd-maxime-le-confesseur-q206842",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-anastasia-nikolaievna-de-russie-q151130": [
+   {
+    "id": "wd-alix-de-hesse-darmstadt-q152094",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-nicolas-ii-de-russie-q40787",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-alexis-nikolaievitch-de-russie-q154045",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-maria-nikolaievna-de-russie-q155422",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-olga-nikolaievna-de-russie-q113584",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-tatiana-nikolaievna-de-russie-q158148",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-anastasia-saguna-q137971105": [
+   {
+    "id": "wd-andre-saguna-q502776",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-andre-saguna-q502776": [
+   {
+    "id": "wd-anastasia-saguna-q137971105",
+    "quoi": "parent"
+   }
+  ],
+  "wd-andrzej-wang-tianqing-q4103237": [
+   {
+    "id": "wd-lucia-wang-wang-q4103212",
+    "quoi": "parent"
+   }
+  ],
+  "wd-angel-hernandez-ranera-de-diego-q124609146": [
+   {
+    "id": "francois-assise",
+    "quoi": "influence"
+   }
+  ],
+  "wd-ann-an-xin-q4067854": [
+   {
+    "id": "wd-mary-an-linghua-q4067852",
+    "quoi": "famille"
+   },
+   {
+    "id": "wd-mary-an-q4067853",
+    "quoi": "famille"
+   }
+  ],
+  "wd-anne-de-kachine-q1141121": [
+   {
+    "id": "wd-michel-iii-de-vladimir-q380373",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-anne-q164294": [
+   {
+    "id": "marie",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-joachim-q314700",
+    "quoi": "conjoint"
+   },
+   {
+    "id": "joseph",
+    "quoi": "famille"
+   }
+  ],
+  "wd-anstrude-de-laon-q2057464": [
+   {
+    "id": "wd-salaberge-q3945274",
+    "quoi": "parent"
+   }
+  ],
+  "wd-apollinaire-de-valence-q4780247": [
+   {
+    "id": "wd-avit-de-vienne-q225201",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-arnoul-de-metz-q337189": [
+   {
+    "id": "wd-saint-clodulf-q709799",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-athenodore-de-neocesaree-q780243": [
+   {
+    "id": "wd-gregoire-le-thaumaturge-q337537",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-audomar-q758962": [
+   {
+    "id": "wd-eustache-de-luxeuil-q666473",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-augustin-pak-chong-won-q4342305": [
+   {
+    "id": "wd-barbara-ko-sun-i-q4225032",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-augustino-yi-kwang-hon-q4260678": [
+   {
+    "id": "wd-agathe-yi-q9141962",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-john-baptist-yi-kwang-nyol-q6220606",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-barbara-kwon-hui-q9165465",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-aunaire-d-auxerre-q4821868": [
+   {
+    "id": "wd-austregesile-de-bourges-q3046005",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-loup-de-sens-q1495753",
+    "quoi": "famille"
+   }
+  ],
+  "wd-aurelien-d-arles-q2263241": [
+   {
+    "id": "wd-sacerdos-de-lyon-q2049237",
+    "quoi": "parent"
+   }
+  ],
+  "wd-aurelio-de-cordoba-q5712045": [
+   {
+    "id": "wd-nathalie-de-cordoue-q9048833",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-austregesile-de-bourges-q3046005": [
+   {
+    "id": "wd-aunaire-d-auxerre-q4821868",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-avit-de-vienne-q225201": [
+   {
+    "id": "wd-apollinaire-de-valence-q4780247",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-aymard-de-cluny-q526265": [
+   {
+    "id": "wd-odon-de-cluny-q454553",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-mayeul-de-cluny-q42107",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-balbine-de-rome-q508782": [
+   {
+    "id": "wd-quirin-de-neuss-q688884",
+    "quoi": "parent"
+   }
+  ],
+  "wd-balderic-de-montfaucon-q4850395": [
+   {
+    "id": "wd-saint-wandrille-q1373694",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-barbara-choe-yong-i-q9165318": [
+   {
+    "id": "wd-madeleine-son-so-byog-q11766100",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-pierre-choe-chang-hub-q11817362",
+    "quoi": "parent"
+   }
+  ],
+  "wd-barbara-ko-sun-i-q4225032": [
+   {
+    "id": "wd-augustin-pak-chong-won-q4342305",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-barbara-kwon-hui-q9165465": [
+   {
+    "id": "wd-agathe-yi-q9141962",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-augustino-yi-kwang-hon-q4260678",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-barsanuphe-de-gaza-q2293531": [
+   {
+    "id": "wd-dorothee-de-gaza-q391419",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-jean-de-gaza-q3816820",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-baudouin-q1155146": [
+   {
+    "id": "bernard-clairvaux",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-bavon-de-gand-q457903": [
+   {
+    "id": "wd-itte-idoberge-q259551",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-pepin-de-landen-q313373",
+    "quoi": "parent"
+   },
+   {
+    "id": "gertrude-nivelles",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-begge-d-andenne-q266765",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-beato-amadeu-da-silva-q2528283": [
+   {
+    "id": "wd-beatrice-de-silva-q463534",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-beatrice-de-silva-q463534": [
+   {
+    "id": "wd-beato-amadeu-da-silva-q2528283",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-begge-d-andenne-q266765": [
+   {
+    "id": "wd-itte-idoberge-q259551",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-pepin-de-landen-q313373",
+    "quoi": "parent"
+   },
+   {
+    "id": "gertrude-nivelles",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-bavon-de-gand-q457903",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-benedicte-hyon-kyong-nyon-q4502874": [
+   {
+    "id": "wd-charles-hyon-song-mun-q626689",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-benigno-prieto-del-pozo-q124669848": [
+   {
+    "id": "francois-assise",
+    "quoi": "influence"
+   }
+  ],
+  "wd-benoit-biscop-q552201": [
+   {
+    "id": "bede",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-benoit-d-aniane-q712214": [
+   {
+    "id": "wd-theodulf-d-orleans-q534814",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-bernardo-tolomei-q731956": [
+   {
+    "id": "wd-nera-tolomei-q116971521",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-blanche-q1258743": [
+   {
+    "id": "wd-brychan-brycheiniog-q2398021",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-caradoc-freichfras-q1035345",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-sainte-ninnoc-q3464537",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-blesille-de-rome-q457835": [
+   {
+    "id": "jerome",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-paule-de-rome-q237824",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-eustochium-q442396",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-boece-q102851": [
+   {
+    "id": "augustin-hippone",
+    "quoi": "influence"
+   },
+   {
+    "id": "thomas-aquin",
+    "quoi": "inspire"
+   }
+  ],
+  "wd-braule-de-saragosse-q849117": [
+   {
+    "id": "isidore-seville",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-eugene-iii-de-tolede-q596910",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-brendan-de-clonfert-q208961": [
+   {
+    "id": "wd-finien-de-clonard-q622095",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-maclou-q468195",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-brychan-brycheiniog-q2398021": [
+   {
+    "id": "wd-blanche-q1258743",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-dwynwen-q2287423",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-gladys-du-pays-de-galles-q2449206",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-tydfil-q2062366",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-brynach-q2381536": [
+   {
+    "id": "wd-endellion-q936150",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-budoc-de-dol-q390525": [
+   {
+    "id": "wd-guenole-de-landevennec-q2361972",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-cadfan-q581537": [
+   {
+    "id": "wd-trillo-q6695484",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-sainte-gwenn-q2670604",
+    "quoi": "parent"
+   }
+  ],
+  "wd-cado-q1889720": [
+   {
+    "id": "wd-finien-de-clonard-q622095",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-gladys-du-pays-de-galles-q2449206",
+    "quoi": "parent"
+   }
+  ],
+  "wd-callwen-q23927294": [
+   {
+    "id": "wd-gwenfyl-q23927301",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-canna-q3404543": [
+   {
+    "id": "wd-saint-elian-q4411544",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-caprais-de-lerins-q977571": [
+   {
+    "id": "wd-honorat-d-arles-q526245",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-caradoc-freichfras-q1035345": [
+   {
+    "id": "wd-blanche-q1258743",
+    "quoi": "parent"
+   }
+  ],
+  "wd-carloman-q310440": [
+   {
+    "id": "wd-landrade-de-munsterbilzen-q263082",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-casimir-grelewski-q2126095": [
+   {
+    "id": "wd-etienne-grelewski-q2208870",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-catherine-yi-q4260689": [
+   {
+    "id": "wd-madeleine-cho-q4516984",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-cecile-yu-so-sa-q4533462": [
+   {
+    "id": "paul-chong-hasang",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-jeong-yak-jong-q11270126",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-cedd-q1052577": [
+   {
+    "id": "wd-aidan-q132148",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-chad-de-mercie-q742311",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-celedonio-q17143181": [
+   {
+    "id": "wd-hemetere-de-calahorra-q11681449",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-ceolfrith-q1054504": [
+   {
+    "id": "bede",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-cesarie-d-arles-q3010531": [
+   {
+    "id": "cesaire-arles",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-chad-de-mercie-q742311": [
+   {
+    "id": "wd-aidan-q132148",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-cedd-q1052577",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-charles-hyon-song-mun-q626689": [
+   {
+    "id": "wd-benedicte-hyon-kyong-nyon-q4502874",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-charles-ier-d-autriche-q51068": [
+   {
+    "id": "wd-zita-de-bourbon-parme-q50926",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-charles-ier-de-flandre-q378217": [
+   {
+    "id": "canut-iv",
+    "quoi": "parent"
+   }
+  ],
+  "wd-chrodegang-de-seez-q2966686": [
+   {
+    "id": "wd-opportune-de-montreuil-q1561994",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-clement-d-alexandrie-q188883": [
+   {
+    "id": "wd-pantene-d-alexandrie-q461067",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-clotilde-de-france-q668220": [
+   {
+    "id": "wd-elisabeth-de-france-q274709",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-come-de-maiouma-q2496948": [
+   {
+    "id": "jean-damascene",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-comgall-de-bangor-q1282428": [
+   {
+    "id": "wd-kieran-de-clonmacnoise-q738988",
+    "quoi": "maitre"
+   },
+   {
+    "id": "colomban",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-constance-de-hohenstaufen-q286537": [
+   {
+    "id": "elisabeth-portugal",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-constantin-ier-q8413": [
+   {
+    "id": "wd-helene-de-constantinople-q170164",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-constantina-q464452",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-constantina-q464452": [
+   {
+    "id": "wd-constantin-ier-q8413",
+    "quoi": "parent"
+   }
+  ],
+  "wd-cornelius-of-imola-q3693689": [
+   {
+    "id": "wd-pierre-chrysologue-q328742",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-cybi-q3399340": [
+   {
+    "id": "wd-gwen-ferch-cynyr-q24635388",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-wenna-q43538963",
+    "quoi": "parent"
+   }
+  ],
+  "wd-cyr-de-tarse-q22661826": [
+   {
+    "id": "wd-julitte-de-tarse-q3189786",
+    "quoi": "parent"
+   }
+  ],
+  "wd-damien-nam-myong-hyog-q11692706": [
+   {
+    "id": "wd-marie-yi-yon-hui-q11769243",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-daniel-de-bangor-fawr-q1183310": [
+   {
+    "id": "wd-deiniolen-q13127839",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-darerca-q3016039": [
+   {
+    "id": "patrick",
+    "quoi": "famille"
+   }
+  ],
+  "wd-david-ier-d-ecosse-q216787": [
+   {
+    "id": "marguerite-ecosse",
+    "quoi": "parent"
+   }
+  ],
+  "wd-deiniolen-q13127839": [
+   {
+    "id": "wd-daniel-de-bangor-fawr-q1183310",
+    "quoi": "parent"
+   }
+  ],
+  "wd-del-de-lure-q3021418": [
+   {
+    "id": "colomban",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-delphine-de-sabran-q3021875": [
+   {
+    "id": "wd-elzear-de-sabran-q3051925",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-dentelin-de-mons-q322527": [
+   {
+    "id": "wd-madelgarius-de-famars-de-hainaut-q2462614",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-waudru-de-mons-q436732",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-landry-de-soignies-q3217111",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-dodon-de-wallers-q36697106": [
+   {
+    "id": "wd-ursmer-de-lobbes-q1385227",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-dorothee-de-gaza-q391419": [
+   {
+    "id": "wd-barsanuphe-de-gaza-q2293531",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-dubrice-de-llandaf-q1078192": [
+   {
+    "id": "wd-isfael-q13129278",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-saint-theleau-q680538",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-samson-de-dol-q1269091",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-dwynwen-q2287423": [
+   {
+    "id": "wd-brychan-brycheiniog-q2398021",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-gladys-du-pays-de-galles-q2449206",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-tydfil-q2062366",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-ecgberht-de-ripon-q764523": [
+   {
+    "id": "wd-adelbert-van-egmond-q2292236",
+    "quoi": "disciple"
+   },
+   {
+    "id": "willibrord",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-edesios-q4687473": [
+   {
+    "id": "wd-amphien-q4779600",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-edwige-de-silesie-q57520": [
+   {
+    "id": "wd-henri-ii-le-pieux-q53446",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-elisabeth-de-france-q274709": [
+   {
+    "id": "wd-clotilde-de-france-q668220",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-elisabeth-de-hesse-darmstadt-q58063": [
+   {
+    "id": "wd-alix-de-hesse-darmstadt-q152094",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-elisabeth-q235849": [
+   {
+    "id": "jean-baptiste",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-zacharie-q139464",
+    "quoi": "conjoint"
+   },
+   {
+    "id": "marie",
+    "quoi": "famille"
+   }
+  ],
+  "wd-elisabeth-qin-bianzhi-q4505788": [
+   {
+    "id": "wd-simon-qin-chunfu-q4505791",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-elzear-de-sabran-q3051925": [
+   {
+    "id": "wd-delphine-de-sabran-q3021875",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-emeric-de-hongrie-q359259": [
+   {
+    "id": "etienne-hongrie",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-gisele-de-baviere-q232039",
+    "quoi": "parent"
+   }
+  ],
+  "wd-emmelie-q2186180": [
+   {
+    "id": "basile-cesaree",
+    "quoi": "enfant"
+   },
+   {
+    "id": "gregoire-nysse",
+    "quoi": "enfant"
+   },
+   {
+    "id": "macrine-jeune",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-pierre-de-sebaste-q1246057",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-enda-d-aran-q3053971": [
+   {
+    "id": "wd-kieran-de-clonmacnoise-q738988",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-endellion-q936150": [
+   {
+    "id": "wd-brynach-q2381536",
+    "quoi": "parent"
+   }
+  ],
+  "wd-engratia-of-segovia-q18246552": [
+   {
+    "id": "wd-frutos-q2089305",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-erembert-de-toulouse-q3590934": [
+   {
+    "id": "wd-lambert-de-lyon-q1257700",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-saint-wandrille-q1373694",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-etienne-grelewski-q2208870": [
+   {
+    "id": "wd-casimir-grelewski-q2126095",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-eucher-de-lyon-q671419": [
+   {
+    "id": "wd-honorat-d-arles-q526245",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-eugene-iii-de-tolede-q596910": [
+   {
+    "id": "wd-braule-de-saragosse-q849117",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-hellade-de-tolede-q3721107",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-eustache-de-luxeuil-q666473": [
+   {
+    "id": "colomban",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-ame-de-remiremont-q2462380",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-audomar-q758962",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-eustochium-q442396": [
+   {
+    "id": "wd-paule-de-rome-q237824",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-blesille-de-rome-q457835",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-euthyme-le-grand-q441249": [
+   {
+    "id": "wd-sabas-le-sanctifie-q316440",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-euthymius-of-athos-q1208474": [
+   {
+    "id": "wd-john-the-iberian-q1269209",
+    "quoi": "parent"
+   }
+  ],
+  "wd-evode-q709251": [
+   {
+    "id": "pierre-apotre",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-fauste-de-riez-q2351792": [
+   {
+    "id": "wd-germain-d-auxerre-q442516",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-jean-cassien-q313795",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-faustina-di-como-q3740312": [
+   {
+    "id": "wd-liberata-da-como-q3831629",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-faustino-oteiza-q23943018": [
+   {
+    "id": "wd-pedro-diez-gil-q29675198",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-federico-herrera-bermejo-q124663029": [
+   {
+    "id": "francois-assise",
+    "quoi": "influence"
+   }
+  ],
+  "wd-felix-q100989670": [
+   {
+    "id": "wd-voto-q100989657",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-ferjeux-de-besancon-q4127503": [
+   {
+    "id": "wd-ferreol-de-besancon-q1774929",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-ferreol-de-besancon-q1774929": [
+   {
+    "id": "wd-ferjeux-de-besancon-q4127503",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-finbarr-de-cork-q287916": [
+   {
+    "id": "david-galles",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-finien-de-clonard-q622095": [
+   {
+    "id": "wd-cado-q1889720",
+    "quoi": "maitre"
+   },
+   {
+    "id": "colomba-iona",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-aidan-de-ferns-q404099",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-brendan-de-clonfert-q208961",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-kieran-de-clonmacnoise-q738988",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-flavien-ii-q1281938": [
+   {
+    "id": "wd-sabas-le-sanctifie-q316440",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-florence-de-carthagene-q2626436": [
+   {
+    "id": "isidore-seville",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-fulgence-de-carthagene-q2616176",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-leandre-de-seville-q577125",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-fragan-q2070002": [
+   {
+    "id": "wd-guenole-de-landevennec-q2361972",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-jacut-de-landoac-q390440",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-saint-guethenoc-q746440",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-sainte-clervie-q2069936",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-sainte-gwenn-q2670604",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-francois-ii-des-deux-siciles-q206223": [
+   {
+    "id": "wd-marie-christine-de-savoie-q14451",
+    "quoi": "parent"
+   }
+  ],
+  "wd-francois-joseph-de-la-rochefoucauld-baye-q1133720": [
+   {
+    "id": "wd-pierre-louis-de-la-rochefoucauld-bayers-q3383307",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-fructueux-de-braga-q705395": [
+   {
+    "id": "wd-valere-du-bierzo-q1236333",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-frutos-q2089305": [
+   {
+    "id": "wd-engratia-of-segovia-q18246552",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-fulgence-de-carthagene-q2616176": [
+   {
+    "id": "isidore-seville",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-florence-de-carthagene-q2626436",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-leandre-de-seville-q577125",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-gall-de-suisse-q180936": [
+   {
+    "id": "colomban",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-gall-ier-de-clermont-q2709769": [
+   {
+    "id": "wd-gregoire-de-tours-q67841",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-gerard-de-clairvaux-q2280669": [
+   {
+    "id": "wd-alethe-de-montbard-q2840712",
+    "quoi": "parent"
+   },
+   {
+    "id": "bernard-clairvaux",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-nivard-de-clairvaux-q11938866",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-ombeline-de-jully-q1636776",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-germain-d-auxerre-q442516": [
+   {
+    "id": "wd-amateur-d-auxerre-q2670157",
+    "quoi": "maitre"
+   },
+   {
+    "id": "patrick",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-fauste-de-riez-q2351792",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-germer-de-fly-q3104253": [
+   {
+    "id": "wd-amalberge-de-maubeuge-q269386",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-gertrude-d-altenberg-q442889": [
+   {
+    "id": "elisabeth-hongrie",
+    "quoi": "parent"
+   }
+  ],
+  "wd-gery-de-cambrai-q585739": [
+   {
+    "id": "wd-magneric-de-treves-q820607",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-getule-de-tivoli-q1520143": [
+   {
+    "id": "wd-symphorose-de-tivoli-q453710",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-gildas-le-sage-q352995": [
+   {
+    "id": "wd-allgo-q20558584",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-giovan-giuseppe-della-croce-q1093725": [
+   {
+    "id": "alphonse-liguori",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-giovanna-soderini-q18814592": [
+   {
+    "id": "wd-julienne-falconieri-q292196",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-gisele-de-baviere-q232039": [
+   {
+    "id": "wd-emeric-de-hongrie-q359259",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-henri-ii-q103556",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "etienne-hongrie",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-gladys-du-pays-de-galles-q2449206": [
+   {
+    "id": "wd-brychan-brycheiniog-q2398021",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-cado-q1889720",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-dwynwen-q2287423",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-godard-de-rouen-q596979": [
+   {
+    "id": "wd-medard-de-noyon-q733308",
+    "quoi": "famille"
+   }
+  ],
+  "wd-gorgonia-de-nazianze-q3556557": [
+   {
+    "id": "wd-gregoire-l-ancien-q935447",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-nonna-de-nazianze-q925470",
+    "quoi": "parent"
+   },
+   {
+    "id": "gregoire-nazianze",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-gregoire-d-utrecht-q1545233": [
+   {
+    "id": "boniface",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-lebuin-q494329",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-alberik-i-q1347216",
+    "quoi": "famille"
+   }
+  ],
+  "wd-gregoire-de-tours-q67841": [
+   {
+    "id": "wd-gall-ier-de-clermont-q2709769",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-magneric-de-treves-q820607",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-gregoire-l-ancien-q935447": [
+   {
+    "id": "gregoire-nazianze",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-gorgonia-de-nazianze-q3556557",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-nonna-de-nazianze-q925470",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-gregoire-le-thaumaturge-q337537": [
+   {
+    "id": "wd-macrine-l-ancienne-q263970",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-athenodore-de-neocesaree-q780243",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-gregoire-palamas-q243787": [
+   {
+    "id": "wd-philothee-kokkinos-q152221",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-gudule-de-bruxelles-q267660": [
+   {
+    "id": "wd-amalberge-de-maubeuge-q269386",
+    "quoi": "parent"
+   }
+  ],
+  "wd-guenole-de-landevennec-q2361972": [
+   {
+    "id": "wd-budoc-de-dol-q390525",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-fragan-q2070002",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-sainte-gwenn-q2670604",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-jacut-de-landoac-q390440",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-saint-guethenoc-q746440",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-sainte-clervie-q2069936",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-guerin-de-vergy-q1115762": [
+   {
+    "id": "wd-lievin-q536950",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-leger-d-autun-q1818867",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-guillaume-de-volpiano-q1375104": [
+   {
+    "id": "wd-mayeul-de-cluny-q42107",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-gwen-ferch-cynyr-q24635388": [
+   {
+    "id": "wd-cybi-q3399340",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-sainte-ninnoc-q3464537",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-sainte-nonne-q2487289",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-gwenfaen-q18535665": [
+   {
+    "id": "wd-paulinus-q2605207",
+    "quoi": "parent"
+   }
+  ],
+  "wd-gwenfyl-q23927301": [
+   {
+    "id": "wd-callwen-q23927294",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-helene-de-constantinople-q170164": [
+   {
+    "id": "wd-constantin-ier-q8413",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-hellade-de-tolede-q3721107": [
+   {
+    "id": "wd-eugene-iii-de-tolede-q596910",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-ildefonse-de-tolede-q456069",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-hemetere-de-calahorra-q11681449": [
+   {
+    "id": "wd-celedonio-q17143181",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-henri-ii-le-pieux-q53446": [
+   {
+    "id": "wd-edwige-de-silesie-q57520",
+    "quoi": "parent"
+   }
+  ],
+  "wd-henri-ii-q103556": [
+   {
+    "id": "wd-gisele-de-baviere-q232039",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-hermeland-d-indre-q3134198": [
+   {
+    "id": "wd-lambert-de-lyon-q1257700",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-hermogius-q3732076": [
+   {
+    "id": "wd-pelage-de-cordoue-q984111",
+    "quoi": "famille"
+   }
+  ],
+  "wd-hildegrin-de-chalons-q323137": [
+   {
+    "id": "wd-alcuin-q154332",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-hippolyte-de-rome-q207113": [
+   {
+    "id": "irenee-lyon",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-honorat-d-arles-q526245": [
+   {
+    "id": "wd-caprais-de-lerins-q977571",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-eucher-de-lyon-q671419",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-loup-de-troyes-q616354",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-hormisdas-q160931": [
+   {
+    "id": "wd-silvere-q149315",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-hugues-de-bonnevaux-q3142700": [
+   {
+    "id": "wd-hugues-de-chateauneuf-q58432",
+    "quoi": "famille"
+   }
+  ],
+  "wd-hugues-de-chateauneuf-q58432": [
+   {
+    "id": "wd-hugues-de-bonnevaux-q3142700",
+    "quoi": "famille"
+   }
+  ],
+  "wd-iaroslav-le-sage-q188943": [
+   {
+    "id": "wd-vladimir-de-novgorod-q58355",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-ignatius-choe-in-cheol-q97165945": [
+   {
+    "id": "wd-matthias-choe-in-gil-q24956344",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-ildefonse-de-tolede-q456069": [
+   {
+    "id": "wd-hellade-de-tolede-q3721107",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-innocent-ier-q134694": [
+   {
+    "id": "wd-anastase-ier-q134682",
+    "quoi": "parent"
+   }
+  ],
+  "wd-irene-de-hongrie-q82691": [
+   {
+    "id": "wd-ladislas-ier-de-hongrie-q26486",
+    "quoi": "parent"
+   }
+  ],
+  "wd-irene-de-thessalonique-q264096": [
+   {
+    "id": "wd-agape-of-thessaloniki-q390480",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-isaac-de-dalmatie-q705202": [
+   {
+    "id": "antoine-egypte",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-isabelle-de-france-q236952": [
+   {
+    "id": "louis-ix",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-isfael-q13129278": [
+   {
+    "id": "david-galles",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-dubrice-de-llandaf-q1078192",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-saint-theleau-q680538",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-itte-idoberge-q259551": [
+   {
+    "id": "gertrude-nivelles",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-bavon-de-gand-q457903",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-begge-d-andenne-q266765",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-modoald-de-treves-q558303",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-pepin-de-landen-q313373",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-jacques-de-nisibe-q220017": [
+   {
+    "id": "ephrem-syrien",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-jacques-le-juste-q26925": [
+   {
+    "id": "joseph",
+    "quoi": "parent"
+   }
+  ],
+  "wd-jacut-de-landoac-q390440": [
+   {
+    "id": "wd-fragan-q2070002",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-sainte-gwenn-q2670604",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-guenole-de-landevennec-q2361972",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-saint-guethenoc-q746440",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-sainte-clervie-q2069936",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-jan-chrzciciel-wu-mantang-q11717214": [
+   {
+    "id": "wd-paul-wu-wanshu-q646792",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-paul-wu-anjyu-q4468213",
+    "quoi": "famille"
+   }
+  ],
+  "wd-jan-chrzciciel-zhao-mingxi-q11717216": [
+   {
+    "id": "wd-peter-zhao-mingzhen-q4515471",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-jan-wang-kuixin-q4103216": [
+   {
+    "id": "wd-joseph-wang-kuiju-q4103218",
+    "quoi": "famille"
+   }
+  ],
+  "wd-jean-cassien-q313795": [
+   {
+    "id": "wd-fauste-de-riez-q2351792",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-jean-de-beverley-q1702263": [
+   {
+    "id": "wd-adrien-de-cantorbery-q1274084",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-theodore-de-tarse-q504529",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-jean-de-gaza-q3816820": [
+   {
+    "id": "wd-barsanuphe-de-gaza-q2293531",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-jean-de-lodi-q3768421": [
+   {
+    "id": "pierre-damien",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-jeong-yak-jong-q11270126": [
+   {
+    "id": "paul-chong-hasang",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-cecile-yu-so-sa-q4533462",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-joachim-q314700": [
+   {
+    "id": "marie",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-anne-q164294",
+    "quoi": "conjoint"
+   },
+   {
+    "id": "joseph",
+    "quoi": "famille"
+   }
+  ],
+  "wd-joana-d-aza-q764050": [
+   {
+    "id": "dominique-guzman",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-manes-de-guzman-q532119",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-joel-q45053": [
+   {
+    "id": "wd-nahum-q1981722",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-john-baptist-yi-kwang-nyol-q6220606": [
+   {
+    "id": "wd-augustino-yi-kwang-hon-q4260678",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-agathe-yi-q9141962",
+    "quoi": "famille"
+   }
+  ],
+  "wd-john-the-iberian-q1269209": [
+   {
+    "id": "wd-euthymius-of-athos-q1208474",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-jose-maria-cuartero-gascon-q30038925": [
+   {
+    "id": "wd-tomas-cuartero-gascon-q30038924",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-joseph-de-volokolamsk-q1383356": [
+   {
+    "id": "wd-pafnute-de-borovsk-q957747",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-joseph-wang-kuiju-q4103218": [
+   {
+    "id": "wd-jan-wang-kuixin-q4103216",
+    "quoi": "famille"
+   }
+  ],
+  "wd-jourdain-de-saxe-q60790": [
+   {
+    "id": "albert-le-grand",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-jozef-ulma-q15477989": [
+   {
+    "id": "wd-wiktoria-ulma-q9374220",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-julian-navio-colado-q124662010": [
+   {
+    "id": "francois-assise",
+    "quoi": "influence"
+   }
+  ],
+  "wd-julienne-falconieri-q292196": [
+   {
+    "id": "wd-giovanna-soderini-q18814592",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-alexis-falconieri-q2559608",
+    "quoi": "famille"
+   }
+  ],
+  "wd-julitte-de-tarse-q3189786": [
+   {
+    "id": "wd-cyr-de-tarse-q22661826",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-juste-q24254812": [
+   {
+    "id": "wd-rufine-q24254815",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-justin-popovic-q1283722": [
+   {
+    "id": "wd-nikolaj-velimirovic-q566764",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-justinien-q41866": [
+   {
+    "id": "wd-theodora-q204843",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-jutta-von-sponheim-q447185": [
+   {
+    "id": "hildegarde-bingen",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-kentigern-de-glasgow-q545175": [
+   {
+    "id": "wd-teneu-q4454645",
+    "quoi": "parent"
+   }
+  ],
+  "wd-kevin-de-glendalough-q737198": [
+   {
+    "id": "wd-petroc-de-bodmin-q534049",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-saint-berach-q818654",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-kieran-de-clonmacnoise-q738988": [
+   {
+    "id": "wd-enda-d-aran-q3053971",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-finien-de-clonard-q622095",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-comgall-de-bangor-q1282428",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-kinga-de-pologne-q233012": [
+   {
+    "id": "marguerite-hongrie",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-yolande-de-pologne-q833920",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-ladislas-ier-de-hongrie-q26486": [
+   {
+    "id": "wd-irene-de-hongrie-q82691",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-lambert-de-lyon-q1257700": [
+   {
+    "id": "wd-saint-wandrille-q1373694",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-erembert-de-toulouse-q3590934",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-hermeland-d-indre-q3134198",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-landrade-de-munsterbilzen-q263082": [
+   {
+    "id": "wd-carloman-q310440",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-landry-de-paris-q1374279": [
+   {
+    "id": "wd-madelgarius-de-famars-de-hainaut-q2462614",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-waudru-de-mons-q436732",
+    "quoi": "parent"
+   }
+  ],
+  "wd-landry-de-soignies-q3217111": [
+   {
+    "id": "wd-madelgarius-de-famars-de-hainaut-q2462614",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-waudru-de-mons-q436732",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-dentelin-de-mons-q322527",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-lanfranc-q317098": [
+   {
+    "id": "anselme-aoste",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-yves-de-chartres-q124775",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-lang-q4253698": [
+   {
+    "id": "wd-paul-lang-fu-q4253695",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-leandre-de-seville-q577125": [
+   {
+    "id": "isidore-seville",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-florence-de-carthagene-q2626436",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-fulgence-de-carthagene-q2616176",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-lebuin-q494329": [
+   {
+    "id": "wd-gregoire-d-utrecht-q1545233",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-leger-d-autun-q1818867": [
+   {
+    "id": "wd-guerin-de-vergy-q1115762",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-leonie-martin-q11349467": [
+   {
+    "id": "louis-martin",
+    "quoi": "parent"
+   },
+   {
+    "id": "zelie-martin",
+    "quoi": "parent"
+   },
+   {
+    "id": "therese-lisieux",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-liberata-da-como-q3831629": [
+   {
+    "id": "wd-faustina-di-como-q3740312",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-lievin-q536950": [
+   {
+    "id": "wd-guerin-de-vergy-q1115762",
+    "quoi": "parent"
+   }
+  ],
+  "wd-louise-de-savoie-q450894": [
+   {
+    "id": "wd-amedee-ix-q373236",
+    "quoi": "parent"
+   }
+  ],
+  "wd-loup-de-sens-q1495753": [
+   {
+    "id": "wd-aunaire-d-auxerre-q4821868",
+    "quoi": "famille"
+   }
+  ],
+  "wd-loup-de-troyes-q616354": [
+   {
+    "id": "wd-honorat-d-arles-q526245",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-vincent-de-lerins-q644057",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-lucia-wang-wang-q4103212": [
+   {
+    "id": "wd-andrzej-wang-tianqing-q4103237",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-luigi-beltrame-quattrocchi-q13586473": [
+   {
+    "id": "wd-maria-corsini-q3847211",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-lydie-de-thyatire-q292282": [
+   {
+    "id": "paul-tarse",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-macaire-d-alexandrie-q2743919": [
+   {
+    "id": "antoine-egypte",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-macario-abate-q3841946": [
+   {
+    "id": "wd-saba-the-younger-q42883634",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-maclou-q468195": [
+   {
+    "id": "wd-aaron-d-aleth-q2501319",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-brendan-de-clonfert-q208961",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-macrine-l-ancienne-q263970": [
+   {
+    "id": "wd-gregoire-le-thaumaturge-q337537",
+    "quoi": "maitre"
+   },
+   {
+    "id": "basile-cesaree",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-madeleine-cho-q4516984": [
+   {
+    "id": "wd-catherine-yi-q4260689",
+    "quoi": "parent"
+   }
+  ],
+  "wd-madeleine-han-yong-i-q4495365": [
+   {
+    "id": "wd-agathe-kwon-chin-i-q9141916",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-madeleine-son-so-byog-q11766100": [
+   {
+    "id": "wd-barbara-choe-yong-i-q9165318",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-pierre-choe-chang-hub-q11817362",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-madeleine-yi-yong-dog-q4260672": [
+   {
+    "id": "wd-mary-yi-in-dok-q4260688",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-madelgarius-de-famars-de-hainaut-q2462614": [
+   {
+    "id": "wd-dentelin-de-mons-q322527",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-landry-de-paris-q1374279",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-landry-de-soignies-q3217111",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-waudru-de-mons-q436732",
+    "quoi": "conjoint"
+   },
+   {
+    "id": "wd-walbert-iv-q2002344",
+    "quoi": "famille"
+   }
+  ],
+  "wd-mafalda-de-portugal-q576323": [
+   {
+    "id": "wd-therese-de-portugal-q2594188",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-magdalene-du-fengju-q4169024": [
+   {
+    "id": "wd-mary-du-tian-q4169023",
+    "quoi": "parent"
+   }
+  ],
+  "wd-magneric-de-treves-q820607": [
+   {
+    "id": "wd-gregoire-de-tours-q67841",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-gery-de-cambrai-q585739",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-manes-de-guzman-q532119": [
+   {
+    "id": "wd-joana-d-aza-q764050",
+    "quoi": "parent"
+   },
+   {
+    "id": "dominique-guzman",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-manuel-segura-lopez-q29885040": [
+   {
+    "id": "wd-pedro-diez-gil-q29675198",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-marcelino-ovejero-gomez-q124671686": [
+   {
+    "id": "francois-assise",
+    "quoi": "influence"
+   }
+  ],
+  "wd-marcien-q178004": [
+   {
+    "id": "wd-pulcherie-q231919",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-margherita-occhiena-q434620": [
+   {
+    "id": "jean-bosco",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-maria-corsini-q3847211": [
+   {
+    "id": "wd-luigi-beltrame-quattrocchi-q13586473",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-maria-nikolaievna-de-russie-q155422": [
+   {
+    "id": "wd-alix-de-hesse-darmstadt-q152094",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-nicolas-ii-de-russie-q40787",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-alexis-nikolaievitch-de-russie-q154045",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-anastasia-nikolaievna-de-russie-q151130",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-olga-nikolaievna-de-russie-q113584",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-tatiana-nikolaievna-de-russie-q158148",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-maria-teresa-ferragut-roig-q11769195": [
+   {
+    "id": "wd-maria-wincencja-masia-ferragut-q11769226",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-maria-toribia-q3544243": [
+   {
+    "id": "isidore-laboureur",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-maria-wincencja-masia-ferragut-q11769226": [
+   {
+    "id": "wd-maria-teresa-ferragut-roig-q11769195",
+    "quoi": "parent"
+   }
+  ],
+  "wd-marie-christine-de-savoie-q14451": [
+   {
+    "id": "wd-francois-ii-des-deux-siciles-q206223",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-marie-skobtsov-q283654": [
+   {
+    "id": "wd-youri-skobtsov-q8319457",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-marie-therese-ledochowska-q78650": [
+   {
+    "id": "wd-ursule-ledochowska-q78649",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-marie-yi-yon-hui-q11769243": [
+   {
+    "id": "wd-damien-nam-myong-hyog-q11692706",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-marie-zhao-guo-q4515472": [
+   {
+    "id": "wd-marie-zhao-q4515469",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-rose-zhao-q9325793",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-marie-zhao-q4515469": [
+   {
+    "id": "wd-marie-zhao-guo-q4515472",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-rose-zhao-q9325793",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-marina-de-aguas-santas-q2664456": [
+   {
+    "id": "wd-quitterie-q1236844",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-martha-mother-of-simeon-stylites-the-you-q682665": [
+   {
+    "id": "wd-simeon-stylite-le-jeune-q2742399",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-marthe-d-astorga-q6002046": [
+   {
+    "id": "wd-vidal-q28517345",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-martin-lozano-tello-q81620161": [
+   {
+    "id": "francois-assise",
+    "quoi": "influence"
+   }
+  ],
+  "wd-mary-an-linghua-q4067852": [
+   {
+    "id": "wd-ann-an-xin-q4067854",
+    "quoi": "famille"
+   }
+  ],
+  "wd-mary-an-q4067853": [
+   {
+    "id": "wd-ann-an-xin-q4067854",
+    "quoi": "famille"
+   }
+  ],
+  "wd-mary-du-tian-q4169023": [
+   {
+    "id": "wd-magdalene-du-fengju-q4169024",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-mary-yi-in-dok-q4260688": [
+   {
+    "id": "wd-madeleine-yi-yong-dog-q4260672",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-matthias-choe-in-gil-q24956344": [
+   {
+    "id": "wd-ignatius-choe-in-cheol-q97165945",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-maur-q380345": [
+   {
+    "id": "benoit-nursie",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-maurand-de-douai-q3300230": [
+   {
+    "id": "wd-rictrude-de-marchiennes-q445183",
+    "quoi": "parent"
+   }
+  ],
+  "wd-maxime-le-confesseur-q206842": [
+   {
+    "id": "wd-sophrone-de-jerusalem-q317773",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-anastase-le-sinaite-q473291",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-mayeul-de-cluny-q42107": [
+   {
+    "id": "wd-aymard-de-cluny-q526265",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-guillaume-de-volpiano-q1375104",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-medard-de-noyon-q733308": [
+   {
+    "id": "wd-godard-de-rouen-q596979",
+    "quoi": "famille"
+   }
+  ],
+  "wd-melanie-l-ancienne-q3306296": [
+   {
+    "id": "wd-paulin-de-nole-q132473",
+    "quoi": "famille"
+   }
+  ],
+  "wd-melece-ier-d-antioche-q433452": [
+   {
+    "id": "wd-acace-de-byzance-q3982149",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-michel-iii-de-vladimir-q380373": [
+   {
+    "id": "wd-anne-de-kachine-q1141121",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-mirin-de-paisley-q726939": [
+   {
+    "id": "colomban",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-modoald-de-treves-q558303": [
+   {
+    "id": "wd-itte-idoberge-q259551",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-nahum-q1981722": [
+   {
+    "id": "wd-joel-q45053",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-nathalie-de-cordoue-q9048833": [
+   {
+    "id": "wd-aurelio-de-cordoba-q5712045",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-nathalie-de-nicomedie-q1869249": [
+   {
+    "id": "wd-adrien-de-nicomedie-q374822",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-nera-tolomei-q116971521": [
+   {
+    "id": "wd-bernardo-tolomei-q731956",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-nicolas-ii-de-russie-q40787": [
+   {
+    "id": "wd-alexis-nikolaievitch-de-russie-q154045",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-anastasia-nikolaievna-de-russie-q151130",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-maria-nikolaievna-de-russie-q155422",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-olga-nikolaievna-de-russie-q113584",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-tatiana-nikolaievna-de-russie-q158148",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-alix-de-hesse-darmstadt-q152094",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-nikolaj-velimirovic-q566764": [
+   {
+    "id": "wd-justin-popovic-q1283722",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-nil-du-sinai-q770938": [
+   {
+    "id": "jean-chrysostome",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-nivard-de-clairvaux-q11938866": [
+   {
+    "id": "wd-alethe-de-montbard-q2840712",
+    "quoi": "parent"
+   },
+   {
+    "id": "bernard-clairvaux",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-gerard-de-clairvaux-q2280669",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-ombeline-de-jully-q1636776",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-nonna-de-nazianze-q925470": [
+   {
+    "id": "gregoire-nazianze",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-gorgonia-de-nazianze-q3556557",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-gregoire-l-ancien-q935447",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-novat-q436718": [
+   {
+    "id": "wd-pudens-q706213",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-pudentienne-q268087",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-odon-de-cluny-q454553": [
+   {
+    "id": "wd-aymard-de-cluny-q526265",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-olga-nikolaievna-de-russie-q113584": [
+   {
+    "id": "wd-alix-de-hesse-darmstadt-q152094",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-nicolas-ii-de-russie-q40787",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-alexis-nikolaievitch-de-russie-q154045",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-anastasia-nikolaievna-de-russie-q151130",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-maria-nikolaievna-de-russie-q155422",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-tatiana-nikolaievna-de-russie-q158148",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-ombeline-de-jully-q1636776": [
+   {
+    "id": "wd-alethe-de-montbard-q2840712",
+    "quoi": "parent"
+   },
+   {
+    "id": "bernard-clairvaux",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-gerard-de-clairvaux-q2280669",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-nivard-de-clairvaux-q11938866",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-opportune-de-montreuil-q1561994": [
+   {
+    "id": "wd-chrodegang-de-seez-q2966686",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-orens-d-auch-q928522": [
+   {
+    "id": "laurent-de-rome",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-ortolana-d-assise-q11799354": [
+   {
+    "id": "claire-assise",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-agnes-d-assise-q394693",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-otton-de-freising-q435942": [
+   {
+    "id": "leopold-autriche",
+    "quoi": "parent"
+   }
+  ],
+  "wd-pafnute-de-borovsk-q957747": [
+   {
+    "id": "wd-joseph-de-volokolamsk-q1383356",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-pamphile-de-cesaree-q1855156": [
+   {
+    "id": "wd-pierius-q2335606",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-pantene-d-alexandrie-q461067": [
+   {
+    "id": "wd-clement-d-alexandrie-q188883",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-papias-d-hierapolis-q273053": [
+   {
+    "id": "jean-evangeliste",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-paschase-radbert-q654858": [
+   {
+    "id": "wd-adalard-q348198",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-paul-aurelien-q634405": [
+   {
+    "id": "wd-saint-theleau-q680538",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-paul-hong-yong-ju-q580681": [
+   {
+    "id": "wd-pierre-hong-pyong-ju-q4499736",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-paul-lang-fu-q4253695": [
+   {
+    "id": "wd-lang-q4253698",
+    "quoi": "parent"
+   }
+  ],
+  "wd-paul-wu-anjyu-q4468213": [
+   {
+    "id": "wd-jan-chrzciciel-wu-mantang-q11717214",
+    "quoi": "famille"
+   },
+   {
+    "id": "wd-paul-wu-wanshu-q646792",
+    "quoi": "famille"
+   }
+  ],
+  "wd-paul-wu-wanshu-q646792": [
+   {
+    "id": "wd-jan-chrzciciel-wu-mantang-q11717214",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-paul-wu-anjyu-q4468213",
+    "quoi": "famille"
+   }
+  ],
+  "wd-paule-de-rome-q237824": [
+   {
+    "id": "wd-blesille-de-rome-q457835",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-eustochium-q442396",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-paulin-de-nole-q132473": [
+   {
+    "id": "wd-melanie-l-ancienne-q3306296",
+    "quoi": "famille"
+   }
+  ],
+  "wd-paulinus-q2605207": [
+   {
+    "id": "wd-gwenfaen-q18535665",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-pedro-diez-gil-q29675198": [
+   {
+    "id": "wd-faustino-oteiza-q23943018",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-manuel-segura-lopez-q29885040",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-pelage-de-cordoue-q984111": [
+   {
+    "id": "wd-hermogius-q3732076",
+    "quoi": "famille"
+   }
+  ],
+  "wd-pepin-de-landen-q313373": [
+   {
+    "id": "gertrude-nivelles",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-bavon-de-gand-q457903",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-begge-d-andenne-q266765",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-itte-idoberge-q259551",
+    "quoi": "conjoint"
+   },
+   {
+    "id": "wd-walbert-iv-q2002344",
+    "quoi": "famille"
+   }
+  ],
+  "wd-peter-li-quanhui-q4260736": [
+   {
+    "id": "wd-raymond-li-quanzhen-q4260737",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-peter-zhao-mingzhen-q4515471": [
+   {
+    "id": "wd-jan-chrzciciel-zhao-mingxi-q11717216",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-petroc-de-bodmin-q534049": [
+   {
+    "id": "wd-kevin-de-glendalough-q737198",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-petronille-de-rome-q463600": [
+   {
+    "id": "pierre-apotre",
+    "quoi": "parent"
+   }
+  ],
+  "wd-philothee-kokkinos-q152221": [
+   {
+    "id": "wd-gregoire-palamas-q243787",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-pierius-q2335606": [
+   {
+    "id": "wd-pamphile-de-cesaree-q1855156",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-pierre-choe-chang-hub-q11817362": [
+   {
+    "id": "wd-barbara-choe-yong-i-q9165318",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-madeleine-son-so-byog-q11766100",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-pierre-chrysologue-q328742": [
+   {
+    "id": "wd-cornelius-of-imola-q3693689",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-pierre-de-sebaste-q1246057": [
+   {
+    "id": "wd-emmelie-q2186180",
+    "quoi": "parent"
+   },
+   {
+    "id": "basile-cesaree",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "gregoire-nysse",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "macrine-jeune",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-pierre-hong-pyong-ju-q4499736": [
+   {
+    "id": "wd-paul-hong-yong-ju-q580681",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-pierre-louis-de-la-rochefoucauld-bayers-q3383307": [
+   {
+    "id": "wd-francois-joseph-de-la-rochefoucauld-baye-q1133720",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-placide-du-mont-cassin-q2026066": [
+   {
+    "id": "benoit-nursie",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-platon-de-sakkoudion-q2269212": [
+   {
+    "id": "wd-theodore-studite-q361405",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-prosper-d-aquitaine-q454652": [
+   {
+    "id": "augustin-hippone",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-pudens-q706213": [
+   {
+    "id": "wd-novat-q436718",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-pudentienne-q268087",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-sainte-praxede-q676485",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-pudentienne-q268087": [
+   {
+    "id": "wd-pudens-q706213",
+    "quoi": "parent"
+   },
+   {
+    "id": "timothee",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-novat-q436718",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-sainte-praxede-q676485",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-pulcherie-q231919": [
+   {
+    "id": "wd-marcien-q178004",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-quirin-de-neuss-q688884": [
+   {
+    "id": "wd-balbine-de-rome-q508782",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-quitterie-q1236844": [
+   {
+    "id": "wd-marina-de-aguas-santas-q2664456",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-raban-maur-q160441": [
+   {
+    "id": "wd-alcuin-q154332",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-radegonde-q236974": [
+   {
+    "id": "wd-agnes-de-poitiers-q732637",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-radzim-gaudenty-q32414": [
+   {
+    "id": "wd-adalbert-de-prague-q243427",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-raymond-li-quanzhen-q4260737": [
+   {
+    "id": "wd-peter-li-quanhui-q4260736",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-renelde-de-saintes-q463631": [
+   {
+    "id": "wd-amalberge-de-maubeuge-q269386",
+    "quoi": "parent"
+   }
+  ],
+  "wd-rictrude-de-marchiennes-q445183": [
+   {
+    "id": "wd-maurand-de-douai-q3300230",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-rose-chen-aijieh-q4518497": [
+   {
+    "id": "wd-teresa-chen-jinjie-q4518506",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-rose-zhao-q9325793": [
+   {
+    "id": "wd-marie-zhao-guo-q4515472",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-marie-zhao-q4515469",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-rufine-q24254815": [
+   {
+    "id": "wd-juste-q24254812",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-s-ur-catherine-q18710441": [
+   {
+    "id": "wd-s-ur-therese-q18710440",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-s-ur-therese-q18710440": [
+   {
+    "id": "wd-s-ur-catherine-q18710441",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-saba-the-younger-q42883634": [
+   {
+    "id": "wd-macario-abate-q3841946",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-sabas-le-sanctifie-q316440": [
+   {
+    "id": "wd-euthyme-le-grand-q441249",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-flavien-ii-q1281938",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-sacerdos-de-lyon-q2049237": [
+   {
+    "id": "wd-aurelien-d-arles-q2263241",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-saint-berach-q818654": [
+   {
+    "id": "wd-kevin-de-glendalough-q737198",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-saint-ronan-q510178",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-saint-berthold-q828129": [
+   {
+    "id": "wd-albert-de-jerusalem-q714267",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-saint-clodulf-q709799": [
+   {
+    "id": "wd-arnoul-de-metz-q337189",
+    "quoi": "parent"
+   }
+  ],
+  "wd-saint-elian-q4411544": [
+   {
+    "id": "wd-canna-q3404543",
+    "quoi": "parent"
+   }
+  ],
+  "wd-saint-guethenoc-q746440": [
+   {
+    "id": "wd-fragan-q2070002",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-sainte-gwenn-q2670604",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-guenole-de-landevennec-q2361972",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-jacut-de-landoac-q390440",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-sainte-clervie-q2069936",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-saint-judicael-q592038": [
+   {
+    "id": "wd-winoc-de-bergues-q2353144",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-saint-ronan-q510178": [
+   {
+    "id": "wd-saint-berach-q818654",
+    "quoi": "parent"
+   }
+  ],
+  "wd-saint-sturm-q280476": [
+   {
+    "id": "boniface",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-saint-theleau-q680538": [
+   {
+    "id": "david-galles",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-dubrice-de-llandaf-q1078192",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-paul-aurelien-q634405",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-isfael-q13129278",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-saint-wandrille-q1373694": [
+   {
+    "id": "wd-balderic-de-montfaucon-q4850395",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-erembert-de-toulouse-q3590934",
+    "quoi": "disciple"
+   },
+   {
+    "id": "wd-lambert-de-lyon-q1257700",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-sainte-bibiane-q443392": [
+   {
+    "id": "wd-st-demetria-q3705279",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-sainte-clervie-q2069936": [
+   {
+    "id": "wd-fragan-q2070002",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-sainte-gwenn-q2670604",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-guenole-de-landevennec-q2361972",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-jacut-de-landoac-q390440",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-saint-guethenoc-q746440",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-sainte-gwenn-q2670604": [
+   {
+    "id": "wd-cadfan-q581537",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-guenole-de-landevennec-q2361972",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-jacut-de-landoac-q390440",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-saint-guethenoc-q746440",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-sainte-clervie-q2069936",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-fragan-q2070002",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-sainte-marcelline-q299955": [
+   {
+    "id": "ambroise-milan",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-satyr-de-milan-q2245450",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-sainte-ninnoc-q3464537": [
+   {
+    "id": "wd-blanche-q1258743",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-gwen-ferch-cynyr-q24635388",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-sainte-nonne-q2487289": [
+   {
+    "id": "david-galles",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-gwen-ferch-cynyr-q24635388",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-sainte-praxede-q676485": [
+   {
+    "id": "wd-pudens-q706213",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-pudentienne-q268087",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-salaberge-q3945274": [
+   {
+    "id": "wd-anstrude-de-laon-q2057464",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-samson-de-dol-q1269091": [
+   {
+    "id": "wd-dubrice-de-llandaf-q1078192",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-satyr-de-milan-q2245450": [
+   {
+    "id": "ambroise-milan",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-sainte-marcelline-q299955",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-sava-de-serbie-q138465": [
+   {
+    "id": "wd-stefan-nemanja-q298612",
+    "quoi": "parent"
+   }
+  ],
+  "wd-severin-de-sanseverino-q3958514": [
+   {
+    "id": "wd-victorin-de-camerino-q11954702",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-silas-q312376": [
+   {
+    "id": "paul-tarse",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-silvere-q149315": [
+   {
+    "id": "wd-hormisdas-q160931",
+    "quoi": "parent"
+   }
+  ],
+  "wd-simeon-le-stylite-q310987": [
+   {
+    "id": "wd-theodose-le-cenobiarque-q1885832",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-simeon-stylite-le-jeune-q2742399": [
+   {
+    "id": "wd-martha-mother-of-simeon-stylites-the-you-q682665",
+    "quoi": "parent"
+   }
+  ],
+  "wd-simon-qin-chunfu-q4505791": [
+   {
+    "id": "wd-elisabeth-qin-bianzhi-q4505788",
+    "quoi": "parent"
+   }
+  ],
+  "wd-sophrone-de-jerusalem-q317773": [
+   {
+    "id": "wd-maxime-le-confesseur-q206842",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-st-demetria-q3705279": [
+   {
+    "id": "wd-sainte-bibiane-q443392",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-stefan-nemanja-q298612": [
+   {
+    "id": "wd-sava-de-serbie-q138465",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-sylvie-de-rome-q1088039": [
+   {
+    "id": "gregoire-le-grand",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-symphorose-de-tivoli-q453710": [
+   {
+    "id": "wd-getule-de-tivoli-q1520143",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-tarcisius-de-rome-q370210": [
+   {
+    "id": "carlo-acutis",
+    "quoi": "inspire"
+   }
+  ],
+  "wd-tatiana-nikolaievna-de-russie-q158148": [
+   {
+    "id": "wd-alix-de-hesse-darmstadt-q152094",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-nicolas-ii-de-russie-q40787",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-alexis-nikolaievitch-de-russie-q154045",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-anastasia-nikolaievna-de-russie-q151130",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-maria-nikolaievna-de-russie-q155422",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-olga-nikolaievna-de-russie-q113584",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-teneu-q4454645": [
+   {
+    "id": "wd-kentigern-de-glasgow-q545175",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-teresa-chen-jinjie-q4518506": [
+   {
+    "id": "wd-rose-chen-aijieh-q4518497",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-theodora-q204843": [
+   {
+    "id": "wd-justinien-q41866",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-theodore-de-tabenne-q770191": [
+   {
+    "id": "pacome",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-theodore-de-tarse-q504529": [
+   {
+    "id": "wd-jean-de-beverley-q1702263",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-theodore-studite-q361405": [
+   {
+    "id": "wd-platon-de-sakkoudion-q2269212",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-theodose-le-cenobiarque-q1885832": [
+   {
+    "id": "wd-simeon-le-stylite-q310987",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-theodulf-d-orleans-q534814": [
+   {
+    "id": "wd-benoit-d-aniane-q712214",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-therese-de-portugal-q2594188": [
+   {
+    "id": "wd-mafalda-de-portugal-q576323",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-tomas-cuartero-gascon-q30038924": [
+   {
+    "id": "wd-jose-maria-cuartero-gascon-q30038925",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-tremeur-q3464100": [
+   {
+    "id": "wd-trephine-q2692282",
+    "quoi": "parent"
+   }
+  ],
+  "wd-trephine-q2692282": [
+   {
+    "id": "wd-tremeur-q3464100",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-trillo-q6695484": [
+   {
+    "id": "wd-cadfan-q581537",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-tydfil-q2062366": [
+   {
+    "id": "wd-brychan-brycheiniog-q2398021",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-dwynwen-q2287423",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-urbain-ii-q30578": [
+   {
+    "id": "bruno-chartreux",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-ursan-q2501466": [
+   {
+    "id": "colomban",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-ursmer-de-lobbes-q1385227": [
+   {
+    "id": "wd-dodon-de-wallers-q36697106",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-ursule-ledochowska-q78649": [
+   {
+    "id": "wd-marie-therese-ledochowska-q78650",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-valere-du-bierzo-q1236333": [
+   {
+    "id": "wd-fructueux-de-braga-q705395",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-valerie-de-milan-q291907": [
+   {
+    "id": "wd-vital-de-ravenne-q732865",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-valerien-de-rome-q3554331": [
+   {
+    "id": "cecile",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-valero-de-zaragoza-q1393825": [
+   {
+    "id": "wd-vincent-de-saragosse-q318974",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-victor-chumillas-q6165430": [
+   {
+    "id": "francois-assise",
+    "quoi": "influence"
+   }
+  ],
+  "wd-victorin-de-camerino-q11954702": [
+   {
+    "id": "wd-severin-de-sanseverino-q3958514",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-vidal-q28517345": [
+   {
+    "id": "wd-marthe-d-astorga-q6002046",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-vincent-de-lerins-q644057": [
+   {
+    "id": "wd-loup-de-troyes-q616354",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-vincent-de-saragosse-q318974": [
+   {
+    "id": "wd-valero-de-zaragoza-q1393825",
+    "quoi": "maitre"
+   }
+  ],
+  "wd-vital-de-ravenne-q732865": [
+   {
+    "id": "wd-valerie-de-milan-q291907",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-vital-de-savigny-q1117753": [
+   {
+    "id": "wd-adeline-de-mortain-q17143191",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-vladimir-de-novgorod-q58355": [
+   {
+    "id": "wd-iaroslav-le-sage-q188943",
+    "quoi": "parent"
+   }
+  ],
+  "wd-voto-q100989657": [
+   {
+    "id": "wd-felix-q100989670",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-walbert-iv-q2002344": [
+   {
+    "id": "wd-aldegonde-de-maubeuge-q271330",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-waudru-de-mons-q436732",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-madelgarius-de-famars-de-hainaut-q2462614",
+    "quoi": "famille"
+   },
+   {
+    "id": "wd-pepin-de-landen-q313373",
+    "quoi": "famille"
+   }
+  ],
+  "wd-waudru-de-mons-q436732": [
+   {
+    "id": "wd-walbert-iv-q2002344",
+    "quoi": "parent"
+   },
+   {
+    "id": "wd-dentelin-de-mons-q322527",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-landry-de-paris-q1374279",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-landry-de-soignies-q3217111",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-aldegonde-de-maubeuge-q271330",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-madelgarius-de-famars-de-hainaut-q2462614",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-wenna-q43538963": [
+   {
+    "id": "wd-cybi-q3399340",
+    "quoi": "enfant"
+   }
+  ],
+  "wd-wiktoria-ulma-q9374220": [
+   {
+    "id": "wd-jozef-ulma-q15477989",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-wilfrid-q719721": [
+   {
+    "id": "wd-aidan-q132148",
+    "quoi": "maitre"
+   },
+   {
+    "id": "willibrord",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-winoc-de-bergues-q2353144": [
+   {
+    "id": "wd-saint-judicael-q592038",
+    "quoi": "parent"
+   }
+  ],
+  "wd-yolande-de-pologne-q833920": [
+   {
+    "id": "marguerite-hongrie",
+    "quoi": "fratrie"
+   },
+   {
+    "id": "wd-kinga-de-pologne-q233012",
+    "quoi": "fratrie"
+   }
+  ],
+  "wd-youri-skobtsov-q8319457": [
+   {
+    "id": "wd-marie-skobtsov-q283654",
+    "quoi": "parent"
+   }
+  ],
+  "wd-yves-de-chartres-q124775": [
+   {
+    "id": "wd-lanfranc-q317098",
+    "quoi": "maitre"
+   },
+   {
+    "id": "anselme-aoste",
+    "quoi": "disciple"
+   }
+  ],
+  "wd-zacharie-q139464": [
+   {
+    "id": "jean-baptiste",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-elisabeth-q235849",
+    "quoi": "conjoint"
+   }
+  ],
+  "wd-zita-de-bourbon-parme-q50926": [
+   {
+    "id": "wd-charles-ier-d-autriche-q51068",
+    "quoi": "conjoint"
+   }
+  ],
+  "willibrord": [
+   {
+    "id": "wd-ecgberht-de-ripon-q764523",
+    "quoi": "maitre"
+   },
+   {
+    "id": "wd-wilfrid-q719721",
+    "quoi": "maitre"
+   }
+  ],
+  "zelie-martin": [
+   {
+    "id": "therese-lisieux",
+    "quoi": "enfant"
+   },
+   {
+    "id": "wd-leonie-martin-q11349467",
+    "quoi": "enfant"
+   },
+   {
+    "id": "louis-martin",
+    "quoi": "conjoint"
+   }
+  ]
+ }
+}
