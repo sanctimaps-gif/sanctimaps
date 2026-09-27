@@ -544,6 +544,12 @@ const BIOS_IMPORTEES_FILE = 'bios-importees.json';
 
 /** Les lieux qu'un saint a marqués de sa vie ou de sa mort. Voir plus bas. */
 const LIEUX_FILE = 'lieux.json';
+/** Ceux que Wikidata ne connaît pas, et qu'il a fallu écrire à la main. */
+const NOTABLES_FILE = 'lieux-notables.json';
+/** Qui a vu quelle apparition : le pont entre les deux corpus. */
+const VOYANTS_FILE = 'voyants.json';
+/** Les liens attestés entre deux fiches : maître, disciple, frère, mère. */
+const LIENS_FILE = 'liens.json';
 const patronages = JSON.parse(readFileSync(join(SAINTS_DIR, PATRONAGE_FILE), 'utf8')).patronage;
 
 // Les biographies rapportées de Wikipédia pour les fiches écrites à la main
@@ -581,7 +587,7 @@ try {
 for (const file of readdirSync(SAINTS_DIR)
   .filter((f) => f.endsWith('.json')
     && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, BIOS_IMPORTEES_FILE,
-      LIEUX_FILE].includes(f))
+      LIEUX_FILE, NOTABLES_FILE, VOYANTS_FILE, LIENS_FILE].includes(f))
   .sort()) {
   const raw = JSON.parse(readFileSync(join(SAINTS_DIR, file), 'utf8'));
   for (const s of raw.saints) {
@@ -887,7 +893,47 @@ try {
   lieuxParSaint = JSON.parse(readFileSync(join(SAINTS_DIR, LIEUX_FILE), 'utf8')).lieux || {};
 } catch { /* pas encore relevés : les fiches n'offriront rien à voir */ }
 
-const QUOI = new Set(['sepulture', 'mort', 'fondation', 'oeuvre', 'residence', 'naissance']);
+/**
+ * Et ce que Wikidata ne sait pas.
+ *
+ * Il n'existe pas de propriété « lieu de son miracle » ni « lieu qu'il
+ * aimait ». La Verna, le Mont-Alverne des stigmates, n'est reliée à François
+ * que par une phrase de sa légende ; Paray-le-Monial n'est reliée à
+ * Marguerite-Marie que par ce qu'elle en a écrit. Ces lieux-là sont donc
+ * écrits à la main, avec leur source, et viennent s'ajouter aux autres —
+ * jamais les remplacer, et jamais en double : le même endroit relevé des deux
+ * côtés garde le motif écrit à la main, qui en dit plus.
+ */
+let notables = {};
+try {
+  notables = JSON.parse(readFileSync(join(SAINTS_DIR, NOTABLES_FILE), 'utf8')).lieux || {};
+} catch { /* aucun lieu écrit à la main */ }
+
+/** Deux points à moins d'un kilomètre sont le même endroit. */
+const memeEndroit = (a, b) => {
+  const dLat = (a.lat - b.lat) * 111;
+  const dLng = (a.lng - b.lng) * 111 * Math.cos((a.lat * Math.PI) / 180);
+  return Math.hypot(dLat, dLng) < 1;
+};
+
+let notablesPoses = 0;
+let notablesFondus = 0;
+for (const [id, liste] of Object.entries(notables)) {
+  const releves = lieuxParSaint[id] ? [...lieuxParSaint[id]] : [];
+  for (const lieu of liste) {
+    const deja = releves.findIndex((l) => memeEndroit(l, lieu));
+    if (deja >= 0) { releves[deja] = { ...releves[deja], ...lieu }; notablesFondus += 1; } else {
+      releves.push(lieu);
+      notablesPoses += 1;
+    }
+  }
+  lieuxParSaint[id] = releves;
+}
+
+const QUOI = new Set(['sepulture', 'mort', 'apparition', 'miracle', 'predilection',
+  'fondation', 'oeuvre', 'enfance', 'formation', 'residence', 'naissance']);
+/** L'ordre de lecture : du plus parlant au plus banal. */
+const RANG_QUOI = new Map([...QUOI].map((nom, i) => [nom, i]));
 const lieuxSortie = {};
 let lieuxTotal = 0;
 let lieuxOrphelins = 0;
@@ -926,14 +972,41 @@ for (const [id, liste] of Object.entries(lieuxParSaint)) {
     });
   }
   if (places.length) {
+    places.sort((a, b) => RANG_QUOI.get(a.quoi) - RANG_QUOI.get(b.quoi));
     lieuxSortie[id] = places;
     lieuxTotal += places.length;
   }
 }
 
-writeFileSync(join(OUT, 'lieux.json'), JSON.stringify({ lieux: lieuxSortie }));
-console.log(`  lieux.json : ${lieuxTotal} lieux pour ${Object.keys(lieuxSortie).length} saints`
-  + (lieuxOrphelins ? `, ${lieuxOrphelins} orphelins écartés` : ''));
+if (notablesPoses || notablesFondus) {
+  console.log(`  lieux écrits à la main : ${notablesPoses} posés, `
+    + `${notablesFondus} fondus dans un lieu déjà relevé`);
+}
+
+/**
+ * Les liens attestés entre deux fiches.
+ *
+ * `import-liens.mjs` les relève ; ici on ne garde que ceux dont les deux bouts
+ * ont survécu au corpus — une fusion de doublons a pu emporter l'un des deux, et
+ * une fiche qui promet une fiche absente est une porte peinte.
+ */
+let liensParSaint = {};
+try {
+  liensParSaint = JSON.parse(readFileSync(join(SAINTS_DIR, LIENS_FILE), 'utf8')).liens || {};
+} catch { /* pas encore relevés */ }
+
+const liensSortie = {};
+let liensTotal = 0;
+let liensOrphelins = 0;
+for (const [id, liste] of Object.entries(liensParSaint)) {
+  if (!parIdFinal.has(id)) { liensOrphelins += liste.length; continue; }
+  const gardes = liste.filter((l) => {
+    if (parIdFinal.has(l.id)) return true;
+    liensOrphelins += 1;
+    return false;
+  });
+  if (gardes.length) { liensSortie[id] = gardes; liensTotal += gardes.length; }
+}
 
 const perCountry = new Set(saints.map((s) => s.country));
 const perContinent = new Map();
@@ -1192,6 +1265,76 @@ if (apparitions.length) {
 apparitions.sort((a, b) => a.annee - b.annee);
 writeFileSync(join(OUT, 'apparitions.json'), JSON.stringify({ apparitions }));
 console.log(`  apparitions.json : ${apparitions.length} apparitions`);
+
+// ---------------------------------------------------------------------------
+// Le pont entre les deux corpus : qui a vu quoi
+// ---------------------------------------------------------------------------
+
+/**
+ * Bernadette et la grotte, Catherine et la rue du Bac.
+ *
+ * Les deux corpus vivent séparés — une apparition n'est pas un saint —, mais
+ * une poignée d'apparitions ont un voyant qui est, lui, une fiche de saint.
+ * `voyants.json` écrit ce pont à la main, une ligne par apparition, et l'on en
+ * tire un lieu de plus dans la fiche du voyant : celui où il a vu.
+ *
+ * Le lieu est pris **de l'apparition**, non recopié : si la carte corrige un
+ * jour les coordonnées de Fátima, la fiche de Lucie suivra sans qu'on y touche.
+ */
+let voyants = {};
+try {
+  voyants = JSON.parse(readFileSync(join(SAINTS_DIR, VOYANTS_FILE), 'utf8')).voyants || {};
+} catch { /* aucun pont */ }
+
+let vus = 0;
+const voyantsInconnus = [];
+for (const [appaId, qui] of Object.entries(voyants)) {
+  const apparition = appaParId.get(appaId) || apparitions.find((a) => a.id === appaId);
+  if (!apparition) { voyantsInconnus.push(appaId); continue; }
+  for (const saintId of qui) {
+    const saint = parIdFinal.get(saintId);
+    if (!saint) { voyantsInconnus.push(`${appaId} → ${saintId}`); continue; }
+    const places = lieuxSortie[saintId] || [];
+    const nom = apparition.name?.fr || apparition.name?.en || apparition.name;
+    // Le voyant est souvent mort là où il a vu : on ne repose pas deux croix au
+    // même endroit, mais « Apparition » l'emporte sur « Résidence ».
+    const deja = places.findIndex((l) => memeEndroit(l, apparition));
+    const lieu = {
+      nom,
+      lat: apparition.lat,
+      lng: apparition.lng,
+      quoi: 'apparition',
+      x: apparition.x,
+      y: apparition.y,
+    };
+    if (deja >= 0) {
+      if (RANG_QUOI.get('apparition') < RANG_QUOI.get(places[deja].quoi)) places[deja] = lieu;
+    } else {
+      places.push(lieu);
+      lieuxTotal += 1;
+      vus += 1;
+    }
+    places.sort((a, b) => RANG_QUOI.get(a.quoi) - RANG_QUOI.get(b.quoi));
+    lieuxSortie[saintId] = places;
+  }
+}
+// Une table écrite à la main qui désigne une fiche absente est une faute, non
+// un détail : on s'arrête, plutôt que de publier un pont qui ne mène nulle part.
+if (voyantsInconnus.length) {
+  console.error(`\n${VOYANTS_FILE} — ces fiches n’existent pas :`);
+  for (const e of voyantsInconnus) console.error(`  - ${e}`);
+  process.exit(1);
+}
+
+writeFileSync(join(OUT, 'lieux.json'), JSON.stringify({
+  lieux: lieuxSortie,
+  liens: liensSortie,
+}));
+console.log(`  lieux.json : ${lieuxTotal} lieux pour ${Object.keys(lieuxSortie).length} saints`
+  + (lieuxOrphelins ? `, ${lieuxOrphelins} orphelins écartés` : '')
+  + (vus ? `, dont ${vus} apparitions vues` : ''));
+console.log(`    et ${liensTotal} liens attestés entre ${Object.keys(liensSortie).length} fiches`
+  + (liensOrphelins ? `, ${liensOrphelins} orphelins écartés` : ''));
 
 // ---------------------------------------------------------------------------
 // Fond documentaire de l'assistant expert

@@ -1,14 +1,15 @@
-# Relève les lieux marqués par chaque saint, puis publie.
+# Relève les lieux marqués par chaque saint et les liens qui unissent deux
+# fiches, puis publie.
 #
 # À lancer depuis l'onglet « Actions » du dépôt. Le travail se fait sur une
 # machine de GitHub, qui a accès à Internet — Wikidata n'est pas joignable
 # depuis partout —, et le résultat est versé dans le dépôt, ce qui redéploie le
 # site.
 #
-# Il ne touche qu'un fichier, `data/saints/lieux.json`, et ne réécrit ni les
-# noms, ni les dates, ni les biographies : une collecte de lieux ne peut pas
-# rouvrir le corpus entier.
-name: Relever les lieux des saints
+# Il ne touche que deux fichiers, `data/saints/lieux.json` et
+# `data/saints/liens.json`, et ne réécrit ni les noms, ni les dates, ni les
+# biographies : une collecte de lieux ne peut pas rouvrir le corpus entier.
+name: Relever les lieux et les liens des saints
 
 on:
   workflow_dispatch:
@@ -47,12 +48,22 @@ jobs:
       - name: Installer les jeux de données sources
         run: npm ci
 
-      - name: Interroger Wikidata
+      - name: Interroger Wikidata — les lieux
         run: |
           set -euo pipefail
           args=(--lot "${{ inputs.lot }}")
           if [ "${{ inputs.dry_run }}" = "true" ]; then args+=(--dry-run); fi
           node tools/import-lieux.mjs "${args[@]}" | tee /tmp/lieux.log
+
+      # Les liens entre saints : neuf propriétés, deux colonnes chacune. C'est
+      # la même machine et le même service, et une seule publication vaut mieux
+      # que deux pour un corpus qui se relit d'un bloc.
+      - name: Interroger Wikidata — les liens
+        run: |
+          set -euo pipefail
+          args=(--lot "${{ inputs.lot }}")
+          if [ "${{ inputs.dry_run }}" = "true" ]; then args+=(--dry-run); fi
+          node tools/import-liens.mjs "${args[@]}" | tee /tmp/liens.log
 
       # Rien n'est publié sans être passé par les mêmes contrôles que le reste.
       - name: Régénérer et contrôler
@@ -69,7 +80,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/saints/lieux.json data/generated saints pays lieux calendrier epoques \
+          git add data/saints/lieux.json data/saints/liens.json data/generated saints pays lieux calendrier epoques \
             lettre lettre.html sitemap.xml robots.txt feed.xml
           if git diff --cached --quiet; then
             echo "Rien de neuf : les lieux sont déjà à jour."
@@ -77,7 +88,7 @@ jobs:
           fi
           releve=$(grep -oE '[0-9]+ lieux pour [0-9]+ saints' /tmp/lieux.log | head -1 \
             || echo "Lieux relevés")
-          git commit -m "${releve}" -m "$(cat /tmp/lieux.log)"
+          git commit -m "${releve}" -m "$(cat /tmp/lieux.log /tmp/liens.log)"
           git push origin HEAD:${{ github.ref_name }}
 
       # Un envoi fait avec le jeton du dépôt ne réveille pas les autres
@@ -100,6 +111,10 @@ jobs:
             echo '## Lieux marqués'
             echo '```'
             cat /tmp/lieux.log 2>/dev/null || echo "la collecte n'a pas abouti"
+            echo '```'
+            echo '## Liens entre saints'
+            echo '```'
+            cat /tmp/liens.log 2>/dev/null || echo "la collecte n'a pas abouti"
             echo '```'
             grep -E 'lieux.json|Lieux' /tmp/build.log 2>/dev/null || true
           } >> "$GITHUB_STEP_SUMMARY"

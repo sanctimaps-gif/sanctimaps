@@ -141,18 +141,21 @@ ok(apparitions.length
  *
  * Elle est facultative — un dépôt qui n'a pas encore fait la collecte n'est pas
  * fautif —, mais ce qu'elle porte doit tenir : un lieu appartient à un saint
- * qui existe, il est placé, et son motif est l'un des six. Un lieu orphelin
+ * qui existe, il est placé, et son motif est l'un des onze. Un lieu orphelin
  * serait une croix sans propriétaire, et un motif inconnu une ligne que la
  * fiche ne saurait pas nommer.
  */
-const MOTIFS = new Set(['sepulture', 'mort', 'fondation', 'oeuvre', 'residence', 'naissance']);
+const MOTIFS = new Set(['sepulture', 'mort', 'apparition', 'miracle', 'predilection',
+  'fondation', 'oeuvre', 'enfance', 'formation', 'residence', 'naissance']);
 if (existsSync(join(GEN, 'lieux.json'))) {
-  const { lieux } = read('lieux.json');
+  const { lieux, liens = {} } = read('lieux.json');
   let total = 0;
+  const vus = new Map();
   for (const [id, liste] of Object.entries(lieux)) {
     if (!ids.has(id)) { fail(`lieux.json : ${id} n'est pas une fiche du corpus`); continue; }
     for (const lieu of liste) {
       total += 1;
+      vus.set(lieu.quoi, (vus.get(lieu.quoi) || 0) + 1);
       if (!lieu.nom) fail(`lieux.json : ${id} — un lieu sans nom`);
       if (!MOTIFS.has(lieu.quoi)) fail(`lieux.json : ${id} — motif inconnu : ${lieu.quoi}`);
       const shift = lieu.x > WORLD_SIZE ? WORLD_SIZE : 0;
@@ -164,7 +167,34 @@ if (existsSync(join(GEN, 'lieux.json'))) {
   }
   ok(total
     ? `${total} lieux marqués, répartis sur ${Object.keys(lieux).length} saints`
+      + ` (${[...vus].sort((a, b) => b[1] - a[1]).map(([q, n]) => `${n} ${q}`).join(', ')})`
     : 'table des lieux vide, et la fiche n’offre alors rien à voir');
+
+  /**
+   * Les liens : les deux bouts existent, et se répondent.
+   *
+   * Un lien qui ne va que dans un sens est un lien à moitié écrit : on ouvre la
+   * fiche du frère et la sœur a disparu. `import-liens.mjs` les pose des deux
+   * côtés ; ce contrôle vérifie qu'ils y sont restés.
+   */
+  const SORTES = new Set(['maitre', 'disciple', 'parent', 'enfant', 'fratrie',
+    'conjoint', 'famille', 'influence', 'inspire']);
+  let liensTotal = 0;
+  let boiteux = 0;
+  for (const [id, liste] of Object.entries(liens)) {
+    if (!ids.has(id)) { fail(`lieux.json : lien depuis ${id}, qui n'est pas du corpus`); continue; }
+    for (const lien of liste) {
+      liensTotal += 1;
+      if (!SORTES.has(lien.quoi)) fail(`lieux.json : ${id} — lien inconnu : ${lien.quoi}`);
+      if (!ids.has(lien.id)) { fail(`lieux.json : ${id} — lien vers ${lien.id}, absent du corpus`); continue; }
+      if (!(liens[lien.id] || []).some((l) => l.id === id)) boiteux += 1;
+    }
+  }
+  if (boiteux) fail(`lieux.json : ${boiteux} liens ne sont écrits que d'un côté`);
+  ok(liensTotal
+    ? `${liensTotal} liens attestés, tous réciproques,`
+      + ` entre ${Object.keys(liens).length} fiches`
+    : 'aucun lien attesté relevé pour l’instant');
 }
 
 // --- Siècles ----------------------------------------------------------------
