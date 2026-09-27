@@ -49,6 +49,15 @@ const GROUND_LIMIT = 40;
 /** La même, quand un fond de tuiles prend le relais : on descend dans la rue. */
 const GROUND_LIMIT_TILED = 1.2;
 
+/**
+ * Hauteur minimale de la liste de choix, en pixels.
+ *
+ * Elle se borne à la place disponible, mais pas en deçà : une liste de trente
+ * pixels de haut ne montrerait qu'un nom et demi, et mieux vaut alors déborder
+ * un peu sur la carte — on est en train de choisir, pas de regarder le pays.
+ */
+const PICKER_MIN_HEIGHT = 160;
+
 /** Pas d'un appui sur « + » ou « − ». */
 const ZOOM_STEP = 1.6;
 
@@ -1720,12 +1729,37 @@ export class MapView {
 
     // Posée près du repère, mais jamais hors de la carte : sur un téléphone,
     // un groupe au bord de l'écran pousserait la liste dans le vide.
+    //
+    // Et jamais plus haute que la place disponible. Rome porte deux cent
+    // quarante saints ; au cadrage du pays, ils tiennent dans un seul repère, et
+    // la liste dépassait l'écran par le bas — les derniers noms étaient
+    // inatteignables. Elle se borne donc au côté le plus large, et défile.
+    const MARGE = 10;
+    const dessus = at.y - MARGE - 18;
+    const dessous = vp.h - at.y - MARGE - 18;
+    box.style.maxHeight = `${Math.round(Math.max(
+      PICKER_MIN_HEIGHT,
+      Math.min(Math.max(dessus, dessous), vp.h * 0.72),
+    ))}px`;
+
     const w = box.offsetWidth;
     const hgt = box.offsetHeight;
     const left = Math.max(8, Math.min(vp.w - w - 8, at.x - w / 2));
-    const top = at.y + 18 + hgt > vp.h ? at.y - hgt - 18 : at.y + 18;
+    // Sous le repère si la place y est, au-dessus sinon : on choisit le côté
+    // qui laisse voir le plus de noms, non celui qui vient en premier.
+    const sousLeRepere = dessous >= hgt || dessous >= dessus;
+    const top = sousLeRepere ? at.y + 18 : at.y - hgt - 18;
     box.style.left = `${Math.round(left)}px`;
-    box.style.top = `${Math.round(Math.max(8, top))}px`;
+    box.style.top = `${Math.round(Math.max(MARGE, Math.min(vp.h - hgt - MARGE, top)))}px`;
+    // Le défilement se signale : une liste qui déborde sans le dire passe pour
+    // une liste complète, et l'on ne cherche pas ce qu'on ne sait pas absent.
+    // Le liseré s'efface au dernier nom, sinon il promettrait une suite.
+    const signaler = () => {
+      const reste = box.scrollHeight - box.clientHeight - box.scrollTop;
+      box.classList.toggle('picker--defile', reste > 1);
+    };
+    box.addEventListener('scroll', signaler, { passive: true });
+    signaler();
     box.classList.add('is-open');
   }
 

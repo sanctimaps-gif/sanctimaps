@@ -554,6 +554,27 @@ repère, il déborde volontiers sur le médaillon du voisin et happait alors le
 clic qui lui était destiné — on visait un groupe de six et l'on ouvrait un
 saint isolé.
 
+**Et la liste défile.** Trois noms tiennent dans une bulle ; cent quatre-vingts
+non. Au cadrage de l'Italie, Rome réunit à elle seule 181 fiches, et la liste
+sortait de l'écran par le bas : les derniers noms existaient sans qu'on puisse
+les atteindre. Elle se borne désormais à la place réellement libre — on mesure
+ce qu'il y a au-dessus du repère et ce qu'il y a en dessous, on retient le plus
+large des deux, sans jamais dépasser les sept dixièmes de la hauteur —, et ce
+qui ne tient pas se fait glisser au doigt.
+
+Trois détails sans lesquels ce défilement n'en serait pas un :
+
+- la carte porte `touch-action: none`, pour que le doigt la déplace au lieu de
+  faire défiler la page ; la liste en héritait, et le doigt glissait alors sur
+  des noms immobiles. Elle reprend donc `pan-y` pour son compte, et
+  `overscroll-behavior: contain` empêche le geste, arrivé au bout, d'emporter la
+  page derrière ;
+- le titre — « 181 saints ici » — reste collé en haut : c'est lui qui dit
+  combien la liste porte, et donc qu'il en reste sous le pouce ;
+- un liseré en bas signale qu'il y a une suite, et s'efface au dernier nom :
+  une liste qui déborde sans le dire passe pour une liste complète, et l'on ne
+  cherche pas ce qu'on ne sait pas absent.
+
 ## Le tiroir
 
 Le panneau de gauche s'ouvre sur un **sommaire** : la liste de ce qu'on peut

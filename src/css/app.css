@@ -663,12 +663,41 @@ button, input, select, textarea { font: inherit; color: inherit; }
   opacity: 0;
   transform: translateY(-4px);
   transition: opacity 120ms ease, transform 120ms ease;
+
+  /* Rome porte deux cent quarante saints : au cadrage du pays, ils tiennent
+     dans un seul repère, et la liste dépassait l'écran. Elle se borne
+     désormais à la place disponible — « max-height » est posé par le code, qui
+     seul sait où le repère se trouve — et défile.
+
+     « touch-action » n'est pas un détail mais la condition du geste : la carte
+     porte « none » pour que le doigt la déplace au lieu de faire défiler la
+     page, et la liste en héritait. Le doigt glissait alors sur des noms qui ne
+     bougeaient pas. */
+  overflow-y: auto;
+  touch-action: pan-y;
+  overscroll-behavior: contain;
 }
+
+/* Une liste qui déborde le dit : un liseré en bas, effacé dès qu'on atteint le
+   dernier nom — autrement il promettrait une suite qui n'existe pas. */
+.picker--defile { border-bottom-color: var(--accent); }
 
 .picker.is-open { opacity: 1; transform: none; }
 
+/* Le titre reste en vue pendant qu'on défile : c'est lui qui dit combien de
+   saints la liste porte, et donc qu'il en reste sous le pouce.
+   Les marges négatives le font tenir toute la largeur du cadre, jusqu'aux
+   bords : un fond plus étroit laisserait les noms défiler visiblement de part
+   et d'autre du titre. */
 .picker__head {
-  margin: 0.1rem 0.4rem 0.3rem;
+  position: sticky;
+  inset-block-start: -0.4rem;
+  z-index: 1;
+  background: var(--panel);
+  margin: -0.4rem -0.4rem 0.3rem;
+  padding: 0.5rem 0.5rem 0.3rem;
+  /* Le filet dit que les noms passent dessous, et non qu'ils s'y arrêtent. */
+  border-block-end: 1px solid var(--line);
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
