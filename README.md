@@ -1205,6 +1205,19 @@ d'abord dans le navigateur ; le bouton « Exporter mes lieux marqués » rend
 `lieux-main.json`, à verser dans `data/saints/`, où la liste de chaque saint
 nommé remplace celle de la collecte.
 
+## Les fiches liées
+
+Une fiche — saint, apparition, miracle — peut être reliée à d'autres : Lourdes à
+Bernadette, un miracle au saint qui en fut témoin, deux compagnons. Le lien
+porte une nature (lié, vision, témoin, famille, maître et disciple, compagnons),
+s'écrit d'un côté et se lit des deux : chaque fiche montre ses fiches liées, qui
+s'ouvrent d'un appui, en changeant de corpus au besoin.
+
+Au formulaire, la section « Fiches liées » cherche par le nom dans les trois
+corpus. Le lien est un champ de la fiche (`lies`), et voyage donc avec elle dans
+les exports. Les voyants de `voyants.json` sont reliés d'office à leur
+apparition.
+
 ## Les pays marqués par un saint venu d'ailleurs
 
 Un pays où aucun saint de la carte n'est né n'est pas forcément un pays sans

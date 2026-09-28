@@ -1403,6 +1403,19 @@ if (apparitions.length) {
 }
 
 apparitions.sort((a, b) => a.annee - b.annee);
+// Qui a vu quelle apparition (`voyants.json`) : la fiche de l'apparition en
+// garde le lien, que l'application montre dans les deux fiches — Lourdes mène
+// à Bernadette, et Bernadette à Lourdes.
+try {
+  const qui = JSON.parse(readFileSync(join(SAINTS_DIR, 'voyants.json'), 'utf8')).voyants || {};
+  for (const a of apparitions) {
+    for (const saintId of qui[a.id] || []) {
+      a.lies = a.lies || [];
+      if (!a.lies.some((l) => l.id === saintId)) a.lies.push({ id: saintId, quoi: 'vision' });
+    }
+  }
+} catch { /* pas de table des voyants */ }
+
 writeFileSync(join(OUT, 'apparitions.json'), JSON.stringify({ apparitions }));
 console.log(`  apparitions.json : ${apparitions.length} apparitions`);
 

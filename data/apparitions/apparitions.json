@@ -188,6 +188,7 @@
     },
     {
       "id": "ap-saint-michel-jeanne-d-arc",
+      "lies": [{ "id": "catherine-alexandrie", "quoi": "lien" }, { "id": "wd-marguerite-d-antioche-q297742", "quoi": "lien" }],
       "qui": "ange",
       "name": { "fr": "Saint Michel, sainte Catherine et sainte Marguerite à Jeanne d'Arc", "en": "Saint Michael, Saint Catherine and Saint Margaret to Joan of Arc" },
       "city": "Domrémy-la-Pucelle",
@@ -203,6 +204,7 @@
     },
     {
       "id": "ap-sainte-anne-d-auray",
+      "lies": [{ "id": "wd-anne-q164294", "quoi": "lien" }],
       "qui": "saint",
       "name": { "fr": "Sainte Anne à Yves Nicolazic", "en": "Saint Anne to Yves Nicolazic", "br": "Santez Anna Wened" },
       "city": "Sainte-Anne-d’Auray",
@@ -233,6 +235,7 @@
     },
     {
       "id": "ap-saint-joseph-cotignac",
+      "lies": [{ "id": "joseph", "quoi": "lien" }],
       "qui": "saint",
       "name": { "fr": "Saint Joseph au mont Bessillon", "en": "Saint Joseph on Mount Bessillon" },
       "city": "Cotignac",
@@ -364,6 +367,7 @@
     },
     {
       "id": "ap-saint-francois-la-verna",
+      "lies": [{ "id": "francois-assise", "quoi": "vision" }],
       "qui": "ange",
       "name": { "fr": "Le séraphin crucifié à saint François : les stigmates", "en": "The crucified seraph to Saint Francis: the stigmata" },
       "city": "La Verna",

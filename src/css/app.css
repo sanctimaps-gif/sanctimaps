@@ -2362,3 +2362,61 @@ a.btn {
   cursor: pointer;
 }
 .detail__lieu-lien:hover { text-decoration-color: currentColor; }
+
+/* ---------------------------------------------------------- Fiches liées */
+
+.detail__lies { margin: 0.8rem 0; }
+.detail__lies-titre {
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+}
+.detail__lies-liste { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+/* Une fiche liée : son emblème, son nom, la nature du lien. */
+.detail__lie {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.25rem 0.7rem 0.25rem 0.25rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.detail__lie:hover { background: var(--accent-soft); }
+.detail__lie .emblem { width: 1.7rem; height: 1.7rem; padding: 0.3rem; }
+.detail__lie-quoi { color: var(--ink-soft); font-size: 0.75rem; }
+
+/* Au formulaire : la liste des fiches reliées, puis la recherche. */
+.lies-edit__item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.lies-edit__item .emblem { width: 1.7rem; height: 1.7rem; padding: 0.3rem; }
+.lies-edit__item .control { width: auto; }
+.lies-edit__suggestions { display: grid; gap: 0.2rem; margin-top: 0.3rem; }
+.lies-edit__choix {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 0.45rem;
+  text-align: start;
+  padding: 0.25rem 0.4rem;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+.lies-edit__choix:hover { background: var(--accent-soft); border-color: var(--line); }
+.lies-edit__choix .emblem { width: 1.6rem; height: 1.6rem; padding: 0.28rem; }
+.lies-edit__lieu { font-size: 0.75rem; color: var(--ink-soft); }

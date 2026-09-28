@@ -2,6 +2,7 @@ import { can, getSession } from '../auth.js';
 import { MOTIFS_LIEU, PENDING, PUBLISHED } from '../data.js';
 import { collator, getLanguage, monthNames, t, titleLabel } from '../i18n.js';
 import { field, fill, h, select } from './dom.js';
+import { emblemSvg } from '../emblems.js';
 
 /** Vocabulaire des qualités, partagé avec l'atelier de l'assistant expert. */
 export const TITLE_KEYS = [
@@ -22,7 +23,20 @@ const BLANK = {
   // vécu, œuvré. Chacun avec son nom, son motif, ses coordonnées, et au besoin
   // ce qui s'y est passé.
   lieux: [],
+  // Les fiches reliées à celle-ci — un saint, une apparition, un miracle —,
+  // chacune avec la nature du lien.
+  lies: [],
 };
+
+/** La nature d'un lien entre deux fiches ; chaque mot se lit dans les deux sens. */
+export const LIENS_FICHES = ['lien', 'vision', 'temoin', 'famille', 'maitre', 'compagnon'];
+
+/**
+ * Un formulaire vierge, avec ses propres listes : un `{ ...BLANK }` aurait
+ * partagé les tableaux d'une saisie à l'autre, et un lieu ajouté à un saint
+ * serait revenu sur le suivant.
+ */
+const vierge = () => ({ ...BLANK, titles: [], lieux: [], lies: [] });
 
 const lieuVide = () => ({ nom: '', quoi: 'mort', lat: '', lng: '', dit: '' });
 
@@ -40,7 +54,7 @@ export class AddPanel {
     this.onSubmit = onSubmit;
     this.onPick = onPick;
     this.onCancelPick = onCancelPick;
-    this.values = { ...BLANK };
+    this.values = vierge();
     this.editing = null;
     this.message = null;
     this.root = h('form', { class: 'add', novalidate: true });
@@ -134,7 +148,11 @@ export class AddPanel {
         ? saint.patronage : saint.patronage?.[lang] || '',
       titles: [...(saint.titles || [])],
       lieux: this.lieuxPourFormulaire(saint.id),
+      // Seuls les liens écrits sur cette fiche se modifient ici ; ceux qu'une
+      // autre fiche porte vers elle se modifient depuis cette autre fiche.
+      lies: (saint.lies || []).map((l) => ({ id: l.id, quoi: l.quoi || 'lien' })),
     };
+    this.recherche = '';
     this.lieuxTouches = false;
     // La table des lieux descend après la carte : si elle n'est pas encore là,
     // on la demande, et la liste se remplit dès son arrivée — tant qu'on n'a
@@ -165,12 +183,13 @@ export class AddPanel {
   }
 
   cancelEdit() {
+    this.recherche = '';
     this.lieuxTouches = false;
     this.pickLieu = null;
     this.editing = null;
     this.editingKind = null;
     this.editingBase = null;
-    this.values = { ...BLANK };
+    this.values = vierge();
     this.message = null;
     this.render();
   }
@@ -356,6 +375,8 @@ export class AddPanel {
 
       date ? null : this.renderLieux(),
 
+      this.renderLies(),
+
       field(t('add.desc'), h('textarea', {
         class: 'control control--area',
         rows: '2',
@@ -502,6 +523,61 @@ export class AddPanel {
       }));
   }
 
+  /**
+   * Les fiches liées : on cherche par le nom parmi les saints, les apparitions
+   * et les miracles, on choisit, on dit la nature du lien, on en retire.
+   */
+  renderLies() {
+    const lang = getLanguage();
+    const natures = LIENS_FICHES.map((q) => ({ value: q, label: t(`lies.${q}`) }));
+    const exclure = [this.editing, ...this.values.lies.map((l) => l.id)].filter(Boolean);
+    const suggestions = this.atlas.chercherFiches(this.recherche || '', { exclure });
+    const liste = h('div', { class: 'lies-edit__suggestions' });
+    const remplir = () => {
+      const trouvees = this.atlas.chercherFiches(this.recherche || '', { exclure });
+      fill(liste, trouvees.map((f) => h('button', {
+        class: 'lies-edit__choix',
+        type: 'button',
+        onclick: () => {
+          this.values.lies.push({ id: f.id, quoi: f.kind === 'apparition' || this.kind === 'apparition' ? 'vision' : 'lien' });
+          this.recherche = '';
+          this.render();
+        },
+      }, emblemSvg(f), h('span', { text: this.atlas.saintName(f, lang) }),
+      h('span', { class: 'lies-edit__lieu', text: f.city || '' }))));
+    };
+    const champ = h('input', {
+      class: 'control', type: 'search', value: this.recherche || '',
+      placeholder: t('add.liesSearch'),
+      oninput: (e) => { this.recherche = e.target.value; remplir(); },
+    });
+    if (suggestions.length) remplir();
+    return h('fieldset', { class: 'group lies-edit' },
+      h('legend', { class: 'group__legend', text: t('add.lies') }),
+      h('p', { class: 'field__hint', text: t('add.liesHint') }),
+      ...this.values.lies.map((lien, i) => {
+        const fiche = this.atlas.pointById(lien.id);
+        return h('div', { class: 'lies-edit__item' },
+          fiche ? emblemSvg(fiche) : null,
+          h('span', { class: 'lies-edit__nom', text: fiche ? this.atlas.saintName(fiche, lang) : lien.id }),
+          select(natures, {
+            value: lien.quoi,
+            'aria-label': t('add.liesNature'),
+            onchange: (e) => { lien.quoi = e.target.value; },
+          }),
+          h('button', {
+            class: 'btn btn--ghost lieu-edit__remove',
+            type: 'button',
+            text: '×',
+            title: t('add.liesRetirer'),
+            'aria-label': t('add.liesRetirer'),
+            onclick: () => { this.values.lies.splice(i, 1); this.render(); },
+          }));
+      }),
+      champ,
+      liste);
+  }
+
   /** Les lieux du formulaire, prêts à enregistrer ; ceux qu'on a laissés vides s'effacent. */
   lieuxSaisis() {
     const lang = getLanguage();
@@ -602,6 +678,7 @@ export class AddPanel {
       feast: fete,
       desc: this.multilingue('desc', v.desc.trim()),
       bio: this.multilingue('bio', v.bio.trim()),
+      lies: v.lies.length ? v.lies.map((l) => ({ id: l.id, quoi: l.quoi })) : undefined,
     } : {
       name: this.multilingue('name', v.name.trim()),
       sex: v.sex,
@@ -616,6 +693,7 @@ export class AddPanel {
       desc: this.multilingue('desc', v.desc.trim()),
       bio: this.multilingue('bio', v.bio.trim()),
       patronage: this.multilingue('patronage', v.patronage.trim()),
+      lies: v.lies.length ? v.lies.map((l) => ({ id: l.id, quoi: l.quoi })) : undefined,
     };
 
     const editing = this.editing;
@@ -628,7 +706,7 @@ export class AddPanel {
     this.editing = null;
     this.editingKind = null;
     this.editingBase = null;
-    this.values = { ...BLANK, country: v.country };
+    this.values = { ...vierge(), country: v.country };
     this.message = {
       kind: 'ok',
       text: editing ? t('add.updated') : t(status === PUBLISHED ? 'add.savedPublished' : 'add.savedPending'),

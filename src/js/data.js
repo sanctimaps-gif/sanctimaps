@@ -594,6 +594,79 @@ export class Atlas {
   reindexAll() {
     this.reindex();
     for (const { nom } of CORPUS.slice(1)) this.reindexAutre(nom);
+    this.liesIndex = null;
+  }
+
+  // -- les fiches liées -------------------------------------------------------
+
+  /**
+   * Les liens entre fiches, dans les deux sens.
+   *
+   * Une fiche porte `lies` : les autres fiches qu'on lui a reliées — Bernadette
+   * à Lourdes, un miracle au saint qui en fut témoin, deux compagnons. Un lien
+   * s'écrit d'un côté et se lit des deux : Lourdes reliée à Bernadette paraît
+   * aussi dans la fiche de Bernadette. L'index se rebâtit à chaque changement
+   * du corpus, à la première demande.
+   */
+  batirLies() {
+    const index = new Map();
+    const poser = (a, b, quoi) => {
+      if (!a || !b || a === b) return;
+      const liste = index.get(a) || [];
+      if (!liste.some((l) => l.id === b)) liste.push({ id: b, quoi });
+      index.set(a, liste);
+    };
+    for (const nom of NOMS) {
+      for (const fiche of this.index[nom].liste) {
+        for (const lien of fiche.lies || []) {
+          poser(fiche.id, lien.id, lien.quoi);
+          poser(lien.id, fiche.id, lien.quoi);
+        }
+      }
+    }
+    this.liesIndex = index;
+    return index;
+  }
+
+  /** Les fiches liées à une fiche, résolues et visibles, avec la nature du lien. */
+  liesDe(id) {
+    const index = this.liesIndex || this.batirLies();
+    return (index.get(id) || [])
+      .map((l) => ({ fiche: this.pointById(l.id), quoi: l.quoi }))
+      .filter((l) => l.fiche);
+  }
+
+  /**
+   * Les fiches dont le nom répond à une recherche, tous corpus confondus : c'est
+   * ce que le formulaire propose quand on relie une fiche à une autre.
+   */
+  chercherFiches(requete, { exclure = [], limite = 8 } = {}) {
+    const plier = (s) => String(s || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+    const q = plier(requete).trim();
+    if (q.length < 2) return [];
+    const exclus = new Set(exclure);
+    const trouves = [];
+    for (const nom of NOMS) {
+      for (const fiche of this.index[nom].liste) {
+        if (exclus.has(fiche.id)) continue;
+        const noms = typeof fiche.name === 'object' ? Object.values(fiche.name) : [fiche.name];
+        // Un mot du nom égal à la recherche d'abord (« Carlo » trouve Carlo
+        // Acutis avant Carloman), puis un nom qui commence par elle, puis un
+        // nom qui la contient ; à rang égal, le nom le plus court.
+        let rang = 9;
+        let longueur = Infinity;
+        for (const n of noms) {
+          const p = plier(n);
+          const mots = p.split(/[\s'’-]+/);
+          const r = p === q ? 0 : mots.includes(q) ? 1 : p.startsWith(q) ? 2
+            : mots.some((m) => m.startsWith(q)) ? 3 : p.includes(q) ? 4 : 9;
+          if (r < rang || (r === rang && p.length < longueur)) { rang = r; longueur = p.length; }
+        }
+        if (rang < 9) trouves.push({ fiche, rang, longueur });
+      }
+    }
+    return trouves.sort((a, b) => a.rang - b.rang || a.longueur - b.longueur)
+      .slice(0, limite).map((t) => t.fiche);
   }
 
   /**

@@ -143,6 +143,21 @@ export class DetailPanel {
     return morceaux;
   }
 
+  liees(saint, lang) {
+    const lies = this.atlas.liesDe(saint.id);
+    if (!lies.length) return null;
+    return h('div', { class: 'detail__lies' },
+      h('h3', { class: 'detail__lies-titre', text: t('lies.titre') }),
+      h('div', { class: 'detail__lies-liste' }, ...lies.map(({ fiche, quoi }) => h('button', {
+        class: `detail__lie detail__lie--${fiche.kind || 'saint'}`,
+        type: 'button',
+        onclick: () => this.onOpen?.(fiche.id),
+      },
+      emblemSvg(fiche),
+      h('span', { class: 'detail__lie-nom', text: this.atlas.saintName(fiche, lang) }),
+      h('span', { class: 'detail__lie-quoi', text: t(`lies.${quoi || 'lien'}`) })))));
+  }
+
   /** Mène la carte à un lieu ; montre d'abord les lieux s'ils ne l'étaient pas. */
   allerAuLieu(lieu, lieux) {
     if (!this.lieuxOuverts && lieux.includes(lieu)) {
@@ -303,6 +318,9 @@ export class DetailPanel {
       // bas, avec les autres repères — c'est là qu'on lit une fiche.
       description ? h('p', { class: 'detail__desc' }, ...this.avecLieux(description, saint, lieux)) : null,
       biography ? h('p', { class: 'detail__bio' }, ...this.avecLieux(biography, saint, lieux)) : null,
+      // Les fiches reliées à celle-ci, dans les deux sens : Lourdes et
+      // Bernadette, un miracle et son témoin. Chacune s'ouvre d'un appui.
+      this.liees(saint, lang),
       // La licence de Wikipédia demande qu'une modification soit signalée, et
       // une traduction en est une. Le lecteur, lui, sait ainsi que la tournure
       // française n'est pas celle d'une source française.
