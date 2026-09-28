@@ -1,8 +1,9 @@
 # Les apparitions
 
 Ce dossier tient le second corpus de la carte : les apparitions mariales et
-christiques, et celles des anges et des saints — saint Michel au mont Gargan et
-à Jeanne d'Arc, l'ange Gabriel à Marie à Nazareth, sainte Anne à Yves Nicolazic,
+christiques — le Christ à saint Paul, à saint François, le Sacré-Cœur à
+Paray-le-Monial, Jésus miséricordieux à sainte Faustine —, et celles des anges
+et des saints — saint Michel au mont Gargan et à Jeanne d'Arc, l'ange Gabriel à Marie à Nazareth, sainte Anne à Yves Nicolazic,
 saint Joseph au mont Bessillon —, celles que l'Église a reconnues comme celles
 qu'elle n'a pas reconnues. Tant qu'il est vide, la carte le dit en toutes lettres à l'écran
 plutôt que de le laisser deviner devant une carte sans repères.
@@ -93,13 +94,16 @@ corpus fautif ; `tools/check-data.mjs` le revérifie après coup. Ce qui est
 rapporté d'un texte sous licence — Wikipédia — se cite : la source n'est pas une
 politesse, c'est la condition de la reprise.
 
-## Les anges et les saints
+## Le Christ, les anges et les saints
 
-Une apparition de saint Michel ou de sainte Anne se lit comme une apparition de
+Une apparition du Christ, de saint Michel ou de sainte Anne se lit comme une apparition de
 la Vierge : un lieu, une année, une phrase. Elles n'ont, pour la plupart, jamais
 fait l'objet d'un jugement comme Lourdes ou Fátima — l'Église en a fait des
 fêtes, des sanctuaires, des pèlerinages, non des décrets —, et leur fiche ne
-porte donc pas d'approbation. Celle de l'Ange du Portugal, en 1916, est nommée
+porte donc pas d'approbation. Les scènes de l'Évangile — l'Annonciation, les
+bergers, la Transfiguration, le Ressuscité à Marie-Madeleine, le chemin de
+Damas — sont placées là où la tradition les situe, et leur année est celle de la
+chronologie la plus reçue, non une date sûre. Celle de l'Ange du Portugal, en 1916, est nommée
 d'après la Loca do Cabeço et non d'après Fátima : la reconnaissance de 1930
 porte sur les apparitions de la Vierge, et le motif « fatima » de la table la
 lui aurait prêtée.

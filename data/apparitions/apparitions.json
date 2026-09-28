@@ -250,6 +250,227 @@
         "fr": "Un an avant la Vierge, l'Ange de la Paix, qui se dit ange du Portugal, apparaît trois fois à Lúcia, François et Jacinthe, et leur enseigne une prière d'adoration.",
         "en": "A year before the Virgin, the Angel of Peace, who calls himself the angel of Portugal, appears three times to Lúcia, Francisco and Jacinta, and teaches them a prayer of adoration."
       }
+    },
+    {
+      "id": "ap-christ-marie-madeleine-jerusalem",
+      "name": { "fr": "Le Christ ressuscité à Marie-Madeleine", "en": "The risen Christ to Mary Magdalene" },
+      "city": "Jérusalem",
+      "country": "ISR",
+      "lat": 31.7784,
+      "lng": 35.2296,
+      "annee": 30,
+      "feast": "07-22",
+      "desc": {
+        "fr": "Au matin de Pâques, près du tombeau vide, Marie-Madeleine prend le Ressuscité pour le jardinier, jusqu'à ce qu'il l'appelle par son nom (Jean 20, 11-18). La basilique du Saint-Sépulcre couvre le lieu que la tradition désigne.",
+        "en": "On Easter morning, by the empty tomb, Mary Magdalene takes the risen Christ for the gardener, until he calls her by name (John 20:11-18). The Church of the Holy Sepulchre covers the place tradition points to."
+      }
+    },
+    {
+      "id": "ap-transfiguration-thabor",
+      "name": { "fr": "La Transfiguration : Moïse et Élie au mont Thabor", "en": "The Transfiguration: Moses and Elijah on Mount Tabor" },
+      "city": "Mont Thabor",
+      "country": "ISR",
+      "lat": 32.6869,
+      "lng": 35.3906,
+      "annee": 30,
+      "feast": "08-06",
+      "desc": {
+        "fr": "Devant Pierre, Jacques et Jean, le Christ est transfiguré, et Moïse et Élie apparaissent à ses côtés (Matthieu 17, 1-9). La tradition place la scène au Thabor, où se dresse la basilique de la Transfiguration.",
+        "en": "Before Peter, James and John, Christ is transfigured, and Moses and Elijah appear beside him (Matthew 17:1-9). Tradition sets the scene on Tabor, where the Basilica of the Transfiguration stands."
+      }
+    },
+    {
+      "id": "ap-ange-bergers-bethleem",
+      "name": { "fr": "L'ange aux bergers de Bethléem", "en": "The angel to the shepherds of Bethlehem" },
+      "city": "Beit Sahour",
+      "country": "PSE",
+      "lat": 31.7050,
+      "lng": 35.2250,
+      "annee": -5,
+      "desc": {
+        "fr": "Un ange annonce aux bergers qui veillent la naissance du Sauveur, et une troupe céleste chante « Gloire à Dieu » (Luc 2, 8-14). Le champ des Bergers se visite à Beit Sahour, près de Bethléem.",
+        "en": "An angel announces the Saviour's birth to the shepherds keeping watch, and a heavenly host sings « Glory to God » (Luke 2:8-14). The Shepherds' Field is at Beit Sahour, near Bethlehem."
+      }
+    },
+    {
+      "id": "ap-christ-saint-paul-damas",
+      "name": { "fr": "Le Christ à saint Paul sur le chemin de Damas", "en": "Christ to Saint Paul on the road to Damascus" },
+      "city": "Damas",
+      "country": "SYR",
+      "lat": 33.5138,
+      "lng": 36.2765,
+      "annee": 34,
+      "feast": "01-25",
+      "desc": {
+        "fr": "Une lumière venue du ciel jette Saul à terre, et une voix lui dit : « Saul, Saul, pourquoi me persécutes-tu ? » (Actes 9, 1-19). Aveugle trois jours, il est baptisé à Damas par Ananie.",
+        "en": "A light from heaven throws Saul to the ground, and a voice says: « Saul, Saul, why do you persecute me? » (Acts 9:1-19). Blind for three days, he is baptised in Damascus by Ananias."
+      }
+    },
+    {
+      "id": "ap-quo-vadis-rome",
+      "name": { "fr": "« Quo vadis ? » : le Christ à saint Pierre", "en": "« Quo vadis? »: Christ to Saint Peter", "la": "Domine, quo vadis?" },
+      "city": "Rome",
+      "country": "ITA",
+      "lat": 41.8680,
+      "lng": 12.5025,
+      "annee": 64,
+      "desc": {
+        "fr": "Fuyant la persécution de Néron, Pierre rencontre sur la voie Appienne le Christ qui entre dans Rome : « Où vas-tu, Seigneur ? » — « Je vais à Rome pour être crucifié de nouveau. » Pierre, dit la tradition, fait demi-tour.",
+        "en": "Fleeing Nero's persecution, Peter meets Christ on the Appian Way, going into Rome: « Where are you going, Lord? » — « To Rome, to be crucified again. » Peter, tradition says, turns back."
+      }
+    },
+    {
+      "id": "ap-constantin-pont-milvius",
+      "name": { "fr": "La vision de Constantin", "en": "The vision of Constantine", "la": "In hoc signo vinces" },
+      "city": "Rome",
+      "country": "ITA",
+      "lat": 41.9356,
+      "lng": 12.4667,
+      "annee": 312,
+      "desc": {
+        "fr": "À la veille de la bataille du pont Milvius, Constantin voit, selon Eusèbe et Lactance, un signe du Christ dans le ciel ou en songe : « Par ce signe, tu vaincras. »",
+        "en": "On the eve of the battle of the Milvian Bridge, Constantine sees, according to Eusebius and Lactantius, a sign of Christ in the sky or in a dream: « In this sign, you will conquer. »"
+      }
+    },
+    {
+      "id": "ap-christ-saint-martin-amiens",
+      "name": { "fr": "Le Christ à saint Martin", "en": "Christ to Saint Martin" },
+      "city": "Amiens",
+      "country": "FRA",
+      "lat": 49.8941,
+      "lng": 2.2958,
+      "annee": 334,
+      "feast": "11-11",
+      "desc": {
+        "fr": "La nuit qui suit le partage de son manteau avec un pauvre, à la porte d'Amiens, Martin voit en songe le Christ vêtu de la moitié qu'il a donnée, racontent Sulpice Sévère et la tradition.",
+        "en": "The night after he shared his cloak with a beggar at the gate of Amiens, Martin sees in a dream Christ wearing the half he gave away, as Sulpicius Severus tells."
+      }
+    },
+    {
+      "id": "ap-saint-francois-la-verna",
+      "name": { "fr": "Le séraphin crucifié à saint François : les stigmates", "en": "The crucified seraph to Saint Francis: the stigmata" },
+      "city": "La Verna",
+      "country": "ITA",
+      "lat": 43.7076,
+      "lng": 11.9314,
+      "annee": 1224,
+      "feast": "09-17",
+      "desc": {
+        "fr": "Vers la Sainte-Croix de 1224, en prière sur le mont Alverne, François voit un séraphin aux six ailes portant l'image du Crucifié, et reçoit les plaies du Christ dans sa chair.",
+        "en": "Around Holy Cross day 1224, praying on Mount La Verna, Francis sees a six-winged seraph bearing the image of the Crucified, and receives the wounds of Christ in his flesh."
+      }
+    },
+    {
+      "id": "ap-enfant-jesus-saint-antoine-camposampiero",
+      "name": { "fr": "L'Enfant Jésus à saint Antoine de Padoue", "en": "The Child Jesus to Saint Anthony of Padua" },
+      "city": "Camposampiero",
+      "country": "ITA",
+      "lat": 45.5664,
+      "lng": 11.9332,
+      "annee": 1231,
+      "desc": {
+        "fr": "Dans l'ermitage où il passe ses dernières semaines, Antoine tient dans ses bras l'Enfant Jésus ; le comte Tiso, dit la tradition, en est témoin.",
+        "en": "In the hermitage where he spends his last weeks, Anthony holds the Child Jesus in his arms; Count Tiso, tradition says, witnesses it."
+      }
+    },
+    {
+      "id": "ap-christ-saint-ignace-la-storta",
+      "name": { "fr": "Le Christ à saint Ignace à La Storta", "en": "Christ to Saint Ignatius at La Storta", "la": "Ego vobis Romae propitius ero" },
+      "city": "La Storta",
+      "country": "ITA",
+      "lat": 42.0000,
+      "lng": 12.3700,
+      "annee": 1537,
+      "desc": {
+        "fr": "En route vers Rome, dans une petite chapelle, Ignace voit le Père le placer auprès du Fils portant sa croix, et entend : « Je vous serai propice à Rome. »",
+        "en": "On the way to Rome, in a small chapel, Ignatius sees the Father place him beside the Son carrying his cross, and hears: « I will be favourable to you in Rome. »"
+      }
+    },
+    {
+      "id": "ap-transverberation-therese-avila",
+      "name": { "fr": "L'ange à sainte Thérèse d'Avila : la transverbération", "en": "The angel to Saint Teresa of Ávila: the transverberation" },
+      "city": "Ávila",
+      "country": "ESP",
+      "lat": 40.6617,
+      "lng": -4.7019,
+      "annee": 1560,
+      "feast": "08-26",
+      "desc": {
+        "fr": "Au monastère de l'Incarnation, Thérèse voit un ange qui lui perce le cœur d'un dard d'or enflammé ; elle le raconte dans sa Vie, et le Bernin en a fait l'Extase de sainte Thérèse.",
+        "en": "At the monastery of the Incarnation, Teresa sees an angel pierce her heart with a flaming golden dart; she tells it in her Life, and Bernini made of it the Ecstasy of Saint Teresa."
+      }
+    },
+    {
+      "id": "ap-saint-raphael-cordoue",
+      "name": { "fr": "Saint Raphaël au père Andrés de las Roelas", "en": "Saint Raphael to Father Andrés de las Roelas" },
+      "city": "Cordoue",
+      "country": "ESP",
+      "lat": 37.8845,
+      "lng": -4.7796,
+      "annee": 1578,
+      "feast": "10-24",
+      "desc": {
+        "fr": "L'archange se présente au prêtre et lui déclare : « Je te jure par Jésus-Christ crucifié que je suis Raphaël, l'ange à qui Dieu a confié la garde de cette cité. » Il est depuis le gardien de Cordoue.",
+        "en": "The archangel presents himself to the priest and declares: « I swear to you by Jesus Christ crucified that I am Raphael, the angel to whom God has entrusted the guard of this city. » He has been Córdoba's guardian ever since."
+      }
+    },
+    {
+      "id": "ap-christ-saint-jean-de-la-croix-segovie",
+      "name": { "fr": "Le Christ à saint Jean de la Croix", "en": "Christ to Saint John of the Cross" },
+      "city": "Ségovie",
+      "country": "ESP",
+      "lat": 40.9530,
+      "lng": -4.1311,
+      "annee": 1590,
+      "feast": "12-14",
+      "desc": {
+        "fr": "Devant un tableau du Christ portant sa croix, Jean entend : « Que veux-tu en récompense de ce que tu as fait pour moi ? » — « Souffrir et être méprisé pour vous. »",
+        "en": "Before a painting of Christ carrying his cross, John hears: « What do you want in return for what you have done for me? » — « To suffer and be despised for you. »"
+      }
+    },
+    {
+      "id": "ap-sacre-coeur-paray-le-monial",
+      "name": { "fr": "Le Sacré-Cœur à sainte Marguerite-Marie", "en": "The Sacred Heart to Saint Margaret Mary" },
+      "city": "Paray-le-Monial",
+      "country": "FRA",
+      "lat": 46.4506,
+      "lng": 4.1197,
+      "annee": 1673,
+      "anneeFin": 1675,
+      "feast": "10-16",
+      "desc": {
+        "fr": "Au monastère de la Visitation, le Christ montre à Marguerite-Marie Alacoque son cœur « qui a tant aimé les hommes », et demande une fête en son honneur ; elle naîtra de ces apparitions.",
+        "en": "At the Visitation monastery, Christ shows Margaret Mary Alacoque his heart « which has so loved men », and asks for a feast in its honour; it was born of these apparitions."
+      }
+    },
+    {
+      "id": "ap-padre-pio-san-giovanni-rotondo",
+      "name": { "fr": "Le Christ crucifié à Padre Pio : les stigmates", "en": "The crucified Christ to Padre Pio: the stigmata" },
+      "city": "San Giovanni Rotondo",
+      "country": "ITA",
+      "lat": 41.7066,
+      "lng": 15.7270,
+      "annee": 1918,
+      "feast": "09-23",
+      "desc": {
+        "fr": "Le 20 septembre 1918, dans le chœur du couvent des capucins, Padre Pio voit un personnage mystérieux aux mains et au côté sanglants, et reçoit les stigmates qu'il portera cinquante ans.",
+        "en": "On 20 September 1918, in the choir of the Capuchin friary, Padre Pio sees a mysterious figure with bleeding hands and side, and receives the stigmata he will bear for fifty years."
+      }
+    },
+    {
+      "id": "ap-christ-misericordieux-sainte-faustine",
+      "name": { "fr": "Jésus miséricordieux à sainte Faustine", "en": "The Merciful Jesus to Saint Faustina", "pl": "Jezus Miłosierny" },
+      "city": "Płock",
+      "country": "POL",
+      "lat": 52.5468,
+      "lng": 19.7064,
+      "annee": 1931,
+      "anneeFin": 1938,
+      "feast": "10-05",
+      "desc": {
+        "fr": "Le 22 février 1931, au couvent de Płock, le Christ apparaît à sœur Faustine Kowalska, vêtu de blanc, des rayons rouge et pâle jaillissant de son cœur, et lui demande de faire peindre l'image « Jésus, j'ai confiance en toi ». Les révélations suivront à Vilnius et à Cracovie, jusqu'en 1938.",
+        "en": "On 22 February 1931, at the convent in Płock, Christ appears to Sister Faustina Kowalska, dressed in white, with red and pale rays streaming from his heart, and asks her to have the image « Jesus, I trust in you » painted. The revelations continue in Vilnius and Kraków until 1938."
+      }
     }
   ]
 }
