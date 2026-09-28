@@ -100,6 +100,59 @@ export class DetailPanel {
     return figure;
   }
 
+  /**
+   * Un texte où les lieux du saint deviennent des liens : « enterré à
+   * Tamanrasset » mène la carte à Tamanrasset. On reconnaît le nom entier du
+   * lieu, et la ville qui le termine — « cathédrale Sainte-Agathe de Catane »
+   * se lit « Catane » dans une biographie —, ainsi que la ville de la fiche.
+   */
+  avecLieux(texte, saint, lieux) {
+    const cibles = new Map();
+    const ajouter = (nom, lieu) => {
+      const n = String(nom || '').trim();
+      if (n.length >= 3 && !cibles.has(n.toLowerCase())) cibles.set(n.toLowerCase(), { nom: n, lieu });
+    };
+    for (const lieu of lieux) {
+      ajouter(lieu.nom, lieu);
+      const fin = /(?:\s(?:de|du|des|à|in|of)\s|\sd['’])([\p{Lu}][\p{L}'’ -]{2,})$/u.exec(lieu.nom);
+      if (fin) ajouter(fin[1], lieu);
+    }
+    if (saint.city && saint.city !== '—' && Number.isFinite(saint.x)) {
+      ajouter(saint.city, { nom: saint.city, x: saint.x, y: saint.y, lat: saint.lat, lng: saint.lng });
+    }
+    if (!cibles.size) return [texte];
+    const echapper = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    // Le plus long d'abord : « Notre-Dame de Paris » avant « Paris ».
+    const motifs = [...cibles.values()].map((c) => c.nom).sort((a, b) => b.length - a.length).map(echapper);
+    const re = new RegExp(`(?<![\\p{L}])(${motifs.join('|')})(?![\\p{L}])`, 'giu');
+    const morceaux = [];
+    let dernier = 0;
+    for (const m of texte.matchAll(re)) {
+      if (m.index > dernier) morceaux.push(texte.slice(dernier, m.index));
+      const { lieu } = cibles.get(m[0].toLowerCase());
+      morceaux.push(h('button', {
+        class: 'detail__lieu-lien',
+        type: 'button',
+        title: t('lieux.goto'),
+        text: m[0],
+        onclick: () => this.allerAuLieu(lieu, lieux),
+      }));
+      dernier = m.index + m[0].length;
+    }
+    if (dernier < texte.length) morceaux.push(texte.slice(dernier));
+    return morceaux;
+  }
+
+  /** Mène la carte à un lieu ; montre d'abord les lieux s'ils ne l'étaient pas. */
+  allerAuLieu(lieu, lieux) {
+    if (!this.lieuxOuverts && lieux.includes(lieu)) {
+      this.lieuxOuverts = true;
+      this.onLieux?.(lieux);
+      this.render();
+    }
+    this.onLieu?.(lieu);
+  }
+
   render() {
     const saint = this.saint;
     if (!saint) {
@@ -248,8 +301,8 @@ export class DetailPanel {
       // relevé : deux fois la même chose à trois centimètres d'écart, dans un
       // panneau qui n'a qu'une demi-hauteur d'écran. Elles ne sont plus qu'en
       // bas, avec les autres repères — c'est là qu'on lit une fiche.
-      description ? h('p', { class: 'detail__desc', text: description }) : null,
-      biography ? h('p', { class: 'detail__bio', text: biography }) : null,
+      description ? h('p', { class: 'detail__desc' }, ...this.avecLieux(description, saint, lieux)) : null,
+      biography ? h('p', { class: 'detail__bio' }, ...this.avecLieux(biography, saint, lieux)) : null,
       // La licence de Wikipédia demande qu'une modification soit signalée, et
       // une traduction en est une. Le lecteur, lui, sait ainsi que la tournure
       // française n'est pas celle d'une source française.

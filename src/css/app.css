@@ -2347,3 +2347,18 @@ a.btn {
 .marker--lieu { cursor: pointer; }
 .marker--lieu.is-active .marker__halo { opacity: 0.55; }
 .marker--lieu.is-active .marker__perle { stroke: var(--panel); stroke-width: 2.5; }
+
+/* Un lieu cité dans le texte : un lien discret, dans le vert des lieux, qui
+   mène la carte jusqu'à lui. */
+.detail__lieu-lien {
+  font: inherit;
+  color: var(--lieu-ink);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-decoration: underline;
+  text-decoration-color: rgb(63 125 104 / 45%);
+  text-underline-offset: 0.18em;
+  cursor: pointer;
+}
+.detail__lieu-lien:hover { text-decoration-color: currentColor; }
