@@ -1219,6 +1219,14 @@ Les apparitions disent **qui apparaît** (champ `qui` : `christ`, `ange`,
 miracles portent l'ostensoir, et les cinq accusations de profanation un signe
 d'avertissement (champ `nature: "calomnie"`), non l'ostensoir.
 
+Quand la fiche s'ouvre, l'emblème cède la place au **portrait** : l'icône, la
+fresque ou le tableau que Wikidata désigne pour ce saint (propriété P18),
+demandé à Wikimedia Commons depuis le navigateur, à l'ouverture seulement, et
+gardé ensuite dans le navigateur (`src/js/portrait.js`). Le crédit l'accompagne
+toujours — auteur, licence, lien vers le fichier —, car beaucoup de ces images
+sont sous CC BY-SA. Une fiche sans image, ou ouverte hors ligne, garde son
+emblème.
+
 Tout tient dans `src/js/emblems.js` : des dessins au trait sur une grille de 24,
 en `currentColor`, qui suivent le thème sans aucune image à télécharger. Un
 repère qui regroupe plusieurs fiches garde la croix, faute de pouvoir dire

@@ -1,6 +1,7 @@
 import { getLanguage, t } from '../i18n.js';
 import { fill, h } from './dom.js';
 import { emblemSvg } from '../emblems.js';
+import { portraitOf } from '../portrait.js';
 
 /**
  * La fiche du saint ouvert, dans la moitié du bas.
@@ -61,6 +62,13 @@ export class FicheBar {
     this.detail.show(saint);
     this.title.textContent = this.onName(saint, getLanguage());
     fill(this.mark, [emblemSvg(saint)]);
+    // Quand le portrait arrive, il prend la place de l'emblème : un visage se
+    // reconnaît mieux qu'un attribut.
+    portraitOf(saint).then((p) => {
+      if (!p || this.saint !== saint) return;
+      const img = h('img', { class: 'fiche__photo', src: p.src, alt: '', referrerpolicy: 'no-referrer' });
+      img.addEventListener('load', () => { if (this.saint === saint) fill(this.mark, [img]); }, { once: true });
+    });
     this.host.hidden = false;
     // Une fiche ouverte sur un autre saint doit se lire depuis son début.
     this.body.scrollTop = 0;

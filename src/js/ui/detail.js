@@ -3,6 +3,7 @@ import { can } from '../auth.js';
 import { degreLabel, formatFeast, formatYear, getLanguage, languePhrase, pickText, t, titleLabel } from '../i18n.js';
 import { fill, h } from './dom.js';
 import { emblemSvg } from '../emblems.js';
+import { portraitOf } from '../portrait.js';
 
 function row(label, value) {
   if (!value) return null;
@@ -44,6 +45,37 @@ export class DetailPanel {
   refresh() {
     if (this.saint) this.saint = this.atlas.pointById(this.saint.id) || null;
     this.render();
+  }
+
+  /**
+   * L'icône ou le tableau de la fiche, venu de Wikimedia Commons. Le cadre se
+   * pose vide et caché ; il ne paraît qu'une fois l'image arrivée, et seulement
+   * si la fiche ouverte est toujours la même.
+   */
+  portrait(saint, lang) {
+    const figure = h('figure', { class: 'detail__portrait', hidden: true });
+    portraitOf(saint).then((p) => {
+      if (!p || this.saint?.id !== saint.id) return;
+      const img = h('img', {
+        src: p.src,
+        alt: this.atlas.saintName(saint, lang),
+        loading: 'lazy',
+        decoding: 'async',
+        referrerpolicy: 'no-referrer',
+      });
+      img.addEventListener('load', () => { figure.hidden = false; }, { once: true });
+      img.addEventListener('error', () => figure.remove(), { once: true });
+      // Le crédit n'est pas une politesse : une image sous CC BY-SA ne se
+      // reprend qu'avec son auteur, sa licence et le chemin vers l'original.
+      const credit = [p.auteur, p.licence].filter(Boolean).join(' · ');
+      fill(figure, [
+        img,
+        h('figcaption', {},
+          credit ? h('span', { text: `${credit} · ` }) : null,
+          h('a', { href: p.page, target: '_blank', rel: 'noreferrer noopener', text: 'Wikimedia Commons' })),
+      ]);
+    });
+    return figure;
   }
 
   render() {
@@ -92,6 +124,7 @@ export class DetailPanel {
       h('div', { class: 'detail__head' },
         emblemSvg(saint, 'emblem emblem--large'),
         h('h2', { class: 'detail__name', text: this.atlas.saintName(saint, lang) })),
+      this.portrait(saint, lang),
       otherNames ? h('p', { class: 'detail__aka', text: otherNames }) : null,
       saint.status !== PUBLISHED
         ? h('p', { class: `notice notice--${saint.status}`, text: t(`status.${saint.status}`) })
