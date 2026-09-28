@@ -403,6 +403,7 @@ export default {
     show: ['Voir les {n} lieux qu’il a marqués', 'Voir les {n} lieux qu’elle a marqués'],
     showOne: ['Voir le lieu qu’il a marqué', 'Voir le lieu qu’elle a marqué'],
     hide: 'Masquer ces lieux',
+    goto: 'Voir ce lieu sur la carte',
     sepulture: 'Sépulture',
     mort: 'Lieu de mort',
     fondation: 'Fondation',

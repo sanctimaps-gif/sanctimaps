@@ -401,6 +401,7 @@ export default {
     show: ['De {n} plaatsen tonen die hij getekend heeft', 'De {n} plaatsen tonen die zij getekend heeft'],
     showOne: ['De plaats tonen die hij getekend heeft', 'De plaats tonen die zij getekend heeft'],
     hide: 'Deze plaatsen verbergen',
+    goto: 'Deze plaats op de kaart tonen',
     sepulture: 'Graf',
     mort: 'Sterfplaats',
     fondation: 'Stichting',

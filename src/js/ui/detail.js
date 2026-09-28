@@ -35,7 +35,7 @@ function row(label, value) {
 
 /** Fiche détaillée d'un saint, avec les actions permises au rôle courant. */
 export class DetailPanel {
-  constructor(atlas, { onBack, onLocate, onEdit, onRemove, onStatus, onLieux, onCroises, onOpen }) {
+  constructor(atlas, { onBack, onLocate, onEdit, onRemove, onStatus, onLieux, onLieu, onCroises, onOpen }) {
     this.atlas = atlas;
     this.onBack = onBack;
     this.onLocate = onLocate;
@@ -43,6 +43,7 @@ export class DetailPanel {
     this.onRemove = onRemove;
     this.onStatus = onStatus;
     this.onLieux = onLieux;
+    this.onLieu = onLieu;
     this.onCroises = onCroises;
     this.onOpen = onOpen;
     this.saint = null;
@@ -206,7 +207,16 @@ export class DetailPanel {
             // en 1431 ». Et, dessous, ce qu'est le lieu d'après Wikidata.
             const phrase = dit || phraseLieu(lieu, saint);
             const nature = pickText(lieu.desc, lang);
-            return h('li', { class: dit ? 'is-dit' : '' },
+            // Toucher un lieu de la liste y mène sur la carte.
+            const aller = () => this.onLieu?.(lieu);
+            return h('li', {
+              class: `detail__lieu${dit ? ' is-dit' : ''}`,
+              role: 'button',
+              tabindex: '0',
+              title: t('lieux.goto'),
+              onclick: aller,
+              onkeydown: (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); aller(); } },
+            },
               h('p', { class: 'detail__lieu-tete' },
                 h('span', {
                   class: 'detail__lieu-quoi',

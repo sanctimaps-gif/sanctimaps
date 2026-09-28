@@ -375,6 +375,22 @@ export class MapView {
     if (pays) this.drawScale();
   }
 
+  /**
+   * Amène la carte sur un lieu marqué : on l'a touché dans la liste de la fiche,
+   * ou son point sur la carte. Le lieu vient au centre, assez près pour qu'on
+   * voie où il est — sans reculer si l'on était déjà plus près —, et son point
+   * s'allume le temps qu'on le retrouve.
+   */
+  goToLieu(lieu) {
+    if (this.mode !== 'country' || !this.fitScale || !Number.isFinite(lieu?.x)) return;
+    const [, hi] = this.zoomLimits();
+    const k = Math.min(hi, Math.max(this.transform.k, this.fitScale * 3));
+    const vp = this.viewport();
+    this.lieuActif = this.lieux.findIndex((l) => l.x === lieu.x && l.y === lieu.y && l.nom === lieu.nom);
+    this.animateTo({ k, x: (vp.x0 + vp.x1) / 2 - lieu.x * k, y: (vp.y0 + vp.y1) / 2 - lieu.y * k });
+    this.refreshOverlay();
+  }
+
   /** Zoom par palier, centré sur le milieu de l'écran. */
   zoomBy(factor) {
     const vp = this.viewport();
@@ -997,6 +1013,7 @@ export class MapView {
    */
   showLieux(lieux = [], { fit = true } = {}) {
     this.lieux = lieux;
+    this.lieuActif = -1;
     this.cadrerSolo({ fit });
   }
 
@@ -1390,13 +1407,18 @@ export class MapView {
     } else if (kind === 'lieu') {
       // Un lieu marqué n'est pas un saint : pas de croix, pas de médaillon —
       // une perle, plus discrète, qui entoure la croix sans lui disputer l'œil.
-      // Elle ne s'ouvre pas non plus : il n'y a pas de fiche derrière, et un
-      // repère qui ne mène nulle part ne doit pas se donner l'air d'un bouton.
+      // Elle n'ouvre pas de fiche — il n'y en a pas derrière —, mais la toucher
+      // y mène : la carte la centre et s'en approche.
       node.append(
         el('circle', { class: 'marker__halo', r: 12 }),
         el('circle', { class: 'marker__perle', r: 6 }),
       );
       node.dataset.quoi = lieu.quoi;
+      // Toucher un lieu y mène : la carte le centre et s'en approche.
+      node.dataset.lieu = String(index);
+      node.setAttribute('role', 'button');
+      node.setAttribute('tabindex', '0');
+      if (index === this.lieuActif) node.classList.add('is-active');
     } else {
       // Un médaillon : disque clair pour détacher le repère de la carte,
       // écusson coloré, croix blanche. Trois pièces plutôt qu'une image, pour
@@ -1869,6 +1891,13 @@ export class MapView {
         // et d'aboutir à un point posé hors du pays déclaré.
         country: target.closest?.('[data-country]')?.dataset.country || null,
       });
+      return;
+    }
+
+    const perle = target.closest?.('[data-lieu]');
+    if (perle) {
+      const lieu = this.lieux[Number(perle.dataset.lieu)];
+      if (lieu) this.goToLieu(lieu);
       return;
     }
 

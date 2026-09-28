@@ -556,8 +556,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 /* Un lieu marqué par le saint : une perle, non une croix. Elle entoure le saint
-   ouvert sans lui disputer l'œil — c'est lui qu'on est venu voir — et ne mène
-   nulle part, d'où le curseur qui ne promet rien. */
+   ouvert sans lui disputer l'œil — c'est lui qu'on est venu voir. La toucher
+   y mène la carte. */
 /* Un voisin : le même médaillon qu'un saint, dans le violet des autres vies, et
    un peu en retrait — c'est la vie qu'on lit qui doit rester au premier plan.
    Il s'ouvre comme n'importe quelle croix : c'est tout l'intérêt. */
@@ -567,7 +567,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .marker--croise { opacity: 0.88; }
 .marker--croise:hover, .marker--croise:focus-visible { opacity: 1; }
 
-.marker--lieu { cursor: default; }
 .marker--lieu .marker__perle {
   fill: var(--lieu);
   stroke: var(--panel);
@@ -2334,3 +2333,17 @@ a.btn {
 }
 .lieu-edit__remove { color: var(--accent); }
 .lieux-edit > .btn { justify-self: start; margin-top: 0.4rem; }
+
+/* Un lieu de la liste se touche : il mène la carte jusqu'à lui. */
+.detail__lieu {
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 120ms ease;
+}
+.detail__lieu:hover,
+.detail__lieu:focus-visible { background: rgb(63 125 104 / 12%); outline: none; }
+
+/* Et sur la carte, sa perle aussi ; celle qu'on vient de rejoindre s'allume. */
+.marker--lieu { cursor: pointer; }
+.marker--lieu.is-active .marker__halo { opacity: 0.55; }
+.marker--lieu.is-active .marker__perle { stroke: var(--panel); stroke-width: 2.5; }

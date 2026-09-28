@@ -401,6 +401,7 @@ export default {
     show: ['Show the {n} places he marked', 'Show the {n} places she marked'],
     showOne: ['Show the place he marked', 'Show the place she marked'],
     hide: 'Hide these places',
+    goto: 'Show this place on the map',
     sepulture: 'Burial',
     mort: 'Place of death',
     fondation: 'Foundation',

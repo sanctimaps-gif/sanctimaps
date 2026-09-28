@@ -109,6 +109,8 @@ async function start() {
       map.showLieux(lieux);
       topBar.set({ lieux: lieux.length > 0 });
     },
+    // Un lieu touché dans la liste : la carte y va.
+    onLieu: (lieu) => map.goToLieu(lieu),
     // Et ceux qu'il a pu croiser : mêmes croix que les autres saints, dans la
     // couleur des voisins, et qui s'ouvrent comme eux.
     onCroises: (saints) => {

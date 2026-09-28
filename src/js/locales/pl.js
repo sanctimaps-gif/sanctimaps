@@ -401,6 +401,7 @@ export default {
     show: ['Pokaż {n} miejsc, które naznaczył', 'Pokaż {n} miejsc, które naznaczyła'],
     showOne: ['Pokaż miejsce, które naznaczył', 'Pokaż miejsce, które naznaczyła'],
     hide: 'Ukryj te miejsca',
+    goto: 'Pokaż to miejsce na mapie',
     sepulture: 'Grób',
     mort: 'Miejsce śmierci',
     fondation: 'Fundacja',

@@ -401,6 +401,7 @@ export default {
     show: 'Ver os {n} lugares que marcou',
     showOne: 'Ver o lugar que marcou',
     hide: 'Ocultar estes lugares',
+    goto: 'Ver este lugar no mapa',
     sepulture: 'Sepultura',
     mort: 'Local de morte',
     fondation: 'Fundação',

@@ -401,6 +401,7 @@ export default {
     show: ['Die {n} Orte zeigen, die er geprägt hat', 'Die {n} Orte zeigen, die sie geprägt hat'],
     showOne: ['Den Ort zeigen, den er geprägt hat', 'Den Ort zeigen, den sie geprägt hat'],
     hide: 'Diese Orte ausblenden',
+    goto: 'Diesen Ort auf der Karte zeigen',
     sepulture: 'Grabstätte',
     mort: 'Sterbeort',
     fondation: 'Gründung',

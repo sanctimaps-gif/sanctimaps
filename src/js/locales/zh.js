@@ -401,6 +401,7 @@ export default {
     show: ['显示他留下印记的 {n} 处地方', '显示她留下印记的 {n} 处地方'],
     showOne: ['显示他留下印记的地方', '显示她留下印记的地方'],
     hide: '隐藏这些地方',
+    goto: '在地图上查看此地',
     sepulture: '安葬地',
     mort: '逝世地',
     fondation: '创建',

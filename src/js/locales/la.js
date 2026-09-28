@@ -401,6 +401,7 @@ export default {
     show: ['Loca ab eo signata monstrare: {n}', 'Loca ab ea signata monstrare: {n}'],
     showOne: ['Locum ab eo signatum monstrare', 'Locum ab ea signatum monstrare'],
     hide: 'Haec loca abscondere',
+    goto: 'Hunc locum in tabula ostendere',
     sepulture: 'Sepultura',
     mort: 'Locus mortis',
     fondation: 'Fundatio',
