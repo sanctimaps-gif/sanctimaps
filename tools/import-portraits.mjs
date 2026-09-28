@@ -43,6 +43,8 @@ const GEN = join(ROOT, 'data', 'generated');
 const MOTS_VIDES = new Set(['miracle', 'miracles', 'eucharistique', 'eucharistic', 'apparition',
   'apparitions', 'mariale', 'mariales', 'marian', 'notre', 'dame', 'lady', 'saint', 'sainte',
   'saints', 'holy', 'sacre', 'sainte', 'avec', 'dans', 'pour', 'from', 'with', 'the']);
+/** Un drapeau, une carte, un blason, un logo : l'article d'une ville en donne souvent. */
+const PAS_UN_PORTRAIT = /\.svg$|flag|bandera|bandiera|drapeau|vlag|flagge|map_of|location_map|karte|coat_of_arms|blason|wappen|stemma|escudo|logo/i;
 const plier = (s) => String(s || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
 
 /**
@@ -69,7 +71,7 @@ async function imageParArticle(fiche, pause) {
     const pages = Object.values((await res.json())?.query?.pages || {}).sort((a, b) => a.index - b.index);
     for (const page of pages) {
       const mots = plier(page.title).split(/[^a-z0-9]+/);
-      if (page.pageimage && mots.some((m) => distinctifs.has(m))) {
+      if (page.pageimage && !PAS_UN_PORTRAIT.test(page.pageimage) && mots.some((m) => distinctifs.has(m))) {
         return { fichier: page.pageimage.replace(/_/g, ' '), article: `${lang}:${page.title}` };
       }
     }

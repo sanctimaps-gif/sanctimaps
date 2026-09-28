@@ -1,0 +1,19 @@
+{
+ "note": "Images que le relevé a trouvées mais qui ne montrent pas la bonne chose, écartées à la main. La fiche garde alors son emblème. Les drapeaux, cartes, blasons et logos sont écartés d'office par tools/import-portraits.mjs et build-data, sans figurer ici.",
+ "ecartes": {
+  "ap-christ-saint-martin-amiens": "Photographie de Martin Scorsese, ramenée par le prénom",
+  "ap-christ-saint-jean-de-la-croix-segovie": "Saint François embrassant le Christ, non saint Jean de la Croix",
+  "ap-saint-francois-la-verna": "Image sans rapport (Carbonero)",
+  "ap-saint-michel-tlaxcala": "Saint Diego d'Alcalá, non l'apparition de Tlaxcala",
+  "ap-saint-joseph-cotignac": "Statue d'Espaly, non Cotignac",
+  "ap-notre-dame-de-toute-aide-querrien": "Église des Forges, non Querrien",
+  "ap-apparitions-mariales-de-notre-dame-de-guadal-q10860927": "Église du Christ-Roi de Tres Valles, non Guadalupe",
+  "eu-alatri-1228": "Cathédrale d'Anagni, non Alatri",
+  "eu-bergen-1421": "Portrait de Véronique Bergen, ramené par le nom",
+  "eu-roma-595": "Insigne de l'ordre de Saint-Grégoire",
+  "eu-rimini-1227": "Montage touristique de la ville",
+  "eu-santarem-1247": "Image sans rapport avec le miracle",
+  "eu-tixtla-2006": "Photographie d'un cavalier, sans rapport",
+  "eu-zaragoza-1427": "Drapeau de Daroca, non Saragosse"
+ }
+}

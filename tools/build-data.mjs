@@ -538,6 +538,7 @@ const PATRONAGE_FILE = 'patronages.json';
 // un fichier du dossier des saints qui ne contient pas de saints.
 const STATUT_FILE = 'statuts.json';
 const PORTRAIT_FILE = 'portraits.json';
+const PORTRAIT_ECARTES_FILE = 'portraits-ecartes.json';
 const LIEUX_DESC_FILE = 'lieux-descriptions.json';
 const LIEUX_DESC_FR_FILE = 'lieux-descriptions-fr.json';
 const LIEUX_MAIN_FILE = 'lieux-main.json';
@@ -594,7 +595,7 @@ try {
 
 for (const file of readdirSync(SAINTS_DIR)
   .filter((f) => f.endsWith('.json')
-    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, PORTRAIT_FILE, LIEUX_DESC_FILE, LIEUX_DESC_FR_FILE, LIEUX_MAIN_FILE, BIOS_IMPORTEES_FILE,
+    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, PORTRAIT_FILE, PORTRAIT_ECARTES_FILE, LIEUX_DESC_FILE, LIEUX_DESC_FR_FILE, LIEUX_MAIN_FILE, BIOS_IMPORTEES_FILE,
       LIEUX_FILE, NOTABLES_FILE, VOYANTS_FILE, LIENS_FILE,
       NOTES_FILE, ECARTES_FILE].includes(f))
   .sort()) {
@@ -879,9 +880,17 @@ let portraitsPoses = 0;
  * thumb.wikimedia.org ; rien d'autre n'entre dans une page. Les paramètres de
  * suivi qu'il ajoute (« utm_… ») n'ont rien à faire dans l'adresse d'une image.
  */
+let portraitsEcartes = {};
+try {
+  portraitsEcartes = JSON.parse(readFileSync(join(SAINTS_DIR, PORTRAIT_ECARTES_FILE), 'utf8')).ecartes || {};
+} catch { /* rien d'écarté */ }
+// Un drapeau, une carte, un blason ou un logo ne sont pas l'image d'un saint ni
+// d'un miracle : l'article d'une ville les donne souvent, et on les écarte d'office.
+const PAS_UN_PORTRAIT = /\.svg$|flag|bandera|bandiera|drapeau|vlag|flagge|map_of|location_map|karte|coat_of_arms|blason|wappen|stemma|escudo|logo/i;
 function poserPortrait(fiche) {
   const p = portraits[fiche.id];
   if (!p?.src || !/^https:\/\/(upload|thumb)\.wikimedia\.org\//.test(p.src)) return false;
+  if (portraitsEcartes[fiche.id] || PAS_UN_PORTRAIT.test(decodeURIComponent(p.page || p.src))) return false;
   fiche.portrait = { ...p, src: p.src.replace(/\?utm_[^#]*$/, '') };
   return true;
 }
