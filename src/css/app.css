@@ -548,6 +548,20 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .marker.has-emblem .marker__cross,
 .marker.has-emblem .marker__hostie { display: none; }
 
+/* Le portrait dans le médaillon : l'écusson et l'attribut s'effacent, et
+   l'anneau prend la couleur du corpus — rouge d'un saint, bleu d'une
+   apparition, or d'un miracle, terre cuite d'un saint venu d'ailleurs —, pour
+   qu'on lise encore d'un coup d'œil ce que le repère désigne. */
+.marker__photo { pointer-events: none; }
+.marker.has-photo .marker__badge,
+.marker.has-photo .marker__emblem { display: none; }
+.marker--saint.has-photo .marker__ring { stroke: var(--birth); stroke-width: 2.2; }
+.marker--apparition.has-photo .marker__ring { stroke: var(--apparition); }
+.marker--miracle.has-photo .marker__ring { stroke: var(--miracle); }
+.marker--venu.has-photo .marker__ring { stroke: var(--marque-ink); }
+.marker--croise.has-photo .marker__ring { stroke: var(--croise); }
+.marker--saint.has-photo.is-active .marker__ring { stroke: var(--ink); stroke-width: 2.6; }
+
 .marker--miracle .marker__hostie {
   display: inline;
   fill: none;

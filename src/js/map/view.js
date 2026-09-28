@@ -190,6 +190,16 @@ function el(name, attrs = {}) {
   return node;
 }
 
+/**
+ * La vignette d'un portrait, à la taille d'un médaillon de carte. Commons sert
+ * ses vignettes à des largeurs normalisées : on demande la plus petite qui reste
+ * nette sur un écran dense.
+ */
+function vignette(src) {
+  if (!src || !/^https:\/\/(upload|thumb)\.wikimedia\.org\//.test(src)) return null;
+  return src.replace(/\/(\d+)px-([^/]+)$/, '/120px-$2');
+}
+
 function grow(bbox, factor) {
   const dx = (bbox[2] - bbox[0]) * factor;
   const dy = (bbox[3] - bbox[1]) * factor;
@@ -228,6 +238,9 @@ export class MapView {
 
     this.build();
     this.buildControls();
+    // Les portraits des saints arrivent avec les textes longs, après la carte :
+    // les médaillons déjà posés se redessinent alors avec leur image.
+    this.atlas.onTextsReady?.(() => { if (this.mode === 'country') this.refreshOverlay(); });
     this.bindPointer();
     this.bindKeys();
 
@@ -265,6 +278,11 @@ export class MapView {
     clip.append(el('rect', frame));
     const defs = el('defs');
     defs.append(clip);
+    // Le médaillon d'un portrait : un disque, mesuré sur l'image elle-même,
+    // de sorte qu'un seul découpage serve à tous les repères.
+    const medaillon = el('clipPath', { id: 'sanctimaps-medaillon', clipPathUnits: 'objectBoundingBox' });
+    medaillon.append(el('circle', { cx: 0.5, cy: 0.5, r: 0.5 }));
+    defs.append(medaillon);
 
     this.countryLayer = el('g', { class: 'countries' });
     this.tileLayer = el('g', { class: 'tiles' });
@@ -1448,6 +1466,22 @@ export class MapView {
         emblem.append(...emblemParts(emblemOf(group[0])));
         node.append(emblem);
         node.classList.add('has-emblem');
+        // Et quand on connaît son image — l'icône, la fresque, la photographie —,
+        // c'est elle que montre le médaillon, cerclé de la couleur de son corpus.
+        // Une petite vignette suffit : le médaillon fait vingt pixels.
+        const src = vignette(group[0].portrait?.src);
+        if (src) {
+          const photo = el('image', {
+            class: 'marker__photo',
+            href: src,
+            x: -10, y: -10, width: 20, height: 20,
+            preserveAspectRatio: 'xMidYMin slice',
+            'clip-path': 'url(#sanctimaps-medaillon)',
+          });
+          photo.addEventListener('error', () => { photo.remove(); node.classList.remove('has-photo'); }, { once: true });
+          node.append(photo);
+          node.classList.add('has-photo');
+        }
       }
       if (group.length > 1) {
         // Une pastille dit combien de saints le repère recouvre : sans elle,
