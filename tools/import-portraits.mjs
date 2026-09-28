@@ -24,7 +24,7 @@
  * CC BY-SA, et elles ne se reprennent qu'avec lui.
  */
 
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -34,6 +34,48 @@ import { lireCorpus } from './lib/corpus.mjs';
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(ROOT, 'data', 'saints', 'portraits.json');
 const COMMONS = 'https://commons.wikimedia.org/w/api.php';
+const GEN = join(ROOT, 'data', 'generated');
+
+/**
+ * Les mots qui ne distinguent rien : un article dont le titre ne partage avec
+ * la fiche que « miracle » ou « Notre-Dame » n'est pas le bon.
+ */
+const MOTS_VIDES = new Set(['miracle', 'miracles', 'eucharistique', 'eucharistic', 'apparition',
+  'apparitions', 'mariale', 'mariales', 'marian', 'notre', 'dame', 'lady', 'saint', 'sainte',
+  'saints', 'holy', 'sacre', 'sainte', 'avec', 'dans', 'pour', 'from', 'with', 'the']);
+const plier = (s) => String(s || '').normalize('NFD').replace(/\p{Diacritic}/gu, '').toLowerCase();
+
+/**
+ * L'image d'une apparition ou d'un miracle sans identifiant Wikidata : l'image
+ * principale de l'article Wikipédia qui lui correspond, en français puis en
+ * anglais. L'article n'est retenu que si son titre partage avec la fiche un mot
+ * qui la distingue — le lieu, presque toujours —, sans quoi « Miracle
+ * eucharistique de Blanot » aurait pu ramener n'importe quel autre miracle.
+ */
+async function imageParArticle(fiche, pause) {
+  const noms = typeof fiche.name === 'object' ? fiche.name : { fr: fiche.name };
+  const distinctifs = new Set([...plier(`${noms.fr || ''} ${noms.en || ''} ${fiche.city || ''}`)
+    .split(/[^a-z0-9]+/)].filter((m) => m.length >= 4 && !MOTS_VIDES.has(m)));
+  for (const lang of ['fr', 'en']) {
+    const requete = noms[lang] || noms.fr || noms.en;
+    if (!requete) continue;
+    const params = new URLSearchParams({
+      action: 'query', format: 'json', generator: 'search', gsrsearch: requete, gsrlimit: '3',
+      prop: 'pageimages', piprop: 'name', pilicense: 'free',
+    });
+    const res = await fetch(`https://${lang}.wikipedia.org/w/api.php?${params}`, { headers: { 'User-Agent': AGENT } });
+    await sleep(pause);
+    if (!res.ok) continue;
+    const pages = Object.values((await res.json())?.query?.pages || {}).sort((a, b) => a.index - b.index);
+    for (const page of pages) {
+      const mots = plier(page.title).split(/[^a-z0-9]+/);
+      if (page.pageimage && mots.some((m) => distinctifs.has(m))) {
+        return { fichier: page.pageimage.replace(/_/g, ' '), article: `${lang}:${page.title}` };
+      }
+    }
+  }
+  return null;
+}
 
 const DEFAULTS = {
   endpoint: 'https://query.wikidata.org/sparql', lot: 250, largeur: 480, dryRun: false, pause: 300,
@@ -124,8 +166,25 @@ async function main() {
     if (!parQid.has(qid)) parQid.set(qid, []);
     parQid.get(qid).push(saint.id);
   }
+  // Les apparitions et les miracles : ceux qui ont un identifiant Wikidata
+  // passent par le même chemin que les saints ; les autres par Wikipédia.
+  const lire = (fichier, cle) => {
+    try { return JSON.parse(readFileSync(join(GEN, fichier), 'utf8'))[cle] || []; } catch { return []; }
+  };
+  const autres = [...lire('apparitions.json', 'apparitions'), ...lire('miracles.json', 'miracles')]
+    // Une accusation portée comme miracle ne reçoit pas d'image : la fiche
+    // dit une calomnie, elle n'a pas à l'illustrer.
+    .filter((f) => f.nature !== 'calomnie');
+  const sansQid = [];
+  for (const fiche of autres) {
+    const qid = qidDe(fiche);
+    if (!qid) { sansQid.push(fiche); continue; }
+    if (!parQid.has(qid)) parQid.set(qid, []);
+    parQid.get(qid).push(fiche.id);
+  }
   const qids = [...parQid.keys()];
-  console.log(`${saints.length} fiches, dont ${qids.length} avec un identifiant Wikidata.`);
+  console.log(`${saints.length} saints et ${autres.length} apparitions et miracles ;`
+    + ` ${qids.length} identifiants Wikidata, ${sansQid.length} fiches à chercher sur Wikipédia.`);
 
   // 1. Le nom du fichier, par Wikidata.
   const fichierParQid = new Map();
@@ -144,8 +203,22 @@ async function main() {
   }
   console.log(`${fichierParQid.size} éléments portent une image.`);
 
+  // 1 bis. Les apparitions et miracles sans identifiant : l'image de leur article.
+  const fichierParId = new Map();
+  for (const [i, fiche] of sansQid.entries()) {
+    try {
+      const trouve = await imageParArticle(fiche, options.pause);
+      if (trouve) {
+        fichierParId.set(fiche.id, trouve.fichier);
+        console.log(`  ${fiche.id} ← ${trouve.article} — ${trouve.fichier}`);
+      }
+    } catch { /* un article introuvable ne bloque pas les autres */ }
+    progress(`  Wikipédia : ${i + 1} / ${sansQid.length}`, { done: i + 1 === sansQid.length });
+  }
+  console.log(`${fichierParId.size} apparitions et miracles trouvés par leur article.`);
+
   // 2. La vignette et le crédit, par Commons — cinquante fichiers par appel.
-  const fichiers = [...new Set(fichierParQid.values())];
+  const fichiers = [...new Set([...fichierParQid.values(), ...fichierParId.values()])];
   const infoParFichier = new Map();
   for (let i = 0; i < fichiers.length; i += 50) {
     const lot = fichiers.slice(i, i + 50);
@@ -176,6 +249,10 @@ async function main() {
     const info = infoParFichier.get(fichier);
     if (!info) continue;
     for (const id of parQid.get(qid) || []) portraits[id] = info;
+  }
+  for (const [id, fichier] of fichierParId) {
+    const info = infoParFichier.get(fichier);
+    if (info) portraits[id] = info;
   }
   console.log(`\nPortraits relevés : ${Object.keys(portraits).length} fiches`
     + ` sur ${saints.length}`);

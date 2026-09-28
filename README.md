@@ -1252,7 +1252,11 @@ d'avertissement (champ `nature: "calomnie"`), non l'ostensoir.
 Quand la fiche s'ouvre, l'emblème cède la place au **portrait** : l'icône, la
 fresque ou le tableau que Wikidata désigne pour ce saint (propriété P18),
 demandé à Wikimedia Commons depuis le navigateur, à l'ouverture seulement, et
-gardé ensuite dans le navigateur (`src/js/portrait.js`). L'atelier « Relever les
+gardé ensuite dans le navigateur (`src/js/portrait.js`). Les apparitions et les miracles ont aussi la
+leur : par leur identifiant Wikidata quand ils en ont un, sinon par l'image
+principale de leur article Wikipédia, retenu seulement si son titre partage
+avec la fiche un mot qui la distingue — le lieu, presque toujours. Les cinq
+accusations de profanation n'en reçoivent pas. L'atelier « Relever les
 icônes des saints » (`tools/import-portraits.mjs`, une fois par mois) les relève
 d'avance dans `data/saints/portraits.json` : la carte n'a alors plus rien à
 demander, et chaque page de biographie (`saints/<nom>/`) porte l'icône en tête. Le crédit l'accompagne

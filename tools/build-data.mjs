@@ -873,16 +873,19 @@ try {
   portraits = JSON.parse(readFileSync(join(SAINTS_DIR, PORTRAIT_FILE), 'utf8')).portraits || {};
 } catch { /* pas encore relevés : l'application les demandera elle-même */ }
 let portraitsPoses = 0;
-for (const saint of saints) {
-  const p = portraits[saint.id];
-  // Commons sert ses vignettes depuis upload.wikimedia.org ou thumb.wikimedia.org ;
-  // rien d'autre n'entre dans une page. Les paramètres de suivi qu'il ajoute
-  // (« utm_… ») n'ont rien à faire dans l'adresse d'une image.
-  if (p?.src && /^https:\/\/(upload|thumb)\.wikimedia\.org\//.test(p.src)) {
-    saint.portrait = { ...p, src: p.src.replace(/\?utm_[^#]*$/, '') };
-    portraitsPoses += 1;
-  }
+/**
+ * Pose son image sur une fiche — saint, apparition ou miracle —, si le relevé
+ * en a trouvé une. Commons sert ses vignettes depuis upload.wikimedia.org ou
+ * thumb.wikimedia.org ; rien d'autre n'entre dans une page. Les paramètres de
+ * suivi qu'il ajoute (« utm_… ») n'ont rien à faire dans l'adresse d'une image.
+ */
+function poserPortrait(fiche) {
+  const p = portraits[fiche.id];
+  if (!p?.src || !/^https:\/\/(upload|thumb)\.wikimedia\.org\//.test(p.src)) return false;
+  fiche.portrait = { ...p, src: p.src.replace(/\?utm_[^#]*$/, '') };
+  return true;
 }
+for (const saint of saints) if (poserPortrait(saint)) portraitsPoses += 1;
 if (Object.keys(portraits).length) console.log(`  portraits : ${portraitsPoses} fiches ont leur icône`);
 
 const leger = [];
@@ -1416,6 +1419,8 @@ try {
   }
 } catch { /* pas de table des voyants */ }
 
+const appaImagees = apparitions.filter(poserPortrait).length;
+if (appaImagees) console.log(`  apparitions : ${appaImagees} ont leur image`);
 writeFileSync(join(OUT, 'apparitions.json'), JSON.stringify({ apparitions }));
 console.log(`  apparitions.json : ${apparitions.length} apparitions`);
 
@@ -1501,6 +1506,8 @@ if (miracleErrors.length) {
 }
 
 miracles.sort((a, b) => a.annee - b.annee);
+const miraclesImages = miracles.filter(poserPortrait).length;
+if (miraclesImages) console.log(`  miracles : ${miraclesImages} ont leur image`);
 writeFileSync(join(OUT, 'miracles.json'), JSON.stringify({ miracles }));
 console.log(`  miracles.json : ${miracles.length} miracles eucharistiques`
   + `, ${new Set(miracles.map((m) => m.country)).size} pays`);
