@@ -932,7 +932,8 @@ export class MapView {
       const path = el('path', {
         // Le contour fin reprend la couleur du pays : ouvrir un pays ne doit
         // pas lui faire perdre le signal « compte des saints ».
-        class: `country-detail${this.atlas.countryHasPoints(id) ? ' has-saints' : ''}`,
+        class: `country-detail${this.atlas.countryHasPoints(id) ? ' has-saints' : ''}`
+          + `${this.atlas.countryMarkedBy(id).length ? ' is-marked' : ''}`,
         d: detail.d,
         'fill-rule': 'evenodd',
         'vector-effect': 'non-scaling-stroke',
@@ -1089,11 +1090,15 @@ export class MapView {
     const outline = this.detailLayer.firstChild;
     if (outline && this.countryId) {
       outline.classList.toggle('has-saints', this.atlas.countryHasPoints(this.countryId));
+      outline.classList.toggle('is-marked', this.atlas.countryMarkedBy(this.countryId).length > 0);
     }
     for (const country of this.atlas.countries) {
       const path = this.paths.get(country.id);
       const has = this.atlas.countryHasPoints(country.id);
       path.classList.toggle('has-saints', has);
+      // Sans saint natif, mais marqué par un saint venu d'ailleurs : une autre
+      // teinte, pour ne pas le laisser dans le beige des terres vides.
+      path.classList.toggle('is-marked', !has && this.atlas.countryMarkedBy(country.id).length > 0);
       path.classList.toggle('is-selected', this.mode === 'country' && country.id === this.countryId);
       path.classList.toggle(
         'is-muted',

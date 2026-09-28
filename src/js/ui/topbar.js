@@ -123,8 +123,14 @@ export class TopBar {
         : miracles
           ? ['misc.noMiracleHere', 'misc.miracleHere', 'misc.miraclesHere']
           : ['misc.noneHere', 'misc.saintHere', 'misc.saintsHere'];
-      this.hint.textContent = n === 0 ? t(cles[0])
-        : n === 1 ? t(cles[1]) : t(cles[2], { n: formatNumber(n) });
+      // Un pays sans saint natif peut avoir été marqué par un saint venu
+      // d'ailleurs : on le nomme, plutôt que de dire qu'il n'y a rien.
+      const venus = n === 0 ? this.atlas.countryMarkedBy(countryId) : [];
+      const noms = venus.slice(0, 3).map((s) => this.atlas.saintName(s, lang)).join(', ')
+        + (venus.length > 3 ? '…' : '');
+      this.hint.textContent = venus.length ? t('misc.markedHere', { names: noms })
+        : n === 0 ? t(cles[0])
+          : n === 1 ? t(cles[1]) : t(cles[2], { n: formatNumber(n) });
     } else {
       this.hint.textContent = '';
     }
@@ -134,6 +140,11 @@ export class TopBar {
       h('h2', { class: 'legend__title', text: t('legend.title') }),
       h('ul', { class: 'legend__list' },
         h('li', {}, h('i', { class: 'swatch swatch--saints' }), t(`legend.with${suff}`)),
+        // Les pays marqués par un saint né ailleurs n'ont de sens qu'au corpus
+        // des saints : les apparitions et les miracles ont leur propre carte.
+        !apparitions && !miracles
+          ? h('li', {}, h('i', { class: 'swatch swatch--marque' }), t('legend.marque'))
+          : null,
         h('li', {}, h('i', { class: 'swatch swatch--plain' }), t(`legend.without${suff}`)),
         // La ligne « ville » n'a plus de sens sous un fond de tuiles : c'est
         // lui qui écrit les localités, et nous n'en posons plus aucune.

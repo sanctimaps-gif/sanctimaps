@@ -1532,6 +1532,83 @@ console.log(`    ${notesPosees} lieux disent ce qui s’y est passé`
   + (refuses ? `, ${refuses} lieux refusés à la main` : ''));
 
 // ---------------------------------------------------------------------------
+// Les pays marqués par un saint venu d'ailleurs
+// ---------------------------------------------------------------------------
+
+/**
+ * Un pays sans saint natif n'est pas pour autant un pays sans saint.
+ *
+ * La Mongolie, l'Ouganda des martyrs, le Japon de François Xavier : aucun saint
+ * de la carte n'y est né, mais l'un d'eux y est mort, y est enterré, y a fondé,
+ * prêché, vécu. Laisser ces pays dans le beige des terres vides, c'était dire
+ * qu'il ne s'y était rien passé. On les repère donc ici, à partir des lieux
+ * marqués : chaque lieu est rendu à son pays par le tracé fin de celui-ci, et un
+ * pays qui ne compte aucune naissance mais au moins un lieu marqué entre dans
+ * `marques.json`, avec les saints qui l'ont marqué — le plus présent d'abord.
+ */
+function anneaux(d) {
+  const rings = [];
+  let ring = null;
+  let x = 0;
+  let y = 0;
+  for (const [, cmd, args] of d.matchAll(/([MlZ])([^MlZ]*)/g)) {
+    const n = args.trim() ? args.trim().split(/[\s,]+/).map(Number) : [];
+    if (cmd === 'M') {
+      [x, y] = n;
+      ring = [[x, y]];
+      rings.push(ring);
+      for (let i = 2; i + 1 < n.length; i += 2) { x += n[i]; y += n[i + 1]; ring.push([x, y]); }
+    } else if (cmd === 'l') {
+      for (let i = 0; i + 1 < n.length; i += 2) { x += n[i]; y += n[i + 1]; ring.push([x, y]); }
+    }
+  }
+  return rings;
+}
+
+function dedans(rings, px, py) {
+  let inside = false;
+  for (const r of rings) {
+    for (let i = 0, j = r.length - 1; i < r.length; j = i, i += 1) {
+      const [xi, yi] = r[i];
+      const [xj, yj] = r[j];
+      if ((yi > py) !== (yj > py) && px < ((xj - xi) * (py - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+  }
+  return inside;
+}
+
+const natifs = new Set(saints.map((s) => s.country));
+const sansNatif = countries
+  .filter((c) => !natifs.has(c.id))
+  .map((c) => ({ id: c.id, bbox: detailFiles.get(c.id).bbox, rings: anneaux(detailFiles.get(c.id).d) }));
+// Y avoir étudié ne marque pas un pays comme y être mort, enterré, avoir fondé
+// ou vécu : un passage à l'université ne suffit pas à le colorer.
+const MARQUANTS = new Set(['mort', 'sepulture', 'fondation', 'residence', 'oeuvre',
+  'enfance', 'apparition', 'miracle', 'predilection']);
+const marques = {};
+for (const [id, places] of Object.entries(lieuxSortie)) {
+  for (const place of places) {
+    if (!MARQUANTS.has(place.quoi)) continue;
+    for (const px of [place.x, place.x + WORLD_SIZE, place.x - WORLD_SIZE]) {
+      const pays = sansNatif.find((c) => px >= c.bbox[0] && px <= c.bbox[2]
+        && place.y >= c.bbox[1] && place.y <= c.bbox[3] && dedans(c.rings, px, place.y));
+      if (!pays) continue;
+      const parSaint = (marques[pays.id] ||= {});
+      parSaint[id] = (parSaint[id] || 0) + 1;
+      break;
+    }
+  }
+}
+const marquesSortie = Object.fromEntries(Object.entries(marques)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([pays, parSaint]) => [pays, Object.entries(parSaint)
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .map(([id]) => id)]));
+writeFileSync(join(OUT, 'marques.json'), JSON.stringify({ marques: marquesSortie }));
+console.log(`  marques.json : ${Object.keys(marquesSortie).length} pays sans saint natif,`
+  + ' marqués par un saint venu d’ailleurs');
+
+// ---------------------------------------------------------------------------
 // Fond documentaire de l'assistant expert
 // ---------------------------------------------------------------------------
 

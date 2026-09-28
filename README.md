@@ -1188,6 +1188,21 @@ qui portent en outre une hostie au lieu d'une croix : la couleur se reconnaît
 d'un coup d'œil, mais elle ne se lit pas quand on est daltonien, et le troisième
 corpus avait de la place pour un signe. La légende suit la bascule.
 
+## Les pays marqués par un saint venu d'ailleurs
+
+Un pays où aucun saint de la carte n'est né n'est pas forcément un pays sans
+saint : Charles de Foucauld au Maroc, Irene Stefani au Kenya, Pierre Chanel à
+Wallis-et-Futuna, Joseph Vaz au Sri Lanka. Ces pays prennent une **terre cuite**,
+entre l'or des pays qui comptent des saints et le beige des terres vides, et la
+légende le dit : « Marqué par un saint né ailleurs ». Entrer dans l'un d'eux
+nomme ceux qui l'ont marqué.
+
+`build-data` rend chaque lieu marqué à son pays par le tracé fin de celui-ci, et
+retient les pays sans naissance où un saint est mort, enterré, a fondé, vécu ou
+œuvré — non ceux où il n'a qu'étudié. Le résultat tient dans
+`data/generated/marques.json`, une vingtaine de lignes. Dès qu'un saint naît
+dans l'un de ces pays, il reprend l'or des autres.
+
 ## Les emblèmes
 
 Chaque fiche porte une petite image, sur la carte, dans les listes et en tête de

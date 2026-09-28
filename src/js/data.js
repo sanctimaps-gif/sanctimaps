@@ -138,7 +138,7 @@ function readStore() {
  * corpus d'origine en effaçant simplement cette couche.
  */
 export class Atlas {
-  constructor({ world, countryNames, saints, apparitions, miracles }) {
+  constructor({ world, countryNames, saints, apparitions, miracles, marques }) {
     this.worldSize = world.worldSize;
     this.bounds = world.bounds;
     this.continents = world.continents;
@@ -149,6 +149,7 @@ export class Atlas {
     this.continentById = new Map(this.continents.map((c) => [c.id, c]));
     this.baseSaints = saints.saints.map((s) => ({ ...s, status: PUBLISHED }));
     this.baseById = new Map(this.baseSaints.map((s) => [s.id, s]));
+    this.marques = marques?.marques || {};
 
     // -- les deux autres corpus ----------------------------------------------
     //
@@ -753,6 +754,16 @@ export class Atlas {
     return this.index[this.corpus].byCountry.has(countryId);
   }
 
+  /**
+   * Les saints qui ont marqué un pays où aucun d'eux n'est né — mort, sépulture,
+   * fondation, vie —, le plus présent d'abord. Vide hors du corpus des saints, et
+   * dès qu'un saint y est né : le pays prend alors la couleur des autres.
+   */
+  countryMarkedBy(countryId) {
+    if (this.corpus !== 'saints' || this.countryHasPoints(countryId)) return [];
+    return (this.marques[countryId] || []).map((id) => this.index.saints.byId.get(id)).filter(Boolean);
+  }
+
   /** Une fiche par son identifiant, dans le corpus courant puis dans les autres. */
   pointById(id) {
     const trouve = this.index[this.corpus].byId.get(id);
@@ -856,7 +867,7 @@ export class Atlas {
  * avant que rien ne s'affiche ; il en pèse trois cents kilooctets.
  */
 export async function loadAtlas() {
-  const [world, countryNames, saints, apparitions, miracles] = await Promise.all([
+  const [world, countryNames, saints, apparitions, miracles, marques] = await Promise.all([
     getJSON(`${BASE}/world.json`),
     getJSON(`${BASE}/country-names.json`),
     getJSON(`${BASE}/saints.json`),
@@ -867,6 +878,9 @@ export async function loadAtlas() {
     // a rien de recensé.
     getJSON(`${BASE}/apparitions.json`).catch(() => ({ apparitions: [] })),
     getJSON(`${BASE}/miracles.json`).catch(() => ({ miracles: [] })),
+    // Les pays sans saint natif mais marqués par un saint venu d'ailleurs : une
+    // vingtaine de lignes, qui ne retiennent rien si elles manquent.
+    getJSON(`${BASE}/marques.json`).catch(() => ({ marques: {} })),
   ]);
-  return new Atlas({ world, countryNames, saints, apparitions, miracles });
+  return new Atlas({ world, countryNames, saints, apparitions, miracles, marques });
 }
