@@ -129,6 +129,7 @@
     },
     {
       "id": "ap-annonciation-nazareth",
+      "qui": "ange",
       "name": { "fr": "L'Annonciation : l'ange Gabriel à Marie", "en": "The Annunciation: the angel Gabriel to Mary" },
       "city": "Nazareth",
       "country": "ISR",
@@ -143,6 +144,7 @@
     },
     {
       "id": "ap-saint-michel-mont-gargan",
+      "qui": "ange",
       "name": { "fr": "Saint Michel au mont Gargan", "en": "Saint Michael on Mount Gargano", "it": "San Michele sul Gargano" },
       "city": "Monte Sant’Angelo",
       "country": "ITA",
@@ -157,6 +159,7 @@
     },
     {
       "id": "ap-saint-michel-chateau-saint-ange",
+      "qui": "ange",
       "name": { "fr": "Saint Michel au château Saint-Ange", "en": "Saint Michael at Castel Sant’Angelo" },
       "city": "Rome",
       "country": "ITA",
@@ -170,6 +173,7 @@
     },
     {
       "id": "ap-saint-michel-saint-aubert",
+      "qui": "ange",
       "name": { "fr": "Saint Michel à saint Aubert", "en": "Saint Michael to Saint Aubert" },
       "city": "Le Mont-Saint-Michel",
       "country": "FRA",
@@ -184,6 +188,7 @@
     },
     {
       "id": "ap-saint-michel-jeanne-d-arc",
+      "qui": "ange",
       "name": { "fr": "Saint Michel, sainte Catherine et sainte Marguerite à Jeanne d'Arc", "en": "Saint Michael, Saint Catherine and Saint Margaret to Joan of Arc" },
       "city": "Domrémy-la-Pucelle",
       "country": "FRA",
@@ -198,6 +203,7 @@
     },
     {
       "id": "ap-sainte-anne-d-auray",
+      "qui": "saint",
       "name": { "fr": "Sainte Anne à Yves Nicolazic", "en": "Saint Anne to Yves Nicolazic", "br": "Santez Anna Wened" },
       "city": "Sainte-Anne-d’Auray",
       "country": "FRA",
@@ -213,6 +219,7 @@
     },
     {
       "id": "ap-saint-michel-tlaxcala",
+      "qui": "ange",
       "name": { "fr": "Saint Michel à Diego Lázaro", "en": "Saint Michael to Diego Lázaro", "es": "San Miguel del Milagro" },
       "city": "San Miguel del Milagro",
       "country": "MEX",
@@ -226,6 +233,7 @@
     },
     {
       "id": "ap-saint-joseph-cotignac",
+      "qui": "saint",
       "name": { "fr": "Saint Joseph au mont Bessillon", "en": "Saint Joseph on Mount Bessillon" },
       "city": "Cotignac",
       "country": "FRA",
@@ -240,6 +248,7 @@
     },
     {
       "id": "ap-ange-du-portugal-loca-do-cabeco",
+      "qui": "ange",
       "name": { "fr": "L’Ange du Portugal à la Loca do Cabeço", "en": "The Angel of Portugal at the Loca do Cabeço" },
       "city": "Aljustrel",
       "country": "PRT",
@@ -253,6 +262,7 @@
     },
     {
       "id": "ap-christ-marie-madeleine-jerusalem",
+      "qui": "christ",
       "name": { "fr": "Le Christ ressuscité à Marie-Madeleine", "en": "The risen Christ to Mary Magdalene" },
       "city": "Jérusalem",
       "country": "ISR",
@@ -267,6 +277,7 @@
     },
     {
       "id": "ap-transfiguration-thabor",
+      "qui": "saint",
       "name": { "fr": "La Transfiguration : Moïse et Élie au mont Thabor", "en": "The Transfiguration: Moses and Elijah on Mount Tabor" },
       "city": "Mont Thabor",
       "country": "ISR",
@@ -281,6 +292,7 @@
     },
     {
       "id": "ap-ange-bergers-bethleem",
+      "qui": "ange",
       "name": { "fr": "L'ange aux bergers de Bethléem", "en": "The angel to the shepherds of Bethlehem" },
       "city": "Beit Sahour",
       "country": "PSE",
@@ -294,6 +306,7 @@
     },
     {
       "id": "ap-christ-saint-paul-damas",
+      "qui": "christ",
       "name": { "fr": "Le Christ à saint Paul sur le chemin de Damas", "en": "Christ to Saint Paul on the road to Damascus" },
       "city": "Damas",
       "country": "SYR",
@@ -308,6 +321,7 @@
     },
     {
       "id": "ap-quo-vadis-rome",
+      "qui": "christ",
       "name": { "fr": "« Quo vadis ? » : le Christ à saint Pierre", "en": "« Quo vadis? »: Christ to Saint Peter", "la": "Domine, quo vadis?" },
       "city": "Rome",
       "country": "ITA",
@@ -321,6 +335,7 @@
     },
     {
       "id": "ap-constantin-pont-milvius",
+      "qui": "christ",
       "name": { "fr": "La vision de Constantin", "en": "The vision of Constantine", "la": "In hoc signo vinces" },
       "city": "Rome",
       "country": "ITA",
@@ -334,6 +349,7 @@
     },
     {
       "id": "ap-christ-saint-martin-amiens",
+      "qui": "christ",
       "name": { "fr": "Le Christ à saint Martin", "en": "Christ to Saint Martin" },
       "city": "Amiens",
       "country": "FRA",
@@ -348,6 +364,7 @@
     },
     {
       "id": "ap-saint-francois-la-verna",
+      "qui": "ange",
       "name": { "fr": "Le séraphin crucifié à saint François : les stigmates", "en": "The crucified seraph to Saint Francis: the stigmata" },
       "city": "La Verna",
       "country": "ITA",
@@ -362,6 +379,7 @@
     },
     {
       "id": "ap-enfant-jesus-saint-antoine-camposampiero",
+      "qui": "christ",
       "name": { "fr": "L'Enfant Jésus à saint Antoine de Padoue", "en": "The Child Jesus to Saint Anthony of Padua" },
       "city": "Camposampiero",
       "country": "ITA",
@@ -375,6 +393,7 @@
     },
     {
       "id": "ap-christ-saint-ignace-la-storta",
+      "qui": "christ",
       "name": { "fr": "Le Christ à saint Ignace à La Storta", "en": "Christ to Saint Ignatius at La Storta", "la": "Ego vobis Romae propitius ero" },
       "city": "La Storta",
       "country": "ITA",
@@ -388,6 +407,7 @@
     },
     {
       "id": "ap-transverberation-therese-avila",
+      "qui": "ange",
       "name": { "fr": "L'ange à sainte Thérèse d'Avila : la transverbération", "en": "The angel to Saint Teresa of Ávila: the transverberation" },
       "city": "Ávila",
       "country": "ESP",
@@ -402,6 +422,7 @@
     },
     {
       "id": "ap-saint-raphael-cordoue",
+      "qui": "ange",
       "name": { "fr": "Saint Raphaël au père Andrés de las Roelas", "en": "Saint Raphael to Father Andrés de las Roelas" },
       "city": "Cordoue",
       "country": "ESP",
@@ -416,6 +437,7 @@
     },
     {
       "id": "ap-christ-saint-jean-de-la-croix-segovie",
+      "qui": "christ",
       "name": { "fr": "Le Christ à saint Jean de la Croix", "en": "Christ to Saint John of the Cross" },
       "city": "Ségovie",
       "country": "ESP",
@@ -430,6 +452,7 @@
     },
     {
       "id": "ap-sacre-coeur-paray-le-monial",
+      "qui": "christ",
       "name": { "fr": "Le Sacré-Cœur à sainte Marguerite-Marie", "en": "The Sacred Heart to Saint Margaret Mary" },
       "city": "Paray-le-Monial",
       "country": "FRA",
@@ -445,6 +468,7 @@
     },
     {
       "id": "ap-padre-pio-san-giovanni-rotondo",
+      "qui": "christ",
       "name": { "fr": "Le Christ crucifié à Padre Pio : les stigmates", "en": "The crucified Christ to Padre Pio: the stigmata" },
       "city": "San Giovanni Rotondo",
       "country": "ITA",
@@ -459,6 +483,7 @@
     },
     {
       "id": "ap-christ-misericordieux-sainte-faustine",
+      "qui": "christ",
       "name": { "fr": "Jésus miséricordieux à sainte Faustine", "en": "The Merciful Jesus to Saint Faustina", "pl": "Jezus Miłosierny" },
       "city": "Płock",
       "country": "POL",

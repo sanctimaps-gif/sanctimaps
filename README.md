@@ -1188,6 +1188,27 @@ qui portent en outre une hostie au lieu d'une croix : la couleur se reconnaît
 d'un coup d'œil, mais elle ne se lit pas quand on est daltonien, et le troisième
 corpus avait de la place pour un signe. La légende suit la bascule.
 
+## Les emblèmes
+
+Chaque fiche porte une petite image, sur la carte, dans les listes et en tête de
+la fiche. Ce n'est pas un portrait — aucune base n'en donne de libres pour
+quatre mille saints — mais un **attribut**, comme les peintres l'ont toujours
+fait : la tiare du pape, la palme du martyr, la couronne du roi, l'épée du
+soldat, le livre du docteur, le rouleau de l'apôtre, la mitre de l'évêque, la
+crosse de l'abbé, le lys de la vierge et de la moniale, le cœur enflammé du
+mystique, l'église du fondateur, le chapelet du moine, la coquille du
+missionnaire, le calice du prêtre, et le nimbe pour qui n'a pas d'autre titre.
+
+Les apparitions disent **qui apparaît** (champ `qui` : `christ`, `ange`,
+`saint`, la Vierge par défaut) : monogramme marial, Sacré-Cœur, ailes. Les
+miracles portent l'ostensoir, et les cinq accusations de profanation un signe
+d'avertissement (champ `nature: "calomnie"`), non l'ostensoir.
+
+Tout tient dans `src/js/emblems.js` : des dessins au trait sur une grille de 24,
+en `currentColor`, qui suivent le thème sans aucune image à télécharger. Un
+repère qui regroupe plusieurs fiches garde la croix, faute de pouvoir dire
+laquelle peindre.
+
 ## Les miracles eucharistiques
 
 Le troisième corpus vient de l'**exposition « Les miracles eucharistiques dans

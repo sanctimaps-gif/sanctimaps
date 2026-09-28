@@ -2,6 +2,7 @@ import { PENDING, PUBLISHED, REJECTED } from '../data.js';
 import { can } from '../auth.js';
 import { degreLabel, formatFeast, formatYear, getLanguage, languePhrase, pickText, t, titleLabel } from '../i18n.js';
 import { fill, h } from './dom.js';
+import { emblemSvg } from '../emblems.js';
 
 function row(label, value) {
   if (!value) return null;
@@ -88,7 +89,9 @@ export class DetailPanel {
         text: `← ${t('detail.back')}`,
         onclick: () => this.onBack(),
       }),
-      h('h2', { class: 'detail__name', text: this.atlas.saintName(saint, lang) }),
+      h('div', { class: 'detail__head' },
+        emblemSvg(saint, 'emblem emblem--large'),
+        h('h2', { class: 'detail__name', text: this.atlas.saintName(saint, lang) })),
       otherNames ? h('p', { class: 'detail__aka', text: otherNames }) : null,
       saint.status !== PUBLISHED
         ? h('p', { class: `notice notice--${saint.status}`, text: t(`status.${saint.status}`) })

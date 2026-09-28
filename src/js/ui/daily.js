@@ -3,6 +3,7 @@ import {
   collator, formatDay, formatFeast, formatNumber, formatYear, getLanguage, t,
 } from '../i18n.js';
 import { fill, h } from './dom.js';
+import { emblemSvg } from '../emblems.js';
 
 /**
  * Saint du jour.
@@ -165,11 +166,12 @@ export class DailyPanel {
     const died = saint.died != null
       ? formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec }) : '?';
     return h('button', {
-      class: `result${saint.status !== 'published' ? ' result--draft' : ''}`,
+      class: `result result--emblem${saint.status !== 'published' ? ' result--draft' : ''}`,
       type: 'button',
       role: 'listitem',
       onclick: () => this.onSelect(saint.id),
     },
+    emblemSvg(saint),
     h('span', { class: 'result__name', text: this.atlas.saintName(saint, lang) }),
     h('span', { class: 'result__meta',
       text: `${this.atlas.countryName(saint.country, lang)} · ${saint.city}` }),

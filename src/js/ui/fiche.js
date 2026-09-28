@@ -1,5 +1,6 @@
 import { getLanguage, t } from '../i18n.js';
-import { h } from './dom.js';
+import { fill, h } from './dom.js';
+import { emblemSvg } from '../emblems.js';
 
 /**
  * La fiche du saint ouvert, dans la moitié du bas.
@@ -34,6 +35,8 @@ export class FicheBar {
     this.saint = null;
 
     this.title = h('h2', { class: 'fiche__name' });
+    // L'emblème se tient à côté du nom, dans l'en-tête qui ne défile pas.
+    this.mark = h('span', { class: 'fiche__emblem' });
     this.closeButton = h('button', {
       class: 'icon-btn fiche__close',
       type: 'button',
@@ -42,7 +45,7 @@ export class FicheBar {
 
     this.body = h('div', { class: 'fiche__body' }, this.detail.root);
     this.host.append(
-      h('header', { class: 'fiche__head' }, this.title, this.closeButton),
+      h('header', { class: 'fiche__head' }, this.mark, this.title, this.closeButton),
       this.body,
     );
     this.host.setAttribute('aria-label', t('tab.detail'));
@@ -57,6 +60,7 @@ export class FicheBar {
     this.saint = saint;
     this.detail.show(saint);
     this.title.textContent = this.onName(saint, getLanguage());
+    fill(this.mark, [emblemSvg(saint)]);
     this.host.hidden = false;
     // Une fiche ouverte sur un autre saint doit se lire depuis son début.
     this.body.scrollTop = 0;

@@ -1570,6 +1570,7 @@
     {
       "id": "eu-deggendorf-1338",
       "kind": "miracle",
+      "nature": "calomnie",
       "name": { "fr": "Deggendorf : une calomnie, et un pèlerinage aboli", "en": "Deggendorf: a calumny, and a pilgrimage abolished" },
       "city": "Deggendorf",
       "country": "DEU",
@@ -1642,6 +1643,7 @@
     {
       "id": "eu-bruxelles-1370",
       "kind": "miracle",
+      "nature": "calomnie",
       "name": { "fr": "Bruxelles : le « Sacrement de Miracle », une calomnie reconnue", "en": "Brussels: the « Sacrament of Miracle », an acknowledged calumny" },
       "city": "Bruxelles",
       "country": "BEL",
@@ -1786,6 +1788,7 @@
     {
       "id": "eu-poznan-1399",
       "kind": "miracle",
+      "nature": "calomnie",
       "name": { "fr": "Poznań : une accusation de profanation", "en": "Poznań: an accusation of desecration" },
       "city": "Poznań",
       "country": "POL",
@@ -1840,6 +1843,7 @@
     {
       "id": "eu-segovia-1410",
       "kind": "miracle",
+      "nature": "calomnie",
       "name": { "fr": "Ségovie : une accusation de profanation", "en": "Segovia: an accusation of desecration" },
       "city": "Ségovie",
       "country": "ESP",
@@ -1858,6 +1862,7 @@
     {
       "id": "eu-paris-1290",
       "kind": "miracle",
+      "nature": "calomnie",
       "name": { "fr": "Paris, rue des Billettes : une accusation de profanation", "en": "Paris, rue des Billettes: an accusation of desecration" },
       "city": "Paris",
       "country": "FRA",

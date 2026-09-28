@@ -1,5 +1,6 @@
 import { TILE_ATTRIBUTION, TILE_URL, getBasemap, onBasemapChange } from '../basemap.js';
 import { t } from '../i18n.js';
+import { emblemOf, emblemParts } from '../emblems.js';
 import { WORLD_SIZE, unproject } from './projection.js';
 
 const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -1397,6 +1398,15 @@ export class MapView {
         // n'est pas un miracle : un seul dessin de repère, deux signes.
         el('circle', { class: 'marker__hostie', r: 4.4 }),
       );
+      if (group.length === 1) {
+        // Seul sur son repère, le saint montre son attribut à la place de la
+        // croix : la tiare, la palme, la mitre, le lys. Un groupe garde la croix,
+        // faute de pouvoir dire lequel des siens il faudrait peindre.
+        const emblem = el('g', { class: 'marker__emblem', transform: 'translate(-6 -6) scale(0.5)' });
+        emblem.append(...emblemParts(emblemOf(group[0])));
+        node.append(emblem);
+        node.classList.add('has-emblem');
+      }
       if (group.length > 1) {
         // Une pastille dit combien de saints le repère recouvre : sans elle,
         // rien n'inviterait à cliquer pour découvrir les autres.
