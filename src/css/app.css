@@ -934,12 +934,33 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .legend__title {
-  margin: 0 0 0.35rem;
+  margin: 0;
   font-size: 0.7rem;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--ink-soft);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  user-select: none;
 }
+.legend__title::-webkit-details-marker { display: none; }
+/* Le chevron dit qu'on peut déplier, et dans quel sens. */
+.legend__title::after {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-inline-end: 1.5px solid currentColor;
+  border-block-end: 1.5px solid currentColor;
+  transform: rotate(-135deg) translate(-1px, -1px);
+  transition: transform 150ms ease;
+}
+.legend[open] .legend__title { margin-block-end: 0.35rem; }
+.legend[open] .legend__title::after { transform: rotate(45deg) translate(-2px, -2px); }
+.legend:not([open]) { padding: 0.45rem 0.75rem; }
 
 .legend__list {
   list-style: none;
@@ -1045,11 +1066,15 @@ button, input, select, textarea { font: inherit; color: inherit; }
   color: var(--lieu-ink);
 }
 
-.detail__lieux-btn.is-on {
+.detail__lieux-btn.is-on,
+.detail__lieux-btn.is-on:hover {
   background: var(--lieu);
   color: var(--panel);
   border-color: var(--lieu);
 }
+/* Sur un écran tactile, le survol reste collé après l'appui : le fond clair de
+   `.btn:hover` rendait le texte blanc illisible. */
+.detail__lieux-btn.is-on:hover { filter: brightness(1.08); }
 
 /* Ce que les perles sont : un point sur la carte ne dit pas qu'il est une
    sépulture. */
@@ -1978,7 +2003,30 @@ a.btn {
   .panel:not(.is-open):dir(rtl) { transform: translateX(100%); }
 
   .topbar { padding-inline-start: 3.6rem; }
-  .legend { display: none; }
+  /* Sur un téléphone, la légende se tient au-dessus de l'échelle, à gauche,
+     et se déplie vers le haut : les boutons de zoom gardent le coin droit. */
+  /* Sur un téléphone, le bouton de la légende se tient au coin bas gauche, et
+     l'échelle se range à sa droite ; dépliée, la légende monte au-dessus du
+     reste sans jamais passer sous le bouton du menu, et défile si la place
+     manque — la fiche ouverte prend la moitié de l'écran. */
+  .legend {
+    inset-inline-end: auto;
+    inset-inline-start: 1rem;
+    inset-block-end: 0.6rem;
+    z-index: 25;
+    max-width: min(16rem, calc(100vw - 6rem));
+    max-height: calc(100% - 5.5rem);
+    overflow-y: auto;
+  }
+  .scale { inset-inline-start: 8.2rem; }
+  /* Un message trop long ne doit pas couvrir la carte sur trois lignes. */
+  .hint {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.78rem;
+  }
 
   /* Sur un téléphone, les boutons de zoom descendent au coin, à portée du
      pouce, et l'échelle passe au-dessus d'eux plutôt que sous le panneau. */

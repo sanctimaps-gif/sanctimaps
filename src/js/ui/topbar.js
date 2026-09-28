@@ -1,6 +1,8 @@
 import { formatNumber, t } from '../i18n.js';
 import { h } from './dom.js';
 
+const LEGENDE_KEY = 'sanctimaps.legende.v1';
+
 /**
  * Fil d'Ariane, bascule des corpus, compte du pays ouvert, et légende.
  *
@@ -42,7 +44,18 @@ export class TopBar {
     // L'avis du corpus vide : posé sur sa propre ligne, sous la bascule, et
     // annoncé au lecteur d'écran puisqu'il paraît après un geste.
     this.avis = h('p', { class: 'avis', role: 'status', 'aria-live': 'polite' });
-    this.legend = h('div', { class: 'legend' });
+    // La légende se plie et se déplie : ouverte d'emblée sur un grand écran,
+    // fermée sur un téléphone, où elle cacherait la moitié de la carte. Le choix
+    // du lecteur, lui, est retenu.
+    this.legendBody = h('div', { class: 'legend__body' });
+    this.legendSummary = h('summary', { class: 'legend__title' });
+    this.legend = h('details', { class: 'legend' }, this.legendSummary, this.legendBody);
+    let ouverte = null;
+    try { ouverte = localStorage.getItem(LEGENDE_KEY); } catch { /* stockage indisponible */ }
+    this.legend.open = ouverte == null ? window.matchMedia('(min-width: 48rem)').matches : ouverte === '1';
+    this.legend.addEventListener('toggle', () => {
+      try { localStorage.setItem(LEGENDE_KEY, this.legend.open ? '1' : '0'); } catch { /* tant pis */ }
+    });
 
     host.append(
       h('header', { class: 'topbar' }, this.trail, this.corpus, this.hint, this.avis),
@@ -136,8 +149,8 @@ export class TopBar {
     }
     this.hint.hidden = !this.hint.textContent;
 
-    this.legend.replaceChildren(
-      h('h2', { class: 'legend__title', text: t('legend.title') }),
+    this.legendSummary.textContent = t('legend.title');
+    this.legendBody.replaceChildren(
       h('ul', { class: 'legend__list' },
         h('li', {}, h('i', { class: 'swatch swatch--saints' }), t(`legend.with${suff}`)),
         // Les pays marqués par un saint né ailleurs n'ont de sens qu'au corpus

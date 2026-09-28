@@ -722,11 +722,22 @@ export class MapView {
     const { k } = transform;
     let { x, y } = transform;
 
+    // La règle : le centre de l'écran reste sur le cadre. On peut donc toujours
+    // faire glisser la carte — jusqu'à amener n'importe quel point du cadre au
+    // milieu —, et jamais la perdre de vue. L'ancienne règle recentrait de
+    // force dès que le cadre tenait entier à l'écran : sur un téléphone, les
+    // lieux cachés sous les bandeaux du haut ne pouvaient plus en sortir.
+    // Le planisphère entier, lui, reste centré : il n'y a rien à côté.
+    const libre = this.mode !== 'world';
     const fit = (value, lowEdge, highEdge, d0, d1) => {
-      const max = lowEdge - d0 * k;
-      const min = highEdge - d1 * k;
-      if (min > max) return (lowEdge + highEdge) / 2 - ((d0 + d1) / 2) * k;
-      return Math.min(max, Math.max(min, value));
+      const centre = (lowEdge + highEdge) / 2;
+      if (!libre) {
+        const max = lowEdge - d0 * k;
+        const min = highEdge - d1 * k;
+        if (min > max) return centre - ((d0 + d1) / 2) * k;
+        return Math.min(max, Math.max(min, value));
+      }
+      return Math.min(centre - d0 * k, Math.max(centre - d1 * k, value));
     };
 
     x = fit(x, vp.x0, vp.x1, d[0], d[2]);
