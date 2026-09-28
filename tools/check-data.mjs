@@ -459,7 +459,7 @@ if (existsSync(accueil)) {
     'biographies en français': published.filter((s) => s.bio?.fr).length,
     // Les deux autres corpus sont annoncés eux aussi : ils grossiront, et le
     // nombre écrit à la main vieillirait sans que rien ne le dise.
-    'apparitions mariales': apparitions.length,
+    apparitions: apparitions.length,
     'miracles eucharistiques': miracles.length,
   };
   // « <b>4 589</b> saints » : on relit le nombre qui précède chaque étiquette,

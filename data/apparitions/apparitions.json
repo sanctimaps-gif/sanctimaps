@@ -126,6 +126,130 @@
       "desc": {
         "fr": "Apparitions rapportées depuis 1981 par six jeunes gens d’Herzégovine."
       }
+    },
+    {
+      "id": "ap-annonciation-nazareth",
+      "name": { "fr": "L'Annonciation : l'ange Gabriel à Marie", "en": "The Annunciation: the angel Gabriel to Mary" },
+      "city": "Nazareth",
+      "country": "ISR",
+      "lat": 32.7022,
+      "lng": 35.2978,
+      "annee": -5,
+      "feast": "03-25",
+      "desc": {
+        "fr": "L'ange Gabriel annonce à Marie qu'elle sera la mère du Sauveur (Luc 1, 26-38). La basilique de l'Annonciation couvre la grotte que la tradition désigne.",
+        "en": "The angel Gabriel announces to Mary that she will be the mother of the Saviour (Luke 1:26-38). The Basilica of the Annunciation covers the grotto that tradition points to."
+      }
+    },
+    {
+      "id": "ap-saint-michel-mont-gargan",
+      "name": { "fr": "Saint Michel au mont Gargan", "en": "Saint Michael on Mount Gargano", "it": "San Michele sul Gargano" },
+      "city": "Monte Sant’Angelo",
+      "country": "ITA",
+      "lat": 41.7078,
+      "lng": 15.9544,
+      "annee": 490,
+      "feast": "05-08",
+      "desc": {
+        "fr": "Saint Michel apparaît à l'évêque de Siponto et désigne une grotte du Gargan comme son sanctuaire : le premier lieu de son culte en Occident.",
+        "en": "Saint Michael appears to the bishop of Siponto and chooses a grotto on the Gargano as his sanctuary: the first place of his cult in the West."
+      }
+    },
+    {
+      "id": "ap-saint-michel-chateau-saint-ange",
+      "name": { "fr": "Saint Michel au château Saint-Ange", "en": "Saint Michael at Castel Sant’Angelo" },
+      "city": "Rome",
+      "country": "ITA",
+      "lat": 41.9031,
+      "lng": 12.4663,
+      "annee": 590,
+      "desc": {
+        "fr": "Pendant la procession que conduit saint Grégoire le Grand contre la peste, saint Michel paraît au sommet du mausolée d'Hadrien et remet son épée au fourreau ; le monument en prend son nom.",
+        "en": "During the procession Saint Gregory the Great leads against the plague, Saint Michael appears on top of Hadrian's mausoleum and sheathes his sword; the monument takes its name from him."
+      }
+    },
+    {
+      "id": "ap-saint-michel-saint-aubert",
+      "name": { "fr": "Saint Michel à saint Aubert", "en": "Saint Michael to Saint Aubert" },
+      "city": "Le Mont-Saint-Michel",
+      "country": "FRA",
+      "lat": 48.6361,
+      "lng": -1.5115,
+      "annee": 708,
+      "feast": "10-16",
+      "desc": {
+        "fr": "Saint Michel demande en songe à saint Aubert, évêque d'Avranches, de lui bâtir un sanctuaire sur le mont Tombe ; à la troisième fois, dit la tradition, il lui touche le crâne du doigt.",
+        "en": "In a dream Saint Michael asks Saint Aubert, bishop of Avranches, to build him a sanctuary on Mont Tombe; the third time, tradition says, he touches his skull with his finger."
+      }
+    },
+    {
+      "id": "ap-saint-michel-jeanne-d-arc",
+      "name": { "fr": "Saint Michel, sainte Catherine et sainte Marguerite à Jeanne d'Arc", "en": "Saint Michael, Saint Catherine and Saint Margaret to Joan of Arc" },
+      "city": "Domrémy-la-Pucelle",
+      "country": "FRA",
+      "lat": 48.4431,
+      "lng": 5.6747,
+      "annee": 1425,
+      "anneeFin": 1431,
+      "desc": {
+        "fr": "Vers treize ans, dans le jardin de son père, Jeanne entend une voix et voit saint Michel ; sainte Catherine et sainte Marguerite lui parleront ensuite, jusqu'à Rouen.",
+        "en": "At about thirteen, in her father's garden, Joan hears a voice and sees Saint Michael; Saint Catherine and Saint Margaret will speak to her afterwards, until Rouen."
+      }
+    },
+    {
+      "id": "ap-sainte-anne-d-auray",
+      "name": { "fr": "Sainte Anne à Yves Nicolazic", "en": "Saint Anne to Yves Nicolazic", "br": "Santez Anna Wened" },
+      "city": "Sainte-Anne-d’Auray",
+      "country": "FRA",
+      "lat": 47.7042,
+      "lng": -2.9528,
+      "annee": 1623,
+      "anneeFin": 1625,
+      "feast": "07-26",
+      "desc": {
+        "fr": "Sainte Anne demande au laboureur Yves Nicolazic de relever la chapelle qui lui était dédiée au Bocenno ; une statue ancienne y est déterrée en 1625.",
+        "en": "Saint Anne asks the farmer Yves Nicolazic to rebuild the chapel once dedicated to her at Bocenno; an old statue is dug up there in 1625."
+      }
+    },
+    {
+      "id": "ap-saint-michel-tlaxcala",
+      "name": { "fr": "Saint Michel à Diego Lázaro", "en": "Saint Michael to Diego Lázaro", "es": "San Miguel del Milagro" },
+      "city": "San Miguel del Milagro",
+      "country": "MEX",
+      "lat": 19.2267,
+      "lng": -98.3036,
+      "annee": 1631,
+      "desc": {
+        "fr": "Saint Michel apparaît à Diego Lázaro, jeune Tlaxcaltèque, et lui montre une source aux eaux guérisseuses ; le sanctuaire de San Miguel del Milagro s'y élève.",
+        "en": "Saint Michael appears to Diego Lázaro, a young Tlaxcalan, and shows him a spring with healing waters; the sanctuary of San Miguel del Milagro stands there."
+      }
+    },
+    {
+      "id": "ap-saint-joseph-cotignac",
+      "name": { "fr": "Saint Joseph au mont Bessillon", "en": "Saint Joseph on Mount Bessillon" },
+      "city": "Cotignac",
+      "country": "FRA",
+      "lat": 43.5436,
+      "lng": 6.1203,
+      "annee": 1660,
+      "feast": "03-19",
+      "desc": {
+        "fr": "Le 7 juin 1660, saint Joseph apparaît au berger Gaspard Ricard, mourant de soif sur le mont Bessillon, et lui montre un rocher sous lequel jaillit une source.",
+        "en": "On 7 June 1660, Saint Joseph appears to the shepherd Gaspard Ricard, dying of thirst on Mount Bessillon, and shows him a rock from under which a spring gushes."
+      }
+    },
+    {
+      "id": "ap-ange-du-portugal-loca-do-cabeco",
+      "name": { "fr": "L’Ange du Portugal à la Loca do Cabeço", "en": "The Angel of Portugal at the Loca do Cabeço" },
+      "city": "Aljustrel",
+      "country": "PRT",
+      "lat": 39.6200,
+      "lng": -8.6600,
+      "annee": 1916,
+      "desc": {
+        "fr": "Un an avant la Vierge, l'Ange de la Paix, qui se dit ange du Portugal, apparaît trois fois à Lúcia, François et Jacinthe, et leur enseigne une prière d'adoration.",
+        "en": "A year before the Virgin, the Angel of Peace, who calls himself the angel of Portugal, appears three times to Lúcia, Francisco and Jacinta, and teaches them a prayer of adoration."
+      }
     }
   ]
 }
