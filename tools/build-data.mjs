@@ -1362,6 +1362,12 @@ console.log(`  apparitions.json : ${apparitions.length} apparitions`);
 const MIRACLES_DIR = join(ROOT, 'data', 'miracles');
 const MIRACLE_REQUIS = ['id', 'name', 'country', 'city', 'lat', 'lng', 'annee'];
 const MIRACLE_CORRECTIONS = 'corrections.json';
+// La liste vient de l'exposition : chaque fiche renvoie à son site, où l'on
+// trouve le panneau d'origine. Une fiche qui porte ses propres sources les garde.
+const MIRACLE_SOURCE = {
+  label: 'Exposition de Carlo Acutis',
+  url: 'https://www.miracolieucaristici.org/fr/Liste/list.html',
+};
 const miracles = [];
 const miracleIds = new Set();
 const miracleErrors = [];
@@ -1389,7 +1395,9 @@ for (const file of readdirSync(MIRACLES_DIR)
     miracleIds.add(m.id);
     const [x, y] = project(m.lng, m.lat);
     const shift = shiftById.get(m.country) || 0;
-    miracles.push({ ...m, kind: 'miracle', x: Math.round(x) + shift, y: Math.round(y) });
+    miracles.push({
+      sources: [MIRACLE_SOURCE], ...m, kind: 'miracle', x: Math.round(x) + shift, y: Math.round(y),
+    });
   }
 }
 

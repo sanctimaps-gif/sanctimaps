@@ -25,6 +25,14 @@ savoir si l'on peut encore aller voir quelque chose, et où. Il dit aussi quand 
 ne reste rien — les saintes Formes d'Alcalá ont disparu en 1936, la sainte Hostie
 de Douai à la Révolution.
 
+## Le lien vers l'exposition
+
+Chaque fiche renvoie, sous « Sources », au site de l'exposition —
+[miracolieucaristici.org](https://www.miracolieucaristici.org/fr/Liste/list.html) —,
+où l'on trouve les panneaux d'origine. Le lien est posé à la construction, par
+`tools/build-data.mjs` : il n'est pas à écrire fiche par fiche, et une fiche qui
+porte son propre champ `sources` le remplace.
+
 ## Les textes sont les nôtres
 
 L'exposition est une œuvre, et elle est protégée. Les panneaux n'ont donc pas
