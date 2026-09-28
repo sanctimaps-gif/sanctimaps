@@ -539,6 +539,7 @@ const PATRONAGE_FILE = 'patronages.json';
 const STATUT_FILE = 'statuts.json';
 const PORTRAIT_FILE = 'portraits.json';
 const LIEUX_DESC_FILE = 'lieux-descriptions.json';
+const LIEUX_DESC_FR_FILE = 'lieux-descriptions-fr.json';
 // Les biographies rapportées des Wikipédia autres que la française et
 // l'anglaise, par `completer-bios.mjs`. Même remarque : ce n'est pas un
 // fichier de saints.
@@ -592,7 +593,7 @@ try {
 
 for (const file of readdirSync(SAINTS_DIR)
   .filter((f) => f.endsWith('.json')
-    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, PORTRAIT_FILE, LIEUX_DESC_FILE, BIOS_IMPORTEES_FILE,
+    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, PORTRAIT_FILE, LIEUX_DESC_FILE, LIEUX_DESC_FR_FILE, BIOS_IMPORTEES_FILE,
       LIEUX_FILE, NOTABLES_FILE, VOYANTS_FILE, LIENS_FILE,
       NOTES_FILE, ECARTES_FILE].includes(f))
   .sort()) {
@@ -1041,6 +1042,15 @@ let lieuxDescriptions = {};
 try {
   lieuxDescriptions = JSON.parse(readFileSync(join(SAINTS_DIR, LIEUX_DESC_FILE), 'utf8')).descriptions || {};
 } catch { /* pas encore relevées : les lieux se contentent de leur nom */ }
+// Quand Wikidata ne décrit un lieu qu'en anglais, la traduction écrite à la main
+// prend la place du français manquant. Elle est rangée par texte anglais, et
+// survit donc aux relevés suivants tant que Wikidata ne change pas sa phrase.
+try {
+  const traductions = JSON.parse(readFileSync(join(SAINTS_DIR, LIEUX_DESC_FR_FILE), 'utf8')).traductions || {};
+  for (const d of Object.values(lieuxDescriptions)) {
+    if (!d.fr && d.en && traductions[d.en]) d.fr = traductions[d.en];
+  }
+} catch { /* pas de traductions : l'anglais reste */ }
 let lieuxDecrits = 0;
 
 const lieuxSortie = {};
