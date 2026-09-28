@@ -872,8 +872,11 @@ try {
 let portraitsPoses = 0;
 for (const saint of saints) {
   const p = portraits[saint.id];
-  if (p?.src && /^https:\/\/upload\.wikimedia\.org\//.test(p.src)) {
-    saint.portrait = p;
+  // Commons sert ses vignettes depuis upload.wikimedia.org ou thumb.wikimedia.org ;
+  // rien d'autre n'entre dans une page. Les paramètres de suivi qu'il ajoute
+  // (« utm_… ») n'ont rien à faire dans l'adresse d'une image.
+  if (p?.src && /^https:\/\/(upload|thumb)\.wikimedia\.org\//.test(p.src)) {
+    saint.portrait = { ...p, src: p.src.replace(/\?utm_[^#]*$/, '') };
     portraitsPoses += 1;
   }
 }

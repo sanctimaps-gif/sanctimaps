@@ -160,7 +160,7 @@ async function main() {
       const titre = (retour.get(page.title) || page.title).replace(/^File:/, '');
       const meta = ii.extmetadata || {};
       infoParFichier.set(titre, {
-        src: ii.thumburl,
+        src: ii.thumburl.replace(/\?utm_[^#]*$/, ''),
         page: ii.descriptionurl,
         auteur: texte(meta.Artist?.value).slice(0, 120),
         licence: texte(meta.LicenseShortName?.value),
