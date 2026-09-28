@@ -131,6 +131,32 @@ h2 {
 
 .bio { margin: 0 0 1.25rem; }
 
+/* L'icône du saint, dans un cadre doré, à sa taille naturelle : on ne recadre
+   pas un saint. */
+.portrait {
+  margin: 0 0 1.5rem;
+  display: grid;
+  justify-items: center;
+  gap: 0.4rem;
+}
+.portrait img {
+  display: block;
+  max-width: 100%;
+  max-height: 26rem;
+  width: auto;
+  height: auto;
+  border: 3px solid #d8b45c;
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgb(36 32 27 / 18%);
+}
+.portrait figcaption {
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+.portrait figcaption a { color: inherit; }
+
 /* --------------------------------------------------------------- Repères */
 
 .facts {

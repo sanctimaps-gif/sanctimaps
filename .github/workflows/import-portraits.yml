@@ -1,0 +1,100 @@
+# Relève l'icône de chaque saint — son image sur Wikidata, sa vignette et son
+# crédit sur Commons —, puis publie.
+#
+# À lancer depuis l'onglet « Actions » du dépôt. Le travail se fait sur une
+# machine de GitHub, qui a accès à Wikimedia, et le résultat est versé dans le
+# dépôt, ce qui redéploie le site : la carte montre alors l'icône à l'ouverture
+# d'une fiche sans rien demander à Wikidata, et chaque page de biographie la
+# porte en tête.
+#
+# Il ne touche qu'un fichier — `data/saints/portraits.json` — et les pages qui
+# en découlent. Une fois par mois suffit : un saint ne change pas d'icône
+# chaque semaine.
+name: Relever les icônes des saints
+
+on:
+  workflow_dispatch:
+    inputs:
+      largeur:
+        description: "Largeur des vignettes, en pixels"
+        required: false
+        default: "480"
+  schedule:
+    - cron: "17 3 1 * *"
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: import-portraits
+  cancel-in-progress: false
+
+jobs:
+  portraits:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Installer les jeux de données sources
+        run: npm ci
+
+      - name: Interroger Wikidata et Commons
+        run: |
+          set -euo pipefail
+          node tools/import-portraits.mjs --largeur "${{ inputs.largeur || '480' }}" | tee /tmp/portraits.log
+
+      # Rien n'est publié sans être passé par les mêmes contrôles que le reste.
+      - name: Régénérer et contrôler
+        run: |
+          set -euo pipefail
+          npm run build:data | tee /tmp/build.log
+          npm run build:pages | tee /tmp/pages.log
+          node tools/build-feed.mjs | tee /tmp/feed.log
+          npm run check
+
+      - name: Verser au dépôt
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/saints/portraits.json data/generated saints pays lieux calendrier epoques \
+            lettre lettre.html sitemap.xml robots.txt feed.xml a-propos
+          if git diff --cached --quiet; then
+            echo "Rien de neuf : les icônes sont déjà à jour."
+            exit 0
+          fi
+          releves=$(grep -oE 'Portraits relevés : [0-9]+ fiches' /tmp/portraits.log | head -1 \
+            || echo "Icônes des saints relevées")
+          git commit -m "${releves}" -m "$(tail -20 /tmp/portraits.log)"
+          git push origin HEAD:${{ github.ref_name }}
+
+      # Un envoi fait avec le jeton du dépôt ne réveille pas les autres
+      # ateliers : la reconstruction du site se demande donc explicitement.
+      - name: Demander la reconstruction du site
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -sS -X POST -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/pages/builds" \
+            && echo "Reconstruction demandée."
+
+      - name: Résumé
+        if: always()
+        run: |
+          {
+            echo '## Icônes des saints'
+            echo '```'
+            tail -20 /tmp/portraits.log 2>/dev/null || echo "la relève n'a pas abouti"
+            echo '```'
+            grep -E 'portraits' /tmp/build.log 2>/dev/null || true
+          } >> "$GITHUB_STEP_SUMMARY"

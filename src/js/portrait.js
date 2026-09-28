@@ -108,6 +108,8 @@ async function chercher(qid) {
  * fiche est ouverte deux fois pendant qu'elle court.
  */
 export function portraitOf(item) {
+  // Relevé d'avance par import-portraits : rien à demander à personne.
+  if (item?.portrait?.src) return Promise.resolve(item.portrait);
   const qid = qidOf(item);
   if (!qid) return Promise.resolve(null);
   const g = lireGarde();

@@ -189,7 +189,7 @@ const dayLabel = (key) => formatFeast(key);
  * depuis un disque. Seules l'adresse canonique et le plan du site sont
  * absolues, parce qu'elles doivent l'être.
  */
-function page({ title, description, canonical, up, crumbs, body, jsonld, trail, items }) {
+function page({ title, description, canonical, up, crumbs, body, jsonld, trail, items, image }) {
   const r = '../'.repeat(up);
   // La racine du site, retrouvée en remontant de l'adresse canonique autant de
   // dossiers que les liens relatifs en remontent. C'est de là que pend
@@ -242,7 +242,7 @@ function page({ title, description, canonical, up, crumbs, body, jsonld, trail, 
 <link rel="apple-touch-icon" sizes="180x180" href="${r}icons/apple-touch-icon.png">
 <link rel="manifest" href="${r}site.webmanifest">
 <meta name="theme-color" content="#f8eede">
-<meta property="og:image" content="${esc(racine)}/icons/icon-512.png">
+<meta property="og:image" content="${esc(image || `${racine}/icons/icon-512.png`)}">
 <meta name="twitter:card" content="summary">
 <link rel="alternate" type="application/atom+xml" title="SanctiMaps — le saint du jour" href="${r}feed.xml">
 <link rel="stylesheet" href="${r}src/css/page.css">
@@ -475,9 +475,17 @@ function saintPage(saint, ctx) {
   ].join('').replace('Il appartient', saint.sex === 'f' ? 'Elle appartient' : 'Il appartient')
     .replace('Il n’est fêté', saint.sex === 'f' ? 'Elle n’est fêtée' : 'Il n’est fêté');
 
+  // L'icône du saint, relevée sur Wikidata et Commons, avec son crédit : une
+  // image sous CC BY-SA ne se reprend qu'avec son auteur et sa licence.
+  const portrait = saint.portrait?.src ? `<figure class="portrait">
+<img src="${esc(saint.portrait.src)}" alt="${esc(called(saint))}" loading="lazy" decoding="async" referrerpolicy="no-referrer">
+<figcaption>${[saint.portrait.auteur, saint.portrait.licence].filter(Boolean).map(esc).join(' · ')}${saint.portrait.auteur || saint.portrait.licence ? ' · ' : ''}<a href="${esc(saint.portrait.page)}" rel="noreferrer">Wikimedia Commons</a></figcaption>
+</figure>
+` : '';
+
   const body = `<h1>${esc(name)}</h1>
 <p class="lede">${esc(lede)}.</p>
-${desc ? `<p class="bio">${esc(desc)}</p>\n` : ''}${bio ? `<h2>Biographie</h2>\n<p class="bio">${esc(bio)}</p>\n` : ''}${bio && saint.traduit ? `<p class="note">Biographie traduite ${esc(languePhrase(saint.traduit))}, d’après l’article de Wikipédia cité en source.</p>\n` : ''}
+${portrait}${desc ? `<p class="bio">${esc(desc)}</p>\n` : ''}${bio ? `<h2>Biographie</h2>\n<p class="bio">${esc(bio)}</p>\n` : ''}${bio && saint.traduit ? `<p class="note">Biographie traduite ${esc(languePhrase(saint.traduit))}, d’après l’article de Wikipédia cité en source.</p>\n` : ''}
 <h2>Repères</h2>
 <dl class="facts">
 ${fact('Reconnaissance', esc(degreLabel(saint.statut, saint.sex)))}${fact('Fête', `<a href="../../calendrier/${esc(slug(dayLabel(saint.feast)))}/">${esc(feast)}</a>`)}${fact('Naissance', saint.born != null ? esc(formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })) : '')}${fact('Mort', saint.died != null ? esc(formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })) : '')}${fact(place, `${lieu ? `<a href="${esc(lieu)}">${esc(saint.city)}</a>` : esc(saint.city)}`
@@ -513,6 +521,7 @@ ${saint.sources?.length ? `<p class="sources">Sources : ${saint.sources.map((s) 
       },
     } : {}),
     url,
+    ...(saint.portrait?.src ? { image: saint.portrait.src } : {}),
     ...(saint.sources?.length ? { sameAs: saint.sources.map((s) => s.url) } : {}),
   };
 
@@ -525,6 +534,7 @@ ${saint.sources?.length ? `<p class="sources">Sources : ${saint.sources.map((s) 
     trail: [['SanctiMaps', `${base}/`], ['Saints', `${base}/saints/`], [name, url]],
     body,
     jsonld,
+    image: saint.portrait?.src,
   });
 }
 

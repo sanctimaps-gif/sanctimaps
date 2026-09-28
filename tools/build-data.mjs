@@ -537,6 +537,7 @@ const PATRONAGE_FILE = 'patronages.json';
 // bas, une fois les fiches fondues, mais son nom doit être connu ici : c'est
 // un fichier du dossier des saints qui ne contient pas de saints.
 const STATUT_FILE = 'statuts.json';
+const PORTRAIT_FILE = 'portraits.json';
 // Les biographies rapportées des Wikipédia autres que la française et
 // l'anglaise, par `completer-bios.mjs`. Même remarque : ce n'est pas un
 // fichier de saints.
@@ -590,7 +591,7 @@ try {
 
 for (const file of readdirSync(SAINTS_DIR)
   .filter((f) => f.endsWith('.json')
-    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, BIOS_IMPORTEES_FILE,
+    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, PORTRAIT_FILE, BIOS_IMPORTEES_FILE,
       LIEUX_FILE, NOTABLES_FILE, VOYANTS_FILE, LIENS_FILE,
       NOTES_FILE, ECARTES_FILE].includes(f))
   .sort()) {
@@ -857,7 +858,26 @@ saints.sort((a, b) => (a.born ?? a.died) - (b.born ?? b.died));
  * vont dans « saints-texts.json », que l'application va chercher une fois la
  * carte à l'écran et fond dans les fiches à son arrivée.
  */
-const CHAMPS_LOURDS = ['bio', 'desc', 'sources'];
+const CHAMPS_LOURDS = ['bio', 'desc', 'sources', 'portrait'];
+
+/**
+ * Le portrait de chaque saint — icône, fresque, tableau —, relevé sur Wikidata
+ * et Commons par `import-portraits.mjs`. Il voyage avec les textes longs : on
+ * ne le montre qu'une fiche ouverte, et la carte n'a pas à l'attendre.
+ */
+let portraits = {};
+try {
+  portraits = JSON.parse(readFileSync(join(SAINTS_DIR, PORTRAIT_FILE), 'utf8')).portraits || {};
+} catch { /* pas encore relevés : l'application les demandera elle-même */ }
+let portraitsPoses = 0;
+for (const saint of saints) {
+  const p = portraits[saint.id];
+  if (p?.src && /^https:\/\/upload\.wikimedia\.org\//.test(p.src)) {
+    saint.portrait = p;
+    portraitsPoses += 1;
+  }
+}
+if (Object.keys(portraits).length) console.log(`  portraits : ${portraitsPoses} fiches ont leur icône`);
 
 const leger = [];
 const textes = {};

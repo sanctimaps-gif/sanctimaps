@@ -16,6 +16,7 @@
     "send:letter": "node tools/send-letter.mjs",
     "audit:doublons": "node tools/audit-doublons.mjs",
     "import:statuts": "node tools/import-statuts.mjs",
+    "import:portraits": "node tools/import-portraits.mjs",
     "completer:bios": "node tools/completer-bios.mjs",
     "import:lieux": "node tools/import-lieux.mjs",
     "import:liens": "node tools/import-liens.mjs"
