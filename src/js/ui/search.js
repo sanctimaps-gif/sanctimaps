@@ -1,4 +1,4 @@
-import { PENDING, REJECTED, saintCentury } from '../data.js';
+import { PENDING, REJECTED, centuryOf, saintCentury } from '../data.js';
 import { collator, formatFeast, formatYear, getLanguage, monthNames, t } from '../i18n.js';
 import { buildCalendar, downloadCalendar } from '../calendar.js';
 import { buildCountryIndex, parseQuery, removeToken, stringifyQuery } from '../query.js';
@@ -15,6 +15,9 @@ export class SearchPanel {
     this.atlas = atlas;
     this.onSelect = onSelect;
     this.text = '';
+    // Ce que la recherche parcourt : les trois corpus d'un coup — « Lourdes »
+    // doit trouver l'apparition autant que Bernadette —, ou un seul.
+    this.scope = 'tout';
     this.root = h('div', { class: 'search' });
     this.render();
   }
@@ -65,8 +68,21 @@ export class SearchPanel {
       onclick: () => this.exportCalendar(),
     });
 
+    const portee = (nom, libelle) => h('button', {
+      class: `chip chip--scope${this.scope === nom ? ' is-on' : ''}`,
+      type: 'button',
+      'aria-pressed': this.scope === nom ? 'true' : 'false',
+      text: libelle,
+      onclick: () => { this.scope = nom; this.render(); },
+    });
+
     fill(this.root, [
       h('div', { class: 'search__bar' }, this.input),
+      h('div', { class: 'search__scope', role: 'group', 'aria-label': t('search.scope') },
+        portee('tout', t('search.scopeAll')),
+        portee('saints', t('corpus.saints')),
+        portee('apparitions', t('corpus.apparitions')),
+        portee('miracles', t('corpus.miracles'))),
       h('p', { class: 'search__help', text: t('search.help') }),
       this.tokenBar,
       this.summary,
@@ -119,12 +135,23 @@ export class SearchPanel {
     downloadCalendar(content, 'saints.ics');
   }
 
+  /** Les fiches que la portée choisie parcourt. */
+  fiches() {
+    const corpus = this.scope === 'tout' ? ['saints', 'apparitions', 'miracles'] : [this.scope];
+    return corpus.flatMap((nom) => (nom === 'saints' ? this.atlas.saints : this.atlas.index[nom]?.liste || []));
+  }
+
   matches(parsed) {
     const lang = getLanguage();
-    return this.atlas.saints.filter((saint) => {
+    return this.fiches().filter((saint) => {
+      // Une apparition et un miracle ont eu lieu une année, parfois sur
+      // plusieurs : le siècle et l'année se lisent sur elle.
+      const date = saint.kind === 'apparition' || saint.kind === 'miracle';
       if (parsed.country && saint.country !== parsed.country) return false;
-      if (parsed.century && saintCentury(saint) !== parsed.century) return false;
-      if (parsed.year != null && !aliveAt(saint, parsed.year)) return false;
+      if (parsed.century && (date ? centuryOf(saint.annee) : saintCentury(saint)) !== parsed.century) return false;
+      if (parsed.year != null && (date
+        ? !(parsed.year >= saint.annee && parsed.year <= (saint.anneeFin ?? saint.annee))
+        : !aliveAt(saint, parsed.year))) return false;
       if (parsed.feast) {
         const [m, d] = String(saint.feast || '').split('-').map(Number);
         if (m !== parsed.feast.month) return false;
@@ -147,7 +174,7 @@ export class SearchPanel {
     const list = this.matches(parsed);
     // Tri chronologique dès qu'une date est en jeu, alphabétique sinon.
     if (parsed.century || parsed.year != null) {
-      list.sort((a, b) => (a.born ?? a.died ?? 0) - (b.born ?? b.died ?? 0));
+      list.sort((a, b) => (a.annee ?? a.born ?? a.died ?? 0) - (b.annee ?? b.born ?? b.died ?? 0));
     } else if (parsed.feast) {
       list.sort((a, b) => String(a.feast).localeCompare(String(b.feast)));
     } else {
@@ -156,21 +183,25 @@ export class SearchPanel {
       ));
     }
 
-    this.summary.textContent = list.length === 1
-      ? t('search.resultsOne')
-      : t('search.results', { n: list.length });
+    const seulsSaints = this.scope === 'saints';
+    this.summary.textContent = seulsSaints
+      ? (list.length === 1 ? t('search.resultsOne') : t('search.results', { n: list.length }))
+      : (list.length === 1 ? t('search.resultsAnyOne') : t('search.resultsAny', { n: list.length }));
 
     // L'export porte sur ce qui est affiché : filtrer puis exporter donne un
     // calendrier de circonstance — les saints d'un pays, d'un siècle, d'un mois.
-    this.lastResults = list;
+    // Il ne porte que sur les saints : ce sont eux qui ont un jour de fête.
+    const saints = list.filter((s) => !s.kind || s.kind === 'saint');
+    this.lastResults = saints;
     const filtered = parsed.tokens.length > 0 || parsed.terms.length > 0;
     this.calendarButton.textContent = filtered
-      ? t('calendar.exportFiltered', { n: list.length })
-      : t('calendar.exportAll', { n: list.length });
-    this.calendarButton.disabled = list.length === 0;
+      ? t('calendar.exportFiltered', { n: saints.length })
+      : t('calendar.exportAll', { n: saints.length });
+    this.calendarButton.disabled = saints.length === 0;
+    this.calendarButton.hidden = saints.length === 0 && list.length > 0;
 
     if (!list.length) {
-      fill(this.results, [h('p', { class: 'results__empty', text: t('search.none') })]);
+      fill(this.results, [h('p', { class: 'results__empty', text: t(seulsSaints ? 'search.none' : 'search.noneAny') })]);
       return;
     }
 
@@ -185,8 +216,8 @@ export class SearchPanel {
     h('span', { class: 'result__meta',
       text: `${this.atlas.countryName(saint.country, lang)} · ${saint.city}` }),
     h('span', { class: 'result__dates' },
-      h('span', { text: lifespan(saint) }),
-      h('span', { class: 'result__feast', text: formatFeast(saint.feast) })),
+      h('span', { text: saint.kind === 'apparition' || saint.kind === 'miracle' ? periode(saint) : lifespan(saint) }),
+      saint.feast ? h('span', { class: 'result__feast', text: formatFeast(saint.feast) }) : null),
     statusChip(saint))));
   }
 }
@@ -195,6 +226,14 @@ function statusChip(saint) {
   if (saint.status === PENDING) return h('span', { class: 'chip chip--pending', text: t('status.pending') });
   if (saint.status === REJECTED) return h('span', { class: 'chip chip--rejected', text: t('status.rejected') });
   return null;
+}
+
+/** L'année d'une apparition ou d'un miracle, ou ses deux bornes. */
+function periode(fiche) {
+  if (fiche.annee == null) return '';
+  return fiche.anneeFin && fiche.anneeFin !== fiche.annee
+    ? `${formatYear(fiche.annee)} – ${formatYear(fiche.anneeFin)}`
+    : formatYear(fiche.annee);
 }
 
 function lifespan(saint) {

@@ -60,6 +60,11 @@ export default {
     removeToken: 'Retirar este filtro',
     results: '{n} santos',
     resultsOne: '1 santo',
+    scope: 'Procurar entre',
+    scopeAll: 'Tudo',
+    resultsAny: '{n} resultados',
+    resultsAnyOne: '1 resultado',
+    noneAny: 'Nada corresponde a esta pesquisa.',
     none: 'Nenhum santo corresponde a esta pesquisa.',
   },
   status: {

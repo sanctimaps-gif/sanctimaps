@@ -60,6 +60,11 @@ export default {
     removeToken: 'Hoc discrimen tollere',
     results: 'Sancti {n}',
     resultsOne: 'Sanctus unus',
+    scope: 'Quaerere inter',
+    scopeAll: 'Omnia',
+    resultsAny: '{n} inventa',
+    resultsAnyOne: '1 inventum',
+    noneAny: 'Nihil huic quaestioni respondet.',
     none: 'Nullus sanctus his condicionibus respondet.',
   },
   status: {

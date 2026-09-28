@@ -60,6 +60,11 @@ export default {
     removeToken: 'Убрать этот фильтр',
     results: 'Святых: {n}',
     resultsOne: '1 святой',
+    scope: 'Искать среди',
+    scopeAll: 'Всё',
+    resultsAny: 'Результатов: {n}',
+    resultsAnyOne: '1 результат',
+    noneAny: 'Ничего не найдено.',
     none: 'Ни один святой не найден по этому запросу.',
   },
   status: {

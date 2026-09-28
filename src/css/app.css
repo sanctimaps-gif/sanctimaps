@@ -2420,3 +2420,17 @@ a.btn {
 .lies-edit__choix:hover { background: var(--accent-soft); border-color: var(--line); }
 .lies-edit__choix .emblem { width: 1.6rem; height: 1.6rem; padding: 0.28rem; }
 .lies-edit__lieu { font-size: 0.75rem; color: var(--ink-soft); }
+
+/* La portée de la recherche : tout, ou un seul des trois corpus. */
+.search__scope { display: flex; flex-wrap: wrap; gap: 0.35rem; margin: 0.45rem 0 0.2rem; }
+.chip--scope {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+.chip--scope.is-on { background: var(--accent); border-color: var(--accent); color: var(--panel); }

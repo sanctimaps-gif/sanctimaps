@@ -60,6 +60,11 @@ export default {
     removeToken: 'Usuń ten filtr',
     results: 'Świętych: {n}',
     resultsOne: '1 święty',
+    scope: 'Szukaj wśród',
+    scopeAll: 'Wszystko',
+    resultsAny: 'Wyniki: {n}',
+    resultsAnyOne: '1 wynik',
+    noneAny: 'Nic nie odpowiada temu wyszukiwaniu.',
     none: 'Żaden święty nie odpowiada tym kryteriom.',
   },
   status: {

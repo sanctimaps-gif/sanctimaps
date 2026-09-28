@@ -60,6 +60,11 @@ export default {
     removeToken: 'إزالة هذا المرشّح',
     results: '{n} قدّيسًا',
     resultsOne: 'قدّيس واحد',
+    scope: 'البحث في',
+    scopeAll: 'الكلّ',
+    resultsAny: '{n} نتيجة',
+    resultsAnyOne: 'نتيجة واحدة',
+    noneAny: 'لا شيء يطابق هذا البحث.',
     none: 'لا يوجد قدّيس يطابق هذا البحث.',
   },
   status: {

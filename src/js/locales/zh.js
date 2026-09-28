@@ -60,6 +60,11 @@ export default {
     removeToken: '移除此条件',
     results: '{n} 位圣人',
     resultsOne: '1 位圣人',
+    scope: '搜索范围',
+    scopeAll: '全部',
+    resultsAny: '{n} 个结果',
+    resultsAnyOne: '1 个结果',
+    noneAny: '没有符合此搜索的内容。',
     none: '没有符合条件的圣人。',
   },
   status: {

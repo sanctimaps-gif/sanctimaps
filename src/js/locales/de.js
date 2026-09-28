@@ -60,6 +60,11 @@ export default {
     removeToken: 'Diesen Filter entfernen',
     results: '{n} Heilige',
     resultsOne: '1 Heiliger',
+    scope: 'Suchen in',
+    scopeAll: 'Alles',
+    resultsAny: '{n} Treffer',
+    resultsAnyOne: '1 Treffer',
+    noneAny: 'Nichts entspricht dieser Suche.',
     none: 'Kein Heiliger entspricht dieser Suche.',
   },
   status: {
