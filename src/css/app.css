@@ -16,6 +16,7 @@
      terre cuite, de la famille de l'or des saints sans pouvoir s'y confondre. */
   --land-marque: #e2a98f;
   --land-marque-hover: #d6937a;
+  --marque-ink: #9a4526;
   --selected: #b9863a;
   --accent: #8c2230;
   --accent-soft: #f3e2e4;
@@ -64,6 +65,7 @@
     --land-saints-hover: #a5811f;
     --land-marque: #7c4a3a;
     --land-marque-hover: #935a47;
+    --marque-ink: #e08a64;
     --selected: #d8b45c;
     --accent: #c9505f;
     --accent-soft: #33222a;
@@ -97,6 +99,7 @@
   --land-saints-hover: #a5811f;
   --land-marque: #7c4a3a;
   --land-marque-hover: #935a47;
+  --marque-ink: #e08a64;
   --selected: #d8b45c;
   --accent: #c9505f;
   --accent-soft: #33222a;
@@ -526,6 +529,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .marker--miracle .marker__badge { fill: var(--miracle); }
 .marker--miracle .marker__halo { fill: var(--miracle); }
 .marker--miracle .marker__cross { display: none; }
+
+/* Un saint venu d'ailleurs, posé là où il a marqué un pays sans saint natif :
+   la terre cuite du pays, en plus soutenu, pour qu'on voie qu'il n'est pas né
+   ici. */
+.marker--venu .marker__badge { fill: var(--marque-ink); }
+.marker--venu .marker__halo { fill: var(--marque-ink); }
 
 /* Seul sur son repère, le saint montre son attribut au lieu de la croix. */
 .marker__emblem {
@@ -1088,10 +1097,20 @@ button, input, select, textarea { font: inherit; color: inherit; }
   text-wrap: pretty;
 }
 
+/* Ce qu'est le lieu, d'après Wikidata : plus discret que ce qui s'y est passé. */
+.detail__lieu-nature {
+  margin: 0.1rem 0 0;
+  padding-inline-start: calc(0.5rem + 4.2rem);
+  font-size: 0.75rem;
+  font-style: italic;
+  color: var(--ink-soft);
+  opacity: 0.85;
+}
+
 /* Sur un écran étroit, le décalage sous l'étiquette mangerait la moitié de la
    ligne : la phrase reprend alors toute la largeur. */
 @media (width <= 34rem) {
-  .detail__lieu-dit { padding-inline-start: 0; }
+  .detail__lieu-dit, .detail__lieu-nature { padding-inline-start: 0; }
 }
 
 .detail__lieu-quoi {

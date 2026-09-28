@@ -761,7 +761,26 @@ export class Atlas {
    */
   countryMarkedBy(countryId) {
     if (this.corpus !== 'saints' || this.countryHasPoints(countryId)) return [];
-    return (this.marques[countryId] || []).map((id) => this.index.saints.byId.get(id)).filter(Boolean);
+    return (this.marques[countryId] || []).map((m) => this.index.saints.byId.get(m.id)).filter(Boolean);
+  }
+
+  /**
+   * Les repères d'un pays marqué : un par lieu où un saint venu d'ailleurs l'a
+   * marqué. Ce sont des copies de la fiche posées sur le lieu — même
+   * identifiant, de sorte qu'un clic ouvre la vraie —, qui portent le nom du
+   * lieu et ce qui s'y est passé.
+   */
+  venusIn(countryId) {
+    if (this.corpus !== 'saints' || this.countryHasPoints(countryId)) return [];
+    const venus = [];
+    for (const { id, lieux } of this.marques[countryId] || []) {
+      const saint = this.index.saints.byId.get(id);
+      if (!saint) continue;
+      for (const lieu of lieux || []) {
+        venus.push({ ...saint, x: lieu.x, y: lieu.y, city: lieu.nom, venu: lieu.quoi });
+      }
+    }
+    return venus;
   }
 
   /** Une fiche par son identifiant, dans le corpus courant puis dans les autres. */

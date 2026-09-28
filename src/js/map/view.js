@@ -1209,7 +1209,10 @@ export class MapView {
       // Un pays en porte jusqu'à mille cent : lire la vie de l'une au milieu de
       // mille croix, c'est la chercher des yeux à chaque phrase. Le reste
       // s'efface donc le temps de la lecture, et revient dès qu'on referme.
-      const tous = this.atlas.pointsIn(this.countryId);
+      // Un pays sans saint natif montre ceux qui l'ont marqué, là où ils l'ont
+      // marqué : Charles de Foucauld à Tamanrasset, Pierre Chanel à Futuna.
+      const natifs = this.atlas.pointsIn(this.countryId);
+      const tous = natifs.length ? natifs : this.atlas.venusIn(this.countryId);
       const seuls = this.soloId ? tous.filter((p) => p.id === this.soloId) : tous;
       // Ceux qu'il a pu croiser viennent après lui dans la même table de
       // groupes : c'est elle que le clic interroge, et un repère qui ne s'y
@@ -1255,6 +1258,7 @@ export class MapView {
         // signe, une hostie au lieu d'une croix. La légende les nomme.
         if (group[0].kind === 'apparition') node.classList.add('marker--apparition');
         if (group[0].kind === 'miracle') node.classList.add('marker--miracle');
+        if (group.every((s) => s.venu)) node.classList.add('marker--venu');
         nodes.push(node);
       });
 

@@ -538,6 +538,7 @@ const PATRONAGE_FILE = 'patronages.json';
 // un fichier du dossier des saints qui ne contient pas de saints.
 const STATUT_FILE = 'statuts.json';
 const PORTRAIT_FILE = 'portraits.json';
+const LIEUX_DESC_FILE = 'lieux-descriptions.json';
 // Les biographies rapportées des Wikipédia autres que la française et
 // l'anglaise, par `completer-bios.mjs`. Même remarque : ce n'est pas un
 // fichier de saints.
@@ -591,7 +592,7 @@ try {
 
 for (const file of readdirSync(SAINTS_DIR)
   .filter((f) => f.endsWith('.json')
-    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, PORTRAIT_FILE, BIOS_IMPORTEES_FILE,
+    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, PORTRAIT_FILE, LIEUX_DESC_FILE, BIOS_IMPORTEES_FILE,
       LIEUX_FILE, NOTABLES_FILE, VOYANTS_FILE, LIENS_FILE,
       NOTES_FILE, ECARTES_FILE].includes(f))
   .sort()) {
@@ -1034,6 +1035,14 @@ for (const [id, liste] of Object.entries(notables)) {
   }
   lieuxParSaint[id] = releves;
 }
+// Ce qu'est chaque lieu, en une ligne, relevé sur Wikidata par
+// `import-lieux-desc.mjs` : « cathédrale catholique de Catane ».
+let lieuxDescriptions = {};
+try {
+  lieuxDescriptions = JSON.parse(readFileSync(join(SAINTS_DIR, LIEUX_DESC_FILE), 'utf8')).descriptions || {};
+} catch { /* pas encore relevées : les lieux se contentent de leur nom */ }
+let lieuxDecrits = 0;
+
 const lieuxSortie = {};
 let lieuxTotal = 0;
 let lieuxOrphelins = 0;
@@ -1069,6 +1078,7 @@ for (const [id, liste] of Object.entries(lieuxParSaint)) {
       lng: lieu.lng,
       quoi: lieu.quoi,
       ...(aussi.length ? { aussi } : {}),
+      ...(lieuxDescriptions[lieu.qid] && (lieuxDecrits += 1) ? { desc: lieuxDescriptions[lieu.qid] } : {}),
       x: Math.round(x) + shift,
       y: Math.round(y),
     });
@@ -1546,6 +1556,7 @@ writeFileSync(join(OUT, 'lieux.json'), JSON.stringify({
   lieux: lieuxSortie,
   liens: liensSortie,
 }));
+if (lieuxDecrits) console.log(`  lieux décrits d'après Wikidata : ${lieuxDecrits}`);
 console.log(`  lieux.json : ${lieuxTotal} lieux pour ${Object.keys(lieuxSortie).length} saints`
   + (lieuxOrphelins ? `, ${lieuxOrphelins} orphelins écartés` : '')
   + (vus ? `, dont ${vus} apparitions vues` : ''));
@@ -1617,7 +1628,9 @@ for (const [id, places] of Object.entries(lieuxSortie)) {
         && place.y >= c.bbox[1] && place.y <= c.bbox[3] && dedans(c.rings, px, place.y));
       if (!pays) continue;
       const parSaint = (marques[pays.id] ||= {});
-      parSaint[id] = (parSaint[id] || 0) + 1;
+      // Le lieu lui-même, et non le seul nom du saint : entrer dans le pays doit
+      // montrer où il l'a marqué, avec un point qui ouvre sa fiche.
+      (parSaint[id] ||= []).push({ nom: place.nom, quoi: place.quoi, x: px, y: place.y });
       break;
     }
   }
@@ -1625,8 +1638,8 @@ for (const [id, places] of Object.entries(lieuxSortie)) {
 const marquesSortie = Object.fromEntries(Object.entries(marques)
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([pays, parSaint]) => [pays, Object.entries(parSaint)
-    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
-    .map(([id]) => id)]));
+    .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+    .map(([id, lieux]) => ({ id, lieux }))]));
 writeFileSync(join(OUT, 'marques.json'), JSON.stringify({ marques: marquesSortie }));
 console.log(`  marques.json : ${Object.keys(marquesSortie).length} pays sans saint natif,`
   + ' marqués par un saint venu d’ailleurs');

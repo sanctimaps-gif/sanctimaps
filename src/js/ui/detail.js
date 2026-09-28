@@ -5,6 +5,24 @@ import { fill, h } from './dom.js';
 import { emblemSvg } from '../emblems.js';
 import { portraitOf } from '../portrait.js';
 
+/**
+ * Ce qui s'est passé en un lieu, dit à partir du motif seul. La date ne se pose
+ * que quand elle est celle du motif — l'année de la mort pour le lieu de mort —,
+ * et la phrase ne prétend rien de plus.
+ */
+function phraseLieu(lieu, saint) {
+  const sex = saint.sex;
+  if (lieu.quoi === 'mort' && saint.died != null) {
+    return t('lieuDit.mortAn', { sex, y: formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec }) });
+  }
+  if (lieu.quoi === 'naissance' && saint.born != null) {
+    return t('lieuDit.naissanceAn', { sex, y: formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec }) });
+  }
+  const cle = `lieuDit.${lieu.quoi}`;
+  const phrase = t(cle, { sex });
+  return phrase === cle ? '' : phrase;
+}
+
 function row(label, value) {
   if (!value) return null;
   return h('div', { class: 'sheet__row' },
@@ -180,6 +198,11 @@ export class DetailPanel {
             // catégorie, non le fait : « Rouen, lieu de mort » ne dit rien du
             // bûcher de la place du Vieux-Marché.
             const dit = pickText(lieu.dit, lang);
+            // Faute de phrase écrite à la main, une phrase construite du motif
+            // et de la date, qui ne dit que ce qu'on sait : « Elle y est morte
+            // en 1431 ». Et, dessous, ce qu'est le lieu d'après Wikidata.
+            const phrase = dit || phraseLieu(lieu, saint);
+            const nature = pickText(lieu.desc, lang);
             return h('li', { class: dit ? 'is-dit' : '' },
               h('p', { class: 'detail__lieu-tete' },
                 h('span', {
@@ -187,7 +210,8 @@ export class DetailPanel {
                   text: [lieu.quoi, ...(lieu.aussi || [])].map((q) => t(`lieux.${q}`)).join(' · '),
                 }),
                 h('span', { class: 'detail__lieu-nom', text: lieu.nom })),
-              dit ? h('p', { class: 'detail__lieu-dit', text: dit }) : null);
+              phrase ? h('p', { class: 'detail__lieu-dit', text: phrase }) : null,
+              nature ? h('p', { class: 'detail__lieu-nature', text: nature }) : null);
           }))
         : null,
       // Les voisins, avec ce qui les rapproche : un lien écrit — « sa sœur »,
