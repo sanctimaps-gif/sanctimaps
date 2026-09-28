@@ -1188,6 +1188,23 @@ qui portent en outre une hostie au lieu d'une croix : la couleur se reconnaît
 d'un coup d'œil, mais elle ne se lit pas quand on est daltonien, et le troisième
 corpus avait de la place pour un signe. La légende suit la bascule.
 
+## Les lieux marqués, décrits et modifiables
+
+Chaque lieu marqué par un saint dit ce qui s'y est passé : une phrase écrite à
+la main quand il y en a une (`notes-lieux.json`), sinon une phrase construite du
+motif et de la date — « Elle y est morte en 1431 », « Il y repose » —, traduite
+dans les douze langues. Dessous, ce qu'est le lieu d'après Wikidata, relevé par
+`tools/import-lieux-desc.mjs` ; ce que Wikidata ne donne qu'en anglais est
+traduit à la main dans `lieux-descriptions-fr.json`, que le relevé ne touche
+pas.
+
+En ajoutant ou en modifiant un saint, le formulaire montre ses **lieux
+marqués** : nom, motif, coordonnées (tapées ou prises d'un clic sur la carte) et
+ce qui s'y est passé. On en ajoute, on en retire. Comme le reste, cela vit
+d'abord dans le navigateur ; le bouton « Exporter mes lieux marqués » rend
+`lieux-main.json`, à verser dans `data/saints/`, où la liste de chaque saint
+nommé remplace celle de la collecte.
+
 ## Les pays marqués par un saint venu d'ailleurs
 
 Un pays où aucun saint de la carte n'est né n'est pas forcément un pays sans

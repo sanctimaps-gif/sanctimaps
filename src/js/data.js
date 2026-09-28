@@ -82,10 +82,34 @@ const VERSION_STORE = 4;
  */
 const coucheVide = () => ({ added: [], edits: {}, removed: [] });
 const storeVide = () => {
-  const store = { version: VERSION_STORE, ...coucheVide() };
+  const store = { version: VERSION_STORE, ...coucheVide(), lieux: {} };
   for (const { nom } of CORPUS.slice(1)) store[nom] = coucheVide();
   return store;
 };
+
+/** Les motifs d'un lieu marqué, dans l'ordre où le formulaire les propose. */
+export const MOTIFS_LIEU = ['mort', 'sepulture', 'naissance', 'enfance', 'formation', 'residence',
+  'oeuvre', 'fondation', 'apparition', 'miracle', 'predilection'];
+
+/**
+ * Les lieux marqués d'un saint, saisis à la main, relus sans leur faire
+ * confiance : un nom, des coordonnées valides, un motif connu, et au besoin ce
+ * qui s'y est passé.
+ */
+function lireLieux(source) {
+  const sortie = {};
+  if (!source || typeof source !== 'object') return sortie;
+  for (const [id, liste] of Object.entries(source)) {
+    if (!Array.isArray(liste)) continue;
+    sortie[id] = liste.filter((l) => l && typeof l.nom === 'string' && l.nom.trim()
+      && Number.isFinite(l.lat) && Number.isFinite(l.lng) && MOTIFS_LIEU.includes(l.quoi))
+      .map((l) => ({
+        nom: l.nom.trim(), quoi: l.quoi, lat: l.lat, lng: l.lng,
+        ...(l.dit && typeof l.dit === 'object' ? { dit: l.dit } : {}),
+      }));
+  }
+  return sortie;
+}
 
 /**
  * Distance entre deux points, en kilomètres.
@@ -120,7 +144,7 @@ function readStore() {
   if (!raw) return storeVide();
   try {
     const parsed = JSON.parse(raw);
-    const store = { version: VERSION_STORE, ...lireCouche(parsed) };
+    const store = { version: VERSION_STORE, ...lireCouche(parsed), lieux: lireLieux(parsed.lieux) };
     for (const { nom } of CORPUS.slice(1)) store[nom] = lireCouche(parsed[nom]);
     return store;
   } catch {
@@ -285,7 +309,43 @@ export class Atlas {
    * montre une seconde plus tard qu'un bouton qui promet une liste vide.
    */
   lieuxDe(saintId) {
+    // Ce que l'administrateur a saisi l'emporte sur la table livrée : c'est la
+    // liste entière du saint, telle qu'il l'a voulue, lieux retirés compris.
+    const mien = this.store.lieux?.[saintId];
+    if (mien) {
+      return mien.map((l) => {
+        const [x, y] = project(l.lng, l.lat);
+        return { ...l, x: Math.round(x), y: Math.round(y) };
+      });
+    }
     return this.lieux?.[saintId] || [];
+  }
+
+  /** Les lieux saisis à la main pour un saint remplacent les siens. */
+  setLieux(saintId, lieux) {
+    if (!this.store.lieux) this.store.lieux = {};
+    this.store.lieux[saintId] = lireLieux({ [saintId]: lieux })[saintId] || [];
+    this.grille = null;
+    this.persist();
+  }
+
+  /** Y a-t-il des lieux saisis à la main, à verser dans le dépôt ? */
+  hasLocalLieux() {
+    return Object.keys(this.store.lieux || {}).length > 0;
+  }
+
+  /**
+   * Le fichier qui rend durables les lieux saisis : `data/saints/lieux-main.json`.
+   * Chaque saint y porte sa liste entière, et `build-data` la préfère à la
+   * collecte.
+   */
+  exportLieux() {
+    return {
+      note: 'Lieux marqués saisis à la main depuis l’application. Pour chaque saint,'
+        + ' la liste remplace entièrement celle de la collecte ; une liste vide retire'
+        + ' tous ses lieux.',
+      lieux: this.store.lieux || {},
+    };
   }
 
   // -- qui a pu croiser qui -------------------------------------------------
@@ -325,7 +385,7 @@ export class Atlas {
     for (const saint of this.saints) {
       if (saint.kind && saint.kind !== 'saint') continue;
       poser(saint.lat, saint.lng, saint.id, saint.city);
-      for (const lieu of this.lieux[saint.id] || []) poser(lieu.lat, lieu.lng, saint.id, lieu.nom);
+      for (const lieu of this.lieuxDe(saint.id)) poser(lieu.lat, lieu.lng, saint.id, lieu.nom);
     }
     this.grille = grille;
     return grille;

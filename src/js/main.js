@@ -138,9 +138,12 @@ async function start() {
   });
 
   const addPanel = new AddPanel(atlas, {
-    onSubmit: ({ draft, editing, status, kind, author }) => {
+    onSubmit: ({ draft, editing, status, kind, author, lieux }) => {
+      let id = editing;
       if (editing) atlas.updateSaint(editing, draft);
-      else atlas.addSaint(draft, { status, author, kind });
+      else id = atlas.addSaint(draft, { status, author, kind }).saint?.id;
+      // Les lieux marqués saisis dans le formulaire remplacent ceux du saint.
+      if (lieux && id) atlas.setLieux(id, lieux);
       refreshAll();
       // La fiche qu'on vient d'écrire, relue dans le corpus où elle est entrée :
       // c'est elle qu'on va montrer, et non le brouillon du formulaire.

@@ -2268,3 +2268,21 @@ a.btn {
 .check--low { color: var(--accent); }
 
 .btn[disabled] { opacity: 0.5; cursor: default; }
+
+/* ---------------------------------------------- Lieux marqués, au formulaire */
+
+/* Un bloc par lieu, détaché des autres par un filet : on doit voir où finit
+   l'un et où commence le suivant quand la liste en compte six. */
+.lieu-edit {
+  display: grid;
+  gap: 0.4rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.lieu-edit__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+.lieu-edit__remove { color: var(--accent); }
+.lieux-edit > .btn { justify-self: start; margin-top: 0.4rem; }

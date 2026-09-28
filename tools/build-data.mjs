@@ -540,6 +540,7 @@ const STATUT_FILE = 'statuts.json';
 const PORTRAIT_FILE = 'portraits.json';
 const LIEUX_DESC_FILE = 'lieux-descriptions.json';
 const LIEUX_DESC_FR_FILE = 'lieux-descriptions-fr.json';
+const LIEUX_MAIN_FILE = 'lieux-main.json';
 // Les biographies rapportées des Wikipédia autres que la française et
 // l'anglaise, par `completer-bios.mjs`. Même remarque : ce n'est pas un
 // fichier de saints.
@@ -593,7 +594,7 @@ try {
 
 for (const file of readdirSync(SAINTS_DIR)
   .filter((f) => f.endsWith('.json')
-    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, PORTRAIT_FILE, LIEUX_DESC_FILE, LIEUX_DESC_FR_FILE, BIOS_IMPORTEES_FILE,
+    && ![PATRONAGE_FILE, BIO_FILE, TRAD_FILE, STATUT_FILE, PORTRAIT_FILE, LIEUX_DESC_FILE, LIEUX_DESC_FR_FILE, LIEUX_MAIN_FILE, BIOS_IMPORTEES_FILE,
       LIEUX_FILE, NOTABLES_FILE, VOYANTS_FILE, LIENS_FILE,
       NOTES_FILE, ECARTES_FILE].includes(f))
   .sort()) {
@@ -1036,6 +1037,22 @@ for (const [id, liste] of Object.entries(notables)) {
   }
   lieuxParSaint[id] = releves;
 }
+
+// Les lieux saisis depuis l'application et exportés dans `lieux-main.json` :
+// pour chaque saint nommé, la liste entière, qui remplace celle de la collecte —
+// lieux retirés compris. Ce qu'ils disent (« dit ») est déjà écrit, et les notes
+// de `notes-lieux.json` ne s'y posent plus.
+const lieuxALaMain = new Set();
+try {
+  const mains = JSON.parse(readFileSync(join(SAINTS_DIR, LIEUX_MAIN_FILE), 'utf8')).lieux || {};
+  for (const [id, liste] of Object.entries(mains)) {
+    if (!Array.isArray(liste)) continue;
+    lieuxParSaint[id] = liste.map((l) => ({ ...l }));
+    lieuxALaMain.add(id);
+  }
+  if (lieuxALaMain.size) console.log(`  lieux saisis à la main : ${lieuxALaMain.size} saints`);
+} catch { /* rien de saisi : la collecte fait foi */ }
+
 // Ce qu'est chaque lieu, en une ligne, relevé sur Wikidata par
 // `import-lieux-desc.mjs` : « cathédrale catholique de Catane ».
 let lieuxDescriptions = {};
@@ -1089,6 +1106,7 @@ for (const [id, liste] of Object.entries(lieuxParSaint)) {
       quoi: lieu.quoi,
       ...(aussi.length ? { aussi } : {}),
       ...(lieuxDescriptions[lieu.qid] && (lieuxDecrits += 1) ? { desc: lieuxDescriptions[lieu.qid] } : {}),
+      ...(lieu.dit && typeof lieu.dit === 'object' ? { dit: lieu.dit } : {}),
       x: Math.round(x) + shift,
       y: Math.round(y),
     });
@@ -1540,6 +1558,8 @@ if (voyantsInconnus.length) {
 let notesPosees = 0;
 const notesOrphelines = [];
 for (const [id, liste] of Object.entries(notes)) {
+  // Un saint dont les lieux ont été saisis à la main porte déjà ses phrases.
+  if (lieuxALaMain.has(id)) continue;
   const places = lieuxSortie[id] || [];
   for (const note of liste) {
     const place = places.find((p) => p.nom === note.lieu);

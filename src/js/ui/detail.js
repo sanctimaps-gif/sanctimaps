@@ -12,11 +12,14 @@ import { portraitOf } from '../portrait.js';
  */
 function phraseLieu(lieu, saint) {
   const sex = saint.sex;
-  if (lieu.quoi === 'mort' && saint.died != null) {
-    return t('lieuDit.mortAn', { sex, y: formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec }) });
+  // Une date approximative ne se glisse pas dans la phrase : « morte en vers
+  // 1930 » ne se dit pas. La phrase se passe alors de l'année.
+  const exacte = (prec) => !saint.circa && (prec == null || prec >= 9);
+  if (lieu.quoi === 'mort' && saint.died != null && exacte(saint.diedPrec)) {
+    return t('lieuDit.mortAn', { sex, y: formatYear(saint.died) });
   }
-  if (lieu.quoi === 'naissance' && saint.born != null) {
-    return t('lieuDit.naissanceAn', { sex, y: formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec }) });
+  if (lieu.quoi === 'naissance' && saint.born != null && exacte(saint.bornPrec)) {
+    return t('lieuDit.naissanceAn', { sex, y: formatYear(saint.born) });
   }
   const cle = `lieuDit.${lieu.quoi}`;
   const phrase = t(cle, { sex });

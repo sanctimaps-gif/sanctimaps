@@ -1,5 +1,5 @@
 import { can, getSession } from '../auth.js';
-import { PENDING, PUBLISHED } from '../data.js';
+import { MOTIFS_LIEU, PENDING, PUBLISHED } from '../data.js';
 import { collator, getLanguage, monthNames, t, titleLabel } from '../i18n.js';
 import { field, fill, h, select } from './dom.js';
 
@@ -18,7 +18,13 @@ const BLANK = {
   // plusieurs, et l'Église s'est prononcée ou non ; un miracle eucharistique a
   // eu lieu une année, et il en reste quelque chose, ou rien.
   annee: '', anneeFin: '', approbation: '', garde: '',
+  // Les lieux marqués par le saint : où il est mort, enterré, où il a fondé,
+  // vécu, œuvré. Chacun avec son nom, son motif, ses coordonnées, et au besoin
+  // ce qui s'y est passé.
+  lieux: [],
 };
+
+const lieuVide = () => ({ nom: '', quoi: 'mort', lat: '', lng: '', dit: '' });
 
 /** Les trois degrés d'approbation, plus le silence — qui est le cas ordinaire. */
 const APPROBATIONS = ['reconnue', 'en-cours', 'non-reconnue'];
@@ -42,9 +48,17 @@ export class AddPanel {
   }
 
   setCoordinates({ lat, lng, country }) {
-    this.values.lat = String(lat);
-    this.values.lng = String(lng);
-    if (country) this.values.country = country;
+    // Le clic sur la carte sert soit le saint, soit l'un de ses lieux marqués :
+    // celui dont on a pressé le bouton « Choisir sur la carte ».
+    if (this.pickLieu != null && this.values.lieux[this.pickLieu]) {
+      Object.assign(this.values.lieux[this.pickLieu], { lat: String(lat), lng: String(lng) });
+      this.lieuxTouches = true;
+    } else {
+      this.values.lat = String(lat);
+      this.values.lng = String(lng);
+      if (country) this.values.country = country;
+    }
+    this.pickLieu = null;
     this.picking = false;
     this.render();
   }
@@ -119,11 +133,40 @@ export class AddPanel {
       patronage: typeof saint.patronage === 'string'
         ? saint.patronage : saint.patronage?.[lang] || '',
       titles: [...(saint.titles || [])],
+      lieux: this.lieuxPourFormulaire(saint.id),
     };
+    this.lieuxTouches = false;
+    // La table des lieux descend après la carte : si elle n'est pas encore là,
+    // on la demande, et la liste se remplit dès son arrivée — tant qu'on n'a
+    // rien commencé à y changer.
+    if (this.editingKind === 'saint' && !this.atlas.lieuxReady) {
+      const id = saint.id;
+      this.atlas.ensureLieux().then(() => {
+        if (this.editing !== id || this.lieuxTouches) return;
+        this.values.lieux = this.lieuxPourFormulaire(id);
+        this.render();
+      });
+    }
     this.render();
   }
 
+  /** Les lieux d'un saint, tels que le formulaire les montre : en texte. */
+  lieuxPourFormulaire(id) {
+    const lang = getLanguage();
+    return this.atlas.lieuxDe(id).map((l) => ({
+      nom: l.nom,
+      quoi: l.quoi,
+      lat: String(l.lat),
+      lng: String(l.lng),
+      dit: typeof l.dit === 'string' ? l.dit : l.dit?.[lang] || '',
+      // Ce que le lieu disait dans les autres langues, pour ne pas l'effacer.
+      ditBase: typeof l.dit === 'object' ? l.dit : undefined,
+    }));
+  }
+
   cancelEdit() {
+    this.lieuxTouches = false;
+    this.pickLieu = null;
     this.editing = null;
     this.editingKind = null;
     this.editingBase = null;
@@ -282,6 +325,7 @@ export class AddPanel {
               this.onCancelPick();
             } else {
               this.picking = true;
+              this.pickLieu = null;
               this.onPick();
             }
             this.render();
@@ -309,6 +353,8 @@ export class AddPanel {
         class: 'control', type: 'text', value: this.values.patronage,
         placeholder: t('add.patronagePlaceholder'), oninput: this.bind('patronage'),
       })),
+
+      date ? null : this.renderLieux(),
 
       field(t('add.desc'), h('textarea', {
         class: 'control control--area',
@@ -362,12 +408,116 @@ export class AddPanel {
           onclick: () => this.exportMine(),
         })
         : null,
+      // Les lieux saisis vivent dans le navigateur, comme le reste : ce fichier
+      // les rend durables, une fois versé dans data/saints/.
+      !date && this.atlas.hasLocalLieux()
+        ? [
+          h('button', {
+            class: 'btn btn--ghost',
+            type: 'button',
+            text: t('add.exportLieux'),
+            onclick: () => this.telecharger('lieux-main.json', this.atlas.exportLieux()),
+          }),
+          h('p', { class: 'field__hint', text: t('add.exportLieuxHint') }),
+        ]
+        : null,
     ]);
 
     this.root.onsubmit = (event) => {
       event.preventDefault();
       this.submit();
     };
+  }
+
+  /**
+   * Les lieux marqués, un bloc par lieu : nom, motif, coordonnées — tapées ou
+   * prises d'un clic sur la carte —, et ce qui s'y est passé. On en ajoute, on
+   * en retire ; la liste enregistrée remplace celle de la collecte.
+   */
+  renderLieux() {
+    const motifs = MOTIFS_LIEU.map((q) => ({ value: q, label: t(`lieux.${q}`) }));
+    const toucher = (i, clef) => (e) => {
+      this.values.lieux[i][clef] = e.target.value;
+      this.lieuxTouches = true;
+    };
+    return h('fieldset', { class: 'group lieux-edit' },
+      h('legend', { class: 'group__legend', text: t('add.lieux') }),
+      h('p', { class: 'field__hint', text: t('add.lieuxHint') }),
+      ...this.values.lieux.map((lieu, i) => h('div', { class: 'lieu-edit' },
+        h('div', { class: 'filters__row' },
+          field(t('add.lieuNom'), h('input', {
+            class: 'control', type: 'text', value: lieu.nom,
+            placeholder: t('add.lieuNomPlaceholder'), oninput: toucher(i, 'nom'),
+          })),
+          field(t('add.lieuQuoi'), select(motifs, {
+            value: lieu.quoi,
+            onchange: (e) => { lieu.quoi = e.target.value; this.lieuxTouches = true; },
+          }))),
+        h('div', { class: 'filters__row' },
+          field(t('add.lat'), h('input', {
+            class: 'control', type: 'number', step: 'any', value: lieu.lat, oninput: toucher(i, 'lat'),
+          })),
+          field(t('add.lng'), h('input', {
+            class: 'control', type: 'number', step: 'any', value: lieu.lng, oninput: toucher(i, 'lng'),
+          }))),
+        field(t('add.lieuDit'), h('textarea', {
+          class: 'control control--area', rows: '2',
+          placeholder: t('add.lieuDitPlaceholder'), oninput: toucher(i, 'dit'),
+        }, lieu.dit)),
+        h('div', { class: 'lieu-edit__actions' },
+          h('button', {
+            class: `btn btn--ghost${this.pickLieu === i ? ' is-active' : ''}`,
+            type: 'button',
+            text: this.pickLieu === i ? t('add.picking') : t('add.pick'),
+            onclick: () => {
+              if (this.pickLieu === i) {
+                this.pickLieu = null;
+                this.onCancelPick();
+              } else {
+                this.pickLieu = i;
+                this.onPick();
+              }
+              this.render();
+            },
+          }),
+          h('button', {
+            class: 'btn btn--ghost lieu-edit__remove',
+            type: 'button',
+            text: t('add.lieuRetirer'),
+            onclick: () => {
+              this.values.lieux.splice(i, 1);
+              this.lieuxTouches = true;
+              this.render();
+            },
+          })))),
+      h('button', {
+        class: 'btn btn--ghost',
+        type: 'button',
+        text: t('add.lieuAjouter'),
+        onclick: () => {
+          this.values.lieux.push(lieuVide());
+          this.lieuxTouches = true;
+          this.render();
+        },
+      }));
+  }
+
+  /** Les lieux du formulaire, prêts à enregistrer ; ceux qu'on a laissés vides s'effacent. */
+  lieuxSaisis() {
+    const lang = getLanguage();
+    return this.values.lieux
+      .filter((l) => l.nom.trim() || l.lat || l.lng || l.dit.trim())
+      .map((l) => {
+        const dit = { ...(l.ditBase || {}) };
+        if (l.dit.trim()) dit[lang] = l.dit.trim(); else delete dit[lang];
+        return {
+          nom: l.nom.trim(),
+          quoi: l.quoi,
+          lat: Number(l.lat),
+          lng: Number(l.lng),
+          ...(Object.keys(dit).length ? { dit } : {}),
+        };
+      });
   }
 
   /**
@@ -407,6 +557,11 @@ export class AddPanel {
       if ((v.month && !v.day) || (!v.month && v.day)) return t('add.errFeast');
       if (v.day && !(Number(v.day) >= 1 && Number(v.day) <= 31)) return t('add.errFeast');
       return null;
+    }
+
+    for (const lieu of this.lieuxSaisis()) {
+      if (!lieu.nom || !Number.isFinite(lieu.lat) || !Number.isFinite(lieu.lng)
+        || Math.abs(lieu.lat) > 85 || Math.abs(lieu.lng) > 180) return t('add.errLieu');
     }
 
     if (!v.month || !v.day) return t('add.errFeast');
@@ -465,6 +620,11 @@ export class AddPanel {
 
     const editing = this.editing;
     const status = can('publish') ? PUBLISHED : PENDING;
+    // Les lieux ne s'enregistrent que si on y a touché : sinon la fiche garde
+    // ceux de la collecte, qui pourront encore être mis à jour.
+    const lieux = !this.date && this.lieuxTouches ? this.lieuxSaisis() : undefined;
+    this.lieuxTouches = false;
+    this.pickLieu = null;
     this.editing = null;
     this.editingKind = null;
     this.editingBase = null;
@@ -474,7 +634,7 @@ export class AddPanel {
       text: editing ? t('add.updated') : t(status === PUBLISHED ? 'add.savedPublished' : 'add.savedPending'),
     };
     this.render();
-    this.onSubmit({ draft, editing, status, kind, author: getSession().name });
+    this.onSubmit({ draft, editing, status, kind, author: getSession().name, lieux });
   }
 
   exportMine() {
