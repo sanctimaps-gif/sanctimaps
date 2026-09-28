@@ -34,27 +34,35 @@ pas.
 
 ## Ce qui n'y est pas, et pourquoi
 
-**L'exposition compte plus de cent trente miracles ; il y en a quarante-sept
-ici.** Deux raisons, et elles se disent :
+**L'exposition compte plus de cent trente panneaux ; il y a ici cent quatre
+miracles, dans dix-huit pays** — des Pères du désert de Scété, vers 400, à
+Legnica en 2013. La liste de l'exposition y est entière, à trois choses près,
+qui se disent :
 
-1. **Ce dont on n'était pas sûr n'a pas été écrit.** Quand la date, le lieu
-   exact ou les coordonnées d'un village restaient douteux, la fiche n'a pas été
-   faite plutôt que d'être faite à peu près. Une carte pose un point : elle ne
-   peut pas dire « quelque part par là ».
+1. **Ce que l'exposition range sous un seul panneau n'y est qu'une fois.**
+   Offida (1273-1280), Meerssen (1222 et 1465), Valvasone et Gruaro, Buenos
+   Aires (1992-1996) ne font qu'un point chacun. Les panneaux qui ne racontent
+   pas un miracle en un lieu — les saints et l'Eucharistie, les introductions —
+   n'en sont pas un non plus.
 
-2. **Les récits d'hostie profanée par des Juifs ont été écartés.** Plusieurs
-   miracles de la liste — Paris 1290, Bruxelles 1370, Deggendorf 1338, Ségovie
-   1410, Poznań 1399 — reposent sur une accusation portée au Moyen Âge contre
-   des communautés juives, qui a servi de prétexte à des massacres. Les
-   historiens la tiennent pour une calomnie, et l'Église l'a dit elle-même :
+2. **Les fiches ajoutées en second ont été écrites plus court.** Le premier
+   passage ne gardait que ce dont la date et le lieu étaient sûrs ; le second a
+   voulu toute la liste. Quand les sources ne disaient presque rien — Asti,
+   Benningen, Bergen, Pressac, le second miracle de Turin —, la notice dit peu,
+   et le champ « ce qu'on en garde » se borne au souvenir. Elles sont à relire.
+
+3. **Les récits d'hostie profanée par des Juifs sont sur la carte, mais pour ce
+   qu'ils sont : des calomnies.** Paris 1290, Bruxelles 1370, Deggendorf 1338,
+   Ségovie 1410, Poznań 1399 reposent sur une accusation portée au Moyen Âge
+   contre des communautés juives, qui a servi de prétexte à des massacres. Les
+   historiens la tiennent pour fausse, et l'Église l'a dit elle-même :
    l'archevêché de Malines-Bruxelles a reconnu en 1968 que le « Sacrement de
    Miracle » reposait sur une accusation sans fondement, et l'évêque de
    Ratisbonne a mis fin au pèlerinage de Deggendorf en 1992 pour la même raison.
-   Les porter sur une carte comme des miracles, sans plus, reviendrait à
-   republier l'accusation.
-
-Cette seconde décision est un choix, et il vous appartient de le revoir : la
-place est faite pour ajouter ces fiches avec ce qu'il faut dire autour.
+   Ces cinq fiches ne sont donc pas titrées « miracle » : leur nom dit
+   l'accusation, leur récit dit qu'elle est fausse et ce qu'elle a coûté, et
+   « ce qu'on en garde » dit où l'on peut encore voir la légende — et, quand il
+   existe, le désaveu.
 
 ## Ajouter, modifier, supprimer
 

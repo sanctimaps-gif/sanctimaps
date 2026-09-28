@@ -862,7 +862,7 @@ export async function loadAtlas() {
     getJSON(`${BASE}/saints.json`),
     // Les deux autres corpus sont demandés avec les saints parce que la bascule
     // doit savoir dès le premier dessin ce qu'elle a à montrer. Ils ne coûtent
-    // presque rien — quarante fiches, quarante-sept —, et leur absence
+    // presque rien — quarante fiches, cent quatre —, et leur absence
     // n'empêche pas la carte de s'ouvrir : la bascule dira simplement qu'il n'y
     // a rien de recensé.
     getJSON(`${BASE}/apparitions.json`).catch(() => ({ apparitions: [] })),
