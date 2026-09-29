@@ -451,7 +451,7 @@ export default {
     qui: {
       titre: 'Guess who',
       hint: 'Guess a secret saint with yes-or-no questions',
-      regle: 'A secret saint. Ask questions — “Monk?”, “Europe?”, “Before 1000?” —: the answer is yes or no, and the saints who would answer differently are set aside. Whenever you like, try a name. The fewer questions you ask, the more you earn.',
+      regle: 'A secret saint. Type a clue — “monk”, “France”, “13th century”, “woman”, “before 1000” —: the answer is yes or no, and the list of possible saints narrows. Whenever you like, try a name. The fewer questions you ask, the more you earn.',
     },
     retour: 'Games',
     commencer: 'Start',
@@ -524,6 +524,10 @@ export default {
       autre: 'Other questions',
     },
     qq: {
+      apres: 'After the year {an}?',
+      homme: 'A man?',
+      ville: 'Born in {v}?',
+      patronDe: 'Patron of “{p}”?',
       avant: 'Before the year {an}?',
       femme: 'A woman?',
       patron: 'Patron saint of something?',
@@ -535,6 +539,12 @@ export default {
     questions: '{n} questions asked · {pts} points at stake',
     lireSuite: 'Read the biography',
     voirCarte: 'Show on the map',
+    indicePlaceholder: 'Your clue: monk, France, 13th century, woman, before 1000…',
+    demander: 'Ask',
+    incompris: '“{i}”: clue not understood. Try a quality (monk, martyr, bishop), a country, a continent, a century (13th), “before 1000”, “woman”, a month, a city, a patronage.',
+    dejaPose: 'Already asked: {i}',
+    idees: 'Clue ideas',
+    etAutres: '… and {n} more',
   },
   lies: {
     titre: 'Linked entries',

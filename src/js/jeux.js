@@ -378,6 +378,87 @@ export function questionsQui(atlas, restants, lang, posees = new Set()) {
   return familles.filter((f) => f.questions.length);
 }
 
+/**
+ * Un indice tapé, compris comme une question par oui ou par non.
+ *
+ * On reconnaît, dans cet ordre : une époque (« XIIIe », « 13e siècle »,
+ * « avant 1000 », « après 1500 »), une femme ou un homme, une qualité
+ * (« moine », « martyre »), un continent, un pays, un mois de fête, une ville
+ * natale, enfin un mot du patronage (« pêcheurs »). Ce qui ne répond à rien
+ * rend `null`, et l'interface le dit.
+ */
+const MOTS_FEMME = ['femme', 'woman', 'frau', 'mujer', 'donna', 'mulher', 'vrouw', 'kobieta', 'zhenshchina', 'женщина', 'femina', 'امرأة', '女', '女性', 'sainte'];
+const MOTS_HOMME = ['homme', 'man', 'mann', 'hombre', 'uomo', 'homem', 'mezczyzna', 'мужчина', 'vir', 'رجل', '男', '男性'];
+const AVANT = /^(avant|before|vor|antes( de| del)?|prima( del)?|przed|до|ante|قبل)\s*(l ?an |the year |dem jahr |del ano |del |do ano |roku |года |anno )?(?<an>\d{2,4})/;
+const APRES = /^(apres|after|nach|despues( de| del)?|dopo( il)?|depois( de)?|na|po|после|post|بعد)\s*(l ?an |the year |dem jahr |el ano |il |o ano |roku |года |annum )?(?<an>\d{2,4})/;
+
+export function interpreterIndice(atlas, texte, lang, pays) {
+  const brut = String(texte || '').trim();
+  const g = fold(brut).replace(/[?!.]/g, '').replace(/\s+/g, ' ').trim();
+  if (!g) return null;
+
+  let m = AVANT.exec(g);
+  if (m) {
+    const an = Number(m.groups.an);
+    return { cle: `avant:${an}`, libelle: t('jeux.qq.avant', { an }), test: (s) => annee(s) != null && annee(s) < an };
+  }
+  m = APRES.exec(g);
+  if (m) {
+    const an = Number(m.groups.an);
+    return { cle: `apres:${an}`, libelle: t('jeux.qq.apres', { an }), test: (s) => annee(s) != null && annee(s) >= an };
+  }
+  // Un siècle : « 13 », « 13e », « xiiie siècle », « 13th century ».
+  const romain = g.match(/^([ivx]+)\s*(e|eme|er)?\b/);
+  const chiffre = g.match(/^(\d{1,2})\s*(e|eme|er|th|st|nd|rd|\.)?\s*(siecle|century|jahrhundert|siglo|secolo|seculo|eeuw|wiek|век|saeculum)?$/);
+  const n = chiffre ? Number(chiffre[1]) : romain ? ['', 'i', 'ii', 'iii', 'iv', 'v', 'vi', 'vii', 'viii', 'ix', 'x', 'xi', 'xii', 'xiii', 'xiv', 'xv', 'xvi', 'xvii', 'xviii', 'xix', 'xx', 'xxi'].indexOf(romain[1]) : -1;
+  if (n > 0 && n <= 21 && (chiffre || /siecle|century|^[ivx]+\s*(e|eme|er)?$/.test(g))) {
+    return { cle: `siecle:${n}`, libelle: `${libelleSiecle(n)} ?`, test: (s) => siecle(s) === n };
+  }
+
+  if (MOTS_FEMME.includes(g)) return { cle: 'femme', libelle: t('jeux.qq.femme'), test: (s) => s.sex === 'f' };
+  if (MOTS_HOMME.includes(g)) return { cle: 'homme', libelle: t('jeux.qq.homme'), test: (s) => s.sex !== 'f' };
+
+  // Une qualité, au masculin comme au féminin, entière ou par son début.
+  const TITRES = ['abbess', 'abbot', 'apostle', 'bishop', 'cardinal', 'deacon', 'disciple', 'doctor', 'evangelist',
+    'founder', 'hermit', 'king', 'layperson', 'martyr', 'missionary', 'monk', 'mystic', 'nun', 'pilgrim', 'pope',
+    'preacher', 'priest', 'prince', 'prophet', 'queen', 'religious', 'soldier', 'virgin', 'widow', 'youth'];
+  for (const k of TITRES) {
+    const formes = [k, titleLabel(k, 'm'), titleLabel(k, 'f')].map(fold);
+    if (formes.some((f) => f === g || (g.length >= 4 && f.startsWith(g)) || (f.length >= 4 && g.startsWith(f)))) {
+      return { cle: `titre:${k}`, libelle: `${titleLabel(k)} ?`, test: (s) => (s.titles || []).includes(k) };
+    }
+  }
+
+  for (const c of atlas.continents) {
+    if (fold(t(`continent.${c.id}`)) === g) {
+      return { cle: `continent:${c.id}`, libelle: `${t(`continent.${c.id}`)} ?`,
+        test: (s) => atlas.countryById.get(s.country)?.continent === c.id };
+    }
+  }
+
+  const unPays = (pays || []).find((e) => e.tokens.join(' ') === g);
+  if (unPays) {
+    return { cle: `pays:${unPays.id}`, libelle: `${atlas.countryName(unPays.id, lang)} ?`, test: (s) => s.country === unPays.id };
+  }
+
+  const mois = monthNames().findIndex((nom) => fold(nom) === g);
+  if (mois >= 0) {
+    return { cle: `mois:${mois + 1}`, libelle: `${monthNames()[mois]} ?`,
+      test: (s) => Number(String(s.feast || '').split('-')[0]) === mois + 1 };
+  }
+
+  const ville = atlas.saints.find((s) => s.city && fold(s.city) === g);
+  if (ville) {
+    return { cle: `ville:${g}`, libelle: t('jeux.qq.ville', { v: ville.city }), test: (s) => fold(s.city) === g };
+  }
+
+  if (g.length >= 4 && atlas.saints.some((s) => fold(pickText(s.patronage, lang)).includes(g))) {
+    return { cle: `patron:${g}`, libelle: t('jeux.qq.patronDe', { p: brut }),
+      test: (s) => fold(pickText(s.patronage, lang)).includes(g) };
+  }
+  return null;
+}
+
 // ---------------------------------------------------------------------------
 // Les points et les paliers
 // ---------------------------------------------------------------------------

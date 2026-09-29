@@ -2,9 +2,10 @@ import { formatYear, getLanguage, pickText, t } from '../i18n.js';
 import { fold } from '../data.js';
 import {
   CHAINES, MODES, NOTORIETES, PALIERS, ajouterPoints, auHasard, classerNotoriete, contexteQuiz,
-  faireChaine, faireQuestion, lirePoints, palierDe, questionsQui, reponseJuste, voisins,
+  faireChaine, faireQuestion, interpreterIndice, lirePoints, palierDe, questionsQui, reponseJuste, voisins,
 } from '../jeux.js';
 import { portraitOf } from '../portrait.js';
+import { buildCountryIndex } from '../query.js';
 import { fill, h } from './dom.js';
 import { emblemSvg } from '../emblems.js';
 
@@ -417,7 +418,20 @@ export class JeuxPanel {
       q.posees.add(question.cle);
       q.restants = q.restants.filter((s) => question.test(s) === oui);
       q.rate = null;
+      q.indice = '';
       this.render();
+    };
+    // L'indice tapé : compris, il devient une question ; incompris, on le dit
+    // avec des exemples.
+    const demander = (texte) => {
+      if (!this.paysIndex || this.paysLang !== lang) {
+        this.paysIndex = buildCountryIndex(this.atlas, lang);
+        this.paysLang = lang;
+      }
+      const question = interpreterIndice(this.atlas, texte, lang, this.paysIndex);
+      if (!question) { q.rate = t('jeux.incompris', { i: texte }); this.render(); return; }
+      if (q.posees.has(question.cle)) { q.rate = t('jeux.dejaPose', { i: question.libelle }); this.render(); return; }
+      poser(question);
     };
     // Tenter un nom : juste, c'est gagné ; faux, ce saint est écarté.
     const tenter = (s) => {
@@ -441,14 +455,25 @@ export class JeuxPanel {
         h('button', { class: 'btn btn--primary', type: 'button', text: t('jeux.rejouer'), onclick: () => this.demarrerQui() }));
     }
 
-    // Les questions, par familles ; seules paraissent celles qui apprennent
-    // quelque chose sur les saints qui restent.
+    // On tape un indice ; le jeu répond, et la liste se resserre.
+    const champIndice = h('input', { class: 'control', type: 'text', value: q.indice || '',
+      placeholder: t('jeux.indicePlaceholder'), 'aria-label': t('jeux.indicePlaceholder'),
+      oninput: (e) => { q.indice = e.target.value; } });
+    const formIndice = h('form', { class: 'jeux__ecrire', onsubmit: (e) => {
+      e.preventDefault();
+      if (champIndice.value.trim()) demander(champIndice.value);
+    } }, champIndice, h('button', { class: 'btn btn--primary', type: 'submit', text: t('jeux.demander') }));
+    setTimeout(() => champIndice.focus(), 0);
+
+    // Des idées, pour qui ne sait que demander : les questions qui apprennent
+    // encore quelque chose sur les saints qui restent.
     const familles = questionsQui(this.atlas, q.restants, lang, q.posees);
-    const questions = h('div', { class: 'jeux__familles' }, ...familles.map((f) => h('div', { class: 'jeux__famille' },
+    const questions = h('details', { class: 'jeux__idees' }, h('summary', { text: t('jeux.idees') }),
+      h('div', { class: 'jeux__familles' }, ...familles.map((f) => h('div', { class: 'jeux__famille' },
       h('p', { class: 'jeux__famille-titre', text: t(`jeux.qg.${f.cle}`) }),
       h('div', { class: 'jeux__options' }, ...f.questions.map((question) => h('button', {
         class: 'chip chip--scope', type: 'button', text: question.libelle, onclick: () => poser(question),
-      }))))));
+      })))))));
 
     // Tenter un nom : parmi les saints qui restent, par la recherche, ou dans la
     // liste entière quand elle est assez courte pour se lire.
@@ -462,17 +487,21 @@ export class JeuxPanel {
     const champ = h('input', { class: 'control', type: 'search', value: q.saisie, placeholder: t('jeux.quiSaisie'),
       oninput: (e) => { q.saisie = e.target.value; remplir(); } });
     remplir();
-    const liste = q.restants.length <= 40
-      ? h('div', { class: 'jeux__restants' }, ...q.restants.map((s) => h('button', { class: 'jeux__carte', type: 'button', onclick: () => tenter(s) },
-        emblemSvg(s), h('span', { text: nom(s) }))))
-      : null;
+    // La liste des saints possibles, toujours sous les yeux : elle se resserre à
+    // chaque réponse, et l'on y tente un nom d'un appui.
+    const tries = [...q.restants].sort((a, b) => nom(a).localeCompare(nom(b), lang));
+    const liste = h('div', { class: 'jeux__restants' },
+      ...tries.slice(0, 60).map((s) => h('button', { class: 'jeux__carte', type: 'button', onclick: () => tenter(s) },
+        emblemSvg(s), h('span', { text: nom(s) }))),
+      tries.length > 60 ? h('span', { class: 'field__hint', text: t('jeux.etAutres', { n: tries.length - 60 }) }) : null);
 
     return h('div', { class: 'jeux__qui' },
       this.retour(),
       h('p', { class: 'jeux__compteur', text: t('jeux.questions', { n: q.historique.length, pts: valeur }) }),
       h('p', { class: 'jeux__question', text: t('jeux.restants', { n: q.restants.length }) }),
-      historique,
+      formIndice,
       q.rate ? h('p', { class: 'jeux__revele', text: q.rate }) : null,
+      historique,
       questions,
       h('p', { class: 'jeux__famille-titre', text: t('jeux.tenter') }),
       champ, suggestions, liste,

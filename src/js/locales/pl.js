@@ -451,7 +451,7 @@ export default {
     qui: {
       titre: 'Kto to?',
       hint: 'Odgadnąć tajnego świętego pytaniami tak/nie',
-      regle: 'Tajny święty. Zadawaj pytania — „Mnich?”, „Europa?”, „Przed 1000?” —: odpowiedź brzmi tak lub nie, a święci, którzy odpowiedzieliby inaczej, odpadają. Kiedy chcesz, zgadnij imię. Im mniej pytań, tym więcej punktów.',
+      regle: 'Tajny święty. Wpisz wskazówkę — „mnich”, „Francja”, „XIII wiek”, „kobieta”, „przed 1000” —: odpowiedź brzmi tak lub nie, a lista możliwych świętych się zawęża. Kiedy chcesz, zgadnij imię.',
     },
     retour: 'Gry',
     commencer: 'Zacznij',
@@ -524,6 +524,10 @@ export default {
       autre: 'Inne pytania',
     },
     qq: {
+      apres: 'Po roku {an}?',
+      homme: 'Mężczyzna?',
+      ville: 'Urodzony(a) w {v}?',
+      patronDe: 'Patron: „{p}”?',
       avant: 'Przed rokiem {an}?',
       femme: 'Kobieta?',
       patron: 'Patron czegoś?',
@@ -535,6 +539,12 @@ export default {
     questions: 'Zadane pytania: {n} · punkty w grze: {pts}',
     lireSuite: 'Czytaj biografię',
     voirCarte: 'Pokaż na mapie',
+    indicePlaceholder: 'Twoja wskazówka: mnich, Francja, XIII wiek, kobieta, przed 1000…',
+    demander: 'Zapytaj',
+    incompris: '„{i}”: nie zrozumiano wskazówki. Spróbuj cechy (mnich, męczennik, biskup), kraju, kontynentu, wieku (XIII), „przed 1000”, „kobieta”, miesiąca, miasta, patronatu.',
+    dejaPose: 'Już zadane: {i}',
+    idees: 'Pomysły na wskazówki',
+    etAutres: '… i jeszcze {n}',
   },
   lies: {
     titre: 'Powiązane wpisy',

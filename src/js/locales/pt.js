@@ -451,7 +451,7 @@ export default {
     qui: {
       titre: 'Quem é?',
       hint: 'Adivinhar um santo secreto com perguntas de sim ou não',
-      regle: 'Um santo secreto. Faça perguntas — «Monge?», «Europa?», «Antes de 1000?» —: a resposta é sim ou não, e os santos que responderiam de outro modo são afastados. Quando quiser, tente um nome. Quanto menos perguntas, mais pontos.',
+      regle: 'Um santo secreto. Escreva uma pista — «monge», «França», «século XIII», «mulher», «antes de 1000» —: a resposta é sim ou não, e a lista de santos possíveis encurta. Quando quiser, tente um nome.',
     },
     retour: 'Jogos',
     commencer: 'Começar',
@@ -524,6 +524,10 @@ export default {
       autre: 'Outras perguntas',
     },
     qq: {
+      apres: 'Depois do ano {an}?',
+      homme: 'Um homem?',
+      ville: 'Nasceu em {v}?',
+      patronDe: 'Padroeiro de «{p}»?',
       avant: 'Antes do ano {an}?',
       femme: 'Uma mulher?',
       patron: 'Padroeiro de alguma coisa?',
@@ -535,6 +539,12 @@ export default {
     questions: '{n} perguntas feitas · {pts} pontos em jogo',
     lireSuite: 'Ler a biografia',
     voirCarte: 'Ver no mapa',
+    indicePlaceholder: 'A sua pista: monge, França, século XIII, mulher, antes de 1000…',
+    demander: 'Perguntar',
+    incompris: '«{i}»: pista não compreendida. Tente uma qualidade (monge, mártir, bispo), um país, um continente, um século (XIII), «antes de 1000», «mulher», um mês, uma cidade, um patrocínio.',
+    dejaPose: 'Já perguntado: {i}',
+    idees: 'Ideias de pistas',
+    etAutres: '… e mais {n}',
   },
   lies: {
     titre: 'Fichas ligadas',

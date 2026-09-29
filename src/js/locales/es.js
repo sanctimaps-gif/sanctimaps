@@ -451,7 +451,7 @@ export default {
     qui: {
       titre: '¿Quién es?',
       hint: 'Adivinar un santo secreto con preguntas de sí o no',
-      regle: 'Un santo secreto. Haga preguntas — «¿Monje?», «¿Europa?», «¿Antes del 1000?» —: la respuesta es sí o no, y los santos que responderían distinto quedan descartados. Cuando quiera, pruebe un nombre. Cuantas menos preguntas, más puntos.',
+      regle: 'Un santo secreto. Escriba una pista — «monje», «Francia», «siglo XIII», «mujer», «antes de 1000» —: la respuesta es sí o no, y la lista de santos posibles se reduce. Cuando quiera, pruebe un nombre.',
     },
     retour: 'Juegos',
     commencer: 'Empezar',
@@ -524,6 +524,10 @@ export default {
       autre: 'Otras preguntas',
     },
     qq: {
+      apres: '¿Después del año {an}?',
+      homme: '¿Un hombre?',
+      ville: '¿Nació en {v}?',
+      patronDe: '¿Patrón de «{p}»?',
       avant: '¿Antes del año {an}?',
       femme: '¿Una mujer?',
       patron: '¿Patrón de algo?',
@@ -535,6 +539,12 @@ export default {
     questions: '{n} preguntas hechas · {pts} puntos en juego',
     lireSuite: 'Leer su biografía',
     voirCarte: 'Ver en el mapa',
+    indicePlaceholder: 'Su pista: monje, Francia, siglo XIII, mujer, antes de 1000…',
+    demander: 'Preguntar',
+    incompris: '«{i}»: pista no entendida. Pruebe una cualidad (monje, mártir, obispo), un país, un continente, un siglo (XIII), «antes de 1000», «mujer», un mes, una ciudad, un patronazgo.',
+    dejaPose: 'Ya preguntado: {i}',
+    idees: 'Ideas de pistas',
+    etAutres: '… y {n} más',
   },
   lies: {
     titre: 'Fichas vinculadas',

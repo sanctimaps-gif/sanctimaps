@@ -451,7 +451,7 @@ export default {
     qui: {
       titre: 'Wie is het?',
       hint: 'Een geheime heilige raden met ja-neevragen',
-      regle: 'Een geheime heilige. Stel vragen — „Monnik?”, „Europa?”, „Vóór 1000?” —: het antwoord is ja of nee, en de heiligen die anders zouden antwoorden vallen af. Wanneer u wilt, waagt u een naam. Hoe minder vragen, hoe meer punten.',
+      regle: 'Een geheime heilige. Typ een aanwijzing — „monnik”, „Frankrijk”, „13e eeuw”, „vrouw”, „vóór 1000” —: het antwoord is ja of nee, en de lijst van mogelijke heiligen wordt korter. Wanneer u wilt, waagt u een naam.',
     },
     retour: 'Spellen',
     commencer: 'Beginnen',
@@ -524,6 +524,10 @@ export default {
       autre: 'Andere vragen',
     },
     qq: {
+      apres: 'Na het jaar {an}?',
+      homme: 'Een man?',
+      ville: 'Geboren in {v}?',
+      patronDe: 'Beschermheilige van „{p}”?',
       avant: 'Vóór het jaar {an}?',
       femme: 'Een vrouw?',
       patron: 'Beschermheilige van iets?',
@@ -535,6 +539,12 @@ export default {
     questions: '{n} vragen gesteld · {pts} punten in het spel',
     lireSuite: 'De biografie lezen',
     voirCarte: 'Op de kaart tonen',
+    indicePlaceholder: 'Uw aanwijzing: monnik, Frankrijk, 13e eeuw, vrouw, vóór 1000…',
+    demander: 'Vragen',
+    incompris: '„{i}”: aanwijzing niet begrepen. Probeer een kenmerk (monnik, martelaar, bisschop), een land, een continent, een eeuw (13e), „vóór 1000”, „vrouw”, een maand, een stad, een patronaat.',
+    dejaPose: 'Al gevraagd: {i}',
+    idees: 'Ideeën voor aanwijzingen',
+    etAutres: '… en nog {n}',
   },
   lies: {
     titre: 'Gekoppelde fiches',

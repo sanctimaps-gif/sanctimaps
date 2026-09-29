@@ -451,7 +451,7 @@ export default {
     qui: {
       titre: 'Wer ist es?',
       hint: 'Einen geheimen Heiligen mit Ja/Nein-Fragen erraten',
-      regle: 'Ein geheimer Heiliger. Stellen Sie Fragen — „Mönch?“, „Europa?“, „Vor 1000?“ —: die Antwort ist ja oder nein, und die Heiligen, die anders antworten würden, scheiden aus. Wann Sie wollen, raten Sie einen Namen. Je weniger Fragen, desto mehr Punkte.',
+      regle: 'Ein geheimer Heiliger. Tippen Sie einen Hinweis — „Mönch“, „Frankreich“, „13. Jahrhundert“, „Frau“, „vor 1000“ —: die Antwort ist ja oder nein, und die Liste der möglichen Heiligen wird kürzer. Wann Sie wollen, raten Sie einen Namen.',
     },
     retour: 'Spiele',
     commencer: 'Starten',
@@ -524,6 +524,10 @@ export default {
       autre: 'Weitere Fragen',
     },
     qq: {
+      apres: 'Nach dem Jahr {an}?',
+      homme: 'Ein Mann?',
+      ville: 'Geboren in {v}?',
+      patronDe: 'Patron von „{p}“?',
       avant: 'Vor dem Jahr {an}?',
       femme: 'Eine Frau?',
       patron: 'Schutzpatron von etwas?',
@@ -535,6 +539,12 @@ export default {
     questions: '{n} Fragen gestellt · {pts} Punkte im Spiel',
     lireSuite: 'Biografie lesen',
     voirCarte: 'Auf der Karte zeigen',
+    indicePlaceholder: 'Ihr Hinweis: Mönch, Frankreich, 13. Jahrhundert, Frau, vor 1000…',
+    demander: 'Fragen',
+    incompris: '„{i}“: Hinweis nicht verstanden. Versuchen Sie eine Eigenschaft (Mönch, Märtyrer, Bischof), ein Land, einen Kontinent, ein Jahrhundert (13.), „vor 1000“, „Frau“, einen Monat, eine Stadt, ein Patronat.',
+    dejaPose: 'Schon gefragt: {i}',
+    idees: 'Ideen für Hinweise',
+    etAutres: '… und {n} weitere',
   },
   lies: {
     titre: 'Verknüpfte Einträge',

@@ -1222,12 +1222,12 @@ entre de lui-même dans les questions (`src/js/jeux.js`, `src/js/ui/jeux.js`).
   dernier. À chaque pas, le saint où l'on se tient se lit comme une fiche —
   portrait, dates, notice, biographie, chemin vers la carte —, et ses liens
   disent où l'on peut aller. Un indice montre le pas suivant du chemin tiré.
-- **Qui est-ce ?** : comme au jeu de société, un saint secret et des questions
-  par oui ou par non — qualités (« Moine ? »), époque (« Avant l'an 1000 ? »),
-  continent, pays, mois de la fête, femme, patronage. Chaque réponse écarte les
-  saints qui ne répondent pas pareil ; seules paraissent les questions qui
-  apprennent quelque chose. On tente un nom quand on veut ; moins on a posé de
-  questions, plus on gagne.
+- **Qui est-ce ?** : comme au jeu de société, un saint secret. On **tape** un
+  indice — « moine », « France », « XIIIe siècle », « femme », « avant 1000 »,
+  « Assise », « pêcheurs » — ; le jeu le comprend comme une question, répond
+  oui ou non, et la liste des saints possibles, toujours sous les yeux, se
+  resserre. Des idées d'indices se déplient pour qui ne sait que demander. On
+  tente un nom quand on veut ; moins on a posé de questions, plus on gagne.
 
 La **notoriété** s'estime surtout du numéro de l'élément Wikidata — les saints
 dont tout le monde parle y sont entrés les premiers : Augustin Q8018, Jeanne

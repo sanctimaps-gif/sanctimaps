@@ -451,7 +451,7 @@ export default {
     qui: {
       titre: 'Quis est?',
       hint: 'Sanctum arcanum interrogationibus «ita/non» divinare',
-      regle: 'Sanctus arcanus. Interroga — «Monachus?», «Europa?», «Ante annum 1000?» —: respondetur ita aut non, et sancti qui aliter responderent removentur. Cum voles, nomen tenta. Quo pauciora interrogas, eo plura puncta.',
+      regle: 'Sanctus arcanus. Indicium scribe — «monachus», «Gallia», «saeculum XIII», «femina», «ante 1000» —: respondetur ita aut non, et index sanctorum possibilium contrahitur. Cum voles, nomen tenta.',
     },
     retour: 'Ludi',
     commencer: 'Incipere',
@@ -524,6 +524,10 @@ export default {
       autre: 'Aliae interrogationes',
     },
     qq: {
+      apres: 'Post annum {an}?',
+      homme: 'Vir?',
+      ville: 'Natus in {v}?',
+      patronDe: 'Patronus «{p}»?',
       avant: 'Ante annum {an}?',
       femme: 'Femina?',
       patron: 'Patronus alicuius rei?',
@@ -535,6 +539,12 @@ export default {
     questions: '{n} interrogationes · {pts} puncta in ludo',
     lireSuite: 'Vitam legere',
     voirCarte: 'In tabula ostendere',
+    indicePlaceholder: 'Indicium tuum: monachus, Gallia, saeculum XIII, femina, ante 1000…',
+    demander: 'Interrogare',
+    incompris: '«{i}»: indicium non intellectum. Tempta qualitatem (monachus, martyr, episcopus), regionem, continentem, saeculum (XIII), «ante 1000», «femina», mensem, urbem, patrocinium.',
+    dejaPose: 'Iam interrogatum: {i}',
+    idees: 'Indicia proposita',
+    etAutres: '… et alii {n}',
   },
   lies: {
     titre: 'Schedae coniunctae',

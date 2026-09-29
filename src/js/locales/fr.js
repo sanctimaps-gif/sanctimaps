@@ -453,7 +453,7 @@ export default {
     qui: {
       titre: 'Qui est-ce ?',
       hint: 'Deviner un saint secret par oui ou par non',
-      regle: 'Un saint secret. Posez des questions — « Moine ? », « Europe ? », « Avant 1000 ? » — : on vous répond oui ou non, et les saints qui ne répondent pas pareil sont écartés. Quand vous voulez, tentez un nom. Moins vous posez de questions, plus vous gagnez.',
+      regle: 'Un saint secret. Tapez un indice — « moine », « France », « XIIIe siècle », « femme », « avant 1000 » — : on vous répond oui ou non, et la liste des saints possibles se resserre. Quand vous voulez, tentez un nom. Moins vous posez de questions, plus vous gagnez.',
     },
     retour: 'Jeux',
     commencer: 'Commencer',
@@ -526,6 +526,10 @@ export default {
       autre: 'Autres questions',
     },
     qq: {
+      apres: 'Après l’an {an} ?',
+      homme: 'Un homme ?',
+      ville: 'Né à {v} ?',
+      patronDe: 'Patron de « {p} » ?',
       avant: 'Avant l’an {an} ?',
       femme: 'Une femme ?',
       patron: 'Saint patron de quelque chose ?',
@@ -537,6 +541,12 @@ export default {
     questions: '{n} questions posées · {pts} points en jeu',
     lireSuite: 'Lire sa biographie',
     voirCarte: 'Voir sur la carte',
+    indicePlaceholder: 'Votre indice : moine, France, XIIIe siècle, femme, avant 1000…',
+    demander: 'Demander',
+    incompris: '« {i} » : indice non compris. Essayez une qualité (moine, martyr, évêque), un pays, un continent, un siècle (XIIIe), « avant 1000 », « femme », un mois, une ville, un patronage.',
+    dejaPose: 'Déjà demandé : {i}',
+    idees: 'Idées d’indices',
+    etAutres: '… et {n} autres',
   },
   lies: {
     titre: 'Fiches liées',

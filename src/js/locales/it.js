@@ -451,7 +451,7 @@ export default {
     qui: {
       titre: 'Chi è?',
       hint: 'Indovinare un santo segreto con domande sì o no',
-      regle: 'Un santo segreto. Fate domande — «Monaco?», «Europa?», «Prima del 1000?» —: la risposta è sì o no, e i santi che risponderebbero diversamente vengono scartati. Quando volete, tentate un nome. Meno domande, più punti.',
+      regle: 'Un santo segreto. Scrivete un indizio — «monaco», «Francia», «XIII secolo», «donna», «prima del 1000» —: la risposta è sì o no, e l’elenco dei santi possibili si restringe. Quando volete, tentate un nome.',
     },
     retour: 'Giochi',
     commencer: 'Inizia',
@@ -524,6 +524,10 @@ export default {
       autre: 'Altre domande',
     },
     qq: {
+      apres: 'Dopo l’anno {an}?',
+      homme: 'Un uomo?',
+      ville: 'Nato a {v}?',
+      patronDe: 'Patrono di «{p}»?',
       avant: 'Prima dell’anno {an}?',
       femme: 'Una donna?',
       patron: 'Patrono di qualcosa?',
@@ -535,6 +539,12 @@ export default {
     questions: '{n} domande poste · {pts} punti in palio',
     lireSuite: 'Leggere la biografia',
     voirCarte: 'Vedi sulla mappa',
+    indicePlaceholder: 'Il vostro indizio: monaco, Francia, XIII secolo, donna, prima del 1000…',
+    demander: 'Chiedi',
+    incompris: '«{i}»: indizio non capito. Provate una qualità (monaco, martire, vescovo), un paese, un continente, un secolo (XIII), «prima del 1000», «donna», un mese, una città, un patronato.',
+    dejaPose: 'Già chiesto: {i}',
+    idees: 'Idee di indizi',
+    etAutres: '… e altri {n}',
   },
   lies: {
     titre: 'Schede collegate',

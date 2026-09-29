@@ -2501,7 +2501,9 @@ a.btn {
 .jeux__reponse.is-faux { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); opacity: 1; }
 
 .jeux__ecrire { display: flex; gap: 0.4rem; }
-.jeux__ecrire .control { flex: 1; }
+.jeux__ecrire .control { flex: 1; min-width: 0; }
+/* Le bouton garde sa taille : sans cela, sa largeur pleine écrasait le champ. */
+.jeux__ecrire .btn { flex: none; width: auto; }
 
 .jeux__revele { margin: 0; padding: 0.4rem 0.6rem; border-radius: 8px; background: var(--land); font-size: 0.9rem; }
 
