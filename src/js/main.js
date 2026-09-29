@@ -222,8 +222,12 @@ async function start() {
   // moment, la partie se redessine seule quand il le fait.
   const installPanel = new InstallPanel();
 
-  // Les jeux : quiz, chaîne de saints, « Qui est-ce ? », et leurs paliers.
-  const jeuxPanel = new JeuxPanel(atlas, { onOpen: (id) => openSaint(id, { fly: true }) });
+  // Les jeux : quiz, chaîne de saints, « Qui est-ce ? », et leurs paliers. Ils
+  // couvrent l'écran : pour montrer un saint sur la carte, on replie le
+  // tiroir ; le rouvrir reprend la partie là où elle en était.
+  const jeuxPanel = new JeuxPanel(atlas, {
+    onOpen: (id) => { sidebar.setOpen(false); openSaint(id, { fly: true }); },
+  });
 
   const sidebar = new Sidebar(app, {
     atlas,

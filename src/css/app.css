@@ -2596,3 +2596,25 @@ a.btn {
 .jeux__restants { display: flex; flex-wrap: wrap; gap: 0.3rem; }
 .jeux__restants .jeux__carte { font-weight: 400; font-size: 0.85rem; }
 .jeux__restants .jeux__carte .emblem { width: 1.5rem; height: 1.5rem; padding: 0.25rem; }
+
+/* Les jeux prennent tout l'écran : le tiroir s'étend sur la carte, et la partie
+   se tient au milieu, sur une largeur qui reste lisible. */
+.panel.is-open.is-plein {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  flex: none;
+  margin: 0;
+  transform: none;
+  z-index: 60;
+}
+.panel.is-plein .panel__header,
+.panel.is-plein .panel__crumb,
+.panel.is-plein .panel__body > * {
+  width: 100%;
+  max-width: 52rem;
+  margin-inline: auto;
+}
+.panel.is-plein .panel__body { padding-inline: clamp(1rem, 4vw, 2.5rem); }

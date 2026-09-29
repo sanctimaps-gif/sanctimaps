@@ -186,6 +186,8 @@ export class Sidebar {
 
     this.panel.classList.toggle('is-open', this.open);
     this.panel.classList.toggle('is-menu', !this.section);
+    // Les jeux se jouent en grand : le tiroir couvre alors tout l'écran.
+    this.panel.classList.toggle('is-plein', this.open && this.section === 'jeux');
     this.panel.setAttribute('aria-hidden', this.open ? 'false' : 'true');
     this.toggleButton.classList.toggle('is-hidden', this.open);
     this.toggleButton.setAttribute('aria-label', t('ui.openPanel'));
