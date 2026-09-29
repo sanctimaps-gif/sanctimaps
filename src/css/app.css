@@ -2597,8 +2597,9 @@ a.btn {
 .jeux__restants .jeux__carte { font-weight: 400; font-size: 0.85rem; }
 .jeux__restants .jeux__carte .emblem { width: 1.5rem; height: 1.5rem; padding: 0.25rem; }
 
-/* Les jeux prennent tout l'écran : le tiroir s'étend sur la carte, et la partie
-   se tient au milieu, sur une largeur qui reste lisible. */
+/* Les jeux prennent tout l'écran : le tiroir s'étend sur toute la fenêtre, la
+   marque s'efface pour laisser la place au jeu, et tout grandit avec l'écran —
+   les questions, les réponses, les cartes des saints. */
 .panel.is-open.is-plein {
   position: fixed;
   inset: 0;
@@ -2608,13 +2609,101 @@ a.btn {
   flex: none;
   margin: 0;
   transform: none;
+  border: 0;
   z-index: 60;
 }
-.panel.is-plein .panel__header,
-.panel.is-plein .panel__crumb,
-.panel.is-plein .panel__body > * {
-  width: 100%;
-  max-width: 52rem;
-  margin-inline: auto;
+.panel.is-plein .panel__header {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.75rem;
+  padding: 0;
+  z-index: 1;
 }
-.panel.is-plein .panel__body { padding-inline: clamp(1rem, 4vw, 2.5rem); }
+.panel.is-plein .panel__header > div { display: none; }
+.panel.is-plein .panel__crumb {
+  padding: 0.9rem clamp(1rem, 4vw, 3rem) 0.8rem;
+  padding-inline-end: 4rem;
+  align-items: center;
+}
+.panel.is-plein .panel__where { font-size: 1.3rem; }
+.panel.is-plein .panel__body {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 3vw, 2.5rem) clamp(1rem, 4vw, 3rem) 2rem;
+}
+.panel.is-plein .jeux { flex: 1 0 auto; gap: 1rem; align-content: start; }
+.panel.is-plein .jeux > * { display: grid; gap: clamp(0.7rem, 1.5vw, 1.2rem); align-content: start; }
+
+/* L'accueil : le palier en bandeau, et les trois jeux en grandes tuiles. */
+.panel.is-plein .jeux__palier { padding: clamp(1rem, 2vw, 1.6rem); margin: 0; }
+.panel.is-plein .jeux__palier-nom { font-size: clamp(1.4rem, 1rem + 1.5vw, 2.2rem); }
+.panel.is-plein .jeux__palier-points { font-size: clamp(1rem, 0.9rem + 0.5vw, 1.3rem); }
+.panel.is-plein .jeux__barre { height: 0.8rem; }
+.panel.is-plein .menu {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: clamp(0.6rem, 1.5vw, 1.2rem);
+  margin: 0;
+}
+.panel.is-plein .jeux__jeu {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: clamp(8rem, 28vh, 16rem);
+  padding: 1.2rem;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  box-shadow: var(--shadow);
+}
+.panel.is-plein .jeux__jeu .menu__glyph { width: 3.6rem; height: 3.6rem; font-size: 1.8rem; }
+.panel.is-plein .jeux__jeu .menu__label { align-items: center; }
+.panel.is-plein .jeux__jeu .menu__name { font-size: clamp(1.2rem, 1rem + 0.8vw, 1.6rem); }
+.panel.is-plein .jeux__jeu .menu__hint { font-size: 0.95rem; }
+.panel.is-plein .jeux__jeu .menu__chevron { display: none; }
+.panel.is-plein .jeux__paliers { font-size: 1rem; }
+
+/* Les parties : tout se lit de loin, et les réponses se partagent la largeur. */
+.panel.is-plein .jeux__compteur { font-size: 1rem; }
+.panel.is-plein .jeux__question { font-size: clamp(1.4rem, 1rem + 1.6vw, 2.4rem); margin: 0.3rem 0 0.6rem; }
+.panel.is-plein .jeux__choix { gap: clamp(0.5rem, 1.2vw, 1rem); }
+@media (min-width: 40rem) {
+  .panel.is-plein .jeux__choix { grid-template-columns: repeat(2, 1fr); }
+}
+.panel.is-plein .jeux__quiz > .btn,
+.panel.is-plein .jeux__fin > .btn { justify-self: start; width: auto; }
+.panel.is-plein .jeux__reponse {
+  min-height: clamp(3.5rem, 12vh, 7rem);
+  padding: 1rem 1.3rem;
+  font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.4rem);
+  border-radius: 14px;
+}
+.panel.is-plein .jeux__ecrire .control,
+.panel.is-plein .jeux__ecrire .btn { font-size: clamp(1rem, 0.9rem + 0.4vw, 1.15rem); padding-block: 0.7rem; }
+.panel.is-plein .jeux__revele,
+.panel.is-plein .jeux__verdict { font-size: 1.1rem; padding: 1rem 1.2rem; }
+.panel.is-plein .chip--scope { font-size: 1rem; padding: 0.45rem 1rem; }
+.panel.is-plein .group__legend { font-size: 1rem; }
+
+/* La chaîne : le trajet en grand, la fiche du saint en regard des liens. */
+.panel.is-plein .jeux__carte { font-size: 1.1rem; padding: 0.6rem 0.9rem; }
+.panel.is-plein .jeux__fleche { font-size: 1.8rem; }
+.panel.is-plein .jeux__pas { font-size: 1rem; }
+.panel.is-plein .jeux__fiche { font-size: 1.05rem; }
+.panel.is-plein .jeux__fiche-portrait img { width: clamp(6rem, 14vw, 11rem); max-height: clamp(8rem, 20vw, 15rem); }
+.panel.is-plein .jeux__fiche-nom { font-size: clamp(1.3rem, 1rem + 1vw, 1.9rem); }
+.panel.is-plein .jeux__fiche-meta { font-size: 0.95rem; }
+.panel.is-plein .jeux__fiche-desc { font-size: 1.1rem; }
+.panel.is-plein .jeux__fiche-bio p { font-size: 1rem; }
+.panel.is-plein .jeux__voisins {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: 0.6rem;
+}
+.panel.is-plein .jeux__voisin { padding: 0.8rem 1rem; font-size: 1.05rem; }
+.panel.is-plein .jeux__voisin-lien { font-size: 0.85rem; }
+
+/* Qui est-ce : l'historique et la liste des suspects prennent la largeur. */
+.panel.is-plein .jeux__historique { font-size: 1.05rem; gap: 0.3rem; }
+.panel.is-plein .jeux__restants { gap: 0.5rem; }
+.panel.is-plein .jeux__restants .jeux__carte { font-size: 1rem; }
+.panel.is-plein .jeux__famille-titre { font-size: 0.85rem; }
+.panel.is-plein .jeux__actions .btn { font-size: 1.05rem; }
