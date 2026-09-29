@@ -8,7 +8,7 @@
  */
 
 import { centuryOf, fold } from './data.js';
-import { formatFeast, formatYear, pickText, t, titleLabel } from './i18n.js';
+import { formatFeast, formatYear, monthNames, pickText, t, titleLabel } from './i18n.js';
 import { qidOf } from './portrait.js';
 
 // ---------------------------------------------------------------------------
@@ -318,35 +318,64 @@ export function faireChaine(atlas, niveaux, n) {
 // ---------------------------------------------------------------------------
 
 /**
- * Les indices d'un saint, du plus vague au plus parlant : le siècle, les
- * qualités, le pays, le patronage, le jour de fête, la ville, sa notice — son
- * nom masqué —, enfin ses initiales. Chaque indice demandé coûte des points.
+ * Comme au jeu de société : un saint secret, et des questions auxquelles on
+ * répond par oui ou par non — « Moine ? », « Né en Europe ? », « Avant l'an
+ * 1000 ? ». Chaque réponse écarte les saints qui ne lui répondent pas ; quand
+ * on veut, on tente un nom.
+ *
+ * Les questions se tirent des saints qui restent : une question dont tous
+ * répondraient pareil n'apprendrait rien, et ne paraît pas. Elles vont par
+ * familles — qualités, époque, continent, pays, fête, le reste —, et les pays
+ * ou les qualités proposés sont ceux qui partagent le mieux ce qui reste.
  */
-export function indices(atlas, saint, lang) {
-  const nom = atlas.saintName(saint, lang);
-  const masque = (texte) => {
-    let sortie = texte;
-    for (const mot of nom.split(/[\s'’-]+/).filter((m) => m.length >= 3)) {
-      sortie = sortie.replace(new RegExp(mot.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi'), '…');
-    }
-    return sortie;
-  };
-  const liste = [];
-  const n = siecle(saint);
-  if (n != null) liste.push(t('jeux.i.siecle', { s: libelleSiecle(n), sex: saint.sex }));
-  if (saint.titles?.length) {
-    liste.push(t('jeux.i.qualites', { q: saint.titles.map((k) => titleLabel(k, saint.sex)).join(', '), sex: saint.sex }));
-  }
-  liste.push(t('jeux.i.pays', { p: atlas.countryName(saint.country, lang), sex: saint.sex }));
-  const patron = pickText(saint.patronage, lang);
-  if (patron) liste.push(t('jeux.i.patron', { p: masque(patron), sex: saint.sex }));
-  if (saint.feast) liste.push(t('jeux.i.fete', { d: formatFeast(saint.feast), sex: saint.sex }));
-  if (saint.city && saint.city !== '—') liste.push(t('jeux.i.ville', { v: saint.city, sex: saint.sex }));
-  const desc = pickText(saint.desc, lang);
-  if (desc) liste.push(t('jeux.i.notice', { d: masque(desc) }));
-  const initiales = nom.split(/\s+/).map((m) => `${m[0]}${'·'.repeat(Math.max(0, m.length - 1))}`).join(' ');
-  liste.push(t('jeux.i.initiales', { i: initiales }));
-  return liste;
+const annee = (s) => s.born ?? s.died;
+const SEUILS = [300, 500, 800, 1000, 1200, 1500, 1700, 1800, 1900];
+
+export function questionsQui(atlas, restants, lang, posees = new Set()) {
+  const familles = [];
+  const utiles = (liste) => liste.filter((q) => {
+    if (posees.has(q.cle)) return false;
+    const oui = restants.filter(q.test).length;
+    return oui > 0 && oui < restants.length;
+  });
+  // Les meilleures questions d'une famille : celles qui coupent le plus près
+  // de la moitié, dans la limite de `n`.
+  const meilleures = (liste, n) => utiles(liste)
+    .map((q) => ({ q, e: Math.abs(restants.filter(q.test).length - restants.length / 2) }))
+    .sort((a, b) => a.e - b.e).slice(0, n).map((x) => x.q);
+
+  const titres = [...new Set(restants.flatMap((s) => s.titles || []))];
+  familles.push({ cle: 'qualites', questions: meilleures(titres.map((k) => ({
+    cle: `titre:${k}`, libelle: `${titleLabel(k)} ?`, test: (s) => (s.titles || []).includes(k),
+  })), 10) });
+
+  familles.push({ cle: 'epoque', questions: utiles(SEUILS.map((an) => ({
+    cle: `avant:${an}`, libelle: t('jeux.qq.avant', { an }), test: (s) => annee(s) != null && annee(s) < an,
+  }))) });
+
+  const continents = [...new Set(restants.map((s) => atlas.countryById.get(s.country)?.continent).filter(Boolean))];
+  familles.push({ cle: 'continent', questions: utiles(continents.map((c) => ({
+    cle: `continent:${c}`, libelle: `${t(`continent.${c}`)} ?`,
+    test: (s) => atlas.countryById.get(s.country)?.continent === c,
+  }))) });
+
+  const pays = [...new Set(restants.map((s) => s.country))];
+  familles.push({ cle: 'pays', questions: meilleures(pays.map((c) => ({
+    cle: `pays:${c}`, libelle: `${atlas.countryName(c, lang)} ?`, test: (s) => s.country === c,
+  })), 8) });
+
+  const mois = [...new Set(restants.map((s) => Number(String(s.feast || '').split('-')[0])).filter(Boolean))].sort((a, b) => a - b);
+  familles.push({ cle: 'fete', questions: utiles(mois.map((m) => ({
+    cle: `mois:${m}`, libelle: `${monthNames()[m - 1]} ?`,
+    test: (s) => Number(String(s.feast || '').split('-')[0]) === m,
+  }))) });
+
+  familles.push({ cle: 'autre', questions: utiles([
+    { cle: 'femme', libelle: t('jeux.qq.femme'), test: (s) => s.sex === 'f' },
+    { cle: 'patron', libelle: t('jeux.qq.patron'), test: (s) => !!pickText(s.patronage, lang) },
+  ]) });
+
+  return familles.filter((f) => f.questions.length);
 }
 
 // ---------------------------------------------------------------------------

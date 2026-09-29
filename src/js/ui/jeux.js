@@ -1,9 +1,10 @@
-import { getLanguage, t } from '../i18n.js';
+import { formatYear, getLanguage, pickText, t } from '../i18n.js';
 import { fold } from '../data.js';
 import {
   CHAINES, MODES, NOTORIETES, PALIERS, ajouterPoints, auHasard, classerNotoriete, contexteQuiz,
-  faireChaine, faireQuestion, indices, lirePoints, palierDe, reponseJuste, voisins,
+  faireChaine, faireQuestion, lirePoints, palierDe, questionsQui, reponseJuste, voisins,
 } from '../jeux.js';
+import { portraitOf } from '../portrait.js';
 import { fill, h } from './dom.js';
 import { emblemSvg } from '../emblems.js';
 
@@ -318,6 +319,9 @@ export class JeuxPanel {
     const options = voisins(this.atlas, c.courant.id).filter((v) => !deja.has(v.saint.id));
     const tropTot = (v) => v.saint.id === c.arrivee.id && restants > 1;
     return h('div', { class: 'jeux__chaine' }, ...entete,
+      // Le saint où l'on se tient, comme si l'on avait ouvert sa fiche : on lit
+      // sa vie, puis l'on choisit par quel lien continuer.
+      this.ficheCourte(c.courant),
       h('p', { class: 'jeux__question', text: t('jeux.depuis', { nom: nom(c.courant) }) }),
       options.length
         ? h('div', { class: 'jeux__voisins' }, ...options.map((v) => h('button', {
@@ -340,6 +344,32 @@ export class JeuxPanel {
         h('button', { class: 'btn btn--ghost', type: 'button', text: t('jeux.abandonner'), onclick: () => finir(false) })));
   }
 
+  /**
+   * Une fiche resserrée : le portrait, le nom, les dates et le lieu, la notice,
+   * la biographie à déplier, et le chemin vers la carte.
+   */
+  ficheCourte(s) {
+    const lang = getLanguage();
+    const cadre = h('figure', { class: 'jeux__fiche-portrait', hidden: true });
+    portraitOf(s).then((p) => {
+      if (!p) return;
+      const img = h('img', { src: p.src, alt: '', referrerpolicy: 'no-referrer', loading: 'lazy' });
+      img.addEventListener('load', () => { cadre.hidden = false; }, { once: true });
+      fill(cadre, [img]);
+    });
+    const dates = [s.born, s.died].map((a) => (a == null ? '?' : formatYear(a, { circa: s.circa }))).join(' – ');
+    const bio = pickText(s.bio, lang);
+    const desc = pickText(s.desc, lang);
+    return h('div', { class: 'jeux__fiche' },
+      cadre,
+      h('div', { class: 'jeux__fiche-texte' },
+        h('p', { class: 'jeux__fiche-nom', text: this.atlas.saintName(s, lang) }),
+        h('p', { class: 'jeux__fiche-meta', text: `${dates} · ${s.city || ''} (${this.atlas.countryName(s.country, lang)})` }),
+        desc ? h('p', { class: 'jeux__fiche-desc', text: desc }) : null,
+        bio ? h('details', { class: 'jeux__fiche-bio' }, h('summary', { text: t('jeux.lireSuite') }), h('p', { text: bio })) : null,
+        h('button', { class: 'btn btn--ghost', type: 'button', text: t('jeux.voirCarte'), onclick: () => this.onOpen?.(s.id) })));
+  }
+
   // -- qui est-ce ? -------------------------------------------------------------
 
   quiChoix() {
@@ -354,71 +384,99 @@ export class JeuxPanel {
   }
 
   demarrerQui() {
-    const lang = getLanguage();
-    const pool = this.atlas.saints.filter((s) => this.niveaux.get(s.id) === this.wNiveau);
-    let saint = null;
-    let liste = [];
-    for (let essai = 0; essai < 30; essai += 1) {
-      saint = auHasard(pool);
-      liste = saint ? indices(this.atlas, saint, lang) : [];
-      if (liste.length >= 5) break;
-    }
-    this.aller('qui', { qui: saint ? { saint, indices: liste, vus: 1, essais: 0, fini: null, saisie: '' } : null });
+    const pool = this.atlas.saints.filter((s) => this.niveaux.get(s.id) === this.wNiveau
+      && (s.born != null || s.died != null));
+    const saint = auHasard(pool);
+    this.aller('qui', { qui: saint
+      ? { saint, restants: pool, historique: [], posees: new Set(), essais: 0, fini: null, saisie: '', rate: null }
+      : null });
+  }
+
+  /** Les points en jeu : moins on a posé de questions et raté de noms, plus il y en a. */
+  valeurQui(q) {
+    return Math.max(this.wNiveau, 20 * this.wNiveau - 2 * q.historique.length - 5 * q.essais);
   }
 
   quiVue() {
     const q = this.qui;
     const lang = getLanguage();
     if (!q) return h('div', {}, this.retour(), h('p', { class: 'results__empty', text: t('jeux.vide') }));
-    const nom = this.atlas.saintName(q.saint, lang);
-    const valeur = Math.max(1, (q.indices.length - q.vus + 1) * this.wNiveau * 2 - q.essais);
+    const nom = (s) => this.atlas.saintName(s, lang);
+    const valeur = this.valeurQui(q);
 
     const finir = (gagne) => {
       q.fini = gagne ? 'gagne' : 'perdu';
       if (gagne) { q.gain = valeur; ajouterPoints(valeur); }
       this.render();
     };
-    const proposer = (s) => {
+    // Une question : la réponse vient du saint secret, et l'on garde les
+    // saints qui répondent comme lui.
+    const poser = (question) => {
+      const oui = question.test(q.saint);
+      q.historique.push({ libelle: question.libelle, oui });
+      q.posees.add(question.cle);
+      q.restants = q.restants.filter((s) => question.test(s) === oui);
+      q.rate = null;
+      this.render();
+    };
+    // Tenter un nom : juste, c'est gagné ; faux, ce saint est écarté.
+    const tenter = (s) => {
       if (s.id === q.saint.id) return finir(true);
       q.essais += 1;
-      q.rate = t('jeux.pasLui', { nom: this.atlas.saintName(s, lang) });
-      // Une erreur dévoile l'indice suivant, s'il en reste.
-      if (q.vus < q.indices.length) q.vus += 1;
+      q.restants = q.restants.filter((x) => x.id !== s.id);
+      q.rate = t('jeux.pasLui', { nom: nom(s) });
       return this.render();
     };
 
-    const liste = h('ol', { class: 'jeux__indices' }, ...q.indices.slice(0, q.vus).map((i) => h('li', { text: i })));
+    const historique = q.historique.length
+      ? h('ol', { class: 'jeux__historique' }, ...q.historique.map((e) => h('li', { class: e.oui ? 'is-oui' : 'is-non' },
+        h('span', { text: e.libelle }), h('strong', { text: e.oui ? t('jeux.oui') : t('jeux.non') }))))
+      : null;
+
     if (q.fini) {
-      return h('div', { class: 'jeux__qui' }, this.retour(), liste,
+      return h('div', { class: 'jeux__qui' }, this.retour(), historique,
         h('div', { class: `jeux__verdict ${q.fini === 'gagne' ? 'is-juste' : 'is-faux'}` },
-          h('p', { text: q.fini === 'gagne' ? t('jeux.quiGagne', { nom, n: q.gain }) : t('jeux.quiPerdu', { nom }) }),
-          h('button', { class: 'btn btn--ghost', type: 'button', text: t('jeux.voirFiche', { nom }), onclick: () => this.onOpen?.(q.saint.id) })),
+          h('p', { text: q.fini === 'gagne' ? t('jeux.quiGagne', { nom: nom(q.saint), n: q.gain }) : t('jeux.quiPerdu', { nom: nom(q.saint) }) }),
+          h('button', { class: 'btn btn--ghost', type: 'button', text: t('jeux.voirFiche', { nom: nom(q.saint) }), onclick: () => this.onOpen?.(q.saint.id) })),
         h('button', { class: 'btn btn--primary', type: 'button', text: t('jeux.rejouer'), onclick: () => this.demarrerQui() }));
     }
 
-    // On cherche parmi les saints de la carte : le nom tapé propose les fiches
-    // qui lui répondent, et l'on choisit la sienne.
+    // Les questions, par familles ; seules paraissent celles qui apprennent
+    // quelque chose sur les saints qui restent.
+    const familles = questionsQui(this.atlas, q.restants, lang, q.posees);
+    const questions = h('div', { class: 'jeux__familles' }, ...familles.map((f) => h('div', { class: 'jeux__famille' },
+      h('p', { class: 'jeux__famille-titre', text: t(`jeux.qg.${f.cle}`) }),
+      h('div', { class: 'jeux__options' }, ...f.questions.map((question) => h('button', {
+        class: 'chip chip--scope', type: 'button', text: question.libelle, onclick: () => poser(question),
+      }))))));
+
+    // Tenter un nom : parmi les saints qui restent, par la recherche, ou dans la
+    // liste entière quand elle est assez courte pour se lire.
     const suggestions = h('div', { class: 'lies-edit__suggestions' });
     const remplir = () => {
       const g = fold(q.saisie).trim();
-      const trouves = g.length < 2 ? [] : this.atlas.saints
-        .filter((s) => fold(this.atlas.saintName(s, lang)).includes(g)).slice(0, 8);
-      fill(suggestions, trouves.map((s) => h('button', { class: 'lies-edit__choix', type: 'button', onclick: () => proposer(s) },
-        emblemSvg(s), h('span', { text: this.atlas.saintName(s, lang) }), h('span', { class: 'lies-edit__lieu', text: s.city || '' }))));
+      const trouves = g.length < 2 ? [] : q.restants.filter((s) => fold(nom(s)).includes(g)).slice(0, 8);
+      fill(suggestions, trouves.map((s) => h('button', { class: 'lies-edit__choix', type: 'button', onclick: () => tenter(s) },
+        emblemSvg(s), h('span', { text: nom(s) }), h('span', { class: 'lies-edit__lieu', text: s.city || '' }))));
     };
     const champ = h('input', { class: 'control', type: 'search', value: q.saisie, placeholder: t('jeux.quiSaisie'),
       oninput: (e) => { q.saisie = e.target.value; remplir(); } });
     remplir();
+    const liste = q.restants.length <= 40
+      ? h('div', { class: 'jeux__restants' }, ...q.restants.map((s) => h('button', { class: 'jeux__carte', type: 'button', onclick: () => tenter(s) },
+        emblemSvg(s), h('span', { text: nom(s) }))))
+      : null;
 
     return h('div', { class: 'jeux__qui' },
       this.retour(),
-      h('p', { class: 'jeux__compteur', text: t('jeux.quiCompteur', { k: q.vus, n: q.indices.length, pts: valeur }) }),
-      liste,
+      h('p', { class: 'jeux__compteur', text: t('jeux.questions', { n: q.historique.length, pts: valeur }) }),
+      h('p', { class: 'jeux__question', text: t('jeux.restants', { n: q.restants.length }) }),
+      historique,
       q.rate ? h('p', { class: 'jeux__revele', text: q.rate }) : null,
-      champ, suggestions,
+      questions,
+      h('p', { class: 'jeux__famille-titre', text: t('jeux.tenter') }),
+      champ, suggestions, liste,
       h('div', { class: 'jeux__actions' },
-        q.vus < q.indices.length ? h('button', { class: 'btn btn--ghost', type: 'button', text: t('jeux.autreIndice'),
-          onclick: () => { q.vus += 1; this.render(); } }) : null,
         h('button', { class: 'btn btn--ghost', type: 'button', text: t('jeux.abandonner'), onclick: () => finir(false) })));
   }
 }

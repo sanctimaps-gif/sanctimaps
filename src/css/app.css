@@ -2554,3 +2554,43 @@ a.btn {
 
 /* Qui est-ce ? : les indices, en liste numérotée. */
 .jeux__indices { margin: 0; padding-inline-start: 1.3rem; display: grid; gap: 0.3rem; font-family: var(--font); }
+
+/* La fiche du saint où l'on se tient, dans la chaîne. */
+.jeux__fiche {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  padding: 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+.jeux__fiche-portrait { margin: 0; }
+.jeux__fiche-portrait img {
+  width: 5.5rem;
+  max-height: 8rem;
+  object-fit: cover;
+  object-position: 50% 15%;
+  border: 2px solid var(--land-saints);
+  border-radius: 6px;
+}
+.jeux__fiche-portrait[hidden] + .jeux__fiche-texte { grid-column: 1 / -1; }
+.jeux__fiche-texte { display: grid; gap: 0.3rem; align-content: start; }
+.jeux__fiche-texte .btn { justify-self: start; }
+.jeux__fiche-nom { margin: 0; font-family: var(--font); font-size: 1.15rem; }
+.jeux__fiche-meta { margin: 0; font-size: 0.8rem; color: var(--ink-soft); }
+.jeux__fiche-desc { margin: 0; font-family: var(--font); font-size: 0.92rem; }
+.jeux__fiche-bio summary { cursor: pointer; font-size: 0.85rem; color: var(--accent); }
+.jeux__fiche-bio p { margin: 0.3rem 0 0; font-size: 0.88rem; line-height: 1.5; }
+
+/* Qui est-ce ? : les questions par familles, et ce qu'on y a répondu. */
+.jeux__familles { display: grid; gap: 0.5rem; }
+.jeux__famille { display: grid; gap: 0.25rem; }
+.jeux__famille-titre { margin: 0.2rem 0 0; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); }
+.jeux__historique { margin: 0; padding-inline-start: 1.3rem; display: grid; gap: 0.15rem; font-size: 0.88rem; }
+.jeux__historique li { display: flex; justify-content: space-between; gap: 0.5rem; }
+.jeux__historique li.is-oui strong { color: var(--lieu-ink); }
+.jeux__historique li.is-non strong { color: var(--accent); }
+.jeux__restants { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+.jeux__restants .jeux__carte { font-weight: 400; font-size: 0.85rem; }
+.jeux__restants .jeux__carte .emblem { width: 1.5rem; height: 1.5rem; padding: 0.25rem; }

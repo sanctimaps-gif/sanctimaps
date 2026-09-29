@@ -1219,10 +1219,15 @@ entre de lui-même dans les questions (`src/js/jeux.js`, `src/js/ui/jeux.js`).
 - **Chaîne de saints** : d'un saint à un autre, de lien en lien — lien attesté,
   fiche liée, lieu et temps partagés —, en exactement 5, 10, 15, 20 ou 30
   maillons, sans repasser par le même saint ; l'arrivée ne se rejoint qu'au
-  dernier. Un indice montre le pas suivant du chemin tiré.
-- **Qui est-ce ?** : des indices du plus vague au plus parlant — siècle,
-  qualités, pays, patronage, fête, ville, notice au nom masqué, initiales —,
-  et moins il en faut, plus on gagne.
+  dernier. À chaque pas, le saint où l'on se tient se lit comme une fiche —
+  portrait, dates, notice, biographie, chemin vers la carte —, et ses liens
+  disent où l'on peut aller. Un indice montre le pas suivant du chemin tiré.
+- **Qui est-ce ?** : comme au jeu de société, un saint secret et des questions
+  par oui ou par non — qualités (« Moine ? »), époque (« Avant l'an 1000 ? »),
+  continent, pays, mois de la fête, femme, patronage. Chaque réponse écarte les
+  saints qui ne répondent pas pareil ; seules paraissent les questions qui
+  apprennent quelque chose. On tente un nom quand on veut ; moins on a posé de
+  questions, plus on gagne.
 
 La **notoriété** s'estime surtout du numéro de l'élément Wikidata — les saints
 dont tout le monde parle y sont entrés les premiers : Augustin Q8018, Jeanne
