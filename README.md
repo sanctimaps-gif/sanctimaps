@@ -1205,6 +1205,34 @@ d'abord dans le navigateur ; le bouton « Exporter mes lieux marqués » rend
 `lieux-main.json`, à verser dans `data/saints/`, où la liste de chaque saint
 nommé remplace celle de la collecte.
 
+## Les jeux
+
+Le tiroir de gauche a une partie **Jeux**, tirée du corpus lui-même — pays,
+jour de fête, siècle, ville, patronage, liens —, de sorte qu'un saint ajouté
+entre de lui-même dans les questions (`src/js/jeux.js`, `src/js/ui/jeux.js`).
+
+- **Quiz des saints** : trois façons de répondre — QCM de quatre choix dont on
+  peut afficher la réponse (la question ne rapporte alors rien), QCM de huit
+  choix avec un lien vers la fiche pour aller la chercher, réponse écrite sans
+  aide — croisées avec quatre degrés de notoriété : très connus, moins connus,
+  peu connus, inconnus. Dix questions par partie.
+- **Chaîne de saints** : d'un saint à un autre, de lien en lien — lien attesté,
+  fiche liée, lieu et temps partagés —, en exactement 5, 10, 15, 20 ou 30
+  maillons, sans repasser par le même saint ; l'arrivée ne se rejoint qu'au
+  dernier. Un indice montre le pas suivant du chemin tiré.
+- **Qui est-ce ?** : des indices du plus vague au plus parlant — siècle,
+  qualités, pays, patronage, fête, ville, notice au nom masqué, initiales —,
+  et moins il en faut, plus on gagne.
+
+La **notoriété** s'estime surtout du numéro de l'élément Wikidata — les saints
+dont tout le monde parle y sont entrés les premiers : Augustin Q8018, Jeanne
+d'Arc Q7226 —, puis des fiches écrites à la main, des lieux, des liens, de la
+biographie et du portrait. Le classement se coupe en quatre tranches.
+
+Les **points** gagnés mènent de **palier** en palier (quinze pour l'instant,
+numérotés). Pour leur donner un nom, il suffit de remplir `nom` dans la table
+`PALIERS` de `src/js/jeux.js`. Les points se gardent dans le navigateur.
+
 ## Les fiches liées
 
 Une fiche — saint, apparition, miracle — peut être reliée à d'autres : Lourdes à

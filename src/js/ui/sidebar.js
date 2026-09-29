@@ -23,6 +23,7 @@ const ENTRIES = [
   { key: 'daily', glyph: '☀' },
   { key: 'search', glyph: '⌕' },
   { key: 'add', glyph: '✚' },
+  { key: 'jeux', glyph: '✪' },
   { key: 'moderate', glyph: '☑', right: 'moderate' },
   { key: 'assistant', glyph: '✧', right: 'moderate' },
   { key: 'settings', glyph: '⚙' },
@@ -139,6 +140,7 @@ export class Sidebar {
   viewFor(name) {
     if (name === 'daily') return this.panels.daily.root;
     if (name === 'add') return this.panels.add.root;
+    if (name === 'jeux') return this.panels.jeux.root;
     if (name === 'moderate') return this.panels.moderate.root;
     if (name === 'assistant') return this.panels.assistant.root;
     if (name === 'settings') return this.settingsView;
@@ -230,6 +232,7 @@ export class Sidebar {
     this.panels.search.render();
     this.panels.daily.render();
     this.panels.add.render();
+    this.panels.jeux.render();
     this.panels.detail.render();
     this.panels.moderate.render();
     this.panels.assistant.render();

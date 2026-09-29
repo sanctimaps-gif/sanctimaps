@@ -11,6 +11,7 @@ import { InstallPanel } from './ui/install.js';
 import { ReminderPanel } from './ui/reminder.js';
 import { DetailPanel } from './ui/detail.js';
 import { FicheBar } from './ui/fiche.js';
+import { JeuxPanel } from './ui/jeux.js';
 import { SearchPanel } from './ui/search.js';
 import { apply as applyTheme } from './theme.js';
 import { Sidebar } from './ui/sidebar.js';
@@ -221,8 +222,12 @@ async function start() {
   // moment, la partie se redessine seule quand il le fait.
   const installPanel = new InstallPanel();
 
+  // Les jeux : quiz, chaîne de saints, « Qui est-ce ? », et leurs paliers.
+  const jeuxPanel = new JeuxPanel(atlas, { onOpen: (id) => openSaint(id, { fly: true }) });
+
   const sidebar = new Sidebar(app, {
     atlas,
+    jeux: jeuxPanel,
     search: searchPanel,
     daily: dailyPanel,
     reminder: reminderPanel,
