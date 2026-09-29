@@ -2550,7 +2550,9 @@ a.btn {
 }
 .jeux__voisin:hover:not(:disabled) { background: var(--accent-soft); }
 .jeux__voisin:disabled { cursor: not-allowed; opacity: 0.6; }
-.jeux__voisin .emblem { grid-row: 1 / span 2; }
+.jeux__voisin .emblem { grid-row: 1 / span 3; align-self: start; margin-block-start: 0.15rem; }
+/* La mini-explication : qui est ce saint, pour choisir sans ouvrir sa fiche. */
+.jeux__voisin-resume { font-size: 0.78rem; line-height: 1.35; color: var(--ink); opacity: 0.85; margin-block-start: 0.15rem; }
 .jeux__voisin-lien { font-size: 0.75rem; color: var(--ink-soft); }
 .jeux__voisin.is-arrivee { border-color: var(--miracle); box-shadow: 0 0 0 2px rgb(168 121 31 / 25%); }
 
@@ -2700,6 +2702,8 @@ a.btn {
 }
 .panel.is-plein .jeux__voisin { padding: 0.8rem 1rem; font-size: 1.05rem; }
 .panel.is-plein .jeux__voisin-lien { font-size: 0.85rem; }
+.panel.is-plein .jeux__voisin-resume { font-size: 0.92rem; }
+.panel.is-plein .jeux__voisin { align-items: start; align-content: start; }
 
 /* Qui est-ce : l'historique et la liste des suspects prennent la largeur. */
 .panel.is-plein .jeux__historique { font-size: 1.05rem; gap: 0.3rem; }

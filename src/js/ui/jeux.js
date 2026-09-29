@@ -335,7 +335,8 @@ export class JeuxPanel {
         h('span', { class: 'jeux__voisin-nom', text: nom(v.saint) }),
         h('span', { class: 'jeux__voisin-lien', text: tropTot(v) ? t('jeux.tropTot', { n: restants })
           : v.lie ? t(`lies.${v.lie}`)
-            : v.atteste ? t(`liens.${v.quoi}`) : t('croises.ici', { lieu: v.ou }) }))))
+            : v.atteste ? t(`liens.${v.quoi}`) : t('croises.ici', { lieu: v.ou }) }),
+        h('span', { class: 'jeux__voisin-resume', text: this.resume(v.saint) }))))
         : h('p', { class: 'results__empty', text: t('jeux.impasse') }),
       c.indiceVu ? h('p', { class: 'jeux__revele', text: c.indiceVu }) : null,
       h('div', { class: 'jeux__actions' },
@@ -343,6 +344,26 @@ export class JeuxPanel {
           onclick: () => { c.pas.pop(); c.courant = c.pas.at(-1); this.render(); } }) : null,
         h('button', { class: 'btn btn--ghost', type: 'button', text: t('jeux.indice'), onclick: indice }),
         h('button', { class: 'btn btn--ghost', type: 'button', text: t('jeux.abandonner'), onclick: () => finir(false) })));
+  }
+
+  /**
+   * Qui est ce saint, en une ligne : ses dates et sa notice, ou, à défaut, le
+   * début de sa biographie — de quoi choisir un lien sans ouvrir chaque fiche.
+   */
+  resume(s) {
+    const lang = getLanguage();
+    const dates = [s.born, s.died].map((a) => (a == null ? '?' : formatYear(a, { circa: s.circa }))).join(' – ');
+    let texte = pickText(s.desc, lang);
+    if (!texte) {
+      const bio = pickText(s.bio, lang) || '';
+      texte = bio.split(/(?<=[.!?])\s/)[0] || '';
+      // « Jean Marinoni, né le… et mort le… à Naples, est un prêtre… » : le nom
+      // et les dates sont déjà dits, on garde ce qu'il était.
+      const verbe = texte.match(/[,)]\s+(?:est|était|fut|is|was)\s+(.+)$/);
+      if (verbe) texte = verbe[1];
+    }
+    if (texte.length > 120) texte = `${texte.slice(0, 117).replace(/\s+\S*$/, '')}…`;
+    return texte ? `${dates} · ${texte.charAt(0).toUpperCase()}${texte.slice(1)}` : dates;
   }
 
   /**
