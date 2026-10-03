@@ -263,6 +263,10 @@ export default {
     confidence: '模型自述的把握：{level}',
   },
   daily: {
+    liturgie: '今日庆节',
+    honneur: '今日特别纪念',
+    aussi: '今日亦纪念',
+    lireAelf: '在 aelf.org 阅读今日经文',
     title: '每日圣人',
     none: '语料中今日无圣人纪念。',
     nextIs: '语料中下一个瞻礼：{date}。',

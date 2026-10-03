@@ -263,6 +263,10 @@ export default {
     confidence: 'Pewność podana przez model: {level}',
   },
   daily: {
+    liturgie: 'Obchody dnia',
+    honneur: 'Dziś wspominani szczególnie',
+    aussi: 'Także dziś wspominani',
+    lireAelf: 'Czytania dnia na aelf.org',
     title: 'Święty dnia',
     none: 'Żaden święty z korpusu nie jest wspominany tego dnia.',
     nextIs: 'Najbliższe święto w korpusie: {date}.',

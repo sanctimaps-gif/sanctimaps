@@ -265,6 +265,10 @@ export default {
     confidence: 'Certitude annoncée par le modèle : {level}',
   },
   daily: {
+    liturgie: 'Célébration du jour',
+    honneur: 'À l’honneur',
+    aussi: 'Aussi fêtés ce jour',
+    lireAelf: 'Lire les textes du jour sur aelf.org',
     title: 'Saint du jour',
     none: 'Aucun saint du corpus n’est fêté ce jour.',
     nextIs: 'Prochaine fête au corpus : {date}.',

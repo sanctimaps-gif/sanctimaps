@@ -263,6 +263,10 @@ export default {
     confidence: 'Door het model opgegeven zekerheid: {level}',
   },
   daily: {
+    liturgie: 'Viering van de dag',
+    honneur: 'Vandaag in de kijker',
+    aussi: 'Ook vandaag gevierd',
+    lireAelf: 'De teksten van de dag op aelf.org',
     title: 'Heilige van de dag',
     none: 'Op deze dag wordt geen heilige uit het bestand gevierd.',
     nextIs: 'Volgend feest in het bestand: {date}.',

@@ -263,6 +263,10 @@ export default {
     confidence: 'Vom Modell angegebene Sicherheit: {level}',
   },
   daily: {
+    liturgie: 'Feier des Tages',
+    honneur: 'Heute im Mittelpunkt',
+    aussi: 'Ebenfalls heute gefeiert',
+    lireAelf: 'Die Tagestexte auf aelf.org lesen',
     title: 'Heiliger des Tages',
     none: 'An diesem Tag wird kein Heiliger des Bestandes gefeiert.',
     nextIs: 'Nächstes Fest im Bestand: {date}.',

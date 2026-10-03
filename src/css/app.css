@@ -2711,3 +2711,26 @@ a.btn {
 .panel.is-plein .jeux__restants .jeux__carte { font-size: 1rem; }
 .panel.is-plein .jeux__famille-titre { font-size: 0.85rem; }
 .panel.is-plein .jeux__actions .btn { font-size: 1.05rem; }
+
+/* La célébration du jour, d'après l'AELF : en tête du saint du jour. */
+.daily__liturgie {
+  display: grid;
+  gap: 0.35rem;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-inline-start: 4px solid var(--miracle);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+.daily__liturgie p { margin: 0; }
+.daily__liturgie-titre {
+  display: flex; align-items: center; gap: 0.4rem;
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft);
+}
+.daily__couleur { width: 0.8rem; height: 0.8rem; border-radius: 50%; border: 1px solid var(--line); }
+.daily__fete { font-family: var(--font); font-size: 1.2rem; line-height: 1.3; }
+.daily__sous-titre {
+  margin: 0.5rem 0 0.3rem; font-size: 0.72rem; font-weight: 400;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft);
+}
+.daily__source { font-size: 0.82rem; color: var(--accent); justify-self: start; }

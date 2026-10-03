@@ -644,6 +644,22 @@ coupé du réseau voit la dernière qu'il a vue, et personne ne voit du figé. I
 ne précharge que la coquille — le site pèse cinquante mégaoctets, les
 télécharger derrière le dos du lecteur serait un abus.
 
+### La célébration du jour, d'après l'AELF
+
+Le corpus range chaque saint à une date fixe, et ne dit pas ce que l'Église
+fête : le 2 octobre, ce sont les saints Anges gardiens ; le 1er octobre, sainte
+Thérèse de l'Enfant-Jésus passe avant les quinze autres saints de la date ; les
+fêtes mobiles changent de jour chaque année. Le saint du jour s'ouvre donc sur
+la célébration du calendrier liturgique de l'AELF (pour la France) : son
+intitulé, son degré, sa couleur, et un lien vers les textes du jour sur
+aelf.org. Les fiches qu'elle nomme passent en tête, « à l'honneur » ; pour les
+anges, ce sont leurs apparitions, et pour un Notre-Dame qui nomme un lieu,
+l'apparition de ce lieu. Les autres saints de la date suivent.
+
+Le calendrier est relevé par l'atelier « Relever le calendrier liturgique
+(AELF) » (`tools/import-aelf.mjs`), une fois par mois, pour l'année en cours et
+la suivante, dans `data/aelf/calendrier.json`.
+
 ### Être prévenu chaque jour
 
 Dans **Paramètres → Rappel quotidien**, quatre chemins — et ils ne valent pas

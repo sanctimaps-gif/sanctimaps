@@ -263,6 +263,10 @@ export default {
     confidence: 'Certitudo a machina declarata: {level}',
   },
   daily: {
+    liturgie: 'Celebratio diei',
+    honneur: 'Hodie praecipue',
+    aussi: 'Hodie quoque celebrantur',
+    lireAelf: 'Lectiones diei in aelf.org',
     title: 'Sanctus diei',
     none: 'Nullus sanctus corporis hoc die celebratur.',
     nextIs: 'Proximum festum in corpore: {date}.',

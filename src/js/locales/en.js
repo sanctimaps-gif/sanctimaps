@@ -263,6 +263,10 @@ export default {
     confidence: 'Confidence stated by the model: {level}',
   },
   daily: {
+    liturgie: 'Today’s celebration',
+    honneur: 'Honoured today',
+    aussi: 'Also celebrated today',
+    lireAelf: 'Read the day’s texts on aelf.org',
     title: 'Saint of the day',
     none: 'No saint in the corpus is celebrated on this day.',
     nextIs: 'Next feast in the corpus: {date}.',
