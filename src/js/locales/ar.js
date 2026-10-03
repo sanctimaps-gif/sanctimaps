@@ -263,6 +263,10 @@ export default {
     confidence: 'درجة اليقين التي أعلنها النموذج: {level}',
   },
   daily: {
+    lirePage: 'اقرأ الصفحة',
+    retour: 'العودة إلى قديس اليوم',
+    aLire: 'انظر أيضًا',
+    sources: 'المصادر',
     liturgie: 'احتفال اليوم',
     honneur: 'المكرَّمون اليوم',
     aussi: 'يُحتفل بهم اليوم أيضًا',

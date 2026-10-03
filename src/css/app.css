@@ -2734,3 +2734,23 @@ a.btn {
   text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft);
 }
 .daily__source { font-size: 0.82rem; color: var(--accent); justify-self: start; }
+
+/* La page d'une célébration sans fiche, et le lien qui y mène. */
+.daily__page-lien { grid-template-columns: auto 1fr; text-align: start; }
+.daily__page-lien .result__name, .daily__page-lien .result__meta { grid-column: 2; }
+.daily__page-glyphe {
+  grid-row: 1 / span 2; align-self: center;
+  width: 2rem; height: 2rem; display: grid; place-items: center;
+  border-radius: 50%; background: var(--miracle); color: var(--panel); font-size: 1.1rem;
+}
+.daily__retour { justify-self: start; }
+.daily__page { display: grid; gap: 0.6rem; }
+.daily__page p { margin: 0; }
+.daily__page-titre { margin: 0; font-family: var(--font); font-size: 1.45rem; line-height: 1.25; }
+.daily__page-texte { font-family: var(--font); font-size: 1rem; line-height: 1.6; }
+.daily__sources { margin: 0; padding-inline-start: 1.2rem; font-size: 0.85rem; display: grid; gap: 0.2rem; }
+.daily__sources a { color: var(--accent); }
+
+/* Le saint du jour, épinglé en tête de la recherche. */
+.result--du-jour { background: var(--accent-soft); }
+.chip--du-jour { justify-self: start; background: var(--miracle); color: var(--panel); border-color: var(--miracle); }

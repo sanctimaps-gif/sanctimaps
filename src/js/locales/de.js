@@ -263,6 +263,10 @@ export default {
     confidence: 'Vom Modell angegebene Sicherheit: {level}',
   },
   daily: {
+    lirePage: 'Seite lesen',
+    retour: 'Zurück zum Heiligen des Tages',
+    aLire: 'Siehe auch',
+    sources: 'Quellen',
     liturgie: 'Feier des Tages',
     honneur: 'Heute im Mittelpunkt',
     aussi: 'Ebenfalls heute gefeiert',

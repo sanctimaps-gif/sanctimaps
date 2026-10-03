@@ -1,0 +1,798 @@
+{
+ "source": "Pages écrites pour SanctiMaps à partir de recherches (Wikipédia, Vatican News, Église catholique en France, Saint-Siège).",
+ "note": "Les célébrations de l'AELF qu'aucune fiche ne couvre. « fiches » relie la célébration à des fiches existantes ; « page » est une page à part, sans lieu sur la carte. La clef vient de cleCelebration() (src/js/liturgie.js). node tools/aelf-sans-fiche.mjs liste celles qui manquent.",
+ "celebrations": {
+  "s-remi-eveque": {
+   "fiches": [
+    "remi"
+   ]
+  },
+  "s-vincent-diacre-et-martyr": {
+   "fiches": [
+    "wd-vincent-de-saragosse-q318974"
+   ]
+  },
+  "s-blaise-eveque-et-martyr": {
+   "fiches": [
+    "wd-blaise-de-sebaste-q151967"
+   ]
+  },
+  "s-joseph-travailleur": {
+   "fiches": [
+    "joseph"
+   ]
+  },
+  "s-christophe-magallanes-pretre-et-ses-compagnons-martyrs": {
+   "fiches": [
+    "cristobal-magallanes"
+   ]
+  },
+  "s-justin-martyr": {
+   "fiches": [
+    "wd-justin-de-naplouse-q185117"
+   ]
+  },
+  "s-callixte-ier-pape-et-martyr": {
+   "fiches": [
+    "wd-calixte-ier-q122376"
+   ]
+  },
+  "conversion-de-st-paul-apotre": {
+   "fiches": [
+    "paul-tarse"
+   ]
+  },
+  "la-chaire-de-saint-pierre": {
+   "fiches": [
+    "pierre-apotre"
+   ]
+  },
+  "2eme-dimanche-de-paques-ou-de-la-divine-misericorde": {
+   "fiches": [
+    "ap-christ-misericordieux-sainte-faustine",
+    "faustine-kowalska"
+   ]
+  },
+  "sacre-c-ur-de-jesus": {
+   "fiches": [
+    "ap-sacre-coeur-paray-le-monial",
+    "marguerite-marie-alacoque"
+   ]
+  },
+  "bienheureuse-vierge-marie-de-guadaloupe": {
+   "fiches": [
+    "ap-apparitions-mariales-de-notre-dame-de-guadal-q10860927"
+   ]
+  },
+  "s-thimothee-et-s-tite-eveques": {
+   "fiches": [
+    "timothee"
+   ],
+   "page": {
+    "titre": "Saint Tite",
+    "texte": [
+     "Grec d'origine païenne, Tite fut converti et baptisé par l'apôtre Paul, dont il devint le collaborateur et le compagnon de voyage. Paul l'envoya à Corinthe pour y apaiser une communauté divisée, puis lui confia l'organisation des jeunes Églises de Crète : y établir des anciens dans chaque ville, y garder la saine doctrine.",
+     "Vers 63, Paul lui adressa la lettre que le Nouveau Testament a gardée sous son nom, l'une des trois épîtres « pastorales ». La tradition fait de Tite le premier évêque de Crète ; son tombeau était montré à Gortyne, où il serait mort âgé. L'Église le fête le 26 janvier avec saint Timothée, l'autre grand disciple de Paul."
+    ],
+    "lies": [
+     "paul-tarse"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Tite (saint)",
+      "url": "https://fr.wikipedia.org/wiki/Tite_(saint)"
+     }
+    ]
+   }
+  },
+  "sainte-marie-mere-de-dieu": {
+   "page": {
+    "titre": "Sainte Marie, Mère de Dieu",
+    "texte": [
+     "Le 1er janvier, huitième jour de Noël, l'Église célèbre Marie sous son titre le plus ancien : Mère de Dieu, Theotokos en grec. Le concile d'Éphèse le proclama en 431 : celui que Marie a enfanté est vraiment Dieu fait homme, et elle est donc vraiment sa mère.",
+     "C'est la plus ancienne fête mariale de l'Église de Rome. Rétablie au 1er janvier par la réforme liturgique de 1969, elle ouvre l'année civile ; depuis 1968, ce jour est aussi la Journée mondiale de la paix."
+    ],
+    "lies": [
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Sainte Marie, Mère de Dieu",
+      "url": "https://fr.wikipedia.org/wiki/Sainte_Marie,_Mère_de_Dieu"
+     }
+    ]
+   }
+  },
+  "l-epiphanie-du-seigneur": {
+   "page": {
+    "titre": "L'Épiphanie du Seigneur",
+    "texte": [
+     "« Épiphanie » veut dire manifestation. La fête célèbre le Christ qui se fait connaître à toutes les nations, figurées par les mages venus d'Orient, guidés par une étoile jusqu'à Bethléem, qui lui offrent l'or, l'encens et la myrrhe (Matthieu 2, 1-12).",
+     "Fêtée le 6 janvier depuis le IVe siècle, elle est célébrée en France le dimanche entre le 2 et le 8 janvier. La tradition de la galette des rois en est issue. L'Orient y fête plutôt le baptême du Christ, autre manifestation de sa divinité."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Épiphanie",
+      "url": "https://fr.wikipedia.org/wiki/Épiphanie"
+     }
+    ]
+   }
+  },
+  "le-bapteme-du-seigneur": {
+   "page": {
+    "titre": "Le Baptême du Seigneur",
+    "texte": [
+     "Jésus, venu de Galilée, reçoit le baptême de Jean dans le Jourdain. Au sortir de l'eau, l'Esprit descend sur lui comme une colombe et une voix venue du ciel dit : « Celui-ci est mon Fils bien-aimé » (Matthieu 3, 13-17).",
+     "Ce baptême inaugure la vie publique du Christ. La fête clôt le temps de Noël, le dimanche qui suit l'Épiphanie."
+    ],
+    "lies": [
+     "jean-baptiste"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Baptême du Christ",
+      "url": "https://fr.wikipedia.org/wiki/Baptême_du_Christ"
+     }
+    ]
+   }
+  },
+  "presentation-du-seigneur-au-temple": {
+   "page": {
+    "titre": "La Présentation du Seigneur au Temple",
+    "texte": [
+     "Quarante jours après Noël, Marie et Joseph portent l'enfant Jésus au Temple de Jérusalem, selon la loi de Moïse. Le vieillard Syméon le prend dans ses bras et le salue comme « la lumière qui se révèle aux nations », et la prophétesse Anne parle de lui à tous (Luc 2, 22-40).",
+     "C'est la Chandeleur : depuis l'Antiquité, on y bénit des cierges et l'on fait une procession aux flambeaux. Depuis 1997, le 2 février est aussi la Journée mondiale de la vie consacrée."
+    ],
+    "lies": [
+     "marie",
+     "joseph"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Présentation de Jésus au Temple",
+      "url": "https://fr.wikipedia.org/wiki/Présentation_de_Jésus_au_Temple"
+     }
+    ]
+   }
+  },
+  "les-sept-saints-fondateurs-des-servites-de-marie": {
+   "page": {
+    "titre": "Les sept saints fondateurs des Servites de Marie",
+    "texte": [
+     "En 1233, sept marchands de Florence — Bonfiglio Monaldi, Bonagiunta Manetti, Manetto dell'Antella, Amadio degli Amidei, Uguccione degli Uguccioni, Sostegno dei Sostegni et Alessio Falconieri — quittent leurs biens et se retirent ensemble pour mener une vie de prière et de pénitence consacrée à la Vierge Marie.",
+     "En 1234, l'évêque de Florence leur donne une terre sur le Monte Senario, à une vingtaine de kilomètres de la ville : là naît l'ordre des Servites de Marie, voué à méditer les douleurs de la Vierge. Léon XIII les a canonisés ensemble, « comme un seul homme », en 1888."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Ordre des Servites de Marie",
+      "url": "https://fr.wikipedia.org/wiki/Ordre_des_Servites_de_Marie"
+     },
+     {
+      "titre": "Vatican News — saint du jour",
+      "url": "https://www.vaticannews.va/fr/saint-du-jour/02/17/saint-alexis-falconieri-et-les-sept-fondateurs-des-servites.html"
+     }
+    ]
+   }
+  },
+  "s-patrice-eveque": {
+   "page": {
+    "titre": "Saint Patrice (Patrick)",
+    "texte": [
+     "Né dans la Bretagne romaine vers la fin du IVe siècle, Patrice est enlevé à seize ans par des pirates et vendu comme esclave en Irlande, où il garde des troupeaux pendant six ans et se tourne vers Dieu. Il s'enfuit, rejoint les siens, puis se prépare au sacerdoce.",
+     "Consacré évêque, il revient vers 432 en Irlande, qu'il parcourt pendant une trentaine d'années : il baptise, ordonne des prêtres, fonde des monastères et établit son siège à Armagh. Selon la tradition, il expliquait la Trinité avec un trèfle. Il meurt vers 461 ; il est le patron de l'Irlande, fêté le 17 mars."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Patrick d'Irlande",
+      "url": "https://fr.wikipedia.org/wiki/Patrick_d'Irlande"
+     },
+     {
+      "titre": "Église catholique en France — saint Patrick",
+      "url": "https://eglise.catholique.fr/saint-du-jour/17/03/saint-patrick/"
+     }
+    ]
+   }
+  },
+  "s-turibio-de-mogrovejo-eveque": {
+   "page": {
+    "titre": "Saint Turibio de Mogrovejo",
+    "texte": [
+     "Né en 1538 à Mayorga, dans le royaume de León, juriste réputé, Turibio présidait le tribunal de l'Inquisition de Grenade lorsque Philippe II le fit nommer, encore laïc, archevêque de Lima. Il reçut les ordres et partit pour le Pérou en 1581.",
+     "Pendant vingt-cinq ans, il parcourut à pied son immense diocèse, apprit les langues indiennes, défendit les Indiens contre les exactions des colons, réunit des conciles et fonda à Lima le premier séminaire des Amériques, appliquant les réformes du concile de Trente. Il mourut en tournée pastorale à Saña en 1606 ; il a été canonisé en 1726."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Turibe de Mogrovejo",
+      "url": "https://fr.wikipedia.org/wiki/Turibe_de_Mogrovejo"
+     },
+     {
+      "titre": "Église catholique en France — saint Turibio",
+      "url": "https://eglise.catholique.fr/saint-du-jour/23/03/saint-turibio/"
+     }
+    ]
+   }
+  },
+  "annonciation-du-seigneur": {
+   "page": {
+    "titre": "L'Annonciation du Seigneur",
+    "texte": [
+     "Neuf mois avant Noël, l'Église fait mémoire de l'ange Gabriel envoyé à Nazareth auprès de Marie, pour lui annoncer qu'elle concevra et enfantera le Fils du Très-Haut. Marie répond : « Voici la servante du Seigneur ; que tout m'advienne selon ta parole » (Luc 1, 26-38).",
+     "C'est la fête de l'Incarnation : le Verbe de Dieu se fait chair dans le sein de la Vierge. Lorsqu'elle tombe pendant la Semaine sainte ou l'octave de Pâques, elle est reportée."
+    ],
+    "lies": [
+     "ap-annonciation-nazareth",
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Annonciation",
+      "url": "https://fr.wikipedia.org/wiki/Annonciation"
+     }
+    ]
+   }
+  },
+  "resurrection-du-seigneur": {
+   "page": {
+    "titre": "Pâques, la Résurrection du Seigneur",
+    "texte": [
+     "Pâques est la plus grande fête chrétienne : le troisième jour après sa mort sur la croix, le Christ est ressuscité. Les femmes venues au tombeau le trouvent vide, et le Ressuscité apparaît à ses disciples.",
+     "La date de Pâques change chaque année : c'est le dimanche qui suit la première pleine lune du printemps. La fête se prolonge pendant une octave, puis pendant les cinquante jours du temps pascal, jusqu'à la Pentecôte."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Pâques",
+      "url": "https://fr.wikipedia.org/wiki/Pâques"
+     }
+    ]
+   }
+  },
+  "ascension-du-seigneur": {
+   "page": {
+    "titre": "L'Ascension du Seigneur",
+    "texte": [
+     "Quarante jours après Pâques, le Christ ressuscité est élevé au ciel sous les yeux de ses disciples, après leur avoir promis l'Esprit Saint et les avoir envoyés être ses témoins « jusqu'aux extrémités de la terre » (Actes 1, 1-11).",
+     "La fête tombe toujours un jeudi, quarante jours après Pâques. Elle ouvre les neuf jours de prière qui mènent à la Pentecôte."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Ascension (fête)",
+      "url": "https://fr.wikipedia.org/wiki/Ascension_(fête)"
+     }
+    ]
+   }
+  },
+  "pentecote": {
+   "page": {
+    "titre": "La Pentecôte",
+    "texte": [
+     "Cinquante jours après Pâques, les apôtres réunis avec Marie reçoivent l'Esprit Saint, sous la forme de langues de feu ; ils sortent annoncer le Christ, et chacun les entend dans sa propre langue (Actes 2, 1-11).",
+     "La Pentecôte est regardée comme la naissance de l'Église. Elle clôt le temps pascal ; le lendemain, l'Église fête Marie, Mère de l'Église."
+    ],
+    "lies": [
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Pentecôte",
+      "url": "https://fr.wikipedia.org/wiki/Pentecôte"
+     }
+    ]
+   }
+  },
+  "bienheureuse-vierge-marie-mere-de-l-eglise": {
+   "page": {
+    "titre": "Marie, Mère de l'Église",
+    "texte": [
+     "Le lundi de Pentecôte, l'Église honore Marie comme sa mère. Au pied de la croix, Jésus l'a confiée au disciple qu'il aimait : « Voici ta mère » (Jean 19, 27) ; et elle priait avec les apôtres lorsque l'Esprit est descendu.",
+     "Paul VI a proclamé ce titre en 1964, à la clôture de la troisième session du concile Vatican II. Le pape François en a fait une mémoire obligatoire dans toute l'Église en 2018."
+    ],
+    "lies": [
+     "marie",
+     "jean-evangeliste"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Marie, Mère de l'Église",
+      "url": "https://fr.wikipedia.org/wiki/Marie,_Mère_de_l'Église"
+     }
+    ]
+   }
+  },
+  "sainte-trinite": {
+   "page": {
+    "titre": "La Sainte Trinité",
+    "texte": [
+     "Le dimanche qui suit la Pentecôte, l'Église célèbre le mystère central de la foi chrétienne : un seul Dieu en trois personnes, le Père, le Fils et le Saint-Esprit.",
+     "La fête s'est répandue au Moyen Âge, notamment à partir des monastères, et Jean XXII l'a étendue à toute l'Église en 1334."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Fête de la Sainte-Trinité",
+      "url": "https://fr.wikipedia.org/wiki/Fête_de_la_Sainte-Trinité"
+     }
+    ]
+   }
+  },
+  "le-saint-sacrement-du-corps-et-du-sang-du-christ": {
+   "page": {
+    "titre": "Le Saint-Sacrement (Fête-Dieu)",
+    "texte": [
+     "La Fête-Dieu célèbre la présence réelle du Christ dans l'eucharistie, le pain et le vin consacrés. On y porte souvent le Saint-Sacrement en procession dans les rues.",
+     "Née à Liège au XIIIe siècle à la demande de sainte Julienne de Cornillon, elle a été étendue à toute l'Église par Urbain IV en 1264 ; saint Thomas d'Aquin en composa les textes. En France, elle est célébrée le dimanche qui suit la Sainte-Trinité."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Fête-Dieu",
+      "url": "https://fr.wikipedia.org/wiki/Fête-Dieu"
+     }
+    ]
+   }
+  },
+  "c-ur-immacule-de-la-bienheureuse-vierge-marie": {
+   "page": {
+    "titre": "Le Cœur immaculé de Marie",
+    "texte": [
+     "Le lendemain de la fête du Sacré-Cœur, l'Église honore le cœur de Marie, qui « gardait toutes ces choses et les méditait dans son cœur » (Luc 2, 19) : son amour pour Dieu et pour les hommes.",
+     "Saint Jean Eudes en a répandu la dévotion au XVIIe siècle. Pie XII a consacré le monde au Cœur immaculé de Marie en 1942, en écho aux apparitions de Fátima."
+    ],
+    "lies": [
+     "marie",
+     "jean-eudes",
+     "ap-apparitions-mariales-de-fatima-q9624583"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Cœur immaculé de Marie",
+      "url": "https://fr.wikipedia.org/wiki/Cœur_immaculé_de_Marie"
+     }
+    ]
+   }
+  },
+  "ss-premiers-martyrs-de-l-eglise-de-rome": {
+   "page": {
+    "titre": "Les premiers martyrs de l'Église de Rome",
+    "texte": [
+     "En juillet 64, un immense incendie ravage Rome. Pour écarter les soupçons qui pèsent sur lui, l'empereur Néron en accuse les chrétiens et en fait mettre à mort un grand nombre : selon l'historien Tacite, certains furent livrés aux chiens sous des peaux de bêtes, d'autres crucifiés, d'autres brûlés vifs pour éclairer la nuit.",
+     "Leurs noms ne sont pas connus. L'Église les fête au lendemain de saint Pierre et saint Paul, martyrisés eux aussi à Rome sous Néron."
+    ],
+    "lies": [
+     "pierre-apotre",
+     "paul-tarse"
+    ],
+    "sources": [
+     {
+      "titre": "Vatican — 30 juin, saints protomartyrs romains",
+      "url": "https://www.vaticanstate.va/fr/etat-et-gouvernorat/notes-generales/saint-du-jour/2432-30-juin-saints-protomartyrs-romains.html"
+     }
+    ]
+   }
+  },
+  "notre-dame-du-mont-carmel": {
+   "page": {
+    "titre": "Notre-Dame du Mont-Carmel",
+    "texte": [
+     "Le mont Carmel, en Terre sainte, est le lieu du prophète Élie. Des ermites s'y établirent au XIIe siècle, sous la protection de la Vierge : c'est l'origine de l'ordre du Carmel.",
+     "Selon la tradition carmélitaine, la Vierge apparut en 1251 à saint Simon Stock, prieur général de l'ordre, et lui remit le scapulaire. La fête du 16 juillet est la fête patronale du Carmel."
+    ],
+    "lies": [
+     "wd-simon-stock-q721003",
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Notre-Dame du Mont-Carmel",
+      "url": "https://fr.wikipedia.org/wiki/Notre-Dame_du_Mont-Carmel"
+     }
+    ]
+   }
+  },
+  "dedicace-de-la-basilique-sainte-marie-majeure": {
+   "page": {
+    "titre": "La dédicace de Sainte-Marie-Majeure",
+    "texte": [
+     "Au lendemain du concile d'Éphèse, qui avait proclamé Marie Mère de Dieu en 431, le pape Sixte III fit reconstruire sur l'Esquilin, à Rome, la basilique qui porte son nom et la dédia à la Vierge vers 434. C'est la plus ancienne église d'Occident consacrée à Marie.",
+     "Une légende rattache sa fondation à une neige tombée miraculeusement sur la colline une nuit d'août, sous le pape Libère : d'où son autre nom, Notre-Dame des Neiges."
+    ],
+    "lies": [
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Basilique Sainte-Marie-Majeure",
+      "url": "https://fr.wikipedia.org/wiki/Basilique_Sainte-Marie-Majeure"
+     },
+     {
+      "titre": "Vatican — 5 août, dédicace de Sainte-Marie-Majeure",
+      "url": "https://www.vaticanstate.va/fr/etat-et-gouvernement/notes-generales/saint-du-jour/2478-5-aout-dedicace-de-la-basilique-sainte-marie-majeure.html"
+     }
+    ]
+   }
+  },
+  "transfiguration-du-seigneur": {
+   "page": {
+    "titre": "La Transfiguration du Seigneur",
+    "texte": [
+     "Jésus emmène Pierre, Jacques et Jean sur une haute montagne ; il est transfiguré devant eux, son visage brille comme le soleil, Moïse et Élie s'entretiennent avec lui, et une voix dit : « Celui-ci est mon Fils bien-aimé ; écoutez-le » (Matthieu 17, 1-9).",
+     "La tradition situe la scène au mont Thabor, en Galilée. La fête, ancienne en Orient, a été étendue à toute l'Église latine en 1457."
+    ],
+    "lies": [
+     "pierre-apotre",
+     "jean-evangeliste"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Transfiguration",
+      "url": "https://fr.wikipedia.org/wiki/Transfiguration"
+     }
+    ]
+   }
+  },
+  "assomption-de-la-vierge-marie": {
+   "page": {
+    "titre": "L'Assomption de la Vierge Marie",
+    "texte": [
+     "Au terme de sa vie terrestre, Marie a été élevée dans la gloire du ciel avec son âme et son corps. Fêtée depuis l'Antiquité en Orient sous le nom de Dormition, cette croyance a été proclamée dogme par Pie XII le 1er novembre 1950.",
+     "Le 15 août est la fête patronale de la France, depuis le vœu de Louis XIII en 1638, et un jour férié."
+    ],
+    "lies": [
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Assomption de Marie",
+      "url": "https://fr.wikipedia.org/wiki/Assomption_de_Marie"
+     }
+    ]
+   }
+  },
+  "la-vierge-marie-reine": {
+   "page": {
+    "titre": "La Vierge Marie, Reine",
+    "texte": [
+     "Huit jours après l'Assomption, l'Église honore Marie couronnée reine du ciel et de la terre, associée à la royauté de son Fils.",
+     "Pie XII a institué cette fête en 1954 par l'encyclique Ad caeli Reginam ; la réforme liturgique l'a placée au 22 août, à l'octave de l'Assomption."
+    ],
+    "lies": [
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Marie Reine",
+      "url": "https://fr.wikipedia.org/wiki/Marie_Reine"
+     }
+    ]
+   }
+  },
+  "le-saint-nom-de-marie": {
+   "page": {
+    "titre": "Le Saint Nom de Marie",
+    "texte": [
+     "Quatre jours après la Nativité de Marie, l'Église honore son nom, comme elle honore le Nom de Jésus après Noël.",
+     "Née en Espagne au XVIe siècle, la fête a été étendue à toute l'Église par le pape Innocent XI en action de grâce pour la victoire de Vienne sur les Ottomans, le 12 septembre 1683."
+    ],
+    "lies": [
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Saint Nom de Marie",
+      "url": "https://fr.wikipedia.org/wiki/Saint_Nom_de_Marie"
+     }
+    ]
+   }
+  },
+  "la-croix-glorieuse": {
+   "page": {
+    "titre": "La Croix glorieuse",
+    "texte": [
+     "Le 14 septembre, l'Église célèbre la croix du Christ, instrument de supplice devenu signe de victoire et de salut.",
+     "La fête rappelle la dédicace, en 335, des basiliques bâties par l'empereur Constantin sur le Calvaire et le tombeau du Christ, à Jérusalem, où l'on vénérait la Croix retrouvée selon la tradition par sainte Hélène. Elle porte aussi le nom d'Exaltation de la Sainte-Croix."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Exaltation de la Sainte-Croix",
+      "url": "https://fr.wikipedia.org/wiki/Exaltation_de_la_Sainte-Croix"
+     }
+    ]
+   }
+  },
+  "notre-dame-des-douleurs": {
+   "page": {
+    "titre": "Notre-Dame des Douleurs",
+    "texte": [
+     "Au lendemain de la Croix glorieuse, l'Église contemple Marie debout au pied de la croix (Jean 19, 25), et les sept douleurs de sa vie, de la prophétie de Syméon à la mise au tombeau de son Fils.",
+     "Les Servites de Marie ont beaucoup répandu cette dévotion, que chante le Stabat Mater. Pie X a fixé la fête au 15 septembre en 1913."
+    ],
+    "lies": [
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Notre-Dame des Douleurs",
+      "url": "https://fr.wikipedia.org/wiki/Notre-Dame_des_Douleurs"
+     }
+    ]
+   }
+  },
+  "s-come-et-s-damien-martyrs": {
+   "page": {
+    "titre": "Saints Côme et Damien",
+    "texte": [
+     "Frères, peut-être jumeaux, Côme et Damien étaient médecins en Syrie. On les appelait les « anargyres », les « sans-argent », parce qu'ils soignaient sans se faire payer.",
+     "Arrêtés sous la persécution de Dioclétien, ils furent décapités vers 303 à Cyr, au nord de la Syrie. Leur culte s'est répandu très tôt : le pape Félix IV leur dédia une basilique sur le Forum romain, et leurs noms figurent dans la prière eucharistique. Ils sont les patrons des médecins, des chirurgiens et des pharmaciens."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Côme et Damien",
+      "url": "https://fr.wikipedia.org/wiki/Côme_et_Damien"
+     },
+     {
+      "titre": "Vatican — 26 septembre, saints Côme et Damien",
+      "url": "https://www.vaticanstate.va/fr/etat-et-gouvernement/notes-generales/saint-du-jour/2723-26-septembre-saints-come-et-damien-martyrs.html"
+     }
+    ]
+   }
+  },
+  "bienheureuse-vierge-marie-du-rosaire": {
+   "page": {
+    "titre": "Notre-Dame du Rosaire",
+    "texte": [
+     "Le rosaire est la prière qui médite la vie du Christ et de Marie en égrenant des Ave Maria. La tradition en attribue la diffusion à saint Dominique et aux Dominicains.",
+     "La fête a été instituée par saint Pie V après la victoire de Lépante sur la flotte ottomane, le 7 octobre 1571, attribuée à la prière du rosaire. À Fátima, en 1917, la Vierge s'est présentée comme « Notre-Dame du Rosaire »."
+    ],
+    "lies": [
+     "marie",
+     "dominique-guzman",
+     "ap-apparitions-mariales-de-fatima-q9624583"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Notre-Dame du Rosaire",
+      "url": "https://fr.wikipedia.org/wiki/Notre-Dame_du_Rosaire"
+     }
+    ]
+   }
+  },
+  "s-denis-eveque-et-ses-compagnons-martyrs": {
+   "page": {
+    "titre": "Saint Denis et ses compagnons",
+    "texte": [
+     "Envoyé de Rome pour évangéliser la Gaule au IIIe siècle, Denis devint le premier évêque de Paris. Avec le prêtre Rustique et le diacre Éleuthère, il fut martyrisé vers 250, selon la tradition sur la colline qui en a pris le nom de Montmartre, le « mont des Martyrs ».",
+     "La légende rapporte qu'après sa décapitation, il se releva et marcha en portant sa tête jusqu'au lieu de sa sépulture, où s'éleva la basilique Saint-Denis, nécropole des rois de France."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Denis de Paris",
+      "url": "https://fr.wikipedia.org/wiki/Denis_de_Paris"
+     },
+     {
+      "titre": "Diocèse de Paris — saint Denys",
+      "url": "https://dioceseparis.fr/saint-denys.html"
+     }
+    ]
+   }
+  },
+  "dedicace-des-eglises-consacrees-dont-on-ne-connait-pas-la": {
+   "page": {
+    "titre": "La dédicace des églises",
+    "texte": [
+     "En France, le dernier dimanche d'octobre, chaque paroisse fait mémoire de la consécration de son église lorsque la date exacte en est inconnue.",
+     "La dédicace est le rite solennel par lequel un évêque consacre un édifice au culte : l'autel est oint du saint chrême, les murs marqués de croix. Fêter cet anniversaire, c'est rappeler que l'Église est d'abord faite de pierres vivantes, les fidèles."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Dédicace (christianisme)",
+      "url": "https://fr.wikipedia.org/wiki/Dédicace_(christianisme)"
+     }
+    ]
+   }
+  },
+  "tous-les-saints": {
+   "page": {
+    "titre": "La Toussaint",
+    "texte": [
+     "Le 1er novembre, l'Église fête tous les saints, connus et inconnus : tous ceux qui vivent déjà auprès de Dieu, et non seulement ceux que le calendrier nomme. C'est une invitation à la sainteté adressée à chacun.",
+     "Fixée au 1er novembre à Rome au VIIIe siècle, la fête a été étendue à tout l'Empire franc sous Louis le Pieux en 835. Le lendemain est consacré à la prière pour les défunts."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Toussaint",
+      "url": "https://fr.wikipedia.org/wiki/Toussaint"
+     }
+    ]
+   }
+  },
+  "commemoration-de-tous-les-fideles-defunts": {
+   "page": {
+    "titre": "La commémoration des fidèles défunts",
+    "texte": [
+     "Le 2 novembre, au lendemain de la Toussaint, l'Église prie pour tous les morts, afin qu'ils soient purifiés et accueillis auprès de Dieu. C'est le jour où l'on visite et fleurit les tombes.",
+     "Cette journée a été instituée par saint Odilon, abbé de Cluny, vers 998, pour tous les monastères de son ordre, puis s'est étendue à toute l'Église."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Commémoration de tous les fidèles défunts",
+      "url": "https://fr.wikipedia.org/wiki/Commémoration_de_tous_les_fidèles_défunts"
+     }
+    ]
+   }
+  },
+  "dedicace-de-la-basilique-du-latran": {
+   "page": {
+    "titre": "La dédicace de la basilique du Latran",
+    "texte": [
+     "Saint-Jean-de-Latran est la cathédrale du pape, évêque de Rome : « mère et tête de toutes les églises de la Ville et du monde ». Construite par l'empereur Constantin, elle fut dédiée au Sauveur au début du IVe siècle, puis aussi à saint Jean-Baptiste et à saint Jean l'Évangéliste.",
+     "Fêter sa dédicace le 9 novembre, c'est manifester l'unité de toutes les Églises avec celle de Rome."
+    ],
+    "lies": [
+     "jean-baptiste",
+     "jean-evangeliste"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Archibasilique Saint-Jean-de-Latran",
+      "url": "https://fr.wikipedia.org/wiki/Archibasilique_Saint-Jean-de-Latran"
+     }
+    ]
+   }
+  },
+  "dedicace-des-basiliques-de-s-pierre-et-de-s-paul": {
+   "page": {
+    "titre": "La dédicace des basiliques Saint-Pierre et Saint-Paul",
+    "texte": [
+     "Le 18 novembre, l'Église fait mémoire de la consécration des deux basiliques élevées à Rome sur les tombeaux des apôtres : Saint-Pierre au Vatican et Saint-Paul-hors-les-Murs, sur la voie d'Ostie.",
+     "Toutes deux remontent à l'empereur Constantin, au IVe siècle. L'actuelle basilique Saint-Pierre a été consacrée en 1626 ; Saint-Paul, détruite par un incendie en 1823, a été reconstruite et consacrée de nouveau en 1854."
+    ],
+    "lies": [
+     "pierre-apotre",
+     "paul-tarse"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Basilique Saint-Pierre",
+      "url": "https://fr.wikipedia.org/wiki/Basilique_Saint-Pierre"
+     },
+     {
+      "titre": "Wikipédia — Basilique Saint-Paul-hors-les-Murs",
+      "url": "https://fr.wikipedia.org/wiki/Basilique_Saint-Paul-hors-les-Murs"
+     }
+    ]
+   }
+  },
+  "presentation-de-la-vierge-marie": {
+   "page": {
+    "titre": "La Présentation de la Vierge Marie",
+    "texte": [
+     "Selon une tradition rapportée par le Protévangile de Jacques, un écrit du IIe siècle, Marie enfant fut conduite au Temple de Jérusalem par ses parents, Joachim et Anne, pour y être consacrée à Dieu.",
+     "La fête est née en Orient, liée à la dédicace d'une église Sainte-Marie à Jérusalem en 543 ; elle a été adoptée à Rome au XIVe siècle."
+    ],
+    "lies": [
+     "marie",
+     "wd-joachim-q314700",
+     "wd-anne-q164294"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Présentation de Marie au Temple",
+      "url": "https://fr.wikipedia.org/wiki/Présentation_de_Marie_au_Temple"
+     }
+    ]
+   }
+  },
+  "notre-seigneur-jesus-christ-roi-de-l-univers": {
+   "page": {
+    "titre": "Le Christ, Roi de l'univers",
+    "texte": [
+     "Le dernier dimanche de l'année liturgique, l'Église célèbre le Christ, roi dont le royaume « n'est pas de ce monde » (Jean 18, 36), qui reviendra à la fin des temps.",
+     "Pie XI a institué la fête en 1925 par l'encyclique Quas primas. Placée depuis 1969 juste avant l'Avent, elle clôt l'année liturgique."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Christ-Roi",
+      "url": "https://fr.wikipedia.org/wiki/Christ-Roi"
+     }
+    ]
+   }
+  },
+  "immaculee-conception-de-la-bienheureuse-vierge-marie": {
+   "page": {
+    "titre": "L'Immaculée Conception",
+    "texte": [
+     "L'Église croit que Marie, en vue de sa mission de Mère du Sauveur, a été préservée du péché originel dès le premier instant de sa conception dans le sein de sa mère, sainte Anne.",
+     "Pie IX a proclamé ce dogme le 8 décembre 1854. Quatre ans plus tard, à Lourdes, la Dame qui apparaissait à Bernadette se nomma : « Que soy era Immaculada Councepciou ». À Lyon, le 8 décembre est la fête des Lumières."
+    ],
+    "lies": [
+     "marie",
+     "ap-apparitions-de-lourdes-q1184935"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Immaculée Conception",
+      "url": "https://fr.wikipedia.org/wiki/Immaculée_Conception"
+     }
+    ]
+   }
+  },
+  "bienheureuse-vierge-marie-de-lorette": {
+   "page": {
+    "titre": "Notre-Dame de Lorette",
+    "texte": [
+     "À Loreto, dans les Marches italiennes, une basilique abrite la Sainte Maison : selon la tradition, la maison de Nazareth où Marie naquit, grandit et reçut l'annonce de l'ange, transportée par les anges à la fin du XIIIe siècle.",
+     "C'est l'un des plus grands sanctuaires mariaux du monde. Le pape François a inscrit Notre-Dame de Lorette au calendrier romain en 2019, au 10 décembre ; elle est la patronne des aviateurs."
+    ],
+    "lies": [
+     "marie",
+     "ap-annonciation-nazareth"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Basilique de la Santa Casa",
+      "url": "https://fr.wikipedia.org/wiki/Basilique_de_la_Santa_Casa"
+     },
+     {
+      "titre": "Zenit — Notre-Dame de Lorette inscrite au 10 décembre",
+      "url": "https://fr.zenit.org/2019/10/31/calendrier-romain-la-fete-de-notre-dame-de-lorette-inscrite-au-10-decembre/"
+     }
+    ]
+   }
+  },
+  "nativite-du-seigneur": {
+   "page": {
+    "titre": "Noël, la Nativité du Seigneur",
+    "texte": [
+     "À Noël, l'Église célèbre la naissance de Jésus à Bethléem, de la Vierge Marie : le Fils de Dieu fait homme. L'ange l'annonce aux bergers : « Aujourd'hui vous est né un Sauveur » (Luc 2, 1-14).",
+     "Fêtée à Rome le 25 décembre dès le IVe siècle, la fête se célèbre par trois messes — de la nuit, de l'aurore et du jour — et se prolonge par une octave jusqu'au 1er janvier."
+    ],
+    "lies": [
+     "marie",
+     "joseph",
+     "ap-ange-bergers-bethleem"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Noël",
+      "url": "https://fr.wikipedia.org/wiki/Noël"
+     }
+    ]
+   }
+  },
+  "les-saints-innocents-martyrs": {
+   "page": {
+    "titre": "Les saints Innocents",
+    "texte": [
+     "Le roi Hérode, apprenant des mages la naissance d'un roi des Juifs, fit massacrer tous les enfants de moins de deux ans de Bethléem et de ses environs. Averti en songe, Joseph s'était enfui en Égypte avec Marie et l'enfant (Matthieu 2, 13-18).",
+     "L'Église honore ces enfants comme des martyrs, morts à la place du Christ, depuis le Ve siècle."
+    ],
+    "lies": [
+     "joseph",
+     "marie"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Massacre des Innocents",
+      "url": "https://fr.wikipedia.org/wiki/Massacre_des_Innocents"
+     }
+    ]
+   }
+  },
+  "visitation-de-la-bienheureuse-vierge-marie": {
+   "page": {
+    "titre": "La Visitation de la Vierge Marie",
+    "texte": [
+     "Après l'Annonciation, Marie se rend en hâte chez sa cousine Élisabeth, enceinte de Jean-Baptiste. L'enfant tressaille dans le sein de sa mère, Élisabeth la salue — « Tu es bénie entre toutes les femmes » — et Marie chante le Magnificat (Luc 1, 39-56).",
+     "La fête est célébrée le 31 mai, entre l'Annonciation et la naissance de Jean-Baptiste."
+    ],
+    "lies": [
+     "marie",
+     "jean-baptiste"
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Visitation",
+      "url": "https://fr.wikipedia.org/wiki/Visitation"
+     }
+    ]
+   }
+  }
+ }
+}

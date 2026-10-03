@@ -263,6 +263,10 @@ export default {
     confidence: 'Confidence stated by the model: {level}',
   },
   daily: {
+    lirePage: 'Read the page',
+    retour: 'Back to the saint of the day',
+    aLire: 'See also',
+    sources: 'Sources',
     liturgie: 'Today’s celebration',
     honneur: 'Honoured today',
     aussi: 'Also celebrated today',

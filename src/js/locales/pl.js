@@ -263,6 +263,10 @@ export default {
     confidence: 'Pewność podana przez model: {level}',
   },
   daily: {
+    lirePage: 'Czytaj stronę',
+    retour: 'Wróć do świętego dnia',
+    aLire: 'Zobacz też',
+    sources: 'Źródła',
     liturgie: 'Obchody dnia',
     honneur: 'Dziś wspominani szczególnie',
     aussi: 'Także dziś wspominani',

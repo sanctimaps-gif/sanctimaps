@@ -263,6 +263,10 @@ export default {
     confidence: 'Certitudo a machina declarata: {level}',
   },
   daily: {
+    lirePage: 'Paginam lege',
+    retour: 'Ad sanctum diei redi',
+    aLire: 'Vide etiam',
+    sources: 'Fontes',
     liturgie: 'Celebratio diei',
     honneur: 'Hodie praecipue',
     aussi: 'Hodie quoque celebrantur',

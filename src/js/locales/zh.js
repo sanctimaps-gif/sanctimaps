@@ -263,6 +263,10 @@ export default {
     confidence: '模型自述的把握：{level}',
   },
   daily: {
+    lirePage: '阅读页面',
+    retour: '返回今日圣人',
+    aLire: '另见',
+    sources: '来源',
     liturgie: '今日庆节',
     honneur: '今日特别纪念',
     aussi: '今日亦纪念',

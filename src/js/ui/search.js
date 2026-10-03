@@ -4,6 +4,7 @@ import { buildCalendar, downloadCalendar } from '../calendar.js';
 import { buildCountryIndex, parseQuery, removeToken, stringifyQuery } from '../query.js';
 import { fill, h } from './dom.js';
 import { emblemSvg } from '../emblems.js';
+import { aelf, chargerAelf, honores, liturgieDu } from '../liturgie.js';
 
 /** Mois de la langue courante et mois anglais, pour que « september » marche partout. */
 const ENGLISH_MONTHS = ['January', 'February', 'March', 'April', 'May', 'June',
@@ -20,6 +21,20 @@ export class SearchPanel {
     this.scope = 'tout';
     this.root = h('div', { class: 'search' });
     this.render();
+    // Le saint du jour se lit dans le calendrier de l'AELF : il monte en tête
+    // de la liste dès que le calendrier est là.
+    chargerAelf().then(() => { if (this.results) this.renderResults(); });
+  }
+
+  /** Les fiches que la célébration d'aujourd'hui met à l'honneur. */
+  duJour() {
+    const date = new Date();
+    date.setHours(12, 0, 0, 0);
+    const jour = liturgieDu(date);
+    if (!jour) return [];
+    return honores({
+      saints: this.atlas.saints, apparitions: this.atlas.apparitions, celebrations: aelf?.celebrations,
+    }, jour, date);
   }
 
   reset() {
@@ -183,6 +198,16 @@ export class SearchPanel {
       ));
     }
 
+    // Sans filtre, le saint du jour passe en tête de la liste.
+    const libre = !parsed.tokens.length && !parsed.terms.length;
+    const duJour = new Set(libre ? this.duJour().map((f) => f.id) : []);
+    if (duJour.size) {
+      const enTete = list.filter((f) => duJour.has(f.id));
+      const reste = list.filter((f) => !duJour.has(f.id));
+      list.length = 0;
+      list.push(...enTete, ...reste);
+    }
+
     const seulsSaints = this.scope === 'saints';
     this.summary.textContent = seulsSaints
       ? (list.length === 1 ? t('search.resultsOne') : t('search.results', { n: list.length }))
@@ -206,7 +231,7 @@ export class SearchPanel {
     }
 
     fill(this.results, list.map((saint) => h('button', {
-      class: `result result--emblem${saint.status !== 'published' ? ' result--draft' : ''}`,
+      class: `result result--emblem${saint.status !== 'published' ? ' result--draft' : ''}${duJour.has(saint.id) ? ' result--du-jour' : ''}`,
       type: 'button',
       role: 'listitem',
       onclick: () => this.onSelect(saint.id),
@@ -218,6 +243,7 @@ export class SearchPanel {
     h('span', { class: 'result__dates' },
       h('span', { text: saint.kind === 'apparition' || saint.kind === 'miracle' ? periode(saint) : lifespan(saint) }),
       saint.feast ? h('span', { class: 'result__feast', text: formatFeast(saint.feast) }) : null),
+    duJour.has(saint.id) ? h('span', { class: 'chip chip--du-jour', text: t('daily.title') }) : null,
     statusChip(saint))));
   }
 }

@@ -41,6 +41,13 @@ jobs:
           set -euo pipefail
           node tools/import-aelf.mjs --zone "${{ inputs.zone || 'france' }}" | tee /tmp/aelf.log
 
+      # Une célébration que ni une fiche ni une page écrite ne couvre reçoit une
+      # page provisoire, tirée de Wikipédia.
+      - name: Chercher les célébrations sans page
+        run: |
+          set -euo pipefail
+          node tools/import-celebrations-wiki.mjs | tee -a /tmp/aelf.log
+
       - name: Verser au dépôt
         run: |
           set -euo pipefail

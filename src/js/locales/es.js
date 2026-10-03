@@ -263,6 +263,10 @@ export default {
     confidence: 'Certeza declarada por el modelo: {level}',
   },
   daily: {
+    lirePage: 'Leer la página',
+    retour: 'Volver al santo del día',
+    aLire: 'Ver también',
+    sources: 'Fuentes',
     liturgie: 'Celebración del día',
     honneur: 'Destacados hoy',
     aussi: 'También se celebran hoy',

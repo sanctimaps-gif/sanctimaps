@@ -656,6 +656,18 @@ aelf.org. Les fiches qu'elle nomme passent en tête, « à l'honneur » ; pour l
 anges, ce sont leurs apparitions, et pour un Notre-Dame qui nomme un lieu,
 l'apparition de ce lieu. Les autres saints de la date suivent.
 
+Une célébration qu'aucune fiche ne couvre — la Croix glorieuse, saints Côme et
+Damien, la Toussaint, le Christ-Roi — a sa propre page, sans lieu sur la carte :
+son texte, ses sources, et les fiches à lire aussi. Ces pages s'écrivent dans
+`data/aelf/celebrations.json`, qui peut aussi relier une célébration à une fiche
+rangée à une autre date (« S. Rémi » au 15 janvier). `node
+tools/aelf-sans-fiche.mjs` dit lesquelles manquent ; à chaque relève, l'atelier
+donne à celles-là une page provisoire tirée de Wikipédia
+(`data/aelf/celebrations-auto.json`), qu'une page écrite remplace.
+
+Dans la recherche, sans filtre, le saint du jour est épinglé en tête de la
+liste.
+
 Le calendrier est relevé par l'atelier « Relever le calendrier liturgique
 (AELF) » (`tools/import-aelf.mjs`), une fois par mois, pour l'année en cours et
 la suivante, dans `data/aelf/calendrier.json`.

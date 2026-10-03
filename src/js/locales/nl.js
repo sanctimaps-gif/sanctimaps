@@ -263,6 +263,10 @@ export default {
     confidence: 'Door het model opgegeven zekerheid: {level}',
   },
   daily: {
+    lirePage: 'Lees de pagina',
+    retour: 'Terug naar de heilige van de dag',
+    aLire: 'Zie ook',
+    sources: 'Bronnen',
     liturgie: 'Viering van de dag',
     honneur: 'Vandaag in de kijker',
     aussi: 'Ook vandaag gevierd',
