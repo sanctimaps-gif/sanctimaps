@@ -1,0 +1,5 @@
+{
+ "source": "Wikipédia en français, résumés des articles (CC BY-SA)",
+ "note": "Écrit par tools/import-celebrations-wiki.mjs. Pages provisoires : une page écrite dans celebrations.json passe toujours avant.",
+ "celebrations": {}
+}
