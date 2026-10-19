@@ -17,15 +17,30 @@ jobs:
         run: |
           set -u
           UA="SanctiMaps/1.0 (https://github.com/sanctimaps-gif/sanctimaps)"
-          for u in / /robots.txt /sitemap.xml /calendrier /calendrier/ ; do
-            echo "=================== $u"
-            curl -sSL -A "$UA" -m 30 -w "\n[HTTP %{http_code} %{url_effective}]\n" "https://saintsdujour.fr$u" -o /tmp/p.html || true
-            head -c 200 /tmp/p.html | tr -d '\0'; echo
-            echo "--- liens"
-            grep -oE 'href="[^"]+"' /tmp/p.html | sort | uniq -c | sort -rn | head -60
-            echo "--- texte"
-            sed -e 's/<script[^>]*>.*<\/script>//g' -e 's/<[^>]*>/\n/g' /tmp/p.html | sed '/^\s*$/d' | head -150
+          curl -sSL -A "$UA" -m 30 https://saintsdujour.fr/ -o /tmp/home.html
+          echo "=================== accueil, sans les listes"
+          python3 - <<'PY'
+          import re
+          h = open('/tmp/home.html', encoding='utf-8', errors='replace').read()
+          h = re.sub(r"data-saints='[^']*'", lambda m: f"data-saints=[{len(m.group(0))} car.]", h)
+          print(h[:30000])
+          print('......')
+          for s in re.findall(r'<script[^>]*>(.*?)</script>', open('/tmp/home.html', encoding='utf-8', errors='replace').read(), re.S):
+            print('--- SCRIPT', len(s)); print(s[:6000])
+          PY
+          echo "=================== une liste complète (7 octobre)"
+          python3 - <<'PY'
+          import re, html, json
+          h = open('/tmp/home.html', encoding='utf-8', errors='replace').read()
+          for m in re.finditer(r"data-saints='([^']*)'\s*data-date=\"([^\"]+)\"", h):
+            if m.group(2) in ('07-10', '02-10'):
+              data = json.loads(html.unescape(m.group(1)))
+              print(m.group(2), len(data))
+              for d in data: print({k: (str(v)[:80]) for k, v in d.items()})
+          PY
+          for js in $(grep -oE 'src="[^"]+\.js[^"]*"' /tmp/home.html | cut -d'"' -f2 | head -5); do
+            echo "=================== JS $js"
+            curl -sSL -A "$UA" -m 30 "https://saintsdujour.fr$js" | head -c 12000; echo
           done
-          echo "=================== sitemap détaillé"
-          curl -sSL -A "$UA" -m 30 https://saintsdujour.fr/sitemap.xml | grep -oE '<loc>[^<]+</loc>' | head -40
-          curl -sSL -A "$UA" -m 30 https://saintsdujour.fr/sitemap.xml | grep -oE '<loc>[^<]+</loc>' | wc -l
+          echo "=================== fiche"
+          curl -sSL -A "$UA" -m 30 https://saintsdujour.fr/n/33279004-3154-4337-bdee-166440682020 | sed -e 's/<[^>]*>/\n/g' | sed '/^\s*$/d' | head -80
