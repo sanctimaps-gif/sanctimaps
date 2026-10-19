@@ -672,6 +672,14 @@ Le calendrier est relevé par l'atelier « Relever le calendrier liturgique
 (AELF) » (`tools/import-aelf.mjs`), une fois par mois, pour l'année en cours et
 la suivante, dans `data/aelf/calendrier.json`.
 
+### L'ordre des saints du jour
+
+Les saints d'un jour se classent comme sur saintsdujour.fr : le saint principal
+en tête, puis les saints majeurs, puis les autres (`tools/import-saintsdujour.mjs`,
+relevé chaque mois par l'atelier du calendrier liturgique, dans
+`data/saintsdujour/ordre.json`). Les noms se rapprochent des fiches mot à mot ;
+un saint que le site ne nomme pas vient après, par siècle.
+
 ### Les anges du jour
 
 Les anges n'ont ni naissance ni lieu de vie, mais ils ont leur fête : saint
