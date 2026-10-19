@@ -5584,6 +5584,205 @@
    "ligne1": "mercredi, 12ème Semaine du Temps Ordinaire",
    "ligne2": "de la férie",
    "annee": "Impaire"
+  },
+  "2027-06-24": {
+   "fete": "Solennité",
+   "jour_liturgique_nom": "Nativité de Saint Jean Baptiste",
+   "degre": "Solennité",
+   "couleur": "blanc",
+   "ligne1": "La Nativité de Saint Jean Baptiste",
+   "ligne2": "Solennité"
+  },
+  "2027-06-25": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "12ème Semaine du Temps Ordinaire",
+   "jour": "vendredi",
+   "ligne1": "vendredi, 12ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-06-26": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "12ème Semaine du Temps Ordinaire",
+   "jour": "samedi",
+   "ligne1": "samedi, 12ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-06-27": {
+   "jour_liturgique_nom": "13ème dimanche du Temps Ordinaire (semaine I du psautier)",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "13ème Semaine du Temps Ordinaire",
+   "jour": "dimanche",
+   "ligne1": "13ème dimanche du Temps Ordinaire (semaine I du psautier)",
+   "annee": "B"
+  },
+  "2027-06-28": {
+   "fete": "S. Irénée, évêque et martyr",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "rouge",
+   "temps_liturgique": "ordinaire",
+   "semaine": "13ème Semaine du Temps Ordinaire",
+   "jour": "lundi",
+   "ligne1": "lundi, 13ème Semaine du Temps Ordinaire",
+   "ligne2": "S. Irénée, évêque et martyr",
+   "ligne3": "Mémoire",
+   "annee": "Impaire"
+  },
+  "2027-06-29": {
+   "fete": "Solennité",
+   "jour_liturgique_nom": "Saints Pierre et Paul, Apôtres (dimanche)",
+   "degre": "Solennité",
+   "couleur": "rouge",
+   "ligne1": "Saint Pierre et Saint Paul",
+   "ligne2": "Solennité"
+  },
+  "2027-06-30": {
+   "fete": "Ss. Premiers martyrs de l'Eglise de Rome",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "13ème Semaine du Temps Ordinaire",
+   "jour": "mercredi",
+   "ligne1": "mercredi, 13ème Semaine du Temps Ordinaire",
+   "ligne2": "Ss. Premiers martyrs de l'Eglise de Rome",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-01": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "13ème Semaine du Temps Ordinaire",
+   "jour": "jeudi",
+   "ligne1": "jeudi, 13ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-07-02": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "13ème Semaine du Temps Ordinaire",
+   "jour": "vendredi",
+   "ligne1": "vendredi, 13ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-07-03": {
+   "fete": "Fête",
+   "jour_liturgique_nom": "Saint Thomas, apôtre",
+   "degre": "Fête",
+   "couleur": "rouge",
+   "ligne1": "Saint Thomas, apôtre",
+   "ligne2": "Fête"
+  },
+  "2027-07-04": {
+   "jour_liturgique_nom": "14ème dimanche du Temps Ordinaire (semaine II du Psautier)",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "14ème Semaine du Temps Ordinaire",
+   "jour": "dimanche",
+   "ligne1": "14ème dimanche du Temps Ordinaire (semaine II du Psautier)",
+   "annee": "B"
+  },
+  "2027-07-05": {
+   "fete": "S. Antoine-Marie Zaccaria, prêtre",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "14ème Semaine du Temps Ordinaire",
+   "jour": "lundi",
+   "ligne1": "lundi, 14ème Semaine du Temps Ordinaire",
+   "ligne2": "S. Antoine-Marie Zaccaria, prêtre",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-06": {
+   "fete": "Ste Marie Goretti, vierge et martyre",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "14ème Semaine du Temps Ordinaire",
+   "jour": "mardi",
+   "ligne1": "mardi, 14ème Semaine du Temps Ordinaire",
+   "ligne2": "Ste Marie Goretti, vierge et martyre",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-07": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "14ème Semaine du Temps Ordinaire",
+   "jour": "mercredi",
+   "ligne1": "mercredi, 14ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-07-08": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "14ème Semaine du Temps Ordinaire",
+   "jour": "jeudi",
+   "ligne1": "jeudi, 14ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-07-09": {
+   "fete": "S. Augustin Zhao Rong, prêtre, et ses comagnons, martyrs",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "14ème Semaine du Temps Ordinaire",
+   "jour": "vendredi",
+   "ligne1": "vendredi, 14ème Semaine du Temps Ordinaire",
+   "ligne2": "S. Augustin Zhao Rong, prêtre, et ses comagnons, martyrs",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-10": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "14ème Semaine du Temps Ordinaire",
+   "jour": "samedi",
+   "ligne1": "samedi, 14ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-07-11": {
+   "jour_liturgique_nom": "15ème dimanche du Temps Ordinaire (semaine III du Psautier)",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "15ème Semaine du Temps Ordinaire",
+   "jour": "dimanche",
+   "ligne1": "15ème dimanche du Temps Ordinaire (semaine III du Psautier)",
+   "annee": "B"
+  },
+  "2027-07-12": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "15ème Semaine du Temps Ordinaire",
+   "jour": "lundi",
+   "ligne1": "lundi, 15ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
   }
  }
 }
