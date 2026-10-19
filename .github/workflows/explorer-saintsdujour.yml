@@ -1,0 +1,31 @@
+# Temporaire : relève la structure de saintsdujour.fr (pages, liens, ordre des
+# saints) pour écrire l'outil d'import. À retirer une fois l'outil écrit.
+name: Explorer saintsdujour.fr
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  explorer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Relever
+        run: |
+          set -u
+          UA="SanctiMaps/1.0 (https://github.com/sanctimaps-gif/sanctimaps)"
+          for u in / /robots.txt /sitemap.xml /calendrier /calendrier/ ; do
+            echo "=================== $u"
+            curl -sSL -A "$UA" -m 30 -w "\n[HTTP %{http_code} %{url_effective}]\n" "https://saintsdujour.fr$u" -o /tmp/p.html || true
+            head -c 200 /tmp/p.html | tr -d '\0'; echo
+            echo "--- liens"
+            grep -oE 'href="[^"]+"' /tmp/p.html | sort | uniq -c | sort -rn | head -60
+            echo "--- texte"
+            sed -e 's/<script[^>]*>.*<\/script>//g' -e 's/<[^>]*>/\n/g' /tmp/p.html | sed '/^\s*$/d' | head -150
+          done
+          echo "=================== sitemap détaillé"
+          curl -sSL -A "$UA" -m 30 https://saintsdujour.fr/sitemap.xml | grep -oE '<loc>[^<]+</loc>' | head -40
+          curl -sSL -A "$UA" -m 30 https://saintsdujour.fr/sitemap.xml | grep -oE '<loc>[^<]+</loc>' | wc -l
