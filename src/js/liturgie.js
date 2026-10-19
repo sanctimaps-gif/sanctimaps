@@ -15,9 +15,14 @@ export function chargerAelf() {
     json('data/aelf/calendrier.json'),
     json('data/aelf/celebrations.json'),
     json('data/aelf/celebrations-auto.json'),
-  ]).then(([calendrier, ecrites, auto]) => {
+    json('data/anges/anges.json'),
+    json('data/saintsdujour/ordre.json'),
+  ]).then(([calendrier, ecrites, auto, anges, ordre]) => {
     aelf = {
       ...(calendrier || { jours: {} }),
+      anges: anges?.anges || [],
+      // L'ordre des saints de chaque jour, d'après saintsdujour.fr : « 10-02 » → [noms].
+      ordre: ordre?.jours || {},
       // Les pages écrites à la main passent avant celles relevées d'office.
       celebrations: { ...(auto?.celebrations || {}), ...(ecrites?.celebrations || {}) },
     };
@@ -197,3 +202,46 @@ export function celebrationNotable(jour) {
   if (/^(?:\d+(?:e|er|ème)\s+)?dimanche (?:de l'Avent|de Carême|de Pâques|du Temps)/i.test(titre) && !degre) return false;
   return true;
 }
+
+/** Les anges fêtés ce jour-là : ils ont leur fiche, sans naissance ni lieu de vie. */
+export function angesDu(date) {
+  const key = cleJour(date);
+  return (aelf?.anges || []).filter((a) => a.fetes?.includes(key));
+}
+
+/** Une fiche d'ange, au format des pages de célébration. */
+export function pageAnge(ange) {
+  return { titre: ange.nom, sousTitre: ange.titre, texte: ange.bio, lies: ange.lieux || [], lieux: true,
+    sources: ange.sources || [], ange: true };
+}
+
+/**
+ * Le rang d'un saint dans l'ordre de saintsdujour.fr pour ce jour, ou
+ * ``Infinity`` s'il n'y figure pas. Les noms se comparent mot à mot : « Sainte
+ * Thérèse de l'Enfant-Jésus » y retrouve « Thérèse de Lisieux » par son prénom
+ * quand il est seul de la date à le porter.
+ */
+export function rangDuJour(date, saints) {
+  const noms = aelf?.ordre?.[cleJour(date)] || [];
+  if (!noms.length) return () => Infinity;
+  const dits = noms.map((n) => new Set(sens(n)));
+  const prenoms = new Map();
+  for (const s of saints) {
+    const p = sens(s.name?.fr || s.name?.en)[0];
+    prenoms.set(p, (prenoms.get(p) || 0) + 1);
+  }
+  const cache = new Map();
+  return (saint) => {
+    if (cache.has(saint.id)) return cache.get(saint.id);
+    const nom = sens(saint.name?.fr || saint.name?.en);
+    let rang = Infinity;
+    dits.forEach((d, i) => {
+      if (rang !== Infinity || !nom.length || !d.has(nom[0])) return;
+      const dedans = nom.filter((m) => d.has(m)).length;
+      if (dedans === nom.length || dedans >= 2 || prenoms.get(nom[0]) === 1) rang = i;
+    });
+    cache.set(saint.id, rang);
+    return rang;
+  };
+}
+

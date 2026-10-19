@@ -5,7 +5,7 @@ import {
 import { fill, h } from './dom.js';
 import { emblemSvg } from '../emblems.js';
 import {
-  aelf, celebrationDe, chargerAelf, honores, isoLocal, liturgieDu, lireJour,
+  aelf, angesDu, celebrationDe, chargerAelf, honores, isoLocal, liturgieDu, lireJour, pageAnge, rangDuJour,
 } from '../liturgie.js';
 
 /** Les couleurs liturgiques, pour la pastille. */
@@ -53,10 +53,19 @@ export class DailyPanel {
     }, jour, date);
   }
 
+  /** La carte d'un ange du jour : elle ouvre sa fiche. */
+  carteAnge(ange, jour, date) {
+    return h('button', { class: 'result daily__page-lien daily__ange', type: 'button',
+      onclick: () => { this.pageOuverte = { page: pageAnge(ange), jour, date }; this.render(); } },
+    h('span', { class: 'daily__page-glyphe', 'aria-hidden': 'true', text: ange.glyphe || '✧' }),
+    h('span', { class: 'result__name', text: ange.nom }),
+    h('span', { class: 'result__meta', text: `${ange.titre} · ${t('daily.lireFiche')} ›` }));
+  }
+
   /** La page d'une célébration sans fiche : son texte, ses sources, ses liens. */
   pageVue(lang) {
     const { page, jour, date } = this.pageOuverte;
-    const { degre } = lireJour(jour);
+    const { degre } = jour ? lireJour(jour) : { degre: '' };
     const lies = (page.lies || []).map((id) => this.atlas.pointById?.(id)).filter(Boolean);
     return [
       h('button', { class: 'btn btn--ghost daily__retour', type: 'button', text: `← ${t('daily.retour')}`,
@@ -64,8 +73,9 @@ export class DailyPanel {
       h('article', { class: 'daily__page' },
         h('p', { class: 'daily__liturgie-titre', text: [formatDay(date), degre].filter(Boolean).join(' · ') }),
         h('h2', { class: 'daily__page-titre', text: page.titre }),
+        page.sousTitre ? h('p', { class: 'daily__page-sous-titre', text: page.sousTitre }) : null,
         ...page.texte.map((p) => h('p', { class: 'daily__page-texte', text: p })),
-        lies.length ? h('p', { class: 'daily__sous-titre', text: t('daily.aLire') }) : null,
+        lies.length ? h('p', { class: 'daily__sous-titre', text: page.lieux ? t('daily.lieux') : t('daily.aLire') }) : null,
         lies.length ? h('div', { class: 'results', role: 'list' }, ...lies.map((f) => this.card(f, lang))) : null,
         page.sources?.length ? h('p', { class: 'daily__sous-titre', text: t('daily.sources') }) : null,
         page.sources?.length ? h('ul', { class: 'daily__sources' }, ...page.sources.map((src) => h('li', {},
@@ -74,7 +84,7 @@ export class DailyPanel {
   }
 
   /** Le bandeau de la célébration : son nom, son degré, sa couleur, la source. */
-  bandeau(jour, date, honores, lang) {
+  bandeau(jour, date, honores, lang, anges = []) {
     const { titre: intitule, degre } = lireJour(jour);
     const couleur = (jour.couleur || '').toLowerCase();
     const meta = [degre, jour.couleur, intitule.includes(jour.semaine || '\u0000') ? null : jour.semaine]
@@ -88,6 +98,7 @@ export class DailyPanel {
         h('span', { text: t('daily.liturgie') })),
       h('p', { class: 'daily__fete', text: intitule }),
       meta ? h('p', { class: 'field__hint', text: meta }) : null,
+      ...anges.map((a) => this.carteAnge(a, jour, date)),
       page ? h('button', { class: 'result daily__page-lien', type: 'button',
         onclick: () => { this.pageOuverte = { page, jour, date }; this.render(); } },
       h('span', { class: 'daily__page-glyphe', 'aria-hidden': 'true', text: '❦' }),
@@ -95,7 +106,7 @@ export class DailyPanel {
       h('span', { class: 'result__meta', text: `${t('daily.lirePage')} ›` })) : null,
       honores.length
         ? h('div', {},
-          h('p', { class: 'daily__sous-titre', text: page ? t('daily.aLire') : t('daily.honneur') }),
+          h('p', { class: 'daily__sous-titre', text: page || anges.length ? t('daily.aLire') : t('daily.honneur') }),
           h('div', { class: 'results', role: 'list' }, ...honores.map((f) => this.card(f, lang))))
         : null,
       h('a', { class: 'daily__source', href: `https://www.aelf.org/${isoLocal(date)}/${zone}/messe`,
@@ -176,14 +187,19 @@ export class DailyPanel {
     const list = this.saintsOn(date);
     // À égalité de siècle — les martyrs d'un même jour en ont souvent une
     // douzaine —, l'ordre alphabétique évite un classement au hasard.
-    list.sort((a, b) => (a.born ?? a.died ?? 0) - (b.born ?? b.died ?? 0)
+    // D'abord l'ordre de saintsdujour.fr — le saint principal du jour en tête —,
+    // puis les siècles, puis l'alphabet.
+    const rang = rangDuJour(date, this.atlas.saints);
+    list.sort((a, b) => rang(a) - rang(b) || (a.born ?? a.died ?? 0) - (b.born ?? b.died ?? 0)
       || cmp.compare(this.atlas.saintName(a, lang), this.atlas.saintName(b, lang)));
     const jour = this.liturgie(date);
-    const honores = jour ? this.honores(jour, date) : [];
+    // Les anges du jour ont leur fiche ; leurs apparitions sont dans la fiche.
+    const anges = angesDu(date);
+    const honores = (jour ? this.honores(jour, date) : []).filter((f) => !anges.length || f.kind !== 'apparition');
     const deja = new Set(honores.map((f) => f.id));
     // Les fiches mises à l'honneur passent en tête : le reste du jour suit.
     const reste = list.filter((s) => !deja.has(s.id));
-    const next = list.length || jour ? null : this.nextFeast(date);
+    const next = list.length || jour || anges.length ? null : this.nextFeast(date);
 
     fill(this.root, [
       h('h2', { class: 'panel__section', text: t('daily.title') }),
@@ -215,7 +231,8 @@ export class DailyPanel {
           onclick: () => this.move(1),
         })),
 
-      jour ? this.bandeau(jour, date, honores, lang) : null,
+      jour ? this.bandeau(jour, date, honores, lang, anges) : null,
+      !jour && anges.length ? h('section', { class: 'daily__liturgie' }, ...anges.map((a) => this.carteAnge(a, null, date))) : null,
 
       jour && reste.length ? h('h3', { class: 'daily__sous-titre', text: t('daily.aussi') }) : null,
       reste.length

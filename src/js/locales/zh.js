@@ -33,6 +33,7 @@ export default {
     language: '语言',
   },
   tab: {
+    bible: '圣经与弥撒',
     jeux: '游戏',
     daily: '每日圣人',
     search: '搜索',
@@ -43,6 +44,7 @@ export default {
     detail: '圣人条目',
   },
   menu: {
+    bible: '今日读经，AELF 圣经',
     jeux: '问答、圣人链、猜猜是谁',
     daily: '今日纪念何人',
     title: '目录',
@@ -262,7 +264,13 @@ export default {
     aiEmpty: '模型未返回任何条目。',
     confidence: '模型自述的把握：{level}',
   },
+  bible: {
+    titre: '圣经与今日弥撒读经',
+    ouvrir: '在新标签页中打开',
+  },
   daily: {
+    lireFiche: '阅读简介',
+    lieux: '相关地点',
     lirePage: '阅读页面',
     retour: '返回今日圣人',
     aLire: '另见',

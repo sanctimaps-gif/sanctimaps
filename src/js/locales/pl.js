@@ -33,6 +33,7 @@ export default {
     language: 'Język',
   },
   tab: {
+    bible: 'Biblia i msza',
     jeux: 'Gry',
     daily: 'Święty dnia',
     search: 'Szukaj',
@@ -43,6 +44,7 @@ export default {
     detail: 'Karta świętego',
   },
   menu: {
+    bible: 'Czytania dnia, Biblia AELF',
     jeux: 'Quiz, łańcuch świętych, kto to?',
     daily: 'Kogo dziś się wspomina',
     title: 'Spis treści',
@@ -262,7 +264,13 @@ export default {
     aiEmpty: 'Model nie zwrócił żadnej karty.',
     confidence: 'Pewność podana przez model: {level}',
   },
+  bible: {
+    titre: 'Biblia i czytania mszalne dnia',
+    ouvrir: 'Otwórz w nowej karcie',
+  },
   daily: {
+    lireFiche: 'Czytaj kartę',
+    lieux: 'Miejsca',
     lirePage: 'Czytaj stronę',
     retour: 'Wróć do świętego dnia',
     aLire: 'Zobacz też',

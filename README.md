@@ -672,6 +672,16 @@ Le calendrier est relevé par l'atelier « Relever le calendrier liturgique
 (AELF) » (`tools/import-aelf.mjs`), une fois par mois, pour l'année en cours et
 la suivante, dans `data/aelf/calendrier.json`.
 
+### Les anges du jour
+
+Les anges n'ont ni naissance ni lieu de vie, mais ils ont leur fête : saint
+Michel, saint Gabriel et saint Raphaël le 29 septembre, les Anges gardiens le
+2 octobre. Ces jours-là, le saint du jour ouvre leur fiche — une biographie
+tirée de la Bible et de la tradition, et, quand il y en a, les lieux de leurs
+apparitions (le mont Gargan, le Mont-Saint-Michel, Nazareth, Cordoue,
+Fátima…), qui mènent à la carte. Les fiches s'écrivent dans
+`data/anges/anges.json`.
+
 ### Être prévenu chaque jour
 
 Dans **Paramètres → Rappel quotidien**, quatre chemins — et ils ne valent pas
@@ -1232,6 +1242,17 @@ ce qui s'y est passé. On en ajoute, on en retire. Comme le reste, cela vit
 d'abord dans le navigateur ; le bouton « Exporter mes lieux marqués » rend
 `lieux-main.json`, à verser dans `data/saints/`, où la liste de chaque saint
 nommé remplace celle de la collecte.
+
+## La Bible et la messe
+
+L'onglet « Bible et messe » incruste le site Bible
+(https://sanctimaps-gif.github.io/Bible/#messe) : les lectures de la messe du
+jour, la recherche et la lecture de la Bible de l'AELF. Le cadre n'est chargé
+qu'à la première ouverture ; un lien l'ouvre dans un nouvel onglet.
+
+Sur téléphone, chaque partie du sommaire s'ouvre en pleine page, sauf celles
+des saints — le saint du jour et la recherche —, qui restent un tiroir pour
+laisser voir la carte. Les jeux et la Bible s'ouvrent en grand partout.
 
 ## Les jeux
 

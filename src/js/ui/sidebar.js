@@ -19,8 +19,13 @@ import { fill, h, select } from './dom.js';
  */
 
 /** Une entrée du sommaire : clé, glyphe, et droit requis pour la voir. */
+/** Les parties qui restent un tiroir sur téléphone : celles des saints. */
+const SAINTS = ['daily', 'search'];
+const TELEPHONE = typeof matchMedia === 'function' ? matchMedia('(max-width: 899px)') : { matches: false };
+
 const ENTRIES = [
   { key: 'daily', glyph: '☀' },
+  { key: 'bible', glyph: '✝' },
   { key: 'search', glyph: '⌕' },
   { key: 'add', glyph: '✚' },
   { key: 'jeux', glyph: '✪' },
@@ -38,6 +43,8 @@ export class Sidebar {
     this.open = window.matchMedia('(min-width: 900px)').matches;
     this.build();
     this.sync();
+    // Le téléphone tourné en paysage : la partie ouverte passe en grand, ou non.
+    TELEPHONE.addEventListener?.('change', () => this.sync());
   }
 
   entries() {
@@ -141,6 +148,7 @@ export class Sidebar {
     if (name === 'daily') return this.panels.daily.root;
     if (name === 'add') return this.panels.add.root;
     if (name === 'jeux') return this.panels.jeux.root;
+    if (name === 'bible') { this.panels.bible.show(); return this.panels.bible.root; }
     if (name === 'moderate') return this.panels.moderate.root;
     if (name === 'assistant') return this.panels.assistant.root;
     if (name === 'settings') return this.settingsView;
@@ -187,7 +195,12 @@ export class Sidebar {
     this.panel.classList.toggle('is-open', this.open);
     this.panel.classList.toggle('is-menu', !this.section);
     // Les jeux se jouent en grand : le tiroir couvre alors tout l'écran.
-    this.panel.classList.toggle('is-plein', this.open && this.section === 'jeux');
+    // Les jeux et la Bible se lisent en grand partout ; sur un téléphone, toute
+    // partie ouverte prend la page entière, sauf celles des saints (le saint du
+    // jour, la recherche), qui laissent la carte voir où l'on va.
+    const enGrand = ['jeux', 'bible'].includes(this.section)
+      || (TELEPHONE.matches && this.section && !SAINTS.includes(this.section));
+    this.panel.classList.toggle('is-plein', this.open && !!enGrand);
     this.panel.setAttribute('aria-hidden', this.open ? 'false' : 'true');
     this.toggleButton.classList.toggle('is-hidden', this.open);
     this.toggleButton.setAttribute('aria-label', t('ui.openPanel'));
@@ -235,6 +248,7 @@ export class Sidebar {
     this.panels.daily.render();
     this.panels.add.render();
     this.panels.jeux.render();
+    this.panels.bible.render();
     this.panels.detail.render();
     this.panels.moderate.render();
     this.panels.assistant.render();

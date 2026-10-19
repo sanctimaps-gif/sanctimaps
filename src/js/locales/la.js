@@ -33,6 +33,7 @@ export default {
     language: 'Lingua',
   },
   tab: {
+    bible: 'Biblia et Missa',
     jeux: 'Ludi',
     daily: 'Sanctus diei',
     search: 'Quaerere',
@@ -43,6 +44,7 @@ export default {
     detail: 'Scheda sancti',
   },
   menu: {
+    bible: 'Lectiones diei, Biblia AELF',
     jeux: 'Interrogationes, catena sanctorum, quis est?',
     daily: 'Quis hodie celebretur',
     title: 'Index',
@@ -262,7 +264,13 @@ export default {
     aiEmpty: 'Machina nullam schedam reddidit.',
     confidence: 'Certitudo a machina declarata: {level}',
   },
+  bible: {
+    titre: 'Biblia et lectiones Missae diei',
+    ouvrir: 'In nova tabula aperi',
+  },
   daily: {
+    lireFiche: 'Schedam lege',
+    lieux: 'Loca',
     lirePage: 'Paginam lege',
     retour: 'Ad sanctum diei redi',
     aLire: 'Vide etiam',

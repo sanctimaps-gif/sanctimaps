@@ -12,6 +12,7 @@ import { ReminderPanel } from './ui/reminder.js';
 import { DetailPanel } from './ui/detail.js';
 import { FicheBar } from './ui/fiche.js';
 import { JeuxPanel } from './ui/jeux.js';
+import { BiblePanel } from './ui/bible.js';
 import { SearchPanel } from './ui/search.js';
 import { apply as applyTheme } from './theme.js';
 import { Sidebar } from './ui/sidebar.js';
@@ -232,6 +233,7 @@ async function start() {
   const sidebar = new Sidebar(app, {
     atlas,
     jeux: jeuxPanel,
+    bible: new BiblePanel(),
     search: searchPanel,
     daily: dailyPanel,
     reminder: reminderPanel,

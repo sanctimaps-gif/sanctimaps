@@ -2754,3 +2754,14 @@ a.btn {
 /* Le saint du jour, épinglé en tête de la recherche. */
 .result--du-jour { background: var(--accent-soft); }
 .chip--du-jour { justify-self: start; background: var(--miracle); color: var(--panel); border-color: var(--miracle); }
+
+/* La Bible et la messe du jour : le site incrusté remplit la page. */
+.bible { display: flex; flex-direction: column; gap: 0.5rem; flex: 1 0 auto; min-height: 70vh; }
+.bible__cadre { flex: 1 1 auto; width: 100%; min-height: 70vh; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); }
+.bible__lien { align-self: flex-end; font-size: 0.85rem; color: var(--accent); }
+.panel.is-plein .bible { min-height: 0; flex: 1 1 auto; }
+.panel.is-plein .bible__cadre { min-height: 0; }
+/* Une partie autre que les jeux, ouverte en grand sur téléphone, garde sa taille de texte. */
+.panel.is-plein .panel__body:has(.bible) { padding: 0.5rem; }
+.daily__ange .daily__page-glyphe { background: #3c5a8a; }
+.daily__page-sous-titre { font-style: italic; color: var(--ink-soft); }

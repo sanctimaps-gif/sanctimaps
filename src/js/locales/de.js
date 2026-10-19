@@ -33,6 +33,7 @@ export default {
     language: 'Sprache',
   },
   tab: {
+    bible: 'Bibel und Messe',
     jeux: 'Spiele',
     daily: 'Heiliger des Tages',
     search: 'Suchen',
@@ -43,6 +44,7 @@ export default {
     detail: 'Heiligenblatt',
   },
   menu: {
+    bible: 'Tageslesungen, die AELF-Bibel',
     jeux: 'Quiz, Heiligenkette, Wer ist es?',
     daily: 'Wer heute gefeiert wird',
     title: 'Übersicht',
@@ -262,7 +264,13 @@ export default {
     aiEmpty: 'Das Modell hat keinen Eintrag geliefert.',
     confidence: 'Vom Modell angegebene Sicherheit: {level}',
   },
+  bible: {
+    titre: 'Bibel und Lesungen der Tagesmesse',
+    ouvrir: 'In neuem Tab öffnen',
+  },
   daily: {
+    lireFiche: 'Steckbrief lesen',
+    lieux: 'Orte',
     lirePage: 'Seite lesen',
     retour: 'Zurück zum Heiligen des Tages',
     aLire: 'Siehe auch',

@@ -33,6 +33,7 @@ export default {
     language: 'Idioma',
   },
   tab: {
+    bible: 'Biblia y misa',
     jeux: 'Juegos',
     daily: 'Santo del día',
     search: 'Buscar',
@@ -43,6 +44,7 @@ export default {
     detail: 'Ficha del santo',
   },
   menu: {
+    bible: 'Lecturas del día, la Biblia de la AELF',
     jeux: 'Quiz, cadena de santos, ¿quién es?',
     daily: 'Quién se celebra hoy',
     title: 'Índice',
@@ -262,7 +264,13 @@ export default {
     aiEmpty: 'El modelo no ha devuelto ninguna ficha.',
     confidence: 'Certeza declarada por el modelo: {level}',
   },
+  bible: {
+    titre: 'Biblia y lecturas de la misa del día',
+    ouvrir: 'Abrir en una pestaña nueva',
+  },
   daily: {
+    lireFiche: 'Leer la ficha',
+    lieux: 'Sus lugares',
     lirePage: 'Leer la página',
     retour: 'Volver al santo del día',
     aLire: 'Ver también',

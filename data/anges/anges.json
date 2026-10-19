@@ -1,0 +1,99 @@
+{
+ "note": "Fiches des anges : ils n'ont ni naissance ni lieu de vie, mais une fête, une biographie tirée de la Bible et de la tradition, et parfois des lieux d'apparition (identifiants d'apparitions du corpus). Lu par le saint du jour.",
+ "anges": [
+  {
+   "id": "ange-michel",
+   "nom": "Saint Michel, archange",
+   "fetes": [
+    "09-29"
+   ],
+   "glyphe": "⚔",
+   "titre": "Chef des armées célestes",
+   "bio": [
+    "Michel — en hébreu « Qui est comme Dieu ? » — est l'un des trois archanges que nomme la Bible. Le livre de Daniel le présente comme « l'un des premiers princes », protecteur du peuple de Dieu (Daniel 10 et 12) ; l'épître de Jude le montre disputant à Satan le corps de Moïse ; l'Apocalypse le décrit menant les anges contre le dragon et le précipitant du ciel (Apocalypse 12, 7-9).",
+    "L'Église le prie comme le défenseur des fidèles dans le combat spirituel et le gardien de l'Église. On le représente en armure, l'épée ou la lance à la main, terrassant le dragon, parfois tenant la balance de la pesée des âmes.",
+    "Son culte s'est enraciné autour de sanctuaires nés de ses apparitions : le mont Gargan, en Italie, à la fin du Ve siècle ; le château Saint-Ange à Rome, en 590 ; le Mont-Saint-Michel, fondé après son apparition à saint Aubert, évêque d'Avranches, en 708. Il fut l'une des voix qui guidèrent Jeanne d'Arc. Il est le patron de la France, des parachutistes et des policiers."
+   ],
+   "lieux": [
+    "ap-saint-michel-mont-gargan",
+    "ap-saint-michel-chateau-saint-ange",
+    "ap-saint-michel-saint-aubert",
+    "ap-saint-michel-jeanne-d-arc",
+    "ap-saint-michel-tlaxcala"
+   ],
+   "sources": [
+    {
+     "titre": "Wikipédia — Michel (archange)",
+     "url": "https://fr.wikipedia.org/wiki/Michel_(archange)"
+    }
+   ]
+  },
+  {
+   "id": "ange-gabriel",
+   "nom": "Saint Gabriel, archange",
+   "fetes": [
+    "09-29"
+   ],
+   "glyphe": "✉",
+   "titre": "Le messager de Dieu",
+   "bio": [
+    "Gabriel — « Force de Dieu » — est l'ange des annonces. Dans le livre de Daniel, il vient expliquer au prophète ses visions (Daniel 8 et 9). Dans l'Évangile de Luc, il annonce à Zacharie, dans le Temple, la naissance de Jean-Baptiste, puis il est envoyé à Nazareth auprès de Marie : « Je te salue, comblée de grâce, le Seigneur est avec toi » (Luc 1, 26-38).",
+    "Ses paroles à Marie ouvrent l'Ave Maria, la prière mariale la plus répandue. On le représente un lys à la main, ou portant un phylactère où sont écrits les mots de la salutation. Il est le patron des messagers, des postiers et des télécommunications."
+   ],
+   "lieux": [
+    "ap-annonciation-nazareth"
+   ],
+   "sources": [
+    {
+     "titre": "Wikipédia — Gabriel (archange)",
+     "url": "https://fr.wikipedia.org/wiki/Gabriel_(archange)"
+    }
+   ]
+  },
+  {
+   "id": "ange-raphael",
+   "nom": "Saint Raphaël, archange",
+   "fetes": [
+    "09-29"
+   ],
+   "glyphe": "✚",
+   "titre": "Le compagnon de route et le guérisseur",
+   "bio": [
+    "Raphaël — « Dieu guérit » — apparaît dans le livre de Tobie. Sous les traits d'un jeune homme nommé Azarias, il accompagne le jeune Tobie dans son long voyage jusqu'en Médie, le protège, l'aide à épouser Sara en la délivrant du démon qui la tourmentait, puis rend la vue à son père Tobith. Il se fait alors connaître : « Je suis Raphaël, l'un des sept anges qui se tiennent devant le Seigneur » (Tobie 12, 15).",
+    "Il est invoqué par les voyageurs, les malades, les médecins et les fiancés. On le représente en pèlerin, un bâton à la main, accompagnant Tobie qui porte un poisson. À Cordoue, en Espagne, il est le protecteur de la ville depuis ses apparitions au père Andrés de las Roelas, en 1578."
+   ],
+   "lieux": [
+    "ap-saint-raphael-cordoue"
+   ],
+   "sources": [
+    {
+     "titre": "Wikipédia — Raphaël (archange)",
+     "url": "https://fr.wikipedia.org/wiki/Raphaël_(archange)"
+    }
+   ]
+  },
+  {
+   "id": "anges-gardiens",
+   "nom": "Les saints Anges gardiens",
+   "fetes": [
+    "10-02"
+   ],
+   "glyphe": "✧",
+   "titre": "Un ange auprès de chacun",
+   "bio": [
+    "L'Église croit que Dieu donne à chaque personne un ange pour la garder, l'éclairer et la conduire tout au long de sa vie. Jésus le dit des enfants : « leurs anges dans les cieux voient sans cesse la face de mon Père » (Matthieu 18, 10) ; et le psaume chante : « Il donne mission à ses anges de te garder sur tous tes chemins » (Psaume 90, 11).",
+    "La dévotion à l'ange gardien s'est répandue à partir de l'Espagne et de la France au XVIe siècle. Le pape Clément X a étendu la fête à toute l'Église en 1670 et l'a fixée au 2 octobre, quelques jours après celle des archanges. La prière « Ange de Dieu, qui êtes mon gardien » est l'une des premières qu'on apprend aux enfants.",
+    "À Fátima, en 1916, un an avant les apparitions de la Vierge, un ange se présenta aux trois petits bergers comme « l'Ange de la Paix » et « l'Ange gardien du Portugal »."
+   ],
+   "lieux": [
+    "ap-ange-du-portugal-loca-do-cabeco"
+   ],
+   "sources": [
+    {
+     "titre": "Wikipédia — Ange gardien",
+     "url": "https://fr.wikipedia.org/wiki/Ange_gardien"
+    }
+   ]
+  }
+ ]
+}

@@ -35,6 +35,7 @@ export default {
     language: 'Langue',
   },
   tab: {
+    bible: 'Bible et messe',
     jeux: 'Jeux',
     daily: 'Saint du jour',
     search: 'Rechercher',
@@ -45,6 +46,7 @@ export default {
     detail: 'Fiche du saint',
   },
   menu: {
+    bible: 'Lectures du jour, la Bible de l’AELF',
     jeux: 'Quiz, chaîne de saints, qui est-ce ?',
     daily: 'Qui est fêté aujourd’hui',
     title: 'Sommaire',
@@ -264,7 +266,13 @@ export default {
     aiEmpty: 'Le modèle n’a rendu aucune fiche.',
     confidence: 'Certitude annoncée par le modèle : {level}',
   },
+  bible: {
+    titre: 'Bible et lectures de la messe du jour',
+    ouvrir: 'Ouvrir dans un nouvel onglet',
+  },
   daily: {
+    lireFiche: 'Lire sa fiche',
+    lieux: 'Ses lieux',
     lirePage: 'Lire la page',
     retour: 'Revenir au saint du jour',
     aLire: 'À lire aussi',

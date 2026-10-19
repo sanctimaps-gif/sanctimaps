@@ -33,6 +33,7 @@ export default {
     language: 'Lingua',
   },
   tab: {
+    bible: 'Bibbia e messa',
     jeux: 'Giochi',
     daily: 'Santo del giorno',
     search: 'Cerca',
@@ -43,6 +44,7 @@ export default {
     detail: 'Scheda del santo',
   },
   menu: {
+    bible: 'Letture del giorno, la Bibbia AELF',
     jeux: 'Quiz, catena di santi, chi è?',
     daily: 'Chi si festeggia oggi',
     title: 'Sommario',
@@ -262,7 +264,13 @@ export default {
     aiEmpty: 'Il modello non ha restituito alcuna scheda.',
     confidence: 'Certezza dichiarata dal modello: {level}',
   },
+  bible: {
+    titre: 'Bibbia e letture della messa del giorno',
+    ouvrir: 'Apri in una nuova scheda',
+  },
   daily: {
+    lireFiche: 'Leggi la scheda',
+    lieux: 'I suoi luoghi',
     lirePage: 'Leggi la pagina',
     retour: 'Torna al santo del giorno',
     aLire: 'Vedi anche',

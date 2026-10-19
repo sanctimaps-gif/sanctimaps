@@ -33,6 +33,7 @@ export default {
     language: 'Language',
   },
   tab: {
+    bible: 'Bible & Mass',
     jeux: 'Games',
     daily: 'Saint of the day',
     search: 'Search',
@@ -43,6 +44,7 @@ export default {
     detail: 'Saint’s entry',
   },
   menu: {
+    bible: 'Today’s readings, the AELF Bible',
     jeux: 'Quiz, chain of saints, guess who',
     daily: 'Who is celebrated today',
     title: 'Menu',
@@ -262,7 +264,13 @@ export default {
     aiEmpty: 'The model returned no entry.',
     confidence: 'Confidence stated by the model: {level}',
   },
+  bible: {
+    titre: 'Bible and today’s Mass readings',
+    ouvrir: 'Open in a new tab',
+  },
   daily: {
+    lireFiche: 'Read the profile',
+    lieux: 'Places',
     lirePage: 'Read the page',
     retour: 'Back to the saint of the day',
     aLire: 'See also',

@@ -33,6 +33,7 @@ export default {
     language: 'Taal',
   },
   tab: {
+    bible: 'Bijbel en mis',
     jeux: 'Spellen',
     daily: 'Heilige van de dag',
     search: 'Zoeken',
@@ -43,6 +44,7 @@ export default {
     detail: 'Fiche van de heilige',
   },
   menu: {
+    bible: 'Lezingen van de dag, de AELF-Bijbel',
     jeux: 'Quiz, heiligenketen, wie is het?',
     daily: 'Wie vandaag gevierd wordt',
     title: 'Overzicht',
@@ -262,7 +264,13 @@ export default {
     aiEmpty: 'Het model heeft geen enkele fiche teruggegeven.',
     confidence: 'Door het model opgegeven zekerheid: {level}',
   },
+  bible: {
+    titre: 'Bijbel en lezingen van de mis van de dag',
+    ouvrir: 'Openen in een nieuw tabblad',
+  },
   daily: {
+    lireFiche: 'Lees de fiche',
+    lieux: 'Plaatsen',
     lirePage: 'Lees de pagina',
     retour: 'Terug naar de heilige van de dag',
     aLire: 'Zie ook',
