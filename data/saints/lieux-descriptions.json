@@ -7,19 +7,19 @@
    "en": "municipality in the Netherlands"
   },
   "Q10002": {
-   "fr": "commune néerlandaise située en province d'Overijssel",
-   "en": "city and municipality in Overijssel the Netherlands"
+   "fr": "ville néerlandaise située en province d'Overijssel",
+   "en": "city in Overijssel the Netherlands"
   },
   "Q100056": {
-   "fr": "commune italienne",
+   "fr": "commune italienne de la province de Modène",
    "en": "Italian comune"
   },
   "Q100080": {
-   "fr": "commune italienne",
+   "fr": "commune italienne de la province de Modène",
    "en": "Italian comune"
   },
   "Q100092": {
-   "fr": "commune italienne",
+   "fr": "commune italienne de la province de Modène",
    "en": "Italian comune"
   },
   "Q1001225": {
@@ -298,7 +298,7 @@
    "en": "Italian town"
   },
   "Q10313": {
-   "fr": "ville en Guipuscoa‎, Communauté autonome basque, Espagne",
+   "fr": "ville d'Espagne",
    "en": "municipality in Basque Country, Spain"
   },
   "Q103155": {
@@ -406,7 +406,7 @@
   },
   "Q106428113": {
    "fr": "ancienne possession portugaise dans le Nord de l'Afrique",
-   "en": "former Portuguese posession in the North of Africa"
+   "en": "former Portuguese possession in the North of Africa"
   },
   "Q106681": {
    "fr": "ville polonaise",
@@ -838,6 +838,7 @@
    "en": "private school of Milano"
   },
   "Q1153094": {
+   "fr": "université privée dans l'arrondissement de Chiyoda à Tokyo, au Japon",
    "en": "private university in Tokyo, Japan"
   },
   "Q115329": {
@@ -1101,7 +1102,7 @@
    "en": "Franciscan Friars Minor Regular Observance Convent Complex"
   },
   "Q1210": {
-   "fr": "région au nord de l'Italie",
+   "fr": "région d'Italie",
    "en": "administrative region in Northern Italy"
   },
   "Q121097947": {
@@ -1121,7 +1122,7 @@
    "en": "municipality in Castile and León, Spain"
   },
   "Q1216": {
-   "fr": "région du nord-ouest de l'Italie",
+   "fr": "région d'Italie",
    "en": "region in North-West Italy"
   },
   "Q12164": {
@@ -1377,7 +1378,7 @@
    "en": "large bay of Lake Huron, Ontario, Canada"
   },
   "Q1273": {
-   "fr": "l'une des vingt régions d'Italie",
+   "fr": "région d'Italie",
    "en": "region of Italy"
   },
   "Q12736317": {
@@ -2198,7 +2199,7 @@
    "en": "monastery"
   },
   "Q1452": {
-   "fr": "région d'Italie méridionale comprenant les provinces de Potenza et de Matera",
+   "fr": "région d'Italie",
    "en": "region of Italy"
   },
   "Q14524013": {
@@ -2233,7 +2234,7 @@
    "en": "school of military medicine in Saint Petersburg, Russian Federation"
   },
   "Q1460": {
-   "fr": "région autonome d'Italie, plus grande île méditerranéenne",
+   "fr": "île de la mer Méditerranée et région autonome d'Italie",
    "en": "island in the Mediterranean, region of Italy"
   },
   "Q1461": {
@@ -2241,7 +2242,7 @@
    "en": "capital city of the Philippines"
   },
   "Q1462": {
-   "fr": "île de la mer Méditerranée et région italienne",
+   "fr": "île de la mer Méditerranée et région autonome d'Italie",
    "en": "island and autonomous region of Italy"
   },
   "Q1464512": {
@@ -2587,6 +2588,9 @@
   "Q1563": {
    "fr": "capitale de Cuba",
    "en": "capital and largest city of Cuba"
+  },
+  "Q1565546": {
+   "en": "Serbian Orthodox monastery in Belgrade, Serbia"
   },
   "Q156717": {
    "fr": "ville d’Ukraine occidentale et la capitale administrative de l’oblast de Khmelnytskyï",
@@ -3383,7 +3387,7 @@
   },
   "Q174665": {
    "fr": "ville roumaine du département d'Alba",
-   "en": "capital of the county of Romania, Romania"
+   "en": "city in Romania"
   },
   "Q1747689": {
    "fr": "civilisation et État de l’Antiquité centrés sur Rome, de 753 av. J.-C. à 476",
@@ -4441,7 +4445,7 @@
   },
   "Q2006858": {
    "fr": "village du district régional de Kavála, en Macédoine-Orientale-et-Thrace, Grèce",
-   "en": "village in Greece"
+   "en": "village in Kavala, Greece"
   },
   "Q200797": {
    "fr": "ville de la voblast de Vitebsk, en Biélorussie",
@@ -4826,7 +4830,7 @@
   },
   "Q2088324": {
    "fr": "possession portugaise de 1500 à 1824",
-   "en": "Portuguese possession in South America (1500-1808)"
+   "en": "Portuguese possession in South America (1500–1808)"
   },
   "Q2090": {
    "fr": "ville d'Allemagne",
@@ -4861,7 +4865,7 @@
   },
   "Q209842": {
    "fr": "université française regroupant les facultés parisiennes reconstituées au XIXe siècle (1896-1970)",
-   "en": "French university (c. 1150–1970)"
+   "en": "French university (1896–1970)"
   },
   "Q20988473": {
    "en": "karst field in Kosovo"
@@ -5280,8 +5284,8 @@
    "en": "early medieval petty kingdom in south-east Wales"
   },
   "Q2256": {
-   "fr": "ville en Angleterre, Royaume-Uni",
-   "en": "city in the West Midlands, England"
+   "fr": "grande ville de la région des West Midlands en Angleterre; classée deuxième ville du Royaume-Uni, après Londres",
+   "en": "large city in the West Midlands region of England; classed as the 'second city' of the United Kingdom, behind London"
   },
   "Q2256022": {
    "en": "cultural property in Camaleño, Spain"
@@ -5859,8 +5863,8 @@
    "en": "commune in Haute-Loire, France"
   },
   "Q25": {
-   "fr": "nation constitutive du pays souverain du Royaume-Uni, en Europe du Nord-Ouest",
-   "en": "constituent nation of the sovereign country of the United Kingdom, in north-west Europe"
+   "fr": "pays du nord-ouest de l'Europe, faisant partie du Royaume-Uni",
+   "en": "country in north-west Europe, part of the United Kingdom"
   },
   "Q2502307": {
    "en": "orthodox church in Bucharest, Romania"
@@ -5981,7 +5985,7 @@
   },
   "Q256669": {
    "fr": "commune allemande",
-   "en": "town in Bavaria, Germany"
+   "en": "town in Altötting District, Upper Bavaria, Bavaria, Germany"
   },
   "Q2569068": {
    "en": "Roman Catholic seminary in Vienna, Austria"
@@ -6381,7 +6385,7 @@
    "en": "Italian comune"
   },
   "Q279": {
-   "fr": "ville d'Émilie-Romagne, Italie",
+   "fr": "commune italienne, chef-lieu de la province de Modène",
    "en": "Italian city and municipality"
   },
   "Q2790": {
@@ -6764,7 +6768,7 @@
   },
   "Q2983716": {
    "fr": "séminaire situé dans le Nord, en France",
-   "en": "Catholic seminary in Douai"
+   "en": "Catholic seminary in Douai, France (1568–1793)"
   },
   "Q2984025": {
    "fr": "collégiale située à Albi, Tarn France",
@@ -6879,7 +6883,7 @@
    "en": "city"
   },
   "Q311": {
-   "fr": "cimetière situé à Paris",
+   "fr": "plus grand cimetière parisien intra muros",
    "en": "cemetery in Paris, France"
   },
   "Q3110": {
@@ -8244,7 +8248,7 @@
   },
   "Q40811": {
    "fr": "capitale de l'Abkhazie",
-   "en": "capital of Abkhazia, considered part of Georgia by most countries"
+   "en": "Capital of Autonomous Republic of Abkhazia, considered part of Georgia by most countries"
   },
   "Q40832": {
    "fr": "commune italienne",
@@ -8319,7 +8323,7 @@
    "en": "Roman Catholic monastery church in the town of Jablonné v Podještědí, Liberec district, Czech Republic"
   },
   "Q4127511": {
-   "fr": "centre vérificateur des Poids et Mesures de la Fédération Russe",
+   "fr": "centre vérificateur des Poids et Mesures de la Fédération Russe, situé à Saint-Pétersbourg",
    "en": "research institute in Saint Petersburg, Russia"
   },
   "Q4127845": {
@@ -10111,6 +10115,7 @@
    "en": "cultural property in Toledo, Spain"
   },
   "Q578671": {
+   "fr": "Cathédrale située dans le raïon de Kholodnohirsky",
    "en": "Orthodox church in Kharkiv, Ukraine"
   },
   "Q5788": {
@@ -10214,7 +10219,7 @@
   },
   "Q586471": {
    "fr": "cathédrale située en Seine-et-Marne, en France",
-   "en": "Largeur de l'édifice"
+   "en": "Cathedral in Meaux, France"
   },
   "Q586568": {
    "fr": "nécropole des empereurs byzantins",
@@ -10514,7 +10519,7 @@
   },
   "Q618562": {
    "fr": "église à Kiev",
-   "en": "church in Kyiv"
+   "en": "the first stone Orthodox church in Rus'"
   },
   "Q61939": {
    "fr": "commune allemande",
@@ -10526,7 +10531,7 @@
   },
   "Q62": {
    "fr": "ville des États-Unis située dans l'État de Californie",
-   "en": "city and county in California, US"
+   "en": "city and county in California, United States"
   },
   "Q62066317": {
    "en": "church building in Taytsy, Russia"
@@ -10802,8 +10807,8 @@
    "en": "island in the Eastern Basin of the Mediterranean Sea"
   },
   "Q644789": {
-   "fr": "université en Belgique (1835-1968)",
-   "en": "former University in Belgium, 1834–1968"
+   "fr": "université en Belgique (1835-1970)",
+   "en": "former University in Belgium, 1834–1970"
   },
   "Q644828": {
    "fr": "basilique catholique de l'archidiocèse de Pérouse en Ombrie (Italie)",
@@ -10822,7 +10827,7 @@
   },
   "Q646136": {
    "fr": "université allemande",
-   "en": "university"
+   "en": "private university in Munich, Germany"
   },
   "Q64614": {
    "fr": "commune suisse",
@@ -11209,8 +11214,8 @@
    "en": "municipality in the canton of Zürich in Switzerland"
   },
   "Q675671": {
-   "fr": "monument historique d'Espagne",
-   "en": "human settlement"
+   "fr": "abbaye espagnole",
+   "en": "Cisterian Abbey in Navarra"
   },
   "Q6761": {
    "fr": "commune italienne",
@@ -11610,7 +11615,7 @@
   },
   "Q72672": {
    "fr": "commune italienne",
-   "en": "Italian city"
+   "en": "city in Campania, Italy"
   },
   "Q726733": {
    "en": "monastery on Mount Athos, Greece"
@@ -12597,7 +12602,7 @@
    "en": "commune in Ain, France"
   },
   "Q8598": {
-   "fr": "commune italienne",
+   "fr": "commune italienne de la province de Modène",
    "en": "Italian comune"
   },
   "Q860569": {
