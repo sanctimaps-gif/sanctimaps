@@ -5783,6 +5783,180 @@
    "ligne1": "lundi, 15ème Semaine du Temps Ordinaire",
    "ligne2": "de la férie",
    "annee": "Impaire"
+  },
+  "2027-07-13": {
+   "fete": "S. Henri",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "15ème Semaine du Temps Ordinaire",
+   "jour": "mardi",
+   "ligne1": "mardi, 15ème Semaine du Temps Ordinaire",
+   "ligne2": "S. Henri",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-14": {
+   "fete": "S. Camille de Lellis, prêtre",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "15ème Semaine du Temps Ordinaire",
+   "jour": "mercredi",
+   "ligne1": "mercredi, 15ème Semaine du Temps Ordinaire",
+   "ligne2": "S. Camille de Lellis, prêtre",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-15": {
+   "fete": "S. Bonaventure, évêque et docteur de l'Eglise",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "blanc",
+   "temps_liturgique": "ordinaire",
+   "semaine": "15ème Semaine du Temps Ordinaire",
+   "jour": "jeudi",
+   "ligne1": "jeudi, 15ème Semaine du Temps Ordinaire",
+   "ligne2": "S. Bonaventure, évêque et docteur de l'Eglise",
+   "ligne3": "Mémoire",
+   "annee": "Impaire"
+  },
+  "2027-07-16": {
+   "fete": "Bienheureuse Vierge Marie du Mont Carmel",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "15ème Semaine du Temps Ordinaire",
+   "jour": "vendredi",
+   "ligne1": "vendredi, 15ème Semaine du Temps Ordinaire",
+   "ligne2": "Bienheureuse Vierge Marie du Mont Carmel",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-17": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "15ème Semaine du Temps Ordinaire",
+   "jour": "samedi",
+   "ligne1": "samedi, 15ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-07-18": {
+   "jour_liturgique_nom": "16ème dimanche du Temps Ordinaire (semaine IV du Psautier)",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "16ème Semaine du Temps Ordinaire",
+   "jour": "dimanche",
+   "ligne1": "16ème dimanche du Temps Ordinaire (semaine IV du Psautier)",
+   "annee": "B"
+  },
+  "2027-07-19": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "16ème Semaine du Temps Ordinaire",
+   "jour": "lundi",
+   "ligne1": "lundi, 16ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-07-20": {
+   "fete": "S. Apollinaire, évêque et martyr",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "16ème Semaine du Temps Ordinaire",
+   "jour": "mardi",
+   "ligne1": "mardi, 16ème Semaine du Temps Ordinaire",
+   "ligne2": "S. Apollinaire, évêque et martyr",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-21": {
+   "fete": "S. Laurent de Brindisi, prêtre et docteur de l'Eglise",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "16ème Semaine du Temps Ordinaire",
+   "jour": "mercredi",
+   "ligne1": "mercredi, 16ème Semaine du Temps Ordinaire",
+   "ligne2": "S. Laurent de Brindisi, prêtre et docteur de l'Eglise",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-22": {
+   "fete": "Fête",
+   "jour_liturgique_nom": "Ste Marie-Madeleine, disciple du Seigneur",
+   "degre": "Fête",
+   "couleur": "blanc",
+   "ligne1": "Ste Marie-Madeleine, disciple du Seigneur",
+   "ligne2": "Fête"
+  },
+  "2027-07-23": {
+   "fete": "Fête",
+   "jour_liturgique_nom": "Ste Brigitte, religieuse (Fête en Europe)",
+   "degre": "Mémoire facultative",
+   "couleur": "blanc",
+   "ligne1": "Ste Brigitte, religieuse",
+   "ligne2": "Fête"
+  },
+  "2027-07-24": {
+   "fete": "S. Charbel Maklouf, prêtre",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "16ème Semaine du Temps Ordinaire",
+   "jour": "samedi",
+   "ligne1": "samedi, 16ème Semaine du Temps Ordinaire",
+   "ligne2": "S. Charbel Maklouf, prêtre",
+   "ligne3": "Mémoire facultative",
+   "annee": "Impaire"
+  },
+  "2027-07-25": {
+   "jour_liturgique_nom": "17ème dimanche du Temps Ordinaire (psautier I)",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "17ème Semaine du Temps Ordinaire",
+   "jour": "dimanche",
+   "ligne1": "17ème dimanche du Temps Ordinaire (psautier I)",
+   "annee": "B"
+  },
+  "2027-07-26": {
+   "fete": "Ste Anne et S. Joachim, parents de la Vierge Marie Mémoire",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "blanc",
+   "temps_liturgique": "ordinaire",
+   "semaine": "17ème Semaine du Temps Ordinaire",
+   "jour": "lundi",
+   "ligne1": "lundi, 17ème Semaine du Temps Ordinaire",
+   "ligne2": "Ste Anne et S. Joachim, parents de la Vierge Marie Mémoire",
+   "ligne3": "Mémoire",
+   "annee": "Impaire"
+  },
+  "2027-07-27": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "vert",
+   "temps_liturgique": "ordinaire",
+   "semaine": "17ème Semaine du Temps Ordinaire",
+   "jour": "mardi",
+   "ligne1": "mardi, 17ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
+  },
+  "2027-07-28": {
+   "fete": "de la férie",
+   "jour_liturgique_nom": "de la férie",
+   "couleur": "blanc",
+   "temps_liturgique": "ordinaire",
+   "semaine": "17ème Semaine du Temps Ordinaire",
+   "jour": "mercredi",
+   "ligne1": "mercredi, 17ème Semaine du Temps Ordinaire",
+   "ligne2": "de la férie",
+   "annee": "Impaire"
   }
  }
 }

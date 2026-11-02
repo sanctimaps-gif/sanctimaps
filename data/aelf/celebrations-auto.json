@@ -1,5 +1,21 @@
 {
  "source": "Wikipédia en français, résumés des articles (CC BY-SA)",
  "note": "Écrit par tools/import-celebrations-wiki.mjs. Pages provisoires : une page écrite dans celebrations.json passe toujours avant.",
- "celebrations": {}
+ "celebrations": {
+  "ste-anne-et-s-joachim-parents-de-la-vierge-marie": {
+   "page": {
+    "titre": "Ste Anne et S. Joachim, parents de la Vierge Marie Mémoire",
+    "texte": [
+     "Joachim, /ʒɔaʃɛ̃/ ou /ʒɔakim/ ou chez les Arabes et dans le Coran, Imrân عمران, est l'époux de sainte Anne et le père de la Vierge Marie, dans les traditions catholique et orthodoxe. Il est de ce fait le grand-père maternel de Jésus de Nazareth."
+    ],
+    "sources": [
+     {
+      "titre": "Wikipédia — Joachim (père de Marie)",
+      "url": "https://fr.wikipedia.org/wiki/Joachim_(p%C3%A8re_de_Marie)"
+     }
+    ],
+    "auto": true
+   }
+  }
+ }
 }
