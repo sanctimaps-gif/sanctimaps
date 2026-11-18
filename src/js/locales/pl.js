@@ -56,6 +56,7 @@ export default {
     settings: 'Język, motyw, przypomnienie, konto',
   },
   search: {
+    aMarque: 'odcisnął ślad: {pays}',
     label: 'Szukaj świętego',
     placeholder: 'Włochy, XIII wiek, Teresa, 4 września…',
     help: 'Jedno pole: wpisz kraj, wiek, rok, dzień wspomnienia albo imię.',

@@ -1700,6 +1700,33 @@ const marquesSortie = Object.fromEntries(Object.entries(marques)
     .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
     .map(([id, lieux]) => ({ id, lieux }))]));
 writeFileSync(join(OUT, 'marques.json'), JSON.stringify({ marques: marquesSortie }));
+
+// Le même relevé pour tous les pays : un saint figure aussi dans la liste des
+// pays qu'il a marqués sans y être né — Charles de Foucauld en Algérie, François
+// Xavier au Japon. `venus.json` : pays → saints venus d'ailleurs, et où.
+const tousPays = countries.map((c) => ({ id: c.id, bbox: detailFiles.get(c.id).bbox, rings: anneaux(detailFiles.get(c.id).d) }));
+const paysDe = new Map(saints.map((s) => [s.id, s.country]));
+const venus = {};
+for (const [id, places] of Object.entries(lieuxSortie)) {
+  for (const place of places) {
+    if (!MARQUANTS.has(place.quoi)) continue;
+    for (const px of [place.x, place.x + WORLD_SIZE, place.x - WORLD_SIZE]) {
+      const pays = tousPays.find((c) => px >= c.bbox[0] && px <= c.bbox[2]
+        && place.y >= c.bbox[1] && place.y <= c.bbox[3] && dedans(c.rings, px, place.y));
+      if (!pays) continue;
+      if (pays.id !== paysDe.get(id)) ((venus[pays.id] ||= {})[id] ||= []).push({ nom: place.nom, quoi: place.quoi });
+      break;
+    }
+  }
+}
+const venusSortie = Object.fromEntries(Object.entries(venus)
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(([pays, parSaint]) => [pays, Object.entries(parSaint)
+    .sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0]))
+    .map(([id, lieux]) => ({ id, lieux }))]));
+writeFileSync(join(OUT, 'venus.json'), JSON.stringify({ venus: venusSortie }));
+console.log(`  venus.json : ${Object.values(venusSortie).reduce((n, l) => n + l.length, 0)} saints rangés aussi`
+  + ` dans ${Object.keys(venusSortie).length} pays qu'ils ont marqués sans y être nés`);
 console.log(`  marques.json : ${Object.keys(marquesSortie).length} pays sans saint natif,`
   + ' marqués par un saint venu d’ailleurs');
 

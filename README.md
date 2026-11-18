@@ -680,6 +680,16 @@ relevé chaque mois par l'atelier du calendrier liturgique, dans
 `data/saintsdujour/ordre.json`). Les noms se rapprochent des fiches mot à mot ;
 un saint que le site ne nomme pas vient après, par siècle.
 
+### Chaque saint dans chacune de ses listes
+
+Une fiche figure dans la page de son pays de naissance, de sa ville, de son
+siècle et de son jour de fête — chaque ville a sa page, même avec un seul saint,
+et les pages de siècle listent tous leurs saints, rangés par pays quand ils sont
+nombreux. Un saint figure aussi dans la liste des pays qu'il a marqués sans y
+être né (`venus.json`, tiré des lieux de mort, de sépulture, de fondation, de
+vie…) : la page du pays les présente après ses natifs, sa fiche nomme ces pays,
+et la recherche d'un pays les donne après ceux qui y sont nés.
+
 ### Les anges du jour
 
 Les anges n'ont ni naissance ni lieu de vie, mais ils ont leur fête : saint

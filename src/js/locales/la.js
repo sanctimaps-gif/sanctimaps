@@ -56,6 +56,7 @@ export default {
     settings: 'Lingua, species, admonitio, ratio',
   },
   search: {
+    aMarque: '{pays} signavit',
     label: 'Sanctum quaerere',
     placeholder: 'Italia, saeculum XIII, Teresia, IV Septembris…',
     help: 'Una sola linea: regionem, saeculum, annum, diem festum vel nomen scribe.',

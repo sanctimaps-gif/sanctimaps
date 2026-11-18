@@ -56,6 +56,7 @@ export default {
     settings: 'Sprache, Thema, Erinnerung, Konto',
   },
   search: {
+    aMarque: 'prägte {pays}',
     label: 'Einen Heiligen suchen',
     placeholder: 'Italien, 13. Jahrhundert, Teresa, 4. September…',
     help: 'Nur eine Zeile: Land, Jahrhundert, Jahr, Festtag oder Name eingeben.',

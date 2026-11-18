@@ -58,6 +58,7 @@ export default {
     settings: 'Langue, thème, rappel, compte',
   },
   search: {
+    aMarque: 'a marqué {pays}',
     label: 'Rechercher un saint, une apparition, un miracle',
     placeholder: 'Italie, XIIIe siècle, Thérèse, Lourdes, 4 septembre…',
     help: 'Une seule barre : tapez un pays, un siècle, une année, une date de fête ou un nom.',

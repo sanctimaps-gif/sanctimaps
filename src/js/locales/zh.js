@@ -56,6 +56,7 @@ export default {
     settings: '语言、主题、提醒、账户',
   },
   search: {
+    aMarque: '足迹：{pays}',
     label: '搜索圣人',
     placeholder: '意大利、13世纪、德肋撒、9月4日…',
     help: '只有一个输入框：可输入国家、世纪、年份、瞻礼日或姓名。',

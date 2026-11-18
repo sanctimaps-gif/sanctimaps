@@ -56,6 +56,7 @@ export default {
     settings: 'Lingua, tema, promemoria, account',
   },
   search: {
+    aMarque: 'ha segnato {pays}',
     label: 'Cerca un santo',
     placeholder: 'Italia, XIII secolo, Teresa, 4 settembre…',
     help: 'Una sola barra: scrivi un paese, un secolo, un anno, una festa o un nome.',

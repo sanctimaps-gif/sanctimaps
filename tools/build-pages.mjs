@@ -420,9 +420,11 @@ function centuryLabel(n) {
 function saintPage(saint, ctx) {
   const {
     base, slugs, paysSlugs, lieuxSlugs, countryName, deSuffix, placeHref,
-    sameCountry, sameDay, geo, compte, siecleSlug, prenomDe,
+    sameCountry, sameDay, geo, compte, siecleSlug, prenomDe, marquesDe,
   } = ctx;
   const lieu = placeHref(saint);
+  // Les pays qu'il a marqués sans y être né : sa fiche figure aussi dans leur liste.
+  const marques = marquesDe(saint.id);
   const name = saint.name.fr || saint.name.en;
   const url = `${base}/saints/${slugs.get(saint.id)}/`;
   const feast = formatFeast(saint.feast);
@@ -489,7 +491,8 @@ ${portrait}${desc ? `<p class="bio">${esc(desc)}</p>\n` : ''}${bio ? `<h2>Biogra
 <h2>Repères</h2>
 <dl class="facts">
 ${fact('Reconnaissance', esc(degreLabel(saint.statut, saint.sex)))}${fact('Fête', `<a href="../../calendrier/${esc(slug(dayLabel(saint.feast)))}/">${esc(feast)}</a>`)}${fact('Naissance', saint.born != null ? esc(formatYear(saint.born, { circa: saint.circa, precision: saint.bornPrec })) : '')}${fact('Mort', saint.died != null ? esc(formatYear(saint.died, { circa: saint.circa, precision: saint.diedPrec })) : '')}${fact(place, `${lieu ? `<a href="${esc(lieu)}">${esc(saint.city)}</a>` : esc(saint.city)}`
-    + ` — <a href="../../pays/${esc(paysSlugs.get(saint.country))}/">${esc(pays)}</a>`)}${fact('Époque', epoque ? `<a href="../../epoques/${esc(siecleSlug(centuryOf(siecle)))}/">${esc(epoque)}</a>` : '')}${fact('Qualités', (saint.titles || []).map((k) => esc(titleLabel(k, saint.sex))).join(', '))}${fact('Saint patron de', esc(patronage))}${fact('Lieu associé', associe
+    + ` — <a href="../../pays/${esc(paysSlugs.get(saint.country))}/">${esc(pays)}</a>`)}${fact('Époque', epoque ? `<a href="../../epoques/${esc(siecleSlug(centuryOf(siecle)))}/">${esc(epoque)}</a>` : '')}${fact('Qualités', (saint.titles || []).map((k) => esc(titleLabel(k, saint.sex))).join(', '))}${fact('Saint patron de', esc(patronage))}${fact('A marqué aussi', marques
+    .map((iso) => `<a href="../../pays/${esc(paysSlugs.get(iso))}/">${esc(countryName(iso))}</a>`).join(', '))}${fact('Lieu associé', associe
     ? (associeHref ? `<a href="../../lieux/${esc(lieuxSlugs.get(associeHref))}/">${esc(associe)}</a>` : esc(associe))
       + ' <span class="note">(le nom désigne ce lieu ; la carte porte celui de la naissance)</span>' : '')}</dl>
 ${flou ? `<p class="note">${esc(saint.city)} est une contrée, non une ville : c’est tout ce que la source dit du lieu, et le point de la carte n’en donne que le centre.</p>\n` : ''}
@@ -538,6 +541,23 @@ ${saint.sources?.length ? `<p class="sources">Sources : ${saint.sources.map((s) 
   });
 }
 
+const QUOI_LIEU = { naissance: 'naissance', enfance: 'enfance', formation: 'formation', residence: 'vie',
+  oeuvre: 'œuvre', fondation: 'fondation', predilection: 'lieu de prédilection', apparition: 'apparition',
+  miracle: 'miracle', mort: 'mort', sepulture: 'sépulture' };
+
+/** Les saints venus d'ailleurs qui ont marqué un pays : où, et d'où ils venaient. */
+function venusSection(iso, ctx) {
+  const { slugs, countryName, deSuffix, venusDans } = ctx;
+  const venus = venusDans(iso);
+  if (!venus.length) return '';
+  return `<h2 id="venus">${esc(`Ils ont marqué ${countryName(iso)} sans y être nés`)}</h2>
+<p class="note">${esc(`${nombre(venus.length)} saints venus d’ailleurs y ont vécu, fondé, prêché, sont morts ou y reposent.`)}</p>
+<ul class="cards">
+${venus.map(({ saint, lieux }) => card(`../../saints/${slugs.get(saint.id)}/`, saint.name.fr,
+    `${lieux.slice(0, 2).map((l) => `${l.nom} (${QUOI_LIEU[l.quoi] || l.quoi})`).join(' · ')} · pays natal : ${countryName(saint.country)}`))
+    .join('')}</ul>\n`;
+}
+
 function countryPage(iso, list, ctx) {
   const { base, slugs, paysSlugs, lieuxSlugs, countryName, deSuffix, placesOf, siecleSlug } = ctx;
   const villes = placesOf(iso);
@@ -553,13 +573,18 @@ function countryPage(iso, list, ctx) {
   const patrons = list.filter((s) => s.patronage).length;
   const jours = new Set(list.map((s) => s.feast)).size;
 
+  const venus = ctx.venusDans(iso);
   const body = `<h1>${esc(titre)}</h1>
-<p class="lede">${esc(`Découvrez les ${nombre(list.length)} saints ${de} recensés par SanctiMaps, `
-    + `du plus ancien au plus récent. Pour chacun : son lieu de naissance, ses dates, `
-    + `son jour de fête et sa fiche détaillée.`)}</p>
+<p class="lede">${esc(list.length
+    ? `Découvrez les ${nombre(list.length)} saints ${de} recensés par SanctiMaps, `
+      + `du plus ancien au plus récent. Pour chacun : son lieu de naissance, ses dates, `
+      + `son jour de fête et sa fiche détaillée.`
+      + `${venus.length ? ` Suivent les ${nombre(venus.length)} saints venus d’ailleurs qui l’ont marqué.` : ''}`
+    : `Aucun saint recensé n’est né ici, mais ${nombre(venus.length)} saints venus d’ailleurs ont marqué ${nom} : `
+      + `ils y ont vécu, fondé, prêché, sont morts ou y reposent.`)}</p>
 
 <dl class="facts">
-${fact('Saints recensés', esc(nombre(list.length)))}${fact('Époques', siecles.length
+${fact('Saints recensés', esc(nombre(list.length)))}${fact('Venus d’ailleurs', venus.length ? `<a href="#venus">${esc(nombre(venus.length))}</a>` : '')}${fact('Époques', siecles.length
     ? `du <a href="../../epoques/${esc(siecleSlug(siecles[0]))}/">${esc(centuryLabel(siecles[0]))}</a>`
       + ` au <a href="../../epoques/${esc(siecleSlug(siecles[siecles.length - 1]))}/">${esc(centuryLabel(siecles[siecles.length - 1]))}</a>` : '')}${fact('Jours de fête pourvus', esc(`${nombre(jours)} jours de l’année`))}${fact('Avec une biographie', esc(nombre(avecBio)))}${fact('Avec un patronage', patrons ? esc(nombre(patrons)) : '')}</dl>
 
@@ -569,7 +594,7 @@ ${villes.length ? `<h2>Les villes les mieux pourvues</h2>\n<ul class="cards">\n$
 <a class="go" href="../../index.html">Ouvrir la carte</a>
 <ul class="cards">
 ${list.map((s) => card(`../../saints/${slugs.get(s.id)}/`, s.name.fr, `${s.city} · ${formatFeast(s.feast)} · ${lifeLine(s) || '?'}`)).join('')}</ul>
-${villes.length > 8 ? `<h2>Tous les lieux ${esc(de)}</h2>\n<ul class="cards">\n${villes
+${venusSection(iso, ctx)}${villes.length > 8 ? `<h2>Tous les lieux ${esc(de)}</h2>\n<ul class="cards">\n${villes
     .map(([key, saints]) => card(`../../lieux/${lieuxSlugs.get(key)}/`,
       placeName(key.split('|')[1]), `${saints.length} saints`)).join('')}</ul>\n` : ''}`;
 
@@ -931,10 +956,14 @@ function centuryPage(n, list, ctx) {
 <p class="lede">${esc(`${list.length} saints de la carte sont nés au ${centuryLabel(n)}`
     + `${tete.length ? `, surtout ${tete.map(([iso, k]) => `${countryName(iso)} (${k})`).join(', ')}` : ''}.`)}</p>
 <a class="go" href="../../index.html">Ouvrir la carte</a>
-<ul class="cards">
-${list.slice(0, 400).map((s) => card(`../../saints/${slugs.get(s.id)}/`, s.name.fr,
-    `${s.city} · ${countryName(s.country)} · ${formatFeast(s.feast)}`)).join('')}</ul>
-${list.length > 400 ? `<p class="note">Les 400 plus anciens sont listés ici ; les ${list.length - 400} autres se trouvent par les pages de pays.</p>\n` : ''}`;
+${list.length > 300
+    // Un siècle chargé (le XXe en compte plus de mille) : tous ses saints, rangés
+    // par pays, pour qu'aucun ne manque et qu'on s'y retrouve.
+    ? [...pays.entries()].sort((a, b) => b[1] - a[1] || countryName(a[0]).localeCompare(countryName(b[0]), 'fr'))
+      .map(([iso]) => `<h2>${esc(countryName(iso))}</h2>\n<ul class="cards">\n${list.filter((s) => s.country === iso)
+        .map((s) => card(`../../saints/${slugs.get(s.id)}/`, s.name.fr, `${s.city} · ${formatFeast(s.feast)}`)).join('')}</ul>\n`).join('')
+    : `<ul class="cards">\n${list.map((s) => card(`../../saints/${slugs.get(s.id)}/`, s.name.fr,
+      `${s.city} · ${countryName(s.country)} · ${formatFeast(s.feast)}`)).join('')}</ul>\n`}`;
 
   return page({
     title: `${titre} — ${nombre(list.length)} saints | SanctiMaps`,
@@ -976,8 +1005,12 @@ function countriesIndex(byCountry, ctx) {
   const body = `<h1>Les saints, pays par pays</h1>
 <p class="lede">${esc(`${rows.length} pays comptent au moins un saint recensé. Le classement suit le nombre de fiches, de l’Italie au Pakistan.`)}</p>
 <ul class="cards">
-${rows.map(([iso, list]) => card(`${paysSlugs.get(iso)}/`, `Saints ${deSuffix(iso)}`,
-    `${countryName(iso)} · ${list.length} fiche${list.length > 1 ? 's' : ''}`)).join('')}</ul>`;
+${rows.map(([iso, list]) => {
+    const venus = ctx.venusDans(iso).length;
+    return card(`${paysSlugs.get(iso)}/`, `Saints ${deSuffix(iso)}`, `${countryName(iso)} · `
+      + `${list.length ? `${list.length} fiche${list.length > 1 ? 's' : ''}` : 'aucun natif'}`
+      + `${venus ? ` · ${venus} venu${venus > 1 ? 's' : ''} d’ailleurs` : ''}`);
+  }).join('')}</ul>`;
 
   return page({
     title: `Les saints par pays — ${rows.length} pays | SanctiMaps`,
@@ -1243,6 +1276,24 @@ function main() {
   for (const list of byCountry.values()) list.sort((a, b) => (a.born ?? a.died ?? 0) - (b.born ?? b.died ?? 0));
   for (const list of byDay.values()) list.sort((a, b) => a.name.fr.localeCompare(b.name.fr, 'fr'));
 
+  // Les saints venus d'ailleurs qui ont marqué un pays (`venus.json`, écrit par
+  // build-data) : chacun figure aussi dans la liste de ces pays, et un pays sans
+  // saint natif a sa page pour eux.
+  const parId = new Map(published.map((s) => [s.id, s]));
+  const venusPar = new Map();
+  const marquesPar = new Map();
+  try {
+    const { venus } = JSON.parse(readFileSync(join(GEN, 'venus.json'), 'utf8'));
+    for (const [iso, liste] of Object.entries(venus || {})) {
+      const gardes = liste.filter((v) => parId.has(v.id)).map((v) => ({ saint: parId.get(v.id), lieux: v.lieux }));
+      if (!gardes.length) continue;
+      gardes.sort((a, b) => (a.saint.born ?? a.saint.died ?? 0) - (b.saint.born ?? b.saint.died ?? 0));
+      venusPar.set(iso, gardes);
+      if (!byCountry.has(iso) && names[iso]) byCountry.set(iso, []);
+      for (const v of gardes) marquesPar.set(v.saint.id, [...(marquesPar.get(v.saint.id) || []), iso]);
+    }
+  } catch { /* relevé absent : seuls les pays de naissance */ }
+
   // Les lieux : un regroupement par ville, dans son pays — deux « Irlande »
   // sous deux pays différents ne sont pas le même lieu.
   const byPlace = new Map();
@@ -1252,10 +1303,9 @@ function main() {
     if (!byPlace.has(key)) byPlace.set(key, []);
     byPlace.get(key).push(s);
   }
-  for (const [key, list] of byPlace) {
-    if (list.length < 2) byPlace.delete(key);
-    else list.sort((a, b) => (a.born ?? a.died ?? 0) - (b.born ?? b.died ?? 0));
-  }
+  // Chaque ville a sa page, même avec un seul saint : chaque fiche figure dans
+  // la liste de son lieu.
+  for (const list of byPlace.values()) list.sort((a, b) => (a.born ?? a.died ?? 0) - (b.born ?? b.died ?? 0));
 
   const lieuxSlugs = new Map();
   const usedLieux = new Set();
@@ -1352,6 +1402,8 @@ function main() {
   }
 
   const ctx = {
+    venusDans: (iso) => venusPar.get(iso) || [],
+    marquesDe: (id) => marquesPar.get(id) || [],
     base: options.base,
     slugs,
     paysSlugs,

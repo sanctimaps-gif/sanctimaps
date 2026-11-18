@@ -24,6 +24,13 @@ export class SearchPanel {
     // Le saint du jour se lit dans le calendrier de l'AELF : il monte en tête
     // de la liste dès que le calendrier est là.
     chargerAelf().then(() => { if (this.results) this.renderResults(); });
+    // Les saints venus d'ailleurs qui ont marqué chaque pays : chercher « Algérie »
+    // trouve aussi Charles de Foucauld, après ceux qui y sont nés.
+    this.venus = new Map();
+    fetch('data/generated/venus.json').then((r) => (r.ok ? r.json() : null)).catch(() => null).then((d) => {
+      for (const [iso, liste] of Object.entries(d?.venus || {})) this.venus.set(iso, new Set(liste.map((v) => v.id)));
+      if (this.results && this.text) this.renderResults();
+    });
   }
 
   /** Les fiches que la célébration d'aujourd'hui met à l'honneur. */
@@ -162,7 +169,7 @@ export class SearchPanel {
       // Une apparition et un miracle ont eu lieu une année, parfois sur
       // plusieurs : le siècle et l'année se lisent sur elle.
       const date = saint.kind === 'apparition' || saint.kind === 'miracle';
-      if (parsed.country && saint.country !== parsed.country) return false;
+      if (parsed.country && saint.country !== parsed.country && !this.venus?.get(parsed.country)?.has(saint.id)) return false;
       if (parsed.century && (date ? centuryOf(saint.annee) : saintCentury(saint)) !== parsed.century) return false;
       if (parsed.year != null && (date
         ? !(parsed.year >= saint.annee && parsed.year <= (saint.anneeFin ?? saint.annee))
@@ -187,13 +194,15 @@ export class SearchPanel {
     this.renderTokens(parsed);
 
     const list = this.matches(parsed);
+    // Un pays : ceux qui y sont nés d'abord, puis ceux qui l'ont marqué.
+    const venu = (s) => (parsed.country && s.country !== parsed.country ? 1 : 0);
     // Tri chronologique dès qu'une date est en jeu, alphabétique sinon.
     if (parsed.century || parsed.year != null) {
-      list.sort((a, b) => (a.annee ?? a.born ?? a.died ?? 0) - (b.annee ?? b.born ?? b.died ?? 0));
+      list.sort((a, b) => venu(a) - venu(b) || (a.annee ?? a.born ?? a.died ?? 0) - (b.annee ?? b.born ?? b.died ?? 0));
     } else if (parsed.feast) {
-      list.sort((a, b) => String(a.feast).localeCompare(String(b.feast)));
+      list.sort((a, b) => venu(a) - venu(b) || String(a.feast).localeCompare(String(b.feast)));
     } else {
-      list.sort((a, b) => cmp.compare(
+      list.sort((a, b) => venu(a) - venu(b) || cmp.compare(
         this.atlas.saintName(a, lang), this.atlas.saintName(b, lang),
       ));
     }
@@ -239,7 +248,8 @@ export class SearchPanel {
     emblemSvg(saint),
     h('span', { class: 'result__name', text: this.atlas.saintName(saint, lang) }),
     h('span', { class: 'result__meta',
-      text: `${this.atlas.countryName(saint.country, lang)} · ${saint.city}` }),
+      text: `${this.atlas.countryName(saint.country, lang)} · ${saint.city}${venu(saint)
+        ? ` · ${t('search.aMarque', { pays: this.atlas.countryName(parsed.country, lang) })}` : ''}` }),
     h('span', { class: 'result__dates' },
       h('span', { text: saint.kind === 'apparition' || saint.kind === 'miracle' ? periode(saint) : lifespan(saint) }),
       saint.feast ? h('span', { class: 'result__feast', text: formatFeast(saint.feast) }) : null),

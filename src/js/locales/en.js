@@ -56,6 +56,7 @@ export default {
     settings: 'Language, theme, reminder, account',
   },
   search: {
+    aMarque: 'left a mark on {pays}',
     label: 'Search for a saint, an apparition, a miracle',
     placeholder: 'Italy, 13th century, Teresa, Lourdes, 4 September…',
     help: 'One bar only: type a country, a century, a year, a feast day or a name.',

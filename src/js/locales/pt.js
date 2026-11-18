@@ -56,6 +56,7 @@ export default {
     settings: 'Língua, tema, lembrete, conta',
   },
   search: {
+    aMarque: 'marcou {pays}',
     label: 'Pesquisar um santo',
     placeholder: 'Itália, século XIII, Teresa, 4 de setembro…',
     help: 'Uma só barra: escreva um país, um século, um ano, uma festa ou um nome.',

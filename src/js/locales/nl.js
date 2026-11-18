@@ -56,6 +56,7 @@ export default {
     settings: 'Taal, thema, herinnering, account',
   },
   search: {
+    aMarque: 'liet sporen na in {pays}',
     label: 'Een heilige zoeken',
     placeholder: 'Italië, 13e eeuw, Teresa, 4 september…',
     help: 'Eén balk: typ een land, een eeuw, een jaar, een feestdag of een naam.',
